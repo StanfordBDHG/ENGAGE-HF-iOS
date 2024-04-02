@@ -1,5 +1,5 @@
 #
-# This source file is part of the Stanford Spezi Template Application open-source project
+# This source file is part of the ENGAGE-HF based on the Stanford Spezi Template Application project
 #
 # SPDX-FileCopyrightText: 2023 Stanford University
 #
@@ -12,7 +12,7 @@
 .derivedData
 .build
 .docs
-!TemplateApplication.xcodeproj
+!ENGAGEHF.xcodeproj
 
 # IDE related folders
 .idea
@@ -30,7 +30,7 @@ xcuserdata/
 # Tests
 report.junit
 report.html
-TemplateApplication.xcresult
+ENGAGEHF.xcresult
 
 # Logs
 logs
@@ -43,6 +43,3 @@ firebase-debug.*.log*
 
 # Firebase cache
 .firebase/
-
-# Swift Package List
-TemplateApplication/package-list.json
