@@ -79,14 +79,14 @@
 			containerPortal = 653A2545283387FE005D4D48 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 653A254C283387FE005D4D48;
-			remoteInfo = "ENGAGEHF";
+			remoteInfo = ENGAGEHF;
 		};
 		653A256828338800005D4D48 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 653A2545283387FE005D4D48 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 653A254C283387FE005D4D48;
-			remoteInfo = "ENGAGEHF";
+			remoteInfo = ENGAGEHF;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -394,7 +394,7 @@
 				56E708342BB06B7100B08F0A /* SpeziLicense */,
 				56E7083A2BB06F6F00B08F0A /* SwiftPackageList */,
 			);
-			productName = "ENGAGEHF";
+			productName = ENGAGEHF;
 			productReference = 653A254D283387FE005D4D48 /* ENGAGEHF.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -412,7 +412,7 @@
 				653A255F28338800005D4D48 /* PBXTargetDependency */,
 			);
 			name = ENGAGEHFTests;
-			productName = "ENGAGEHFTests";
+			productName = ENGAGEHFTests;
 			productReference = 653A255D28338800005D4D48 /* ENGAGEHFTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
@@ -434,7 +434,7 @@
 				2FE5DC9829EDD9D9004B9AB4 /* XCTestExtensions */,
 				2FE5DC9B29EDD9EF004B9AB4 /* XCTHealthKit */,
 			);
-			productName = "ENGAGEHFUITests";
+			productName = ENGAGEHFUITests;
 			productReference = 653A256728338800005D4D48 /* ENGAGEHFUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
@@ -683,7 +683,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 637867499T;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ENGAGEHF/Supporting Files/Info.plist";
@@ -880,7 +880,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 637867499T;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ENGAGEHF/Supporting Files/Info.plist";
