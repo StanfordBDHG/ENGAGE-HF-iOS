@@ -79,14 +79,14 @@
 			containerPortal = 653A2545283387FE005D4D48 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 653A254C283387FE005D4D48;
-			remoteInfo = "ENGAGE-HF";
+			remoteInfo = "ENGAGEHF";
 		};
 		653A256828338800005D4D48 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 653A2545283387FE005D4D48 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 653A254C283387FE005D4D48;
-			remoteInfo = "ENGAGE-HF";
+			remoteInfo = "ENGAGEHF";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -394,7 +394,7 @@
 				56E708342BB06B7100B08F0A /* SpeziLicense */,
 				56E7083A2BB06F6F00B08F0A /* SwiftPackageList */,
 			);
-			productName = "ENGAGE-HF";
+			productName = "ENGAGEHF";
 			productReference = 653A254D283387FE005D4D48 /* ENGAGEHF.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -412,7 +412,7 @@
 				653A255F28338800005D4D48 /* PBXTargetDependency */,
 			);
 			name = ENGAGEHFTests;
-			productName = "ENGAGE-HFTests";
+			productName = "ENGAGEHFTests";
 			productReference = 653A255D28338800005D4D48 /* ENGAGEHFTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
@@ -434,7 +434,7 @@
 				2FE5DC9829EDD9D9004B9AB4 /* XCTestExtensions */,
 				2FE5DC9B29EDD9EF004B9AB4 /* XCTHealthKit */,
 			);
-			productName = "ENGAGE-HFUITests";
+			productName = "ENGAGEHFUITests";
 			productReference = 653A256728338800005D4D48 /* ENGAGEHFUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
@@ -695,8 +695,6 @@
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "This message should never appear. Please adjust this when you start using microphone information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
 				INFOPLIST_KEY_NSMotionUsageDescription = "This message should never appear. Please adjust this when you start using motion information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "This message should never appear. Please adjust this when you start using speecg information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
-				"INFOPLIST_KEY_UIENGAGE-HFlicationSceneManifest_Generation" = YES;
-				"INFOPLIST_KEY_UIENGAGE-HFlicationSupportsIndirectInputEvents" = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -711,7 +709,6 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				"SWIFT_ELicenseRef-ENGAGE-HF_LOC_STRINGS" = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -729,7 +726,6 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.bdh.engagehf.tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"SWIFT_ELicenseRef-ENGAGE-HF_LOC_STRINGS" = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ENGAGEHF.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ENGAGEHF";
 			};
@@ -747,7 +743,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.bdh.engagehfuitests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				"SWIFT_ELicenseRef-ENGAGE-HF_LOC_STRINGS" = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = ENGAGEHF;
 			};
@@ -897,8 +892,6 @@
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "This message should never appear. Please adjust this when you start using microphone information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
 				INFOPLIST_KEY_NSMotionUsageDescription = "This message should never appear. Please adjust this when you start using motion information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "This message should never appear. Please adjust this when you start using speecg information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
-				"INFOPLIST_KEY_UIENGAGE-HFlicationSceneManifest_Generation" = YES;
-				"INFOPLIST_KEY_UIENGAGE-HFlicationSupportsIndirectInputEvents" = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -913,7 +906,6 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				"SWIFT_ELicenseRef-ENGAGE-HF_LOC_STRINGS" = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -943,8 +935,6 @@
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "This message should never appear. Please adjust this when you start using microphone information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
 				INFOPLIST_KEY_NSMotionUsageDescription = "This message should never appear. Please adjust this when you start using motion information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "This message should never appear. Please adjust this when you start using speecg information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
-				"INFOPLIST_KEY_UIENGAGE-HFlicationSceneManifest_Generation" = YES;
-				"INFOPLIST_KEY_UIENGAGE-HFlicationSupportsIndirectInputEvents" = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -960,7 +950,6 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				"SWIFT_ELicenseRef-ENGAGE-HF_LOC_STRINGS" = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -978,7 +967,6 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.bdh.engagehf.tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"SWIFT_ELicenseRef-ENGAGE-HF_LOC_STRINGS" = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ENGAGEHF.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ENGAGEHF";
 			};
@@ -996,7 +984,6 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.bdh.engagehf.tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"SWIFT_ELicenseRef-ENGAGE-HF_LOC_STRINGS" = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ENGAGEHF.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ENGAGEHF";
 			};
@@ -1014,7 +1001,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.bdh.engagehfuitests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				"SWIFT_ELicenseRef-ENGAGE-HF_LOC_STRINGS" = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = ENGAGEHF;
 			};
@@ -1032,7 +1018,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.bdh.engagehfuitests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				"SWIFT_ELicenseRef-ENGAGE-HF_LOC_STRINGS" = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = ENGAGEHF;
 			};

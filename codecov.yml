@@ -29,8 +29,8 @@ coverage:
         target: auto
         threshold: 5.0
 ignore:
-- ^ENGAGE-HFUITests.*
-- ^ENGAGE-HFTests.*
+- ^ENGAGEHFUITests.*
+- ^ENGAGEHFTests.*
 parsers:
   gcov:
     branch_detection:
