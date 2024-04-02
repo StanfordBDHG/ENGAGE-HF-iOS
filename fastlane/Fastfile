@@ -1,5 +1,5 @@
 #
-# This source file is part of the Stanford Spezi Template Application open-source project
+# This source file is part of the ENGAGE-HF based on the Stanford Spezi Template Application project
 #
 # SPDX-FileCopyrightText: 2023 Stanford University
 #
@@ -56,7 +56,7 @@ platform :ios do
       ],
       export_options: {
         provisioningProfiles: {
-          "edu.stanford.spezi.templateapplication" => "Spezi Template Application"
+          "edu.stanford.bdh.engagehf" => "Stanford BDHG ENGAGE-HF"
         }
       }
     )
