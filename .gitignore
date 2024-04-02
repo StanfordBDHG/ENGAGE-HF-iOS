@@ -12,7 +12,7 @@
 .derivedData
 .build
 .docs
-!ENGAGE-HF.xcodeproj
+!ENGAGEHF.xcodeproj
 
 # IDE related folders
 .idea
@@ -43,6 +43,3 @@ firebase-debug.*.log*
 
 # Firebase cache
 .firebase/
-
-# Swift Package List
-ENGAGE-HF/package-list.json
