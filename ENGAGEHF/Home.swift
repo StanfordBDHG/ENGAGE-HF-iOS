@@ -13,8 +13,10 @@ import SwiftUI
 
 struct HomeView: View {
     enum Tabs: String {
-        case schedule
-        case contact
+        case home
+        case heart
+        case medications
+        case education
         case mockUpload
     }
     
@@ -23,21 +25,31 @@ struct HomeView: View {
     }
 
 
-    @AppStorage(StorageKeys.homeTabSelection) private var selectedTab = Tabs.schedule
+    @AppStorage(StorageKeys.homeTabSelection) private var selectedTab = Tabs.home
     @State private var presentingAccount = false
 
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            ScheduleView(presentingAccount: $presentingAccount)
-                .tag(Tabs.schedule)
+            Dashboard(presentingAccount: $presentingAccount)
+                .tag(Tabs.home)
                 .tabItem {
-                    Label("SCHEDULE_TAB_TITLE", systemImage: "list.clipboard")
+                    Label("Home", systemImage: "house")
                 }
-            Contacts(presentingAccount: $presentingAccount)
-                .tag(Tabs.contact)
+            HeartHealth(presentingAccount: $presentingAccount)
+                .tag(Tabs.heart)
                 .tabItem {
-                    Label("CONTACTS_TAB_TITLE", systemImage: "person.fill")
+                    Label("Heart Health", systemImage: "heart.square")
+                }
+            Medications(presentingAccount: $presentingAccount)
+                .tag(Tabs.medications)
+                .tabItem {
+                    Label("Medications", systemImage: "pill")
+                }
+            Education(presentingAccount: $presentingAccount)
+                .tag(Tabs.education)
+                .tabItem {
+                    Label("Education", systemImage: "book.pages")
                 }
             if FeatureFlags.disableFirebase {
                 MockUpload(presentingAccount: $presentingAccount)

@@ -95,6 +95,7 @@
     },
     "CONTACTS_TAB_TITLE" : {
       "comment" : "MARK: - Contacts",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -103,6 +104,12 @@
           }
         }
       }
+    },
+    "Education" : {
+
+    },
+    "Education Test" : {
+
     },
     "HEALTHKIT_PERMISSIONS_BUTTON" : {
       "localizations" : {
@@ -144,6 +151,15 @@
           }
         }
       }
+    },
+    "Heart Health" : {
+
+    },
+    "Heart Health Test" : {
+
+    },
+    "Home" : {
+
     },
     "INTERESTING_MODULES_AREA1_DESCRIPTION" : {
       "localizations" : {
@@ -276,6 +292,12 @@
         }
       }
     },
+    "Medications" : {
+
+    },
+    "Medications Test" : {
+
+    },
     "MOCK_WEB_SERVICE_TAB_TITLE" : {
       "comment" : "MARK: - Mock Upload Data Storage Provider",
       "localizations" : {
@@ -340,6 +362,7 @@
     },
     "SCHEDULE_TAB_TITLE" : {
       "comment" : "MARK: - Schedule",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -398,6 +421,9 @@
           }
         }
       }
+    },
+    "Test" : {
+
     },
     "WELCOME_AREA1_DESCRIPTION" : {
       "localizations" : {

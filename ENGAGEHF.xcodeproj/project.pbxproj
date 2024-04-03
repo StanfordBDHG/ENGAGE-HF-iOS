@@ -58,6 +58,10 @@
 		2FE5DCB129EE6107004B9AB4 /* AccountOnboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE5DCAC29EE6107004B9AB4 /* AccountOnboarding.swift */; };
 		2FF53D8B2A8725DE00042B76 /* SpeziMockWebService in Frameworks */ = {isa = PBXBuildFile; productRef = 2FF53D8A2A8725DE00042B76 /* SpeziMockWebService */; };
 		2FF53D8D2A8729D600042B76 /* ENGAGEHFStandard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF53D8C2A8729D600042B76 /* ENGAGEHFStandard.swift */; };
+		4DB025B72BBDE903002D2545 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB025B62BBDE903002D2545 /* DashboardView.swift */; };
+		4DB025BD2BBDE9F7002D2545 /* HeartHealthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB025BC2BBDE9F7002D2545 /* HeartHealthView.swift */; };
+		4DB025BF2BBDEA03002D2545 /* EducationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB025BE2BBDEA03002D2545 /* EducationView.swift */; };
+		4DB025C12BBDEA0B002D2545 /* MedicationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB025C02BBDEA0B002D2545 /* MedicationsView.swift */; };
 		56E708352BB06B7100B08F0A /* SpeziLicense in Frameworks */ = {isa = PBXBuildFile; productRef = 56E708342BB06B7100B08F0A /* SpeziLicense */; };
 		56E7083B2BB06F6F00B08F0A /* SwiftPackageList in Frameworks */ = {isa = PBXBuildFile; productRef = 56E7083A2BB06F6F00B08F0A /* SwiftPackageList */; };
 		653A2551283387FE005D4D48 /* ENGAGEHF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653A2550283387FE005D4D48 /* ENGAGEHF.swift */; };
@@ -124,6 +128,10 @@
 		2FE5DC5529EDD811004B9AB4 /* SocialSupportQuestionnaire.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SocialSupportQuestionnaire.json; sourceTree = "<group>"; };
 		2FE5DCAC29EE6107004B9AB4 /* AccountOnboarding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountOnboarding.swift; sourceTree = "<group>"; };
 		2FF53D8C2A8729D600042B76 /* ENGAGEHFStandard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ENGAGEHFStandard.swift; sourceTree = "<group>"; };
+		4DB025B62BBDE903002D2545 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		4DB025BC2BBDE9F7002D2545 /* HeartHealthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartHealthView.swift; sourceTree = "<group>"; };
+		4DB025BE2BBDEA03002D2545 /* EducationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationView.swift; sourceTree = "<group>"; };
+		4DB025C02BBDEA0B002D2545 /* MedicationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationsView.swift; sourceTree = "<group>"; };
 		653A254D283387FE005D4D48 /* ENGAGEHF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ENGAGEHF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		653A2550283387FE005D4D48 /* ENGAGEHF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ENGAGEHF.swift; sourceTree = "<group>"; };
 		653A255428338800005D4D48 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -273,6 +281,38 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
+		4DB025B52BBDE8EC002D2545 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				4DB025B62BBDE903002D2545 /* DashboardView.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		4DB025B92BBDE9CB002D2545 /* HeartHealth */ = {
+			isa = PBXGroup;
+			children = (
+				4DB025BC2BBDE9F7002D2545 /* HeartHealthView.swift */,
+			);
+			path = HeartHealth;
+			sourceTree = "<group>";
+		};
+		4DB025BA2BBDE9DA002D2545 /* Medications */ = {
+			isa = PBXGroup;
+			children = (
+				4DB025C02BBDEA0B002D2545 /* MedicationsView.swift */,
+			);
+			path = Medications;
+			sourceTree = "<group>";
+		};
+		4DB025BB2BBDE9E2002D2545 /* Education */ = {
+			isa = PBXGroup;
+			children = (
+				4DB025BE2BBDEA03002D2545 /* EducationView.swift */,
+			);
+			path = Education;
+			sourceTree = "<group>";
+		};
 		653A2544283387FE005D4D48 = {
 			isa = PBXGroup;
 			children = (
@@ -303,6 +343,10 @@
 				2FF53D8C2A8729D600042B76 /* ENGAGEHFStandard.swift */,
 				2F4E23822989D51F0013F3D9 /* ENGAGEHFTestingSetup.swift */,
 				2FC975A72978F11A00BA99FE /* Home.swift */,
+				4DB025B52BBDE8EC002D2545 /* Dashboard */,
+				4DB025B92BBDE9CB002D2545 /* HeartHealth */,
+				4DB025BB2BBDE9E2002D2545 /* Education */,
+				4DB025BA2BBDE9DA002D2545 /* Medications */,
 				A9720E412ABB68B300872D23 /* Account */,
 				2FE5DC2829EDD398004B9AB4 /* Onboarding */,
 				2FE5DC3B29EDD7D0004B9AB4 /* Schedule */,
@@ -540,16 +584,20 @@
 				2FE5DC4129EDD7EE004B9AB4 /* StorageKeys.swift in Sources */,
 				2FE5DCB129EE6107004B9AB4 /* AccountOnboarding.swift in Sources */,
 				2F4FC8D729EE69D300BFFE26 /* MockUpload.swift in Sources */,
+				4DB025C12BBDEA0B002D2545 /* MedicationsView.swift in Sources */,
 				2FE5DC3A29EDD7CA004B9AB4 /* Welcome.swift in Sources */,
 				2FE5DC3829EDD7CA004B9AB4 /* InterestingModules.swift in Sources */,
+				4DB025BF2BBDEA03002D2545 /* EducationView.swift in Sources */,
 				2FE5DC3529EDD7CA004B9AB4 /* Consent.swift in Sources */,
 				2FE5DC4529EDD7F2004B9AB4 /* Binding+Negate.swift in Sources */,
+				4DB025B72BBDE903002D2545 /* DashboardView.swift in Sources */,
 				2FC975A82978F11A00BA99FE /* Home.swift in Sources */,
 				2FE5DC4E29EDD7FA004B9AB4 /* ScheduleView.swift in Sources */,
 				A9DFE8A92ABE551400428242 /* AccountButton.swift in Sources */,
 				2FE5DC3729EDD7CA004B9AB4 /* OnboardingFlow.swift in Sources */,
 				2FF53D8D2A8729D600042B76 /* ENGAGEHFStandard.swift in Sources */,
 				2FE5DC4729EDD7F2004B9AB4 /* CodableArray+RawRepresentable.swift in Sources */,
+				4DB025BD2BBDE9F7002D2545 /* HeartHealthView.swift in Sources */,
 				A9720E432ABB68CC00872D23 /* AccountSetupHeader.swift in Sources */,
 				2FE5DC4029EDD7EE004B9AB4 /* FeatureFlags.swift in Sources */,
 				2FE5DC4629EDD7F2004B9AB4 /* Bundle+Image.swift in Sources */,
