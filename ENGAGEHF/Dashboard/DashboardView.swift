@@ -15,23 +15,30 @@ import SpeziAccount
 import SpeziMockWebService
 import SwiftUI
 
-struct HomeTitle: View {
-    @Binding var presentingAccount: Bool
+struct Greeting: View {
+    @State private var dateString: String?
     
     var body: some View {
         HStack {
-            titleBar
-            AccountButton(isPresented: $presentingAccount)
+            Text("Hello, world!")
+                .font(.title2)
+            Spacer()
+            Text(dateString ?? "No date")
+                .font(.title2)
+        }
+        .padding()
+        .task {
+            getDateString()
         }
     }
     
-    private var titleBar: some View {
-        Text("ENGAGE-HF Home")
-            .font(.title)
-            .foregroundColor(.white)
-            .padding()
-            .frame(maxWidth: .infinity)
-            .background(Color("AccentColor"))
+    private func getDateString() {
+        let currentDate = Date()
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateStyle = .short
+        
+        dateString = dateFormatter.string(from: currentDate)
     }
 }
 
@@ -39,22 +46,27 @@ struct Dashboard: View {
     @Binding var presentingAccount: Bool
     
     var body: some View {
-        VStack {
-            // Title
-            
-            
-            // Greeting and Date
-            
-            // Notifications
-            
-            // To-Do list
-            
-            // Latest Vitals
-            
-            // Symptom Survey
-        }
-            .toolbar {
-                AccountButton(isPresented: $presentingAccount)
+        NavigationStack {
+            VStack {
+                Greeting()
+                Spacer()
             }
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationTitle("ENGAGE-HF: Home")  // Todo: Make this white
+            
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    AccountButton(isPresented: $presentingAccount)
+                        .foregroundColor(.white)
+                }
+            }
+            .toolbarBackground(.visible, for: .navigationBar)
+            .toolbarBackground(Color("AccentColor"), for: .navigationBar)
+        }
     }
+}
+
+#Preview {
+    @State var presentingAccount = false
+    return Dashboard(presentingAccount: $presentingAccount)
 }

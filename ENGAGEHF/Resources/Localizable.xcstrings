@@ -111,6 +111,9 @@
     "Education Test" : {
 
     },
+    "ENGAGE-HF: Home" : {
+
+    },
     "HEALTHKIT_PERMISSIONS_BUTTON" : {
       "localizations" : {
         "en" : {
@@ -156,6 +159,9 @@
 
     },
     "Heart Health Test" : {
+
+    },
+    "Hello, world!" : {
 
     },
     "Home" : {
@@ -421,9 +427,6 @@
           }
         }
       }
-    },
-    "Test" : {
-
     },
     "WELCOME_AREA1_DESCRIPTION" : {
       "localizations" : {
