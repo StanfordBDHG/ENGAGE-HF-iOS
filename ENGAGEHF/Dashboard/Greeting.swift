@@ -13,12 +13,10 @@ struct Greeting: View {
         HStack(alignment: .top) {
             Text("Hello, world!")
                 .font(.title.bold())
-                .accessibilityLabel(Text("DASHBOARD_GREETING"))
             Spacer()
             Text(.now, style: .date)
                 .font(.title3)
                 .foregroundStyle(.secondary)
-                .accessibilityLabel(Text("DASHBOARD_DATE"))
         }
         .padding()
     }
