@@ -62,7 +62,6 @@
 		4DB025BD2BBDE9F7002D2545 /* HeartHealthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB025BC2BBDE9F7002D2545 /* HeartHealthView.swift */; };
 		4DB025BF2BBDEA03002D2545 /* EducationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB025BE2BBDEA03002D2545 /* EducationView.swift */; };
 		4DB025C12BBDEA0B002D2545 /* MedicationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB025C02BBDEA0B002D2545 /* MedicationsView.swift */; };
-		4DB025C62BBE21EF002D2545 /* index.js in Resources */ = {isa = PBXBuildFile; fileRef = 4DB025C52BBE21EF002D2545 /* index.js */; };
 		4DB025CA2BBE3A59002D2545 /* HomeViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB025C92BBE3A59002D2545 /* HomeViewUITests.swift */; };
 		4DB025CE2BBE8D2E002D2545 /* GreetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB025CD2BBE8D2E002D2545 /* GreetingView.swift */; };
 		56E708352BB06B7100B08F0A /* SpeziLicense in Frameworks */ = {isa = PBXBuildFile; productRef = 56E708342BB06B7100B08F0A /* SpeziLicense */; };
@@ -135,7 +134,6 @@
 		4DB025BC2BBDE9F7002D2545 /* HeartHealthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartHealthView.swift; sourceTree = "<group>"; };
 		4DB025BE2BBDEA03002D2545 /* EducationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationView.swift; sourceTree = "<group>"; };
 		4DB025C02BBDEA0B002D2545 /* MedicationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationsView.swift; sourceTree = "<group>"; };
-		4DB025C52BBE21EF002D2545 /* index.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = index.js; sourceTree = "<group>"; };
 		4DB025C92BBE3A59002D2545 /* HomeViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewUITests.swift; sourceTree = "<group>"; };
 		4DB025CD2BBE8D2E002D2545 /* GreetingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreetingView.swift; sourceTree = "<group>"; };
 		653A254D283387FE005D4D48 /* ENGAGEHF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ENGAGEHF.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -320,21 +318,6 @@
 			path = Education;
 			sourceTree = "<group>";
 		};
-		4DB025C32BBE219B002D2545 /* Functions */ = {
-			isa = PBXGroup;
-			children = (
-				4DB025C52BBE21EF002D2545 /* index.js */,
-			);
-			path = Functions;
-			sourceTree = "<group>";
-		};
-		4DB025C72BBE24B9002D2545 /* Firebase */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Firebase;
-			sourceTree = "<group>";
-		};
 		653A2544283387FE005D4D48 = {
 			isa = PBXGroup;
 			children = (
@@ -365,8 +348,6 @@
 				2FF53D8C2A8729D600042B76 /* ENGAGEHFStandard.swift */,
 				2F4E23822989D51F0013F3D9 /* ENGAGEHFTestingSetup.swift */,
 				2FC975A72978F11A00BA99FE /* Home.swift */,
-				4DB025C72BBE24B9002D2545 /* Firebase */,
-				4DB025C32BBE219B002D2545 /* Functions */,
 				4DB025B52BBDE8EC002D2545 /* Dashboard */,
 				4DB025B92BBDE9CB002D2545 /* HeartHealth */,
 				4DB025BB2BBDE9E2002D2545 /* Education */,
@@ -580,7 +561,6 @@
 				2FC3439129EE6349002D773C /* AppIcon.png in Resources */,
 				653A255528338800005D4D48 /* Assets.xcassets in Resources */,
 				2FC3439029EE6346002D773C /* SocialSupportQuestionnaire.json in Resources */,
-				4DB025C62BBE21EF002D2545 /* index.js in Resources */,
 				2FA0BFED2ACC977500E0EF83 /* Localizable.xcstrings in Resources */,
 				2F6025CB29BBE70F0045459E /* GoogleService-Info.plist in Resources */,
 			);
