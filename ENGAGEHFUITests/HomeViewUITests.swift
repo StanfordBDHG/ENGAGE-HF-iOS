@@ -33,7 +33,7 @@ class HomeViewUITests: XCTestCase {
         
         // Make sure the date appears
         let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .short
+        dateFormatter.dateStyle = .long
         
         XCTAssert(app.staticTexts[dateFormatter.string(from: .now)].exists)
         
