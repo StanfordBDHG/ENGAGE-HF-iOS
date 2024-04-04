@@ -19,18 +19,13 @@ struct Dashboard: View {
                 Greeting()
                 Spacer()
             }
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle("ENGAGE-HF: Home")  // Todo: Make this white
+                .navigationTitle("Home")
             
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     AccountButton(isPresented: $presentingAccount)
-                        .foregroundColor(.white)
-                        .accessibilityLabel(Text("DASHBOARD_ACC_BTN"))
                 }
             }
-            .toolbarBackground(.visible, for: .navigationBar)
-            .toolbarBackground(Color("AccentColor"), for: .navigationBar)
         }
     }
 }
