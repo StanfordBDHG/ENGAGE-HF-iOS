@@ -13,7 +13,6 @@ import SpeziFirebaseStorage
 import SpeziFirestore
 import SpeziHealthKit
 import SpeziOnboarding
-import SpeziScheduler
 import SwiftUI
 
 
@@ -50,7 +49,6 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
                 healthKit
             }
             
-            ENGAGEHFScheduler()
             OnboardingDataSource()
         }
     }

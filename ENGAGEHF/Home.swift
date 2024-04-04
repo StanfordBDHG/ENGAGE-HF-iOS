@@ -51,7 +51,6 @@ struct HomeView: View {
     
     return HomeView()
         .previewWith(standard: ENGAGEHFStandard()) {
-            ENGAGEHFScheduler()
             AccountConfiguration(building: details, active: MockUserIdPasswordAccountService())
         }
 }
@@ -60,7 +59,6 @@ struct HomeView: View {
     CommandLine.arguments.append("--disableFirebase")
     return HomeView()
         .previewWith(standard: ENGAGEHFStandard()) {
-            ENGAGEHFScheduler()
             AccountConfiguration {
                 MockUserIdPasswordAccountService()
             }

@@ -1,5 +1,5 @@
 {
-  "originHash" : "7791f7520d86b9b987dab37c9b90dab7fe5795363615aa359655357df18d38c1",
+  "originHash" : "84060c25a97a757bf3045128a2563021282283c70a9cb6009941a41298deef92",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -251,15 +251,6 @@
       "state" : {
         "revision" : "f9d9b6d99bb1e00bda2974b440dca8367733d591",
         "version" : "1.1.0"
-      }
-    },
-    {
-      "identity" : "spezischeduler",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/StanfordSpezi/SpeziScheduler.git",
-      "state" : {
-        "revision" : "eed3980f20b01a788720c869010e3fe2fbfcd1fd",
-        "version" : "0.8.2"
       }
     },
     {

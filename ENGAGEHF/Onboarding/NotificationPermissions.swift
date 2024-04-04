@@ -7,12 +7,10 @@
 //
 
 import SpeziOnboarding
-import SpeziScheduler
 import SwiftUI
 
 
 struct NotificationPermissions: View {
-    @Environment(ENGAGEHFScheduler.self) private var scheduler
     @Environment(OnboardingNavigationPath.self) private var onboardingNavigationPath
     
     @State private var notificationProcessing = false
@@ -45,8 +43,6 @@ struct NotificationPermissions: View {
                             // Notification Authorization is not available in the preview simulator.
                             if ProcessInfo.processInfo.isPreviewSimulator {
                                 try await _Concurrency.Task.sleep(for: .seconds(5))
-                            } else {
-                                try await scheduler.requestLocalNotificationAuthorization()
                             }
                         } catch {
                             print("Could not request notification permissions.")
@@ -70,8 +66,5 @@ struct NotificationPermissions: View {
     OnboardingStack {
         NotificationPermissions()
     }
-        .previewWith {
-            ENGAGEHFScheduler()
-        }
 }
 #endif
