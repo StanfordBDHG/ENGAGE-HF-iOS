@@ -7,7 +7,6 @@
 //
 
 import SpeziAccount
-import SpeziMockWebService
 import SwiftUI
 
 
@@ -53,8 +52,6 @@ struct HomeView: View {
     
     return HomeView()
         .previewWith(standard: ENGAGEHFStandard()) {
-            ENGAGEHFScheduler()
-            MockWebService()
             AccountConfiguration(building: details, active: MockUserIdPasswordAccountService())
         }
 }
@@ -63,8 +60,6 @@ struct HomeView: View {
     CommandLine.arguments.append("--disableFirebase") // make sure the MockWebService is displayed
     return HomeView()
         .previewWith(standard: ENGAGEHFStandard()) {
-            ENGAGEHFScheduler()
-            MockWebService()
             AccountConfiguration {
                 MockUserIdPasswordAccountService()
             }
