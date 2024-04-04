@@ -22,3 +22,7 @@ struct Greeting: View {
         .padding()
     }
 }
+
+#Preview {
+    Greeting()
+}

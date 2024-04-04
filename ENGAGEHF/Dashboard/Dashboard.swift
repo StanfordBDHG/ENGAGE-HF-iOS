@@ -31,5 +31,5 @@ struct Dashboard: View {
 }
 
 #Preview {
-    return Dashboard(presentingAccount: .constant(false))
+    Dashboard(presentingAccount: .constant(false))
 }
