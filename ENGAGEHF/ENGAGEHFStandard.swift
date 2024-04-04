@@ -16,6 +16,7 @@ import SpeziAccount
 import SpeziFirebaseAccountStorage
 import SpeziFirestore
 import SpeziHealthKit
+import SpeziMockWebService
 import SpeziOnboarding
 import SpeziQuestionnaire
 import SwiftUI
@@ -30,6 +31,7 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, HealthKitConstraint, On
         Firestore.firestore().collection("users")
     }
 
+    @Dependency var mockWebService: MockWebService?
     @Dependency var accountStorage: FirestoreAccountStorage?
 
     @AccountReference var account: Account
@@ -66,6 +68,14 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, HealthKitConstraint, On
 
 
     func add(sample: HKSample) async {
+        if let mockWebService {
+            let encoder = JSONEncoder()
+            encoder.outputFormatting = [.prettyPrinted, .sortedKeys, .withoutEscapingSlashes]
+            let jsonRepresentation = (try? String(data: encoder.encode(sample.resource), encoding: .utf8)) ?? ""
+            try? await mockWebService.upload(path: "healthkit/\(sample.uuid.uuidString)", body: jsonRepresentation)
+            return
+        }
+        
         do {
             try await healthKitDocument(id: sample.id).setData(from: sample.resource)
         } catch {
@@ -74,6 +84,11 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, HealthKitConstraint, On
     }
     
     func remove(sample: HKDeletedObject) async {
+        if let mockWebService {
+            try? await mockWebService.remove(path: "healthkit/\(sample.uuid.uuidString)")
+            return
+        }
+        
         do {
             try await healthKitDocument(id: sample.uuid).delete()
         } catch {
@@ -83,6 +98,12 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, HealthKitConstraint, On
     
     func add(response: ModelsR4.QuestionnaireResponse) async {
         let id = response.identifier?.value?.value?.string ?? UUID().uuidString
+        
+        if let mockWebService {
+            let jsonRepresentation = (try? String(data: JSONEncoder().encode(response), encoding: .utf8)) ?? ""
+            try? await mockWebService.upload(path: "questionnaireResponse/\(id)", body: jsonRepresentation)
+            return
+        }
         
         do {
             try await userDocumentReference
