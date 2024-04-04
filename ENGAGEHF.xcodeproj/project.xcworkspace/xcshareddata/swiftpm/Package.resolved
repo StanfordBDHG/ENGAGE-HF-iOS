@@ -1,5 +1,5 @@
 {
-  "originHash" : "d2097b02aed2e09776146d22c31b71e71570248079de679a782c846c09d0ae6f",
+  "originHash" : "7791f7520d86b9b987dab37c9b90dab7fe5795363615aa359655357df18d38c1",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -233,15 +233,6 @@
       "state" : {
         "branch" : "dependency-list",
         "revision" : "9b1713dd9ac14708c0381cf54ad84e13f3780083"
-      }
-    },
-    {
-      "identity" : "spezimockwebservice",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/StanfordSpezi/SpeziMockWebService.git",
-      "state" : {
-        "revision" : "b18067d3499e630bbd995ef05a296ef8fdd42528",
-        "version" : "1.0.0"
       }
     },
     {

@@ -7,14 +7,12 @@
 //
 
 import SpeziAccount
-import SpeziMockWebService
 import SwiftUI
 
 
 struct HomeView: View {
     enum Tabs: String {
         case home
-        case mockUpload
     }
     
     static var accountEnabled: Bool {
@@ -54,17 +52,15 @@ struct HomeView: View {
     return HomeView()
         .previewWith(standard: ENGAGEHFStandard()) {
             ENGAGEHFScheduler()
-            MockWebService()
             AccountConfiguration(building: details, active: MockUserIdPasswordAccountService())
         }
 }
 
 #Preview {
-    CommandLine.arguments.append("--disableFirebase") // make sure the MockWebService is displayed
+    CommandLine.arguments.append("--disableFirebase")
     return HomeView()
         .previewWith(standard: ENGAGEHFStandard()) {
             ENGAGEHFScheduler()
-            MockWebService()
             AccountConfiguration {
                 MockUserIdPasswordAccountService()
             }
