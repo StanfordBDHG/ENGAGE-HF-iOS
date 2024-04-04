@@ -5,16 +5,13 @@
 //
 // SPDX-License-Identifier: MIT
 //
-//  MedicationsView.swift
-//  ENGAGEHF
-//
-//  Created by Nick Riedman on 4/3/24.
-//
 
 import SwiftUI
 
+
 struct Medications: View {
     @Binding var presentingAccount: Bool
+    
     
     var body: some View {
         Text("Medications Test")

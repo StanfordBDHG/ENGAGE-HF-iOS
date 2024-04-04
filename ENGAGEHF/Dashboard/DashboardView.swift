@@ -5,16 +5,13 @@
 //
 // SPDX-License-Identifier: MIT
 //
-//  DashboardView.swift
-//  ENGAGEHF
-//
-//  Created by Nick Riedman on 4/3/24.
-//
 
 import SwiftUI
 
+
 struct Dashboard: View {
     @Binding var presentingAccount: Bool
+    
     
     var body: some View {
         NavigationStack {
