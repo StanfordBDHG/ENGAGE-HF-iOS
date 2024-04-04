@@ -8,16 +8,17 @@
 
 import SwiftUI
 
-
 struct Greeting: View {
     var body: some View {
         HStack(alignment: .top) {
             Text("Hello, world!")
                 .font(.title.bold())
+                .accessibilityLabel(Text("DASHBOARD_GREETING"))
             Spacer()
             Text(.now, style: .date)
                 .font(.title3)
                 .foregroundStyle(.secondary)
+                .accessibilityLabel(Text("DASHBOARD_DATE"))
         }
         .padding()
     }
