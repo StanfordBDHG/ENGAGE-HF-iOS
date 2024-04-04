@@ -93,33 +93,6 @@
         }
       }
     },
-    "CONTACTS_TAB_TITLE" : {
-      "comment" : "MARK: - Contacts",
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Contacts"
-          }
-        }
-      }
-    },
-    "DASHBOARD_DATE" : {
-
-    },
-    "DASHBOARD_GREETING" : {
-
-    },
-    "EDU" : {
-
-    },
-    "Education" : {
-
-    },
-    "Education Test" : {
-
-    },
     "HEALTHKIT_PERMISSIONS_BUTTON" : {
       "localizations" : {
         "en" : {
@@ -161,16 +134,7 @@
         }
       }
     },
-    "Heart Health" : {
-
-    },
-    "Heart Health Test" : {
-
-    },
     "Hello, world!" : {
-
-    },
-    "HH" : {
 
     },
     "Home" : {
@@ -307,17 +271,9 @@
         }
       }
     },
-    "MED" : {
-
-    },
-    "Medications" : {
-
-    },
-    "Medications Test" : {
-
-    },
     "MOCK_WEB_SERVICE_TAB_TITLE" : {
       "comment" : "MARK: - Mock Upload Data Storage Provider",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -377,21 +333,6 @@
           }
         }
       }
-    },
-    "SCHEDULE_TAB_TITLE" : {
-      "comment" : "MARK: - Schedule",
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Schedule"
-          }
-        }
-      }
-    },
-    "Tab Bar" : {
-
     },
     "TASK_CONTEXT_ACTION_QUESTIONNAIRE" : {
       "localizations" : {
