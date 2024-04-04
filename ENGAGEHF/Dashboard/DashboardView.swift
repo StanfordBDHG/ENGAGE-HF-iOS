@@ -22,9 +22,11 @@ struct Greeting: View {
         HStack {
             Text("Hello, world!")
                 .font(.title2)
+                .accessibilityLabel(Text("DASHBOARD_GREETING"))
             Spacer()
             Text(dateString ?? "No date")
                 .font(.title2)
+                .accessibilityLabel(Text("DASHBOARD_DATE"))
         }
         .padding()
         .task {
@@ -58,6 +60,7 @@ struct Dashboard: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     AccountButton(isPresented: $presentingAccount)
                         .foregroundColor(.white)
+                        .accessibilityLabel(Text("DASHBOARD_ACC_BTN"))
                 }
             }
             .toolbarBackground(.visible, for: .navigationBar)

@@ -20,5 +20,6 @@ struct HeartHealth: View {
     
     var body: some View {
         Text("Heart Health Test")
+            .accessibilityLabel(Text("HH"))
     }
 }

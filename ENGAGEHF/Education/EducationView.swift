@@ -20,5 +20,6 @@ struct Education: View {
     
     var body: some View {
         Text("Education Test")
+            .accessibilityLabel(Text("EDU"))
     }
 }

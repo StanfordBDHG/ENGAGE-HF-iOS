@@ -59,6 +59,7 @@ struct HomeView: View {
                     }
             }
         }
+            .accessibilityLabel(Text("Tab Bar"))
             .sheet(isPresented: $presentingAccount) {
                 AccountSheet()
             }
