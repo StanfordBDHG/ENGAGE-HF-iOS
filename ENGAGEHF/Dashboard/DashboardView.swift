@@ -23,7 +23,7 @@ struct Dashboard: View {
                 Spacer()
             }
             .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle("ENGAGE-HF: Home")  // Todo: Make this white
+                .navigationTitle("ENGAGE-HF: Home")  // Todo: Make this white
             
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
