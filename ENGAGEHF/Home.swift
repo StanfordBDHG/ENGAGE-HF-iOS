@@ -14,6 +14,10 @@ import SwiftUI
 struct HomeView: View {
     enum Tabs: String {
         case home
+        case heart
+        case medications
+        case education
+        case mockUpload
     }
     
     static var accountEnabled: Bool {
@@ -32,8 +36,30 @@ struct HomeView: View {
                 .tabItem {
                     Label("Home", systemImage: "house")
                 }
+            HeartHealth(presentingAccount: $presentingAccount)
+                .tag(Tabs.heart)
+                .tabItem {
+                    Label("Heart Health", systemImage: "heart.square")
+                }
+            Medications(presentingAccount: $presentingAccount)
+                .tag(Tabs.medications)
+                .tabItem {
+                    Label("Medications", systemImage: "pill")
+                }
+            Education(presentingAccount: $presentingAccount)
+                .tag(Tabs.education)
+                .tabItem {
+                    Label("Education", systemImage: "book.pages")
+                }
+            if FeatureFlags.disableFirebase {
+                MockUpload(presentingAccount: $presentingAccount)
+                    .tag(Tabs.mockUpload)
+                    .tabItem {
+                        Label("MOCK_WEB_SERVICE_TAB_TITLE", systemImage: "server.rack")
+                    }
+            }
         }
-
+            .accessibilityLabel(Text("Tab Bar"))
             .sheet(isPresented: $presentingAccount) {
                 AccountSheet()
             }

@@ -1,5 +1,5 @@
 {
-  "originHash" : "bee0ebef27ad6762a532584daf21fda010763ebcd3c397d471d2bfbad0b9aa6c",
+  "originHash" : "d2097b02aed2e09776146d22c31b71e71570248079de679a782c846c09d0ae6f",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -191,6 +191,15 @@
       }
     },
     {
+      "identity" : "spezicontact",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordSpezi/SpeziContact.git",
+      "state" : {
+        "revision" : "494b776f8c98d771e4a609a1fb706097dba4c030",
+        "version" : "1.0.0"
+      }
+    },
+    {
       "identity" : "spezifirebase",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziFirebase.git",
@@ -227,6 +236,15 @@
       }
     },
     {
+      "identity" : "spezimockwebservice",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordSpezi/SpeziMockWebService.git",
+      "state" : {
+        "revision" : "b18067d3499e630bbd995ef05a296ef8fdd42528",
+        "version" : "1.0.0"
+      }
+    },
+    {
       "identity" : "spezionboarding",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziOnboarding",
@@ -242,6 +260,15 @@
       "state" : {
         "revision" : "f9d9b6d99bb1e00bda2974b440dca8367733d591",
         "version" : "1.1.0"
+      }
+    },
+    {
+      "identity" : "spezischeduler",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordSpezi/SpeziScheduler.git",
+      "state" : {
+        "revision" : "eed3980f20b01a788720c869010e3fe2fbfcd1fd",
+        "version" : "0.8.2"
       }
     },
     {
