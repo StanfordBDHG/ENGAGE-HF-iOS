@@ -21,16 +21,15 @@ struct Dashboard: View {
             }
                 .navigationTitle("Home")
             
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    AccountButton(isPresented: $presentingAccount)
+                .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        AccountButton(isPresented: $presentingAccount)
+                    }
                 }
-            }
         }
     }
 }
 
 #Preview {
-    @State var presentingAccount = false
-    return Dashboard(presentingAccount: $presentingAccount)
+    return Dashboard(presentingAccount: .constant(false))
 }
