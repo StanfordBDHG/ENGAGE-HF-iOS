@@ -11,8 +11,6 @@
 //  Created by Nick Riedman on 4/3/24.
 //
 
-import SpeziAccount
-import SpeziMockWebService
 import SwiftUI
 
 struct Medications: View {
