@@ -20,6 +20,7 @@ struct Greeting: View {
     
     var body: some View {
         HStack {
+            // Todo: replace world! with first name from account info
             Text("Hello, world!")
                 .font(.title2)
                 .accessibilityLabel(Text("DASHBOARD_GREETING"))
