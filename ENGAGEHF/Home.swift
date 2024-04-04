@@ -34,7 +34,6 @@ struct HomeView: View {
                     Label("Home", systemImage: "house")
                 }
         }
-            .accessibilityLabel(Text("Tab Bar"))
             .sheet(isPresented: $presentingAccount) {
                 AccountSheet()
             }
