@@ -79,11 +79,11 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "--disableFirebase"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--showOnboarding"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--skipOnboarding"
@@ -95,7 +95,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--useFirebaseEmulator"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
    </LaunchAction>
