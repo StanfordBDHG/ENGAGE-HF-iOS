@@ -29,8 +29,7 @@ struct Dashboard: View {
     }
 }
 
-#if DEBUG
+
 #Preview {
     Dashboard(presentingAccount: .constant(false))
 }
-#endif
