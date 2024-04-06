@@ -23,8 +23,7 @@ struct Greeting: View {
     }
 }
 
-#if DEBUG
+
 #Preview {
     Greeting()
 }
-#endif
