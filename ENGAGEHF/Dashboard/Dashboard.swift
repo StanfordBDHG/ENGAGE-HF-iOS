@@ -21,7 +21,7 @@ struct Dashboard: View {
             }
                 .navigationTitle("Home")
                 .toolbar {
-                    ToolbarItem(placement: .topBarTrailing) {
+                    if AccountButton.shouldDisplay {
                         AccountButton(isPresented: $presentingAccount)
                     }
                 }
