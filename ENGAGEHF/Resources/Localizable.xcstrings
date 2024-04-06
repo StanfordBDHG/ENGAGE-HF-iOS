@@ -52,6 +52,12 @@
         }
       }
     },
+    "An error occurred: %@" : {
+      "comment" : "General Error"
+    },
+    "An invitation code is at least 8 characters long." : {
+
+    },
     "CLOSE" : {
       "comment" : "MARK: General",
       "localizations" : {
@@ -139,6 +145,9 @@
 
     },
     "Home" : {
+
+    },
+    "I Already Have an Account" : {
 
     },
     "INTERESTING_MODULES_AREA1_DESCRIPTION" : {
@@ -252,6 +261,9 @@
         }
       }
     },
+    "Invitation Code" : {
+
+    },
     "LELAND_STANFORD_BIO" : {
       "localizations" : {
         "en" : {
@@ -312,6 +324,12 @@
           }
         }
       }
+    },
+    "Please enter your invitation code to join the PAWS study." : {
+
+    },
+    "Redeem Invitation Code" : {
+
     },
     "SCHEDULE_LIST_TITLE" : {
       "extractionState" : "stale",
@@ -378,6 +396,12 @@
           }
         }
       }
+    },
+    "The invitation code is invalid or has already been used." : {
+      "comment" : "Invitation Code Invalid"
+    },
+    "User authentication failed. Please try to sign in again." : {
+      "comment" : "User Not Authenticated"
     },
     "WELCOME_AREA1_DESCRIPTION" : {
       "localizations" : {
