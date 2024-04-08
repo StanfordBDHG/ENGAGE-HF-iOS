@@ -63,16 +63,6 @@
         }
       }
     },
-    "COMPLETED_TASK_LABEL %@" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Completed Task: %@"
-          }
-        }
-      }
-    },
     "CONSENT_LOADING_ERROR" : {
       "localizations" : {
         "en" : {
@@ -84,17 +74,6 @@
       }
     },
     "CONTACTS_NAVIGATION_TITLE" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Contacts"
-          }
-        }
-      }
-    },
-    "CONTACTS_TAB_TITLE" : {
-      "comment" : "MARK: - Contacts",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -144,6 +123,12 @@
           }
         }
       }
+    },
+    "Hello, world!" : {
+
+    },
+    "Home" : {
+
     },
     "INTERESTING_MODULES_AREA1_DESCRIPTION" : {
       "localizations" : {
@@ -276,17 +261,6 @@
         }
       }
     },
-    "MOCK_WEB_SERVICE_TAB_TITLE" : {
-      "comment" : "MARK: - Mock Upload Data Storage Provider",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mock Web Service"
-          }
-        }
-      }
-    },
     "NOTIFICATION_PERMISSIONS_BUTTON" : {
       "localizations" : {
         "en" : {
@@ -324,77 +298,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Notifications"
-          }
-        }
-      }
-    },
-    "SCHEDULE_LIST_TITLE" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Schedule"
-          }
-        }
-      }
-    },
-    "SCHEDULE_TAB_TITLE" : {
-      "comment" : "MARK: - Schedule",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Schedule"
-          }
-        }
-      }
-    },
-    "TASK_CONTEXT_ACTION_QUESTIONNAIRE" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Start Questionnaire"
-          }
-        }
-      }
-    },
-    "TASK_CONTEXT_ACTION_TEST" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Start Test"
-          }
-        }
-      }
-    },
-    "TASK_LABEL %@" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Task: %@"
-          }
-        }
-      }
-    },
-    "TASK_SOCIAL_SUPPORT_QUESTIONNAIRE_DESCRIPTION" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Please fill out the Social Support Questionnaire every day."
-          }
-        }
-      }
-    },
-    "TASK_SOCIAL_SUPPORT_QUESTIONNAIRE_TITLE" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Social Support Questionnaire"
           }
         }
       }

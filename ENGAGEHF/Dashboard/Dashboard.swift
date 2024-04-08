@@ -6,16 +6,20 @@
 // SPDX-License-Identifier: MIT
 //
 
-import SpeziMockWebService
 import SwiftUI
 
 
-struct MockUpload: View {
+struct Dashboard: View {
     @Binding var presentingAccount: Bool
+    
     
     var body: some View {
         NavigationStack {
-            RequestList()
+            VStack {
+                Greeting()
+                Spacer()
+            }
+                .navigationTitle("Home")
                 .toolbar {
                     if AccountButton.shouldDisplay {
                         AccountButton(isPresented: $presentingAccount)
@@ -23,19 +27,9 @@ struct MockUpload: View {
                 }
         }
     }
-    
-    
-    init(presentingAccount: Binding<Bool>) {
-        self._presentingAccount = presentingAccount
-    }
 }
 
 
-#if DEBUG
 #Preview {
-    MockUpload(presentingAccount: .constant(false))
-        .previewWith {
-            MockWebService()
-        }
+    Dashboard(presentingAccount: .constant(false))
 }
-#endif

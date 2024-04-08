@@ -9,13 +9,19 @@
 import XCTest
 
 
-final class ENGAGEHFUITests: XCTestCase {
+// Based off of https://github.com/CS342/2024-Intake/blob/main/IntakeUITests/LaunchTests.swift
+final class LaunchTests: XCTestCase {
     override func setUpWithError() throws {
+        try super.setUpWithError()
+        
         continueAfterFailure = false
-    }
-    
-    func testExample() throws {
+        
         let app = XCUIApplication()
         app.launch()
+    }
+    
+    func testApplicationLaunch() throws {
+        let app = XCUIApplication()
+        XCTAssertEqual(app.state, .runningForeground)
     }
 }

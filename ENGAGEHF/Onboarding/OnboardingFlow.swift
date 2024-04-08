@@ -16,7 +16,6 @@ import SwiftUI
 /// Displays an multi-step onboarding flow for the ENGAGEHF.
 struct OnboardingFlow: View {
     @Environment(HealthKit.self) private var healthKitDataSource
-    @Environment(ENGAGEHFScheduler.self) private var scheduler
 
     @AppStorage(StorageKeys.onboardingFlowComplete) private var completedOnboardingFlow = false
     
@@ -54,9 +53,6 @@ struct OnboardingFlow: View {
                 NotificationPermissions()
             }
         }
-            .task {
-                localNotificationAuthorization = await scheduler.localNotificationAuthorization
-            }
             .interactiveDismissDisabled(!completedOnboardingFlow)
     }
 }
@@ -72,8 +68,6 @@ struct OnboardingFlow: View {
             AccountConfiguration {
                 MockUserIdPasswordAccountService()
             }
-
-            ENGAGEHFScheduler()
         }
 }
 #endif
