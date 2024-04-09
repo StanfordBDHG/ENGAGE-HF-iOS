@@ -28,7 +28,7 @@ exports.checkInvitationCode = onCall(async (request) => {
   }
 
   const firestore = admin.firestore();
-  logger.debug(`User (${userId}) -> PAWS, InvitationCode ${invitationCode}`);
+  logger.debug(`User (${userId}) -> ENGAGE-HF, InvitationCode ${invitationCode}`);
 
   try {
     // Based on https://github.com/StanfordSpezi/SpeziStudyApplication/blob/main/functions/index.js
@@ -58,7 +58,7 @@ exports.checkInvitationCode = onCall(async (request) => {
       });
     });
 
-    logger.debug(`User (${userId}) successfully enrolled in study (PAWS) with invitation code: ${invitationCode}`);
+    logger.debug(`User (${userId}) successfully enrolled in study (ENGAGE-HF) with invitation code: ${invitationCode}`);
 
     return {};
   } catch (error) {

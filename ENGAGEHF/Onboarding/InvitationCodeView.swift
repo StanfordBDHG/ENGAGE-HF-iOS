@@ -81,7 +81,7 @@ struct InvitationCodeView: View {
                 .frame(height: 100)
                 .accessibilityHidden(true)
                 .foregroundStyle(Color.accentColor)
-            Text("Please enter your invitation code to join the PAWS study.")
+            Text("Please enter your invitation code to join the ENGAGE-HF study.")
         }
     }
     
@@ -109,40 +109,40 @@ struct InvitationCodeView: View {
                 
                 try? await Task.sleep(for: .seconds(0.25))
             } else {
-                if Auth.auth().currentUser == nil {
-                    async let authResult = Auth.auth().signInAnonymously()
-                    let checkInvitationCode = Functions.functions().httpsCallable("checkInvitationCode")
-                    
-                    do {
-                        _ = try await checkInvitationCode.call(
-                            [
-                                "invitationCode": invitationCode,
-                                "userId": authResult.user.uid
-                            ]
-                        )
-                    } catch {
-                        throw InvitationCodeError.invitationCodeInvalid
-                    }
+                try Auth.auth().signOut()
+                
+                async let authResult = Auth.auth().signInAnonymously()
+                let checkInvitationCode = Functions.functions().httpsCallable("checkInvitationCode")
+                
+                do {
+                    _ = try await checkInvitationCode.call(
+                        [
+                            "invitationCode": invitationCode,
+                            "userId": authResult.user.uid
+                        ]
+                    )
+                } catch {
+                    throw InvitationCodeError.invitationCodeInvalid
                 }
             }
             
             await onboardingNavigationPath.nextStep()
         } catch let error as NSError {
-                if let errorCode = FunctionsErrorCode(rawValue: error.code) {
-                    // Handle Firebase-specific errors.
-                    switch errorCode {
-                    case .unauthenticated:
-                        viewState = .error(InvitationCodeError.userNotAuthenticated)
-                    case .notFound:
-                        viewState = .error(InvitationCodeError.invitationCodeInvalid)
-                    default:
-                        viewState = .error(InvitationCodeError.generalError(error.localizedDescription))
-                    }
-                } else {
-                    // Handle other errors, such as network issues or unexpected behavior.
+            if let errorCode = FunctionsErrorCode(rawValue: error.code) {
+                // Handle Firebase-specific errors.
+                switch errorCode {
+                case .unauthenticated:
+                    viewState = .error(InvitationCodeError.userNotAuthenticated)
+                case .notFound:
+                    viewState = .error(InvitationCodeError.invitationCodeInvalid)
+                default:
                     viewState = .error(InvitationCodeError.generalError(error.localizedDescription))
                 }
+            } else {
+                // Handle other errors, such as network issues or unexpected behavior.
+                viewState = .error(InvitationCodeError.generalError(error.localizedDescription))
             }
+        }
     }
 }
 
