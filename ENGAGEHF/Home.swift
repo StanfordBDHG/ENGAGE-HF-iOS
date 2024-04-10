@@ -43,18 +43,6 @@ struct HomeView: View {
 }
 
 
-#if DEBUG
-#Preview {
-    let details = AccountDetails.Builder()
-        .set(\.userId, value: "lelandstanford@stanford.edu")
-        .set(\.name, value: PersonNameComponents(givenName: "Leland", familyName: "Stanford"))
-    
-    return HomeView()
-        .previewWith(standard: ENGAGEHFStandard()) {
-            AccountConfiguration(building: details, active: MockUserIdPasswordAccountService())
-        }
-}
-
 #Preview {
     CommandLine.arguments.append("--disableFirebase")
     return HomeView()
@@ -64,4 +52,3 @@ struct HomeView: View {
             }
         }
 }
-#endif

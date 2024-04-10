@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+
 struct Greeting: View {
     var body: some View {
         HStack(alignment: .top) {
@@ -22,8 +23,7 @@ struct Greeting: View {
     }
 }
 
-#if DEBUG
+
 #Preview {
     Greeting()
 }
-#endif
