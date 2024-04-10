@@ -8,7 +8,7 @@
 import XCTest
 
 
-class HomeViewUITests: XCTestCase {
+final class HomeViewUITests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
         
