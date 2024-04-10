@@ -33,7 +33,6 @@ final class OnboardingUITests: XCTestCase {
 
 
 extension XCUIApplication {
-    
     fileprivate func navigateOnboardingFlow(
         email: String = "leland@stanford.edu",
         repeated skipOnRepeat: Bool = false
