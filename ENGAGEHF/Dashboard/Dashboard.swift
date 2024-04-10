@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+
 struct Dashboard: View {
     @Binding var presentingAccount: Bool
     
@@ -20,7 +21,7 @@ struct Dashboard: View {
             }
                 .navigationTitle("Home")
                 .toolbar {
-                    ToolbarItem(placement: .topBarTrailing) {
+                    if AccountButton.shouldDisplay {
                         AccountButton(isPresented: $presentingAccount)
                     }
                 }
@@ -28,8 +29,7 @@ struct Dashboard: View {
     }
 }
 
-#if DEBUG
+
 #Preview {
     Dashboard(presentingAccount: .constant(false))
 }
-#endif
