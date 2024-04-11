@@ -15,7 +15,7 @@ final class HomeViewUITests: XCTestCase {
         continueAfterFailure = false
         
         let app = XCUIApplication()
-        app.launchArguments = ["--skipOnboarding", "--disableFirebase"]
+        app.launchArguments = ["--skipOnboarding"]
         app.launch()
     }
     
@@ -37,10 +37,8 @@ final class HomeViewUITests: XCTestCase {
         
         XCTAssert(app.staticTexts[dateFormatter.string(from: .now)].exists)
         
-        // If it appears, make sure the account button appears and is hittable
-        if !(app.launchArguments.contains("--disableFirebase")) {
-            XCTAssert(app.buttons["Your Account"].exists && app.buttons["Your Account"].isHittable)
-            app.buttons["Your Account"].tap()
-        }
+        // Firebase not disabled, so make sure the account button appears and is hittable
+        XCTAssert(app.buttons["Your Account"].exists && app.buttons["Your Account"].isHittable)
+        app.buttons["Your Account"].tap()
     }
 }
