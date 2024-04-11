@@ -15,6 +15,7 @@ enum InvitationCodeError: LocalizedError {
     case userNotAuthenticated
     case generalError(String)
     
+    
     var errorDescription: String? {
         switch self {
         case .invitationCodeInvalid:
