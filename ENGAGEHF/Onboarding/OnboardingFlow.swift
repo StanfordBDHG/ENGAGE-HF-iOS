@@ -38,6 +38,7 @@ struct OnboardingFlow: View {
             InterestingModules()
             
             if !FeatureFlags.disableFirebase {
+                InvitationCodeView()
                 AccountOnboarding()
             }
             

@@ -52,6 +52,12 @@
         }
       }
     },
+    "An error occurred: %@" : {
+      "comment" : "General Error"
+    },
+    "An invitation code is at least 8 characters long." : {
+
+    },
     "CLOSE" : {
       "comment" : "MARK: General",
       "localizations" : {
@@ -130,12 +136,15 @@
     "Home" : {
 
     },
+    "I Already Have an Account" : {
+
+    },
     "INTERESTING_MODULES_AREA1_DESCRIPTION" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The onboarding module allows you to build an onboarding flow like this one."
+            "value" : "Pair with the provided weight scale and blood pressure cuff in Bluetooth settings."
           }
         }
       }
@@ -145,7 +154,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Onboarding"
+            "value" : "Connect Devices"
           }
         }
       }
@@ -155,7 +164,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The application uses HL7 FHIR to provide a common standard to encode data gathered by the application."
+            "value" : "Use the weight scale and blood pressure cuff to record health data in Heart Health."
           }
         }
       }
@@ -165,7 +174,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "HL7 FHIR"
+            "value" : "Record Health Data"
           }
         }
       }
@@ -175,7 +184,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The contact module allows you to display contact information in your application."
+            "value" : "See your medication dosage, schedule, and updates in Medications."
           }
         }
       }
@@ -185,7 +194,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Contact"
+            "value" : "Tune Medications"
           }
         }
       }
@@ -195,7 +204,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The HealthKit data source module allows you to fetch data from HealthKit and e.g. transform it to FHIR resources."
+            "value" : "Generate and export a full PDF health report in Health Summary."
           }
         }
       }
@@ -205,7 +214,27 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "HealthKit Data Source"
+            "value" : "Summarize"
+          }
+        }
+      }
+    },
+    "INTERESTING_MODULES_AREA5_DESCRIPTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Learn more about your medications and heart health in Education."
+          }
+        }
+      }
+    },
+    "INTERESTING_MODULES_AREA5_TITLE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Learn"
           }
         }
       }
@@ -225,7 +254,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Here are a few Spezi modules that are interesting to know about ..."
+            "value" : "Together we will..."
           }
         }
       }
@@ -240,6 +269,9 @@
           }
         }
       }
+    },
+    "Invitation Code" : {
+
     },
     "LELAND_STANFORD_BIO" : {
       "localizations" : {
@@ -302,12 +334,24 @@
         }
       }
     },
+    "Please enter your invitation code to join the ENGAGE-HF study." : {
+
+    },
+    "Redeem Invitation Code" : {
+
+    },
+    "The invitation code is invalid or has already been used." : {
+      "comment" : "Invitation Code Invalid"
+    },
+    "User authentication failed. Please try to sign in again." : {
+      "comment" : "User Not Authenticated"
+    },
     "WELCOME_AREA1_DESCRIPTION" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The Spezi Framework builds the foundation of this application."
+            "value" : "Connect to your study via an invitation code from the researchers."
           }
         }
       }
@@ -317,7 +361,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The Spezi Framework"
+            "value" : "Join the Study"
           }
         }
       }
@@ -327,7 +371,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Spezi uses the Swift Package Manager to import it as a dependency."
+            "value" : "Record and report health data automatically according to a schedule set by the research team."
           }
         }
       }
@@ -337,7 +381,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Swift Package Manager"
+            "value" : "Complete Health Checks"
           }
         }
       }
@@ -347,7 +391,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Spezi offers several modules including HealthKit integration, questionnaires, and more ..."
+            "value" : "Visualize your heart health progress throughout participation in the study."
           }
         }
       }
@@ -357,7 +401,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Spezi Modules"
+            "value" : "Visualize Data"
           }
         }
       }
@@ -377,7 +421,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This application demonstrates several Spezi features & modules."
+            "value" : "Remote study participation made easy."
           }
         }
       }
@@ -388,7 +432,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Spezi\nENGAGE-HF"
+            "value" : "Welcome to ENGAGE-HF"
           }
         }
       }
