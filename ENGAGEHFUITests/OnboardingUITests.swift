@@ -4,11 +4,12 @@
 //
 // SPDX-License-Identifier: MIT
 //
+// Based on: https://github.com/StanfordBDHG/PediatricAppleWatchStudy/pull/54/
+//
 
 import XCTest
 
 
-// Based on: https://github.com/StanfordBDHG/PediatricAppleWatchStudy/pull/54/
 final class OnboardingUITests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
