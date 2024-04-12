@@ -39,7 +39,7 @@ jobs:
       runsonlabels: '["macOS", "self-hosted"]'
       setupSimulators: true
       setupfirebaseemulator: true
-      customcommand: "npm install --previx ./functions && firebase emulators:exec --import=./firebase 'fastlane test'"
+      customcommand: "npm install --prefix ./functions && firebase emulators:exec --import=./firebase 'fastlane test'"
   uploadcoveragereport:
     name: Upload Coverage Report
     needs: buildandtest
