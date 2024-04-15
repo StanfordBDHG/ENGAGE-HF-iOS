@@ -36,6 +36,7 @@ exports.checkInvitationCode = onCall(async (request) => {
     const invitationCodeDoc = await invitationCodeRef.get();
 
     if (!invitationCodeDoc.exists || (invitationCodeDoc.data().used)) {
+      logger.warn(`Invitation code not found or already used: ${invitationCode}`);
       throw new https.HttpsError("not-found", "Invitation code not found or already used.");
     }
 
@@ -43,6 +44,7 @@ exports.checkInvitationCode = onCall(async (request) => {
     const userStudyDoc = await userStudyRef.get();
 
     if (userStudyDoc.exists) {
+      logger.warn(`User (${userId}) is already enrolled in the study.`);
       throw new https.HttpsError("already-exists", "User is already enrolled in the study.");
     }
 
