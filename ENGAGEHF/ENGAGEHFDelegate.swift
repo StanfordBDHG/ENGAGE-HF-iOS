@@ -8,6 +8,7 @@
 
 import Spezi
 import SpeziAccount
+import SpeziBluetooth
 import SpeziFirebaseAccount
 import SpeziFirebaseStorage
 import SpeziFirestore
@@ -47,6 +48,11 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
 
             if HKHealthStore.isHealthDataAvailable() {
                 healthKit
+            }
+            
+            Bluetooth {
+                Discover(BPCuffDevice.self, by: .advertisedService(BPCuffDevice.service.self))
+                Discover(WeightScaleDevice.self, by: .advertisedService(WeightScaleDevice.service.self))
             }
             
             OnboardingDataSource()
