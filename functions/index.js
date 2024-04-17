@@ -32,22 +32,27 @@ exports.checkInvitationCode = onCall(async (request) => {
 
   try {
     // Based on https://github.com/StanfordSpezi/SpeziStudyApplication/blob/main/functions/index.js
+    logger.debug("Fetching invitation code document");
     const invitationCodeRef = firestore.doc(`invitationCodes/${invitationCode}`);
     const invitationCodeDoc = await invitationCodeRef.get();
+    logger.debug(`Found invitation code document: ${invitationCodeDoc.exists}`);
 
     if (!invitationCodeDoc.exists || (invitationCodeDoc.data().used)) {
       logger.warn(`Invitation code not found or already used: ${invitationCode}`);
       throw new https.HttpsError("not-found", "Invitation code not found or already used.");
     }
 
+    logger.debug("Getting user study document")
     const userStudyRef = firestore.doc(`users/${userId}`);
     const userStudyDoc = await userStudyRef.get();
+    logger.debug("Finished getting user study document")
 
     if (userStudyDoc.exists) {
       logger.warn(`User (${userId}) is already enrolled in the study.`);
       throw new https.HttpsError("already-exists", "User is already enrolled in the study.");
     }
 
+    logger.debug("Transaction: Enrolling user in study");
     await firestore.runTransaction(async (transaction) => {
       transaction.set(userStudyRef, {
         invitationCode: invitationCode,
