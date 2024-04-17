@@ -31,9 +31,8 @@ class WeightScaleService: BluetoothService {
 
 
 class WeightScaleDevice: BluetoothDevice, Identifiable {
-    
     @Service var deviceInformation = DeviceInformationService()
-    @Service var service = WeightScaleService()
+    @Service var advertisedService = WeightScaleService()
     
     required init() {}
 }

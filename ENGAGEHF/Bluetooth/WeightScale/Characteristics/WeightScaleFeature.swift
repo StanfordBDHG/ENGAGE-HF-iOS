@@ -6,9 +6,9 @@
 // SPDX-License-Identifier: MIT
 //
 
+import ByteCoding
 import Foundation
 import NIOCore
-import ByteCoding
 
 
 // Weight resolutions in kgs / lbs as defined in the manual
@@ -42,41 +42,33 @@ struct WeightScaleFeature {
 }
 
 
-extension WeightMeasurementResolution: ByteDecodable {
-    init?(from byteBuffer: inout ByteBuffer, preferredEndianness endianness: Endianness) {
-        // Read in 4 bits from the ByteBuffer, then save to a UInt8
-        
-        
-        guard let value = UInt8(from: &byteBuffer, preferredEndianness: endianness) else {
-            return nil
-        }
-        self.init(rawValue: value)
-    }
-}
-
-
-extension HeightMeasurementResolution: ByteDecodable {
-    init?(from byteBuffer: inout ByteBuffer, preferredEndianness endianness: Endianness) {
-        guard let value = UInt8(from: &byteBuffer, preferredEndianness: endianness) else {
-            return nil
-        }
-        self.init(rawValue: value)
-    }
-}
-
 extension WeightScaleFeature: ByteDecodable, Equatable {
     init?(from byteBuffer: inout ByteBuffer, preferredEndianness endianness: Endianness) {
         guard byteBuffer.readableBytes >= 4 else {
             return nil
         }
         
-        guard let timeStampFlag = Bool(from: &byteBuffer),
-              let multipleUsersFlag = Bool(from: &byteBuffer),
-              let supportBMIFlag = Bool(from: &byteBuffer),
-              let weightResolution = WeightMeasurementResolution(from: &byteBuffer),
-              let heightResolution = HeightMeasurementResolution(from: &byteBuffer) else {
+        // Read the 32 bits from byte buffer
+        guard let allBits: UInt32 = UInt32(from: &byteBuffer) else { return nil }
+        
+        // Decode the boolean flag bits
+        let timeStampFlag: Bool = (allBits & (0b1)) != 0
+        let supportUsersFlag: Bool = (allBits & (0b1 << 1)) != 0
+        let supportBMIFlag: Bool = (allBits & (0b1 << 2)) != 0
+        
+        // Decode the resolution bits
+        let rawWeightResolution: UInt8 = UInt8((allBits >> 3) & 0b1111)
+        let rawHeightResolution: UInt8 = UInt8((allBits >> 7) & 0b111)
+        
+        guard let weightResolution = WeightMeasurementResolution(rawValue: rawWeightResolution),
+              let heightResolution = HeightMeasurementResolution(rawValue: rawHeightResolution) else {
             return nil
         }
         
+        self.timeStampEnabled = timeStampFlag
+        self.supportMultipleUsers = supportUsersFlag
+        self.supportBMI = supportBMIFlag
+        self.weightResolution = weightResolution
+        self.heightResolution = heightResolution
     }
 }
