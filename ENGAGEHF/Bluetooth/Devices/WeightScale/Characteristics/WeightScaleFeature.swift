@@ -49,7 +49,9 @@ extension WeightScaleFeature: ByteDecodable, Equatable {
         }
         
         // Read the 32 bits from byte buffer
-        guard let allBits: UInt32 = UInt32(from: &byteBuffer) else { return nil }
+        guard let allBits: UInt32 = UInt32(from: &byteBuffer) else {
+            return nil
+        }
         
         // Decode the boolean flag bits
         let timeStampFlag: Bool = (allBits & (0b1)) != 0
@@ -57,8 +59,8 @@ extension WeightScaleFeature: ByteDecodable, Equatable {
         let supportBMIFlag: Bool = (allBits & (0b1 << 2)) != 0
         
         // Decode the resolution bits
-        let rawWeightResolution: UInt8 = UInt8((allBits >> 3) & 0b1111)
-        let rawHeightResolution: UInt8 = UInt8((allBits >> 7) & 0b111)
+        let rawWeightResolution = UInt8((allBits >> 3) & 0b1111)
+        let rawHeightResolution = UInt8((allBits >> 7) & 0b111)
         
         guard let weightResolution = WeightMeasurementResolution(rawValue: rawWeightResolution),
               let heightResolution = HeightMeasurementResolution(rawValue: rawHeightResolution) else {

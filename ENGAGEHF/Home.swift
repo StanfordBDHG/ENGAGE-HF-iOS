@@ -13,6 +13,7 @@ import SwiftUI
 struct HomeView: View {
     enum Tabs: String {
         case home
+        case bluetooth
     }
     
     static var accountEnabled: Bool {
@@ -30,6 +31,11 @@ struct HomeView: View {
                 .tag(Tabs.home)
                 .tabItem {
                     Label("Home", systemImage: "house")
+                }
+            FindDevicesView()
+                .tag(Tabs.bluetooth)
+                .tabItem {
+                    Label("Device", systemImage: "antenna.radiowaves.left.and.right.circle.fill")
                 }
         }
             .sheet(isPresented: $presentingAccount) {

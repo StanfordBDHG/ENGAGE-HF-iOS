@@ -54,6 +54,7 @@
 		4D49AB062BC9D56900C77310 /* WeightScaleDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D49AB052BC9D56900C77310 /* WeightScaleDevice.swift */; };
 		4D49AB0D2BC9DF9100C77310 /* WeightScaleFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D49AB0C2BC9DF9100C77310 /* WeightScaleFeature.swift */; };
 		4D49AB0F2BC9DF9B00C77310 /* WeightMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D49AB0E2BC9DF9B00C77310 /* WeightMeasurement.swift */; };
+		4D49AB162BCF718900C77310 /* FindDevicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D49AB152BCF718900C77310 /* FindDevicesView.swift */; };
 		4D4AA0A52BC5E43E00676489 /* OnboardingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4AA0A42BC5E43E00676489 /* OnboardingUITests.swift */; };
 		4DB025CA2BBE3A59002D2545 /* HomeViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB025C92BBE3A59002D2545 /* HomeViewUITests.swift */; };
 		4DB025D52BBF2E08002D2545 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB025D42BBF2E08002D2545 /* Dashboard.swift */; };
@@ -123,6 +124,7 @@
 		4D49AB052BC9D56900C77310 /* WeightScaleDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightScaleDevice.swift; sourceTree = "<group>"; };
 		4D49AB0C2BC9DF9100C77310 /* WeightScaleFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightScaleFeature.swift; sourceTree = "<group>"; };
 		4D49AB0E2BC9DF9B00C77310 /* WeightMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightMeasurement.swift; sourceTree = "<group>"; };
+		4D49AB152BCF718900C77310 /* FindDevicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindDevicesView.swift; sourceTree = "<group>"; };
 		4D4AA0A42BC5E43E00676489 /* OnboardingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingUITests.swift; sourceTree = "<group>"; };
 		4DB025C92BBE3A59002D2545 /* HomeViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewUITests.swift; sourceTree = "<group>"; };
 		4DB025D42BBF2E08002D2545 /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
@@ -262,8 +264,8 @@
 		4D49AAFB2BC9D46F00C77310 /* Bluetooth */ = {
 			isa = PBXGroup;
 			children = (
-				4D49AB092BC9DA8B00C77310 /* WeightScale */,
-				4D49AB082BC9DA7D00C77310 /* BloodPressureCuff */,
+				4D49AB142BCF6FC400C77310 /* Devices */,
+				4D49AB152BCF718900C77310 /* FindDevicesView.swift */,
 			);
 			path = Bluetooth;
 			sourceTree = "<group>";
@@ -300,6 +302,15 @@
 			children = (
 			);
 			path = Characteristics;
+			sourceTree = "<group>";
+		};
+		4D49AB142BCF6FC400C77310 /* Devices */ = {
+			isa = PBXGroup;
+			children = (
+				4D49AB092BC9DA8B00C77310 /* WeightScale */,
+				4D49AB082BC9DA7D00C77310 /* BloodPressureCuff */,
+			);
+			path = Devices;
 			sourceTree = "<group>";
 		};
 		4DB025B52BBDE8EC002D2545 /* Dashboard */ = {
@@ -584,6 +595,7 @@
 				2FE5DC3529EDD7CA004B9AB4 /* Consent.swift in Sources */,
 				2FE5DC4529EDD7F2004B9AB4 /* Binding+Negate.swift in Sources */,
 				4DBDD3442BBFAD64001FB0CA /* InvitationCodeError.swift in Sources */,
+				4D49AB162BCF718900C77310 /* FindDevicesView.swift in Sources */,
 				2FC975A82978F11A00BA99FE /* Home.swift in Sources */,
 				4DB025D52BBF2E08002D2545 /* Dashboard.swift in Sources */,
 				A9DFE8A92ABE551400428242 /* AccountButton.swift in Sources */,

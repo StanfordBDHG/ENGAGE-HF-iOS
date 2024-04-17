@@ -11,39 +11,6 @@ import Foundation
 import NIOCore
 
 
-//func getFlags(flagBits: UInt8) -> (WeightUnits, Bool, Bool, Bool) {
-//    let timeStampFlag: Bool = ((flagBits >> 1) & 0b1) != 0
-//    let userIDFlag: Bool = ((flagBits >> 2) & 0b1) != 0
-//    let heightBMIFlag: Bool = ((flagBits >> 3) & 0b1) != 0
-//    
-//    let weightUnits: WeightUnits
-//    switch flagBits & (0b1) {
-//    case 0: weightUnits = .metric
-//    case 1: weightUnits = .imperial
-//    default: weightUnits = .imperial
-//    }
-//    
-//    return (weightUnits, timeStampFlag, heightBMIFlag, userIDFlag)
-//}
-//
-//func getDate(year: Int, month: Int, day: Int, hour: Int, minute: Int, second: Int) -> Date? {
-//    var dateComponents = DateComponents()
-//    dateComponents.year = Int(year)
-//    dateComponents.month = Int(month)
-//    dateComponents.day = Int(day)
-//    dateComponents.hour = Int(hour)
-//    dateComponents.minute = Int(minute)
-//    dateComponents.second = Int(second)
-//    
-//    if let timeStamp = Calendar.current.date(from: dateComponents) {
-//        return timeStamp
-//    } else {
-//        print("Failed to create Date")
-//        return nil
-//    }
-//}
-
-
 enum WeightUnits: Equatable {
     case metric, imperial   // Different name here?
 }

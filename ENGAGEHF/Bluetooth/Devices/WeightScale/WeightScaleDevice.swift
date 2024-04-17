@@ -8,6 +8,7 @@
 
 import BluetoothServices
 import class CoreBluetooth.CBUUID
+import Foundation
 import SpeziBluetooth
 
 
@@ -19,20 +20,25 @@ class WeightScaleService: BluetoothService {
     // 2 characteristics as defined in the manual:
     
     // Characteristic 1: Weight Scale Feature, R
-    @Characteristic(id: "2A9E")
-    var weightScaleFeature: WeightScaleFeature?
+    @Characteristic(id: "2A9E") var weightScaleFeature: WeightScaleFeature?
     
     // Characteristic 2: Weight Measurement, N
-    @Characteristic(id: "2A9D", notify: true)
-    var weightMeasurement: WeightMeasurement?
+    @Characteristic(id: "2A9D", notify: true) var weightMeasurement: WeightMeasurement?
     
     init() {}
 }
 
 
 class WeightScaleDevice: BluetoothDevice, Identifiable {
+    @DeviceState(\.id) var id: UUID
+    @DeviceState(\.name)var name: String?
+    @DeviceState(\.state) var state: PeripheralState
+    
     @Service var deviceInformation = DeviceInformationService()
-    @Service var advertisedService = WeightScaleService()
+    @Service var service = WeightScaleService()
+    
+    @DeviceAction(\.connect) var connect
+    @DeviceAction(\.disconnect) var disconnect
     
     required init() {}
 }

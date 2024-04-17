@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%@" : {
+
+    },
     "ACCOUNT_NEXT" : {
       "localizations" : {
         "en" : {
@@ -88,6 +91,12 @@
           }
         }
       }
+    },
+    "Device" : {
+
+    },
+    "Devices" : {
+
     },
     "HEALTHKIT_PERMISSIONS_BUTTON" : {
       "localizations" : {
