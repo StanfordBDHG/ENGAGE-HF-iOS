@@ -8,6 +8,8 @@
 
 import BluetoothServices
 import class CoreBluetooth.CBUUID
+import FirebaseCore
+import FirebaseFirestore
 import Foundation
 import SpeziBluetooth
 
@@ -40,5 +42,49 @@ class WeightScaleDevice: BluetoothDevice, Identifiable {
     @DeviceAction(\.connect) var connect
     @DeviceAction(\.disconnect) var disconnect
     
-    required init() {}
+    
+    required init() {
+        $state.onChange(perform: handleConnect)
+        service.$weightMeasurement.onChange(perform: processMeasurement)
+    }
+    
+    
+    private func handleConnect(_ state: PeripheralState) async {
+        // For now, only handle connection and ignore other stages
+//        if !(state == .connected) {
+//            await connect()
+//        }
+//        
+        // Read device information and weight feature
+        do {
+            if service.$weightScaleFeature.isPresent {
+                try await service.$weightScaleFeature.read()
+            }
+            
+            try await deviceInformation.retrieveDeviceInformation()
+        } catch {
+            print("\(error)")
+        }
+    }
+    
+    private func processMeasurement(_ measurement: WeightMeasurement) async {
+        if !service.$weightMeasurement.isPresent {
+            return
+        }
+        
+        print("Saving the following measurement: \(Double(measurement.weight) / 100)")
+        let firestore = Firestore.firestore()
+        
+        do {
+            try await firestore.collection("measurements").document("test").setData(from: Double(measurement.weight) / 100)
+            print("Successfully saved measurement to firestore")
+        } catch {
+            print("Failed to write measurment to firestore: \(error)")
+        }
+    }
+    
+    // Call when ready to disconnect
+    private func finished() async {
+        await disconnect()
+    }
 }

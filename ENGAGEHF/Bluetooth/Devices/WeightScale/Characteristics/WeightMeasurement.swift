@@ -11,12 +11,13 @@ import Foundation
 import NIOCore
 
 
-enum WeightUnits: Equatable {
-    case metric, imperial   // Different name here?
+enum WeightUnits: String, Equatable {
+    case metric = "kgs"
+    case imperial = "lbs"
 }
 
 
-struct WeightMeasurement {
+struct WeightMeasurement: Equatable {
     // Flags
     let units: WeightUnits
     let timeStampPresent: Bool
@@ -38,22 +39,13 @@ struct WeightMeasurement {
 
 extension WeightMeasurement: ByteDecodable {
     init?(from byteBuffer: inout NIOCore.ByteBuffer, preferredEndianness endianness: NIOCore.Endianness) {
-        guard byteBuffer.readableBytes >= 15 else {
+        guard byteBuffer.readableBytes >= 11 else {
             return nil
         }
         
         // Decode fields as described in the manual
-        guard let flagBits = UInt8(from: &byteBuffer),
-              let weight = UInt16(from: &byteBuffer),
-              let year = UInt16(from: &byteBuffer),
-              let month = UInt8(from: &byteBuffer),
-              let day = UInt8(from: &byteBuffer),
-              let hour = UInt8(from: &byteBuffer),
-              let minute = UInt8(from: &byteBuffer),
-              let second = UInt8(from: &byteBuffer),
-              let userID = UInt8(from: &byteBuffer),
-              let bmi = UInt16(from: &byteBuffer),
-              let height = UInt16(from: &byteBuffer) else {
+        guard let flagBits = UInt8(from: &byteBuffer, preferredEndianness: endianness),
+              let weight = UInt16(from: &byteBuffer, preferredEndianness: endianness) else {
             return nil
         }
         
@@ -62,6 +54,30 @@ extension WeightMeasurement: ByteDecodable {
         let userIDFlag: Bool = ((flagBits >> 2) & 0b1) != 0
         let heightBMIFlag: Bool = ((flagBits >> 3) & 0b1) != 0
         
+        // Get the time stamp
+        let timeStamp: Date? = timeStampFlag ? getTimeStamp(from: &byteBuffer, preferredEndianness: endianness) : nil
+        
+        var userID: UInt8?
+        if userIDFlag {
+            guard let userIDBits = UInt8(from: &byteBuffer, preferredEndianness: endianness) else {
+                return nil
+            }
+            
+            userID = userIDBits
+        }
+        
+        var bmi: UInt16?
+        var height: UInt16?
+        if heightBMIFlag {
+            guard let bmiBits = UInt16(from: &byteBuffer),
+                  let heightBits = UInt16(from: &byteBuffer) else {
+                return nil
+            }
+            
+            bmi = bmiBits
+            height = heightBits
+        }
+        
         let weightUnits: WeightUnits
         switch flagBits & (0b1) {
         case 0: weightUnits = .metric
@@ -69,25 +85,36 @@ extension WeightMeasurement: ByteDecodable {
         default: weightUnits = .imperial
         }
         
-        // Get the time stamp
-        let dateComponents = DateComponents(
-            year: Int(year),
-            month: Int(month),
-            day: Int(day),
-            hour: Int(hour),
-            minute: Int(minute),
-            second: Int(second)
-        )
-        let timeStamp: Date? = Calendar.current.date(from: dateComponents)
-        
         self.units = weightUnits
         self.timeStampPresent = timeStampFlag
         self.heightBMIPresent = heightBMIFlag
         self.userIDPresent = userIDFlag
         self.weight = weight
-        self.userID = userIDFlag ? userID : nil
-        self.height = heightBMIFlag ? height : nil
-        self.bmi = heightBMIFlag ? bmi : nil
-        self.timeStamp = timeStampFlag ? timeStamp : nil
+        self.userID = userID
+        self.height = height
+        self.bmi = bmi
+        self.timeStamp = timeStamp
     }
+}
+
+private func getTimeStamp(from byteBuffer: inout NIOCore.ByteBuffer, preferredEndianness endianness: NIOCore.Endianness) -> Date? {
+    guard let year = UInt16(from: &byteBuffer, preferredEndianness: endianness),
+          let month = UInt8(from: &byteBuffer, preferredEndianness: endianness),
+          let day = UInt8(from: &byteBuffer, preferredEndianness: endianness),
+          let hour = UInt8(from: &byteBuffer, preferredEndianness: endianness),
+          let minute = UInt8(from: &byteBuffer, preferredEndianness: endianness),
+          let second = UInt8(from: &byteBuffer, preferredEndianness: endianness) else {
+        return nil
+    }
+    
+    let dateComponents = DateComponents(
+        year: year != 0 ? Int(year) : nil,
+        month: month != 0 ? Int(month) : nil,
+        day: day != 0 ? Int(day) : nil,
+        hour: hour != 0 ? Int(hour) : nil,
+        minute: minute != 0 ? Int(minute) : nil,
+        second: second != 0 ? Int(second) : nil
+    )
+    
+    return Calendar.current.date(from: dateComponents)
 }

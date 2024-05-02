@@ -1,5 +1,5 @@
 {
-  "originHash" : "84060c25a97a757bf3045128a2563021282283c70a9cb6009941a41298deef92",
+  "originHash" : "2c55dbecac23b82cf07b0fd0b66c6bc3a201f32281bb207cf3602411201464ed",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -128,12 +128,30 @@
       }
     },
     {
+      "identity" : "llama.cpp",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordBDHG/llama.cpp",
+      "state" : {
+        "revision" : "7bfd6d4b5bbc9fd47bd023bdbb35f96c827977f3",
+        "version" : "0.2.1"
+      }
+    },
+    {
       "identity" : "nanopb",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/nanopb.git",
       "state" : {
         "revision" : "b7e1104502eca3a213b46303391ca4d3bc8ddec1",
         "version" : "2.30910.0"
+      }
+    },
+    {
+      "identity" : "openai",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordBDHG/OpenAI",
+      "state" : {
+        "revision" : "29316babb446c34bb07bf528d96de7eb41e7b03c",
+        "version" : "0.2.8"
       }
     },
     {
@@ -191,12 +209,48 @@
       }
     },
     {
+      "identity" : "spezibluetooth",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordSpezi/SpeziBluetooth.git",
+      "state" : {
+        "revision" : "3178bc1184dc6636e8112694e09fdfca7cbcf7d7",
+        "version" : "1.0.2"
+      }
+    },
+    {
+      "identity" : "spezichat",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordSpezi/SpeziChat.git",
+      "state" : {
+        "revision" : "aaa10d71431b78ece8bf29f95c0050632714984d",
+        "version" : "0.2.0"
+      }
+    },
+    {
       "identity" : "spezicontact",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziContact.git",
       "state" : {
         "revision" : "494b776f8c98d771e4a609a1fb706097dba4c030",
         "version" : "1.0.0"
+      }
+    },
+    {
+      "identity" : "spezifhir",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordSpezi/SpeziFHIR.git",
+      "state" : {
+        "revision" : "6eb16d2f80093d0c6db7d7966bc177e9454b5a49",
+        "version" : "0.6.1"
+      }
+    },
+    {
+      "identity" : "spezifileformats",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordSpezi/SpeziFileFormats",
+      "state" : {
+        "revision" : "017ea997f4f6128b15e8b8d4aac979cb7a822e74",
+        "version" : "1.2.0"
       }
     },
     {
@@ -236,6 +290,15 @@
       }
     },
     {
+      "identity" : "spezillm",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordSpezi/SpeziLLM.git",
+      "state" : {
+        "revision" : "cbaf20496e600c985dea2358f35a497fe4964116",
+        "version" : "0.8.1"
+      }
+    },
+    {
       "identity" : "spezionboarding",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziOnboarding",
@@ -251,6 +314,15 @@
       "state" : {
         "revision" : "f9d9b6d99bb1e00bda2974b440dca8367733d591",
         "version" : "1.1.0"
+      }
+    },
+    {
+      "identity" : "spezispeech",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordSpezi/SpeziSpeech.git",
+      "state" : {
+        "revision" : "60b8cdbf6f3d58b0d75eadf30db50f88848069aa",
+        "version" : "1.0.1"
       }
     },
     {
@@ -281,12 +353,30 @@
       }
     },
     {
+      "identity" : "swift-atomics",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-atomics.git",
+      "state" : {
+        "revision" : "cd142fd2f64be2100422d658e7411e39489da985",
+        "version" : "1.2.0"
+      }
+    },
+    {
       "identity" : "swift-collections",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-collections.git",
       "state" : {
         "revision" : "94cf62b3ba8d4bed62680a282d4c25f9c63c2efb",
         "version" : "1.1.0"
+      }
+    },
+    {
+      "identity" : "swift-nio",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-nio.git",
+      "state" : {
+        "revision" : "fc63f0cf4e55a4597407a9fc95b16a2bc44b4982",
+        "version" : "2.64.0"
       }
     },
     {
@@ -314,6 +404,15 @@
       "state" : {
         "revision" : "6ad4ea24b01559dde0773e3d091f1b9e36175036",
         "version" : "509.0.2"
+      }
+    },
+    {
+      "identity" : "swift-system",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-system.git",
+      "state" : {
+        "revision" : "025bcb1165deab2e20d4eaba79967ce73013f496",
+        "version" : "1.2.1"
       }
     },
     {

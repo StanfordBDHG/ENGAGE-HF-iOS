@@ -49,7 +49,7 @@ extension WeightScaleFeature: ByteDecodable, Equatable {
         }
         
         // Read the 32 bits from byte buffer
-        guard let allBits: UInt32 = UInt32(from: &byteBuffer) else {
+        guard let allBits = UInt32(from: &byteBuffer) else {
             return nil
         }
         
