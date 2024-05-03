@@ -89,6 +89,9 @@
         }
       }
     },
+    "Date: %@" : {
+
+    },
     "HEALTHKIT_PERMISSIONS_BUTTON" : {
       "localizations" : {
         "en" : {
@@ -292,6 +295,9 @@
           }
         }
       }
+    },
+    "Measurement recorded: %@" : {
+
     },
     "NOTIFICATION_PERMISSIONS_BUTTON" : {
       "localizations" : {

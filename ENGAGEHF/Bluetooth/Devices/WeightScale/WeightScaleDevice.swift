@@ -44,47 +44,38 @@ class WeightScaleDevice: BluetoothDevice, Identifiable {
     
     
     required init() {
-        $state.onChange(perform: handleConnect)
+//        $state.onChange(perform: handleConnect)
         service.$weightMeasurement.onChange(perform: processMeasurement)
     }
     
     
-    private func handleConnect(_ state: PeripheralState) async {
-        // For now, only handle connection and ignore other stages
-//        if !(state == .connected) {
-//            await connect()
+//    private func handleConnect(_ state: PeripheralState) async {
+//        // For now, only handle connection and ignore other stages
+//        if state != .connected {
+//            return
 //        }
 //        
-        // Read device information and weight feature
-        do {
-            if service.$weightScaleFeature.isPresent {
-                try await service.$weightScaleFeature.read()
-            }
-            
-            try await deviceInformation.retrieveDeviceInformation()
-        } catch {
-            print("\(error)")
-        }
-    }
+//        // Read device information and weight feature
+//        do {
+//            if service.$weightScaleFeature.isPresent {
+//                try await service.$weightScaleFeature.read()
+//            }
+//            
+//            try await deviceInformation.retrieveDeviceInformation()
+//        } catch {
+//            print("\(error)")
+//        }
+//    }
     
-    private func processMeasurement(_ measurement: WeightMeasurement) async {
+    private func processMeasurement(_ measurement: WeightMeasurement) {
         if !service.$weightMeasurement.isPresent {
             return
         }
         
-        print("Saving the following measurement: \(Double(measurement.weight) / 100)")
-        let firestore = Firestore.firestore()
+        MeasurementManager.manager.deviceInformation = deviceInformation
+        MeasurementManager.manager.weightScaleParams = service.weightScaleFeature
+        MeasurementManager.manager.deviceName = name
         
-        do {
-            try await firestore.collection("measurements").document("test").setData(from: Double(measurement.weight) / 100)
-            print("Successfully saved measurement to firestore")
-        } catch {
-            print("Failed to write measurment to firestore: \(error)")
-        }
-    }
-    
-    // Call when ready to disconnect
-    private func finished() async {
-        await disconnect()
+        MeasurementManager.manager.loadMeasurement(measurement)
     }
 }

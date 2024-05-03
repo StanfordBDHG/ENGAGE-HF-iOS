@@ -30,39 +30,50 @@ enum ManagerState: String, Equatable {
 // - Save a given measurement to Firebase
 @Observable
 class MeasurementManager: Module, EnvironmentAccessible {
-//    public var weightHistory: [Int]?
-    public var state: ManagerState = .idle
-    public var deviceInformation: DeviceInformationService?
-    public var newMeasurement: HKQuantitySample?
+    static var manager = MeasurementManager()
+    
+    var state: ManagerState = .idle
+    
+    var deviceInformation: DeviceInformationService?
+    var weightScaleParams: WeightScaleFeature?
+    var deviceName: String?
+    
+    var newMeasurement: HKQuantitySample?
+    
+    var showSheet = false
     
     
     // Called by WeightScaleDevice on change of WeightMeasurement Characteristic
-    public func loadMeasurement(_ measurement: WeightMeasurement) {
+    func loadMeasurement(_ measurement: WeightMeasurement) {
         // Convert to HKQuantitySample
         let weightHKSample = convertToHKSample(measurement)
         
         // Save the sample to the Measurement Manager
         self.newMeasurement = weightHKSample
+        self.showSheet = true
     }
     
     // Called by UI Sheet View to save the newMeasurement to firestore
-    public func saveMeasurement() async {
-        assert(self.newMeasurement != nil, "Attempting to save a nonexistant measurement.")
+    func saveMeasurement() async {
         self.state = .processing
         
         let logger = Logger(subsystem: "edu.stanford.engage.riedman", category: "MeasurementManager")
         let firestore = Firestore.firestore()
         
-        let measurement = self.newMeasurement!
+        guard let measurement: HKQuantitySample = self.newMeasurement else {
+            logger.warning("Attempting to save a nil measurement.")
+            return
+        }
         
         do {
-            logger.info("Saving the following measurement to Firestore: \n\(self.newMeasurement)")
+            logger.info("Saving the following measurement to Firestore: \n\(measurement)")
             guard let userID = Auth.auth().currentUser?.uid else {
                 logger.warning("Unable to access userID")
                 return
             }
             
-            try await firestore.collection("users").document(userID).collection("WeightMeasurements").addDocument(from: "")
+            try await firestore.collection("users").document(userID).collection("WeightMeasurements").addDocument(from: "blah")
+            logger.info("Successfully saved the measurement!")
         } catch {
             logger.warning("Unable to save measurement to Firestore: \(error)")
         }
@@ -70,45 +81,102 @@ class MeasurementManager: Module, EnvironmentAccessible {
         self.state = .idle
     }
     
-    public func discardMeasurement() {
+    func discardMeasurement() {
         self.newMeasurement = nil
     }
     
     
     func convertToHKSample(_ measurement: WeightMeasurement) -> HKQuantitySample? {
-        return nil
+        guard let deviceInfo: DeviceInformationService = deviceInformation,
+              let scaleParams: WeightScaleFeature = weightScaleParams else {
+            print("***** Device Information or Weight Scale Features not present *****")
+            return nil
+        }
+        
+        let device = HKDevice(
+            name: deviceName,
+            manufacturer: deviceInfo.manufacturerName,
+            model: deviceInfo.modelNumber,
+            hardwareVersion: deviceInfo.hardwareRevision,
+            firmwareVersion: deviceInfo.firmwareRevision,
+            softwareVersion: deviceInfo.softwareRevision,
+            localIdentifier: "Maybe deviceInfo.systemID? Generate a custom one? Ask Paul",
+            udiDeviceIdentifier: "Not sure if this applies here"
+        )
+        
+        let quantityType = HKQuantityType(.bodyMass)
+        let units = HKUnit(from: measurement.units.rawValue)
+        
+        guard let resolution = getResolutionScalar(for: measurement.units) else {
+            print("***** Unable to get Resolution Scalar *****")
+            return nil
+        }
+        
+        let quantity = HKQuantity(unit: units, doubleValue: Double(measurement.weight) * resolution)
+        let date = getDate(from: measurement)
+        
+        return HKQuantitySample(
+            type: quantityType,
+            quantity: quantity,
+            start: date,
+            end: date,
+            device: device,
+            metadata: nil
+        )
     }
-        
-        
-        
-//        let device = HKDevice(name: deviceName,
-//                              manufacturer: manufacturerName,
-//                              model: modelName,
-//                              hardwareVersion: hardwareVersionNumber,
-//                              firmwareVersion: firmwareVersionNumber,
-//                              softwareVersion: softwareVersionNumber,
-//                              localIdentifier: localIdentifier,
-//                              UDIDeviceIdentifier: deviceIdentifier)
-//         
-//        let metadata = [HKMetadataKeyDigitalSignature:digitalSignature,
-//                        HKMetadataKeyTimeZone:timeZone]
-//         
-//        guard let quantityType = HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeartRate) else {
-//            fatalError("*** Unable to create a heart rate quantity type ***")
-//        }
-//         
-//        let units = HKUnit(fromString: measurement.units.)
-//        let quantity = HKQuantity(unit: bpm, doubleValue: 72.0)
-//         
-//        let quantitySample = HKQuantitySample(type: quantityType,
-//                                              quantity: quantity,
-//                                              startDate: start,
-//                                              endDate: end,
-//                                              device: device,
-//                                              metadata: metadata)
-        
-        
-//        return quantitySample
-//    }
     
+    func getResolutionScalar(for units: WeightUnits) -> Double? {
+        guard let scaleParams: WeightScaleFeature = weightScaleParams else {
+            print("***** Weight Scale Features not present *****")
+            return nil
+        }
+        
+        let resolution = scaleParams.weightResolution
+        let isLbs = units == .imperial
+        
+        switch resolution {
+        case .unspecified: return 1
+        case .gradeOne: return isLbs ? 1 : 0.1
+        case .gradeTwo: return 0.1
+        case .gradeThree: return 0.1
+        case .gradeFour: return isLbs ? 0.1 : 0.01
+        case .gradeFive: return 0.01
+        case .gradeSix: return 0.01
+        case .gradeSeven: return isLbs ? 0.01 : 0.001
+        }
+    }
+    
+    func getDate(from measurement: WeightMeasurement) -> Date {
+        guard let dateTime: DateTime = measurement.timeStamp else {
+            return .now
+        }
+        
+        let year = dateTime.year
+        let month = dateTime.month
+        let day = dateTime.day
+        let hour = dateTime.hours
+        let minute = dateTime.minutes
+        let second = dateTime.seconds
+        
+        if year == 0, month == .unknown, day == 0 {
+            print("***** Timestamp unkown, displaying current date *****")
+            return .now
+        }
+        
+        let dateComponents = DateComponents(
+            year: year != 0 ? Int(year) : nil,
+            month: month != .unknown ? Int(month.rawValue) : nil,
+            day: day != 0 ? Int(day) : nil,
+            hour: hour != 0 ? Int(hour) : nil,
+            minute: minute != 0 ? Int(minute) : nil,
+            second: second != 0 ? Int(second) : nil
+        )
+        
+        guard let date = Calendar.current.date(from: dateComponents) else {
+            print("***** Invalid date components, returning current date *****")
+            return .now
+        }
+        
+        return date
+    }
 }

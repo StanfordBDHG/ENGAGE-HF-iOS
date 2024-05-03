@@ -24,11 +24,14 @@ struct HomeView: View {
     
     @Environment(WeightScaleDevice.self) private var weightScale: WeightScaleDevice?
     @Environment(Bluetooth.self) private var bluetooth
-    @Environment(MeasurementManager.self) private var measurementManager
+    @State private var measurementManager = MeasurementManager.manager
     
     @AppStorage(StorageKeys.homeTabSelection) private var selectedTab = Tabs.home
     @State private var presentingAccount = false
-
+    
+    var presentSheet: Bool {
+        measurementManager.state == .processing || weightScale != nil
+    }
     
     var body: some View {
         @Bindable var measurementManager = measurementManager
@@ -50,8 +53,11 @@ struct HomeView: View {
             }
             .verifyRequiredAccountDetails(Self.accountEnabled)
         
-            .sheet(isPresented: (weightScale != nil) || ($measurementManager.state == .processing)) {
-                /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Content@*/Text("Sheet Content")/*@END_MENU_TOKEN@*/
+            .sheet(isPresented: $measurementManager.showSheet) {
+                VStack {
+                    Text("Measurement recorded: \(measurementManager.newMeasurement?.quantity.description ?? "Unknown")")
+                    Text("Date: \(measurementManager.newMeasurement?.startDate.formatted() ?? "Unknown")")
+                }
             }
     }
 }

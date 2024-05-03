@@ -6,14 +6,15 @@
 // SPDX-License-Identifier: MIT
 //
 
+import BluetoothServices
 import ByteCoding
 import Foundation
 import NIOCore
 
 
 enum WeightUnits: String, Equatable {
-    case metric = "kgs"
-    case imperial = "lbs"
+    case metric = "kg"
+    case imperial = "lb"
 }
 
 
@@ -30,7 +31,7 @@ struct WeightMeasurement: Equatable {
     let weight: UInt16
     
     // Only present when corresponding flag is true
-    let timeStamp: Date?
+    let timeStamp: DateTime?
     let bmi: UInt16?
     let height: UInt16?
     let userID: UInt8?
@@ -55,45 +56,52 @@ extension WeightMeasurement: ByteDecodable {
         let heightBMIFlag: Bool = ((flagBits >> 3) & 0b1) != 0
         
         // Get the time stamp
-        let timeStamp: Date? = timeStampFlag ? getTimeStamp(from: &byteBuffer, preferredEndianness: endianness) : nil
+        if timeStampFlag {
+            guard let timeStamp = DateTime(from: &byteBuffer, preferredEndianness: endianness) else {
+                return nil
+            }
+            
+            self.timeStamp = timeStamp
+        } else {
+            self.timeStamp = nil
+        }
         
-        var userID: UInt8?
         if userIDFlag {
-            guard let userIDBits = UInt8(from: &byteBuffer, preferredEndianness: endianness) else {
+            guard let userID = UInt8(from: &byteBuffer, preferredEndianness: endianness) else {
                 return nil
             }
             
-            userID = userIDBits
+            self.userID = userID
+        } else {
+            self.userID = nil
         }
         
-        var bmi: UInt16?
-        var height: UInt16?
         if heightBMIFlag {
-            guard let bmiBits = UInt16(from: &byteBuffer),
-                  let heightBits = UInt16(from: &byteBuffer) else {
+            guard let bmi = UInt16(from: &byteBuffer),
+                  let height = UInt16(from: &byteBuffer) else {
                 return nil
             }
             
-            bmi = bmiBits
-            height = heightBits
+            self.bmi = bmi
+            self.height = height
+        } else {
+            self.bmi = nil
+            self.height = nil
         }
         
-        let weightUnits: WeightUnits
-        switch flagBits & (0b1) {
-        case 0: weightUnits = .metric
-        case 1: weightUnits = .imperial
-        default: weightUnits = .imperial
-        }
+        self.units = {
+            if (flagBits & 1) == 1 {
+                return .imperial
+            } else {
+                return .metric
+            }
+        }()
         
-        self.units = weightUnits
+        
         self.timeStampPresent = timeStampFlag
         self.heightBMIPresent = heightBMIFlag
         self.userIDPresent = userIDFlag
         self.weight = weight
-        self.userID = userID
-        self.height = height
-        self.bmi = bmi
-        self.timeStamp = timeStamp
     }
 }
 
