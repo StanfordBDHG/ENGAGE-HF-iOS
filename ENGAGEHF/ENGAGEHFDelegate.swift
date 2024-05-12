@@ -56,6 +56,7 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
             }
             
             OnboardingDataSource()
+            MeasurementManager()
         }
     }
     

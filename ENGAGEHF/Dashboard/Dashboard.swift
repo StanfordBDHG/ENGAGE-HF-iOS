@@ -19,15 +19,6 @@ struct Dashboard: View {
             VStack {
                 Greeting()
                 Spacer()
-                
-                HStack {
-                    Circle()
-                        .fill(weightScale == nil ? Color.gray : Color.green)
-                        .frame(width: 10, height: 10)
-                        .padding()
-                    Text(String(Double(weightScale?.service.weightMeasurement?.weight ?? 0) / 100))
-                }
-                Spacer()
             }
                 .navigationTitle("Home")
                 .toolbar {

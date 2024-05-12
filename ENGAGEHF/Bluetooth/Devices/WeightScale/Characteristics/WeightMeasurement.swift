@@ -104,25 +104,3 @@ extension WeightMeasurement: ByteDecodable {
         self.weight = weight
     }
 }
-
-private func getTimeStamp(from byteBuffer: inout NIOCore.ByteBuffer, preferredEndianness endianness: NIOCore.Endianness) -> Date? {
-    guard let year = UInt16(from: &byteBuffer, preferredEndianness: endianness),
-          let month = UInt8(from: &byteBuffer, preferredEndianness: endianness),
-          let day = UInt8(from: &byteBuffer, preferredEndianness: endianness),
-          let hour = UInt8(from: &byteBuffer, preferredEndianness: endianness),
-          let minute = UInt8(from: &byteBuffer, preferredEndianness: endianness),
-          let second = UInt8(from: &byteBuffer, preferredEndianness: endianness) else {
-        return nil
-    }
-    
-    let dateComponents = DateComponents(
-        year: year != 0 ? Int(year) : nil,
-        month: month != 0 ? Int(month) : nil,
-        day: day != 0 ? Int(day) : nil,
-        hour: hour != 0 ? Int(hour) : nil,
-        minute: minute != 0 ? Int(minute) : nil,
-        second: second != 0 ? Int(second) : nil
-    )
-    
-    return Calendar.current.date(from: dateComponents)
-}

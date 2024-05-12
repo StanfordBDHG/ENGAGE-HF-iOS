@@ -8,13 +8,13 @@
 
 import SpeziAccount
 import SpeziBluetooth
+import SpeziViews
 import SwiftUI
 
 
 struct HomeView: View {
     enum Tabs: String {
         case home
-        case bluetooth
     }
     
     static var accountEnabled: Bool {
@@ -29,9 +29,8 @@ struct HomeView: View {
     @AppStorage(StorageKeys.homeTabSelection) private var selectedTab = Tabs.home
     @State private var presentingAccount = false
     
-    var presentSheet: Bool {
-        measurementManager.state == .processing || weightScale != nil
-    }
+    @State var measurementConfirmationViewState: ViewState = .idle
+    
     
     var body: some View {
         @Bindable var measurementManager = measurementManager
@@ -53,11 +52,12 @@ struct HomeView: View {
             }
             .verifyRequiredAccountDetails(Self.accountEnabled)
         
-            .sheet(isPresented: $measurementManager.showSheet) {
-                VStack {
-                    Text("Measurement recorded: \(measurementManager.newMeasurement?.quantity.description ?? "Unknown")")
-                    Text("Date: \(measurementManager.newMeasurement?.startDate.formatted() ?? "Unknown")")
-                }
+            .sheet(isPresented: $measurementManager.showSheet, onDismiss: {
+                MeasurementManager.manager.clear()
+            }) {
+                MeasurementRecordedView(viewState: $measurementConfirmationViewState)
+                    .presentationDetents([.fraction(0.4), .large])
+                    .interactiveDismissDisabled(measurementConfirmationViewState != .idle)
             }
     }
 }

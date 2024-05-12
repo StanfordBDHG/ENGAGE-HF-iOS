@@ -51,6 +51,7 @@
 		4D052DBB2BE08227006A784E /* SpeziFHIR in Frameworks */ = {isa = PBXBuildFile; productRef = 4D052DBA2BE08227006A784E /* SpeziFHIR */; };
 		4D052DBD2BE08227006A784E /* SpeziFHIRHealthKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4D052DBC2BE08227006A784E /* SpeziFHIRHealthKit */; };
 		4D052DBF2BE08227006A784E /* SpeziFHIRMockPatients in Frameworks */ = {isa = PBXBuildFile; productRef = 4D052DBE2BE08227006A784E /* SpeziFHIRMockPatients */; };
+		4D19ED012BE5CAFC00CDBAA8 /* MeasurementRecordedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D19ED002BE5CAFC00CDBAA8 /* MeasurementRecordedView.swift */; };
 		4D49AAFE2BC9D50400C77310 /* BluetoothServices in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49AAFD2BC9D50400C77310 /* BluetoothServices */; };
 		4D49AB002BC9D50400C77310 /* BluetoothViews in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49AAFF2BC9D50400C77310 /* BluetoothViews */; };
 		4D49AB022BC9D50400C77310 /* SpeziBluetooth in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49AB012BC9D50400C77310 /* SpeziBluetooth */; };
@@ -124,6 +125,7 @@
 		2FE5DCAC29EE6107004B9AB4 /* AccountOnboarding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountOnboarding.swift; sourceTree = "<group>"; };
 		2FF53D8C2A8729D600042B76 /* ENGAGEHFStandard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ENGAGEHFStandard.swift; sourceTree = "<group>"; };
 		4D052DB72BE07892006A784E /* MeasurementManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementManager.swift; sourceTree = "<group>"; };
+		4D19ED002BE5CAFC00CDBAA8 /* MeasurementRecordedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementRecordedView.swift; sourceTree = "<group>"; };
 		4D49AB032BC9D54100C77310 /* BPCuffDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPCuffDevice.swift; sourceTree = "<group>"; };
 		4D49AB052BC9D56900C77310 /* WeightScaleDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightScaleDevice.swift; sourceTree = "<group>"; };
 		4D49AB0C2BC9DF9100C77310 /* WeightScaleFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightScaleFeature.swift; sourceTree = "<group>"; };
@@ -267,9 +269,18 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
+		4D19ECFC2BE5B9F200CDBAA8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4D19ED002BE5CAFC00CDBAA8 /* MeasurementRecordedView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		4D49AAFB2BC9D46F00C77310 /* Bluetooth */ = {
 			isa = PBXGroup;
 			children = (
+				4D19ECFC2BE5B9F200CDBAA8 /* Views */,
 				4D49AB142BCF6FC400C77310 /* Devices */,
 				4D052DB72BE07892006A784E /* MeasurementManager.swift */,
 			);
@@ -599,6 +610,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2FE5DC4129EDD7EE004B9AB4 /* StorageKeys.swift in Sources */,
+				4D19ED012BE5CAFC00CDBAA8 /* MeasurementRecordedView.swift in Sources */,
 				2FE5DCB129EE6107004B9AB4 /* AccountOnboarding.swift in Sources */,
 				2FE5DC3A29EDD7CA004B9AB4 /* Welcome.swift in Sources */,
 				2FE5DC3829EDD7CA004B9AB4 /* InterestingModules.swift in Sources */,

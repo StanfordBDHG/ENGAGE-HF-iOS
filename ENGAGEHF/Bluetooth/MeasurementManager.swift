@@ -30,9 +30,15 @@ enum ManagerState: String, Equatable {
 // - Save a given measurement to Firebase
 @Observable
 class MeasurementManager: Module, EnvironmentAccessible {
-    static var manager = MeasurementManager()
+    private static var _manager: MeasurementManager?
+    static var manager: MeasurementManager {
+        guard let manager = _manager else {
+            fatalError("Accessing shared MeasurmentManager before initialized.")
+        }
+        return manager
+    }
     
-    var state: ManagerState = .idle
+    @ObservationIgnored @StandardActor var standard: ENGAGEHFStandard
     
     var deviceInformation: DeviceInformationService?
     var weightScaleParams: WeightScaleFeature?
@@ -43,42 +49,45 @@ class MeasurementManager: Module, EnvironmentAccessible {
     var showSheet = false
     
     
+    init() {
+        MeasurementManager._manager = self
+    }
+    
+    
+    // Called to reset measurement manager after taking a measurement
+    func clear() {
+        self.showSheet = false
+        self.newMeasurement = nil
+        self.deviceInformation = nil
+        self.weightScaleParams = nil
+        self.deviceName = nil
+    }
+    
+    
     // Called by WeightScaleDevice on change of WeightMeasurement Characteristic
     func loadMeasurement(_ measurement: WeightMeasurement) {
-        // Convert to HKQuantitySample
-        let weightHKSample = convertToHKSample(measurement)
+        // Convert to HKQuantitySample after downloading from Firestore
+        let convertedMeasurement = convertToHKSample(measurement)
         
         // Save the sample to the Measurement Manager
-        self.newMeasurement = weightHKSample
+        self.newMeasurement = convertedMeasurement
         self.showSheet = true
     }
     
     // Called by UI Sheet View to save the newMeasurement to firestore
-    func saveMeasurement() async {
-        self.state = .processing
-        
-        let logger = Logger(subsystem: "edu.stanford.engage.riedman", category: "MeasurementManager")
-        let firestore = Firestore.firestore()
+    func saveMeasurement() async throws {
+        let logger = Logger(subsystem: "ENGAGEHF", category: "MeasurementManager")
         
         guard let measurement: HKQuantitySample = self.newMeasurement else {
-            logger.warning("Attempting to save a nil measurement.")
+            logger.error("Attempting to save a nil measurement.")
             return
         }
         
-        do {
-            logger.info("Saving the following measurement to Firestore: \n\(measurement)")
-            guard let userID = Auth.auth().currentUser?.uid else {
-                logger.warning("Unable to access userID")
-                return
-            }
-            
-            try await firestore.collection("users").document(userID).collection("WeightMeasurements").addDocument(from: "blah")
-            logger.info("Successfully saved the measurement!")
-        } catch {
-            logger.warning("Unable to save measurement to Firestore: \(error)")
-        }
+        logger.info("Saving the following measurement: \(measurement.quantity.description)")
+        await standard.add(sample: measurement)
         
-        self.state = .idle
+        logger.info("Save successful!")
+        self.showSheet = false
     }
     
     func discardMeasurement() {
@@ -87,9 +96,8 @@ class MeasurementManager: Module, EnvironmentAccessible {
     
     
     func convertToHKSample(_ measurement: WeightMeasurement) -> HKQuantitySample? {
-        guard let deviceInfo: DeviceInformationService = deviceInformation,
-              let scaleParams: WeightScaleFeature = weightScaleParams else {
-            print("***** Device Information or Weight Scale Features not present *****")
+        guard let deviceInfo: DeviceInformationService = deviceInformation else {
+            print("***** Device Information not present *****")
             return nil
         }
         
@@ -100,8 +108,8 @@ class MeasurementManager: Module, EnvironmentAccessible {
             hardwareVersion: deviceInfo.hardwareRevision,
             firmwareVersion: deviceInfo.firmwareRevision,
             softwareVersion: deviceInfo.softwareRevision,
-            localIdentifier: "Maybe deviceInfo.systemID? Generate a custom one? Ask Paul",
-            udiDeviceIdentifier: "Not sure if this applies here"
+            localIdentifier: nil,
+            udiDeviceIdentifier: nil
         )
         
         let quantityType = HKQuantityType(.bodyMass)

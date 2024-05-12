@@ -44,28 +44,8 @@ class WeightScaleDevice: BluetoothDevice, Identifiable {
     
     
     required init() {
-//        $state.onChange(perform: handleConnect)
         service.$weightMeasurement.onChange(perform: processMeasurement)
     }
-    
-    
-//    private func handleConnect(_ state: PeripheralState) async {
-//        // For now, only handle connection and ignore other stages
-//        if state != .connected {
-//            return
-//        }
-//        
-//        // Read device information and weight feature
-//        do {
-//            if service.$weightScaleFeature.isPresent {
-//                try await service.$weightScaleFeature.read()
-//            }
-//            
-//            try await deviceInformation.retrieveDeviceInformation()
-//        } catch {
-//            print("\(error)")
-//        }
-//    }
     
     private func processMeasurement(_ measurement: WeightMeasurement) {
         if !service.$weightMeasurement.isPresent {

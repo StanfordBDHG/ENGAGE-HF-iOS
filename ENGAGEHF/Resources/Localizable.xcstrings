@@ -89,8 +89,28 @@
         }
       }
     },
-    "Date: %@" : {
+    "DISCARD" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Discard"
+          }
+        }
+      }
+    },
+    "Dismiss" : {
 
+    },
+    "DISMISS_BUTTON" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close"
+          }
+        }
+      }
     },
     "HEALTHKIT_PERMISSIONS_BUTTON" : {
       "localizations" : {
@@ -296,7 +316,7 @@
         }
       }
     },
-    "Measurement recorded: %@" : {
+    "Measurement Recorded" : {
 
     },
     "NOTIFICATION_PERMISSIONS_BUTTON" : {
@@ -344,6 +364,9 @@
 
     },
     "Redeem Invitation Code" : {
+
+    },
+    "Save" : {
 
     },
     "The invitation code is invalid or has already been used." : {
