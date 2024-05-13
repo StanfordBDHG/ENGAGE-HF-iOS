@@ -16,23 +16,30 @@ struct MeasurementHeader: View {
     
     
     var body: some View {
-        HStack {
-            Button(action: {
-                dismiss()
-            }) {
-                Text("DISMISS_BUTTON")
-                    .foregroundStyle(Color.accentColor)
+        ZStack {
+            HStack {
+                Button(action: {
+                    dismiss()
+                }) {
+                    Text("DISMISS_BUTTON")
+                        .foregroundStyle(Color.accentColor)
+                }
+                    .buttonStyle(PlainButtonStyle())
+                    .padding(.trailing, 10)
+                    .disabled(viewState != .idle)
+                    .accessibilityLabel("Dismiss")
+                
+                Spacer()
             }
-                .buttonStyle(PlainButtonStyle())
-                .disabled(viewState != .idle)
-                .accessibilityLabel("Dismiss")
             
-            Spacer()
-            
-            Text("Measurement Recorded")
-                .font(.title2)
-            
-            Spacer()
+            HStack {
+                Spacer()
+                
+                Text("Measurement Recorded")
+                    .font(.title2)
+                
+                Spacer()
+            }
         }
             .padding()
     }
