@@ -11,13 +11,20 @@ import SwiftUI
 
 struct Dashboard: View {
     @Binding var presentingAccount: Bool
-    @Environment(WeightScaleDevice.self) private var weightScale: WeightScaleDevice?
     
     
     var body: some View {
         NavigationStack {
             VStack {
-                Greeting()
+                // Notifications
+                
+                // To-do
+                
+                // Most recent vitals
+                
+                // Survey, if available
+                
+                NotificationsView()
                 Spacer()
             }
                 .navigationTitle("Home")

@@ -12,7 +12,6 @@ import SpeziBluetooth
 import SpeziFirebaseAccount
 import SpeziFirebaseStorage
 import SpeziFirestore
-import SpeziHealthKit
 import SpeziOnboarding
 import SwiftUI
 
@@ -33,22 +32,22 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
                 if FeatureFlags.useFirebaseEmulator {
                     FirebaseAccountConfiguration(
                         authenticationMethods: [.emailAndPassword, .signInWithApple],
-                        emulatorSettings: (host: "localhost", port: 9099)
+                        emulatorSettings: (host: "10.34.253.54", port: 9099)
                     )
                 } else {
                     FirebaseAccountConfiguration(authenticationMethods: [.emailAndPassword, .signInWithApple])
                 }
                 firestore
                 if FeatureFlags.useFirebaseEmulator {
-                    FirebaseStorageConfiguration(emulatorSettings: (host: "localhost", port: 9199))
+                    FirebaseStorageConfiguration(emulatorSettings: (host: "10.34.253.54", port: 9199))
                 } else {
                     FirebaseStorageConfiguration()
                 }
             }
 
-            if HKHealthStore.isHealthDataAvailable() {
-                healthKit
-            }
+//            if HKHealthStore.isHealthDataAvailable() {
+//                healthKit
+//            }
             
             Bluetooth {
 //                Discover(BPCuffDevice.self, by: .advertisedService(BPCuffDevice.service.self))
@@ -64,7 +63,7 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
     private var firestore: Firestore {
         let settings = FirestoreSettings()
         if FeatureFlags.useFirebaseEmulator {
-            settings.host = "localhost:8080"
+            settings.host = "10.34.253.54:8080"
             settings.cacheSettings = MemoryCacheSettings()
             settings.isSSLEnabled = false
         }
@@ -75,12 +74,12 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
     }
     
     
-    private var healthKit: HealthKit {
-        HealthKit {
-            CollectSample(
-                HKQuantityType(.stepCount),
-                deliverySetting: .anchorQuery(.automatic)
-            )
-        }
-    }
+//    private var healthKit: HealthKit {
+//        HealthKit {
+//            CollectSample(
+//                HKQuantityType(.stepCount),
+//                deliverySetting: .anchorQuery(.automatic)
+//            )
+//        }
+//    }
 }

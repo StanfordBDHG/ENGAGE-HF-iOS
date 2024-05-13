@@ -113,6 +113,7 @@
       }
     },
     "HEALTHKIT_PERMISSIONS_BUTTON" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -123,6 +124,7 @@
       }
     },
     "HEALTHKIT_PERMISSIONS_DESCRIPTION" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -133,6 +135,7 @@
       }
     },
     "HEALTHKIT_PERMISSIONS_SUBTITLE" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -144,6 +147,7 @@
     },
     "HEALTHKIT_PERMISSIONS_TITLE" : {
       "comment" : "MARK: HealthKit",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {

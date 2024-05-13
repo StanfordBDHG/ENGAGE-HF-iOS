@@ -9,12 +9,14 @@
 import SwiftUI
 
 
-struct Greeting: View {
+struct GreetingView: View {
     var body: some View {
         HStack(alignment: .top) {
-            Text("Hello, world!")
-                .font(.title.bold())
+            Text("Notifications")
+                .font(.title2.bold())
+            
             Spacer()
+            
             Text(.now, style: .date)
                 .font(.title3)
                 .foregroundStyle(.secondary)

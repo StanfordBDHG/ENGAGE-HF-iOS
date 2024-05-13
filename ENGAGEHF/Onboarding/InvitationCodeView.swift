@@ -97,7 +97,7 @@ struct InvitationCodeView: View {
     
     init() {
         if FeatureFlags.useFirebaseEmulator {
-            Functions.functions().useEmulator(withHost: "localhost", port: 5001)
+            Functions.functions().useEmulator(withHost: "10.34.253.54", port: 5001)
         }
     }
     
