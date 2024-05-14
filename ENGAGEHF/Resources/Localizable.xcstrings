@@ -58,6 +58,9 @@
     "An invitation code is at least 8 characters long." : {
 
     },
+    "Blood Pressure" : {
+
+    },
     "CLOSE" : {
       "comment" : "MARK: General",
       "localizations" : {
@@ -112,6 +115,12 @@
         }
       }
     },
+    "Education" : {
+
+    },
+    "Fill in rest of survey here." : {
+
+    },
     "HEALTHKIT_PERMISSIONS_BUTTON" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -157,7 +166,13 @@
         }
       }
     },
-    "Hello, world!" : {
+    "Heart Health" : {
+
+    },
+    "Heart health data goes here" : {
+
+    },
+    "Heart Rate" : {
 
     },
     "Home" : {
@@ -297,7 +312,13 @@
         }
       }
     },
+    "Introductory Videos go here" : {
+
+    },
     "Invitation Code" : {
+
+    },
+    "KCCQ-12 Symptom Survey" : {
 
     },
     "LELAND_STANFORD_BIO" : {
@@ -320,7 +341,25 @@
         }
       }
     },
+    "Loading To-do List..." : {
+
+    },
     "Measurement Recorded" : {
+
+    },
+    "Medications" : {
+
+    },
+    "Medications go here." : {
+
+    },
+    "Most Recent Vitals" : {
+
+    },
+    "No new notifications" : {
+
+    },
+    "Nothing to do!" : {
 
     },
     "NOTIFICATION_PERMISSIONS_BUTTON" : {
@@ -364,6 +403,12 @@
         }
       }
     },
+    "Notifications" : {
+
+    },
+    "Notifications Loading..." : {
+
+    },
     "Please enter your invitation code to join the ENGAGE-HF study." : {
 
     },
@@ -373,11 +418,29 @@
     "Save" : {
 
     },
+    "Survey" : {
+
+    },
+    "Survey: %@" : {
+
+    },
     "The invitation code is invalid or has already been used." : {
       "comment" : "Invitation Code Invalid"
     },
+    "To-do" : {
+
+    },
+    "Unable to get notification timestamp." : {
+      "comment" : "Invalid Timestamp"
+    },
     "User authentication failed. Please try to sign in again." : {
       "comment" : "User Not Authenticated"
+    },
+    "User not authenticated. Please sign in an try again." : {
+      "comment" : "User Not Authenticated"
+    },
+    "Weight" : {
+
     },
     "WELCOME_AREA1_DESCRIPTION" : {
       "localizations" : {

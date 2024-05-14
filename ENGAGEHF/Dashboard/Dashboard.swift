@@ -11,28 +11,36 @@ import SwiftUI
 
 struct Dashboard: View {
     @Binding var presentingAccount: Bool
+    @State var showSurvey = false
     
     
     var body: some View {
         NavigationStack {
-            VStack {
+            List {
                 // Notifications
+                 NotificationSection()
                 
                 // To-do
+                ToDoSection()
                 
                 // Most recent vitals
+                RecentVitalsSection()
                 
                 // Survey, if available
-                
-                NotificationsView()
-                Spacer()
+                SurveySection(showFullSurvey: $showSurvey)
             }
-                .navigationTitle("Home")
-                .toolbar {
-                    if AccountButton.shouldDisplay {
-                        AccountButton(isPresented: $presentingAccount)
-                    }
+            .listSectionSpacing(0)
+            
+            .sheet(isPresented: $showSurvey, content: {
+                FullSurveyView()
+            })
+            
+            .navigationTitle("Home")
+            .toolbar {
+                if AccountButton.shouldDisplay {
+                    AccountButton(isPresented: $presentingAccount)
                 }
+            }
         }
     }
 }

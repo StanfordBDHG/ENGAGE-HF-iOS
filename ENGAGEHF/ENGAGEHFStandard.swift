@@ -63,6 +63,20 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint, A
             _accountStorage = Dependency(wrappedValue: FirestoreAccountStorage(storeIn: ENGAGEHFStandard.userCollection))
         }
     }
+    
+    
+    // Adds a new notification to the user's notification collection
+    func add(notification: Notification) async {
+        do {
+            try await userDocumentReference.collection("notifications").document(notification.id).setData([
+                "title": notification.title,
+                "description": notification.description,
+                "created": Timestamp(date: .now)
+            ])
+        } catch {
+            logger.error("Could not store the notification: \(error)")
+        }
+    }
 
 
     func add(sample: HKSample) async {
@@ -97,8 +111,8 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint, A
     
     private func healthKitDocument(id uuid: UUID, type: HKSampleType) async throws -> DocumentReference {
         try await userDocumentReference
-            .collection("HealthData") // Add all HealthKit sources in a /HealthData collection.
-            .document(type.identifier.description) // Group measurements by type (BodyMass and BloodPressure)
+            .collection("HealthData") // Add all HealthKit sources to a /HealthData collection.
+            .document(type.description) // Group measurements by type (BodyMass and BloodPressure)
             .collection("Measurements")
             .document(uuid.uuidString) // Set the document identifier to the UUID of the document.
     }

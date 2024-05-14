@@ -22,8 +22,6 @@ struct Notification: Identifiable {
     var title: String
     var description: String
     
-    var completed = false
-    
     init(title: String, description: String, id: String) {
         self.id = id
         self.title = title

@@ -15,6 +15,9 @@ import SwiftUI
 struct HomeView: View {
     enum Tabs: String {
         case home
+        case heart
+        case medications
+        case education
     }
     
     static var accountEnabled: Bool {
@@ -31,7 +34,6 @@ struct HomeView: View {
     
     @State var measurementConfirmationViewState: ViewState = .idle
     
-    
     var body: some View {
         @Bindable var measurementManager = measurementManager
         
@@ -41,6 +43,22 @@ struct HomeView: View {
                 .tabItem {
                     Label("Home", systemImage: "house")
                 }
+            HeartHealth(presentingAccount: $presentingAccount)
+                .tag(Tabs.heart)
+                .tabItem {
+                    Label("Heart Health", systemImage: "heart")
+                }
+            Medications(presentingAccount: $presentingAccount)
+                .tag(Tabs.medications)
+                .tabItem {
+                    Label("Medications", systemImage: "pill")
+                }
+            Education(presentingAccount: $presentingAccount)
+                .tag(Tabs.education)
+                .tabItem {
+                    Label("Education", systemImage: "brain")
+                }
+            
         }
             .autoConnect(enabled: weightScale == nil, with: bluetooth)
             

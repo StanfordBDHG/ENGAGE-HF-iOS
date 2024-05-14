@@ -9,7 +9,7 @@
 import Foundation
 
 
-enum NotificationError: LocalizedError {
+enum FetchingError: LocalizedError {
     case invalidTimestamp
     case userNotAuthenticated
     
