@@ -6,6 +6,9 @@
 // SPDX-License-Identifier: MIT
 //
 
+@_spi(TestingSupport)
+import SpeziBluetooth
+import BluetoothServices
 import SpeziViews
 import SwiftUI
 
@@ -118,6 +121,63 @@ struct MeasurementRecordedView: View {
     }
 }
 
+
+private struct MeasurementRecordedViewPreviewWrapper: View {
+    @Environment(MeasurementManager.self) private var measurementManager
+    @State private var viewState: ViewState = .idle
+    
+    
+    var body: some View {
+        @Bindable var measurementManager = measurementManager
+        
+        Button("Mock Measurement") {
+            loadMockMeasurement()
+        }
+            .sheet(isPresented: $measurementManager.showSheet) {
+                MeasurementRecordedView(viewState: $viewState)
+            }
+    }
+    
+    
+    private func loadMockMeasurement() {
+        measurementManager.deviceName = "Mock Device"
+        
+        let deviceInformation = DeviceInformationService()
+        deviceInformation.$manufacturerName.inject("Mock")
+        deviceInformation.$modelNumber.inject("42")
+        deviceInformation.$hardwareRevision.inject("42")
+        deviceInformation.$firmwareRevision.inject("42")
+        deviceInformation.$softwareRevision.inject("42")
+        measurementManager.deviceInformation = deviceInformation
+        
+        measurementManager.weightScaleParams = WeightScaleFeature(
+            timeStampEnabled: true,
+            supportMultipleUsers: true,
+            supportBMI: true,
+            weightResolution: .gradeSix,
+            heightResolution: .gradeThree
+        )
+        
+        measurementManager.loadMeasurement(
+            WeightMeasurement(
+                units: .metric,
+                timeStampPresent: true,
+                userIDPresent: true,
+                heightBMIPresent: true,
+                weight: 8400,
+                timeStamp: DateTime(hours: 0, minutes: 0, seconds: 0),
+                bmi: 20,
+                height: 180,
+                userID: 42
+            )
+        )
+    }
+}
+
+
 #Preview {
-    MeasurementRecordedView(viewState: .constant(.idle))
+    MeasurementRecordedViewPreviewWrapper()
+        .previewWith(standard: ENGAGEHFStandard()) {
+            MeasurementManager()
+        }
 }
