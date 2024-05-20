@@ -44,13 +44,8 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
                     FirebaseStorageConfiguration()
                 }
             }
-
-//            if HKHealthStore.isHealthDataAvailable() {
-//                healthKit
-//            }
             
             Bluetooth {
-//                Discover(BPCuffDevice.self, by: .advertisedService(BPCuffDevice.service.self))
                 Discover(WeightScaleDevice.self, by: .advertisedService(WeightScaleService.self))
             }
             
@@ -72,14 +67,4 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
             settings: settings
         )
     }
-    
-    
-//    private var healthKit: HealthKit {
-//        HealthKit {
-//            CollectSample(
-//                HKQuantityType(.stepCount),
-//                deliverySetting: .anchorQuery(.automatic)
-//            )
-//        }
-//    }
 }
