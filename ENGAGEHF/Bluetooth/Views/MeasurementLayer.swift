@@ -24,17 +24,18 @@ private struct PreviewWrapperMeasurementLayer: View {
 
 struct MeasurementLayer: View {
     @Environment(MeasurementManager.self) private var measurementManager
-    private let measurementTextSize: CGFloat = 60
-    private let subTitleSize: CGFloat = 25
+    @ScaledMetric private var measurementTextSize: CGFloat = 60
     
     
     var body: some View {
         VStack(spacing: 15) {
             Text(measurementManager.newMeasurement?.quantity.description ?? "???")
                 .font(.system(size: measurementTextSize, weight: .bold, design: .rounded))
+                .multilineTextAlignment(.center)
             Text("Measurement Recorded")
                 .font(.title3)
                 .foregroundStyle(.secondary)
+                .multilineTextAlignment(.center)
         }
     }
 }
