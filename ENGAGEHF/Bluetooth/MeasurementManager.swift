@@ -14,13 +14,8 @@ import Foundation
 import HealthKit
 import OSLog
 import Spezi
+@_spi(TestingSupport) import SpeziBluetooth
 import SpeziFirestore
-
-
-enum ManagerState: String, Equatable {
-    case idle
-    case processing
-}
 
 
 // Functionality:
@@ -38,7 +33,8 @@ class MeasurementManager: Module, EnvironmentAccessible {
         return manager
     }
     
-    @ObservationIgnored @StandardActor var standard: ENGAGEHFStandard
+    @ObservationIgnored @StandardActor private var standard: ENGAGEHFStandard
+    private let logger = Logger(subsystem: "ENGAGEHF", category: "MeasurementManager")
     
     var deviceInformation: DeviceInformationService?
     var weightScaleParams: WeightScaleFeature?
@@ -72,11 +68,16 @@ class MeasurementManager: Module, EnvironmentAccessible {
         // Save the sample to the Measurement Manager
         self.newMeasurement = convertedMeasurement
         self.showSheet = true
+        
+        logger.info("Measurement loaded into MeasurementManager: \(measurement.weight)")
     }
     
     // Called by UI Sheet View to save the newMeasurement to firestore
     func saveMeasurement() async throws {
-        let logger = Logger(subsystem: "ENGAGEHF", category: "MeasurementManager")
+        if ProcessInfo.processInfo.isPreviewSimulator {
+            try await Task.sleep(nanoseconds: 10_000_000_000)
+            return
+        }
         
         guard let measurement: HKQuantitySample = self.newMeasurement else {
             logger.error("Attempting to save a nil measurement.")
@@ -95,9 +96,9 @@ class MeasurementManager: Module, EnvironmentAccessible {
     }
     
     
-    func convertToHKSample(_ measurement: WeightMeasurement) -> HKQuantitySample? {
+    private func convertToHKSample(_ measurement: WeightMeasurement) -> HKQuantitySample? {
         guard let deviceInfo: DeviceInformationService = deviceInformation else {
-            print("***** Device Information not present *****")
+            logger.error("***** Device Information not present *****")
             return nil
         }
         
@@ -116,7 +117,7 @@ class MeasurementManager: Module, EnvironmentAccessible {
         let units = HKUnit(from: measurement.units.rawValue)
         
         guard let resolution = getResolutionScalar(for: measurement.units) else {
-            print("***** Unable to get Resolution Scalar *****")
+            logger.error("***** Unable to get Resolution Scalar *****")
             return nil
         }
         
@@ -133,9 +134,9 @@ class MeasurementManager: Module, EnvironmentAccessible {
         )
     }
     
-    func getResolutionScalar(for units: WeightUnits) -> Double? {
+    private func getResolutionScalar(for units: WeightUnits) -> Double? {
         guard let scaleParams: WeightScaleFeature = weightScaleParams else {
-            print("***** Weight Scale Features not present *****")
+            logger.error("***** Weight Scale Features not present *****")
             return nil
         }
         
@@ -154,7 +155,7 @@ class MeasurementManager: Module, EnvironmentAccessible {
         }
     }
     
-    func getDate(from measurement: WeightMeasurement) -> Date {
+    private func getDate(from measurement: WeightMeasurement) -> Date {
         guard let dateTime: DateTime = measurement.timeStamp else {
             return .now
         }
@@ -167,7 +168,7 @@ class MeasurementManager: Module, EnvironmentAccessible {
         let second = dateTime.seconds
         
         if year == 0, month == .unknown, day == 0 {
-            print("***** Timestamp unkown, displaying current date *****")
+            logger.info("***** Timestamp unkown, displaying current date *****")
             return .now
         }
         
@@ -181,10 +182,49 @@ class MeasurementManager: Module, EnvironmentAccessible {
         )
         
         guard let date = Calendar.current.date(from: dateComponents) else {
-            print("***** Invalid date components, returning current date *****")
+            logger.error("***** Invalid date components, returning current date *****")
             return .now
         }
         
         return date
+    }
+}
+
+
+extension MeasurementManager {
+    // Call in preview simulator wrappers
+    // Loads a mock measurement to display in preview
+    func loadMockMeasurement() {
+        self.deviceName = "Mock Device"
+        
+        let devInfo = DeviceInformationService()
+        devInfo.$manufacturerName.inject("Mock")
+        devInfo.$modelNumber.inject("42")
+        devInfo.$hardwareRevision.inject("42")
+        devInfo.$firmwareRevision.inject("42")
+        devInfo.$softwareRevision.inject("42")
+        self.deviceInformation = devInfo
+        
+        self.weightScaleParams = WeightScaleFeature(
+            timeStampEnabled: true,
+            supportMultipleUsers: true,
+            supportBMI: true,
+            weightResolution: .gradeSix,
+            heightResolution: .gradeThree
+        )
+        
+        self.loadMeasurement(
+            WeightMeasurement(
+                units: .metric,
+                timeStampPresent: true,
+                userIDPresent: true,
+                heightBMIPresent: true,
+                weight: 8400,
+                timeStamp: DateTime(hours: 0, minutes: 0, seconds: 0),
+                bmi: 20,
+                height: 180,
+                userID: 42
+            )
+        )
     }
 }

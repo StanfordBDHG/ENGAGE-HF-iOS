@@ -51,7 +51,6 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
             }
             
             Bluetooth {
-//                Discover(BPCuffDevice.self, by: .advertisedService(BPCuffDevice.service.self))
                 Discover(WeightScaleDevice.self, by: .advertisedService(WeightScaleService.self))
             }
             

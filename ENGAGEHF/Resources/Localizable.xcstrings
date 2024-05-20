@@ -58,6 +58,9 @@
     "An invitation code is at least 8 characters long." : {
 
     },
+    "Close" : {
+      "comment" : "For closing sheets."
+    },
     "CLOSE" : {
       "comment" : "MARK: General",
       "localizations" : {
@@ -89,28 +92,8 @@
         }
       }
     },
-    "DISCARD" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Discard"
-          }
-        }
-      }
-    },
-    "Dismiss" : {
+    "Discard" : {
 
-    },
-    "DISMISS_BUTTON" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Close"
-          }
-        }
-      }
     },
     "HEALTHKIT_PERMISSIONS_BUTTON" : {
       "localizations" : {

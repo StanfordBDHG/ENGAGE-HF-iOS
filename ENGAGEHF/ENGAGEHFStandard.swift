@@ -98,8 +98,6 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, HealthKitConstraint, On
     private func healthKitDocument(id uuid: UUID) async throws -> DocumentReference {
         try await userDocumentReference
             .collection("HealthData") // Add all HealthKit sources in a /HealthData collection.
-//            .document(type.identifier) // Group measurements by type
-//            .collection("Measurements")
             .document(uuid.uuidString) // Set the document identifier to the UUID of the document.
     }
 

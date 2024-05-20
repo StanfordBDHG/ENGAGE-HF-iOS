@@ -7,30 +7,16 @@
 //
 
 import BluetoothServices
-import class CoreBluetooth.CBUUID
-import FirebaseCore
-import FirebaseFirestore
 import Foundation
 import SpeziBluetooth
 
 
-// The primary Weight Scale Service
-// Note: Access properties: R: read, W: write, N: notify
-class WeightScaleService: BluetoothService {
-    static var id = CBUUID(string: "181D")
-    
-    // 2 characteristics as defined in the manual:
-    
-    // Characteristic 1: Weight Scale Feature, R
-    @Characteristic(id: "2A9E") var weightScaleFeature: WeightScaleFeature?
-    
-    // Characteristic 2: Weight Measurement, N
-    @Characteristic(id: "2A9D", notify: true) var weightMeasurement: WeightMeasurement?
-    
-    init() {}
-}
-
-
+//
+// A bluetooth peripheral representing a Weight Scale
+//
+// On new measurement, loads the measurement into the MeasurementManager
+// as a HealthKit HKQuantitySample
+//
 class WeightScaleDevice: BluetoothDevice, Identifiable {
     @DeviceState(\.id) var id: UUID
     @DeviceState(\.name)var name: String?

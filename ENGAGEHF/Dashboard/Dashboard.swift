@@ -11,7 +11,6 @@ import SwiftUI
 
 struct Dashboard: View {
     @Binding var presentingAccount: Bool
-    @Environment(WeightScaleDevice.self) private var weightScale: WeightScaleDevice?
     
     
     var body: some View {

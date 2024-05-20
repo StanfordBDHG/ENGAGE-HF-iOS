@@ -20,16 +20,17 @@ struct HomeView: View {
     static var accountEnabled: Bool {
         !FeatureFlags.disableFirebase && !FeatureFlags.skipOnboarding
     }
-
     
+    private var bluetoothEnabled: Bool {
+        !ProcessInfo.processInfo.isPreviewSimulator
+    }
+
+    @Environment(MeasurementManager.self) private var measurementManager
     @Environment(WeightScaleDevice.self) private var weightScale: WeightScaleDevice?
     @Environment(Bluetooth.self) private var bluetooth
-    @State private var measurementManager = MeasurementManager.manager
     
     @AppStorage(StorageKeys.homeTabSelection) private var selectedTab = Tabs.home
     @State private var presentingAccount = false
-    
-    @State var measurementConfirmationViewState: ViewState = .idle
     
     
     var body: some View {
@@ -42,8 +43,7 @@ struct HomeView: View {
                     Label("Home", systemImage: "house")
                 }
         }
-            .autoConnect(enabled: weightScale == nil, with: bluetooth)
-            
+            .autoConnect(enabled: weightScale == nil && bluetoothEnabled, with: bluetooth)
             .sheet(isPresented: $presentingAccount) {
                 AccountSheet()
             }
@@ -51,13 +51,11 @@ struct HomeView: View {
                 AccountSheet()
             }
             .verifyRequiredAccountDetails(Self.accountEnabled)
-        
             .sheet(isPresented: $measurementManager.showSheet, onDismiss: {
                 MeasurementManager.manager.clear()
             }) {
-                MeasurementRecordedView(viewState: $measurementConfirmationViewState)
-                    .presentationDetents([.fraction(0.4), .large])
-                    .interactiveDismissDisabled(measurementConfirmationViewState != .idle)
+                MeasurementRecordedView()
+                    .presentationDetents([.fraction(0.45)])
             }
     }
 }
@@ -69,6 +67,10 @@ struct HomeView: View {
         .previewWith(standard: ENGAGEHFStandard()) {
             AccountConfiguration {
                 MockUserIdPasswordAccountService()
+            }
+            MeasurementManager()
+            Bluetooth {
+                Discover(WeightScaleDevice.self, by: .advertisedService(WeightScaleService.self))
             }
         }
 }
