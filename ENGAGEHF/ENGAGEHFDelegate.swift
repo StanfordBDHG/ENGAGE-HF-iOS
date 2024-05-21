@@ -32,14 +32,14 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
                 if FeatureFlags.useFirebaseEmulator {
                     FirebaseAccountConfiguration(
                         authenticationMethods: [.emailAndPassword, .signInWithApple],
-                        emulatorSettings: (host: "10.34.253.54", port: 9099)
+                        emulatorSettings: (host: "localhost", port: 9099)
                     )
                 } else {
                     FirebaseAccountConfiguration(authenticationMethods: [.emailAndPassword, .signInWithApple])
                 }
                 firestore
                 if FeatureFlags.useFirebaseEmulator {
-                    FirebaseStorageConfiguration(emulatorSettings: (host: "10.34.253.54", port: 9199))
+                    FirebaseStorageConfiguration(emulatorSettings: (host: "localhost", port: 9199))
                 } else {
                     FirebaseStorageConfiguration()
                 }
@@ -60,7 +60,7 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
     private var firestore: Firestore {
         let settings = FirestoreSettings()
         if FeatureFlags.useFirebaseEmulator {
-            settings.host = "10.34.253.54:8080"
+            settings.host = "localhost:8080"
             settings.cacheSettings = MemoryCacheSettings()
             settings.isSSLEnabled = false
         }
