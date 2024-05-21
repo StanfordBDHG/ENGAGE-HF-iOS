@@ -42,7 +42,9 @@ class MeasurementManager: Module, EnvironmentAccessible {
     
     var newMeasurement: HKQuantitySample?
     
-    var showSheet = false
+    var showSheet: Bool {
+        newMeasurement != nil
+    }
     
     
     init() {
@@ -52,7 +54,6 @@ class MeasurementManager: Module, EnvironmentAccessible {
     
     // Called to reset measurement manager after taking a measurement
     func clear() {
-        self.showSheet = false
         self.newMeasurement = nil
         self.deviceInformation = nil
         self.weightScaleParams = nil
@@ -67,7 +68,6 @@ class MeasurementManager: Module, EnvironmentAccessible {
         
         // Save the sample to the Measurement Manager
         self.newMeasurement = convertedMeasurement
-        self.showSheet = true
         
         logger.info("Measurement loaded into MeasurementManager: \(measurement.weight)")
     }
@@ -88,11 +88,7 @@ class MeasurementManager: Module, EnvironmentAccessible {
         await standard.add(sample: measurement)
         
         logger.info("Save successful!")
-        self.showSheet = false
-    }
-    
-    func discardMeasurement() {
-        self.newMeasurement = nil
+        self.clear()
     }
     
     
