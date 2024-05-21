@@ -63,7 +63,6 @@ class MeasurementManager: Module, EnvironmentAccessible {
         self.deviceName = nil
     }
     
-    
     // Called by WeightScaleDevice on change of WeightMeasurement Characteristic
     func loadMeasurement(_ measurement: WeightMeasurement) {
         // Convert to HKQuantitySample after downloading from Firestore

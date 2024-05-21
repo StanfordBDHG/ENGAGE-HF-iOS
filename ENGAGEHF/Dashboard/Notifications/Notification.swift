@@ -16,7 +16,7 @@ import Foundation
 // and the description will be displayed in a drop-down field
 //
 // Title and Descprition may be markdown text
-struct Notification: Identifiable {
+struct Notification: Identifiable, Equatable {
     var id: String
     
     var title: String

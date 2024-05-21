@@ -52,6 +52,9 @@
         }
       }
     },
+    "Add mock notification" : {
+
+    },
     "An error occurred: %@" : {
       "comment" : "General Error"
     },
@@ -404,9 +407,6 @@
       }
     },
     "Notifications" : {
-
-    },
-    "Notifications Loading..." : {
 
     },
     "Please enter your invitation code to join the ENGAGE-HF study." : {
