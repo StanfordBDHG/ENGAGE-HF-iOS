@@ -63,10 +63,7 @@ class MeasurementManager: Module, EnvironmentAccessible {
     // Called by WeightScaleDevice on change of WeightMeasurement Characteristic
     func loadMeasurement(_ measurement: WeightMeasurement) {
         // Convert to HKQuantitySample after downloading from Firestore
-        let convertedMeasurement = convertToHKSample(measurement)
-        
-        // Save the sample to the Measurement Manager
-        self.newMeasurement = convertedMeasurement
+        self.newMeasurement = convertToHKSample(measurement)
         self.showSheet = true
         
         logger.info("Measurement loaded into MeasurementManager: \(measurement.weight)")
