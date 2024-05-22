@@ -47,9 +47,6 @@
 		2FE5DCB129EE6107004B9AB4 /* AccountOnboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE5DCAC29EE6107004B9AB4 /* AccountOnboarding.swift */; };
 		2FF53D8D2A8729D600042B76 /* ENGAGEHFStandard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF53D8C2A8729D600042B76 /* ENGAGEHFStandard.swift */; };
 		4D052DB82BE07892006A784E /* MeasurementManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D052DB72BE07892006A784E /* MeasurementManager.swift */; };
-		4D052DBB2BE08227006A784E /* SpeziFHIR in Frameworks */ = {isa = PBXBuildFile; productRef = 4D052DBA2BE08227006A784E /* SpeziFHIR */; };
-		4D052DBD2BE08227006A784E /* SpeziFHIRHealthKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4D052DBC2BE08227006A784E /* SpeziFHIRHealthKit */; };
-		4D052DBF2BE08227006A784E /* SpeziFHIRMockPatients in Frameworks */ = {isa = PBXBuildFile; productRef = 4D052DBE2BE08227006A784E /* SpeziFHIRMockPatients */; };
 		4D19ED012BE5CAFC00CDBAA8 /* MeasurementRecordedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D19ED002BE5CAFC00CDBAA8 /* MeasurementRecordedView.swift */; };
 		4D49AAFE2BC9D50400C77310 /* BluetoothServices in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49AAFD2BC9D50400C77310 /* BluetoothServices */; };
 		4D49AB002BC9D50400C77310 /* BluetoothViews in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49AAFF2BC9D50400C77310 /* BluetoothViews */; };
@@ -183,7 +180,6 @@
 				2FE5DC8429EDD934004B9AB4 /* SpeziQuestionnaire in Frameworks */,
 				2FB099B32A875DF100B20952 /* FirebaseFirestoreSwift in Frameworks */,
 				2FB099B12A875DF100B20952 /* FirebaseFirestore in Frameworks */,
-				4D052DBB2BE08227006A784E /* SpeziFHIR in Frameworks */,
 				A9D83F962B083794000D0C78 /* SpeziFirebaseAccountStorage in Frameworks */,
 				2FB099B62A875E2B00B20952 /* HealthKitOnFHIR in Frameworks */,
 				56E7083B2BB06F6F00B08F0A /* SwiftPackageList in Frameworks */,
@@ -199,11 +195,9 @@
 				2FE5DC7229EDD8D3004B9AB4 /* SpeziHealthKit in Frameworks */,
 				4D49AAFE2BC9D50400C77310 /* BluetoothServices in Frameworks */,
 				2F49B7762980407C00BCB272 /* Spezi in Frameworks */,
-				4D052DBD2BE08227006A784E /* SpeziFHIRHealthKit in Frameworks */,
 				2FE5DC8F29EDD980004B9AB4 /* SpeziViews in Frameworks */,
 				2FE5DC7929EDD8E6004B9AB4 /* SpeziFirestore in Frameworks */,
 				2FE5DC7729EDD8E6004B9AB4 /* SpeziFirebaseConfiguration in Frameworks */,
-				4D052DBF2BE08227006A784E /* SpeziFHIRMockPatients in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -575,9 +569,6 @@
 				4D49AAFD2BC9D50400C77310 /* BluetoothServices */,
 				4D49AAFF2BC9D50400C77310 /* BluetoothViews */,
 				4D49AB012BC9D50400C77310 /* SpeziBluetooth */,
-				4D052DBA2BE08227006A784E /* SpeziFHIR */,
-				4D052DBC2BE08227006A784E /* SpeziFHIRHealthKit */,
-				4D052DBE2BE08227006A784E /* SpeziFHIRMockPatients */,
 			);
 			productName = ENGAGEHF;
 			productReference = 653A254D283387FE005D4D48 /* ENGAGEHF.app */;
@@ -674,7 +665,6 @@
 				56E708332BB06B7100B08F0A /* XCRemoteSwiftPackageReference "SpeziLicense" */,
 				2F66D20D2BB723180010D555 /* XCRemoteSwiftPackageReference "SwiftLint" */,
 				4D49AAFC2BC9D50400C77310 /* XCRemoteSwiftPackageReference "SpeziBluetooth" */,
-				4D052DB92BE08227006A784E /* XCRemoteSwiftPackageReference "SpeziFHIR" */,
 			);
 			productRefGroup = 653A254E283387FE005D4D48 /* Products */;
 			projectDirPath = "";
@@ -1376,14 +1366,6 @@
 				minimumVersion = 0.3.5;
 			};
 		};
-		4D052DB92BE08227006A784E /* XCRemoteSwiftPackageReference "SpeziFHIR" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/StanfordSpezi/SpeziFHIR.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.6.1;
-			};
-		};
 		4D49AAFC2BC9D50400C77310 /* XCRemoteSwiftPackageReference "SpeziBluetooth" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/StanfordSpezi/SpeziBluetooth.git";
@@ -1521,21 +1503,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2FE5DC9A29EDD9EF004B9AB4 /* XCRemoteSwiftPackageReference "XCTHealthKit" */;
 			productName = XCTHealthKit;
-		};
-		4D052DBA2BE08227006A784E /* SpeziFHIR */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4D052DB92BE08227006A784E /* XCRemoteSwiftPackageReference "SpeziFHIR" */;
-			productName = SpeziFHIR;
-		};
-		4D052DBC2BE08227006A784E /* SpeziFHIRHealthKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4D052DB92BE08227006A784E /* XCRemoteSwiftPackageReference "SpeziFHIR" */;
-			productName = SpeziFHIRHealthKit;
-		};
-		4D052DBE2BE08227006A784E /* SpeziFHIRMockPatients */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4D052DB92BE08227006A784E /* XCRemoteSwiftPackageReference "SpeziFHIR" */;
-			productName = SpeziFHIRMockPatients;
 		};
 		4D49AAFD2BC9D50400C77310 /* BluetoothServices */ = {
 			isa = XCSwiftPackageProductDependency;
