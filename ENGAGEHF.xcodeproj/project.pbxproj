@@ -47,6 +47,14 @@
 		2FE5DC9C29EDD9EF004B9AB4 /* XCTHealthKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2FE5DC9B29EDD9EF004B9AB4 /* XCTHealthKit */; };
 		2FE5DCB129EE6107004B9AB4 /* AccountOnboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE5DCAC29EE6107004B9AB4 /* AccountOnboarding.swift */; };
 		2FF53D8D2A8729D600042B76 /* ENGAGEHFStandard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF53D8C2A8729D600042B76 /* ENGAGEHFStandard.swift */; };
+		4D052DB82BE07892006A784E /* MeasurementManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D052DB72BE07892006A784E /* MeasurementManager.swift */; };
+		4D19ED012BE5CAFC00CDBAA8 /* MeasurementRecordedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D19ED002BE5CAFC00CDBAA8 /* MeasurementRecordedView.swift */; };
+		4D49AAFE2BC9D50400C77310 /* BluetoothServices in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49AAFD2BC9D50400C77310 /* BluetoothServices */; };
+		4D49AB002BC9D50400C77310 /* BluetoothViews in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49AAFF2BC9D50400C77310 /* BluetoothViews */; };
+		4D49AB022BC9D50400C77310 /* SpeziBluetooth in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49AB012BC9D50400C77310 /* SpeziBluetooth */; };
+		4D49AB062BC9D56900C77310 /* WeightScaleDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D49AB052BC9D56900C77310 /* WeightScaleDevice.swift */; };
+		4D49AB0D2BC9DF9100C77310 /* WeightScaleFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D49AB0C2BC9DF9100C77310 /* WeightScaleFeature.swift */; };
+		4D49AB0F2BC9DF9B00C77310 /* WeightMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D49AB0E2BC9DF9B00C77310 /* WeightMeasurement.swift */; };
 		4D4AA0A52BC5E43E00676489 /* OnboardingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4AA0A42BC5E43E00676489 /* OnboardingUITests.swift */; };
 		4DB025CA2BBE3A59002D2545 /* HomeViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB025C92BBE3A59002D2545 /* HomeViewUITests.swift */; };
 		4DB025D52BBF2E08002D2545 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB025D42BBF2E08002D2545 /* Dashboard.swift */; };
@@ -54,6 +62,10 @@
 		4DBDD3442BBFAD64001FB0CA /* InvitationCodeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDD3432BBFAD64001FB0CA /* InvitationCodeError.swift */; };
 		4DBDD3462BBFAE2D001FB0CA /* InvitationCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDD3452BBFAE2D001FB0CA /* InvitationCodeView.swift */; };
 		4DBDD3482BC073EF001FB0CA /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 4DBDD3472BC073EF001FB0CA /* FirebaseFunctions */; };
+		4DDFC76E2BFAA4AE002B07A1 /* WeightScaleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC76D2BFAA4AE002B07A1 /* WeightScaleService.swift */; };
+		4DDFC7702BFAEAD7002B07A1 /* ConfirmMeasurementButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC76F2BFAEAD7002B07A1 /* ConfirmMeasurementButton.swift */; };
+		4DDFC7762BFB46FF002B07A1 /* MeasurementLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC7752BFB46FF002B07A1 /* MeasurementLayer.swift */; };
+		4DDFC7792BFB4E7D002B07A1 /* ViewElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC7782BFB4E7D002B07A1 /* ViewElements.swift */; };
 		56E708352BB06B7100B08F0A /* SpeziLicense in Frameworks */ = {isa = PBXBuildFile; productRef = 56E708342BB06B7100B08F0A /* SpeziLicense */; };
 		56E7083B2BB06F6F00B08F0A /* SwiftPackageList in Frameworks */ = {isa = PBXBuildFile; productRef = 56E7083A2BB06F6F00B08F0A /* SwiftPackageList */; };
 		653A2551283387FE005D4D48 /* ENGAGEHF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653A2550283387FE005D4D48 /* ENGAGEHF.swift */; };
@@ -112,12 +124,21 @@
 		2FE5DC5529EDD811004B9AB4 /* SocialSupportQuestionnaire.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SocialSupportQuestionnaire.json; sourceTree = "<group>"; };
 		2FE5DCAC29EE6107004B9AB4 /* AccountOnboarding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountOnboarding.swift; sourceTree = "<group>"; };
 		2FF53D8C2A8729D600042B76 /* ENGAGEHFStandard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ENGAGEHFStandard.swift; sourceTree = "<group>"; };
+		4D052DB72BE07892006A784E /* MeasurementManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementManager.swift; sourceTree = "<group>"; };
+		4D19ED002BE5CAFC00CDBAA8 /* MeasurementRecordedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementRecordedView.swift; sourceTree = "<group>"; };
+		4D49AB052BC9D56900C77310 /* WeightScaleDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightScaleDevice.swift; sourceTree = "<group>"; };
+		4D49AB0C2BC9DF9100C77310 /* WeightScaleFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightScaleFeature.swift; sourceTree = "<group>"; };
+		4D49AB0E2BC9DF9B00C77310 /* WeightMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightMeasurement.swift; sourceTree = "<group>"; };
 		4D4AA0A42BC5E43E00676489 /* OnboardingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingUITests.swift; sourceTree = "<group>"; };
 		4DB025C92BBE3A59002D2545 /* HomeViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewUITests.swift; sourceTree = "<group>"; };
 		4DB025D42BBF2E08002D2545 /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		4DB025D72BBF2EEC002D2545 /* Greeting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Greeting.swift; sourceTree = "<group>"; };
 		4DBDD3432BBFAD64001FB0CA /* InvitationCodeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationCodeError.swift; sourceTree = "<group>"; };
 		4DBDD3452BBFAE2D001FB0CA /* InvitationCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationCodeView.swift; sourceTree = "<group>"; };
+		4DDFC76D2BFAA4AE002B07A1 /* WeightScaleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightScaleService.swift; sourceTree = "<group>"; };
+		4DDFC76F2BFAEAD7002B07A1 /* ConfirmMeasurementButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmMeasurementButton.swift; sourceTree = "<group>"; };
+		4DDFC7752BFB46FF002B07A1 /* MeasurementLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementLayer.swift; sourceTree = "<group>"; };
+		4DDFC7782BFB4E7D002B07A1 /* ViewElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewElements.swift; sourceTree = "<group>"; };
 		653A254D283387FE005D4D48 /* ENGAGEHF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ENGAGEHF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		653A2550283387FE005D4D48 /* ENGAGEHF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ENGAGEHF.swift; sourceTree = "<group>"; };
 		653A255428338800005D4D48 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -146,6 +167,7 @@
 				A9D83F962B083794000D0C78 /* SpeziFirebaseAccountStorage in Frameworks */,
 				2FB099B62A875E2B00B20952 /* HealthKitOnFHIR in Frameworks */,
 				56E7083B2BB06F6F00B08F0A /* SwiftPackageList in Frameworks */,
+				4D49AB022BC9D50400C77310 /* SpeziBluetooth in Frameworks */,
 				56E708352BB06B7100B08F0A /* SpeziLicense in Frameworks */,
 				2FE5DC8A29EDD972004B9AB4 /* SpeziLocalStorage in Frameworks */,
 				2FE5DC8C29EDD972004B9AB4 /* SpeziSecureStorage in Frameworks */,
@@ -153,7 +175,9 @@
 				A92E4DF02BAA001100AC8DE8 /* OrderedCollections in Frameworks */,
 				9739A0C62AD7B5730084BEA5 /* FirebaseStorage in Frameworks */,
 				4DBDD3482BC073EF001FB0CA /* FirebaseFunctions in Frameworks */,
+				4D49AB002BC9D50400C77310 /* BluetoothViews in Frameworks */,
 				2FE5DC7229EDD8D3004B9AB4 /* SpeziHealthKit in Frameworks */,
+				4D49AAFE2BC9D50400C77310 /* BluetoothServices in Frameworks */,
 				2F49B7762980407C00BCB272 /* Spezi in Frameworks */,
 				2FE5DC8F29EDD980004B9AB4 /* SpeziViews in Frameworks */,
 				2FE5DC7929EDD8E6004B9AB4 /* SpeziFirestore in Frameworks */,
@@ -245,6 +269,54 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
+		4D19ECFC2BE5B9F200CDBAA8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4D19ED002BE5CAFC00CDBAA8 /* MeasurementRecordedView.swift */,
+				4DDFC76F2BFAEAD7002B07A1 /* ConfirmMeasurementButton.swift */,
+				4DDFC7752BFB46FF002B07A1 /* MeasurementLayer.swift */,
+				4DDFC7782BFB4E7D002B07A1 /* ViewElements.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4D49AAFB2BC9D46F00C77310 /* Bluetooth */ = {
+			isa = PBXGroup;
+			children = (
+				4D19ECFC2BE5B9F200CDBAA8 /* Views */,
+				4D49AB142BCF6FC400C77310 /* Devices */,
+				4D052DB72BE07892006A784E /* MeasurementManager.swift */,
+			);
+			path = Bluetooth;
+			sourceTree = "<group>";
+		};
+		4D49AB092BC9DA8B00C77310 /* WeightScale */ = {
+			isa = PBXGroup;
+			children = (
+				4D49AB0A2BC9DA9300C77310 /* Characteristics */,
+				4D49AB052BC9D56900C77310 /* WeightScaleDevice.swift */,
+				4DDFC76D2BFAA4AE002B07A1 /* WeightScaleService.swift */,
+			);
+			path = WeightScale;
+			sourceTree = "<group>";
+		};
+		4D49AB0A2BC9DA9300C77310 /* Characteristics */ = {
+			isa = PBXGroup;
+			children = (
+				4D49AB0C2BC9DF9100C77310 /* WeightScaleFeature.swift */,
+				4D49AB0E2BC9DF9B00C77310 /* WeightMeasurement.swift */,
+			);
+			path = Characteristics;
+			sourceTree = "<group>";
+		};
+		4D49AB142BCF6FC400C77310 /* Devices */ = {
+			isa = PBXGroup;
+			children = (
+				4D49AB092BC9DA8B00C77310 /* WeightScale */,
+			);
+			path = Devices;
+			sourceTree = "<group>";
+		};
 		4DB025B52BBDE8EC002D2545 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -284,6 +356,7 @@
 				2FF53D8C2A8729D600042B76 /* ENGAGEHFStandard.swift */,
 				2F4E23822989D51F0013F3D9 /* ENGAGEHFTestingSetup.swift */,
 				2FC975A72978F11A00BA99FE /* Home.swift */,
+				4D49AAFB2BC9D46F00C77310 /* Bluetooth */,
 				4DB025B52BBDE8EC002D2545 /* Dashboard */,
 				A9720E412ABB68B300872D23 /* Account */,
 				2FE5DC2829EDD398004B9AB4 /* Onboarding */,
@@ -373,6 +446,9 @@
 				56E708342BB06B7100B08F0A /* SpeziLicense */,
 				56E7083A2BB06F6F00B08F0A /* SwiftPackageList */,
 				4DBDD3472BC073EF001FB0CA /* FirebaseFunctions */,
+				4D49AAFD2BC9D50400C77310 /* BluetoothServices */,
+				4D49AAFF2BC9D50400C77310 /* BluetoothViews */,
+				4D49AB012BC9D50400C77310 /* SpeziBluetooth */,
 			);
 			productName = ENGAGEHF;
 			productReference = 653A254D283387FE005D4D48 /* ENGAGEHF.app */;
@@ -468,6 +544,7 @@
 				A92E4DEE2BAA001100AC8DE8 /* XCRemoteSwiftPackageReference "swift-collections" */,
 				56E708332BB06B7100B08F0A /* XCRemoteSwiftPackageReference "SpeziLicense" */,
 				2F66D20D2BB723180010D555 /* XCRemoteSwiftPackageReference "SwiftLint" */,
+				4D49AAFC2BC9D50400C77310 /* XCRemoteSwiftPackageReference "SpeziBluetooth" */,
 			);
 			productRefGroup = 653A254E283387FE005D4D48 /* Products */;
 			projectDirPath = "";
@@ -516,30 +593,39 @@
 			buildActionMask = 2147483647;
 			files = (
 				2FE5DC4129EDD7EE004B9AB4 /* StorageKeys.swift in Sources */,
+				4D19ED012BE5CAFC00CDBAA8 /* MeasurementRecordedView.swift in Sources */,
 				2FE5DCB129EE6107004B9AB4 /* AccountOnboarding.swift in Sources */,
 				2FE5DC3A29EDD7CA004B9AB4 /* Welcome.swift in Sources */,
+				4DDFC76E2BFAA4AE002B07A1 /* WeightScaleService.swift in Sources */,
 				2FE5DC3829EDD7CA004B9AB4 /* InterestingModules.swift in Sources */,
 				2FE5DC3529EDD7CA004B9AB4 /* Consent.swift in Sources */,
 				2FE5DC4529EDD7F2004B9AB4 /* Binding+Negate.swift in Sources */,
 				4DBDD3442BBFAD64001FB0CA /* InvitationCodeError.swift in Sources */,
 				2FC975A82978F11A00BA99FE /* Home.swift in Sources */,
+				4DDFC7792BFB4E7D002B07A1 /* ViewElements.swift in Sources */,
+				4DDFC7762BFB46FF002B07A1 /* MeasurementLayer.swift in Sources */,
 				4DB025D52BBF2E08002D2545 /* Dashboard.swift in Sources */,
 				A9DFE8A92ABE551400428242 /* AccountButton.swift in Sources */,
 				2FE5DC3729EDD7CA004B9AB4 /* OnboardingFlow.swift in Sources */,
 				2FF53D8D2A8729D600042B76 /* ENGAGEHFStandard.swift in Sources */,
 				2FE5DC4729EDD7F2004B9AB4 /* CodableArray+RawRepresentable.swift in Sources */,
+				4D052DB82BE07892006A784E /* MeasurementManager.swift in Sources */,
 				4DB025D82BBF2EEC002D2545 /* Greeting.swift in Sources */,
 				A9720E432ABB68CC00872D23 /* AccountSetupHeader.swift in Sources */,
+				4D49AB0F2BC9DF9B00C77310 /* WeightMeasurement.swift in Sources */,
+				4D49AB0D2BC9DF9100C77310 /* WeightScaleFeature.swift in Sources */,
 				2FE5DC4029EDD7EE004B9AB4 /* FeatureFlags.swift in Sources */,
 				2FE5DC4629EDD7F2004B9AB4 /* Bundle+Image.swift in Sources */,
 				2F4E23832989D51F0013F3D9 /* ENGAGEHFTestingSetup.swift in Sources */,
 				2F5E32BD297E05EA003432F8 /* ENGAGEHFDelegate.swift in Sources */,
+				4DDFC7702BFAEAD7002B07A1 /* ConfirmMeasurementButton.swift in Sources */,
 				A9FE7AD02AA39BAB0077B045 /* AccountSheet.swift in Sources */,
 				653A2551283387FE005D4D48 /* ENGAGEHF.swift in Sources */,
 				2FE5DC3629EDD7CA004B9AB4 /* HealthKitPermissions.swift in Sources */,
 				2F65B44E2A3B8B0600A36932 /* NotificationPermissions.swift in Sources */,
 				2FE5DC2629EDD38A004B9AB4 /* Contacts.swift in Sources */,
 				4DBDD3462BBFAE2D001FB0CA /* InvitationCodeView.swift in Sources */,
+				4D49AB062BC9D56900C77310 /* WeightScaleDevice.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -663,6 +749,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ENGAGEHF/Supporting Files/Info.plist";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Application must access bluetooth to connect to data collecting devices and retrieve data from weight scales and blood pressure cuffs.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "This message should never appear. Please adjust this when you start using camera information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "The ENGAGE-HF app uses the step count to demonstrate Spezi's integration with HealthKit.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "The ENGAGE-HF app uses the step count to demonstrate Spezi's integration with HealthKit.";
@@ -856,10 +943,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = 637867499T;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ENGAGEHF/Supporting Files/Info.plist";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Application must access bluetooth to connect to data collecting devices and retrieve data from weight scales and blood pressure cuffs.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "This message should never appear. Please adjust this when you start using camera information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "The ENGAGE-HF app uses the step count to demonstrate Spezi's integration with HealthKit.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "The ENGAGE-HF app uses the step count to demonstrate Spezi's integration with HealthKit.";
@@ -903,6 +991,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ENGAGEHF/Supporting Files/Info.plist";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Application must access bluetooth to connect to data collecting devices and retrieve data from weight scales and blood pressure cuffs.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "This message should never appear. Please adjust this when you start using camera information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "The ENGAGE-HF app uses the step count to demonstrate Spezi's integration with HealthKit.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "The ENGAGE-HF app uses the step count to demonstrate Spezi's integration with HealthKit.";
@@ -1149,6 +1238,14 @@
 				minimumVersion = 0.3.5;
 			};
 		};
+		4D49AAFC2BC9D50400C77310 /* XCRemoteSwiftPackageReference "SpeziBluetooth" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/StanfordSpezi/SpeziBluetooth.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.2;
+			};
+		};
 		5661551B2AB8384200209B80 /* XCRemoteSwiftPackageReference "swift-package-list" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/FelixHerrmann/swift-package-list";
@@ -1278,6 +1375,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2FE5DC9A29EDD9EF004B9AB4 /* XCRemoteSwiftPackageReference "XCTHealthKit" */;
 			productName = XCTHealthKit;
+		};
+		4D49AAFD2BC9D50400C77310 /* BluetoothServices */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4D49AAFC2BC9D50400C77310 /* XCRemoteSwiftPackageReference "SpeziBluetooth" */;
+			productName = BluetoothServices;
+		};
+		4D49AAFF2BC9D50400C77310 /* BluetoothViews */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4D49AAFC2BC9D50400C77310 /* XCRemoteSwiftPackageReference "SpeziBluetooth" */;
+			productName = BluetoothViews;
+		};
+		4D49AB012BC9D50400C77310 /* SpeziBluetooth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4D49AAFC2BC9D50400C77310 /* XCRemoteSwiftPackageReference "SpeziBluetooth" */;
+			productName = SpeziBluetooth;
 		};
 		4DBDD3472BC073EF001FB0CA /* FirebaseFunctions */ = {
 			isa = XCSwiftPackageProductDependency;

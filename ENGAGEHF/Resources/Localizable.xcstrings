@@ -58,6 +58,9 @@
     "An invitation code is at least 8 characters long." : {
 
     },
+    "Close" : {
+      "comment" : "For closing sheets."
+    },
     "CLOSE" : {
       "comment" : "MARK: General",
       "localizations" : {
@@ -88,6 +91,9 @@
           }
         }
       }
+    },
+    "Discard" : {
+
     },
     "HEALTHKIT_PERMISSIONS_BUTTON" : {
       "localizations" : {
@@ -293,6 +299,12 @@
         }
       }
     },
+    "Measurement Recorded" : {
+
+    },
+    "Mock Measurement" : {
+
+    },
     "NOTIFICATION_PERMISSIONS_BUTTON" : {
       "localizations" : {
         "en" : {
@@ -338,6 +350,9 @@
 
     },
     "Redeem Invitation Code" : {
+
+    },
+    "Save" : {
 
     },
     "The invitation code is invalid or has already been used." : {

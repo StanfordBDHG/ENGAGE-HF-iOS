@@ -8,6 +8,7 @@
 
 import Spezi
 import SpeziAccount
+import SpeziBluetooth
 import SpeziFirebaseAccount
 import SpeziFirebaseStorage
 import SpeziFirestore
@@ -49,7 +50,12 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
                 healthKit
             }
             
+            Bluetooth {
+                Discover(WeightScaleDevice.self, by: .advertisedService(WeightScaleService.self))
+            }
+            
             OnboardingDataSource()
+            MeasurementManager()
         }
     }
     

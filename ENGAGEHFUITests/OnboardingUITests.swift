@@ -173,6 +173,7 @@ extension XCUIApplication {
         textFields["Enter your last name ..."].typeText("Stanford")
         
         XCTAssertTrue(scrollViews["Signature Field"].waitForExistence(timeout: 2))
+        scrollViews["Signature Field"].tap()
         scrollViews["Signature Field"].swipeRight()
         
         XCTAssert(buttons["I Consent"].waitForExistence(timeout: 2)
