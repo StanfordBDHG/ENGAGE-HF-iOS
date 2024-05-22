@@ -61,8 +61,8 @@
     "An invitation code is at least 8 characters long." : {
 
     },
-    "Blood Pressure" : {
-
+    "Close" : {
+      "comment" : "For closing sheets."
     },
     "CLOSE" : {
       "comment" : "MARK: General",
@@ -95,34 +95,7 @@
         }
       }
     },
-    "DISCARD" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Discard"
-          }
-        }
-      }
-    },
-    "Dismiss" : {
-
-    },
-    "DISMISS_BUTTON" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Close"
-          }
-        }
-      }
-    },
-    "Education" : {
-
-    },
-    "Fill in rest of survey here." : {
-
+    "Discard" : {
     },
     "HEALTHKIT_PERMISSIONS_BUTTON" : {
       "extractionState" : "stale",
@@ -363,6 +336,12 @@
 
     },
     "Nothing to do!" : {
+        
+    },
+    "Measurement Recorded" : {
+
+    },
+    "Mock Measurement" : {
 
     },
     "NOTIFICATION_PERMISSIONS_BUTTON" : {

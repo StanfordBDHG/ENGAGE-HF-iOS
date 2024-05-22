@@ -6,118 +6,67 @@
 // SPDX-License-Identifier: MIT
 //
 
+import BluetoothServices
+@_spi(TestingSupport) import SpeziBluetooth
 import SpeziViews
 import SwiftUI
 
 
-struct MeasurementHeader: View {
-    @Environment(\.dismiss) var dismiss
-    @Binding var viewState: ViewState
-    
-    
-    var body: some View {
-        ZStack {
-            HStack {
-                Button(action: {
-                    dismiss()
-                }) {
-                    Text("DISMISS_BUTTON")
-                        .foregroundStyle(Color.accentColor)
-                }
-                    .buttonStyle(PlainButtonStyle())
-                    .padding(.trailing, 10)
-                    .disabled(viewState != .idle)
-                    .accessibilityLabel("Dismiss")
-                
-                Spacer()
-            }
-            
-            HStack {
-                Spacer()
-                
-                Text("Measurement Recorded")
-                    .font(.title2)
-                
-                Spacer()
-            }
-        }
-            .padding()
-    }
-}
-
-
-struct MeasurementLayer: View {
-    private var measurement = MeasurementManager.manager.newMeasurement
-    private var textSize: CGFloat = 60
-    
-    
-    var body: some View {
-        Text(measurement?.quantity.description ?? "???")
-            .font(.system(size: textSize, weight: .bold, design: .rounded))
-    }
-}
-
-
-struct DiscardButton: View {
-    @Environment(\.dismiss) var dismiss
-    
-    
-    var body: some View {
-        Button(action: {
-            dismiss()
-        }) {
-            Text("DISCARD")
-                .foregroundStyle(Color.red)
-        }
-    }
-}
-
-
-struct ConfirmMeasurementButton: View {
-    @Binding var viewState: ViewState
-    
-    
-    var body: some View {
-        VStack {
-            AsyncButton(state: $viewState, action: {
-                try await MeasurementManager.manager.saveMeasurement()
-            }) {
-                Text("Save")
-                    .frame(maxWidth: .infinity, maxHeight: 48)
-                    .foregroundStyle(.white)
-                    .background(.accent)
-                    .cornerRadius(8)
-            }
-                .viewStateAlert(state: $viewState)
-            
-            DiscardButton()
-                .disabled(viewState != .idle)
-        }
-    }
-}
-
-
 struct MeasurementRecordedView: View {
-    @Binding var viewState: ViewState
+    private var dynamicDetente: PresentationDetent {
+        switch dynamicTypesize {
+        case .xSmall, .small:
+            return .fraction(0.35)
+        case .medium, .large:
+            return .fraction(0.45)
+        case .xLarge, .xxLarge, .xxxLarge:
+            return .fraction(0.65)
+        case .accessibility1, .accessibility2, .accessibility3, .accessibility4, .accessibility5:
+            return .large
+        default:
+            return .fraction(0.45)
+        }
+    }
+    
+
+    @Environment(\.dynamicTypeSize) private var dynamicTypesize
+    @State var viewState = ViewState.idle
+    
     
     var body: some View {
         VStack {
-            MeasurementHeader(viewState: $viewState)
-            
+            CloseButtonLayer(viewState: $viewState)
             Spacer()
-            
             MeasurementLayer()
-            
             Spacer()
-            
             ConfirmMeasurementButton(viewState: $viewState)
-                .padding()
-            
-            Spacer()
         }
+            .presentationDetents([dynamicDetente])
+            .interactiveDismissDisabled(viewState != .idle)
     }
 }
+
 
 #Preview {
-    MeasurementRecordedView(viewState: .constant(.idle))
+    struct MeasurementRecordedViewPreviewWrapper: View {
+        @Environment(MeasurementManager.self) private var measurementManager
+        @State private var viewState: ViewState = .idle
+        
+        
+        var body: some View {
+            @Bindable var measurementManager = measurementManager
+            
+            Button("Mock Measurement") {
+                measurementManager.loadMockMeasurement()
+            }
+                .sheet(isPresented: $measurementManager.showSheet) {
+                    MeasurementRecordedView()
+                }
+        }
+    }
+    
+    return MeasurementRecordedViewPreviewWrapper()
+        .previewWith(standard: ENGAGEHFStandard()) {
+            MeasurementManager()
+        }
 }

@@ -49,8 +49,11 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
                 Discover(WeightScaleDevice.self, by: .advertisedService(WeightScaleService.self))
             }
             
-            OnboardingDataSource()
+            Bluetooth {
+                Discover(WeightScaleDevice.self, by: .advertisedService(WeightScaleService.self))
+            }
             
+            OnboardingDataSource()
             MeasurementManager()
             NotificationManager()
         }
