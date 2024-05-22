@@ -14,6 +14,7 @@ struct CloseButtonLayer: View {
     @Environment(\.dismiss) private var dismiss
     @Binding private var viewState: ViewState
     
+    
     var body: some View {
         HStack {
             Button(action: {
@@ -29,6 +30,7 @@ struct CloseButtonLayer: View {
         }
         .padding()
     }
+    
     
     init(viewState: Binding<ViewState>) {
         self._viewState = viewState

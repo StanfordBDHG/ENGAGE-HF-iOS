@@ -33,6 +33,18 @@ class MeasurementManager: Module, EnvironmentAccessible {
         return manager
     }
     
+    var showSheet: Bool {
+        get {
+            newMeasurement != nil
+        }
+        set {
+            if !newValue {
+                self.newMeasurement = nil
+            }
+        }
+    }
+    
+    
     @ObservationIgnored @StandardActor private var standard: ENGAGEHFStandard
     private let logger = Logger(subsystem: "ENGAGEHF", category: "MeasurementManager")
     
@@ -41,10 +53,6 @@ class MeasurementManager: Module, EnvironmentAccessible {
     var deviceName: String?
     
     var newMeasurement: HKQuantitySample?
-    
-    var showSheet: Bool {
-        newMeasurement != nil
-    }
     
     
     init() {
@@ -60,7 +68,6 @@ class MeasurementManager: Module, EnvironmentAccessible {
         self.deviceName = nil
     }
     
-    
     // Called by WeightScaleDevice on change of WeightMeasurement Characteristic
     func loadMeasurement(_ measurement: WeightMeasurement) {
         // Convert to HKQuantitySample after downloading from Firestore
@@ -71,7 +78,7 @@ class MeasurementManager: Module, EnvironmentAccessible {
     // Called by UI Sheet View to save the newMeasurement to firestore
     func saveMeasurement() async throws {
         if ProcessInfo.processInfo.isPreviewSimulator {
-            try await Task.sleep(nanoseconds: 10_000_000_000)
+            try await Task.sleep(for: .seconds(5))
             return
         }
         

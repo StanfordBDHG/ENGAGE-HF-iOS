@@ -24,7 +24,8 @@ struct HomeView: View {
     private var bluetoothEnabled: Bool {
         !ProcessInfo.processInfo.isPreviewSimulator
     }
-
+    
+    
     @Environment(MeasurementManager.self) private var measurementManager
     @Environment(WeightScaleDevice.self) private var weightScale: WeightScaleDevice?
     @Environment(Bluetooth.self) private var bluetooth
@@ -43,7 +44,7 @@ struct HomeView: View {
                     Label("Home", systemImage: "house")
                 }
         }
-            .autoConnect(enabled: weightScale == nil && bluetoothEnabled, with: bluetooth)
+            .autoConnect(enabled: bluetoothEnabled, with: bluetooth)
             .sheet(isPresented: $presentingAccount) {
                 AccountSheet()
             }
@@ -51,12 +52,15 @@ struct HomeView: View {
                 AccountSheet()
             }
             .verifyRequiredAccountDetails(Self.accountEnabled)
-            .sheet(isPresented: $measurementManager.showSheet, onDismiss: {
-                MeasurementManager.manager.clear()
-            }) {
-                MeasurementRecordedView()
-                    .presentationDetents([.fraction(0.45)])
-            }
+            .sheet(
+                isPresented: $measurementManager.showSheet,
+                onDismiss: {
+                    measurementManager.clear()
+                },
+                content: {
+                    MeasurementRecordedView()
+                }
+            )
     }
 }
 

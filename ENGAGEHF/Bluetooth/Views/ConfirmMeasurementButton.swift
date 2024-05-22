@@ -31,6 +31,7 @@ struct DiscardButton: View {
 
 
 struct ConfirmMeasurementButton: View {
+    @ScaledMetric private var buttonHeight: CGFloat = 38
     @Binding var viewState: ViewState
     
     
@@ -43,7 +44,7 @@ struct ConfirmMeasurementButton: View {
                },
                label: {
                    Text("Save")
-                       .frame(maxWidth: .infinity, maxHeight: 38)
+                       .frame(maxWidth: .infinity, maxHeight: buttonHeight)
                        .font(.title2)
                        .bold()
                }

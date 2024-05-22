@@ -9,40 +9,42 @@
 import SwiftUI
 
 
-private struct PreviewWrapperMeasurementLayer: View {
-    @Environment(MeasurementManager.self) private var measurementManager
-    
-    
-    var body: some View {
-        MeasurementLayer()
-            .onAppear {
-                measurementManager.loadMockMeasurement()
-            }
-    }
-}
-
-
 struct MeasurementLayer: View {
     @Environment(MeasurementManager.self) private var measurementManager
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @ScaledMetric private var measurementTextSize: CGFloat = 60
     
     
     var body: some View {
         VStack(spacing: 15) {
-            Text(measurementManager.newMeasurement?.quantity.description ?? "???")
+            Text(measurementManager.newMeasurement?.quantity.description ?? "")
                 .font(.system(size: measurementTextSize, weight: .bold, design: .rounded))
                 .multilineTextAlignment(.center)
-            Text("Measurement Recorded")
-                .font(.title3)
-                .foregroundStyle(.secondary)
-                .multilineTextAlignment(.center)
+            if dynamicTypeSize < .accessibility4 {
+                Text("Measurement Recorded")
+                    .font(.title3)
+                    .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.center)
+            }
         }
     }
 }
 
 
 #Preview {
-    PreviewWrapperMeasurementLayer()
+    struct PreviewWrapperMeasurementLayer: View {
+        @Environment(MeasurementManager.self) private var measurementManager
+        
+        
+        var body: some View {
+            MeasurementLayer()
+                .onAppear {
+                    measurementManager.loadMockMeasurement()
+                }
+        }
+    }
+    
+    return PreviewWrapperMeasurementLayer()
         .previewWith(standard: ENGAGEHFStandard()) {
             MeasurementManager()
         }
