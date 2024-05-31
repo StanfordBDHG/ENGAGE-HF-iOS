@@ -15,7 +15,7 @@ import SwiftUI
 struct ExpandableText: View {
     let text: String
     let lineLimit: Int
-    @ScaledMetric var spacing: CGFloat
+    @ScaledMetric var spacing: CGFloat = 4
     
     @State private var isExpanded = false
     @State private var isTruncated: Bool? = nil
