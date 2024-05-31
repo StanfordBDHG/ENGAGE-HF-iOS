@@ -159,8 +159,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordBDHG/ResearchKit",
       "state" : {
-        "revision" : "69c4977f2ecd293b4e92d11f93a818b0b6517f0c",
-        "version" : "3.0.2"
+        "revision" : "08ab0290140e5a5e0e81d46cade1f09c7282facf",
+        "version" : "3.0.3"
       }
     },
     {
@@ -258,8 +258,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziLicense",
       "state" : {
-        "branch" : "dependency-list",
-        "revision" : "14e5581aa4dfcaeb2a3301318bc4f05bac9f182b"
+        "revision" : "d839e7138ca2e231f5bdd90c3e4ab06dba9bc30b",
+        "version" : "0.1.0"
       }
     },
     {
