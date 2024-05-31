@@ -104,7 +104,7 @@ struct InvitationCodeView: View {
     private func verifyOnboardingCode() async {
         do {
             if FeatureFlags.disableFirebase {
-                guard invitationCode == "ENGAGEHFTEST1" else {
+                guard invitationCode == "ENGAGETEST1" else {
                     throw InvitationCodeError.invitationCodeInvalid
                 }
                 
