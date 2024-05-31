@@ -20,12 +20,10 @@ struct NotificationSection: View {
     
     
     var body: some View {
-        @Bindable var notificationManager = notificationManager
-        
         Section(
             content: {
                 if !notificationManager.notifications.isEmpty {
-                    ForEach($notificationManager.notifications, id: \.id) { notification in
+                    ForEach(notificationManager.notifications, id: \.id) { notification in
                         StudyApplicationListCard {
                             NotificationRow(notification: notification)
                         }

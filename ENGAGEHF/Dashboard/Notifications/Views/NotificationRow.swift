@@ -11,40 +11,35 @@ import SwiftUI
 
 
 struct NotificationRow: View {
-    @Binding var notification: Notification
-    @State private var isExpanded = false
+    let notification: Notification
+    
+    @ScaledMetric private var spacing: CGFloat = 5
     
     
     var body: some View {
         VStack(alignment: .leading) {
             HStack(alignment: .center) {
-                Text(notification.type)
-                    .font(.subheadline)
+                Text(notification.type.localizedUppercase)
+                    .font(.footnote)
                     .foregroundStyle(.secondary)
                 Spacer()
-                XButton(notification: $notification)
+                XButton(notification: notification)
             }
             Divider()
             Text(notification.title)
+                .font(.subheadline)
+                .bold()
                 .multilineTextAlignment(.leading)
-                .padding(.bottom, 10)
-            if isExpanded {
-                Text(notification.description)
-                    .multilineTextAlignment(.leading)
-                    .font(.footnote)
-            } else {
-                LearnMoreButton(isExpanded: $isExpanded)
-            }
+                .padding(.bottom, spacing)
+            ExpandableText(text: notification.description, lineLimit: 1, spacing: spacing)
+                .font(.footnote)
         }
-            .onDisappear {
-                isExpanded = false
-            }
     }
     
     
     private struct XButton: View {
         @Environment(NotificationManager.self) private var notificationManager
-        @Binding var notification: Notification
+        let notification: Notification
         
         
         var body: some View {
@@ -60,6 +55,7 @@ struct NotificationRow: View {
                     Image(systemName: "xmark")
                         .foregroundStyle(.accent)
                         .imageScale(.small)
+                        .accessibilityLabel("XButton")
                 }
             )
         }
@@ -73,12 +69,10 @@ struct NotificationRow: View {
         
         
         var body: some View {
-            @Bindable var notificationManager = notificationManager
-            
             List {
                 Section(
                     content: {
-                        ForEach($notificationManager.notifications, id: \.id) { notification in
+                        ForEach(notificationManager.notifications, id: \.id) { notification in
                             StudyApplicationListCard {
                                 NotificationRow(notification: notification)
                             }

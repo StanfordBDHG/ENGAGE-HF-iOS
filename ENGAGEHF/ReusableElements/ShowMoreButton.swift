@@ -9,9 +9,9 @@
 import SwiftUI
 
 
-struct LearnMoreButton: View {
+struct ShowMoreButton: View {
     private var labelText: String {
-        isExpanded ? "Done" : "Learn more..."
+        isExpanded ? "Show Less" : "Show more"
     }
     
     @Binding var isExpanded: Bool
@@ -37,7 +37,7 @@ struct LearnMoreButton: View {
         
         
         var body: some View {
-            LearnMoreButton(isExpanded: $isExpanded)
+            ShowMoreButton(isExpanded: $isExpanded)
         }
     }
     
