@@ -104,7 +104,7 @@ struct InvitationCodeView: View {
     private func verifyOnboardingCode() async {
         do {
             if FeatureFlags.disableFirebase {
-                guard invitationCode == "VASCTRAC" else {
+                guard invitationCode == "ENGAGEHFTEST1" else {
                     throw InvitationCodeError.invitationCodeInvalid
                 }
                 
@@ -112,14 +112,13 @@ struct InvitationCodeView: View {
             } else {
                 try Auth.auth().signOut()
                 
-                async let authResult = Auth.auth().signInAnonymously()
+                try await Auth.auth().signInAnonymously()
                 let checkInvitationCode = Functions.functions().httpsCallable("checkInvitationCode")
                 
                 do {
                     _ = try await checkInvitationCode.call(
                         [
-                            "invitationCode": invitationCode,
-                            "userId": authResult.user.uid
+                            "invitationCode": invitationCode
                         ]
                     )
                 } catch {
