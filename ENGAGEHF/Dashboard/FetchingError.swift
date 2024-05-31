@@ -13,6 +13,7 @@ enum FetchingError: LocalizedError {
     case invalidTimestamp
     case userNotAuthenticated
     
+    
     var errorDescription: String? {
         switch self {
         case .invalidTimestamp:

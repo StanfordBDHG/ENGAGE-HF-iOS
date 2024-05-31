@@ -40,10 +40,10 @@ class NotificationManager: Module, EnvironmentAccessible {
     func configure() {
         if ProcessInfo.processInfo.isPreviewSimulator {
             let dummyNotification = Notification(
+                id: String(describing: UUID()),
                 type: "Mock Notification",
                 title: "Weight Recorded",
-                description: "A weight measurement has been recorded.",
-                id: String(describing: UUID())
+                description: "A weight measurement has been recorded."
             )
             notifications.append(dummyNotification)
             return
@@ -68,7 +68,7 @@ class NotificationManager: Module, EnvironmentAccessible {
             return
         }
         
-        let db = Firestore.firestore()
+        let firestore = Firestore.firestore()
         
         // Ignore notifications older than expirationDate
         guard let thresholdDate = Calendar.current.date(byAdding: .day, value: -expirationDate, to: .now) else {
@@ -79,32 +79,28 @@ class NotificationManager: Module, EnvironmentAccessible {
         let thesholdTimeStamp = Timestamp(date: thresholdDate)
         
         // Set a snapshot listener on the query for valid notifications
-        db.collection("users").document(uid).collection("notifications")
+        firestore.collection("users")
+            .document(uid)
+            .collection("notifications")
             .whereField("created", isGreaterThan: thesholdTimeStamp)
+            .whereField("completed", isEqualTo: false)
             .addSnapshotListener { querySnapshot, error in
-                guard let documents = querySnapshot?.documents else {
-                    self.logger.error("Error fetching documents: \(error!)")
+                guard let documentRefs = querySnapshot?.documents else {
+                    self.logger.error("Error fetching documents: \(error)")
                     return
                 }
                 
-                self.notifications = documents.compactMap {
-                    if $0.get("completed") == nil {
-                        return Notification(
-                            type: String(describing: $0["type"] ?? "Unknown"),
-                            title: String(describing: $0["title"] ?? "Unknown"),
-                            description: String(describing: $0["description"] ?? "Unknown"),
-                            id: $0.documentID
-                        )
+                self.notifications = documentRefs.compactMap {
+                    do {
+                        return try $0.data(as: Notification.self)
+                    } catch {
+                        self.logger.error("Error decoding notifications: \(error)")
+                        return nil
                     }
-                    return nil
                 }
                 
                 self.logger.debug("Notifications updated")
             }
-    }
-    
-    func add(_ notification: Notification) async {
-        await standard.add(notification: notification)
     }
     
     func markComplete(at offsets: IndexSet) async {
@@ -115,7 +111,7 @@ class NotificationManager: Module, EnvironmentAccessible {
         
         logger.debug("Marking notifications complete at the following offsets: \(offsets)")
         
-        let db = Firestore.firestore()
+        let firestore = Firestore.firestore()
         
         guard let user = Auth.auth().currentUser else {
             logger.error("Unable to mark notitificaitons complete: \(FetchingError.userNotAuthenticated)")
@@ -125,9 +121,14 @@ class NotificationManager: Module, EnvironmentAccessible {
         // Mark the notifications as completed in the Firestore
         let timestamp = Timestamp(date: .now)
         for offset in offsets {
-            let docID = notifications[offset].id
+            guard let docID = notifications[offset].id else {
+                logger.error("Error fetching docID for offset: \(offset)")
+                return
+            }
             
-            let docRef = db.collection("users").document(user.uid).collection("notifications")
+            let docRef = firestore.collection("users")
+                .document(user.uid)
+                .collection("notifications")
                 .document(docID)
             
             do {
@@ -139,7 +140,7 @@ class NotificationManager: Module, EnvironmentAccessible {
             }
         }
         
-        logger.info("Successfully marked notifications complete!")
+        logger.debug("Successfully marked notifications complete!")
     }
 }
 
@@ -148,10 +149,10 @@ extension NotificationManager {
     // Function for adding a mock notification for the preview simulator
     func addMock() {
         let dummyNotification = Notification(
+            id: String(describing: UUID()),
             type: "Medication Change",
             title: "Your dose of XXX was changed.",
-            description: "Your dose of XXX was changed. You can review medication information in the Education Page.",
-            id: String(describing: UUID())
+            description: "Your dose of XXX was changed. You can review medication information in the Education Page."
         )
         notifications.append(dummyNotification)
     }

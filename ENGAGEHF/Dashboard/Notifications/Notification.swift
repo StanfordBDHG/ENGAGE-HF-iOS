@@ -6,6 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
+import FirebaseFirestore
 import Foundation
 
 
@@ -16,17 +17,9 @@ import Foundation
 // and the description will be displayed in a drop-down field
 //
 // Title and Descprition may be markdown text
-struct Notification: Identifiable, Equatable {
-    var id: String
-    
+struct Notification: Identifiable, Equatable, Codable {
+    @DocumentID var id: String?
     var type: String
     var title: String
     var description: String
-    
-    init(type: String, title: String, description: String, id: String) {
-        self.id = id
-        self.type = type
-        self.title = title
-        self.description = description
-    }
 }

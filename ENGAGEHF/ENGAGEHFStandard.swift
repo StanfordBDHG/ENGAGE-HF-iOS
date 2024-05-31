@@ -63,20 +63,6 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint, A
             _accountStorage = Dependency(wrappedValue: FirestoreAccountStorage(storeIn: ENGAGEHFStandard.userCollection))
         }
     }
-    
-    
-    // Adds a new notification to the user's notification collection
-    func add(notification: Notification) async {
-        do {
-            try await userDocumentReference.collection("notifications").document(notification.id).setData([
-                "title": notification.title,
-                "description": notification.description,
-                "created": Timestamp(date: .now)
-            ])
-        } catch {
-            logger.error("Could not store the notification: \(error)")
-        }
-    }
 
 
     func add(sample: HKSample) async {
@@ -87,13 +73,6 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint, A
         }
     }
     
-    func remove(id uuid: UUID, sampleType: HKSampleType) async {
-        do {
-            try await healthKitDocument(id: uuid, type: sampleType).delete()
-        } catch {
-            logger.error("Could not remove HealthKit sample: \(error)")
-        }
-    }
     
     func add(response: ModelsR4.QuestionnaireResponse) async {
         let id = response.identifier?.value?.value?.string ?? UUID().uuidString

@@ -18,7 +18,7 @@ struct Dashboard: View {
         NavigationStack {
             List {
                 // Notifications
-                 NotificationSection()
+                NotificationSection()
                 
                 // To-do
                 ToDoSection()
@@ -29,13 +29,10 @@ struct Dashboard: View {
                 // Survey, if available
                 SurveySection(showFullSurvey: $showSurvey)
             }
-            
             .studyApplicationList()
-            
-            .sheet(isPresented: $showSurvey, content: {
+            .sheet(isPresented: $showSurvey) {
                 FullSurveyView()
-            })
-            
+            }
             .navigationTitle("Home")
             .toolbar {
                 if AccountButton.shouldDisplay {
