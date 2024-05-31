@@ -39,9 +39,22 @@ class WeightScaleDevice: BluetoothDevice, Identifiable {
         }
         
         MeasurementManager.manager.deviceInformation = deviceInformation
-        MeasurementManager.manager.weightScaleParams = service.weightScaleFeature
+        MeasurementManager.manager.weightScaleParams = service.features
         MeasurementManager.manager.deviceName = name
         
         MeasurementManager.manager.loadMeasurement(measurement)
+    }
+}
+
+
+// TODO: move somewhere!
+extension WeightMeasurement.Unit {
+    var massUnit: String {
+        switch self {
+        case .si:
+            return "kg"
+        case .imperial:
+            return "lb"
+        }
     }
 }

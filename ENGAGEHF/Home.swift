@@ -6,6 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
+import BluetoothServices
 import SpeziAccount
 import SpeziBluetooth
 import SpeziViews
@@ -65,6 +66,7 @@ struct HomeView: View {
 }
 
 
+#if DEBUG
 #Preview {
     CommandLine.arguments.append("--disableFirebase")
     return HomeView()
@@ -78,3 +80,4 @@ struct HomeView: View {
             }
         }
 }
+#endif

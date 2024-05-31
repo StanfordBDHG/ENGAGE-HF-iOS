@@ -11,7 +11,7 @@ import SwiftUI
 
 extension Binding where Value == Bool {
     /// Negates a `Binding`.
-    prefix static func ! (value: Binding<Bool>) -> Binding<Bool> {
+    prefix static func ! (value: Binding<Bool>) -> Binding<Bool> { // TODO: can be removed?
         Binding<Bool>(
             get: { !value.wrappedValue },
             set: { value.wrappedValue = !$0 }

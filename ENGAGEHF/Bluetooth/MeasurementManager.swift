@@ -48,10 +48,11 @@ class MeasurementManager: Module, EnvironmentAccessible {
     @ObservationIgnored @StandardActor private var standard: ENGAGEHFStandard
     private let logger = Logger(subsystem: "ENGAGEHF", category: "MeasurementManager")
     
+    // TODO: why are these internal settable?
     var deviceInformation: DeviceInformationService?
     var weightScaleParams: WeightScaleFeature?
     var deviceName: String?
-    
+
     var newMeasurement: HKQuantitySample?
     
     
@@ -113,14 +114,11 @@ class MeasurementManager: Module, EnvironmentAccessible {
         )
         
         let quantityType = HKQuantityType(.bodyMass)
-        let units = HKUnit(from: measurement.units.rawValue)
-        
-        guard let resolution = getResolutionScalar(for: measurement.units) else {
-            logger.error("***** Unable to get Resolution Scalar *****")
-            return nil
-        }
-        
-        let quantity = HKQuantity(unit: units, doubleValue: Double(measurement.weight) * resolution)
+        let units = HKUnit(from: measurement.unit.massUnit)
+
+        let value = measurement.weight(of: weightScaleParams?.weightResolution ?? .unspecified)
+
+        let quantity = HKQuantity(unit: units, doubleValue: value)
         let date = getDate(from: measurement)
         
         return HKQuantitySample(
@@ -131,27 +129,6 @@ class MeasurementManager: Module, EnvironmentAccessible {
             device: device,
             metadata: nil
         )
-    }
-    
-    private func getResolutionScalar(for units: WeightUnits) -> Double? {
-        guard let scaleParams: WeightScaleFeature = weightScaleParams else {
-            logger.error("***** Weight Scale Features not present *****")
-            return nil
-        }
-        
-        let resolution = scaleParams.weightResolution
-        let isLbs = units == .imperial
-        
-        switch resolution {
-        case .unspecified: return 1
-        case .gradeOne: return isLbs ? 1 : 0.1
-        case .gradeTwo: return 0.1
-        case .gradeThree: return 0.1
-        case .gradeFour: return isLbs ? 0.1 : 0.01
-        case .gradeFive: return 0.01
-        case .gradeSix: return 0.01
-        case .gradeSeven: return isLbs ? 0.01 : 0.001
-        }
     }
     
     private func getDate(from measurement: WeightMeasurement) -> Date {
@@ -205,25 +182,20 @@ extension MeasurementManager {
         self.deviceInformation = devInfo
         
         self.weightScaleParams = WeightScaleFeature(
-            timeStampEnabled: true,
-            supportMultipleUsers: true,
-            supportBMI: true,
-            weightResolution: .gradeSix,
-            heightResolution: .gradeThree
+            weightResolution: .resolution10g,
+            heightResolution: .resolution1mm,
+            options: .timeStampSupported,
+            .bmiSupported,
+            .multipleUsersSupported
         )
-        
-        self.loadMeasurement(
-            WeightMeasurement(
-                units: .metric,
-                timeStampPresent: true,
-                userIDPresent: true,
-                heightBMIPresent: true,
-                weight: 8400,
-                timeStamp: DateTime(hours: 0, minutes: 0, seconds: 0),
-                bmi: 20,
-                height: 180,
-                userID: 42
-            )
+        let measurement = WeightMeasurement(
+            weight: 8400,
+            unit: .si,
+            timeStamp: DateTime(hours: 0, minutes: 0, seconds: 0),
+            userId: 42,
+            additionalInfo: .init(bmi: 20, height: 180)
         )
+
+        self.loadMeasurement(measurement)
     }
 }
