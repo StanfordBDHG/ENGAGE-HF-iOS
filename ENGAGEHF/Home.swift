@@ -62,7 +62,6 @@ struct HomeView: View {
                 .tabItem {
                     Label("Education", systemImage: "brain")
                 }
-            
         }
             .autoConnect(enabled: bluetoothEnabled, with: bluetooth)
             .sheet(isPresented: $presentingAccount) {

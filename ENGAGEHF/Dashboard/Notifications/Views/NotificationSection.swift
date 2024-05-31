@@ -10,9 +10,9 @@ import FirebaseAuth
 import FirebaseCore
 import FirebaseFirestore
 import Foundation
-import SwiftUI
 import Spezi
 import SpeziViews
+import SwiftUI
 
 
 struct NotificationSection: View {

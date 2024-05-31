@@ -55,7 +55,6 @@ class MeasurementManager: Module, EnvironmentAccessible {
     var newMeasurement: HKQuantitySample?
 
     
-    
     init() {
         MeasurementManager._manager = self
     }

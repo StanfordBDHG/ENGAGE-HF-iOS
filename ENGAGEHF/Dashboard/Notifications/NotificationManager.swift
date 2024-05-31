@@ -6,9 +6,9 @@
 // SPDX-License-Identifier: MIT
 //
 
-import Foundation
 import FirebaseAuth
 import FirebaseFirestore
+import Foundation
 import OSLog
 import Spezi
 import SpeziFirebaseConfiguration
@@ -81,7 +81,7 @@ class NotificationManager: Module, EnvironmentAccessible {
         // Set a snapshot listener on the query for valid notifications
         db.collection("users").document(uid).collection("notifications")
             .whereField("created", isGreaterThan: thesholdTimeStamp)
-            .addSnapshotListener() { querySnapshot, error in
+            .addSnapshotListener { querySnapshot, error in
                 guard let documents = querySnapshot?.documents else {
                     self.logger.error("Error fetching documents: \(error!)")
                     return

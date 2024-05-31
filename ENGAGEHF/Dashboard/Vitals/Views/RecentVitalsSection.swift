@@ -55,7 +55,6 @@ struct RecentVitalsSection: View {
     
     // TODO: Add compatability with measurements other than Weight
     func getMostRecent(of sampleType: HKSampleType) async throws {
-        
     }
 }
 

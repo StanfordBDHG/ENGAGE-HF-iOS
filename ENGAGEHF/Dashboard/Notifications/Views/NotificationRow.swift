@@ -50,7 +50,7 @@ struct NotificationRow: View {
         var body: some View {
             AsyncButton(
                 action: {
-                    let indx = notificationManager.notifications.firstIndex {$0.id == notification.id}
+                    let indx = notificationManager.notifications.firstIndex { $0.id == notification.id }
                     
                     if let indx: Int {
                         await notificationManager.markComplete(at: IndexSet(integer: indx))

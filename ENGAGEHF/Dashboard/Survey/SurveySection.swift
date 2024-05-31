@@ -37,7 +37,7 @@ struct SurveySection: View {
                             Circle()
                                 .fill(.green)
                                 .frame(width: 10, height: 10)
-                    })
+                        })
                 }
             }
         }
