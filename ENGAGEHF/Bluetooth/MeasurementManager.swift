@@ -28,7 +28,7 @@ class MeasurementManager: Module, EnvironmentAccessible {
     private static var _manager: MeasurementManager?
     static var manager: MeasurementManager {
         guard let manager = _manager else {
-            fatalError("Accessing shared MeasurmentManager before initialized.")
+            fatalError("Accessing shared MeasurementManager before initialized.")
         }
         return manager
     }
@@ -78,7 +78,7 @@ class MeasurementManager: Module, EnvironmentAccessible {
     
     // Called by UI Sheet View to save the newMeasurement to firestore
     func saveMeasurement() async throws {
-        if ProcessInfo.processInfo.isPreviewSimulator {
+        if ProcessInfo.processInfo.isPreviewSimulator { // TODO: why is this here?
             try await Task.sleep(for: .seconds(5))
             return
         }
@@ -171,30 +171,17 @@ extension MeasurementManager {
     // Call in preview simulator wrappers
     // Loads a mock measurement to display in preview
     func loadMockMeasurement() {
-        self.deviceName = "Mock Device"
-        
-        let devInfo = DeviceInformationService()
-        devInfo.$manufacturerName.inject("Mock")
-        devInfo.$modelNumber.inject("42")
-        devInfo.$hardwareRevision.inject("42")
-        devInfo.$firmwareRevision.inject("42")
-        devInfo.$softwareRevision.inject("42")
-        self.deviceInformation = devInfo
-        
-        self.weightScaleParams = WeightScaleFeature(
-            weightResolution: .resolution10g,
-            heightResolution: .resolution1mm,
-            options: .timeStampSupported,
-            .bmiSupported,
-            .multipleUsersSupported
-        )
-        let measurement = WeightMeasurement(
-            weight: 8400,
-            unit: .si,
-            timeStamp: DateTime(hours: 0, minutes: 0, seconds: 0),
-            userId: 42,
-            additionalInfo: .init(bmi: 20, height: 180)
-        )
+        let device = WeightScaleDevice.createMockDevice()
+
+        // TODO: can we call processMeasurement for minimal code and highest coverage!
+
+        self.deviceName = device.name
+        self.deviceInformation = device.deviceInformation
+        self.weightScaleParams = device.service.features
+
+        guard let measurement = device.service.weightMeasurement else {
+            return // TODO: are we logging anything?
+        }
 
         self.loadMeasurement(measurement)
     }

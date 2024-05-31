@@ -1,0 +1,50 @@
+//
+// This source file is part of the ENGAGE-HF project based on the Stanford Spezi Template Application project
+//
+// SPDX-FileCopyrightText: 2024 Stanford University
+//
+// SPDX-License-Identifier: MIT
+//
+
+import XCTest
+
+
+final class WeightScaleTests: XCTestCase {
+    override func setUpWithError() throws {
+        try super.setUpWithError()
+
+        continueAfterFailure = false
+
+        let app = XCUIApplication()
+        app.launchArguments = ["--skipOnboarding", "--testMockDevices"]
+        app.launch()
+    }
+
+
+    func testReceiveMeasurement() throws {
+        let app = XCUIApplication()
+
+
+        XCTAssert(app.buttons["Home"].waitForExistence(timeout: 2.0))
+        app.buttons["Home"].tap()
+
+
+        XCTAssert(app.navigationBars.buttons["More"].exists)
+        app.navigationBars.buttons["More"].tap()
+
+
+        XCTAssert(app.buttons["Trigger Weight Measurement"].waitForExistence(timeout: 0.5))
+        app.buttons["Trigger Weight Measurement"].tap()
+
+        XCTAssert(app.staticTexts["Measurement Recorded"].waitForExistence(timeout: 2.0))
+        XCTAssert(app.staticTexts["42 kg"].exists)
+
+        XCTAssert(app.buttons["Discard"].exists)
+        XCTAssert(app.buttons["Save"].exists)
+
+        app.buttons["Save"].tap()
+        sleep(6)
+
+        // TODO: how to assert existence?
+    }
+}

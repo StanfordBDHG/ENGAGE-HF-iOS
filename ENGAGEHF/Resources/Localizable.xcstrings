@@ -302,9 +302,6 @@
     "Measurement Recorded" : {
 
     },
-    "Mock Measurement" : {
-
-    },
     "NOTIFICATION_PERMISSIONS_BUTTON" : {
       "localizations" : {
         "en" : {
@@ -353,6 +350,9 @@
 
     },
     "Save" : {
+
+    },
+    "Test Weight Scale" : {
 
     },
     "The invitation code is invalid or has already been used." : {

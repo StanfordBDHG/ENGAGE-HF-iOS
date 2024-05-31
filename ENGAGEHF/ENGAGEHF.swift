@@ -7,6 +7,7 @@
 //
 
 import Spezi
+import SpeziViews
 import SpeziFirebaseAccount
 import SwiftUI
 

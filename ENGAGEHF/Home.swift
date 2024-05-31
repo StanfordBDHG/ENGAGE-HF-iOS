@@ -50,7 +50,7 @@ struct HomeView: View {
                 AccountSheet()
             }
             .accountRequired(Self.accountEnabled) {
-                AccountSheet()
+                AccountSheet() // TODO: persent invitation code flow?
             }
             .verifyRequiredAccountDetails(Self.accountEnabled)
             .sheet(
