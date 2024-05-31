@@ -20,8 +20,8 @@ admin.initializeApp();
 exports.checkInvitationCode = onCall(async (request) => {
   if (!request.auth.uid) {
     throw new https.HttpsError(
-      "unauthenticated", 
-      "User is not properly authenticated.",
+        "unauthenticated",
+        "User is not properly authenticated.",
     );
   }
 
