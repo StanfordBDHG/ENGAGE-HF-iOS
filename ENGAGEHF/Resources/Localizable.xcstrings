@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%@" : {
+
+    },
     "ACCOUNT_NEXT" : {
       "localizations" : {
         "en" : {
@@ -52,6 +55,9 @@
         }
       }
     },
+    "Add Mock" : {
+
+    },
     "Add mock notification" : {
 
     },
@@ -97,6 +103,9 @@
           }
         }
       }
+    },
+    "Content ..." : {
+
     },
     "Discard" : {
 
@@ -326,6 +335,12 @@
           }
         }
       }
+    },
+    "List With Sections" : {
+
+    },
+    "List Without Sections" : {
+
     },
     "Loading To-do List..." : {
 

@@ -93,6 +93,7 @@ struct HomeView: View {
                 MockUserIdPasswordAccountService()
             }
             MeasurementManager()
+            NotificationManager()
             Bluetooth {
                 Discover(WeightScaleDevice.self, by: .advertisedService(WeightScaleService.self))
             }

@@ -19,11 +19,13 @@ import Foundation
 struct Notification: Identifiable, Equatable {
     var id: String
     
+    var type: String
     var title: String
     var description: String
     
-    init(title: String, description: String, id: String) {
+    init(type: String, title: String, description: String, id: String) {
         self.id = id
+        self.type = type
         self.title = title
         self.description = description
     }

@@ -17,12 +17,15 @@ struct CloseButtonLayer: View {
     
     var body: some View {
         HStack {
-            Button(action: {
-                dismiss()
-            }) {
-                Text(NSLocalizedString("Close", comment: "For closing sheets."))
-                    .foregroundStyle(Color.accentColor)
-            }
+            Button(
+                action: {
+                    dismiss()
+                },
+                label: {
+                    Text(NSLocalizedString("Close", comment: "For closing sheets."))
+                        .foregroundStyle(Color.accentColor)
+                }
+            )
                 .buttonStyle(PlainButtonStyle())
                 .disabled(viewState != .idle)
             

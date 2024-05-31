@@ -15,7 +15,7 @@ import SpeziFirebaseConfiguration
 
 
 //
-// A notification manager
+// Notification manager
 //
 // Maintains a list of Notifications associated with the current user in firebase
 //
@@ -35,15 +35,15 @@ class NotificationManager: Module, EnvironmentAccessible {
     private let expirationDate = 10
     
     var notifications: [Notification] = []
-    var isDeletingLastNotification = false
     
     
     func configure() {
         if ProcessInfo.processInfo.isPreviewSimulator {
             let dummyNotification = Notification(
+                type: "Mock Notification",
                 title: "Weight Recorded",
                 description: "A weight measurement has been recorded.",
-                id: "test"
+                id: String(describing: UUID())
             )
             notifications.append(dummyNotification)
             return
@@ -90,6 +90,7 @@ class NotificationManager: Module, EnvironmentAccessible {
                 self.notifications = documents.compactMap {
                     if $0.get("completed") == nil {
                         return Notification(
+                            type: String(describing: $0["type"] ?? "Unknown"),
                             title: String(describing: $0["title"] ?? "Unknown"),
                             description: String(describing: $0["description"] ?? "Unknown"),
                             id: $0.documentID
@@ -147,9 +148,10 @@ extension NotificationManager {
     // Function for adding a mock notification for the preview simulator
     func addMock() {
         let dummyNotification = Notification(
-            title: "Mock Notification",
-            description: "This is a mock notification.",
-            id: "mock"
+            type: "Medication Change",
+            title: "Your dose of XXX was changed.",
+            description: "Your dose of XXX was changed. You can review medication information in the Education Page.",
+            id: String(describing: UUID())
         )
         notifications.append(dummyNotification)
     }

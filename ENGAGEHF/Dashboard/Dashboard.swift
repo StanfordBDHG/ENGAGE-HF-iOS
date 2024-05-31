@@ -29,7 +29,8 @@ struct Dashboard: View {
                 // Survey, if available
                 SurveySection(showFullSurvey: $showSurvey)
             }
-            .listSectionSpacing(0)
+            
+            .studyApplicationList()
             
             .sheet(isPresented: $showSurvey, content: {
                 FullSurveyView()
@@ -48,4 +49,7 @@ struct Dashboard: View {
 
 #Preview {
     Dashboard(presentingAccount: .constant(false))
+        .previewWith(standard: ENGAGEHFStandard()) {
+            NotificationManager()
+        }
 }
