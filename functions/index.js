@@ -18,14 +18,15 @@ const {beforeUserCreated} = require("firebase-functions/v2/identity");
 admin.initializeApp();
 
 exports.checkInvitationCode = onCall(async (request) => {
-  const {invitationCode, userId} = request.data;
-
-  if (!userId) {
+  if (!request.auth.uid) {
     throw new https.HttpsError(
-        "unauthenticated",
-        "User is not properly authenticated.",
+      "unauthenticated", 
+      "User is not properly authenticated.",
     );
   }
+
+  const userId = request.auth.uid;
+  const {invitationCode} = request.data;
 
   const firestore = admin.firestore();
   logger.debug(`User (${userId}) -> ENGAGE-HF, InvitationCode ${invitationCode}`);
@@ -35,7 +36,7 @@ exports.checkInvitationCode = onCall(async (request) => {
     const invitationCodeRef = firestore.doc(`invitationCodes/${invitationCode}`);
     const invitationCodeDoc = await invitationCodeRef.get();
 
-    if (!invitationCodeDoc.exists || (invitationCodeDoc.data().used)) {
+    if (!invitationCodeDoc.exists || invitationCodeDoc.data().used) {
       throw new https.HttpsError("not-found", "Invitation code not found or already used.");
     }
 
