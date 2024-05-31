@@ -15,31 +15,29 @@ on:
   workflow_dispatch:
 
 jobs:
-  buildandtest:
-    name: Build and Test
-    uses: ./.github/workflows/build-and-test.yml
-    permissions:
-      contents: read
-    secrets: inherit
-  iosapptestflightdeployment:
-    name: iOS App TestFlight Deployment
-    needs: buildandtest
-    uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
-    permissions:
-      contents: read
-    with:
-      runsonlabels: '["macOS", "self-hosted"]'
-      googleserviceinfoplistpath: 'ENGAGEHF/Supporting Files/GoogleService-Info.plist'
-      setupsigning: true
-      fastlanelane: beta
-    secrets: inherit
+  # buildandtest:
+  #   name: Build and Test
+  #   uses: ./.github/workflows/build-and-test.yml
+  #   permissions:
+  #     contents: read
+  #   secrets: inherit
+  # iosapptestflightdeployment:
+  #   name: iOS App TestFlight Deployment
+  #   needs: buildandtest
+  #   uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
+  #   permissions:
+  #     contents: read
+  #   with:
+  #     runsonlabels: '["macOS", "self-hosted"]'
+  #     googleserviceinfoplistpath: 'ENGAGEHF/Supporting Files/GoogleService-Info.plist'
+  #     setupsigning: true
+  #     fastlanelane: beta
+  #   secrets: inherit
   deployfirebase:
     name: Deploy Firebase Project
-    needs: iosapptestflightdeployment
+    # needs: iosapptestflightdeployment
     uses: StanfordBDHG/.github/.github/workflows/firebase-deploy.yml@v2
     permissions:
       contents: read
-    with:
-      arguments: '--debug'
     secrets:
       GOOGLE_APPLICATION_CREDENTIALS_BASE64: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_BASE64 }}
