@@ -16,9 +16,9 @@ struct DiscardButton: View {
     
     
     var body: some View {
-        Button(action: {
+        Button {
             dismiss()
-        }) {
+        } label: {
             Text("Discard")
                 .foregroundStyle(viewState == .idle ? Color.red : Color.gray)
         }
