@@ -302,9 +302,6 @@
     "Measurement Recorded" : {
 
     },
-    "Mock Measurement" : {
-
-    },
     "NOTIFICATION_PERMISSIONS_BUTTON" : {
       "localizations" : {
         "en" : {
@@ -357,6 +354,9 @@
     },
     "The invitation code is invalid or has already been used." : {
       "comment" : "Invitation Code Invalid"
+    },
+    "Trigger Weight Measurement" : {
+
     },
     "User authentication failed. Please try to sign in again." : {
       "comment" : "User Not Authenticated"

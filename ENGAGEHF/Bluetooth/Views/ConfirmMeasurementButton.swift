@@ -16,15 +16,12 @@ struct DiscardButton: View {
     
     
     var body: some View {
-        Button(
-            action: {
-                dismiss()
-            },
-            label: {
-                Text("Discard")
-                    .foregroundStyle(viewState == .idle ? Color.red : Color.gray)
-            }
-        )
+        Button {
+            dismiss()
+        } label: {
+            Text("Discard")
+                .foregroundStyle(viewState == .idle ? Color.red : Color.gray)
+        }
             .disabled(viewState != .idle)
     }
 }
@@ -34,13 +31,14 @@ struct ConfirmMeasurementButton: View {
     @ScaledMetric private var buttonHeight: CGFloat = 38
     @Binding var viewState: ViewState
     
-    
+    @Environment(MeasurementManager.self) private var measurementManager
+
     var body: some View {
         VStack {
             AsyncButton(
                state: $viewState,
                action: {
-                   try await MeasurementManager.manager.saveMeasurement()
+                   try await measurementManager.saveMeasurement()
                },
                label: {
                    Text("Save")
@@ -59,7 +57,13 @@ struct ConfirmMeasurementButton: View {
     }
 }
 
+
+#if DEBUG
 #Preview {
     @State var viewState = ViewState.idle
     return ConfirmMeasurementButton(viewState: $viewState)
+        .previewWith(standard: ENGAGEHFStandard()) {
+            MeasurementManager()
+        }
 }
+#endif

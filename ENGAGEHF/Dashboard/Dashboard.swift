@@ -11,7 +11,9 @@ import SwiftUI
 
 struct Dashboard: View {
     @Binding var presentingAccount: Bool
-    
+
+    @Environment(MeasurementManager.self) private var measurementManager
+
     
     var body: some View {
         NavigationStack {
@@ -25,11 +27,25 @@ struct Dashboard: View {
                         AccountButton(isPresented: $presentingAccount)
                     }
                 }
+                .toolbar {
+                    if FeatureFlags.testMockDevices {
+                        ToolbarItem(placement: .secondaryAction) {
+                            Button("Trigger Weight Measurement", systemImage: "scalemass.fill") {
+                                measurementManager.loadMockMeasurement()
+                            }
+                        }
+                    }
+                }
         }
     }
 }
 
 
+#if DEBUG
 #Preview {
     Dashboard(presentingAccount: .constant(false))
+        .previewWith(standard: ENGAGEHFStandard()) {
+            MeasurementManager()
+        }
 }
+#endif

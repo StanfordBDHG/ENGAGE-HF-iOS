@@ -13,8 +13,12 @@ import SwiftUI
 
 
 struct MeasurementRecordedView: View {
-    private var dynamicDetente: PresentationDetent {
-        switch dynamicTypesize {
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    @State var viewState = ViewState.idle
+    
+
+    private var dynamicDetents: PresentationDetent {
+        switch dynamicTypeSize {
         case .xSmall, .small:
             return .fraction(0.35)
         case .medium, .large:
@@ -27,12 +31,8 @@ struct MeasurementRecordedView: View {
             return .fraction(0.45)
         }
     }
-    
 
-    @Environment(\.dynamicTypeSize) private var dynamicTypesize
-    @State var viewState = ViewState.idle
-    
-    
+
     var body: some View {
         VStack {
             CloseButtonLayer(viewState: $viewState)
@@ -41,32 +41,23 @@ struct MeasurementRecordedView: View {
             Spacer()
             ConfirmMeasurementButton(viewState: $viewState)
         }
-            .presentationDetents([dynamicDetente])
+            .presentationDetents([dynamicDetents])
             .interactiveDismissDisabled(viewState != .idle)
     }
 }
 
 
+#if DEBUG
 #Preview {
-    struct MeasurementRecordedViewPreviewWrapper: View {
-        @Environment(MeasurementManager.self) private var measurementManager
-        @State private var viewState: ViewState = .idle
-        
-        
-        var body: some View {
-            @Bindable var measurementManager = measurementManager
-            
-            Button("Mock Measurement") {
-                measurementManager.loadMockMeasurement()
-            }
-                .sheet(isPresented: $measurementManager.showSheet) {
-                    MeasurementRecordedView()
-                }
+    let measurementManager = MeasurementManager()
+    measurementManager.loadMockMeasurement()
+
+    return Text(verbatim: "")
+        .sheet(isPresented: .constant(true)) {
+            MeasurementRecordedView()
         }
-    }
-    
-    return MeasurementRecordedViewPreviewWrapper()
         .previewWith(standard: ENGAGEHFStandard()) {
-            MeasurementManager()
+            measurementManager
         }
 }
+#endif

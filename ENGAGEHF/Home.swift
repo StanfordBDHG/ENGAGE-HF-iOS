@@ -6,8 +6,10 @@
 // SPDX-License-Identifier: MIT
 //
 
+import BluetoothServices
 import SpeziAccount
 import SpeziBluetooth
+import SpeziOnboarding
 import SpeziViews
 import SwiftUI
 
@@ -24,7 +26,9 @@ struct HomeView: View {
     private var bluetoothEnabled: Bool {
         !ProcessInfo.processInfo.isPreviewSimulator
     }
-    
+
+    @Environment(\.dismiss) private var dismiss
+
     
     @Environment(MeasurementManager.self) private var measurementManager
     @Environment(WeightScaleDevice.self) private var weightScale: WeightScaleDevice?
@@ -49,7 +53,14 @@ struct HomeView: View {
                 AccountSheet()
             }
             .accountRequired(Self.accountEnabled) {
-                AccountSheet()
+                OnboardingStack {
+                    InvitationCodeView()
+                    AccountSetup { _ in
+                        dismiss()
+                    } header: {
+                        AccountSetupHeader()
+                    }
+                }
             }
             .verifyRequiredAccountDetails(Self.accountEnabled)
             .sheet(
@@ -65,6 +76,7 @@ struct HomeView: View {
 }
 
 
+#if DEBUG
 #Preview {
     CommandLine.arguments.append("--disableFirebase")
     return HomeView()
@@ -78,3 +90,4 @@ struct HomeView: View {
             }
         }
 }
+#endif

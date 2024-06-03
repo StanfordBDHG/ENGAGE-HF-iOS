@@ -6,6 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
+import BluetoothServices
 import Spezi
 import SpeziAccount
 import SpeziBluetooth
@@ -56,6 +57,7 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
             
             OnboardingDataSource()
             MeasurementManager()
+            InvitationCodeModule()
         }
     }
     
