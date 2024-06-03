@@ -26,7 +26,9 @@ struct HomeView: View {
     private var bluetoothEnabled: Bool {
         !ProcessInfo.processInfo.isPreviewSimulator
     }
-    
+
+    @Environment(\.dismiss) private var dismiss
+
     
     @Environment(MeasurementManager.self) private var measurementManager
     @Environment(WeightScaleDevice.self) private var weightScale: WeightScaleDevice?
@@ -53,7 +55,11 @@ struct HomeView: View {
             .accountRequired(Self.accountEnabled) {
                 OnboardingStack {
                     InvitationCodeView()
-                    AccountSheet()
+                    AccountSetup { _ in
+                        dismiss()
+                    } header: {
+                        AccountSetupHeader()
+                    }
                 }
             }
             .verifyRequiredAccountDetails(Self.accountEnabled)

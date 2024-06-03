@@ -76,15 +76,13 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
         }
     }
 
-    func setupTestEnvironment(account: Account, invitationCode: String) async throws {
-        try await verifyOnboardingCode(invitationCode)
-        try await setupTestAccount(account: account)
-    }
-
     @MainActor
-    private func setupTestAccount(account: Account) async throws {
+    func setupTestEnvironment(account: Account, invitationCode: String) async throws {
         let email = "test@engage.stanford.edu"
         let password = "123456789"
+
+        // let the initial stateChangeDelegate of FirebaseAuth get called. Otherwise, we will interfere with that.
+        try await Task.sleep(for: .milliseconds(500))
 
         if let details = account.details,
            details.email == email {
@@ -95,25 +93,25 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
             preconditionFailure("Failed to retrieve a user-id-password based account service for test account setup!")
         }
 
-
         do {
-            // let the initial stateChangeDelegate of FirebaseAuth get called. Otherwise, we will interfere with that.
-            try await Task.sleep(for: .milliseconds(500))
+            try await service.login(userId: email, password: password)
+            return // account was already established previously
+        } catch {
+            // probably doesn't exists. We try to create a new one below
+        }
 
-            do {
-                let details = SignupDetails.Builder()
-                    .set(\.userId, value: email)
-                    .set(\.name, value: PersonNameComponents(givenName: "Leland", familyName: "Stanford"))
-                    .set(\.password, value: password)
-                    .build()
-                try await service.signUp(signupDetails: details)
-            } catch {
-                if "\(error)".contains("accountAlreadyInUse") {
-                    try await service.login(userId: email, password: password)
-                } else {
-                    throw error
-                }
-            }
+        try await verifyOnboardingCode(invitationCode)
+        try await setupTestAccount(service: service, email: email, password: password)
+    }
+
+    private func setupTestAccount(service: any UserIdPasswordAccountService, email: String, password: String) async throws {
+        do {
+            let details = SignupDetails.Builder()
+                .set(\.userId, value: email)
+                .set(\.name, value: PersonNameComponents(givenName: "Leland", familyName: "Stanford"))
+                .set(\.password, value: password)
+                .build()
+            try await service.signUp(signupDetails: details)
         } catch {
             logger.error("Failed setting up test account : \(error)")
             throw error
