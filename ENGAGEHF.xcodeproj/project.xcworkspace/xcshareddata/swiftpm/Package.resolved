@@ -204,8 +204,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziBluetooth.git",
       "state" : {
-        "branch" : "fix/weight-scale-feature",
-        "revision" : "00df06c021749a1b16a3bc383dd62a1d19922bc6"
+        "revision" : "4e1bdee198904a319915cec4804dd0327f06b9ba",
+        "version" : "1.4.1"
       }
     },
     {
