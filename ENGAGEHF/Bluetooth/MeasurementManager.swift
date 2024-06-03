@@ -70,7 +70,7 @@ class MeasurementManager: Module, EnvironmentAccessible {
 
     func handleMeasurement(_ measurement: WeightMeasurement, from device: WeightScaleDevice) {
         deviceInformation = device.deviceInformation
-        weightScaleParams = device.service.features
+        weightScaleParams = device.weightScale.features
         deviceName = device.name
 
         loadMeasurement(measurement)
@@ -180,7 +180,7 @@ extension MeasurementManager {
     func loadMockMeasurement() {
         let device = WeightScaleDevice.createMockDevice()
 
-        guard let measurement = device.service.weightMeasurement else {
+        guard let measurement = device.weightScale.weightMeasurement else {
             logger.error("Mock measurement was never injected!")
             return
         }

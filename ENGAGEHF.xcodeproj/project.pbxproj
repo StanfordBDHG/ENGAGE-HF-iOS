@@ -73,6 +73,8 @@
 		A92E4DF02BAA001100AC8DE8 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = A92E4DEF2BAA001100AC8DE8 /* OrderedCollections */; };
 		A96C56B62C0A149B00D6A50B /* WeightScaleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96C56B52C0A149B00D6A50B /* WeightScaleTests.swift */; };
 		A96C56BB2C0DFFCE00D6A50B /* InvitationCodeModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96C56BA2C0DFFCE00D6A50B /* InvitationCodeModule.swift */; };
+		A96C56BF2C0E334A00D6A50B /* BloodPressureCuffDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96C56BE2C0E334A00D6A50B /* BloodPressureCuffDevice.swift */; };
+		A96C56C32C0E356900D6A50B /* CurrentTimeService+Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96C56C22C0E356900D6A50B /* CurrentTimeService+Update.swift */; };
 		A9720E432ABB68CC00872D23 /* AccountSetupHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9720E422ABB68CC00872D23 /* AccountSetupHeader.swift */; };
 		A9D83F962B083794000D0C78 /* SpeziFirebaseAccountStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A9D83F952B083794000D0C78 /* SpeziFirebaseAccountStorage */; };
 		A9DFE8A92ABE551400428242 /* AccountButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DFE8A82ABE551400428242 /* AccountButton.swift */; };
@@ -142,6 +144,8 @@
 		653A258928339462005D4D48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A96C56B52C0A149B00D6A50B /* WeightScaleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightScaleTests.swift; sourceTree = "<group>"; };
 		A96C56BA2C0DFFCE00D6A50B /* InvitationCodeModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationCodeModule.swift; sourceTree = "<group>"; };
+		A96C56BE2C0E334A00D6A50B /* BloodPressureCuffDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloodPressureCuffDevice.swift; sourceTree = "<group>"; };
+		A96C56C22C0E356900D6A50B /* CurrentTimeService+Update.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CurrentTimeService+Update.swift"; sourceTree = "<group>"; };
 		A9720E422ABB68CC00872D23 /* AccountSetupHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSetupHeader.swift; sourceTree = "<group>"; };
 		A9DFE8A82ABE551400428242 /* AccountButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountButton.swift; sourceTree = "<group>"; };
 		A9FE7ACF2AA39BAB0077B045 /* AccountSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSheet.swift; sourceTree = "<group>"; };
@@ -288,7 +292,9 @@
 		4D49AB142BCF6FC400C77310 /* Devices */ = {
 			isa = PBXGroup;
 			children = (
+				A96C56C12C0E356100D6A50B /* Services */,
 				4D49AB052BC9D56900C77310 /* WeightScaleDevice.swift */,
+				A96C56BE2C0E334A00D6A50B /* BloodPressureCuffDevice.swift */,
 			);
 			path = Devices;
 			sourceTree = "<group>";
@@ -369,6 +375,14 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A96C56C12C0E356100D6A50B /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A96C56C22C0E356900D6A50B /* CurrentTimeService+Update.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		A9720E412ABB68B300872D23 /* Account */ = {
@@ -591,6 +605,7 @@
 				A9720E432ABB68CC00872D23 /* AccountSetupHeader.swift in Sources */,
 				2FE5DC4029EDD7EE004B9AB4 /* FeatureFlags.swift in Sources */,
 				2FE5DC4629EDD7F2004B9AB4 /* Bundle+Image.swift in Sources */,
+				A96C56BF2C0E334A00D6A50B /* BloodPressureCuffDevice.swift in Sources */,
 				2F4E23832989D51F0013F3D9 /* ENGAGEHFTestingSetup.swift in Sources */,
 				2F5E32BD297E05EA003432F8 /* ENGAGEHFDelegate.swift in Sources */,
 				4DDFC7702BFAEAD7002B07A1 /* ConfirmMeasurementButton.swift in Sources */,
@@ -600,6 +615,7 @@
 				2F65B44E2A3B8B0600A36932 /* NotificationPermissions.swift in Sources */,
 				2FE5DC2629EDD38A004B9AB4 /* Contacts.swift in Sources */,
 				4DBDD3462BBFAE2D001FB0CA /* InvitationCodeView.swift in Sources */,
+				A96C56C32C0E356900D6A50B /* CurrentTimeService+Update.swift in Sources */,
 				4D49AB062BC9D56900C77310 /* WeightScaleDevice.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

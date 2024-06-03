@@ -1,43 +1,55 @@
 //
 // This source file is part of the ENGAGE-HF project based on the Stanford Spezi Template Application project
 //
-// SPDX-FileCopyrightText: 2023 Stanford University
+// SPDX-FileCopyrightText: 2024 Stanford University
 //
 // SPDX-License-Identifier: MIT
 //
 
 import BluetoothServices
 import Foundation
+import OSLog
 @_spi(TestingSupport) import SpeziBluetooth
 
 
-//
-// A bluetooth peripheral representing a Weight Scale
-//
-// On new measurement, loads the measurement into the MeasurementManager
-// as a HealthKit HKQuantitySample
-//
+/// A bluetooth peripheral representing a Weight Scale
+///
+/// On new measurement, loads the measurement into the MeasurementManager
+/// as a HealthKit HKQuantitySample.
 class WeightScaleDevice: BluetoothDevice, Identifiable {
+    private static let logger = Logger(subsystem: "ENGAGEHF", category: "WeightScale")
+
     @DeviceState(\.id) var id: UUID
     @DeviceState(\.name)var name: String?
     @DeviceState(\.state) var state: PeripheralState
     
     @Service var deviceInformation = DeviceInformationService()
-    @Service var service = WeightScaleService()
+
+    @Service var time = CurrentTimeService()
+    @Service var weightScale = WeightScaleService()
     
     @DeviceAction(\.connect) var connect
     @DeviceAction(\.disconnect) var disconnect
     
     
     required init() {
-        service.$weightMeasurement.onChange(perform: processMeasurement)
+        $state
+            .onChange(perform: handleStateChange)
+        weightScale.$weightMeasurement
+            .onChange(perform: processMeasurement)
     }
-    
-    private func processMeasurement(_ measurement: WeightMeasurement) {
-        if !service.$weightMeasurement.isPresent {
+
+    private func handleStateChange(_ state: PeripheralState) { // TODO: call from the mock device!
+        guard case .connected = state else {
             return
         }
 
+        time.ensureUpdatedTime()
+    }
+
+    private func processMeasurement(_ measurement: WeightMeasurement) {
+        // TODO: add custom string convertible conformance to all characteristics!
+        Self.logger.debug("Received new weight measurement: \(String(describing: measurement))")
         MeasurementManager.manager.handleMeasurement(measurement, from: self)
     }
 }
@@ -76,8 +88,8 @@ extension WeightScaleDevice {
             unit: .si
         )
         
-        device.service.$features.inject(features)
-        device.service.$weightMeasurement.inject(measurement)
+        device.weightScale.$features.inject(features)
+        device.weightScale.$weightMeasurement.inject(measurement)
 
         device.$id.inject(UUID())
         device.$name.inject("Mock Health Scale")
