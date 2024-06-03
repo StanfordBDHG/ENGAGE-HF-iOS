@@ -47,11 +47,10 @@ class MeasurementManager: Module, EnvironmentAccessible {
     
     @ObservationIgnored @StandardActor private var standard: ENGAGEHFStandard
     private let logger = Logger(subsystem: "ENGAGEHF", category: "MeasurementManager")
-    
-    // TODO: why are these internal settable?
-    var deviceInformation: DeviceInformationService?
-    var weightScaleParams: WeightScaleFeature?
-    var deviceName: String?
+
+    private var deviceInformation: DeviceInformationService?
+    private var weightScaleParams: WeightScaleFeature?
+    private var deviceName: String?
 
     var newMeasurement: HKQuantitySample?
     
@@ -61,24 +60,31 @@ class MeasurementManager: Module, EnvironmentAccessible {
     }
     
     
-    // Called to reset measurement manager after taking a measurement
+    /// Called to reset measurement manager after taking a measurement
     func clear() {
         self.newMeasurement = nil
         self.deviceInformation = nil
         self.weightScaleParams = nil
         self.deviceName = nil
     }
-    
-    // Called by WeightScaleDevice on change of WeightMeasurement Characteristic
-    func loadMeasurement(_ measurement: WeightMeasurement) {
+
+    func handleMeasurement(_ measurement: WeightMeasurement, from device: WeightScaleDevice) {
+        deviceInformation = device.deviceInformation
+        weightScaleParams = device.service.features
+        deviceName = device.name
+
+        loadMeasurement(measurement)
+    }
+
+    fileprivate func loadMeasurement(_ measurement: WeightMeasurement) {
         // Convert to HKQuantitySample after downloading from Firestore
         self.newMeasurement = convertToHKSample(measurement)
         logger.info("Measurement loaded into MeasurementManager: \(measurement.weight)")
     }
     
-    // Called by UI Sheet View to save the newMeasurement to firestore
+    /// Called by UI Sheet View to save the newMeasurement to firestore
     func saveMeasurement() async throws {
-        if ProcessInfo.processInfo.isPreviewSimulator { // TODO: why is this here?
+        if ProcessInfo.processInfo.isPreviewSimulator {
             try await Task.sleep(for: .seconds(5))
             return
         }
@@ -89,8 +95,8 @@ class MeasurementManager: Module, EnvironmentAccessible {
         }
         
         logger.info("Saving the following measurement: \(measurement.quantity.description)")
-        await standard.add(sample: measurement)
-        
+        try await standard.addMeasurement(sample: measurement)
+
         logger.info("Save successful!")
         self.clear()
     }
@@ -168,21 +174,17 @@ class MeasurementManager: Module, EnvironmentAccessible {
 
 
 extension MeasurementManager {
-    // Call in preview simulator wrappers
-    // Loads a mock measurement to display in preview
+    /// Call in preview simulator wrappers.
+    ///
+    /// Loads a mock measurement to display in preview.
     func loadMockMeasurement() {
         let device = WeightScaleDevice.createMockDevice()
 
-        // TODO: can we call processMeasurement for minimal code and highest coverage!
-
-        self.deviceName = device.name
-        self.deviceInformation = device.deviceInformation
-        self.weightScaleParams = device.service.features
-
         guard let measurement = device.service.weightMeasurement else {
-            return // TODO: are we logging anything?
+            logger.error("Mock measurement was never injected!")
+            return
         }
 
-        self.loadMeasurement(measurement)
+        handleMeasurement(measurement, from: device)
     }
 }

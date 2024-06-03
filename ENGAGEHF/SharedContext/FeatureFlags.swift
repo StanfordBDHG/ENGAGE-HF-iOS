@@ -23,4 +23,6 @@ enum FeatureFlags {
     #endif
     /// Test mock Bluetooth devices and show extended controls to manage testing procedures.
     static let testMockDevices = CommandLine.arguments.contains("--testMockDevices")
+    /// Set up test environment (User account with valid invitation code).
+    static let setupTestEnvironment = CommandLine.arguments.contains("--setupTestEnvironment")
 }

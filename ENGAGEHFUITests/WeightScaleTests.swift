@@ -16,7 +16,7 @@ final class WeightScaleTests: XCTestCase {
         continueAfterFailure = false
 
         let app = XCUIApplication()
-        app.launchArguments = ["--skipOnboarding", "--testMockDevices"]
+        app.launchArguments = ["--skipOnboarding", "--testMockDevices", "--setupTestEnvironment"]
         app.launch()
     }
 
@@ -45,6 +45,8 @@ final class WeightScaleTests: XCTestCase {
         app.buttons["Save"].tap()
         sleep(6)
 
-        // TODO: how to assert existence?
+        // We currently consider the test to be successful give that there wasn't any error saving the measurement to firestore.
+        // Additional assertions can be added once the UI PR is merged and data is actually displayed in the app.
+        XCTAssertFalse(app.alerts.element.exists)
     }
 }

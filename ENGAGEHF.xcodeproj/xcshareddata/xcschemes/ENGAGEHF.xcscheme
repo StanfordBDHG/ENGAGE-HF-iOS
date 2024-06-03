@@ -82,12 +82,20 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "--showOnboarding"
+            argument = "--setupTestEnvironment"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "--skipOnboarding"
+            argument = "--testMockDevices"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--showOnboarding"
             isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--skipOnboarding"
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--testSchedule"

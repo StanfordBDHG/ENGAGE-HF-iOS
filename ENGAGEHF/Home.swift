@@ -9,6 +9,7 @@
 import BluetoothServices
 import SpeziAccount
 import SpeziBluetooth
+import SpeziOnboarding
 import SpeziViews
 import SwiftUI
 
@@ -50,7 +51,10 @@ struct HomeView: View {
                 AccountSheet()
             }
             .accountRequired(Self.accountEnabled) {
-                AccountSheet() // TODO: persent invitation code flow?
+                OnboardingStack {
+                    InvitationCodeView()
+                    AccountSheet()
+                }
             }
             .verifyRequiredAccountDetails(Self.accountEnabled)
             .sheet(

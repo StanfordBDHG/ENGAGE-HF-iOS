@@ -37,18 +37,12 @@ class WeightScaleDevice: BluetoothDevice, Identifiable {
         if !service.$weightMeasurement.isPresent {
             return
         }
-        
-        // TODO: can we avoid static property access?
-        MeasurementManager.manager.deviceInformation = deviceInformation
-        MeasurementManager.manager.weightScaleParams = service.features
-        MeasurementManager.manager.deviceName = name
-        
-        MeasurementManager.manager.loadMeasurement(measurement)
+
+        MeasurementManager.manager.handleMeasurement(measurement, from: self)
     }
 }
 
 
-// TODO: move somewhere!
 extension WeightMeasurement.Unit {
     var massUnit: String {
         switch self {
@@ -62,7 +56,7 @@ extension WeightMeasurement.Unit {
 
 
 extension WeightScaleDevice {
-    static func createMockDevice() -> WeightScaleDevice {
+    static func createMockDevice(weight: UInt16 = 8400, resolution: WeightScaleFeature.WeightResolution = .resolution5g) -> WeightScaleDevice {
         let device = WeightScaleDevice()
 
         device.deviceInformation.$manufacturerName.inject("Mock Weight Scale")
@@ -70,24 +64,17 @@ extension WeightScaleDevice {
         device.deviceInformation.$hardwareRevision.inject("2")
         device.deviceInformation.$firmwareRevision.inject("1.0")
 
-        // TODO: adjust features to real world values
+        // mocks the values as reported by the real device
         let features = WeightScaleFeature(
-            weightResolution: .resolution10g,
-            heightResolution: .resolution1mm,
-            options: .timeStampSupported,
-            .bmiSupported,
-            .multipleUsersSupported
+            weightResolution: resolution,
+            heightResolution: .unspecified,
+            options: .timeStampSupported
         )
 
-        // TODO: adjustabale weight measurements?
         let measurement = WeightMeasurement(
-            weight: 8400,
-            unit: .si,
-            timeStamp: DateTime(hours: 0, minutes: 0, seconds: 0),
-            userId: 42,
-            additionalInfo: .init(bmi: 20, height: 180)
+            weight: weight,
+            unit: .si
         )
-        // TODO: adjust, real-world feature sets with measurement!
         
         device.service.$features.inject(features)
         device.service.$weightMeasurement.inject(measurement)

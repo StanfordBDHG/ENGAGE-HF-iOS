@@ -6,9 +6,6 @@
 // SPDX-License-Identifier: MIT
 //
 
-import Firebase
-import FirebaseAuth
-import FirebaseFunctions
 import SpeziOnboarding
 import SpeziValidation
 import SpeziViews
@@ -17,11 +14,23 @@ import SwiftUI
 
 struct InvitationCodeView: View {
     @Environment(OnboardingNavigationPath.self) private var onboardingNavigationPath
+    @Environment(InvitationCodeModule.self) private var invitationCodeModule
+
     @State private var invitationCode = ""
     @State private var viewState: ViewState = .idle
+
     @ValidationState private var validation
     
-    
+
+    private var invitationCodeValidationRule: ValidationRule {
+        ValidationRule(
+            rule: { invitationCode in
+                invitationCode.count >= 8
+            },
+            message: "An invitation code is at least 8 characters long."
+        )
+    }
+
     var body: some View {
         ScrollView {
             VStack(spacing: 32) {
@@ -40,11 +49,16 @@ struct InvitationCodeView: View {
                             return
                         }
                         
-                        await verifyOnboardingCode()
+                        do {
+                            try await invitationCodeModule.verifyOnboardingCode(invitationCode)
+                            onboardingNavigationPath.nextStep()
+                        } catch {
+                            viewState = .error(AnyLocalizedError(error: error))
+                        }
                     },
                     secondaryText: "I Already Have an Account",
                     secondaryAction: {
-                        try Auth.auth().signOut()
+                        invitationCodeModule.signOutAccount()
                         onboardingNavigationPath.nextStep()
                     }
                 )
@@ -63,7 +77,7 @@ struct InvitationCodeView: View {
             Text("Invitation Code")
         } content: {
             VerifiableTextField(
-                LocalizedStringResource("Invitation Code"),
+                "Invitation Code",
                 text: $invitationCode
             )
                 .autocorrectionDisabled(true)
@@ -85,72 +99,16 @@ struct InvitationCodeView: View {
             Text("Please enter your invitation code to join the ENGAGE-HF study.")
         }
     }
-    
-    private var invitationCodeValidationRule: ValidationRule {
-        ValidationRule(
-            rule: { invitationCode in
-                invitationCode.count >= 8
-            },
-            message: "An invitation code is at least 8 characters long."
-        )
-    }
-    
-    init() {
-        if FeatureFlags.useFirebaseEmulator {
-            Functions.functions().useEmulator(withHost: "localhost", port: 5001)
-        }
-    }
-    
-    private func verifyOnboardingCode() async {
-        do {
-            if FeatureFlags.disableFirebase {
-                guard invitationCode == "ENGAGEHFTEST1" else {
-                    throw InvitationCodeError.invitationCodeInvalid
-                }
-                
-                try? await Task.sleep(for: .seconds(0.25))
-            } else {
-                try Auth.auth().signOut()
-                
-                try await Auth.auth().signInAnonymously()
-                let checkInvitationCode = Functions.functions().httpsCallable("checkInvitationCode")
-                
-                do {
-                    _ = try await checkInvitationCode.call(
-                        [
-                            "invitationCode": invitationCode
-                        ]
-                    )
-                } catch {
-                    throw InvitationCodeError.invitationCodeInvalid
-                }
-            }
-            
-            await onboardingNavigationPath.nextStep()
-        } catch let error as NSError {
-            if let errorCode = FunctionsErrorCode(rawValue: error.code) {
-                // Handle Firebase-specific errors.
-                switch errorCode {
-                case .unauthenticated:
-                    viewState = .error(InvitationCodeError.userNotAuthenticated)
-                case .notFound:
-                    viewState = .error(InvitationCodeError.invitationCodeInvalid)
-                default:
-                    viewState = .error(InvitationCodeError.generalError(error.localizedDescription))
-                }
-            } else {
-                // Handle other errors, such as network issues or unexpected behavior.
-                viewState = .error(InvitationCodeError.generalError(error.localizedDescription))
-            }
-        }
-    }
+
+    init() {}
 }
 
 
 #Preview {
-    FirebaseApp.configure()
-    
-    return OnboardingStack {
+    OnboardingStack {
         InvitationCodeView()
     }
+        .previewWith(standard: ENGAGEHFStandard()) {
+            InvitationCodeModule()
+        }
 }

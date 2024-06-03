@@ -64,12 +64,20 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, HealthKitConstraint, On
         }
     }
 
+    func add(sample: HKSample) async { // kept for compatibility with the Standard Constraint
+        do {
+            try await self.addMeasurement(sample: sample)
+        } catch {
+            logger.error("Could not store HealthKit sample: \(error)")
+        }
+    }
 
-    func add(sample: HKSample) async {
+
+    func addMeasurement(sample: HKSample) async throws {
         do {
             try await healthKitDocument(id: sample.id).setData(from: sample.resource)
         } catch {
-            logger.error("Could not store HealthKit sample: \(error)")
+            throw FirestoreError(error)
         }
     }
     
