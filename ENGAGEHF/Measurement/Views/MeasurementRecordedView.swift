@@ -60,4 +60,17 @@ struct MeasurementRecordedView: View {
             measurementManager
         }
 }
+
+#Preview {
+    let measurementManager = MeasurementManager()
+    measurementManager.loadMockBloodPressureMeasurement()
+
+    return Text(verbatim: "")
+        .sheet(isPresented: .constant(true)) {
+            MeasurementRecordedView()
+        }
+        .previewWith(standard: ENGAGEHFStandard()) {
+            measurementManager
+        }
+}
 #endif

@@ -34,7 +34,9 @@ extension CurrentTimeService {
         Task {
             let exactTime = ExactTime256(from: .now)
             do {
+                // TODO: SWIFT TASK CONTINUATION MISUSE: write(data:for:) leaked its continuation!
                 try await $currentTime.write(CurrentTime(time: exactTime))
+                // TODO: we got 0x80 response!
                 Self.logger.debug("Updated weight scale device time to \(String(describing: exactTime))")
             } catch {
                 Self.logger.warning("Failed to update current time: \(error)")

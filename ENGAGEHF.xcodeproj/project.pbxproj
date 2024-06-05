@@ -76,6 +76,12 @@
 		A96C56BF2C0E334A00D6A50B /* BloodPressureCuffDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96C56BE2C0E334A00D6A50B /* BloodPressureCuffDevice.swift */; };
 		A96C56C32C0E356900D6A50B /* CurrentTimeService+Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96C56C22C0E356900D6A50B /* CurrentTimeService+Update.swift */; };
 		A9720E432ABB68CC00872D23 /* AccountSetupHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9720E422ABB68CC00872D23 /* AccountSetupHeader.swift */; };
+		A996F4442C1081A2002328C5 /* WeightMeasurement.Unit+HKUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A996F4432C1081A2002328C5 /* WeightMeasurement.Unit+HKUnit.swift */; };
+		A996F4462C1081EB002328C5 /* BloodPressureMeasurement.Unit+HKUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A996F4452C1081EB002328C5 /* BloodPressureMeasurement.Unit+HKUnit.swift */; };
+		A996F4482C1081F8002328C5 /* HealthDevice+HKDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = A996F4472C1081F8002328C5 /* HealthDevice+HKDevice.swift */; };
+		A996F44A2C1082BA002328C5 /* HealthDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = A996F4492C1082BA002328C5 /* HealthDevice.swift */; };
+		A996F44D2C1083E4002328C5 /* WeightMeasurement+HKSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = A996F44C2C1083E4002328C5 /* WeightMeasurement+HKSample.swift */; };
+		A996F44F2C10861D002328C5 /* BloodPressureMeasurement+HKSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = A996F44E2C10861D002328C5 /* BloodPressureMeasurement+HKSample.swift */; };
 		A9D83F962B083794000D0C78 /* SpeziFirebaseAccountStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A9D83F952B083794000D0C78 /* SpeziFirebaseAccountStorage */; };
 		A9DFE8A92ABE551400428242 /* AccountButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DFE8A82ABE551400428242 /* AccountButton.swift */; };
 		A9FE7AD02AA39BAB0077B045 /* AccountSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FE7ACF2AA39BAB0077B045 /* AccountSheet.swift */; };
@@ -147,6 +153,12 @@
 		A96C56BE2C0E334A00D6A50B /* BloodPressureCuffDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloodPressureCuffDevice.swift; sourceTree = "<group>"; };
 		A96C56C22C0E356900D6A50B /* CurrentTimeService+Update.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CurrentTimeService+Update.swift"; sourceTree = "<group>"; };
 		A9720E422ABB68CC00872D23 /* AccountSetupHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSetupHeader.swift; sourceTree = "<group>"; };
+		A996F4432C1081A2002328C5 /* WeightMeasurement.Unit+HKUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeightMeasurement.Unit+HKUnit.swift"; sourceTree = "<group>"; };
+		A996F4452C1081EB002328C5 /* BloodPressureMeasurement.Unit+HKUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BloodPressureMeasurement.Unit+HKUnit.swift"; sourceTree = "<group>"; };
+		A996F4472C1081F8002328C5 /* HealthDevice+HKDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HealthDevice+HKDevice.swift"; sourceTree = "<group>"; };
+		A996F4492C1082BA002328C5 /* HealthDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDevice.swift; sourceTree = "<group>"; };
+		A996F44C2C1083E4002328C5 /* WeightMeasurement+HKSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeightMeasurement+HKSample.swift"; sourceTree = "<group>"; };
+		A996F44E2C10861D002328C5 /* BloodPressureMeasurement+HKSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BloodPressureMeasurement+HKSample.swift"; sourceTree = "<group>"; };
 		A9DFE8A82ABE551400428242 /* AccountButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountButton.swift; sourceTree = "<group>"; };
 		A9FE7ACF2AA39BAB0077B045 /* AccountSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -279,22 +291,13 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		4D49AAFB2BC9D46F00C77310 /* Bluetooth */ = {
-			isa = PBXGroup;
-			children = (
-				4D19ECFC2BE5B9F200CDBAA8 /* Views */,
-				4D49AB142BCF6FC400C77310 /* Devices */,
-				4D052DB72BE07892006A784E /* MeasurementManager.swift */,
-			);
-			path = Bluetooth;
-			sourceTree = "<group>";
-		};
 		4D49AB142BCF6FC400C77310 /* Devices */ = {
 			isa = PBXGroup;
 			children = (
 				A96C56C12C0E356100D6A50B /* Services */,
 				4D49AB052BC9D56900C77310 /* WeightScaleDevice.swift */,
 				A96C56BE2C0E334A00D6A50B /* BloodPressureCuffDevice.swift */,
+				A996F4492C1082BA002328C5 /* HealthDevice.swift */,
 			);
 			path = Devices;
 			sourceTree = "<group>";
@@ -338,7 +341,9 @@
 				2FF53D8C2A8729D600042B76 /* ENGAGEHFStandard.swift */,
 				2F4E23822989D51F0013F3D9 /* ENGAGEHFTestingSetup.swift */,
 				2FC975A72978F11A00BA99FE /* Home.swift */,
-				4D49AAFB2BC9D46F00C77310 /* Bluetooth */,
+				4D49AB142BCF6FC400C77310 /* Devices */,
+				A996F4422C108186002328C5 /* Measurement */,
+				4D052DB72BE07892006A784E /* MeasurementManager.swift */,
 				4DB025B52BBDE8EC002D2545 /* Dashboard */,
 				A9720E412ABB68B300872D23 /* Account */,
 				2FE5DC2829EDD398004B9AB4 /* Onboarding */,
@@ -394,6 +399,27 @@
 				A96C56BA2C0DFFCE00D6A50B /* InvitationCodeModule.swift */,
 			);
 			path = Account;
+			sourceTree = "<group>";
+		};
+		A996F4422C108186002328C5 /* Measurement */ = {
+			isa = PBXGroup;
+			children = (
+				A996F44B2C1083B6002328C5 /* Conversions */,
+				4D19ECFC2BE5B9F200CDBAA8 /* Views */,
+			);
+			path = Measurement;
+			sourceTree = "<group>";
+		};
+		A996F44B2C1083B6002328C5 /* Conversions */ = {
+			isa = PBXGroup;
+			children = (
+				A996F4432C1081A2002328C5 /* WeightMeasurement.Unit+HKUnit.swift */,
+				A996F4452C1081EB002328C5 /* BloodPressureMeasurement.Unit+HKUnit.swift */,
+				A996F4472C1081F8002328C5 /* HealthDevice+HKDevice.swift */,
+				A996F44C2C1083E4002328C5 /* WeightMeasurement+HKSample.swift */,
+				A996F44E2C10861D002328C5 /* BloodPressureMeasurement+HKSample.swift */,
+			);
+			path = Conversions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -588,8 +614,10 @@
 				4D19ED012BE5CAFC00CDBAA8 /* MeasurementRecordedView.swift in Sources */,
 				2FE5DCB129EE6107004B9AB4 /* AccountOnboarding.swift in Sources */,
 				2FE5DC3A29EDD7CA004B9AB4 /* Welcome.swift in Sources */,
+				A996F4462C1081EB002328C5 /* BloodPressureMeasurement.Unit+HKUnit.swift in Sources */,
 				2FE5DC3829EDD7CA004B9AB4 /* InterestingModules.swift in Sources */,
 				2FE5DC3529EDD7CA004B9AB4 /* Consent.swift in Sources */,
+				A996F44A2C1082BA002328C5 /* HealthDevice.swift in Sources */,
 				4DBDD3442BBFAD64001FB0CA /* InvitationCodeError.swift in Sources */,
 				2FC975A82978F11A00BA99FE /* Home.swift in Sources */,
 				4DDFC7792BFB4E7D002B07A1 /* ViewElements.swift in Sources */,
@@ -602,18 +630,22 @@
 				4D052DB82BE07892006A784E /* MeasurementManager.swift in Sources */,
 				A96C56BB2C0DFFCE00D6A50B /* InvitationCodeModule.swift in Sources */,
 				4DB025D82BBF2EEC002D2545 /* Greeting.swift in Sources */,
+				A996F4482C1081F8002328C5 /* HealthDevice+HKDevice.swift in Sources */,
 				A9720E432ABB68CC00872D23 /* AccountSetupHeader.swift in Sources */,
 				2FE5DC4029EDD7EE004B9AB4 /* FeatureFlags.swift in Sources */,
 				2FE5DC4629EDD7F2004B9AB4 /* Bundle+Image.swift in Sources */,
 				A96C56BF2C0E334A00D6A50B /* BloodPressureCuffDevice.swift in Sources */,
 				2F4E23832989D51F0013F3D9 /* ENGAGEHFTestingSetup.swift in Sources */,
 				2F5E32BD297E05EA003432F8 /* ENGAGEHFDelegate.swift in Sources */,
+				A996F4442C1081A2002328C5 /* WeightMeasurement.Unit+HKUnit.swift in Sources */,
 				4DDFC7702BFAEAD7002B07A1 /* ConfirmMeasurementButton.swift in Sources */,
 				A9FE7AD02AA39BAB0077B045 /* AccountSheet.swift in Sources */,
+				A996F44D2C1083E4002328C5 /* WeightMeasurement+HKSample.swift in Sources */,
 				653A2551283387FE005D4D48 /* ENGAGEHF.swift in Sources */,
 				2FE5DC3629EDD7CA004B9AB4 /* HealthKitPermissions.swift in Sources */,
 				2F65B44E2A3B8B0600A36932 /* NotificationPermissions.swift in Sources */,
 				2FE5DC2629EDD38A004B9AB4 /* Contacts.swift in Sources */,
+				A996F44F2C10861D002328C5 /* BloodPressureMeasurement+HKSample.swift in Sources */,
 				4DBDD3462BBFAE2D001FB0CA /* InvitationCodeView.swift in Sources */,
 				A96C56C32C0E356900D6A50B /* CurrentTimeService+Update.swift in Sources */,
 				4D49AB062BC9D56900C77310 /* WeightScaleDevice.swift in Sources */,
@@ -1130,8 +1162,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/StanfordSpezi/Spezi";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.1.0;
+				branch = "feature/dynamic-module-loading";
+				kind = branch;
 			};
 		};
 		2F66D20D2BB723180010D555 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
@@ -1234,8 +1266,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/StanfordSpezi/SpeziBluetooth.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.4.1;
+				branch = "feature/device-as-modules";
+				kind = branch;
 			};
 		};
 		5661551B2AB8384200209B80 /* XCRemoteSwiftPackageReference "swift-package-list" */ = {

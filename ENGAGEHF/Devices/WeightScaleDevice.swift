@@ -16,7 +16,7 @@ import OSLog
 ///
 /// On new measurement, loads the measurement into the MeasurementManager
 /// as a HealthKit HKQuantitySample.
-class WeightScaleDevice: BluetoothDevice, Identifiable {
+class WeightScaleDevice: BluetoothDevice, Identifiable, HealthDevice {
     private static let logger = Logger(subsystem: "ENGAGEHF", category: "WeightScale")
 
     @DeviceState(\.id) var id: UUID
@@ -30,7 +30,10 @@ class WeightScaleDevice: BluetoothDevice, Identifiable {
     
     @DeviceAction(\.connect) var connect
     @DeviceAction(\.disconnect) var disconnect
-    
+
+
+    @Dependency private var measurementManager: MeasurementManager?
+
     
     required init() {
         $state
@@ -48,21 +51,12 @@ class WeightScaleDevice: BluetoothDevice, Identifiable {
     }
 
     private func processMeasurement(_ measurement: WeightMeasurement) {
+        guard let measurementManager else {
+            preconditionFailure("Measurement Manager was not configured")
+        }
         // TODO: add custom string convertible conformance to all characteristics!
         Self.logger.debug("Received new weight measurement: \(String(describing: measurement))")
-        MeasurementManager.manager.handleMeasurement(measurement, from: self)
-    }
-}
-
-
-extension WeightMeasurement.Unit {
-    var massUnit: String {
-        switch self {
-        case .si:
-            return "kg"
-        case .imperial:
-            return "lb"
-        }
+        measurementManager.handleNewMeasurement(.weight(measurement, weightScale.features ?? []), from: self)
     }
 }
 
@@ -97,6 +91,7 @@ extension WeightScaleDevice {
 
         device.$connect.inject { @MainActor [weak device] in
             device?.$state.inject(.connecting)
+            // TODO: onchange!
 
             try? await Task.sleep(for: .seconds(1))
 

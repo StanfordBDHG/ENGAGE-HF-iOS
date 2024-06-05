@@ -186,8 +186,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/Spezi",
       "state" : {
-        "revision" : "c43e4fa3d3938a847de2b677091a34ddaea5bc76",
-        "version" : "1.2.3"
+        "branch" : "feature/dynamic-module-loading",
+        "revision" : "24eee5c25308331c81f7fbb05d11dae637e01601"
       }
     },
     {
@@ -204,8 +204,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziBluetooth.git",
       "state" : {
-        "revision" : "4e1bdee198904a319915cec4804dd0327f06b9ba",
-        "version" : "1.4.1"
+        "branch" : "feature/device-as-modules",
+        "revision" : "5a4f069e655d8144de1c6b666198258a7b30a3c1"
       }
     },
     {
@@ -231,8 +231,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziFirebase.git",
       "state" : {
-        "revision" : "16c1c751c14b08ae593eacf9bc2752c2e070fe2f",
-        "version" : "1.1.0"
+        "revision" : "f05c859f75d317dca9b378b7f8a7cfa8e135df04",
+        "version" : "1.1.1"
       }
     },
     {
@@ -330,8 +330,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-nio.git",
       "state" : {
-        "revision" : "359c461e5561d22c6334828806cc25d759ca7aa6",
-        "version" : "2.65.0"
+        "revision" : "9428f62793696d9a0cc1f26a63f63bb31da0516d",
+        "version" : "2.66.0"
       }
     },
     {
