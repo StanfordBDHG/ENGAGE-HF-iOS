@@ -186,8 +186,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/Spezi",
       "state" : {
-        "branch" : "feature/dynamic-module-loading",
-        "revision" : "24eee5c25308331c81f7fbb05d11dae637e01601"
+        "revision" : "734f90c19422a4196762b0e1dd055471066e89ee",
+        "version" : "1.3.0"
       }
     },
     {
@@ -204,8 +204,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziBluetooth.git",
       "state" : {
-        "revision" : "efd58ff41d682a2b5b39a55be6de30b311b099dd",
-        "version" : "1.5.0"
+        "branch" : "main",
+        "revision" : "bc2f4ff92ca8aeb64b4c85620d9ca4d5e2ba7711"
       }
     },
     {
