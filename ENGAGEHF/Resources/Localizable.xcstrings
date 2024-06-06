@@ -289,6 +289,9 @@
         }
       }
     },
+    "Invalid Sample" : {
+
+    },
     "Invitation Code" : {
 
     },
@@ -367,6 +370,9 @@
     },
     "The invitation code is invalid or has already been used." : {
       "comment" : "Invitation Code Invalid"
+    },
+    "Trigger Blood Pressure Measurement" : {
+
     },
     "Trigger Weight Measurement" : {
 

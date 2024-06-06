@@ -204,8 +204,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziBluetooth.git",
       "state" : {
-        "branch" : "feature/device-as-modules",
-        "revision" : "5a4f069e655d8144de1c6b666198258a7b30a3c1"
+        "revision" : "efd58ff41d682a2b5b39a55be6de30b311b099dd",
+        "version" : "1.5.0"
       }
     },
     {

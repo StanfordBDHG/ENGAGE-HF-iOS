@@ -7,38 +7,45 @@
 //
 
 import BluetoothServices
+import CoreBluetooth
 import Foundation
 import OSLog
 
 
 extension CurrentTimeService {
-    private static var logger: Logger { // TODO: how to deal with that?
+    private static var logger: Logger {
         Logger(subsystem: "edu.stanford.bluetooth", category: "CurrentTimeService")
     }
 
-    // TODO: consider moving to SpeziBluetooth!
-    func ensureUpdatedTime() { // TODO: better name?
+    func synchronizeDeviceTime(now: Date = .now) {
         // check if time update is necessary
         if let currentTime = currentTime,
            let deviceTime = currentTime.time.date {
-            // TODO: what are the default (empty values)? is this check sufficient? (check for zero year, month, day?)
-            let difference = abs(deviceTime.timeIntervalSinceReferenceDate - Date.now.timeIntervalSinceReferenceDate)
-            if difference < 5 {
-                // TODO: better value?
-                return // we consider 5 second difference accurate enough?)
+            let difference = abs(deviceTime.timeIntervalSinceReferenceDate - now.timeIntervalSinceReferenceDate)
+            if difference < 1 {
+                return // we consider 1 second difference accurate enough
             }
+
+            Self.logger.debug("Current time difference is \(difference)s. Device time: \(String(describing: currentTime)). Updating time ...")
+        } else {
+            Self.logger.debug("Unknown current time (\(String(describing: self.currentTime)). Updating time ...")
         }
 
 
         // update time if it isn't present or if it is outdated
         Task {
-            let exactTime = ExactTime256(from: .now)
+            let exactTime = ExactTime256(from: now)
             do {
-                // TODO: SWIFT TASK CONTINUATION MISUSE: write(data:for:) leaked its continuation!
                 try await $currentTime.write(CurrentTime(time: exactTime))
-                // TODO: we got 0x80 response!
-                Self.logger.debug("Updated weight scale device time to \(String(describing: exactTime))")
-            } catch {
+                Self.logger.debug("Updated device time to \(String(describing: exactTime))")
+            } catch let error as NSError {
+                if error.domain == CBATTError.errorDomain {
+                    let attError = CBATTError(_nsError: error)
+                    if attError.code == CBATTError.Code(rawValue: 0x80) {
+                        Self.logger.debug("Device ignored some date fields. Updated device time to \(String(describing: exactTime)).")
+                        return
+                    }
+                }
                 Self.logger.warning("Failed to update current time: \(error)")
             }
         }

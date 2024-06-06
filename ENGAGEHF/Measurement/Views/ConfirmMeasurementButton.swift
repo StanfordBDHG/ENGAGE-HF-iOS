@@ -28,6 +28,8 @@ struct DiscardButton: View {
 
 
 struct ConfirmMeasurementButton: View {
+    private let confirm: () async throws -> Void
+
     @ScaledMetric private var buttonHeight: CGFloat = 38
     @Binding var viewState: ViewState
     
@@ -35,35 +37,31 @@ struct ConfirmMeasurementButton: View {
 
     var body: some View {
         VStack {
-            AsyncButton(
-               state: $viewState,
-               action: {
-                   try await measurementManager.saveMeasurement()
-               },
-               label: {
-                   Text("Save")
-                       .frame(maxWidth: .infinity, maxHeight: buttonHeight)
-                       .font(.title2)
-                       .bold()
-               }
-           )
+            AsyncButton(state: $viewState, action: confirm) {
+                Text("Save")
+                    .frame(maxWidth: .infinity, maxHeight: buttonHeight)
+                    .font(.title2)
+                    .bold()
+            }
                .buttonStyle(.borderedProminent)
-               .viewStateAlert(state: $viewState)
             
             DiscardButton(viewState: $viewState)
                 .padding(.top, 10)
         }
             .padding()
     }
+
+    init(viewState: Binding<ViewState>, confirm: @escaping () async throws -> Void) {
+        self._viewState = viewState
+        self.confirm = confirm
+    }
 }
 
 
 #if DEBUG
 #Preview {
-    @State var viewState = ViewState.idle
-    return ConfirmMeasurementButton(viewState: $viewState)
-        .previewWith(standard: ENGAGEHFStandard()) {
-            MeasurementManager()
-        }
+    ConfirmMeasurementButton(viewState: .constant(.idle)) {
+        print("Save")
+    }
 }
 #endif

@@ -42,19 +42,18 @@ class WeightScaleDevice: BluetoothDevice, Identifiable, HealthDevice {
             .onChange(perform: processMeasurement)
     }
 
-    private func handleStateChange(_ state: PeripheralState) { // TODO: call from the mock device!
+    private func handleStateChange(_ state: PeripheralState) {
         guard case .connected = state else {
             return
         }
 
-        time.ensureUpdatedTime()
+        time.synchronizeDeviceTime()
     }
 
     private func processMeasurement(_ measurement: WeightMeasurement) {
         guard let measurementManager else {
             preconditionFailure("Measurement Manager was not configured")
         }
-        // TODO: add custom string convertible conformance to all characteristics!
         Self.logger.debug("Received new weight measurement: \(String(describing: measurement))")
         measurementManager.handleNewMeasurement(.weight(measurement, weightScale.features ?? []), from: self)
     }
@@ -91,15 +90,17 @@ extension WeightScaleDevice {
 
         device.$connect.inject { @MainActor [weak device] in
             device?.$state.inject(.connecting)
-            // TODO: onchange!
+            device?.handleStateChange(.connecting)
 
             try? await Task.sleep(for: .seconds(1))
 
             device?.$state.inject(.connected)
+            device?.handleStateChange(.connected)
         }
 
         device.$disconnect.inject { @MainActor [weak device] in
             device?.$state.inject(.disconnected)
+            device?.handleStateChange(.disconnected)
         }
 
         return device

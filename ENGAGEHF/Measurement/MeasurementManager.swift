@@ -6,27 +6,9 @@
 // SPDX-License-Identifier: MIT
 //
 
-import BluetoothServices
-import FirebaseAuth
-import FirebaseCore
-import FirebaseFirestore
 import Foundation
-import HealthKit
 import OSLog
 import Spezi
-@_spi(TestingSupport) import SpeziBluetooth
-import SpeziFirestore
-
-
-enum Measurement {
-    case weight(WeightMeasurement, WeightScaleFeature)
-    case bloodPressure(BloodPressureMeasurement, BloodPressureFeature)
-}
-
-enum ProcessedMeasurement {
-    case weight(HKQuantitySample)
-    case bloodPressure(HKCorrelation, heartRate: HKQuantitySample? = nil)
-}
 
 
 /// Manage and process incoming measurements.
@@ -38,19 +20,6 @@ enum ProcessedMeasurement {
 /// - Save a given measurement to Firebase
 @Observable
 class MeasurementManager: Module, EnvironmentAccessible {
-    // TODO: make it an item sheet!
-    var showSheet: Bool {
-        get {
-            newMeasurement != nil
-        }
-        set {
-            if !newValue {
-                self.newMeasurement = nil
-            }
-        }
-    }
-    
-    
     @ObservationIgnored @StandardActor private var standard: ENGAGEHFStandard
     private let logger = Logger(subsystem: "ENGAGEHF", category: "MeasurementManager")
 
@@ -58,17 +27,10 @@ class MeasurementManager: Module, EnvironmentAccessible {
 
     
     init() {}
-    
-    
-    /// Called to reset measurement manager after taking a measurement
-    func clear() { // TODO: still required?
-        self.newMeasurement = nil
-    }
 
     func handleNewMeasurement<Device: HealthDevice>(_ measurement: Measurement, from device: Device) {
         let hkDevice = device.hkDevice
 
-        // TODO: update log message here!
         switch measurement {
         case let .weight(measurement, feature):
             let sample = measurement.quantitySample(source: hkDevice, resolution: feature.weightResolution)
@@ -96,7 +58,6 @@ class MeasurementManager: Module, EnvironmentAccessible {
             return
         }
 
-        // TODO: get rid of all String(describing:)!
         logger.info("Saving the following measurement: \(String(describing: measurement))")
         do {
             switch measurement {
@@ -114,16 +75,17 @@ class MeasurementManager: Module, EnvironmentAccessible {
         }
 
         logger.info("Save successful!")
-        self.clear()
+        newMeasurement = nil
     }
 }
 
 
+#if DEBUG || TEST
 extension MeasurementManager {
     /// Call in preview simulator wrappers.
     ///
     /// Loads a mock measurement to display in preview.
-    func loadMockMeasurement() { // TODO: rename
+    func loadMockWeightMeasurement() {
         let device = WeightScaleDevice.createMockDevice()
 
         guard let measurement = device.weightScale.weightMeasurement else {
@@ -133,6 +95,9 @@ extension MeasurementManager {
         handleNewMeasurement(.weight(measurement, device.weightScale.features ?? []), from: device)
     }
 
+    /// Call in preview simulator wrappers.
+    ///
+    /// Loads a mock measurement to display in preview.
     func loadMockBloodPressureMeasurement() {
         let device = BloodPressureCuffDevice.createMockDevice()
 
@@ -142,6 +107,5 @@ extension MeasurementManager {
 
         handleNewMeasurement(.bloodPressure(measurement, device.bloodPressure.features ?? []), from: device)
     }
-
-    // TODO: heart rate equivalent!
 }
+#endif

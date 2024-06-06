@@ -11,20 +11,20 @@ import HealthKit
 
 
 extension BloodPressureMeasurement {
-    func bloodPressureSample(source device: HKDevice) -> HKCorrelation {
+    func bloodPressureSample(source device: HKDevice?) -> HKCorrelation {
         let unit: HKUnit = unit.hkUnit
 
         let systolic = HKQuantity(unit: unit, doubleValue: systolicValue.double)
         let diastolic = HKQuantity(unit: unit, doubleValue: diastolicValue.double)
 
-        let systolicQuantityType = HKQuantityType(.bloodPressureSystolic)
-        let diastolicQuantityType = HKQuantityType(.bloodPressureDiastolic)
+        let systolicType = HKQuantityType(.bloodPressureSystolic)
+        let diastolicType = HKQuantityType(.bloodPressureDiastolic)
         let correlationType = HKCorrelationType(.bloodPressure)
 
         let date = timeStamp?.date ?? .now
 
-        let systolicSample = HKQuantitySample(type: systolicQuantityType, quantity: systolic, start: date, end: date, device: device, metadata: nil)
-        let diastolicSample = HKQuantitySample(type: diastolicQuantityType, quantity: diastolic, start: date, end: date, device: device, metadata: nil)
+        let systolicSample = HKQuantitySample(type: systolicType, quantity: systolic, start: date, end: date, device: device, metadata: nil)
+        let diastolicSample = HKQuantitySample(type: diastolicType, quantity: diastolic, start: date, end: date, device: device, metadata: nil)
 
 
         let bloodPressure = HKCorrelation(
@@ -42,7 +42,7 @@ extension BloodPressureMeasurement {
 
 
 extension BloodPressureMeasurement {
-    func heartRateSample(source device: HKDevice) -> HKQuantitySample? {
+    func heartRateSample(source device: HKDevice?) -> HKQuantitySample? {
         guard let pulseRate else {
             return nil
         }
@@ -54,7 +54,6 @@ extension BloodPressureMeasurement {
         let pulse = HKQuantity(unit: bpm, doubleValue: pulseRate.double)
         let date = timeStamp?.date ?? .now
 
-        // TODO: device
         return HKQuantitySample(
             type: pulseQuantityType,
             quantity: pulse,
@@ -65,3 +64,20 @@ extension BloodPressureMeasurement {
         )
     }
 }
+
+
+#if DEBUG || TEST
+extension HKCorrelation {
+    static var mockBloodPressureSample: HKCorrelation {
+        let measurement = BloodPressureMeasurement(systolic: 117, diastolic: 76, meanArterialPressure: 67, unit: .mmHg, pulseRate: 68)
+        return measurement.bloodPressureSample(source: nil)
+    }
+}
+
+extension HKQuantitySample {
+    static var mockHeartRateSample: HKQuantitySample? {
+        let measurement = BloodPressureMeasurement(systolic: 117, diastolic: 76, meanArterialPressure: 67, unit: .mmHg, pulseRate: 68)
+        return measurement.heartRateSample(source: nil)
+    }
+}
+#endif

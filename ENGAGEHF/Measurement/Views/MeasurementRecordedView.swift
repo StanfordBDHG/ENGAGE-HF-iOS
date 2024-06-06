@@ -6,16 +6,17 @@
 // SPDX-License-Identifier: MIT
 //
 
-import BluetoothServices
-@_spi(TestingSupport) import SpeziBluetooth
 import SpeziViews
 import SwiftUI
 
 
 struct MeasurementRecordedView: View {
+    private let measurement: ProcessedMeasurement
+
+    @Environment(MeasurementManager.self) private var measurementManager
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
-    @State var viewState = ViewState.idle
-    
+    @State private var viewState = ViewState.idle
+
 
     private var dynamicDetents: PresentationDetent {
         switch dynamicTypeSize {
@@ -34,43 +35,51 @@ struct MeasurementRecordedView: View {
 
 
     var body: some View {
-        VStack {
-            CloseButtonLayer(viewState: $viewState)
-            Spacer()
-            MeasurementLayer()
-            Spacer()
-            ConfirmMeasurementButton(viewState: $viewState)
+        NavigationStack {
+            VStack {
+                MeasurementLayer(measurement: measurement)
+                Spacer()
+                ConfirmMeasurementButton(viewState: $viewState) {
+                    try await measurementManager.saveMeasurement()
+                }
+            }
+                .viewStateAlert(state: $viewState)
+                .interactiveDismissDisabled(viewState != .idle)
+                .toolbar {
+                    ToolbarItem(placement: .cancellationAction) {
+                        CloseButtonLayer()
+                            .disabled(viewState != .idle)
+                    }
+                }
         }
             .presentationDetents([dynamicDetents])
-            .interactiveDismissDisabled(viewState != .idle)
+    }
+
+
+    init(measurement: ProcessedMeasurement) {
+        self.measurement = measurement
     }
 }
 
 
 #if DEBUG
 #Preview {
-    let measurementManager = MeasurementManager()
-    measurementManager.loadMockMeasurement()
-
-    return Text(verbatim: "")
+    Text(verbatim: "")
         .sheet(isPresented: .constant(true)) {
-            MeasurementRecordedView()
+            MeasurementRecordedView(measurement: .weight(.mockWeighSample))
         }
         .previewWith(standard: ENGAGEHFStandard()) {
-            measurementManager
+            MeasurementManager()
         }
 }
 
 #Preview {
-    let measurementManager = MeasurementManager()
-    measurementManager.loadMockBloodPressureMeasurement()
-
-    return Text(verbatim: "")
+    Text(verbatim: "")
         .sheet(isPresented: .constant(true)) {
-            MeasurementRecordedView()
+            MeasurementRecordedView(measurement: .bloodPressure(.mockBloodPressureSample, heartRate: .mockHeartRateSample))
         }
         .previewWith(standard: ENGAGEHFStandard()) {
-            measurementManager
+            MeasurementManager()
         }
 }
 #endif

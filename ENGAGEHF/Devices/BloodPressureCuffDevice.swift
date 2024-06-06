@@ -26,9 +26,6 @@ class BloodPressureCuffDevice: BluetoothDevice, Identifiable, HealthDevice {
 
     @DeviceAction(\.connect) var connect
     @DeviceAction(\.disconnect) var disconnect
-
-    // TODO: user data service?
-    // TODO: record access service!
     
     @Dependency private var measurementManager: MeasurementManager?
 
@@ -36,7 +33,7 @@ class BloodPressureCuffDevice: BluetoothDevice, Identifiable, HealthDevice {
         $state
             .onChange(perform: handleStateChange)
         bloodPressure.$bloodPressureMeasurement
-            .onChange(initial: true, perform: processMeasurement)
+            .onChange(perform: processMeasurement)
     }
 
     private func handleStateChange(_ state: PeripheralState) {
@@ -44,7 +41,7 @@ class BloodPressureCuffDevice: BluetoothDevice, Identifiable, HealthDevice {
             return
         }
 
-        time.ensureUpdatedTime()
+        time.synchronizeDeviceTime()
     }
 
     private func processMeasurement(_ measurement: BloodPressureMeasurement) {
@@ -52,14 +49,14 @@ class BloodPressureCuffDevice: BluetoothDevice, Identifiable, HealthDevice {
             preconditionFailure("Measurement Manager was not configured")
         }
 
-        print("Received new measurement: \(measurement)") // TOOD: update log
+        Self.logger.debug("Received new blood pressure measurement: \(String(describing: measurement))")
         measurementManager.handleNewMeasurement(.bloodPressure(measurement, bloodPressure.features ?? []), from: self)
     }
 }
 
 
 extension BloodPressureCuffDevice {
-    static func createMockDevice() -> BloodPressureCuffDevice {
+    static func createMockDevice(systolic: MedFloat16 = 103, diastolic: MedFloat16 = 64, pulseRate: MedFloat16 = 62) -> BloodPressureCuffDevice {
         let device = BloodPressureCuffDevice()
 
         device.deviceInformation.$manufacturerName.inject("Mock Blood Pressure Cuff")
@@ -73,12 +70,12 @@ extension BloodPressureCuffDevice {
         ]
 
         let measurement = BloodPressureMeasurement(
-            systolic: 103,
-            diastolic: 64,
+            systolic: systolic,
+            diastolic: diastolic,
             meanArterialPressure: 77,
             unit: .mmHg,
             timeStamp: DateTime(year: 2024, month: .june, day: 5, hours: 12, minutes: 33, seconds: 11),
-            pulseRate: 62,
+            pulseRate: pulseRate,
             userId: 1,
             measurementStatus: []
         )
@@ -92,15 +89,17 @@ extension BloodPressureCuffDevice {
 
         device.$connect.inject { @MainActor [weak device] in
             device?.$state.inject(.connecting)
-            // TODO: onchange!
+            device?.handleStateChange(.connecting)
 
             try? await Task.sleep(for: .seconds(1))
 
             device?.$state.inject(.connected)
+            device?.handleStateChange(.connected)
         }
 
         device.$disconnect.inject { @MainActor [weak device] in
             device?.$state.inject(.disconnected)
+            device?.handleStateChange(.disconnected)
         }
 
         return device

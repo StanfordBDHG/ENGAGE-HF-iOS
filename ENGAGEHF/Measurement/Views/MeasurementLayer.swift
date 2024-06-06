@@ -6,98 +6,46 @@
 // SPDX-License-Identifier: MIT
 //
 
+import HealthKit
 import SwiftUI
-import HealthKit // TODO: remove?
 
 
 struct MeasurementLayer: View {
-    @Environment(MeasurementManager.self) private var measurementManager
-    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    private let measurement: ProcessedMeasurement
 
-    @ScaledMetric private var measurementTextSize: CGFloat = 50 // TODO: was 60
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     var body: some View {
         VStack(spacing: 15) {
-            switch measurementManager.newMeasurement {
+            switch measurement {
             case let .weight(sample):
-                Text(sample.quantity.description)
-                    .font(.system(size: measurementTextSize, weight: .bold, design: .rounded))
-                    .multilineTextAlignment(.center)
+                WeightMeasurementLabel(sample)
             case let .bloodPressure(bloodPressure, heartRate):
-                let systolic = bloodPressure.objects
-                    .compactMap { sample in
-                        sample as? HKQuantitySample
-                    }
-                    .first(where: { $0.quantityType == HKQuantityType(.bloodPressureSystolic) })!
-                let diastolic = bloodPressure.objects
-                    .compactMap { sample in
-                        sample as? HKQuantitySample
-                    }
-                    .first(where: { $0.quantityType == HKQuantityType(.bloodPressureDiastolic) })!
-
-                // TODO: units!
-                VStack(spacing: 8) {
-                    Text("\(Int(systolic.quantity.doubleValue(for: .millimeterOfMercury())))/\(Int(diastolic.quantity.doubleValue(for: .millimeterOfMercury()))) mmHg")
-                        .font(.system(size: measurementTextSize, weight: .bold, design: .rounded))
-                        .multilineTextAlignment(.center)
-                    if let heartRate {
-                        Text("\(Int(heartRate.quantity.doubleValue(for: .count().unitDivided(by: .minute())))) BPM")
-                            .font(.title)
-                            .fontWeight(.semibold)
-                            .foregroundStyle(.secondary)
-                            .multilineTextAlignment(.center)
-                    }
-                }
-            default:
-                EmptyView() // TODO: support other!
+                BloodPressureMeasurementLabel(bloodPressure, heartRate: heartRate)
             }
+            
             if dynamicTypeSize < .accessibility4 {
                 Text("Measurement Recorded")
                     .font(.title3)
                     .foregroundStyle(.secondary)
-                    .multilineTextAlignment(.center)
             }
         }
+            .multilineTextAlignment(.center)
+    }
+
+
+    init(measurement: ProcessedMeasurement) {
+        self.measurement = measurement
     }
 }
 
 
 #if DEBUG
 #Preview {
-    struct PreviewWrapperMeasurementLayer: View {
-        @Environment(MeasurementManager.self) private var measurementManager
-        
-        
-        var body: some View {
-            MeasurementLayer()
-                .onAppear {
-                    measurementManager.loadMockMeasurement()
-                }
-        }
-    }
-    
-    return PreviewWrapperMeasurementLayer()
-        .previewWith(standard: ENGAGEHFStandard()) {
-            MeasurementManager()
-        }
+    MeasurementLayer(measurement: .weight(.mockWeighSample))
 }
 
 #Preview {
-    struct PreviewWrapperMeasurementLayer: View {
-        @Environment(MeasurementManager.self) private var measurementManager
-
-
-        var body: some View {
-            MeasurementLayer()
-                .onAppear {
-                    measurementManager.loadMockBloodPressureMeasurement()
-                }
-        }
-    }
-
-    return PreviewWrapperMeasurementLayer()
-        .previewWith(standard: ENGAGEHFStandard()) {
-            MeasurementManager()
-        }
+    MeasurementLayer(measurement: .bloodPressure(.mockBloodPressureSample, heartRate: .mockHeartRateSample))
 }
 #endif
