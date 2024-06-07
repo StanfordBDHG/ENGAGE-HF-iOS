@@ -27,6 +27,7 @@ struct Dashboard: View {
                         AccountButton(isPresented: $presentingAccount)
                     }
                 }
+#if DEBUG || TEST
                 .toolbar {
                     if FeatureFlags.testMockDevices {
                         ToolbarItemGroup(placement: .secondaryAction) {
@@ -39,6 +40,7 @@ struct Dashboard: View {
                         }
                     }
                 }
+#endif
         }
     }
 }
