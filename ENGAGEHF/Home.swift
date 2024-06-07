@@ -63,15 +63,9 @@ struct HomeView: View {
                 }
             }
             .verifyRequiredAccountDetails(Self.accountEnabled)
-            .sheet(
-                isPresented: $measurementManager.showSheet,
-                onDismiss: {
-                    measurementManager.clear()
-                },
-                content: {
-                    MeasurementRecordedView()
-                }
-            )
+            .sheet(item: $measurementManager.newMeasurement) { measurement in
+                MeasurementRecordedView(measurement: measurement)
+            }
     }
 }
 

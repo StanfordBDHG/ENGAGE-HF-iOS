@@ -1,6 +1,19 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%lld BPM" : {
+
+    },
+    "%lld/%lld mmHg" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld/%2$lld mmHg"
+          }
+        }
+      }
+    },
     "ACCOUNT_NEXT" : {
       "localizations" : {
         "en" : {
@@ -276,6 +289,9 @@
         }
       }
     },
+    "Invalid Sample" : {
+
+    },
     "Invitation Code" : {
 
     },
@@ -354,6 +370,9 @@
     },
     "The invitation code is invalid or has already been used." : {
       "comment" : "Invitation Code Invalid"
+    },
+    "Trigger Blood Pressure Measurement" : {
+
     },
     "Trigger Weight Measurement" : {
 

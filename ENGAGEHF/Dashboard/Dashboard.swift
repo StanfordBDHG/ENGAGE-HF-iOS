@@ -29,9 +29,12 @@ struct Dashboard: View {
                 }
                 .toolbar {
                     if FeatureFlags.testMockDevices {
-                        ToolbarItem(placement: .secondaryAction) {
+                        ToolbarItemGroup(placement: .secondaryAction) {
                             Button("Trigger Weight Measurement", systemImage: "scalemass.fill") {
-                                measurementManager.loadMockMeasurement()
+                                measurementManager.loadMockWeightMeasurement()
+                            }
+                            Button("Trigger Blood Pressure Measurement", systemImage: "drop.fill") {
+                                measurementManager.loadMockBloodPressureMeasurement()
                             }
                         }
                     }
