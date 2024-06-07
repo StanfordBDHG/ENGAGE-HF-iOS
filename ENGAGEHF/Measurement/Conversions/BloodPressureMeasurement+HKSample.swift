@@ -11,7 +11,10 @@ import HealthKit
 
 
 extension BloodPressureMeasurement {
-    func bloodPressureSample(source device: HKDevice?) -> HKCorrelation {
+    func bloodPressureSample(source device: HKDevice?) -> HKCorrelation? {
+        guard systolicValue.isFinite, diastolicValue.isFinite else {
+            return nil
+        }
         let unit: HKUnit = unit.hkUnit
 
         let systolic = HKQuantity(unit: unit, doubleValue: systolicValue.double)
@@ -43,7 +46,7 @@ extension BloodPressureMeasurement {
 
 extension BloodPressureMeasurement {
     func heartRateSample(source device: HKDevice?) -> HKQuantitySample? {
-        guard let pulseRate else {
+        guard let pulseRate, pulseRate.isFinite else {
             return nil
         }
 
@@ -70,14 +73,20 @@ extension BloodPressureMeasurement {
 extension HKCorrelation {
     static var mockBloodPressureSample: HKCorrelation {
         let measurement = BloodPressureMeasurement(systolic: 117, diastolic: 76, meanArterialPressure: 67, unit: .mmHg, pulseRate: 68)
-        return measurement.bloodPressureSample(source: nil)
+        guard let sample = measurement.bloodPressureSample(source: nil) else {
+            preconditionFailure("Mock sample was unexpectedly invalid!")
+        }
+        return sample
     }
 }
 
 extension HKQuantitySample {
-    static var mockHeartRateSample: HKQuantitySample? {
+    static var mockHeartRateSample: HKQuantitySample {
         let measurement = BloodPressureMeasurement(systolic: 117, diastolic: 76, meanArterialPressure: 67, unit: .mmHg, pulseRate: 68)
-        return measurement.heartRateSample(source: nil)
+        guard let sample = measurement.heartRateSample(source: nil) else {
+            preconditionFailure("Mock sample was unexpectedly invalid!")
+        }
+        return sample
     }
 }
 #endif

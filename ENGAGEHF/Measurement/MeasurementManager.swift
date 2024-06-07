@@ -40,6 +40,12 @@ class MeasurementManager: Module, EnvironmentAccessible {
         case let .bloodPressure(measurement, _):
             let bloodPressureSample = measurement.bloodPressureSample(source: hkDevice)
             let heartRateSample = measurement.heartRateSample(source: hkDevice)
+
+            guard let bloodPressureSample else {
+                logger.debug("Discarding invalid blood pressure measurement ...")
+                return
+            }
+
             logger.debug("Measurement loaded into MeasurementManager: \(String(describing: measurement))")
 
             newMeasurement = .bloodPressure(bloodPressureSample, heartRate: heartRateSample)

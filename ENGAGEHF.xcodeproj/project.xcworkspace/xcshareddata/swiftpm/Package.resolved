@@ -204,8 +204,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziBluetooth.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "bc2f4ff92ca8aeb64b4c85620d9ca4d5e2ba7711"
+        "revision" : "f3b8cc8461f12268b15db17aa45cc66b889cd1d0",
+        "version" : "1.6.0"
       }
     },
     {
@@ -215,15 +215,6 @@
       "state" : {
         "revision" : "494b776f8c98d771e4a609a1fb706097dba4c030",
         "version" : "1.0.0"
-      }
-    },
-    {
-      "identity" : "spezifileformats",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/StanfordSpezi/SpeziFileFormats",
-      "state" : {
-        "revision" : "017ea997f4f6128b15e8b8d4aac979cb7a822e74",
-        "version" : "1.2.0"
       }
     },
     {
@@ -260,6 +251,15 @@
       "state" : {
         "revision" : "d839e7138ca2e231f5bdd90c3e4ab06dba9bc30b",
         "version" : "0.1.0"
+      }
+    },
+    {
+      "identity" : "spezinetworking",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordSpezi/SpeziNetworking",
+      "state" : {
+        "revision" : "71236efc911d5580fbf4d53748f38ad22ef00a2d",
+        "version" : "1.0.0"
       }
     },
     {

@@ -10,6 +10,7 @@ import BluetoothServices
 import Foundation
 import OSLog
 @_spi(TestingSupport) import SpeziBluetooth
+import SpeziNumerics
 
 
 class BloodPressureCuffDevice: BluetoothDevice, Identifiable, HealthDevice {
