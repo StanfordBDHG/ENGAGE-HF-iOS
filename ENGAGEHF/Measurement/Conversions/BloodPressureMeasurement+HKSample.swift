@@ -55,7 +55,7 @@ extension BloodPressureMeasurement {
         let pulseQuantityType = HKQuantityType(.heartRate)
 
         let pulse = HKQuantity(unit: bpm, doubleValue: pulseRate.double)
-        let date = timeStamp?.date ?? .now
+        let date = timeStamp?.date ?? .now // TODO: don't default to now
 
         return HKQuantitySample(
             type: pulseQuantityType,

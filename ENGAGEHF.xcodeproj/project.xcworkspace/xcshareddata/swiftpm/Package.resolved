@@ -1,5 +1,5 @@
 {
-  "originHash" : "4680bbbdca4179318420f5e90c76b7b5892a3fbaf02dc6668d80ce474e195a4d",
+  "originHash" : "b25955588f603a927a9a0b1631abda1fee3be336d7e8520c858b4e9b4344f8a6",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -24,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/app-check.git",
       "state" : {
-        "revision" : "076b241a625e25eac22f8849be256dfb960fcdfe",
-        "version" : "10.19.1"
+        "revision" : "3b62f154d00019ae29a71e9738800bb6f18b236d",
+        "version" : "10.19.2"
       }
     },
     {
@@ -60,8 +60,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/firebase-ios-sdk.git",
       "state" : {
-        "revision" : "8bcaf973b1d84e119b7c7c119abad72ed460979f",
-        "version" : "10.27.0"
+        "revision" : "03189348b7798fe94b892a35883f1dc745814fe0",
+        "version" : "10.28.0"
       }
     },
     {
@@ -69,8 +69,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/GoogleAppMeasurement.git",
       "state" : {
-        "revision" : "70df02431e216bed98dd461e0c4665889245ba70",
-        "version" : "10.27.0"
+        "revision" : "fe727587518729046fc1465625b9afd80b5ab361",
+        "version" : "10.28.0"
       }
     },
     {
@@ -204,8 +204,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziBluetooth.git",
       "state" : {
-        "revision" : "f3b8cc8461f12268b15db17aa45cc66b889cd1d0",
-        "version" : "1.6.0"
+        "branch" : "feature/accessory-discovery",
+        "revision" : "ed51fb01a5282ae6530b5973b5d00b2201a88c8f"
       }
     },
     {
@@ -215,6 +215,15 @@
       "state" : {
         "revision" : "494b776f8c98d771e4a609a1fb706097dba4c030",
         "version" : "1.0.0"
+      }
+    },
+    {
+      "identity" : "spezidevices",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordSpezi/SpeziDevices.git",
+      "state" : {
+        "branch" : "feature/initial-project-setup",
+        "revision" : "c54b3f4a506425a17549a4c12d0201c49adcb1e2"
       }
     },
     {
@@ -231,8 +240,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziFoundation",
       "state" : {
-        "revision" : "01af5b91a54f30ddd121258e81aff2ddc2a99ff9",
-        "version" : "1.0.4"
+        "revision" : "db3618b53fab1f69c4cf420265a2404b58cd2bdf",
+        "version" : "1.1.0"
       }
     },
     {
@@ -258,8 +267,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziNetworking",
       "state" : {
-        "revision" : "71236efc911d5580fbf4d53748f38ad22ef00a2d",
-        "version" : "1.0.0"
+        "revision" : "7f3720aaf31ca1c1490d245b2fafcb5a3b0181ae",
+        "version" : "2.0.1"
       }
     },
     {
@@ -330,8 +339,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-nio.git",
       "state" : {
-        "revision" : "9428f62793696d9a0cc1f26a63f63bb31da0516d",
-        "version" : "2.66.0"
+        "revision" : "e5a216ba89deba84356bad9d4c2eab99071c745b",
+        "version" : "2.67.0"
       }
     },
     {

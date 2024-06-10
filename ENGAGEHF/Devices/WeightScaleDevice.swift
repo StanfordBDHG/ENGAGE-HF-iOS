@@ -22,7 +22,8 @@ class WeightScaleDevice: BluetoothDevice, Identifiable, HealthDevice {
     @DeviceState(\.id) var id: UUID
     @DeviceState(\.name)var name: String?
     @DeviceState(\.state) var state: PeripheralState
-    
+    @DeviceState(\.advertisementData) var advertisementData: AdvertisementData
+
     @Service var deviceInformation = DeviceInformationService()
 
     @Service var time = CurrentTimeService()
@@ -40,6 +41,10 @@ class WeightScaleDevice: BluetoothDevice, Identifiable, HealthDevice {
             .onChange(perform: handleStateChange)
         weightScale.$weightMeasurement
             .onChange(perform: processMeasurement)
+    }
+
+    func configure() {
+        print("ManufacturerData2222: \(manufacturerData)")
     }
 
     private func handleStateChange(_ state: PeripheralState) {

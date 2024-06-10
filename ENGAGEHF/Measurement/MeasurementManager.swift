@@ -9,6 +9,7 @@
 import Foundation
 import OSLog
 import Spezi
+import SpeziBluetooth
 
 
 /// Manage and process incoming measurements.
@@ -25,8 +26,31 @@ class MeasurementManager: Module, EnvironmentAccessible {
 
     var newMeasurement: ProcessedMeasurement?
 
-    
+    @Dependency @ObservationIgnored private var bluetooth: Bluetooth?
+
+    private var device: BloodPressureCuffDevice?
+
     init() {}
+
+    func testDeviceRetrieval() {
+        guard let bluetooth else {
+            preconditionFailure("Bluetooth doesn't exist")
+        }
+
+
+        Task {
+            let device: BloodPressureCuffDevice? = await bluetooth.retrievePeripheral(for: UUID(uuidString: "8E68C58B-6DDE-9E3A-CD1F-860E62F2CC6B")!)
+
+            self.device = device
+            if let device {
+                print("Retrieved device: \(device)")
+                await device.connect()
+                print("Device connected! \(device)") // TODO: not!
+            } else {
+                print("Device is NILL!")
+            }
+        }
+    }
 
     func handleNewMeasurement<Device: HealthDevice>(_ measurement: Measurement, from device: Device) {
         let hkDevice = device.hkDevice

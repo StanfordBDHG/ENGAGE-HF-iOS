@@ -18,6 +18,7 @@ struct HomeView: View {
     enum Tabs: String {
         case home
         case education
+        case devices
     }
     
     static var accountEnabled: Bool {
@@ -38,7 +39,7 @@ struct HomeView: View {
     @AppStorage(StorageKeys.homeTabSelection) private var selectedTab = Tabs.home
     @State private var presentingAccount = false
     
-    
+
     var body: some View {
         @Bindable var measurementManager = measurementManager
         
@@ -53,8 +54,13 @@ struct HomeView: View {
                 .tabItem {
                     Label("Education", systemImage: "brain")
                 }
+            PairingSheet()
+                .tag(Tabs.devices)
+                .tabItem {
+                    Label("Devices", systemImage: "point.3.filled.connected.trianglepath.dotted")
+                }
         }
-            .autoConnect(enabled: bluetoothEnabled, with: bluetooth)
+            // TODO: .autoConnect(enabled: bluetoothEnabled, with: bluetooth)
             .sheet(isPresented: $presentingAccount) {
                 AccountSheet()
             }
@@ -79,6 +85,7 @@ struct HomeView: View {
             }
             MeasurementManager()
             NotificationManager()
+            DeviceManager()
             Bluetooth {
                 Discover(WeightScaleDevice.self, by: .advertisedService(WeightScaleService.self))
             }

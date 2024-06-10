@@ -74,6 +74,9 @@
     "Add mock notification" : {
 
     },
+    "Add Device" : {
+
+    },
     "An error occurred: %@" : {
       "comment" : "General Error"
     },
@@ -115,12 +118,28 @@
       }
     },
     "Content ..." : {
+    },
+    "Device Retrieval" : {
+
+    },
+    "Devices" : {
 
     },
     "Discard" : {
 
     },
     "Education" : {
+    },
+    "Discovering" : {
+
+    },
+    "Dismiss" : {
+
+    },
+    "Do you want to pair \"%@\" with the ENGAGE app?" : {
+
+    },
+    "Done" : {
 
     },
     "HEALTHKIT_PERMISSIONS_BUTTON" : {
@@ -340,6 +359,9 @@
     "Measurement Recorded" : {
 
     },
+    "No Devices" : {
+
+    },
     "NOTIFICATION_PERMISSIONS_BUTTON" : {
       "localizations" : {
         "en" : {
@@ -382,6 +404,17 @@
       }
     },
     "Notifications" : {
+    },
+    "Pair" : {
+
+    },
+    "Pair Accessory" : {
+
+    },
+    "Pair New Device" : {
+
+    },
+    "Paired devices will appear here once paired." : {
 
     },
     "Please enter your invitation code to join the ENGAGE-HF study." : {
@@ -391,6 +424,9 @@
 
     },
     "Save" : {
+
+    },
+    "Successfully Paired" : {
 
     },
     "The invitation code is invalid or has already been used." : {
