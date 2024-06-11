@@ -14,9 +14,16 @@ import SwiftUI
 struct AccountSetupSheet: View {
     @Environment(\.dismiss) private var dismiss
 
+    @Environment(Account.self) private var account
+
     var body: some View {
         OnboardingStack {
             InvitationCodeView()
+                .onChange(of: account.signedIn, initial: true) {
+                    if account.signedIn {
+                        dismiss()
+                    }
+                }
             AccountSetup { _ in
                 dismiss()
             } header: {

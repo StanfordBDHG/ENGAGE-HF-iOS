@@ -90,6 +90,7 @@
 		A9A0BF032C13121D00B8F3F3 /* SpeziNumerics in Frameworks */ = {isa = PBXBuildFile; productRef = A9A0BF022C13121D00B8F3F3 /* SpeziNumerics */; };
 		A9D83F962B083794000D0C78 /* SpeziFirebaseAccountStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A9D83F952B083794000D0C78 /* SpeziFirebaseAccountStorage */; };
 		A9DFE8A92ABE551400428242 /* AccountButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DFE8A82ABE551400428242 /* AccountButton.swift */; };
+		A9F2138E2C18EBAB00A7578F /* AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F2138D2C18EBAB00A7578F /* AccountTests.swift */; };
 		A9FE7AD02AA39BAB0077B045 /* AccountSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FE7ACF2AA39BAB0077B045 /* AccountSheet.swift */; };
 /* End PBXBuildFile section */
 
@@ -171,6 +172,7 @@
 		A996F45B2C11AA15002328C5 /* BloodPressureMeasurementLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloodPressureMeasurementLabel.swift; sourceTree = "<group>"; };
 		A996F45D2C11B793002328C5 /* BoodPressureCuffTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoodPressureCuffTests.swift; sourceTree = "<group>"; };
 		A9DFE8A82ABE551400428242 /* AccountButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountButton.swift; sourceTree = "<group>"; };
+		A9F2138D2C18EBAB00A7578F /* AccountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTests.swift; sourceTree = "<group>"; };
 		A9FE7ACF2AA39BAB0077B045 /* AccountSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -384,6 +386,7 @@
 				4D4AA0A42BC5E43E00676489 /* OnboardingUITests.swift */,
 				A96C56B52C0A149B00D6A50B /* WeightScaleTests.swift */,
 				A996F45D2C11B793002328C5 /* BoodPressureCuffTests.swift */,
+				A9F2138D2C18EBAB00A7578F /* AccountTests.swift */,
 			);
 			path = ENGAGEHFUITests;
 			sourceTree = "<group>";
@@ -398,11 +401,11 @@
 		A9720E412ABB68B300872D23 /* Account */ = {
 			isa = PBXGroup;
 			children = (
-				A9FE7ACF2AA39BAB0077B045 /* AccountSheet.swift */,
-				A9720E422ABB68CC00872D23 /* AccountSetupHeader.swift */,
 				A9DFE8A82ABE551400428242 /* AccountButton.swift */,
-				A96C56BA2C0DFFCE00D6A50B /* InvitationCodeModule.swift */,
+				A9720E422ABB68CC00872D23 /* AccountSetupHeader.swift */,
 				A9623C072C18D03F00189BA1 /* AccountSetupSheet.swift */,
+				A9FE7ACF2AA39BAB0077B045 /* AccountSheet.swift */,
+				A96C56BA2C0DFFCE00D6A50B /* InvitationCodeModule.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -680,6 +683,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A96C56B62C0A149B00D6A50B /* WeightScaleTests.swift in Sources */,
+				A9F2138E2C18EBAB00A7578F /* AccountTests.swift in Sources */,
 				4D4AA0A52BC5E43E00676489 /* OnboardingUITests.swift in Sources */,
 				2F4E237E2989A2FE0013F3D9 /* LaunchTests.swift in Sources */,
 				4DB025CA2BBE3A59002D2545 /* HomeViewUITests.swift in Sources */,
@@ -1226,8 +1230,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/StanfordSpezi/SpeziFirebase.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
+				branch = "fix/name-ignored-account-linking";
+				kind = branch;
 			};
 		};
 		2FE5DC8229EDD934004B9AB4 /* XCRemoteSwiftPackageReference "SpeziQuestionnaire" */ = {
