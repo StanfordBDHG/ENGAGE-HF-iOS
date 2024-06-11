@@ -12,7 +12,6 @@ import SwiftUI
 
 struct CloseButtonLayer: View {
     @Environment(\.dismiss) private var dismiss
-    @Binding private var viewState: ViewState
     
     
     var body: some View {
@@ -27,7 +26,6 @@ struct CloseButtonLayer: View {
                 }
             )
                 .buttonStyle(PlainButtonStyle())
-                .disabled(viewState != .idle)
             
             Spacer()
         }
@@ -35,7 +33,5 @@ struct CloseButtonLayer: View {
     }
     
     
-    init(viewState: Binding<ViewState>) {
-        self._viewState = viewState
-    }
+    init() {}
 }

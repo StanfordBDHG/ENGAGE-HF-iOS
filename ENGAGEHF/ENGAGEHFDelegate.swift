@@ -6,6 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
+import BluetoothServices
 import Spezi
 import SpeziAccount
 import SpeziBluetooth
@@ -51,11 +52,13 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
             
             Bluetooth {
                 Discover(WeightScaleDevice.self, by: .advertisedService(WeightScaleService.self))
+                Discover(BloodPressureCuffDevice.self, by: .advertisedService(BloodPressureService.self))
             }
             
             OnboardingDataSource()
             MeasurementManager()
             NotificationManager()
+            InvitationCodeModule()
         }
     }
     

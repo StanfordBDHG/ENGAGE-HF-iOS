@@ -4,6 +4,19 @@
     "%@" : {
 
     },
+    "%lld BPM" : {
+
+    },
+    "%lld/%lld mmHg" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld/%2$lld mmHg"
+          }
+        }
+      }
+    },
     "ACCOUNT_NEXT" : {
       "localizations" : {
         "en" : {
@@ -308,6 +321,9 @@
       }
     },
     "Introductory Videos go here" : {
+        
+    },
+    "Invalid Sample" : {
 
     },
     "Invitation Code" : {
@@ -433,6 +449,12 @@
     },
     "Unable to get notification timestamp." : {
       "comment" : "Invalid Timestamp"
+    },
+    "Trigger Blood Pressure Measurement" : {
+
+    },
+    "Trigger Weight Measurement" : {
+
     },
     "User authentication failed. Please try to sign in again." : {
       "comment" : "User Not Authenticated"

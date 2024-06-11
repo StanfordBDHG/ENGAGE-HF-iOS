@@ -45,7 +45,7 @@ extension XCUIApplication {
         try navigateInterestingModules()
         
         // Invitation Code
-        try navigateInvitationCode(code: "ENGAGETEST1")
+        try navigateInvitationCode(code: "ENGAGETEST2")
         
         // Account
         if staticTexts["Your Account"].waitForExistence(timeout: 5) {
@@ -241,6 +241,10 @@ extension XCUIApplication {
         sleep(2)
 
         // Login
+        if buttons["I Already Have an Account"].waitForExistence(timeout: 2.0) {
+            buttons["I Already Have an Account"].tap()
+        }
+
         XCTAssert(textFields["E-Mail Address"].waitForExistence(timeout: 5))
         textFields["E-Mail Address"].tap()
         textFields["E-Mail Address"].typeText(email)

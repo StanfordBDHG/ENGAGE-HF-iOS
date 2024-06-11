@@ -82,12 +82,20 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "--showOnboarding"
+            argument = "--setupTestEnvironment"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--testMockDevices"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "--skipOnboarding"
+            argument = "--showOnboarding"
             isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--skipOnboarding"
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--testSchedule"
@@ -95,7 +103,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--useFirebaseEmulator"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
    </LaunchAction>

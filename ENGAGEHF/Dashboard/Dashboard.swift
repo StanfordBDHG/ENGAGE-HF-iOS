@@ -12,7 +12,9 @@ import SwiftUI
 struct Dashboard: View {
     @Binding var presentingAccount: Bool
     @State var showSurvey = false
-    
+
+    @Environment(MeasurementManager.self) private var measurementManager
+
     
     var body: some View {
         NavigationStack {
@@ -38,15 +40,31 @@ struct Dashboard: View {
                 if AccountButton.shouldDisplay {
                     AccountButton(isPresented: $presentingAccount)
                 }
-            }
+#if DEBUG || TEST
+                .toolbar {
+                    if FeatureFlags.testMockDevices {
+                        ToolbarItemGroup(placement: .secondaryAction) {
+                            Button("Trigger Weight Measurement", systemImage: "scalemass.fill") {
+                                measurementManager.loadMockWeightMeasurement()
+                            }
+                            Button("Trigger Blood Pressure Measurement", systemImage: "drop.fill") {
+                                measurementManager.loadMockBloodPressureMeasurement()
+                            }
+                        }
+                    }
+                }
+#endif
         }
     }
 }
 
 
+#if DEBUG
 #Preview {
     Dashboard(presentingAccount: .constant(false))
         .previewWith(standard: ENGAGEHFStandard()) {
             NotificationManager()
+            MeasurementManager()
         }
 }
+#endif

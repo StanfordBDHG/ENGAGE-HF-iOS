@@ -45,9 +45,9 @@ struct OnboardingFlow: View {
 #if DEBUG
 #Preview {
     OnboardingFlow()
-        .environment(Account(MockUserIdPasswordAccountService()))
         .previewWith(standard: ENGAGEHFStandard()) {
             OnboardingDataSource()
+            InvitationCodeModule()
             AccountConfiguration {
                 MockUserIdPasswordAccountService()
             }

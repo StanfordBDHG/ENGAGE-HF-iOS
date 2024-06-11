@@ -186,8 +186,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/Spezi",
       "state" : {
-        "revision" : "c43e4fa3d3938a847de2b677091a34ddaea5bc76",
-        "version" : "1.2.3"
+        "revision" : "734f90c19422a4196762b0e1dd055471066e89ee",
+        "version" : "1.3.0"
       }
     },
     {
@@ -204,8 +204,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziBluetooth.git",
       "state" : {
-        "revision" : "68966242caa49834a352953225b8b1d234481d77",
-        "version" : "1.4.0"
+        "revision" : "f3b8cc8461f12268b15db17aa45cc66b889cd1d0",
+        "version" : "1.6.0"
       }
     },
     {
@@ -218,21 +218,12 @@
       }
     },
     {
-      "identity" : "spezifileformats",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/StanfordSpezi/SpeziFileFormats",
-      "state" : {
-        "revision" : "017ea997f4f6128b15e8b8d4aac979cb7a822e74",
-        "version" : "1.2.0"
-      }
-    },
-    {
       "identity" : "spezifirebase",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziFirebase.git",
       "state" : {
-        "revision" : "16c1c751c14b08ae593eacf9bc2752c2e070fe2f",
-        "version" : "1.1.0"
+        "revision" : "f05c859f75d317dca9b378b7f8a7cfa8e135df04",
+        "version" : "1.1.1"
       }
     },
     {
@@ -260,6 +251,15 @@
       "state" : {
         "revision" : "d839e7138ca2e231f5bdd90c3e4ab06dba9bc30b",
         "version" : "0.1.0"
+      }
+    },
+    {
+      "identity" : "spezinetworking",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordSpezi/SpeziNetworking",
+      "state" : {
+        "revision" : "71236efc911d5580fbf4d53748f38ad22ef00a2d",
+        "version" : "1.0.0"
       }
     },
     {
@@ -330,8 +330,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-nio.git",
       "state" : {
-        "revision" : "359c461e5561d22c6334828806cc25d759ca7aa6",
-        "version" : "2.65.0"
+        "revision" : "9428f62793696d9a0cc1f26a63f63bb31da0516d",
+        "version" : "2.66.0"
       }
     },
     {
