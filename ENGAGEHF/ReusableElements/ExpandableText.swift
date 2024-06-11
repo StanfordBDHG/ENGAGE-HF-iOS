@@ -13,7 +13,7 @@ import SwiftUI
 
 
 struct ExpandableText: View {
-    private enum truncatedState {
+    private enum TruncatedState {
         case isTruncated
         case notTruncated
         case unknown
@@ -25,7 +25,7 @@ struct ExpandableText: View {
     
     @ScaledMetric private var spacing: CGFloat = 4
     @State private var isExpanded = false
-    @State private var isTruncated: truncatedState = .unknown
+    @State private var isTruncated: TruncatedState = .unknown
     
     
     var body: some View {

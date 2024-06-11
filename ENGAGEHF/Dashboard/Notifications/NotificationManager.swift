@@ -51,21 +51,37 @@ class NotificationManager: Module, EnvironmentAccessible {
             self?.registerSnapshotListener(user: user)
             
             // If testing, add 3 notifications to firestore
-            if FeatureFlags.setupTestEnvironment, user != nil {
-                for notification_num in 1...3 {
-                    let newNotification = Notification(
-                        type: "Mock Notification \(notification_num)",
-                        title: "This is a mock notification.",
-                        description: "This is a long string that should be truncated by the expandable text class."
-                    )
-                    Task {
-                        await standard.add(notification: newNotification)
-                    }
-                }
+            // Must be signed in to do this
+            if FeatureFlags.setupTestEnvironment, let user {
+                self?.setupNotificationTests(user: user)
             }
         }
         self.registerSnapshotListener(user: Auth.auth().currentUser)
     }
+    
+    
+    // Adds three mock notifications to the user's notification collection in firestore
+    func setupNotificationTests(user: User) {
+        let firestore = Firestore.firestore()
+        
+        for idx in 1...3 {
+            let newNotification = Notification(
+                type: "Mock Notification \(idx)",
+                title: "This is a mock notification.",
+                description: "This is a long string that should be truncated by the expandable text class."
+            )
+            
+            do {
+                try firestore.collection("users")
+                    .document(user.uid)
+                    .collection("notifications")
+                    .addDocument(from: newNotification)
+            } catch {
+                self.logger.error("Unable to load notifications to firestore: \(error)")
+            }
+        }
+    }
+    
     
     // Call on initialization
     //

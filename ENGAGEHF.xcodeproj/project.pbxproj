@@ -60,6 +60,7 @@
 		4DBDD3442BBFAD64001FB0CA /* InvitationCodeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDD3432BBFAD64001FB0CA /* InvitationCodeError.swift */; };
 		4DBDD3462BBFAE2D001FB0CA /* InvitationCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDD3452BBFAE2D001FB0CA /* InvitationCodeView.swift */; };
 		4DBDD3482BC073EF001FB0CA /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 4DBDD3472BC073EF001FB0CA /* FirebaseFunctions */; };
+		4DD823022C17F63C004DC599 /* CloseButtonLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD823012C17F63C004DC599 /* CloseButtonLayer.swift */; };
 		4DDFC7392BF2C3C9002B07A1 /* NotificationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC7382BF2C3C9002B07A1 /* NotificationSection.swift */; };
 		4DDFC73D2BF2C4FA002B07A1 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC73C2BF2C4FA002B07A1 /* Notification.swift */; };
 		4DDFC73F2BF2CADD002B07A1 /* FetchingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC73E2BF2CADD002B07A1 /* FetchingError.swift */; };
@@ -72,10 +73,8 @@
 		4DDFC7652BF350C2002B07A1 /* Education.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC7642BF350C2002B07A1 /* Education.swift */; };
 		4DDFC7672BF350EC002B07A1 /* Medications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC7662BF350EC002B07A1 /* Medications.swift */; };
 		4DDFC7692BF35113002B07A1 /* HeartHealth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC7682BF35113002B07A1 /* HeartHealth.swift */; };
-		4DDFC76E2BFAA4AE002B07A1 /* WeightScaleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC76D2BFAA4AE002B07A1 /* WeightScaleService.swift */; };
 		4DDFC7702BFAEAD7002B07A1 /* ConfirmMeasurementButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC76F2BFAEAD7002B07A1 /* ConfirmMeasurementButton.swift */; };
 		4DDFC7762BFB46FF002B07A1 /* MeasurementLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC7752BFB46FF002B07A1 /* MeasurementLayer.swift */; };
-		4DDFC7792BFB4E7D002B07A1 /* ViewElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC7782BFB4E7D002B07A1 /* ViewElements.swift */; };
 		4DDFC7872BFBFDDD002B07A1 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC7862BFBFDDD002B07A1 /* NotificationManager.swift */; };
 		4DDFC78A2BFC1312002B07A1 /* NotificationRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC7892BFC1312002B07A1 /* NotificationRow.swift */; };
 		56E708352BB06B7100B08F0A /* SpeziLicense in Frameworks */ = {isa = PBXBuildFile; productRef = 56E708342BB06B7100B08F0A /* SpeziLicense */; };
@@ -160,6 +159,7 @@
 		4DB025D42BBF2E08002D2545 /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		4DBDD3432BBFAD64001FB0CA /* InvitationCodeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationCodeError.swift; sourceTree = "<group>"; };
 		4DBDD3452BBFAE2D001FB0CA /* InvitationCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationCodeView.swift; sourceTree = "<group>"; };
+		4DD823012C17F63C004DC599 /* CloseButtonLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButtonLayer.swift; sourceTree = "<group>"; };
 		4DDFC7382BF2C3C9002B07A1 /* NotificationSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSection.swift; sourceTree = "<group>"; };
 		4DDFC73C2BF2C4FA002B07A1 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		4DDFC73E2BF2CADD002B07A1 /* FetchingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchingError.swift; sourceTree = "<group>"; };
@@ -172,10 +172,8 @@
 		4DDFC7642BF350C2002B07A1 /* Education.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Education.swift; sourceTree = "<group>"; };
 		4DDFC7662BF350EC002B07A1 /* Medications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Medications.swift; sourceTree = "<group>"; };
 		4DDFC7682BF35113002B07A1 /* HeartHealth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartHealth.swift; sourceTree = "<group>"; };
-		4DDFC76D2BFAA4AE002B07A1 /* WeightScaleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightScaleService.swift; sourceTree = "<group>"; };
 		4DDFC76F2BFAEAD7002B07A1 /* ConfirmMeasurementButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmMeasurementButton.swift; sourceTree = "<group>"; };
 		4DDFC7752BFB46FF002B07A1 /* MeasurementLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementLayer.swift; sourceTree = "<group>"; };
-		4DDFC7782BFB4E7D002B07A1 /* ViewElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewElements.swift; sourceTree = "<group>"; };
 		4DDFC7862BFBFDDD002B07A1 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		4DDFC7892BFC1312002B07A1 /* NotificationRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationRow.swift; sourceTree = "<group>"; };
 		653A254D283387FE005D4D48 /* ENGAGEHF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ENGAGEHF.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -335,11 +333,11 @@
 			isa = PBXGroup;
 			children = (
 				A996F45B2C11AA15002328C5 /* BloodPressureMeasurementLabel.swift */,
-				4DDFC7782BFB4E7D002B07A1 /* CloseButtonLayer.swift */,
 				4DDFC76F2BFAEAD7002B07A1 /* ConfirmMeasurementButton.swift */,
 				4DDFC7752BFB46FF002B07A1 /* MeasurementLayer.swift */,
 				4D19ED002BE5CAFC00CDBAA8 /* MeasurementRecordedView.swift */,
 				A996F4592C11A9D1002328C5 /* WeightMeasurementLabel.swift */,
+				4DD823012C17F63C004DC599 /* CloseButtonLayer.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -490,7 +488,6 @@
 				4D49AB142BCF6FC400C77310 /* Devices */,
 				A996F4422C108186002328C5 /* Measurement */,
 				4DB025B52BBDE8EC002D2545 /* Dashboard */,
-				4D49AAFB2BC9D46F00C77310 /* Bluetooth */,
 				A9720E412ABB68B300872D23 /* Account */,
 				2FE5DC2829EDD398004B9AB4 /* Onboarding */,
 				2FE5DC2729EDD38D004B9AB4 /* Contacts */,
@@ -764,6 +761,7 @@
 				4DDFC75D2BF34700002B07A1 /* FullSurveyView.swift in Sources */,
 				4DDFC73F2BF2CADD002B07A1 /* FetchingError.swift in Sources */,
 				2FE5DC3A29EDD7CA004B9AB4 /* Welcome.swift in Sources */,
+				4DD823022C17F63C004DC599 /* CloseButtonLayer.swift in Sources */,
 				A996F4462C1081EB002328C5 /* BloodPressureMeasurement.Unit+HKUnit.swift in Sources */,
 				2FE5DC3829EDD7CA004B9AB4 /* InterestingModules.swift in Sources */,
 				4DDFC74D2BF33166002B07A1 /* ToDoItem.swift in Sources */,
@@ -771,7 +769,6 @@
 				A996F44A2C1082BA002328C5 /* HealthDevice.swift in Sources */,
 				4DBDD3442BBFAD64001FB0CA /* InvitationCodeError.swift in Sources */,
 				2FC975A82978F11A00BA99FE /* Home.swift in Sources */,
-				4DDFC7792BFB4E7D002B07A1 /* CloseButtonLayer.swift in Sources */,
 				4DDFC7762BFB46FF002B07A1 /* MeasurementLayer.swift in Sources */,
 				4DB025D52BBF2E08002D2545 /* Dashboard.swift in Sources */,
 				A9DFE8A92ABE551400428242 /* AccountButton.swift in Sources */,
@@ -786,8 +783,6 @@
 				4D052DB82BE07892006A784E /* MeasurementManager.swift in Sources */,
 				A9720E432ABB68CC00872D23 /* AccountSetupHeader.swift in Sources */,
 				4DDFC7592BF34361002B07A1 /* SurveySection.swift in Sources */,
-				4D49AB0F2BC9DF9B00C77310 /* WeightMeasurement.swift in Sources */,
-				4D49AB0D2BC9DF9100C77310 /* WeightScaleFeature.swift in Sources */,
 				2FE5DC4029EDD7EE004B9AB4 /* FeatureFlags.swift in Sources */,
 				2FE5DC4629EDD7F2004B9AB4 /* Bundle+Image.swift in Sources */,
 				4DDFC7672BF350EC002B07A1 /* Medications.swift in Sources */,
@@ -797,7 +792,6 @@
 				2F5E32BD297E05EA003432F8 /* ENGAGEHFDelegate.swift in Sources */,
 				4D065BE02C09401700EBB3AE /* StudyApplicationListCard.swift in Sources */,
 				A96C56BB2C0DFFCE00D6A50B /* InvitationCodeModule.swift in Sources */,
-				4DB025D82BBF2EEC002D2545 /* Greeting.swift in Sources */,
 				A996F4482C1081F8002328C5 /* HealthDevice+HKDevice.swift in Sources */,
 				A9720E432ABB68CC00872D23 /* AccountSetupHeader.swift in Sources */,
 				2FE5DC4029EDD7EE004B9AB4 /* FeatureFlags.swift in Sources */,
@@ -1138,7 +1132,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 53VU37PD55;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ENGAGEHF/Supporting Files/Info.plist";
@@ -1159,7 +1153,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.bdh.engagehf;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.bdh.engagehf.riedman;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

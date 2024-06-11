@@ -21,6 +21,7 @@ struct ToDoRow: View {
                 taskComplete.toggle()
             } label: {
                 Image(systemName: taskComplete ? "checkmark.square" : "square")
+                    .accessibilityLabel("To-do Checkbox")
             }
         }
     }

@@ -321,7 +321,7 @@
       }
     },
     "Introductory Videos go here" : {
-        
+
     },
     "Invalid Sample" : {
 
@@ -368,9 +368,6 @@
 
     },
     "Medications go here." : {
-
-    },
-    "Mock Measurement" : {
 
     },
     "Most Recent Vitals" : {
@@ -447,14 +444,17 @@
     "To-do" : {
 
     },
-    "Unable to get notification timestamp." : {
-      "comment" : "Invalid Timestamp"
+    "To-do Checkbox" : {
+
     },
     "Trigger Blood Pressure Measurement" : {
 
     },
     "Trigger Weight Measurement" : {
 
+    },
+    "Unable to get notification timestamp." : {
+      "comment" : "Invalid Timestamp"
     },
     "User authentication failed. Please try to sign in again." : {
       "comment" : "User Not Authenticated"

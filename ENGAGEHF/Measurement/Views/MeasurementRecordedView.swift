@@ -47,7 +47,7 @@ struct MeasurementRecordedView: View {
                 .interactiveDismissDisabled(viewState != .idle)
                 .toolbar {
                     ToolbarItem(placement: .cancellationAction) {
-                        CloseButtonLayer()
+                        CloseButtonLayer(viewState: $viewState)
                             .disabled(viewState != .idle)
                     }
                 }

@@ -12,34 +12,6 @@ import SwiftUI
 
 
 struct NotificationRow: View {
-    let notification: Notification
-    
-    @ScaledMetric private var spacing: CGFloat = 5
-    @ScaledMetric private var typeFontSize: CGFloat = 12
-    @ScaledMetric private var titleFontSize: CGFloat = 15
-    
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: spacing) {
-            HStack(alignment: .center) {
-                Text(notification.type.localizedUppercase)
-                    .font(.system(size: typeFontSize, weight: .bold))
-                    .foregroundStyle(.secondary)
-                Spacer()
-                XButton(notification: notification)
-            }
-            Divider()
-            Text(notification.title)
-                .font(.system(size: titleFontSize, weight: .bold))
-                .bold()
-                .multilineTextAlignment(.leading)
-                .padding(.bottom, spacing)
-            ExpandableText(text: notification.description, lineLimit: 1)
-                .font(.footnote)
-        }
-    }
-    
-    
     private struct XButton: View {
         @Environment(NotificationManager.self) private var notificationManager
         @ScaledMetric private var labelSize: CGFloat = 9
@@ -66,6 +38,34 @@ struct NotificationRow: View {
                         .accessibilityLabel("XButton")
                 }
             )
+        }
+    }
+    
+    
+    let notification: Notification
+    
+    @ScaledMetric private var spacing: CGFloat = 5
+    @ScaledMetric private var typeFontSize: CGFloat = 12
+    @ScaledMetric private var titleFontSize: CGFloat = 15
+    
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: spacing) {
+            HStack(alignment: .center) {
+                Text(notification.type.localizedUppercase)
+                    .font(.system(size: typeFontSize, weight: .bold))
+                    .foregroundStyle(.secondary)
+                Spacer()
+                XButton(notification: notification)
+            }
+            Divider()
+            Text(notification.title)
+                .font(.system(size: titleFontSize, weight: .bold))
+                .bold()
+                .multilineTextAlignment(.leading)
+                .padding(.bottom, spacing)
+            ExpandableText(text: notification.description, lineLimit: 1)
+                .font(.footnote)
         }
     }
 }
