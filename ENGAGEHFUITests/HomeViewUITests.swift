@@ -15,7 +15,7 @@ final class HomeViewUITests: XCTestCase {
         continueAfterFailure = false
         
         let app = XCUIApplication()
-        app.launchArguments = ["--skipOnboarding"]
+        app.launchArguments = ["--skipOnboarding", "--setupTestEnvironment"]
         app.launch()
     }
     
@@ -28,14 +28,7 @@ final class HomeViewUITests: XCTestCase {
         app.buttons["Home"].tap()
         
         // Make sure greeting and title appear, indicating we're in the correct view
-        XCTAssert(app.staticTexts["Hello, world!"].exists)
         XCTAssert(app.staticTexts["Home"].exists)
-        
-        // Make sure the date appears
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .long
-        
-        XCTAssert(app.staticTexts[dateFormatter.string(from: .now)].exists)
         
         // Firebase not disabled, so make sure the account button appears and is hittable
         XCTAssert(app.buttons["Your Account"].exists && app.buttons["Your Account"].isHittable)

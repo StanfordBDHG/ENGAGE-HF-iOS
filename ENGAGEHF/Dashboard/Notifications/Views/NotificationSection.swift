@@ -20,30 +20,23 @@ struct NotificationSection: View {
     
     
     var body: some View {
-        Section(
-            content: {
-                if !notificationManager.notifications.isEmpty {
+        if !notificationManager.notifications.isEmpty {
+            Section(
+                content: {
                     ForEach(notificationManager.notifications, id: \.id) { notification in
                         StudyApplicationListCard {
                             NotificationRow(notification: notification)
                         }
                     }
-                        .listRowSeparator(.hidden)
-                        .buttonStyle(.borderless)
-                } else {
-                    StudyApplicationListCard {
-                        HStack {
-                            Text("No notifications")
-                            Spacer()
-                        }
-                    }
+                    .listRowSeparator(.hidden)
+                    .buttonStyle(.borderless)
+                },
+                header: {
+                    Text("Notifications")
+                        .studyApplicationHeaderStyle()
                 }
-            },
-            header: {
-                Text("Notifications")
-                    .studyApplicationHeaderStyle()
-            }
-        )
+            )
+        }
     }
 }
 

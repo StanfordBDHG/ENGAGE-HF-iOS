@@ -11,7 +11,7 @@ import SwiftUI
 
 struct ShowMoreButton: View {
     private var labelText: String {
-        isExpanded ? "Show Less" : "Show more"
+        isExpanded ? "Show less" : "Show more"
     }
     
     @Binding var isExpanded: Bool
