@@ -41,7 +41,9 @@ class NotificationManager: Module, EnvironmentAccessible {
                 id: String(describing: UUID()),
                 type: "Mock Notification",
                 title: "Weight Recorded",
-                description: "A weight measurement has been recorded."
+                description: "A weight measurement has been recorded.",
+                created: Timestamp(date: .now),
+                completed: .bool(false)
             )
             notifications.append(dummyNotification)
             return
@@ -68,7 +70,9 @@ class NotificationManager: Module, EnvironmentAccessible {
             let newNotification = Notification(
                 type: "Mock Notification \(idx)",
                 title: "This is a mock notification.",
-                description: "This is a long string that should be truncated by the expandable text class."
+                description: "This is a long string that should be truncated by the expandable text class.",
+                created: Timestamp(date: .now),
+                completed: .bool(false)
             )
             
             do {
@@ -174,7 +178,9 @@ extension NotificationManager {
             id: String(describing: UUID()),
             type: "Medication Change",
             title: "Your dose of XXX was changed.",
-            description: "Your dose of XXX was changed. You can review medication information in the Education Page."
+            description: "Your dose of XXX was changed. You can review medication information in the Education Page.",
+            created: Timestamp(date: .now),
+            completed: .bool(false)
         )
         notifications.append(dummyNotification)
     }

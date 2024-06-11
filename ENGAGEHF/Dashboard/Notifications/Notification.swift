@@ -10,6 +10,12 @@ import FirebaseFirestore
 import Foundation
 
 
+enum CompletionState: Codable {
+    case bool(Bool)
+    case timeStamp(Timestamp)
+}
+
+
 // A notification
 //
 // Mirrors the representation of a notification in firestore
@@ -22,4 +28,11 @@ struct Notification: Identifiable, Equatable, Codable {
     var type: String
     var title: String
     var description: String
+    var created: Timestamp
+    var completed: CompletionState
+    
+    
+    static func == (lhs: Notification, rhs: Notification) -> Bool {
+        lhs.id == rhs.id
+    }
 }
