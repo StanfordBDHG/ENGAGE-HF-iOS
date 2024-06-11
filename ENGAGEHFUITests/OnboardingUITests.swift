@@ -105,15 +105,6 @@ extension XCUIApplication {
         buttons["Signup"].tap()
         
         try createAccount(email: email)
-        
-        // Finish Account Setup: Will possibly be removed
-        XCTAssert(staticTexts["Finish Account Setup"].waitForExistence(timeout: 5))
-
-        // TODO: issue with date of birth still persists?
-
-        // Complete Account
-        XCTAssert(buttons["Complete"].waitForExistence(timeout: 2) && buttons["Complete"].isEnabled)
-        buttons["Complete"].tap()
     }
     
     private func createAccount(email: String) throws {

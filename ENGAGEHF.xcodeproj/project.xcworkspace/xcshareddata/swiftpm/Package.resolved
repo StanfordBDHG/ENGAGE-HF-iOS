@@ -223,7 +223,7 @@
       "location" : "https://github.com/StanfordSpezi/SpeziFirebase.git",
       "state" : {
         "branch" : "fix/name-ignored-account-linking",
-        "revision" : "faef99a42ff2c3faee5998a94aee3f5a0d8be38c"
+        "revision" : "d62c065bc86105e42cb6b3716cebc47e98351344"
       }
     },
     {
