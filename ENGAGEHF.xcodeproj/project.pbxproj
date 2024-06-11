@@ -660,7 +660,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1340;
-				LastUpgradeCheck = 1520;
+				LastUpgradeCheck = 1530;
 				TargetAttributes = {
 					653A254C283387FE005D4D48 = {
 						CreatedOnToolsVersion = 13.4;
@@ -793,13 +793,8 @@
 				4D065BE02C09401700EBB3AE /* StudyApplicationListCard.swift in Sources */,
 				A96C56BB2C0DFFCE00D6A50B /* InvitationCodeModule.swift in Sources */,
 				A996F4482C1081F8002328C5 /* HealthDevice+HKDevice.swift in Sources */,
-				A9720E432ABB68CC00872D23 /* AccountSetupHeader.swift in Sources */,
-				2FE5DC4029EDD7EE004B9AB4 /* FeatureFlags.swift in Sources */,
-				2FE5DC4629EDD7F2004B9AB4 /* Bundle+Image.swift in Sources */,
 				A96C56BF2C0E334A00D6A50B /* BloodPressureCuffDevice.swift in Sources */,
 				A996F4552C11117C002328C5 /* ProcessedMeasurement.swift in Sources */,
-				2F4E23832989D51F0013F3D9 /* ENGAGEHFTestingSetup.swift in Sources */,
-				2F5E32BD297E05EA003432F8 /* ENGAGEHFDelegate.swift in Sources */,
 				A996F4442C1081A2002328C5 /* WeightMeasurement.Unit+HKUnit.swift in Sources */,
 				4DDFC7702BFAEAD7002B07A1 /* ConfirmMeasurementButton.swift in Sources */,
 				A9FE7AD02AA39BAB0077B045 /* AccountSheet.swift in Sources */,

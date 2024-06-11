@@ -48,10 +48,6 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
             
             Bluetooth {
                 Discover(WeightScaleDevice.self, by: .advertisedService(WeightScaleService.self))
-            }
-            
-            Bluetooth {
-                Discover(WeightScaleDevice.self, by: .advertisedService(WeightScaleService.self))
                 Discover(BloodPressureCuffDevice.self, by: .advertisedService(BloodPressureService.self))
             }
             
