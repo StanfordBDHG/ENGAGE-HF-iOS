@@ -18,8 +18,6 @@ import SpeziFirebaseConfiguration
 // Notification manager
 //
 // Maintains a list of Notifications associated with the current user in firebase
-//
-// Includes functionality for adding notifications and marking them complete
 // On configuration of the app, adds a snapshot listener to the user's notification collection
 //
 @Observable
@@ -51,6 +49,20 @@ class NotificationManager: Module, EnvironmentAccessible {
         
         authStateDidChangeListenerHandle = Auth.auth().addStateDidChangeListener { [weak self] _, user in
             self?.registerSnapshotListener(user: user)
+            
+            // If testing, add 3 notifications to firestore
+            if FeatureFlags.setupTestEnvironment, user != nil {
+                for notification_num in 1...3 {
+                    let newNotification = Notification(
+                        type: "Mock Notification \(notification_num)",
+                        title: "This is a mock notification.",
+                        description: "This is a long string that should be truncated by the expandable text class."
+                    )
+                    Task {
+                        await standard.add(notification: newNotification)
+                    }
+                }
+            }
         }
         self.registerSnapshotListener(user: Auth.auth().currentUser)
     }
@@ -103,13 +115,13 @@ class NotificationManager: Module, EnvironmentAccessible {
             }
     }
     
-    func markComplete(at offsets: IndexSet) async {
+    func markComplete(id: String) async {
         if ProcessInfo.processInfo.isPreviewSimulator {
-            notifications.remove(atOffsets: offsets)
+            notifications.removeAll { $0.id == id }
             return
         }
         
-        logger.debug("Marking notifications complete at the following offsets: \(offsets)")
+        logger.debug("Marking notitification complete with the following id: \(id)")
         
         let firestore = Firestore.firestore()
         
@@ -120,24 +132,18 @@ class NotificationManager: Module, EnvironmentAccessible {
         
         // Mark the notifications as completed in the Firestore
         let timestamp = Timestamp(date: .now)
-        for offset in offsets {
-            guard let docID = notifications[offset].id else {
-                logger.error("Error fetching docID for offset: \(offset)")
-                return
-            }
-            
-            let docRef = firestore.collection("users")
-                .document(user.uid)
-                .collection("notifications")
-                .document(docID)
-            
-            do {
-                try await docRef.updateData([
-                    "completed": timestamp
-                ])
-            } catch {
-                logger.error("Unable to update notification at offset \(offset): \(error)")
-            }
+
+        let docRef = firestore.collection("users")
+            .document(user.uid)
+            .collection("notifications")
+            .document(id)
+        
+        do {
+            try await docRef.updateData([
+                "completed": timestamp
+            ])
+        } catch {
+            logger.error("Unable to update notification \(id): \(error)")
         }
         
         logger.debug("Successfully marked notifications complete!")

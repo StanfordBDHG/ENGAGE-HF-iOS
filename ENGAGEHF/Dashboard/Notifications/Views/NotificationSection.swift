@@ -33,7 +33,7 @@ struct NotificationSection: View {
                 } else {
                     StudyApplicationListCard {
                         HStack {
-                            Text("No new notifications")
+                            Text("No notifications")
                             Spacer()
                         }
                     }

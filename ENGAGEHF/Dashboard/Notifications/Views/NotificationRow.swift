@@ -6,6 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
+import OSLog
 import SpeziViews
 import SwiftUI
 
@@ -42,6 +43,7 @@ struct NotificationRow: View {
     private struct XButton: View {
         @Environment(NotificationManager.self) private var notificationManager
         @ScaledMetric private var labelSize: CGFloat = 9
+        private let logger = Logger(subsystem: "ENGAGEHF", category: "NotificationManager")
         
         let notification: Notification
         
@@ -49,11 +51,11 @@ struct NotificationRow: View {
         var body: some View {
             AsyncButton(
                 action: {
-                    let indx = notificationManager.notifications.firstIndex { $0.id == notification.id }
-                    
-                    if let indx: Int {
-                        await notificationManager.markComplete(at: IndexSet(integer: indx))
+                    guard let id = notification.id else {
+                        logger.error("Unable to mark notification complete: No notification id")
+                        return
                     }
+                    await notificationManager.markComplete(id: id)
                 },
                 label: {
                     Image(systemName: "xmark")

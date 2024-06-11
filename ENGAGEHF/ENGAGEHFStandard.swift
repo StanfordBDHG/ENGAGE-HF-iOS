@@ -74,6 +74,16 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint, A
     }
     
     
+    func add(notification: Notification) async {
+        do {
+            let userDoc = try await userDocumentReference
+            try userDoc.collection("notifications").addDocument(from: notification)
+        } catch {
+            logger.error("Could not store the notification: \(error)")
+        }
+    }
+    
+    
     func add(response: ModelsR4.QuestionnaireResponse) async {
         let id = response.identifier?.value?.value?.string ?? UUID().uuidString
         

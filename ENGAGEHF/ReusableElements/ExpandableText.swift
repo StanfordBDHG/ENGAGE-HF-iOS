@@ -13,12 +13,19 @@ import SwiftUI
 
 
 struct ExpandableText: View {
+    private enum truncatedState {
+        case isTruncated
+        case notTruncated
+        case unknown
+    }
+    
+    
     let text: String
     let lineLimit: Int
-    @ScaledMetric var spacing: CGFloat = 4
     
+    @ScaledMetric private var spacing: CGFloat = 4
     @State private var isExpanded = false
-    @State private var isTruncated: Bool? = nil
+    @State private var isTruncated: truncatedState = .unknown
     
     
     var body: some View {
@@ -27,13 +34,13 @@ struct ExpandableText: View {
                 .lineLimit(isExpanded ? nil : lineLimit)
                 .background(calculateTruncation(text: text))
                 
-            if isTruncated == true {
+            if isTruncated == .isTruncated {
                 ShowMoreButton(isExpanded: $isExpanded)
             }
         }
             .multilineTextAlignment(.leading)
             // Re-calculate isTruncated for the new text
-            .onChange(of: text) { isTruncated = nil }
+            .onChange(of: text) { isTruncated = .unknown }
             .onDisappear { isExpanded = false }
     }
     
@@ -45,16 +52,20 @@ struct ExpandableText: View {
                 .hidden()
                 .onAppear {
                     // If the whole text fits, then isTruncated is set to false and no button is shown.
-                    guard isTruncated == nil else { return }
-                    isTruncated = false
+                    guard isTruncated == .unknown else {
+                        return
+                    }
+                    isTruncated = .notTruncated
                 }
             Color(.clear)
                 .hidden()
                 .onAppear {
                     // If the whole text does not fit, Color.clear is selected,
                     // isTruncated is set to true and button is shown.
-                    guard isTruncated == nil else { return }
-                    isTruncated = true
+                    guard isTruncated == .unknown else {
+                        return
+                    }
+                    isTruncated = .isTruncated
                 }
         }
     }
@@ -63,5 +74,5 @@ struct ExpandableText: View {
 
 #Preview {
     let sampleText = "Your dose of XXX was changed. You can review medication information in the Education Page."
-    return ExpandableText(text: sampleText, lineLimit: 1, spacing: 5)
+    return ExpandableText(text: sampleText, lineLimit: 1)
 }
