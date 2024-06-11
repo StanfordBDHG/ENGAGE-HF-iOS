@@ -43,7 +43,7 @@ class NotificationManager: Module, EnvironmentAccessible {
                 title: "Weight Recorded",
                 description: "A weight measurement has been recorded.",
                 created: Timestamp(date: .now),
-                completed: .bool(false)
+                completed: false
             )
             notifications.append(dummyNotification)
             return
@@ -72,7 +72,7 @@ class NotificationManager: Module, EnvironmentAccessible {
                 title: "This is a mock notification.",
                 description: "This is a long string that should be truncated by the expandable text class.",
                 created: Timestamp(date: .now),
-                completed: .bool(false)
+                completed: false
             )
             
             do {
@@ -180,7 +180,7 @@ extension NotificationManager {
             title: "Your dose of XXX was changed.",
             description: "Your dose of XXX was changed. You can review medication information in the Education Page.",
             created: Timestamp(date: .now),
-            completed: .bool(false)
+            completed: false
         )
         notifications.append(dummyNotification)
     }
