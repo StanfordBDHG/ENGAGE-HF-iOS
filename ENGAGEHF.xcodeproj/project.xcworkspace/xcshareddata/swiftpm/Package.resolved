@@ -222,8 +222,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziFirebase.git",
       "state" : {
-        "branch" : "fix/name-ignored-account-linking",
-        "revision" : "d62c065bc86105e42cb6b3716cebc47e98351344"
+        "revision" : "00ff0db12bf72ba39354e263d8f916ae8392368b",
+        "version" : "1.1.2"
       }
     },
     {

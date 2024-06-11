@@ -1230,8 +1230,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/StanfordSpezi/SpeziFirebase.git";
 			requirement = {
-				branch = "fix/name-ignored-account-linking";
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.2;
 			};
 		};
 		2FE5DC8229EDD934004B9AB4 /* XCRemoteSwiftPackageReference "SpeziQuestionnaire" */ = {
