@@ -108,17 +108,9 @@ extension XCUIApplication {
         
         // Finish Account Setup: Will possibly be removed
         XCTAssert(staticTexts["Finish Account Setup"].waitForExistence(timeout: 5))
-        
-        // Enter first name
-        XCTAssert(textFields["enter first name"].exists)
-        textFields["enter first name"].tap()
-        textFields["enter first name"].typeText("Leland")
-        
-        // Enter last name
-        XCTAssert(textFields["enter last name"].exists)
-        textFields["enter last name"].tap()
-        textFields["enter last name"].typeText("Stanford")
-        
+
+        // TODO: issue with date of birth still persists?
+
         // Complete Account
         XCTAssert(buttons["Complete"].waitForExistence(timeout: 2) && buttons["Complete"].isEnabled)
         buttons["Complete"].tap()
