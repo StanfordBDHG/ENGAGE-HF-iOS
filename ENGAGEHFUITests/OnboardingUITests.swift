@@ -105,23 +105,6 @@ extension XCUIApplication {
         buttons["Signup"].tap()
         
         try createAccount(email: email)
-        
-        // Finish Account Setup: Will possibly be removed
-        XCTAssert(staticTexts["Finish Account Setup"].waitForExistence(timeout: 5))
-        
-        // Enter first name
-        XCTAssert(textFields["enter first name"].exists)
-        textFields["enter first name"].tap()
-        textFields["enter first name"].typeText("Leland")
-        
-        // Enter last name
-        XCTAssert(textFields["enter last name"].exists)
-        textFields["enter last name"].tap()
-        textFields["enter last name"].typeText("Stanford")
-        
-        // Complete Account
-        XCTAssert(buttons["Complete"].waitForExistence(timeout: 2) && buttons["Complete"].isEnabled)
-        buttons["Complete"].tap()
     }
     
     private func createAccount(email: String) throws {
