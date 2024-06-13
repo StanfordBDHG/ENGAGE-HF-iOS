@@ -12,8 +12,10 @@ import SwiftUI
 struct Dashboard: View {
     @Binding var presentingAccount: Bool
     @State var showSurvey = false
-
+    
+#if DEBUG || TEST
     @Environment(MeasurementManager.self) private var measurementManager
+#endif
 
     
     var body: some View {
@@ -21,17 +23,8 @@ struct Dashboard: View {
             List {
                 // Notifications
                 NotificationSection()
-                
-                // Most recent vitals
-                RecentVitalsSection()
-                
-                // Survey, if available
-                SurveySection(showFullSurvey: $showSurvey)
             }
             .studyApplicationList()
-            .sheet(isPresented: $showSurvey) {
-                FullSurveyView()
-            }
             .navigationTitle("Home")
             .toolbar {
                 if AccountButton.shouldDisplay {

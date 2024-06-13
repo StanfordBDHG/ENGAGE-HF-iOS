@@ -17,8 +17,6 @@ import SwiftUI
 struct HomeView: View {
     enum Tabs: String {
         case home
-        case heart
-        case medications
         case education
     }
     
@@ -31,12 +29,11 @@ struct HomeView: View {
         !ProcessInfo.processInfo.isPreviewSimulator
     }
 
-    @Environment(\.dismiss) private var dismiss
-
     
     @Environment(MeasurementManager.self) private var measurementManager
     @Environment(WeightScaleDevice.self) private var weightScale: WeightScaleDevice?
     @Environment(Bluetooth.self) private var bluetooth
+    @Environment(\.dismiss) private var dismiss
     
     @AppStorage(StorageKeys.homeTabSelection) private var selectedTab = Tabs.home
     @State private var presentingAccount = false
@@ -50,16 +47,6 @@ struct HomeView: View {
                 .tag(Tabs.home)
                 .tabItem {
                     Label("Home", systemImage: "house")
-                }
-            HeartHealth(presentingAccount: $presentingAccount)
-                .tag(Tabs.heart)
-                .tabItem {
-                    Label("Heart Health", systemImage: "heart")
-                }
-            Medications(presentingAccount: $presentingAccount)
-                .tag(Tabs.medications)
-                .tabItem {
-                    Label("Medications", systemImage: "pill")
                 }
             Education(presentingAccount: $presentingAccount)
                 .tag(Tabs.education)
