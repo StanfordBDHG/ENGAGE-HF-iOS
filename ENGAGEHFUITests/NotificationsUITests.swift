@@ -30,27 +30,26 @@ final class NotificationsUITests: XCTestCase {
         XCTAssert(app.staticTexts["MOCK NOTIFICATION 2"].waitForExistence(timeout: 2.0))
         XCTAssert(app.staticTexts["MOCK NOTIFICATION 3"].waitForExistence(timeout: 2.0))
         
-        XCTAssert(app.buttons["Show more"].waitForExistence(timeout: 2.0))
-        let buttonContainer = app.descendants(matching: .any).containing(.button, identifier: "Show more").element(boundBy: 1)
-        let showMoreButton = buttonContainer.buttons["Show more"]
+        XCTAssert(app.buttons["Show more"].firstMatch.waitForExistence(timeout: 2.0))
+        let showMoreButton = app.buttons["Show more"].firstMatch
         showMoreButton.tap()
         
-        XCTAssert(buttonContainer.buttons["Show less"].waitForExistence(timeout: 2.0))
-        let showLessButton = buttonContainer.buttons["Show less"]
+        XCTAssert(app.buttons["Show less"].firstMatch.waitForExistence(timeout: 2.0))
+        let showLessButton = app.buttons["Show less"].firstMatch
         showLessButton.tap()
         
         // If "show more" appears again, expandable texts likely functions correctly
-        XCTAssert(buttonContainer.buttons["Show more"].waitForExistence(timeout: 2.0))
+        XCTAssert(app.buttons["Show more"].firstMatch.waitForExistence(timeout: 2.0))
         
         
-        XCTAssert(app.buttons["XButton"].waitForExistence(timeout: 2.0))
-        app.buttons["XButton"].tap()
+        XCTAssert(app.buttons["XButton"].firstMatch.waitForExistence(timeout: 2.0))
+        app.buttons["XButton"].firstMatch.tap()
         
-        XCTAssert(app.buttons["XButton"].waitForExistence(timeout: 2.0))
-        app.buttons["XButton"].tap()
+        XCTAssert(app.buttons["XButton"].firstMatch.waitForExistence(timeout: 2.0))
+        app.buttons["XButton"].firstMatch.tap()
         
-        XCTAssert(app.buttons["XButton"].waitForExistence(timeout: 2.0))
-        app.buttons["XButton"].tap()
+        XCTAssert(app.buttons["XButton"].firstMatch.waitForExistence(timeout: 2.0))
+        app.buttons["XButton"].firstMatch.tap()
         
         // All the notifications are dismissed, so notifications section should no longer exist
         XCTAssertFalse(app.staticTexts["Notifications"].waitForExistence(timeout: 2.0))
