@@ -65,9 +65,6 @@
 		4DDFC7392BF2C3C9002B07A1 /* NotificationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC7382BF2C3C9002B07A1 /* NotificationSection.swift */; };
 		4DDFC73D2BF2C4FA002B07A1 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC73C2BF2C4FA002B07A1 /* Notification.swift */; };
 		4DDFC73F2BF2CADD002B07A1 /* FetchingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC73E2BF2CADD002B07A1 /* FetchingError.swift */; };
-		4DDFC7492BF32CD6002B07A1 /* ToDoSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC7482BF32CD6002B07A1 /* ToDoSection.swift */; };
-		4DDFC74D2BF33166002B07A1 /* ToDoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC74C2BF33166002B07A1 /* ToDoItem.swift */; };
-		4DDFC74F2BF335E2002B07A1 /* ToDoRows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC74E2BF335E2002B07A1 /* ToDoRows.swift */; };
 		4DDFC7542BF3408F002B07A1 /* RecentVitalsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC7532BF3408F002B07A1 /* RecentVitalsSection.swift */; };
 		4DDFC7592BF34361002B07A1 /* SurveySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC7582BF34360002B07A1 /* SurveySection.swift */; };
 		4DDFC75D2BF34700002B07A1 /* FullSurveyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC75C2BF34700002B07A1 /* FullSurveyView.swift */; };
@@ -165,9 +162,6 @@
 		4DDFC7382BF2C3C9002B07A1 /* NotificationSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSection.swift; sourceTree = "<group>"; };
 		4DDFC73C2BF2C4FA002B07A1 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		4DDFC73E2BF2CADD002B07A1 /* FetchingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchingError.swift; sourceTree = "<group>"; };
-		4DDFC7482BF32CD6002B07A1 /* ToDoSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoSection.swift; sourceTree = "<group>"; };
-		4DDFC74C2BF33166002B07A1 /* ToDoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItem.swift; sourceTree = "<group>"; };
-		4DDFC74E2BF335E2002B07A1 /* ToDoRows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoRows.swift; sourceTree = "<group>"; };
 		4DDFC7532BF3408F002B07A1 /* RecentVitalsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentVitalsSection.swift; sourceTree = "<group>"; };
 		4DDFC7582BF34360002B07A1 /* SurveySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveySection.swift; sourceTree = "<group>"; };
 		4DDFC75C2BF34700002B07A1 /* FullSurveyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullSurveyView.swift; sourceTree = "<group>"; };
@@ -358,7 +352,6 @@
 			isa = PBXGroup;
 			children = (
 				4DDFC73B2BF2C46E002B07A1 /* Notifications */,
-				4DDFC7472BF32CB7002B07A1 /* ToDo */,
 				4DDFC7502BF3404D002B07A1 /* Vitals */,
 				4DDFC7572BF34334002B07A1 /* Survey */,
 				4DB025D42BBF2E08002D2545 /* Dashboard.swift */,
@@ -382,24 +375,6 @@
 			children = (
 				4DDFC7382BF2C3C9002B07A1 /* NotificationSection.swift */,
 				4DDFC7892BFC1312002B07A1 /* NotificationRow.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		4DDFC7472BF32CB7002B07A1 /* ToDo */ = {
-			isa = PBXGroup;
-			children = (
-				4DDFC74B2BF33153002B07A1 /* Views */,
-				4DDFC74C2BF33166002B07A1 /* ToDoItem.swift */,
-			);
-			path = ToDo;
-			sourceTree = "<group>";
-		};
-		4DDFC74B2BF33153002B07A1 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				4DDFC7482BF32CD6002B07A1 /* ToDoSection.swift */,
-				4DDFC74E2BF335E2002B07A1 /* ToDoRows.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -767,7 +742,6 @@
 				4DD823022C17F63C004DC599 /* CloseButtonLayer.swift in Sources */,
 				A996F4462C1081EB002328C5 /* BloodPressureMeasurement.Unit+HKUnit.swift in Sources */,
 				2FE5DC3829EDD7CA004B9AB4 /* InterestingModules.swift in Sources */,
-				4DDFC74D2BF33166002B07A1 /* ToDoItem.swift in Sources */,
 				2FE5DC3529EDD7CA004B9AB4 /* Consent.swift in Sources */,
 				A996F44A2C1082BA002328C5 /* HealthDevice.swift in Sources */,
 				4DBDD3442BBFAD64001FB0CA /* InvitationCodeError.swift in Sources */,
@@ -781,7 +755,6 @@
 				A996F45C2C11AA15002328C5 /* BloodPressureMeasurementLabel.swift in Sources */,
 				2FF53D8D2A8729D600042B76 /* ENGAGEHFStandard.swift in Sources */,
 				4DDFC78A2BFC1312002B07A1 /* NotificationRow.swift in Sources */,
-				4DDFC74F2BF335E2002B07A1 /* ToDoRows.swift in Sources */,
 				2FE5DC4729EDD7F2004B9AB4 /* CodableArray+RawRepresentable.swift in Sources */,
 				4D052DB82BE07892006A784E /* MeasurementManager.swift in Sources */,
 				A9720E432ABB68CC00872D23 /* AccountSetupHeader.swift in Sources */,
@@ -790,7 +763,6 @@
 				2FE5DC4629EDD7F2004B9AB4 /* Bundle+Image.swift in Sources */,
 				4DDFC7672BF350EC002B07A1 /* Medications.swift in Sources */,
 				4DDFC7542BF3408F002B07A1 /* RecentVitalsSection.swift in Sources */,
-				4DDFC7492BF32CD6002B07A1 /* ToDoSection.swift in Sources */,
 				2F4E23832989D51F0013F3D9 /* ENGAGEHFTestingSetup.swift in Sources */,
 				2F5E32BD297E05EA003432F8 /* ENGAGEHFDelegate.swift in Sources */,
 				4D065BE02C09401700EBB3AE /* StudyApplicationListCard.swift in Sources */,
