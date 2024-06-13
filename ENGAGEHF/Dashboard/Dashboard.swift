@@ -22,9 +22,6 @@ struct Dashboard: View {
                 // Notifications
                 NotificationSection()
                 
-                // To-do
-                ToDoSection()
-                
                 // Most recent vitals
                 RecentVitalsSection()
                 
