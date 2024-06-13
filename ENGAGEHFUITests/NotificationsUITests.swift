@@ -31,13 +31,16 @@ final class NotificationsUITests: XCTestCase {
         XCTAssert(app.staticTexts["MOCK NOTIFICATION 3"].waitForExistence(timeout: 2.0))
         
         XCTAssert(app.buttons["Show more"].waitForExistence(timeout: 2.0))
-        app.buttons["Show more"].tap()
+        let buttonContainer = app.descendants(matching: .any).containing(.button, identifier: "Show more").element(boundBy: 1)
+        let showMoreButton = buttonContainer.buttons["Show more"]
+        showMoreButton.tap()
         
-        XCTAssert(app.buttons["Show less"].waitForExistence(timeout: 2.0))
-        app.buttons["Show less"].tap()
+        XCTAssert(buttonContainer.buttons["Show less"].waitForExistence(timeout: 2.0))
+        let showLessButton = buttonContainer.buttons["Show less"]
+        showLessButton.tap()
         
         // If "show more" appears again, expandable texts likely functions correctly
-        XCTAssert(app.buttons["Show more"].waitForExistence(timeout: 2.0))
+        XCTAssert(buttonContainer.buttons["Show more"].waitForExistence(timeout: 2.0))
         
         
         XCTAssert(app.buttons["XButton"].waitForExistence(timeout: 2.0))

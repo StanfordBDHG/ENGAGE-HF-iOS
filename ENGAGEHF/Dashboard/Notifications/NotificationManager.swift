@@ -53,9 +53,14 @@ class NotificationManager: Module, EnvironmentAccessible {
             self?.registerSnapshotListener(user: user)
             
             // If testing, add 3 notifications to firestore
-            // Must be signed in to do this
+            // Called when a user's sign in status changes
             if FeatureFlags.setupTestEnvironment, let user {
-                self?.setupNotificationTests(user: user)
+                // Make sure to not load the mock notifications multiple times
+                if let notifications = self?.notifications, notifications.isEmpty {
+                    Task {
+                        try await self?.setupNotificationTests(user: user)
+                    }
+                }
             }
         }
         self.registerSnapshotListener(user: Auth.auth().currentUser)
@@ -63,8 +68,19 @@ class NotificationManager: Module, EnvironmentAccessible {
     
     
     // Adds three mock notifications to the user's notification collection in firestore
-    func setupNotificationTests(user: User) {
+    func setupNotificationTests(user: User) async throws {
         let firestore = Firestore.firestore()
+        let notificationsCollection = firestore.collection("users").document(user.uid).collection("notifications")
+        
+        let querySnapshot = try await notificationsCollection.getDocuments()
+        
+        guard querySnapshot.documents.isEmpty else {
+            // Notifications collections exists and is not empty, so skip
+            self.logger.debug("Notifications already exist, skipping user.")
+            return
+        }
+        
+        self.logger.debug("Adding test notifications for user \(user.uid)")
         
         for idx in 1...3 {
             let newNotification = Notification(
@@ -76,10 +92,7 @@ class NotificationManager: Module, EnvironmentAccessible {
             )
             
             do {
-                try firestore.collection("users")
-                    .document(user.uid)
-                    .collection("notifications")
-                    .addDocument(from: newNotification)
+                try notificationsCollection.addDocument(from: newNotification)
             } catch {
                 self.logger.error("Unable to load notifications to firestore: \(error)")
             }
