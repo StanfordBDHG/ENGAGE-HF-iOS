@@ -21,7 +21,6 @@ struct Dashboard: View {
     var body: some View {
         NavigationStack {
             List {
-                // Notifications
                 NotificationSection()
             }
             .studyApplicationList()

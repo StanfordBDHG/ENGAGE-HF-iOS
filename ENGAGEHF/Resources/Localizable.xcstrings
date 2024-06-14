@@ -80,9 +80,6 @@
     "An invitation code is at least 8 characters long." : {
 
     },
-    "Blood Pressure" : {
-
-    },
     "Close" : {
       "comment" : "For closing sheets."
     },
@@ -124,9 +121,6 @@
 
     },
     "Education" : {
-
-    },
-    "Fill in rest of survey here." : {
 
     },
     "HEALTHKIT_PERMISSIONS_BUTTON" : {
@@ -173,15 +167,6 @@
           }
         }
       }
-    },
-    "Heart Health" : {
-
-    },
-    "Heart health data goes here" : {
-
-    },
-    "Heart Rate" : {
-
     },
     "Home" : {
 
@@ -320,16 +305,10 @@
         }
       }
     },
-    "Introductory Videos go here" : {
-
-    },
     "Invalid Sample" : {
 
     },
     "Invitation Code" : {
-
-    },
-    "KCCQ-12 Symptom Survey" : {
 
     },
     "LELAND_STANFORD_BIO" : {
@@ -358,22 +337,7 @@
     "List Without Sections" : {
 
     },
-    "Loading To-do List..." : {
-
-    },
     "Measurement Recorded" : {
-
-    },
-    "Medications" : {
-
-    },
-    "Medications go here." : {
-
-    },
-    "Most Recent Vitals" : {
-
-    },
-    "Nothing to do!" : {
 
     },
     "NOTIFICATION_PERMISSIONS_BUTTON" : {
@@ -429,20 +393,8 @@
     "Save" : {
 
     },
-    "Survey" : {
-
-    },
-    "Survey: %@" : {
-
-    },
     "The invitation code is invalid or has already been used." : {
       "comment" : "Invitation Code Invalid"
-    },
-    "To-do" : {
-
-    },
-    "To-do Checkbox" : {
-
     },
     "Trigger Blood Pressure Measurement" : {
 
@@ -458,9 +410,6 @@
     },
     "User not authenticated. Please sign in an try again." : {
       "comment" : "User Not Authenticated"
-    },
-    "Weight" : {
-
     },
     "WELCOME_AREA1_DESCRIPTION" : {
       "localizations" : {

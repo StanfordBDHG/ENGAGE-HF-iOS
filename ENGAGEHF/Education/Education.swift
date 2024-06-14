@@ -11,9 +11,11 @@ import SwiftUI
 
 
 struct Education: View {
+    @Binding var presentingAccount: Bool
+    
+    
     let contactPI = Contact(
         name: PersonNameComponents(givenName: "Alexander", familyName: "Sandhu"),
-//        image: Image(systemName: "figure.wave.circle"),
         title: "Principal Investigator",
         description: """
         Alex Sandhu, MD, MS is a cardiologist with a special interest in the
@@ -38,10 +40,19 @@ struct Education: View {
     
     
     var body: some View {
-        ContactsList(contacts: [contactPI])
+        NavigationStack {
+            ContactsList(contacts: [contactPI])
+                .navigationTitle("Education")
+                .toolbar {
+                    if AccountButton.shouldDisplay {
+                        AccountButton(isPresented: $presentingAccount)
+                    }
+                }
+        }
     }
 }
 
+
 #Preview {
-    Education()
+    Education(presentingAccount: .constant(false))
 }
