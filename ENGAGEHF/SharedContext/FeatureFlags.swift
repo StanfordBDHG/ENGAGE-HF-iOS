@@ -12,6 +12,8 @@ enum FeatureFlags {
     static let skipOnboarding = CommandLine.arguments.contains("--skipOnboarding")
     /// Always show the onboarding when the application is launched. Makes it easy to modify and test the onboarding flow without the need to manually remove the application or reset the simulator.
     static let showOnboarding = CommandLine.arguments.contains("--showOnboarding")
+    /// Set the onboarding completed flag to true. Doesn't disable account related functionality.
+    static let assumeOnboardingComplete = CommandLine.arguments.contains("--assumeOnboardingComplete") || skipOnboarding
     /// Disables the Firebase interactions, including the login/sign-up step and the Firebase Firestore upload.
     static let disableFirebase = CommandLine.arguments.contains("--disableFirebase")
     #if targetEnvironment(simulator)

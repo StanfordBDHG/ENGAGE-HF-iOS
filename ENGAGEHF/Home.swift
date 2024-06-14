@@ -59,14 +59,7 @@ struct HomeView: View {
                 AccountSheet()
             }
             .accountRequired(Self.accountEnabled) {
-                OnboardingStack {
-                    InvitationCodeView()
-                    AccountSetup { _ in
-                        dismiss()
-                    } header: {
-                        AccountSetupHeader()
-                    }
-                }
+                AccountSetupSheet()
             }
             .verifyRequiredAccountDetails(Self.accountEnabled)
             .sheet(item: $measurementManager.newMeasurement) { measurement in
