@@ -100,6 +100,7 @@ struct InvitationCodeView: View {
         }
     }
 
+    
     init() {}
 }
 

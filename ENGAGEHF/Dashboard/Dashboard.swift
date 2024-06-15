@@ -11,35 +11,38 @@ import SwiftUI
 
 struct Dashboard: View {
     @Binding var presentingAccount: Bool
-
+    @State var showSurvey = false
+    
+#if DEBUG || TEST
     @Environment(MeasurementManager.self) private var measurementManager
+#endif
 
     
     var body: some View {
         NavigationStack {
-            VStack {
-                Greeting()
-                Spacer()
+            List {
+                NotificationSection()
             }
-                .navigationTitle("Home")
-                .toolbar {
-                    if AccountButton.shouldDisplay {
-                        AccountButton(isPresented: $presentingAccount)
-                    }
+            .studyApplicationList()
+            .navigationTitle("Home")
+            .toolbar {
+                if AccountButton.shouldDisplay {
+                    AccountButton(isPresented: $presentingAccount)
                 }
+            }
 #if DEBUG || TEST
-                .toolbar {
-                    if FeatureFlags.testMockDevices {
-                        ToolbarItemGroup(placement: .secondaryAction) {
-                            Button("Trigger Weight Measurement", systemImage: "scalemass.fill") {
-                                measurementManager.loadMockWeightMeasurement()
-                            }
-                            Button("Trigger Blood Pressure Measurement", systemImage: "drop.fill") {
-                                measurementManager.loadMockBloodPressureMeasurement()
-                            }
+            .toolbar {
+                if FeatureFlags.testMockDevices {
+                    ToolbarItemGroup(placement: .secondaryAction) {
+                        Button("Trigger Weight Measurement", systemImage: "scalemass.fill") {
+                            measurementManager.loadMockWeightMeasurement()
+                        }
+                        Button("Trigger Blood Pressure Measurement", systemImage: "drop.fill") {
+                            measurementManager.loadMockBloodPressureMeasurement()
                         }
                     }
                 }
+            }
 #endif
         }
     }
@@ -50,6 +53,7 @@ struct Dashboard: View {
 #Preview {
     Dashboard(presentingAccount: .constant(false))
         .previewWith(standard: ENGAGEHFStandard()) {
+            NotificationManager()
             MeasurementManager()
         }
 }

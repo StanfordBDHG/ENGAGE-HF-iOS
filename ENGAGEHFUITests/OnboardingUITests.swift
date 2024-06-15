@@ -58,9 +58,6 @@ extension XCUIApplication {
         }
         
         if !skipOnRepeat {
-            // Health Permissions
-            try navigateHealthPermissions()
-            
             // Notifications
             try navigateNotifications()
         }
@@ -162,15 +159,6 @@ extension XCUIApplication {
         XCTAssert(buttons["I Consent"].waitForExistence(timeout: 2)
                   && buttons["I Consent"].isEnabled)
         buttons["I Consent"].tap()
-    }
-    
-    private func navigateHealthPermissions() throws {
-        XCTAssert(staticTexts["HealthKit Access"].waitForExistence(timeout: 5))
-        
-        XCTAssert(buttons["Grant Access"].waitForExistence(timeout: 2))
-        buttons["Grant Access"].tap()
-        
-        sleep(3)
     }
     
     private func navigateNotifications() throws {

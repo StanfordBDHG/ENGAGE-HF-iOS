@@ -17,22 +17,23 @@ import SwiftUI
 struct HomeView: View {
     enum Tabs: String {
         case home
+        case education
     }
     
     static var accountEnabled: Bool {
         !FeatureFlags.disableFirebase && !FeatureFlags.skipOnboarding
     }
     
+    // Disable bluetooth in preview to prevent preview from crashing
     private var bluetoothEnabled: Bool {
         !ProcessInfo.processInfo.isPreviewSimulator
     }
-
-    @Environment(\.dismiss) private var dismiss
 
     
     @Environment(MeasurementManager.self) private var measurementManager
     @Environment(WeightScaleDevice.self) private var weightScale: WeightScaleDevice?
     @Environment(Bluetooth.self) private var bluetooth
+    @Environment(\.dismiss) private var dismiss
     
     @AppStorage(StorageKeys.homeTabSelection) private var selectedTab = Tabs.home
     @State private var presentingAccount = false
@@ -46,6 +47,11 @@ struct HomeView: View {
                 .tag(Tabs.home)
                 .tabItem {
                     Label("Home", systemImage: "house")
+                }
+            Education(presentingAccount: $presentingAccount)
+                .tag(Tabs.education)
+                .tabItem {
+                    Label("Education", systemImage: "brain")
                 }
         }
             .autoConnect(enabled: bluetoothEnabled, with: bluetooth)
@@ -72,6 +78,7 @@ struct HomeView: View {
                 MockUserIdPasswordAccountService()
             }
             MeasurementManager()
+            NotificationManager()
             Bluetooth {
                 Discover(WeightScaleDevice.self, by: .advertisedService(WeightScaleService.self))
             }

@@ -21,7 +21,7 @@ import SpeziQuestionnaire
 import SwiftUI
 
 
-actor ENGAGEHFStandard: Standard, EnvironmentAccessible, HealthKitConstraint, OnboardingConstraint, AccountStorageConstraint {
+actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint, AccountStorageConstraint {
     enum ENGAGEHFStandardError: Error {
         case userNotAuthenticatedYet
     }
@@ -75,19 +75,22 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, HealthKitConstraint, On
 
     func addMeasurement(sample: HKSample) async throws {
         do {
-            try await healthKitDocument(id: sample.id).setData(from: sample.resource)
+            try await healthKitDocument(id: sample.id, type: sample.sampleType).setData(from: sample.resource)
         } catch {
             throw FirestoreError(error)
         }
     }
     
-    func remove(sample: HKDeletedObject) async {
+    
+    func add(notification: Notification) async {
         do {
-            try await healthKitDocument(id: sample.uuid).delete()
+            let userDoc = try await userDocumentReference
+            try userDoc.collection("notifications").addDocument(from: notification)
         } catch {
-            logger.error("Could not remove HealthKit sample: \(error)")
+            logger.error("Could not store the notification: \(error)")
         }
     }
+    
     
     func add(response: ModelsR4.QuestionnaireResponse) async {
         let id = response.identifier?.value?.value?.string ?? UUID().uuidString
@@ -103,9 +106,11 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, HealthKitConstraint, On
     }
     
     
-    private func healthKitDocument(id uuid: UUID) async throws -> DocumentReference {
+    private func healthKitDocument(id uuid: UUID, type: HKSampleType) async throws -> DocumentReference {
         try await userDocumentReference
-            .collection("HealthData") // Add all HealthKit sources in a /HealthData collection.
+            .collection("HealthData") // Add all HealthKit sources to a /HealthData collection.
+            .document(type.description) // Group measurements by type (BodyMass and BloodPressure)
+            .collection("Measurements")
             .document(uuid.uuidString) // Set the document identifier to the UUID of the document.
     }
 

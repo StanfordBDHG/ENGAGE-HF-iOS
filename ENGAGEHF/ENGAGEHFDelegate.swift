@@ -13,7 +13,6 @@ import SpeziBluetooth
 import SpeziFirebaseAccount
 import SpeziFirebaseStorage
 import SpeziFirestore
-import SpeziHealthKit
 import SpeziOnboarding
 import SwiftUI
 
@@ -46,10 +45,6 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
                     FirebaseStorageConfiguration()
                 }
             }
-
-            if HKHealthStore.isHealthDataAvailable() {
-                healthKit
-            }
             
             Bluetooth {
                 Discover(WeightScaleDevice.self, by: .advertisedService(WeightScaleService.self))
@@ -58,6 +53,7 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
             
             OnboardingDataSource()
             MeasurementManager()
+            NotificationManager()
             InvitationCodeModule()
         }
     }
@@ -74,15 +70,5 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
         return Firestore(
             settings: settings
         )
-    }
-    
-    
-    private var healthKit: HealthKit {
-        HealthKit {
-            CollectSample(
-                HKQuantityType(.stepCount),
-                deliverySetting: .anchorQuery(.automatic)
-            )
-        }
     }
 }
