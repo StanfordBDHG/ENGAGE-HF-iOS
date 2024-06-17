@@ -33,6 +33,12 @@ jobs:
       setupsigning: true
       fastlanelane: beta
     secrets: inherit
+  checkoutfirebase:
+    name: Check out my other private repo
+    uses: actions/checkout@master
+    with:
+        repository: StanfordBDHG/ENGAGE-HF-Firebase
+        ref: cloud-functions
   deployfirebase:
     name: Deploy Firebase Project
     needs: iosapptestflightdeployment
@@ -41,3 +47,4 @@ jobs:
       contents: read
     secrets:
       GOOGLE_APPLICATION_CREDENTIALS_BASE64: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_BASE64 }}
+    
