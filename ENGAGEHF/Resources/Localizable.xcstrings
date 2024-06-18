@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
     "%@" : {
 
     },
@@ -68,13 +71,13 @@
         }
       }
     },
+    "Add Device" : {
+
+    },
     "Add Mock" : {
 
     },
     "Add mock notification" : {
-
-    },
-    "Add Device" : {
 
     },
     "An error occurred: %@" : {
@@ -118,6 +121,10 @@
       }
     },
     "Content ..." : {
+
+    },
+    "Device Busy" : {
+
     },
     "Device Retrieval" : {
 
@@ -127,8 +134,6 @@
     },
     "Discard" : {
 
-    },
-    "Education" : {
     },
     "Discovering" : {
 
@@ -140,6 +145,12 @@
 
     },
     "Done" : {
+
+    },
+    "Education" : {
+
+    },
+    "Failed to pair accessory." : {
 
     },
     "HEALTHKIT_PERMISSIONS_BUTTON" : {
@@ -186,6 +197,9 @@
           }
         }
       }
+    },
+    "Hold down the Bluetooth button for 3 seconds to put the device into pairing mode." : {
+
     },
     "Home" : {
 
@@ -327,6 +341,9 @@
     "Invalid Sample" : {
 
     },
+    "Invalid State" : {
+
+    },
     "Invitation Code" : {
 
     },
@@ -360,6 +377,9 @@
 
     },
     "No Devices" : {
+
+    },
+    "Not Ready" : {
 
     },
     "NOTIFICATION_PERMISSIONS_BUTTON" : {
@@ -404,6 +424,10 @@
       }
     },
     "Notifications" : {
+
+    },
+    "OK" : {
+
     },
     "Pair" : {
 
@@ -415,6 +439,9 @@
 
     },
     "Paired devices will appear here once paired." : {
+
+    },
+    "Pairing Failed" : {
 
     },
     "Please enter your invitation code to join the ENGAGE-HF study." : {
@@ -429,8 +456,20 @@
     "Successfully Paired" : {
 
     },
+    "The device is busy and failed to complete pairing." : {
+
+    },
+    "The device was not put into pairing mode." : {
+
+    },
     "The invitation code is invalid or has already been used." : {
       "comment" : "Invitation Code Invalid"
+    },
+    "The operation timed out." : {
+
+    },
+    "Timeout" : {
+
     },
     "Trigger Blood Pressure Measurement" : {
 

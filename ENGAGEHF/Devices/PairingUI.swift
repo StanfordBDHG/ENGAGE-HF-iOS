@@ -13,7 +13,7 @@ import SwiftUI
 
 
 struct DevicesGrid: View {
-    private let devices: [PairedDevice]
+    private let devices: [PairedDeviceInfo]
 
 
     @Binding private var presentingDevicePairing: Bool
@@ -77,7 +77,7 @@ struct DevicesGrid: View {
     }
 
 
-    init(devices: [PairedDevice], presentingDevicePairing: Binding<Bool>) {
+    init(devices: [PairedDeviceInfo], presentingDevicePairing: Binding<Bool>) {
         self.devices = devices
         self._presentingDevicePairing = presentingDevicePairing
     }
@@ -92,8 +92,8 @@ struct DevicesGrid: View {
 
 #Preview {
     let devices = [
-        PairedDevice(id: UUID(), name: "BP5250", model: .bp5250, lastSequenceNumber: nil, userDatabaseNumber: nil),
-        PairedDevice(id: UUID(), name: "SC150", model: .sc150, lastSequenceNumber: nil, userDatabaseNumber: nil)
+        PairedDeviceInfo(id: UUID(), name: "BP5250", model: .bp5250, lastSequenceNumber: nil, userDatabaseNumber: nil),
+        PairedDeviceInfo(id: UUID(), name: "SC150", model: .sc150, lastSequenceNumber: nil, userDatabaseNumber: nil)
     ]
 
     return NavigationStack {
@@ -136,6 +136,7 @@ struct PairDeviceContent: View {
     @Environment(DeviceManager.self) private var deviceManager
     @Environment(\.dismiss) private var dismiss
 
+    @Binding private var viewState: ViewState
     @State private var paired = false
 
 
@@ -151,11 +152,13 @@ struct PairDeviceContent: View {
             .padding([.leading, .trailing], 12)
             .multilineTextAlignment(.center)
 
+        Spacer()
         descriptor.image // TODO: dark mode images!
             .resizable()
             .aspectRatio(contentMode: .fit)
-            .padding([.leading, .trailing], 64)
-            .padding([.top, .bottom], 25)
+            .foregroundStyle(.accent) // set accent color if one uses sf symbols
+            .frame(maxWidth: 250, maxHeight: 120) // TODO: image are a bit too small?
+        Spacer()
 
         Label("Successfully Paired", systemImage: "checkmark.circle.fill")
             .padding(.bottom, 6)
@@ -163,17 +166,18 @@ struct PairDeviceContent: View {
             .opacity(paired ? 1 : 0)
             .accessibilityHidden(!paired) // TODO: better way to handle this?
 
-        AsyncButton {
+        AsyncButton(state: $viewState) {
             if paired {
                 dismiss()
                 return
             }
+
             do {
                 try await pairClosure()
                 paired = true
             } catch {
-                print(error)
-                // TODO: find a error representation!
+                print(error) // TODO: logger?
+                throw error
             }
         } label: {
             Text(paired ? "Done" : "Pair")
@@ -190,38 +194,106 @@ struct PairDeviceContent: View {
     }
 
 
-    init(descriptor: AccessoryDescriptor, pair: @escaping () async throws -> Void) {
+    init(descriptor: AccessoryDescriptor, state: Binding<ViewState>, pair: @escaping () async throws -> Void) {
         self.descriptor = descriptor
+        self._viewState = state
         self.pairClosure = pair
     }
 }
 
 
+struct DiscoveringContent: View {
+    var body: some View {
+        VStack {
+            Text("Discovering")
+                .bold()
+                .font(.largeTitle)
+            Text("Hold down the Bluetooth button for 3 seconds to put the device into pairing mode.")
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+        }
+            .padding([.leading, .trailing], 20)
+            .multilineTextAlignment(.center)
+
+        Spacer()
+        ProgressView()
+            .controlSize(.large)
+        Spacer()
+    }
+}
+
+
+struct FailureContent: View {
+    private let error: any LocalizedError
+
+    private var message: String {
+        error.failureReason ?? error.errorDescription
+            ?? String(localized: "Failed to pair accessory.")
+    }
+
+    @Environment(\.dismiss) private var dismiss
+
+
+    var body: some View {
+        VStack {
+            Text("Pairing Failed")
+                .bold()
+                .font(.largeTitle)
+            Text(message)
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+        }
+            .padding([.leading, .trailing], 20)
+            .multilineTextAlignment(.center)
+
+        Spacer()
+        Image(systemName: "exclamationmark.triangle.fill")
+            .symbolRenderingMode(.hierarchical)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .accessibilityHidden(true)
+            .frame(maxWidth: 250, maxHeight: 120)
+            .foregroundStyle(.red)
+        Spacer()
+
+        Button {
+            dismiss()
+        } label: {
+            Text("OK")
+                .frame(maxWidth: .infinity, maxHeight: 35)
+        }
+            .buttonStyle(.borderedProminent)
+            .padding([.leading, .trailing], 36)
+    }
+
+
+    init(_ error: any LocalizedError) {
+        self.error = error
+    }
+}
+
+
 struct AccessorySetupSheet: View {
-    private let device: BloodPressureCuffDevice?
+    private let device: (any OmronHealthDevice)? // TODO: not let, but onAppear setting @State!
 
     @Environment(DeviceManager.self) private var deviceManager
     @Environment(\.dismiss) private var dismiss
 
+    @State private var viewState: ViewState = .idle
+
     var body: some View {
         NavigationStack {
             VStack {
-                if let device {
-                    let descriptor = AccessoryDescriptor(id: device.id, name: device.name ?? "UNKNOWN", image: Image("Omron-BP5250"))
-                    PairDeviceContent(descriptor: descriptor) {
-                        // TODO: present errors?
-                        try await device.pair() // TODO: do something about errors?
+                if case let .error(error) = viewState {
+                    FailureContent(error)
+                } else if let device {
+                    let descriptor = AccessoryDescriptor(id: device.id, name: device.label, image: device.icon)
+                    PairDeviceContent(descriptor: descriptor, state: $viewState) {
+                        try await device.pair()
                         deviceManager.registerPairedDevice(device)
                     }
                 } else { // TODO: make its own view?
-                    Text("Discovering")
-                        .bold()
-                        .font(.largeTitle)
-
-                    Spacer()
-                    ProgressView()
-                        .controlSize(.large)
-                    Spacer()
+                    DiscoveringContent()
                 }
             }
             .toolbar {
@@ -243,10 +315,10 @@ struct AccessorySetupSheet: View {
         }
             .presentationDetents([.medium])
             .presentationCornerRadius(25)
-            .interactiveDismissDisabled()
+            .interactiveDismissDisabled() // TODO: allow in "discovery mode"?
     }
 
-    init(_ device: BloodPressureCuffDevice?) {
+    init(_ device: (any OmronHealthDevice)?) {
         self.device = device
     }
 }
@@ -275,19 +347,15 @@ struct GreyButtonStyle: PrimitiveButtonStyle {
     }
 }
 
-/*
- // TODO: PReview
 #if DEBUG
+// TODO: inject devices as modules?
 #Preview {
     Text(verbatim: " ")
         .sheet(isPresented: .constant(true)) {
-            AccessorySetupSheet(descriptor: AccessoryDescriptor(
-                id: UUID(),
-                name: "SC150",
-                image: Image("Omron-SC150")
-            )) {
-                try? await Task.sleep(for: .seconds(2))
-            }
+            AccessorySetupSheet(BloodPressureCuffDevice.createMockDevice(state: .disconnected))
+        }
+        .previewWith {
+            DeviceManager()
         }
 }
 
@@ -295,14 +363,36 @@ struct GreyButtonStyle: PrimitiveButtonStyle {
 #Preview {
     Text(verbatim: " ")
         .sheet(isPresented: .constant(true)) {
-            AccessorySetupSheet(descriptor: AccessoryDescriptor(
-                id: UUID(),
-                name: "BP5250",
-                image: Image("Omron-BP5250")
-            )) {
-                try? await Task.sleep(for: .seconds(2))
+            AccessorySetupSheet(WeightScaleDevice.createMockDevice(state: .disconnected)) // TODO: image doesnt match!
+        }
+        .previewWith {
+            DeviceManager()
+        }
+}
+
+#Preview {
+    Text(verbatim: " ")
+        .sheet(isPresented: .constant(true)) {
+            AccessorySetupSheet(nil)
+        }
+        .previewWith {
+            DeviceManager()
+        }
+}
+
+#Preview {
+    Text(verbatim: " ")
+        .sheet(isPresented: .constant(true)) {
+            NavigationStack {
+                VStack {
+                    FailureContent(DevicePairingError.notInPairingMode)
+                }
+                    .toolbar {
+                        Button("Close") {}
+                    }
             }
+                .presentationDetents([.medium]) // TODO: how to inject into Sheet view?
+                .presentationCornerRadius(25)
         }
 }
 #endif
-*/

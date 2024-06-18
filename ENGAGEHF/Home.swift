@@ -57,8 +57,9 @@ struct HomeView: View {
             PairingSheet()
                 .tag(Tabs.devices)
                 .tabItem {
-                    Label("Devices", systemImage: "point.3.filled.connected.trianglepath.dotted")
+                    Label("Devices", systemImage: "sensor.fill")
                 }
+            // TODO: pairing hint?
         }
             // TODO: .autoConnect(enabled: bluetoothEnabled, with: bluetooth)
             .sheet(isPresented: $presentingAccount) {

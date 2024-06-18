@@ -99,6 +99,11 @@
 		A996F45C2C11AA15002328C5 /* BloodPressureMeasurementLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A996F45B2C11AA15002328C5 /* BloodPressureMeasurementLabel.swift */; };
 		A996F45E2C11B793002328C5 /* BoodPressureCuffTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A996F45D2C11B793002328C5 /* BoodPressureCuffTests.swift */; };
 		A9A0BF032C13121D00B8F3F3 /* SpeziNumerics in Frameworks */ = {isa = PBXBuildFile; productRef = A9A0BF022C13121D00B8F3F3 /* SpeziNumerics */; };
+		A9D683F02C21B51E00183891 /* OmronModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D683EF2C21B51E00183891 /* OmronModel.swift */; };
+		A9D683F32C21B57200183891 /* PairedDeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D683F22C21B57200183891 /* PairedDeviceInfo.swift */; };
+		A9D683F72C21B79200183891 /* OmronManufacturerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D683F62C21B79200183891 /* OmronManufacturerData.swift */; };
+		A9D683F92C21BA3400183891 /* OmronHealthDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D683F82C21BA3400183891 /* OmronHealthDevice.swift */; };
+		A9D683FC2C21C01100183891 /* DevicePairingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D683FB2C21C01100183891 /* DevicePairingError.swift */; };
 		A9D83F962B083794000D0C78 /* SpeziFirebaseAccountStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A9D83F952B083794000D0C78 /* SpeziFirebaseAccountStorage */; };
 		A9DFE8A92ABE551400428242 /* AccountButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DFE8A82ABE551400428242 /* AccountButton.swift */; };
 		A9F2138E2C18EBAB00A7578F /* AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F2138D2C18EBAB00A7578F /* AccountTests.swift */; };
@@ -192,6 +197,11 @@
 		A996F4592C11A9D1002328C5 /* WeightMeasurementLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightMeasurementLabel.swift; sourceTree = "<group>"; };
 		A996F45B2C11AA15002328C5 /* BloodPressureMeasurementLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloodPressureMeasurementLabel.swift; sourceTree = "<group>"; };
 		A996F45D2C11B793002328C5 /* BoodPressureCuffTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoodPressureCuffTests.swift; sourceTree = "<group>"; };
+		A9D683EF2C21B51E00183891 /* OmronModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OmronModel.swift; sourceTree = "<group>"; };
+		A9D683F22C21B57200183891 /* PairedDeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairedDeviceInfo.swift; sourceTree = "<group>"; };
+		A9D683F62C21B79200183891 /* OmronManufacturerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OmronManufacturerData.swift; sourceTree = "<group>"; };
+		A9D683F82C21BA3400183891 /* OmronHealthDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OmronHealthDevice.swift; sourceTree = "<group>"; };
+		A9D683FB2C21C01100183891 /* DevicePairingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicePairingError.swift; sourceTree = "<group>"; };
 		A9DFE8A82ABE551400428242 /* AccountButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountButton.swift; sourceTree = "<group>"; };
 		A9F2138D2C18EBAB00A7578F /* AccountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTests.swift; sourceTree = "<group>"; };
 		A9FE7ACF2AA39BAB0077B045 /* AccountSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSheet.swift; sourceTree = "<group>"; };
@@ -341,11 +351,14 @@
 		4D49AB142BCF6FC400C77310 /* Devices */ = {
 			isa = PBXGroup;
 			children = (
+				A9D683FA2C21C00D00183891 /* Pairing */,
+				A9D683F42C21B78900183891 /* Omron */,
 				4D49AB052BC9D56900C77310 /* WeightScaleDevice.swift */,
 				A96C56BE2C0E334A00D6A50B /* BloodPressureCuffDevice.swift */,
 				A996F4492C1082BA002328C5 /* HealthDevice.swift */,
 				A91BA3522C1B5E6100AE30ED /* PairingUI.swift */,
 				A91BA3572C1C76E100AE30ED /* DeviceManager.swift */,
+				A9D683F22C21B57200183891 /* PairedDeviceInfo.swift */,
 			);
 			path = Devices;
 			sourceTree = "<group>";
@@ -496,6 +509,24 @@
 				A996F44E2C10861D002328C5 /* BloodPressureMeasurement+HKSample.swift */,
 			);
 			path = Conversions;
+			sourceTree = "<group>";
+		};
+		A9D683F42C21B78900183891 /* Omron */ = {
+			isa = PBXGroup;
+			children = (
+				A9D683EF2C21B51E00183891 /* OmronModel.swift */,
+				A9D683F62C21B79200183891 /* OmronManufacturerData.swift */,
+				A9D683F82C21BA3400183891 /* OmronHealthDevice.swift */,
+			);
+			path = Omron;
+			sourceTree = "<group>";
+		};
+		A9D683FA2C21C00D00183891 /* Pairing */ = {
+			isa = PBXGroup;
+			children = (
+				A9D683FB2C21C01100183891 /* DevicePairingError.swift */,
+			);
+			path = Pairing;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -700,6 +731,7 @@
 				2FE5DC3A29EDD7CA004B9AB4 /* Welcome.swift in Sources */,
 				4DD823022C17F63C004DC599 /* CloseButtonLayer.swift in Sources */,
 				A996F4462C1081EB002328C5 /* BloodPressureMeasurement.Unit+HKUnit.swift in Sources */,
+				A9D683F32C21B57200183891 /* PairedDeviceInfo.swift in Sources */,
 				2FE5DC3829EDD7CA004B9AB4 /* InterestingModules.swift in Sources */,
 				2FE5DC3529EDD7CA004B9AB4 /* Consent.swift in Sources */,
 				A996F44A2C1082BA002328C5 /* HealthDevice.swift in Sources */,
@@ -712,6 +744,7 @@
 				A9DFE8A92ABE551400428242 /* AccountButton.swift in Sources */,
 				4DDFC7392BF2C3C9002B07A1 /* NotificationSection.swift in Sources */,
 				4DDFC7872BFBFDDD002B07A1 /* NotificationManager.swift in Sources */,
+				A9D683FC2C21C01100183891 /* DevicePairingError.swift in Sources */,
 				2FE5DC3729EDD7CA004B9AB4 /* OnboardingFlow.swift in Sources */,
 				A996F45C2C11AA15002328C5 /* BloodPressureMeasurementLabel.swift in Sources */,
 				2FF53D8D2A8729D600042B76 /* ENGAGEHFStandard.swift in Sources */,
@@ -724,6 +757,8 @@
 				2F4E23832989D51F0013F3D9 /* ENGAGEHFTestingSetup.swift in Sources */,
 				2F5E32BD297E05EA003432F8 /* ENGAGEHFDelegate.swift in Sources */,
 				4D065BE02C09401700EBB3AE /* StudyApplicationListCard.swift in Sources */,
+				A9D683F92C21BA3400183891 /* OmronHealthDevice.swift in Sources */,
+				A9D683F72C21B79200183891 /* OmronManufacturerData.swift in Sources */,
 				A96C56BB2C0DFFCE00D6A50B /* InvitationCodeModule.swift in Sources */,
 				A996F4482C1081F8002328C5 /* HealthDevice+HKDevice.swift in Sources */,
 				A96C56BF2C0E334A00D6A50B /* BloodPressureCuffDevice.swift in Sources */,
@@ -738,6 +773,7 @@
 				2FE5DC2629EDD38A004B9AB4 /* Contacts.swift in Sources */,
 				A996F45A2C11A9D1002328C5 /* WeightMeasurementLabel.swift in Sources */,
 				A996F44F2C10861D002328C5 /* BloodPressureMeasurement+HKSample.swift in Sources */,
+				A9D683F02C21B51E00183891 /* OmronModel.swift in Sources */,
 				4DBDD3462BBFAE2D001FB0CA /* InvitationCodeView.swift in Sources */,
 				4DDFC73D2BF2C4FA002B07A1 /* Notification.swift in Sources */,
 				A91BA3582C1C76E100AE30ED /* DeviceManager.swift in Sources */,

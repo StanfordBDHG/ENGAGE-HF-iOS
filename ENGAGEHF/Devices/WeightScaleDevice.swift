@@ -16,7 +16,7 @@ import OSLog
 ///
 /// On new measurement, loads the measurement into the MeasurementManager
 /// as a HealthKit HKQuantitySample.
-class WeightScaleDevice: BluetoothDevice, Identifiable, HealthDevice {
+class WeightScaleDevice: BluetoothDevice, Identifiable, OmronHealthDevice {
     private static let logger = Logger(subsystem: "ENGAGEHF", category: "WeightScale")
 
     @DeviceState(\.id) var id: UUID
@@ -27,24 +27,44 @@ class WeightScaleDevice: BluetoothDevice, Identifiable, HealthDevice {
     @Service var deviceInformation = DeviceInformationService()
 
     @Service var time = CurrentTimeService()
+    @Service var battery = BatteryService()
     @Service var weightScale = WeightScaleService()
     
     @DeviceAction(\.connect) var connect
     @DeviceAction(\.disconnect) var disconnect
 
-
     @Dependency private var measurementManager: MeasurementManager?
+    @Dependency private var deviceManager: DeviceManager?
 
-    
+    @MainActor var _pairingContinuation: CheckedContinuation<Void, any Error>? // swiftlint:disable:this identifier_name
+    // TODO: swiftlint warning
+
+    // TODO: weight scale has some reserved flag set???
+
     required init() {
         $state
-            .onChange(perform: handleStateChange)
+            .onChange(perform: handleStateChange(_:))
         weightScale.$weightMeasurement
-            .onChange(perform: processMeasurement)
+            .onChange(perform: processMeasurement(_:))
+        battery.$batteryLevel
+            .onChange(perform: handleBatteryChange(_:))
+        time.$currentTime
+            .onChange(perform: handleCurrentTimeChange(_:))
     }
 
     func configure() {
-        print("ManufacturerData2222: \(manufacturerData)")
+        // TODO: this is the same for both!
+        guard let manufacturerData else {
+            return
+        }
+
+
+        Self.logger.info("Detected nearby weight scale with manufacturer data \(manufacturerData)")
+        if case .pairingMode = manufacturerData.pairingMode {
+            Task { @MainActor in
+                deviceManager?.nearbyPairableDevice(self)
+            }
+        }
     }
 
     private func handleStateChange(_ state: PeripheralState) {
@@ -62,15 +82,29 @@ class WeightScaleDevice: BluetoothDevice, Identifiable, HealthDevice {
         Self.logger.debug("Received new weight measurement: \(String(describing: measurement))")
         measurementManager.handleNewMeasurement(.weight(measurement, weightScale.features ?? []), from: self)
     }
+
+    @MainActor
+    private func handleBatteryChange(_ level: UInt8) {
+        handleDeviceInteraction()
+    }
+
+    @MainActor
+    private func handleCurrentTimeChange(_ time: CurrentTime) {
+        handleDeviceInteraction()
+    }
 }
 
 
 extension WeightScaleDevice {
-    static func createMockDevice(weight: UInt16 = 8400, resolution: WeightScaleFeature.WeightResolution = .resolution5g) -> WeightScaleDevice {
+    static func createMockDevice(
+        weight: UInt16 = 8400,
+        resolution: WeightScaleFeature.WeightResolution = .resolution5g,
+        state: PeripheralState = .connected
+    ) -> WeightScaleDevice {
         let device = WeightScaleDevice()
 
         device.deviceInformation.$manufacturerName.inject("Mock Weight Scale")
-        device.deviceInformation.$modelNumber.inject("1")
+        device.deviceInformation.$modelNumber.inject(OmronModel.sc150.rawValue)
         device.deviceInformation.$hardwareRevision.inject("2")
         device.deviceInformation.$firmwareRevision.inject("1.0")
 
@@ -91,7 +125,7 @@ extension WeightScaleDevice {
 
         device.$id.inject(UUID())
         device.$name.inject("Mock Health Scale")
-        device.$state.inject(.connected)
+        device.$state.inject(state)
 
         device.$connect.inject { @MainActor [weak device] in
             device?.$state.inject(.connecting)
