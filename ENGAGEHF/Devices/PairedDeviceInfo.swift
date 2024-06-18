@@ -95,10 +95,10 @@ extension ImageReference: Codable {
 }
 
 
-struct PairedDeviceInfo: Codable, Identifiable {
+struct PairedDeviceInfo {
     let id: UUID
     let name: String // TODO: customization?
-    let model: String
+    let model: String // TODO: we don't really need to store the model?
     let icon: ImageReference?
     let lastSequenceNumber: UInt16?
     let userDatabaseNumber: UInt32? // TODO: default value?
@@ -125,6 +125,20 @@ struct PairedDeviceInfo: Codable, Identifiable {
         self.icon = icon
         self.lastSequenceNumber = lastSequenceNumber
         self.userDatabaseNumber = userDatabaseNumber
+    }
+}
+
+
+extension PairedDeviceInfo: Identifiable, Codable {}
+
+
+extension PairedDeviceInfo: Hashable {
+    static func == (lhs: PairedDeviceInfo, rhs: PairedDeviceInfo) -> Bool {
+        lhs.id == rhs.id
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 }
 

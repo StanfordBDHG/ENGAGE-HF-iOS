@@ -7,52 +7,67 @@
 //
 
 import SwiftUI
+import TipKit
 
 
 struct DevicesGrid: View {
     private let devices: [PairedDeviceInfo]
 
 
+    @Binding private var navigationPath: NavigationPath
     @Binding private var presentingDevicePairing: Bool
 
 
     private var gridItems = [
-        GridItem(.adaptive(minimum: 120, maximum: 800), spacing: 10),
-        GridItem(.adaptive(minimum: 120, maximum: 800), spacing: 10)
+        GridItem(.adaptive(minimum: 120, maximum: 800), spacing: 12),
+        GridItem(.adaptive(minimum: 120, maximum: 800), spacing: 12)
     ]
 
 
     var body: some View {
-        Group {
+        // TODO: swiftlint
+        Group { // swiftlint:disable:this closure_body_length
             if devices.isEmpty {
-                DevicesUnavailableView(presentingDevicePairing: $presentingDevicePairing)
+                ZStack {
+                    VStack {
+                        TipView(ForgetDeviceTip.instance)
+                            .padding([.leading, .trailing], 20)
+                        Spacer()
+                    }
+                    DevicesUnavailableView(presentingDevicePairing: $presentingDevicePairing)
+                }
             } else {
                 ScrollView(.vertical) {
-                    LazyVGrid(columns: gridItems) {
-                        ForEach(devices) { device in
-                            Button {
-                                // TODO: implement!
-                            } label: {
-                                VStack {
-                                    Text(device.name)
-                                        .foregroundStyle(.primary)
-                                    (device.icon?.image ?? Image(systemName: "sensor"))
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .foregroundStyle(.accent) // set accent color if one uses sf symbols
-                                        .symbolRenderingMode(.hierarchical) // set symbol rendering mode if one uses sf symbols
-                                        .accessibilityHidden(true)
-                                        .padding([.leading, .trailing], 10) // TODO: fixed size
+                    VStack(spacing: 16) {
+                        TipView(ForgetDeviceTip.instance)
+                            .tipBackground(Color(uiColor: .secondarySystemGroupedBackground))
+
+                        LazyVGrid(columns: gridItems) {
+                            ForEach(devices) { device in
+                                Button {
+                                    navigationPath.append(device)
+                                } label: {
+                                    VStack {
+                                        Text(device.name)
+                                            .foregroundStyle(.primary)
+                                        (device.icon?.image ?? Image(systemName: "sensor"))
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                            .foregroundStyle(.accent) // set accent color if one uses sf symbols
+                                            .symbolRenderingMode(.hierarchical) // set symbol rendering mode if one uses sf symbols
+                                            .accessibilityHidden(true)
+                                            .padding([.leading, .trailing], 10) // TODO: fixed size
+                                    }
                                 }
-                            }
-                            .padding(16)
-                            .background {
-                                RoundedRectangle(cornerSize: CGSize(width: 25, height: 25))
-                                    .foregroundStyle(Color(uiColor: .systemBackground))
+                                .padding(16)
+                                .background {
+                                    RoundedRectangle(cornerSize: CGSize(width: 25, height: 25))
+                                        .foregroundStyle(Color(uiColor: .secondarySystemGroupedBackground))
+                                }
                             }
                         }
                     }
-                    .padding([.leading, .trailing], 20)
+                        .padding([.leading, .trailing], 20)
                 }
                 .background(Color(uiColor: .systemGroupedBackground))
             }
@@ -68,8 +83,9 @@ struct DevicesGrid: View {
     }
 
 
-    init(devices: [PairedDeviceInfo], presentingDevicePairing: Binding<Bool>) {
+    init(devices: [PairedDeviceInfo], navigation: Binding<NavigationPath>, presentingDevicePairing: Binding<Bool>) {
         self.devices = devices
+        self._navigationPath = navigation
         self._presentingDevicePairing = presentingDevicePairing
     }
 }
@@ -78,8 +94,12 @@ struct DevicesGrid: View {
 #if DEBUG
 #Preview {
     NavigationStack {
-        DevicesGrid(devices: [], presentingDevicePairing: .constant(false))
+        DevicesGrid(devices: [], navigation: .constant(NavigationPath()), presentingDevicePairing: .constant(false))
     }
+        .onAppear { // TODO: show also in Home Previews!
+            Tips.showAllTipsForTesting()
+            try? Tips.configure()
+        }
 }
 
 #Preview {
@@ -89,7 +109,11 @@ struct DevicesGrid: View {
     ]
 
     return NavigationStack {
-        DevicesGrid(devices: devices, presentingDevicePairing: .constant(false))
+        DevicesGrid(devices: devices, navigation: .constant(NavigationPath()), presentingDevicePairing: .constant(false))
     }
+        .onAppear {
+            Tips.showAllTipsForTesting()
+            try? Tips.configure()
+        }
 }
 #endif

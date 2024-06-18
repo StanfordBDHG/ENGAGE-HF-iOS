@@ -13,6 +13,7 @@ extension Array: RawRepresentable where Element: Codable {
     public var rawValue: String {
         guard let data = try? JSONEncoder().encode(self),
               let rawValue = String(data: data, encoding: .utf8) else {
+            // TODO: log error
             return "[]"
         }
         return rawValue
@@ -21,6 +22,7 @@ extension Array: RawRepresentable where Element: Codable {
     public init?(rawValue: String) {
         guard let data = rawValue.data(using: .utf8),
               let result = try? JSONDecoder().decode([Element].self, from: data) else {
+            // TODO: log error
             return nil
         }
         self = result

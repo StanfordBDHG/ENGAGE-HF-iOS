@@ -10,6 +10,7 @@ import Spezi
 import SpeziFirebaseAccount
 import SpeziViews
 import SwiftUI
+import TipKit
 
 
 @main
@@ -29,6 +30,12 @@ struct ENGAGEHF: App {
             }
                 .sheet(isPresented: !$completedOnboardingFlow) {
                     OnboardingFlow()
+                }
+                .onAppear {
+                    if FeatureFlags.testingTips {
+                        Tips.showAllTipsForTesting()
+                    }
+                    try? Tips.configure() // TODO: what is the error?
                 }
                 .testingSetup()
                 .spezi(appDelegate)

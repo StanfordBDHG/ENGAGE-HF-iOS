@@ -83,6 +83,9 @@
     "An invitation code is at least 8 characters long." : {
 
     },
+    "Cancel" : {
+
+    },
     "Close" : {
       "comment" : "For closing sheets."
     },
@@ -123,6 +126,9 @@
     "Device Busy" : {
 
     },
+    "Device Details" : {
+
+    },
     "Device Retrieval" : {
 
     },
@@ -138,6 +144,9 @@
     "Dismiss" : {
 
     },
+    "Do you really want to forget this device?" : {
+
+    },
     "Do you want to pair \"%@\" with the ENGAGE app?" : {
 
     },
@@ -151,6 +160,15 @@
 
     },
     "Failed to pair with device. Please try again." : {
+
+    },
+    "Forget Device" : {
+
+    },
+    "Forget This Device" : {
+
+    },
+    "Fully Forget Device" : {
 
     },
     "HEALTHKIT_PERMISSIONS_BUTTON" : {
@@ -373,7 +391,13 @@
     "List Without Sections" : {
 
     },
+    "Make sure to to remove the device from the Bluetooth settings to fully unpair the device." : {
+
+    },
     "Measurement Recorded" : {
+
+    },
+    "Name" : {
 
     },
     "No Devices" : {
@@ -429,6 +453,9 @@
     "OK" : {
 
     },
+    "Open Settings" : {
+
+    },
     "Pair" : {
 
     },
@@ -466,6 +493,9 @@
       "comment" : "Invitation Code Invalid"
     },
     "The operation timed out." : {
+
+    },
+    "This device was last seen at 19:46" : {
 
     },
     "Timeout" : {

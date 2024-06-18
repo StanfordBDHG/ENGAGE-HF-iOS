@@ -27,4 +27,6 @@ enum FeatureFlags {
     static let testMockDevices = CommandLine.arguments.contains("--testMockDevices")
     /// Set up test environment (User account with valid invitation code).
     static let setupTestEnvironment = CommandLine.arguments.contains("--setupTestEnvironment")
+    /// Enable testing tips
+    static let testingTips = CommandLine.arguments.contains("--testTips")
 }

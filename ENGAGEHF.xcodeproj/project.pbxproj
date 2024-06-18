@@ -106,6 +106,8 @@
 		A9D684012C21FD9500183891 /* DevicesUnavailableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D684002C21FD9500183891 /* DevicesUnavailableView.swift */; };
 		A9D684042C21FDBE00183891 /* DevicesGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D684032C21FDBE00183891 /* DevicesGrid.swift */; };
 		A9D684062C21FDE600183891 /* AccessoryDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D684052C21FDE600183891 /* AccessoryDescriptor.swift */; };
+		A9D684092C220FD800183891 /* DeviceDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D684082C220FD800183891 /* DeviceDetailsView.swift */; };
+		A9D6840F2C222E1200183891 /* ForgetDeviceTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D6840E2C222E1200183891 /* ForgetDeviceTip.swift */; };
 		A9D83F962B083794000D0C78 /* SpeziFirebaseAccountStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A9D83F952B083794000D0C78 /* SpeziFirebaseAccountStorage */; };
 		A9DFE8A92ABE551400428242 /* AccountButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DFE8A82ABE551400428242 /* AccountButton.swift */; };
 		A9F2138E2C18EBAB00A7578F /* AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F2138D2C18EBAB00A7578F /* AccountTests.swift */; };
@@ -206,6 +208,8 @@
 		A9D684002C21FD9500183891 /* DevicesUnavailableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicesUnavailableView.swift; sourceTree = "<group>"; };
 		A9D684032C21FDBE00183891 /* DevicesGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicesGrid.swift; sourceTree = "<group>"; };
 		A9D684052C21FDE600183891 /* AccessoryDescriptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessoryDescriptor.swift; sourceTree = "<group>"; };
+		A9D684082C220FD800183891 /* DeviceDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetailsView.swift; sourceTree = "<group>"; };
+		A9D6840E2C222E1200183891 /* ForgetDeviceTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetDeviceTip.swift; sourceTree = "<group>"; };
 		A9DFE8A82ABE551400428242 /* AccountButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountButton.swift; sourceTree = "<group>"; };
 		A9F2138D2C18EBAB00A7578F /* AccountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTests.swift; sourceTree = "<group>"; };
 		A9FE7ACF2AA39BAB0077B045 /* AccountSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSheet.swift; sourceTree = "<group>"; };
@@ -442,6 +446,7 @@
 				A9720E412ABB68B300872D23 /* Account */,
 				2FE5DC2829EDD398004B9AB4 /* Onboarding */,
 				2FE5DC2729EDD38D004B9AB4 /* Contacts */,
+				A9D6840B2C222E0100183891 /* Tips */,
 				2FE5DC3C29EDD7DA004B9AB4 /* SharedContext */,
 				2FE5DC3D29EDD7E4004B9AB4 /* Helper */,
 				2FE5DC2D29EDD792004B9AB4 /* Resources */,
@@ -539,8 +544,17 @@
 		A9D684072C220F9700183891 /* Details */ = {
 			isa = PBXGroup;
 			children = (
+				A9D684082C220FD800183891 /* DeviceDetailsView.swift */,
 			);
 			path = Details;
+			sourceTree = "<group>";
+		};
+		A9D6840B2C222E0100183891 /* Tips */ = {
+			isa = PBXGroup;
+			children = (
+				A9D6840E2C222E1200183891 /* ForgetDeviceTip.swift */,
+			);
+			path = Tips;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -757,6 +771,7 @@
 				A9623C082C18D03F00189BA1 /* AccountSetupSheet.swift in Sources */,
 				4DB025D52BBF2E08002D2545 /* Dashboard.swift in Sources */,
 				A9DFE8A92ABE551400428242 /* AccountButton.swift in Sources */,
+				A9D6840F2C222E1200183891 /* ForgetDeviceTip.swift in Sources */,
 				4DDFC7392BF2C3C9002B07A1 /* NotificationSection.swift in Sources */,
 				4DDFC7872BFBFDDD002B07A1 /* NotificationManager.swift in Sources */,
 				A9D684062C21FDE600183891 /* AccessoryDescriptor.swift in Sources */,
@@ -782,6 +797,7 @@
 				A996F4442C1081A2002328C5 /* WeightMeasurement.Unit+HKUnit.swift in Sources */,
 				4DDFC7702BFAEAD7002B07A1 /* ConfirmMeasurementButton.swift in Sources */,
 				A9FE7AD02AA39BAB0077B045 /* AccountSheet.swift in Sources */,
+				A9D684092C220FD800183891 /* DeviceDetailsView.swift in Sources */,
 				A996F44D2C1083E4002328C5 /* WeightMeasurement+HKSample.swift in Sources */,
 				653A2551283387FE005D4D48 /* ENGAGEHF.swift in Sources */,
 				2F65B44E2A3B8B0600A36932 /* NotificationPermissions.swift in Sources */,
