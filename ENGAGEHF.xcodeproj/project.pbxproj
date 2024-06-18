@@ -29,7 +29,6 @@
 		2FE5DC3A29EDD7CA004B9AB4 /* Welcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE5DC3429EDD7CA004B9AB4 /* Welcome.swift */; };
 		2FE5DC4029EDD7EE004B9AB4 /* FeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE5DC3E29EDD7ED004B9AB4 /* FeatureFlags.swift */; };
 		2FE5DC4129EDD7EE004B9AB4 /* StorageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE5DC3F29EDD7EE004B9AB4 /* StorageKeys.swift */; };
-		2FE5DC4629EDD7F2004B9AB4 /* Bundle+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE5DC4329EDD7F2004B9AB4 /* Bundle+Image.swift */; };
 		2FE5DC4729EDD7F2004B9AB4 /* CodableArray+RawRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE5DC4429EDD7F2004B9AB4 /* CodableArray+RawRepresentable.swift */; };
 		2FE5DC6429EDD883004B9AB4 /* SpeziAccount in Frameworks */ = {isa = PBXBuildFile; productRef = 2FE5DC6329EDD883004B9AB4 /* SpeziAccount */; };
 		2FE5DC6729EDD894004B9AB4 /* SpeziContact in Frameworks */ = {isa = PBXBuildFile; productRef = 2FE5DC6629EDD894004B9AB4 /* SpeziContact */; };
@@ -74,7 +73,7 @@
 		56E7083B2BB06F6F00B08F0A /* SwiftPackageList in Frameworks */ = {isa = PBXBuildFile; productRef = 56E7083A2BB06F6F00B08F0A /* SwiftPackageList */; };
 		653A2551283387FE005D4D48 /* ENGAGEHF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653A2550283387FE005D4D48 /* ENGAGEHF.swift */; };
 		653A255528338800005D4D48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 653A255428338800005D4D48 /* Assets.xcassets */; };
-		653A256228338800005D4D48 /* ENGAGEHFTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653A256128338800005D4D48 /* ENGAGEHFTests.swift */; };
+		653A256228338800005D4D48 /* ImageReferenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653A256128338800005D4D48 /* ImageReferenceTests.swift */; };
 		9733CFC62A8066DE001B7ABC /* SpeziOnboarding in Frameworks */ = {isa = PBXBuildFile; productRef = 2FE5DC8029EDD91D004B9AB4 /* SpeziOnboarding */; };
 		9739A0C62AD7B5730084BEA5 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 9739A0C52AD7B5730084BEA5 /* FirebaseStorage */; };
 		97D73D6A2AD860AD00B47FA0 /* SpeziFirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 97D73D692AD860AD00B47FA0 /* SpeziFirebaseStorage */; };
@@ -104,6 +103,9 @@
 		A9D683F72C21B79200183891 /* OmronManufacturerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D683F62C21B79200183891 /* OmronManufacturerData.swift */; };
 		A9D683F92C21BA3400183891 /* OmronHealthDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D683F82C21BA3400183891 /* OmronHealthDevice.swift */; };
 		A9D683FC2C21C01100183891 /* DevicePairingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D683FB2C21C01100183891 /* DevicePairingError.swift */; };
+		A9D684012C21FD9500183891 /* DevicesUnavailableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D684002C21FD9500183891 /* DevicesUnavailableView.swift */; };
+		A9D684042C21FDBE00183891 /* DevicesGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D684032C21FDBE00183891 /* DevicesGrid.swift */; };
+		A9D684062C21FDE600183891 /* AccessoryDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D684052C21FDE600183891 /* AccessoryDescriptor.swift */; };
 		A9D83F962B083794000D0C78 /* SpeziFirebaseAccountStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A9D83F952B083794000D0C78 /* SpeziFirebaseAccountStorage */; };
 		A9DFE8A92ABE551400428242 /* AccountButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DFE8A82ABE551400428242 /* AccountButton.swift */; };
 		A9F2138E2C18EBAB00A7578F /* AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F2138D2C18EBAB00A7578F /* AccountTests.swift */; };
@@ -146,7 +148,6 @@
 		2FE5DC3429EDD7CA004B9AB4 /* Welcome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Welcome.swift; sourceTree = "<group>"; };
 		2FE5DC3E29EDD7ED004B9AB4 /* FeatureFlags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeatureFlags.swift; sourceTree = "<group>"; };
 		2FE5DC3F29EDD7EE004B9AB4 /* StorageKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageKeys.swift; sourceTree = "<group>"; };
-		2FE5DC4329EDD7F2004B9AB4 /* Bundle+Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Image.swift"; sourceTree = "<group>"; };
 		2FE5DC4429EDD7F2004B9AB4 /* CodableArray+RawRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CodableArray+RawRepresentable.swift"; sourceTree = "<group>"; };
 		2FE5DC5529EDD811004B9AB4 /* SocialSupportQuestionnaire.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SocialSupportQuestionnaire.json; sourceTree = "<group>"; };
 		2FE5DCAC29EE6107004B9AB4 /* AccountOnboarding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountOnboarding.swift; sourceTree = "<group>"; };
@@ -176,7 +177,7 @@
 		653A2550283387FE005D4D48 /* ENGAGEHF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ENGAGEHF.swift; sourceTree = "<group>"; };
 		653A255428338800005D4D48 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		653A255D28338800005D4D48 /* ENGAGEHFTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ENGAGEHFTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		653A256128338800005D4D48 /* ENGAGEHFTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ENGAGEHFTests.swift; sourceTree = "<group>"; };
+		653A256128338800005D4D48 /* ImageReferenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageReferenceTests.swift; sourceTree = "<group>"; };
 		653A256728338800005D4D48 /* ENGAGEHFUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ENGAGEHFUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		653A258928339462005D4D48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A91BA3522C1B5E6100AE30ED /* PairingUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingUI.swift; sourceTree = "<group>"; };
@@ -202,6 +203,9 @@
 		A9D683F62C21B79200183891 /* OmronManufacturerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OmronManufacturerData.swift; sourceTree = "<group>"; };
 		A9D683F82C21BA3400183891 /* OmronHealthDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OmronHealthDevice.swift; sourceTree = "<group>"; };
 		A9D683FB2C21C01100183891 /* DevicePairingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicePairingError.swift; sourceTree = "<group>"; };
+		A9D684002C21FD9500183891 /* DevicesUnavailableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicesUnavailableView.swift; sourceTree = "<group>"; };
+		A9D684032C21FDBE00183891 /* DevicesGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicesGrid.swift; sourceTree = "<group>"; };
+		A9D684052C21FDE600183891 /* AccessoryDescriptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessoryDescriptor.swift; sourceTree = "<group>"; };
 		A9DFE8A82ABE551400428242 /* AccountButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountButton.swift; sourceTree = "<group>"; };
 		A9F2138D2C18EBAB00A7578F /* AccountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTests.swift; sourceTree = "<group>"; };
 		A9FE7ACF2AA39BAB0077B045 /* AccountSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSheet.swift; sourceTree = "<group>"; };
@@ -319,7 +323,6 @@
 		2FE5DC3D29EDD7E4004B9AB4 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				2FE5DC4329EDD7F2004B9AB4 /* Bundle+Image.swift */,
 				2FE5DC4429EDD7F2004B9AB4 /* CodableArray+RawRepresentable.swift */,
 			);
 			path = Helper;
@@ -351,6 +354,7 @@
 		4D49AB142BCF6FC400C77310 /* Devices */ = {
 			isa = PBXGroup;
 			children = (
+				A9D684072C220F9700183891 /* Details */,
 				A9D683FA2C21C00D00183891 /* Pairing */,
 				A9D683F42C21B78900183891 /* Omron */,
 				4D49AB052BC9D56900C77310 /* WeightScaleDevice.swift */,
@@ -449,7 +453,7 @@
 		653A256028338800005D4D48 /* ENGAGEHFTests */ = {
 			isa = PBXGroup;
 			children = (
-				653A256128338800005D4D48 /* ENGAGEHFTests.swift */,
+				653A256128338800005D4D48 /* ImageReferenceTests.swift */,
 			);
 			path = ENGAGEHFTests;
 			sourceTree = "<group>";
@@ -525,8 +529,18 @@
 			isa = PBXGroup;
 			children = (
 				A9D683FB2C21C01100183891 /* DevicePairingError.swift */,
+				A9D684002C21FD9500183891 /* DevicesUnavailableView.swift */,
+				A9D684032C21FDBE00183891 /* DevicesGrid.swift */,
+				A9D684052C21FDE600183891 /* AccessoryDescriptor.swift */,
 			);
 			path = Pairing;
+			sourceTree = "<group>";
+		};
+		A9D684072C220F9700183891 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Details;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -732,6 +746,7 @@
 				4DD823022C17F63C004DC599 /* CloseButtonLayer.swift in Sources */,
 				A996F4462C1081EB002328C5 /* BloodPressureMeasurement.Unit+HKUnit.swift in Sources */,
 				A9D683F32C21B57200183891 /* PairedDeviceInfo.swift in Sources */,
+				A9D684042C21FDBE00183891 /* DevicesGrid.swift in Sources */,
 				2FE5DC3829EDD7CA004B9AB4 /* InterestingModules.swift in Sources */,
 				2FE5DC3529EDD7CA004B9AB4 /* Consent.swift in Sources */,
 				A996F44A2C1082BA002328C5 /* HealthDevice.swift in Sources */,
@@ -744,6 +759,7 @@
 				A9DFE8A92ABE551400428242 /* AccountButton.swift in Sources */,
 				4DDFC7392BF2C3C9002B07A1 /* NotificationSection.swift in Sources */,
 				4DDFC7872BFBFDDD002B07A1 /* NotificationManager.swift in Sources */,
+				A9D684062C21FDE600183891 /* AccessoryDescriptor.swift in Sources */,
 				A9D683FC2C21C01100183891 /* DevicePairingError.swift in Sources */,
 				2FE5DC3729EDD7CA004B9AB4 /* OnboardingFlow.swift in Sources */,
 				A996F45C2C11AA15002328C5 /* BloodPressureMeasurementLabel.swift in Sources */,
@@ -753,11 +769,11 @@
 				4D052DB82BE07892006A784E /* MeasurementManager.swift in Sources */,
 				A9720E432ABB68CC00872D23 /* AccountSetupHeader.swift in Sources */,
 				2FE5DC4029EDD7EE004B9AB4 /* FeatureFlags.swift in Sources */,
-				2FE5DC4629EDD7F2004B9AB4 /* Bundle+Image.swift in Sources */,
 				2F4E23832989D51F0013F3D9 /* ENGAGEHFTestingSetup.swift in Sources */,
 				2F5E32BD297E05EA003432F8 /* ENGAGEHFDelegate.swift in Sources */,
 				4D065BE02C09401700EBB3AE /* StudyApplicationListCard.swift in Sources */,
 				A9D683F92C21BA3400183891 /* OmronHealthDevice.swift in Sources */,
+				A9D684012C21FD9500183891 /* DevicesUnavailableView.swift in Sources */,
 				A9D683F72C21B79200183891 /* OmronManufacturerData.swift in Sources */,
 				A96C56BB2C0DFFCE00D6A50B /* InvitationCodeModule.swift in Sources */,
 				A996F4482C1081F8002328C5 /* HealthDevice+HKDevice.swift in Sources */,
@@ -785,7 +801,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				653A256228338800005D4D48 /* ENGAGEHFTests.swift in Sources */,
+				653A256228338800005D4D48 /* ImageReferenceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

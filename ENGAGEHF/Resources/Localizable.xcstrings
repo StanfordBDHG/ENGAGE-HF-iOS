@@ -1,9 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "" : {
-
-    },
     "%@" : {
 
     },
@@ -151,6 +148,9 @@
 
     },
     "Failed to pair accessory." : {
+
+    },
+    "Failed to pair with device. Please try again." : {
 
     },
     "HEALTHKIT_PERMISSIONS_BUTTON" : {
@@ -438,7 +438,7 @@
     "Pair New Device" : {
 
     },
-    "Paired devices will appear here once paired." : {
+    "Paired devices will appear here once set up." : {
 
     },
     "Pairing Failed" : {

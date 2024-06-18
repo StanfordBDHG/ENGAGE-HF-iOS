@@ -22,7 +22,7 @@ struct OmronModel: RawRepresentable {
 
 extension OmronModel {
     /// The Omron SC150 weight scale.
-    static let sc150 = OmronModel("SC150")
+    static let sc150 = OmronModel("SC-150")
     /// The Omron BP5250 blood pressure monitor.
     static let bp5250 = OmronModel("BP5250")
 }

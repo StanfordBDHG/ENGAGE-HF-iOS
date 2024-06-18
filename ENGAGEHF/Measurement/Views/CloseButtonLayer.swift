@@ -22,7 +22,7 @@ struct CloseButtonLayer: View {
                     dismiss()
                 },
                 label: {
-                    Text(NSLocalizedString("Close", comment: "For closing sheets."))
+                    Text("Close", comment: "For closing sheets.")
                         .foregroundStyle(Color.accentColor)
                 }
             )

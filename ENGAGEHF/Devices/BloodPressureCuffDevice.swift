@@ -22,6 +22,7 @@ class BloodPressureCuffDevice: BluetoothDevice, Identifiable, OmronHealthDevice 
     @DeviceState(\.name) var name: String?
     @DeviceState(\.state) var state: PeripheralState
     @DeviceState(\.advertisementData) var advertisementData: AdvertisementData
+    @DeviceState(\.discarded) var discarded
 
     @Service var deviceInformation = DeviceInformationService()
 
@@ -39,6 +40,10 @@ class BloodPressureCuffDevice: BluetoothDevice, Identifiable, OmronHealthDevice 
     @MainActor var _pairingContinuation: CheckedContinuation<Void, Error>? // swiftlint:disable:this identifier_name
     // TODO: swiftlint warning
 
+    var icon: ImageReference? {
+        .asset("Omron-BP5250")
+    }
+
     required init() {
         $state
             .onChange(perform: handleStateChange(_:))
@@ -48,6 +53,11 @@ class BloodPressureCuffDevice: BluetoothDevice, Identifiable, OmronHealthDevice 
             .onChange(perform: handleBatteryChange(_:))
         time.$currentTime
             .onChange(perform: handleCurrentTimeChange(_:))
+        $discarded.onChange { @MainActor discarded in
+            if discarded {
+                self.deviceManager?.handleDiscardedDevice(self)
+            }
+        }
     }
 
     func configure() {
@@ -56,7 +66,7 @@ class BloodPressureCuffDevice: BluetoothDevice, Identifiable, OmronHealthDevice 
         }
 
 
-        Self.logger.info("Detected nearby blood pressure cuff with manufacturer data \(manufacturerData)")
+        Self.logger.info("Detected nearby blood pressure cuff with manufacturer data \(String(describing: manufacturerData))")
         if case .pairingMode = manufacturerData.pairingMode {
             Task { @MainActor in
                 deviceManager?.nearbyPairableDevice(self)
@@ -66,7 +76,11 @@ class BloodPressureCuffDevice: BluetoothDevice, Identifiable, OmronHealthDevice 
         // TODO: disable auto-connect,
     }
 
-    private func handleStateChange(_ state: PeripheralState) {
+    private func handleStateChange(_ state: PeripheralState) async {
+        if case .disconnected = state {
+            await handleDeviceDisconnected()
+        }
+
         guard case .connected = state else {
             return
         }
@@ -165,17 +179,17 @@ extension BloodPressureCuffDevice {
 
         device.$connect.inject { @MainActor [weak device] in
             device?.$state.inject(.connecting)
-            device?.handleStateChange(.connecting)
+            await device?.handleStateChange(.connecting)
 
             try? await Task.sleep(for: .seconds(1))
 
             device?.$state.inject(.connected)
-            device?.handleStateChange(.connected)
+            await device?.handleStateChange(.connected)
         }
 
         device.$disconnect.inject { @MainActor [weak device] in
             device?.$state.inject(.disconnected)
-            device?.handleStateChange(.disconnected)
+            await device?.handleStateChange(.disconnected)
         }
 
         return device

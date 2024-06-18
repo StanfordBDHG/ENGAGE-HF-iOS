@@ -47,7 +47,7 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
             }
             
             // TODO: only auto-connect with devices that are a) omron devices in b) transfer mode (non pairing) and c) have been paired
-            Bluetooth {
+            Bluetooth(advertisementStaleInterval: 15) {
                 // TODO: global discover is a bit weird with Omron device pairing!
                 Discover(WeightScaleDevice.self, by: .advertisedService(WeightScaleService.self))
                 Discover(BloodPressureCuffDevice.self, by: .advertisedService(BloodPressureService.self))

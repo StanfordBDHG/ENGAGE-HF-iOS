@@ -6,8 +6,8 @@
 // SPDX-License-Identifier: MIT
 //
 
-import SpeziFoundation
 import SpeziBluetooth
+import SpeziFoundation
 import SwiftUI
 
 
@@ -36,14 +36,6 @@ extension OmronHealthDevice {
         OmronModel(deviceInformation.modelNumber ?? "Generic Health Device") // TODO: fallback picture for that? => "sensor.fill"?
     }
 
-    var icon: Image {
-        guard let model = deviceInformation.modelNumber else {
-            return Image(systemName: "sensor")
-                .symbolRenderingMode(.hierarchical)
-        }
-        return Image("Omron-\(model)")
-    }
-
     // TODO: we could add syntactic sugar to spezi with storage for decoded value? (what???)
     var manufacturerData: OmronManufacturerData? {
         guard let manufacturerData = advertisementData.manufacturerData else {
@@ -57,6 +49,7 @@ extension OmronHealthDevice {
 extension OmronHealthDevice {
     @MainActor
     func pair() async throws {
+
         guard _pairingContinuation == nil else {
             throw DevicePairingError.busy
         }
@@ -65,17 +58,15 @@ extension OmronHealthDevice {
             throw DevicePairingError.notInPairingMode
         }
 
+        // TODO: can we check if the device is still considered discovered???
         guard case .disconnected = state else {
             throw DevicePairingError.invalidState
         }
 
         await connect()
 
-        async let _ = withTimeout(of: .seconds(30)) { @MainActor in
-            if let pairingContinuation = _pairingContinuation {
-                pairingContinuation.resume(throwing: TimeoutError())
-                self._pairingContinuation = nil
-            }
+        async let _ = withTimeout(of: .seconds(15)) { @MainActor in
+            resumePairingContinuation(with: .failure(TimeoutError()))
         }
 
         // TODO: cancellation handler?
@@ -90,8 +81,18 @@ extension OmronHealthDevice {
     @MainActor
     func handleDeviceInteraction() {
         // any kind of messages received from the the device is interpreted as successful pairing.
+        resumePairingContinuation(with: .success(()))
+    }
+
+    @MainActor
+    func handleDeviceDisconnected() {
+        resumePairingContinuation(with: .failure(DevicePairingError.deviceDisconnected))
+    }
+
+    @MainActor
+    private func resumePairingContinuation(with result: Result<Void, Error>) {
         if let pairingContinuation = _pairingContinuation {
-            pairingContinuation.resume()
+            pairingContinuation.resume(with: result)
             self._pairingContinuation = nil
         }
     }

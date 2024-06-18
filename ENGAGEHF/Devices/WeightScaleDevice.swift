@@ -23,6 +23,7 @@ class WeightScaleDevice: BluetoothDevice, Identifiable, OmronHealthDevice {
     @DeviceState(\.name)var name: String?
     @DeviceState(\.state) var state: PeripheralState
     @DeviceState(\.advertisementData) var advertisementData: AdvertisementData
+    @DeviceState(\.discarded) var discarded
 
     @Service var deviceInformation = DeviceInformationService()
 
@@ -41,6 +42,10 @@ class WeightScaleDevice: BluetoothDevice, Identifiable, OmronHealthDevice {
 
     // TODO: weight scale has some reserved flag set???
 
+    var icon: ImageReference? {
+        .asset("Omron-SC-150")
+    }
+
     required init() {
         $state
             .onChange(perform: handleStateChange(_:))
@@ -50,16 +55,22 @@ class WeightScaleDevice: BluetoothDevice, Identifiable, OmronHealthDevice {
             .onChange(perform: handleBatteryChange(_:))
         time.$currentTime
             .onChange(perform: handleCurrentTimeChange(_:))
+        $discarded.onChange { @MainActor discarded in
+            if discarded {
+                self.deviceManager?.handleDiscardedDevice(self)
+            }
+        }
     }
 
     func configure() {
+        print("Manufacturer Data: \(manufacturerData)")
         // TODO: this is the same for both!
         guard let manufacturerData else {
             return
         }
 
 
-        Self.logger.info("Detected nearby weight scale with manufacturer data \(manufacturerData)")
+        Self.logger.info("Detected nearby weight scale with manufacturer data \(String(describing: manufacturerData))")
         if case .pairingMode = manufacturerData.pairingMode {
             Task { @MainActor in
                 deviceManager?.nearbyPairableDevice(self)
@@ -67,7 +78,11 @@ class WeightScaleDevice: BluetoothDevice, Identifiable, OmronHealthDevice {
         }
     }
 
-    private func handleStateChange(_ state: PeripheralState) {
+    private func handleStateChange(_ state: PeripheralState) async {
+        if case .disconnected = state {
+            await handleDeviceDisconnected()
+        }
+
         guard case .connected = state else {
             return
         }
@@ -129,17 +144,17 @@ extension WeightScaleDevice {
 
         device.$connect.inject { @MainActor [weak device] in
             device?.$state.inject(.connecting)
-            device?.handleStateChange(.connecting)
+            await device?.handleStateChange(.connecting)
 
             try? await Task.sleep(for: .seconds(1))
 
             device?.$state.inject(.connected)
-            device?.handleStateChange(.connected)
+            await device?.handleStateChange(.connected)
         }
 
         device.$disconnect.inject { @MainActor [weak device] in
             device?.$state.inject(.disconnected)
-            device?.handleStateChange(.disconnected)
+            await device?.handleStateChange(.disconnected)
         }
 
         return device

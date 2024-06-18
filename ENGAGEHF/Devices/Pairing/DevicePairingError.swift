@@ -16,6 +16,7 @@ enum DevicePairingError {
     case busy
     /// The device is not in pairing mode.
     case notInPairingMode
+    case deviceDisconnected
 }
 
 
@@ -28,13 +29,15 @@ extension DevicePairingError: LocalizedError {
             String(localized: "Device Busy")
         case .notInPairingMode:
             String(localized: "Not Ready")
+        case .deviceDisconnected:
+            String(localized: "Pairing Failed")
         }
     }
 
     var failureReason: String? {
         switch self {
-        case .invalidState:
-            String(localized: "") // TODO: what is the message?
+        case .invalidState, .deviceDisconnected:
+            String(localized: "Failed to pair with device. Please try again.")
         case .busy:
             String(localized: "The device is busy and failed to complete pairing.")
         case .notInPairingMode:

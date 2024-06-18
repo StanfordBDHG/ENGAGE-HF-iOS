@@ -20,17 +20,12 @@ protocol HealthDevice: AnyObject, GenericBluetoothPeripheral {
 
     var deviceInformation: DeviceInformationService { get }
 
-    var icon: Image { get }
+    var icon: ImageReference? { get }
 }
 
 
 extension HealthDevice {
     var label: String {
         name ?? "Health Device"
-    }
-
-    var icon: Image {
-        Image(systemName: "sensor")
-            .symbolRenderingMode(.hierarchical)
     }
 }

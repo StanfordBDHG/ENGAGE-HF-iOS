@@ -53,13 +53,6 @@ struct OmronManufacturerData {
 }
 
 
-extension OmronManufacturerData: CustomStringConvertible {
-    var description: String {
-        String(describing: self)
-    }
-}
-
-
 extension OmronManufacturerData: ByteDecodable {
     init?(from byteBuffer: inout ByteBuffer) {
         // TODO: endianness = .little ???
