@@ -31,11 +31,13 @@ jobs:
       contents: read
   checkoutfirebase:
     name: Check out ENGAGE-HF-Firebase
-    uses: actions/checkout@main
-    with:
-        repository: StanfordBDHG/ENGAGE-HF-Firebase
-        ref: cloud-functions
-        path: firebase
+    steps:
+        - name: Check out ENGAGE-HF-Firebase
+          uses: actions/checkout@main
+          with:
+            repository: StanfordBDHG/ENGAGE-HF-Firebase
+            ref: cloud-functions
+            path: firebase
   buildandtest:
     name: Build and Test
     uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
