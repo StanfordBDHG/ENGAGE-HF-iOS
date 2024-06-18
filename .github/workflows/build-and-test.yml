@@ -40,7 +40,7 @@ jobs:
       setupSimulators: true
       setupfirebaseemulator: true
       fastlanelane: test
-      firebaseemulatorimport: ./firebase
+      firebaseemulatorimport: firebase
       firebaserepository: StanfordBDHG/ENGAGE-HF-Firebase
     secrets:
       GOOGLE_APPLICATION_CREDENTIALS_BASE64: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_BASE64 }}
