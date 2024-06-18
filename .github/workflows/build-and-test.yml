@@ -34,7 +34,6 @@ jobs:
     uses: actions/checkout@main
     with:
       repository: StanfordBDHG/ENGAGE-HF-Firebase
-      ref: cloud-functions
   buildandtest:
     name: Build and Test
     uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
