@@ -31,6 +31,7 @@ jobs:
       contents: read
   checkoutfirebase:
     name: Check out ENGAGE-HF-Firebase
+    runs-on: ubuntu-latest
     steps:
         - name: Check out ENGAGE-HF-Firebase
           uses: actions/checkout@main
