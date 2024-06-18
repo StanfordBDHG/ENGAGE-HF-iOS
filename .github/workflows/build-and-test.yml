@@ -29,20 +29,9 @@ jobs:
     uses: StanfordBDHG/.github/.github/workflows/markdown-link-check.yml@v2
     permissions:
       contents: read
-  checkoutfirebase:
-    name: Check out ENGAGE-HF-Firebase
-    runs-on: ubuntu-latest
-    steps:
-        - name: Check out ENGAGE-HF-Firebase
-          uses: actions/checkout@main
-          with:
-            repository: StanfordBDHG/ENGAGE-HF-Firebase
-            ref: cloud-functions
-            path: firebase
   buildandtest:
     name: Build and Test
-    uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
-    needs: checkoutfirebase
+    uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@checkout-firebase-repo
     permissions:
       contents: read
     with:
@@ -52,6 +41,7 @@ jobs:
       setupfirebaseemulator: true
       fastlanelane: test
       firebaseemulatorimport: ./firebase
+      firebaserepository: StanfordBDHG/ENGAGE-HF-Firebase
     secrets:
       GOOGLE_APPLICATION_CREDENTIALS_BASE64: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_BASE64 }}
   uploadcoveragereport:
