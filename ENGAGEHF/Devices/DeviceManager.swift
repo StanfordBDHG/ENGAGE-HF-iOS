@@ -6,12 +6,12 @@
 // SPDX-License-Identifier: MIT
 //
 
-import SwiftUI
 import Spezi
+import SwiftUI
 
 
 struct OmronModel: RawRepresentable {
-    public let rawValue: String
+    let rawValue: String
 
     init(_ model: String) {
         self.init(rawValue: model)

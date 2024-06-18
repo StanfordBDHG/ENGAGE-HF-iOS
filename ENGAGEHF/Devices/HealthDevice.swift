@@ -6,8 +6,8 @@
 // SPDX-License-Identifier: MIT
 //
 
-import BluetoothViews
 import BluetoothServices
+import BluetoothViews
 import Foundation
 import SpeziBluetooth
 
