@@ -19,7 +19,7 @@ class DeviceManager: Module, EnvironmentAccessible {
     // TODO: get notified about disconnects! (=> pairing error!)
 
     @AppStorage("pairedDevices") @ObservationIgnored private var _pairedDevices: [PairedDeviceInfo] = []
-    @MainActor private(set) var pairedDevices: [PairedDeviceInfo] {
+    @MainActor var pairedDevices: [PairedDeviceInfo] {
         get {
             access(keyPath: \.pairedDevices)
             return _pairedDevices
@@ -50,8 +50,15 @@ class DeviceManager: Module, EnvironmentAccessible {
     @MainActor
     func registerPairedDevice<Device: OmronHealthDevice>(_ device: Device) {
         // TODO: let omronManufacturerData = device.manufacturerData?.users.first?.sequenceNumber (which user to choose from?)
-        let deviceDescription = PairedDeviceInfo(id: device.id, name: device.label, model: device.model, icon: device.icon)
-        pairedDevices.append(deviceDescription)
+        let deviceInfo = PairedDeviceInfo(
+            id: device.id,
+            name: device.label,
+            model: device.model,
+            icon: device.icon,
+            batteryPercentage: device.battery.batteryLevel
+        )
+
+        pairedDevices.append(deviceInfo)
         if pairableDevice?.id == device.id {
             pairableDevice = nil
         }
@@ -62,5 +69,20 @@ class DeviceManager: Module, EnvironmentAccessible {
         if pairableDevice?.id == device.id {
             pairableDevice = nil
         }
+    }
+
+    @MainActor
+    func forgetDevice(id: UUID) {
+        pairedDevices.removeAll { info in
+            info.id == id
+        }
+    }
+
+    @MainActor
+    func updateBattery<Device: OmronHealthDevice>(for device: Device, percentage: UInt8) {
+        guard let index = pairedDevices.firstIndex(where: { $0.id == device.id }) else {
+            return
+        }
+        pairedDevices[index].lastBatteryPercentage = percentage
     }
 }

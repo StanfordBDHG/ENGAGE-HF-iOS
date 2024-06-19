@@ -12,7 +12,7 @@ import SpeziViews
 import SwiftUI
 
 
-struct PairingSheet: View { // TOOD: move and preview! (with tips!)
+struct PairingSheet: View { // TODO: move and preview! (with tips!)
     @Environment(Bluetooth.self) private var bluetooth
     @Environment(DeviceManager.self) private var deviceManager
 
@@ -22,13 +22,10 @@ struct PairingSheet: View { // TOOD: move and preview! (with tips!)
         @Bindable var deviceManager = deviceManager
 
         NavigationStack(path: $path) {
-            DevicesGrid(devices: deviceManager.pairedDevices, navigation: $path, presentingDevicePairing: $deviceManager.presentingDevicePairing)
+            DevicesGrid(devices: $deviceManager.pairedDevices, navigation: $path, presentingDevicePairing: $deviceManager.presentingDevicePairing)
                 .scanNearbyDevices(enabled: deviceManager.scanningNearbyDevices, with: bluetooth) // automatically search if no devices are paired
                 .sheet(isPresented: $deviceManager.presentingDevicePairing) {
                     AccessorySetupSheet(deviceManager.pairableDevice)
-                }
-                .navigationDestination(for: PairedDeviceInfo.self) { device in
-                    DeviceDetailsView(device)
                 }
         }
     }

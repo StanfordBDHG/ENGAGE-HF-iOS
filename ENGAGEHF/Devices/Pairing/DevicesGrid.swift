@@ -11,9 +11,7 @@ import TipKit
 
 
 struct DevicesGrid: View {
-    private let devices: [PairedDeviceInfo]
-
-
+    @Binding private var devices: [PairedDeviceInfo]
     @Binding private var navigationPath: NavigationPath
     @Binding private var presentingDevicePairing: Bool
 
@@ -25,8 +23,7 @@ struct DevicesGrid: View {
 
 
     var body: some View {
-        // TODO: swiftlint
-        Group { // swiftlint:disable:this closure_body_length
+        Group {
             if devices.isEmpty {
                 ZStack {
                     VStack {
@@ -43,50 +40,51 @@ struct DevicesGrid: View {
                             .tipBackground(Color(uiColor: .secondarySystemGroupedBackground))
 
                         LazyVGrid(columns: gridItems) {
-                            ForEach(devices) { device in
+                            ForEach($devices) { device in
                                 Button {
                                     navigationPath.append(device)
                                 } label: {
-                                    VStack {
-                                        Text(device.name)
-                                            .foregroundStyle(.primary)
-                                        (device.icon?.image ?? Image(systemName: "sensor"))
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fit)
-                                            .foregroundStyle(.accent) // set accent color if one uses sf symbols
-                                            .symbolRenderingMode(.hierarchical) // set symbol rendering mode if one uses sf symbols
-                                            .accessibilityHidden(true)
-                                            .padding([.leading, .trailing], 10) // TODO: fixed size
-                                    }
+                                    DeviceTile(device.wrappedValue)
                                 }
-                                .padding(16)
-                                .background {
-                                    RoundedRectangle(cornerSize: CGSize(width: 25, height: 25))
-                                        .foregroundStyle(Color(uiColor: .secondarySystemGroupedBackground))
-                                }
+                                    .foregroundStyle(.primary)
                             }
                         }
                     }
                         .padding([.leading, .trailing], 20)
                 }
-                .background(Color(uiColor: .systemGroupedBackground))
+                    .background(Color(uiColor: .systemGroupedBackground))
             }
         }
-        .navigationTitle("Devices")
-        .toolbar {
-            ToolbarItem(placement: .primaryAction) {
-                Button("Add Device", systemImage: "plus") {
-                    presentingDevicePairing = true
+            .navigationTitle("Devices")
+            .navigationDestination(for: Binding<PairedDeviceInfo>.self) { deviceInfo in
+                DeviceDetailsView(deviceInfo) // TODO: prevents updates :(
+            }
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button("Add Device", systemImage: "plus") {
+                        presentingDevicePairing = true
+                    }
                 }
             }
-        }
     }
 
 
-    init(devices: [PairedDeviceInfo], navigation: Binding<NavigationPath>, presentingDevicePairing: Binding<Bool>) {
-        self.devices = devices
+    init(devices: Binding<[PairedDeviceInfo]>, navigation: Binding<NavigationPath>, presentingDevicePairing: Binding<Bool>) {
+        self._devices = devices
         self._navigationPath = navigation
         self._presentingDevicePairing = presentingDevicePairing
+    }
+}
+
+
+// TODO: does that hurt?
+extension Binding: Hashable, Equatable where Value: Hashable {
+    public static func == (lhs: Binding<Value>, rhs: Binding<Value>) -> Bool {
+        lhs.wrappedValue == rhs.wrappedValue
+    }
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(wrappedValue)
     }
 }
 
@@ -94,11 +92,14 @@ struct DevicesGrid: View {
 #if DEBUG
 #Preview {
     NavigationStack {
-        DevicesGrid(devices: [], navigation: .constant(NavigationPath()), presentingDevicePairing: .constant(false))
+        DevicesGrid(devices: .constant([]), navigation: .constant(NavigationPath()), presentingDevicePairing: .constant(false))
     }
         .onAppear { // TODO: show also in Home Previews!
             Tips.showAllTipsForTesting()
             try? Tips.configure()
+        }
+        .previewWith {
+            DeviceManager()
         }
 }
 
@@ -109,11 +110,14 @@ struct DevicesGrid: View {
     ]
 
     return NavigationStack {
-        DevicesGrid(devices: devices, navigation: .constant(NavigationPath()), presentingDevicePairing: .constant(false))
+        DevicesGrid(devices: .constant(devices), navigation: .constant(NavigationPath()), presentingDevicePairing: .constant(false))
     }
         .onAppear {
             Tips.showAllTipsForTesting()
             try? Tips.configure()
+        }
+        .previewWith {
+            DeviceManager()
         }
 }
 #endif

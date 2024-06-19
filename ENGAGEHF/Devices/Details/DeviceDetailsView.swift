@@ -6,40 +6,56 @@
 // SPDX-License-Identifier: MIT
 //
 
-import SwiftUI
 import SpeziViews
+import SwiftUI
 
 // TODO: 180x120 ASKit dimenaions
 
 
 struct DeviceDetailsView: View {
-    private let deviceDetails: PairedDeviceInfo
-
     @Environment(\.dismiss) private var dismiss
+    @Environment(DeviceManager.self) private var deviceManager
 
+    @Binding private var deviceInfo: PairedDeviceInfo
     @State private var presentForgetConfirmation = false
+
+    private var image: Image {
+        deviceInfo.icon?.image ?? Image(systemName: "sensor") // swiftlint:disable:this accessibility_label_for_image
+    }
+
+    private var lastSeenToday: Bool {
+        Calendar.current.isDateInToday(deviceInfo.lastSeen)
+    }
 
     var body: some View {
         List {
-            // TODO: show picture?
-            NavigationLink {
-                EmptyView()
-            } label: {
-                ListRow("Name") { // TODO: edit functionality?
-                    Text(deviceDetails.name)
-                }
+            Section {
+                imageHeader
             }
 
+            Section {
+                infoSection
+            }
+
+            if let percentage = deviceInfo.lastBatteryPercentage {
+                Section {
+                    ListRow("Battery") {
+                        BatteryIcon(percentage: Int(percentage))
+                            .labelStyle(.reverse)
+                    }
+                }
+            }
 
             Section {
                 Button("Forget This Device") {
                     presentForgetConfirmation = true
-                    // TODO: erase pairing, + confimration!
                 }
             } footer: {
-                Text(.now.addingTimeInterval(-150000), style: .time)
-                Text(DateInterval(start: .now, duration: 15))
-                Text("This device was last seen at 19:46") // TODO: time formatter (days, vs. time vs. exact time)
+                if lastSeenToday { // TODO: determine if connected?
+                    Text("This device was last seen at \(Text(deviceInfo.lastSeen, style: .time))")
+                } else {
+                    Text("This device was last seen on \(Text(deviceInfo.lastSeen, style: .date)) at \(Text(deviceInfo.lastSeen, style: .time))")
+                }
             }
         }
             .navigationTitle("Device Details")
@@ -47,16 +63,43 @@ struct DeviceDetailsView: View {
             .confirmationDialog("Do you really want to forget this device?", isPresented: $presentForgetConfirmation, titleVisibility: .visible) {
                 Button("Forget Device", role: .destructive) {
                     ForgetDeviceTip.hasRemovedPairedDevice = true
-                    // TODO: forget device!
+                    deviceManager.forgetDevice(id: deviceInfo.id)
                     dismiss()
                 }
                 Button("Cancel", role: .cancel) {}
             }
     }
 
+    @ViewBuilder private var imageHeader: some View {
+        VStack(alignment: .center) {
+            image
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(maxWidth: 180, maxHeight: 120)
+                .accessibilityHidden(true)
+        }
+            .frame(maxWidth: .infinity)
+    }
 
-    init(_ deviceDetails: PairedDeviceInfo) {
-        self.deviceDetails = deviceDetails
+    @ViewBuilder private var infoSection: some View {
+        NavigationLink {
+            NameEditView($deviceInfo)
+        } label: {
+            ListRow("Name") {
+                Text(deviceInfo.name)
+            }
+        }
+
+        if deviceInfo.model != deviceInfo.name {
+            ListRow("Model") {
+                Text(deviceInfo.model)
+            }
+        }
+    }
+
+
+    init(_ deviceInfo: Binding<PairedDeviceInfo>) {
+        self._deviceInfo = deviceInfo
     }
 }
 
@@ -64,7 +107,30 @@ struct DeviceDetailsView: View {
 #if DEBUG
 #Preview {
     NavigationStack {
-        DeviceDetailsView(PairedDeviceInfo(id: UUID(), name: "BP5250", model: "BP5250", icon: .asset("Omron-BP5250")))
+        DeviceDetailsView(.constant(
+            PairedDeviceInfo(id: UUID(), name: "Blood Pressure Monitor", model: "BP5250", icon: .asset("Omron-BP5250"), batteryPercentage: 100)
+        ))
     }
+        .previewWith {
+            DeviceManager()
+        }
+}
+
+#Preview {
+    NavigationStack {
+        DeviceDetailsView(.constant(
+            PairedDeviceInfo(
+                id: UUID(),
+                name: "Weight Scale",
+                model: "SC-150",
+                icon: .asset("Omron-SC-150"),
+                lastSeen: .now.addingTimeInterval(-60 * 60 * 24),
+                batteryPercentage: 85
+            )
+        ))
+    }
+        .previewWith {
+            DeviceManager()
+        }
 }
 #endif

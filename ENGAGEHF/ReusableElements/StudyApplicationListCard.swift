@@ -58,6 +58,7 @@ extension Text {
 }
 
 
+#if DEBUG
 #Preview("Sections") {
     NavigationStack {
         List {
@@ -102,3 +103,4 @@ extension Text {
             .navigationTitle("List Without Sections")
     }
 }
+#endif

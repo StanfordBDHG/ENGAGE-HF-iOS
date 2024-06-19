@@ -28,7 +28,7 @@ class WeightScaleDevice: BluetoothDevice, Identifiable, OmronHealthDevice {
     @Service var deviceInformation = DeviceInformationService()
 
     @Service var time = CurrentTimeService()
-    @Service var battery = BatteryService()
+    @Service var battery = BatteryService() // TODO: doesnt actualyl support battery LOL
     @Service var weightScale = WeightScaleService()
     
     @DeviceAction(\.connect) var connect
@@ -38,7 +38,6 @@ class WeightScaleDevice: BluetoothDevice, Identifiable, OmronHealthDevice {
     @Dependency private var deviceManager: DeviceManager?
 
     @MainActor var _pairingContinuation: CheckedContinuation<Void, any Error>? // swiftlint:disable:this identifier_name
-    // TODO: swiftlint warning
 
     // TODO: weight scale has some reserved flag set???
 
@@ -63,9 +62,8 @@ class WeightScaleDevice: BluetoothDevice, Identifiable, OmronHealthDevice {
     }
 
     func configure() {
-        print("Manufacturer Data: \(manufacturerData)")
-        // TODO: this is the same for both!
         guard let manufacturerData else {
+            Self.logger.debug("Ignoring unknown weight scale device \(self.label).")
             return
         }
 
@@ -100,11 +98,14 @@ class WeightScaleDevice: BluetoothDevice, Identifiable, OmronHealthDevice {
 
     @MainActor
     private func handleBatteryChange(_ level: UInt8) {
+        Self.logger.debug("Updated battery level for \(self.label) is \(level)")
         handleDeviceInteraction()
+        deviceManager?.updateBattery(for: self, percentage: level)
     }
 
     @MainActor
     private func handleCurrentTimeChange(_ time: CurrentTime) {
+        Self.logger.debug("Updated device time for \(self.label) is \(String(describing: time))")
         handleDeviceInteraction()
     }
 }

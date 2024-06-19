@@ -18,7 +18,7 @@ import SpeziOmron
 class BloodPressureCuffDevice: BluetoothDevice, Identifiable, OmronHealthDevice {
     private static let logger = Logger(subsystem: "ENGAGEHF", category: "BloodPressureCuffDevice")
 
-    @DeviceState(\.id) var id: UUID // TODO: this id is presistent!
+    @DeviceState(\.id) var id: UUID
     @DeviceState(\.name) var name: String?
     @DeviceState(\.state) var state: PeripheralState
     @DeviceState(\.advertisementData) var advertisementData: AdvertisementData
@@ -27,7 +27,7 @@ class BloodPressureCuffDevice: BluetoothDevice, Identifiable, OmronHealthDevice 
     @Service var deviceInformation = DeviceInformationService()
 
     @Service var time = CurrentTimeService()
-    @Service var battery = BatteryService() // TODO: show that in UI (require it by protocol?)
+    @Service var battery = BatteryService()
     @Service var bloodPressure = BloodPressureService()
     @Service var omronOptions = OmronOptionService()
 
@@ -38,7 +38,6 @@ class BloodPressureCuffDevice: BluetoothDevice, Identifiable, OmronHealthDevice 
     @Dependency private var deviceManager: DeviceManager?
 
     @MainActor var _pairingContinuation: CheckedContinuation<Void, Error>? // swiftlint:disable:this identifier_name
-    // TODO: swiftlint warning
 
     var icon: ImageReference? {
         .asset("Omron-BP5250")
@@ -62,6 +61,7 @@ class BloodPressureCuffDevice: BluetoothDevice, Identifiable, OmronHealthDevice 
 
     func configure() {
         guard let manufacturerData else {
+            Self.logger.debug("Ignoring unknown blood pressure cuff device \(self.label).")
             return
         }
 
@@ -72,8 +72,6 @@ class BloodPressureCuffDevice: BluetoothDevice, Identifiable, OmronHealthDevice 
                 deviceManager?.nearbyPairableDevice(self)
             }
         }
-        
-        // TODO: disable auto-connect,
     }
 
     private func handleStateChange(_ state: PeripheralState) async {
@@ -83,13 +81,6 @@ class BloodPressureCuffDevice: BluetoothDevice, Identifiable, OmronHealthDevice 
 
         guard case .connected = state else {
             return
-        }
-
-        // TODO: the only way to detect successful pairing is by listening for notification on battery level or current time service!
-
-        if let name {
-            // TODO: BP5250
-            Self.logger.debug("Device \(name) connected ...") // TODO: remove?
         }
 
         time.synchronizeDeviceTime()
@@ -114,7 +105,6 @@ class BloodPressureCuffDevice: BluetoothDevice, Identifiable, OmronHealthDevice 
             } catch {
                 print("Failed to report stored records: \(error)")
             }
-
         }
     }
 
@@ -129,11 +119,14 @@ class BloodPressureCuffDevice: BluetoothDevice, Identifiable, OmronHealthDevice 
 
     @MainActor
     private func handleBatteryChange(_ level: UInt8) {
+        Self.logger.debug("Updated battery level for \(self.label) is \(level)")
         handleDeviceInteraction()
+        deviceManager?.updateBattery(for: self, percentage: level)
     }
 
     @MainActor
     private func handleCurrentTimeChange(_ time: CurrentTime) {
+        Self.logger.debug("Updated device time for \(self.label) is \(String(describing: time))")
         handleDeviceInteraction()
     }
 }

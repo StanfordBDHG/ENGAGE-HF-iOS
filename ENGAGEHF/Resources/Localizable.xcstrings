@@ -83,6 +83,9 @@
     "An invitation code is at least 8 characters long." : {
 
     },
+    "Battery" : {
+
+    },
     "Cancel" : {
 
     },
@@ -154,6 +157,9 @@
 
     },
     "Education" : {
+
+    },
+    "enter device name" : {
 
     },
     "Failed to pair accessory." : {
@@ -397,6 +403,9 @@
     "Measurement Recorded" : {
 
     },
+    "Model" : {
+
+    },
     "Name" : {
 
     },
@@ -486,6 +495,9 @@
     "The device is busy and failed to complete pairing." : {
 
     },
+    "The device name cannot be longer than 50 characters." : {
+
+    },
     "The device was not put into pairing mode." : {
 
     },
@@ -495,8 +507,18 @@
     "The operation timed out." : {
 
     },
-    "This device was last seen at 19:46" : {
+    "This device was last seen at %@" : {
 
+    },
+    "This device was last seen on %@ at %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "This device was last seen on %1$@ at %2$@"
+          }
+        }
+      }
     },
     "Timeout" : {
 

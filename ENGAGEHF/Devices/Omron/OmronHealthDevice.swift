@@ -15,9 +15,10 @@ protocol OmronHealthDevice: HealthDevice {
     /// Storage for pairing continuation.
     @MainActor var _pairingContinuation: CheckedContinuation<Void, Error>? { get set } // swiftlint:disable:this identifier_name
     // TODO: do not synchronize via MainActor??
-    // TODO: use SPI instead of underscore when moving to SpeziDevices?
+    // TODO: use SPI instead of underscore when moving to SpeziDevices? => avoid swiftlint warning for implementors
 
     var connect: BluetoothConnectAction { get } // TODO: on which level to enforce that?
+    var disconnect: BluetoothDisconnectAction { get }
 
     /// Pair Omron Health Device.
     ///
@@ -26,17 +27,17 @@ protocol OmronHealthDevice: HealthDevice {
     ///
     /// This method is implemented by default. In order to support the default implementation, you MUST call `handleDeviceInteraction()`
     /// on notifications or indications received from the device. This indicates that pairing was successful.
+    /// Further, your implementation MUST call `handleDeviceDisconnected()` if the device disconnects to handle pairing issues.
     @MainActor // TODO: actor isolation?
-    func pair() async throws // TODO: docs: onChange disconnected!
+    func pair() async throws
 }
 
 
 extension OmronHealthDevice {
     var model: OmronModel {
-        OmronModel(deviceInformation.modelNumber ?? "Generic Health Device") // TODO: fallback picture for that? => "sensor.fill"?
+        OmronModel(deviceInformation.modelNumber ?? "Generic Health Device")
     }
 
-    // TODO: we could add syntactic sugar to spezi with storage for decoded value? (what???)
     var manufacturerData: OmronManufacturerData? {
         guard let manufacturerData = advertisementData.manufacturerData else {
             return nil
@@ -49,7 +50,6 @@ extension OmronHealthDevice {
 extension OmronHealthDevice {
     @MainActor
     func pair() async throws {
-
         guard _pairingContinuation == nil else {
             throw DevicePairingError.busy
         }
@@ -69,11 +69,17 @@ extension OmronHealthDevice {
             resumePairingContinuation(with: .failure(TimeoutError()))
         }
 
-        // TODO: cancellation handler?
-        // TODO: return error if the device disconnects while pairing?
-        try await withCheckedThrowingContinuation { continuation in
-            self._pairingContinuation = continuation
+        try await withTaskCancellationHandler {
+            try await withCheckedThrowingContinuation { continuation in
+                self._pairingContinuation = continuation
+            }
+        } onCancel: {
+            Task { @MainActor in
+                resumePairingContinuation(with: .failure(CancellationError()))
+                await disconnect()
+            }
         }
+
 
         print("\(id) is now considered paired!") // TODO: logger!
     }

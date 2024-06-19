@@ -82,6 +82,8 @@
 		A92E4DF02BAA001100AC8DE8 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = A92E4DEF2BAA001100AC8DE8 /* OrderedCollections */; };
 		A9623C042C17A3F500189BA1 /* SpeziOmron in Frameworks */ = {isa = PBXBuildFile; productRef = A9623C032C17A3F500189BA1 /* SpeziOmron */; };
 		A9623C082C18D03F00189BA1 /* AccountSetupSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9623C072C18D03F00189BA1 /* AccountSetupSheet.swift */; };
+		A963606A2C22D61E00D17353 /* NameEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96360692C22D61E00D17353 /* NameEditView.swift */; };
+		A963606E2C22EE2E00D17353 /* ImageReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = A963606D2C22EE2E00D17353 /* ImageReference.swift */; };
 		A96C56B62C0A149B00D6A50B /* WeightScaleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96C56B52C0A149B00D6A50B /* WeightScaleTests.swift */; };
 		A96C56BB2C0DFFCE00D6A50B /* InvitationCodeModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96C56BA2C0DFFCE00D6A50B /* InvitationCodeModule.swift */; };
 		A96C56BF2C0E334A00D6A50B /* BloodPressureCuffDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96C56BE2C0E334A00D6A50B /* BloodPressureCuffDevice.swift */; };
@@ -108,6 +110,8 @@
 		A9D684062C21FDE600183891 /* AccessoryDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D684052C21FDE600183891 /* AccessoryDescriptor.swift */; };
 		A9D684092C220FD800183891 /* DeviceDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D684082C220FD800183891 /* DeviceDetailsView.swift */; };
 		A9D6840F2C222E1200183891 /* ForgetDeviceTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D6840E2C222E1200183891 /* ForgetDeviceTip.swift */; };
+		A9D684112C22C07900183891 /* BatteryIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D684102C22C07900183891 /* BatteryIcon.swift */; };
+		A9D684142C22C0D100183891 /* DeviceTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D684132C22C0D100183891 /* DeviceTile.swift */; };
 		A9D83F962B083794000D0C78 /* SpeziFirebaseAccountStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A9D83F952B083794000D0C78 /* SpeziFirebaseAccountStorage */; };
 		A9DFE8A92ABE551400428242 /* AccountButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DFE8A82ABE551400428242 /* AccountButton.swift */; };
 		A9F2138E2C18EBAB00A7578F /* AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F2138D2C18EBAB00A7578F /* AccountTests.swift */; };
@@ -185,6 +189,8 @@
 		A91BA3522C1B5E6100AE30ED /* PairingUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingUI.swift; sourceTree = "<group>"; };
 		A91BA3572C1C76E100AE30ED /* DeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
 		A9623C072C18D03F00189BA1 /* AccountSetupSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSetupSheet.swift; sourceTree = "<group>"; };
+		A96360692C22D61E00D17353 /* NameEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameEditView.swift; sourceTree = "<group>"; };
+		A963606D2C22EE2E00D17353 /* ImageReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageReference.swift; sourceTree = "<group>"; };
 		A96C56B52C0A149B00D6A50B /* WeightScaleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightScaleTests.swift; sourceTree = "<group>"; };
 		A96C56BA2C0DFFCE00D6A50B /* InvitationCodeModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationCodeModule.swift; sourceTree = "<group>"; };
 		A96C56BE2C0E334A00D6A50B /* BloodPressureCuffDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloodPressureCuffDevice.swift; sourceTree = "<group>"; };
@@ -210,6 +216,8 @@
 		A9D684052C21FDE600183891 /* AccessoryDescriptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessoryDescriptor.swift; sourceTree = "<group>"; };
 		A9D684082C220FD800183891 /* DeviceDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetailsView.swift; sourceTree = "<group>"; };
 		A9D6840E2C222E1200183891 /* ForgetDeviceTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetDeviceTip.swift; sourceTree = "<group>"; };
+		A9D684102C22C07900183891 /* BatteryIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryIcon.swift; sourceTree = "<group>"; };
+		A9D684132C22C0D100183891 /* DeviceTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTile.swift; sourceTree = "<group>"; };
 		A9DFE8A82ABE551400428242 /* AccountButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountButton.swift; sourceTree = "<group>"; };
 		A9F2138D2C18EBAB00A7578F /* AccountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTests.swift; sourceTree = "<group>"; };
 		A9FE7ACF2AA39BAB0077B045 /* AccountSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSheet.swift; sourceTree = "<group>"; };
@@ -358,15 +366,16 @@
 		4D49AB142BCF6FC400C77310 /* Devices */ = {
 			isa = PBXGroup;
 			children = (
-				A9D684072C220F9700183891 /* Details */,
-				A9D683FA2C21C00D00183891 /* Pairing */,
-				A9D683F42C21B78900183891 /* Omron */,
-				4D49AB052BC9D56900C77310 /* WeightScaleDevice.swift */,
 				A96C56BE2C0E334A00D6A50B /* BloodPressureCuffDevice.swift */,
-				A996F4492C1082BA002328C5 /* HealthDevice.swift */,
-				A91BA3522C1B5E6100AE30ED /* PairingUI.swift */,
 				A91BA3572C1C76E100AE30ED /* DeviceManager.swift */,
+				A996F4492C1082BA002328C5 /* HealthDevice.swift */,
+				A963606D2C22EE2E00D17353 /* ImageReference.swift */,
 				A9D683F22C21B57200183891 /* PairedDeviceInfo.swift */,
+				A91BA3522C1B5E6100AE30ED /* PairingUI.swift */,
+				4D49AB052BC9D56900C77310 /* WeightScaleDevice.swift */,
+				A9D684072C220F9700183891 /* Details */,
+				A9D683F42C21B78900183891 /* Omron */,
+				A9D683FA2C21C00D00183891 /* Pairing */,
 			);
 			path = Devices;
 			sourceTree = "<group>";
@@ -545,6 +554,9 @@
 			isa = PBXGroup;
 			children = (
 				A9D684082C220FD800183891 /* DeviceDetailsView.swift */,
+				A9D684102C22C07900183891 /* BatteryIcon.swift */,
+				A9D684132C22C0D100183891 /* DeviceTile.swift */,
+				A96360692C22D61E00D17353 /* NameEditView.swift */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -752,17 +764,20 @@
 				2FE5DC4129EDD7EE004B9AB4 /* StorageKeys.swift in Sources */,
 				4D0F389E2C09779100DA12F7 /* ShowMoreButton.swift in Sources */,
 				4D19ED012BE5CAFC00CDBAA8 /* MeasurementRecordedView.swift in Sources */,
+				A9D684142C22C0D100183891 /* DeviceTile.swift in Sources */,
 				4DDFC7652BF350C2002B07A1 /* Education.swift in Sources */,
 				A996F4532C11113B002328C5 /* Measurement.swift in Sources */,
 				2FE5DCB129EE6107004B9AB4 /* AccountOnboarding.swift in Sources */,
 				4DDFC73F2BF2CADD002B07A1 /* FetchingError.swift in Sources */,
 				2FE5DC3A29EDD7CA004B9AB4 /* Welcome.swift in Sources */,
+				A963606E2C22EE2E00D17353 /* ImageReference.swift in Sources */,
 				4DD823022C17F63C004DC599 /* CloseButtonLayer.swift in Sources */,
 				A996F4462C1081EB002328C5 /* BloodPressureMeasurement.Unit+HKUnit.swift in Sources */,
 				A9D683F32C21B57200183891 /* PairedDeviceInfo.swift in Sources */,
 				A9D684042C21FDBE00183891 /* DevicesGrid.swift in Sources */,
 				2FE5DC3829EDD7CA004B9AB4 /* InterestingModules.swift in Sources */,
 				2FE5DC3529EDD7CA004B9AB4 /* Consent.swift in Sources */,
+				A963606A2C22D61E00D17353 /* NameEditView.swift in Sources */,
 				A996F44A2C1082BA002328C5 /* HealthDevice.swift in Sources */,
 				4DBDD3442BBFAD64001FB0CA /* InvitationCodeError.swift in Sources */,
 				A91BA3532C1B5E6100AE30ED /* PairingUI.swift in Sources */,
@@ -791,6 +806,7 @@
 				A9D684012C21FD9500183891 /* DevicesUnavailableView.swift in Sources */,
 				A9D683F72C21B79200183891 /* OmronManufacturerData.swift in Sources */,
 				A96C56BB2C0DFFCE00D6A50B /* InvitationCodeModule.swift in Sources */,
+				A9D684112C22C07900183891 /* BatteryIcon.swift in Sources */,
 				A996F4482C1081F8002328C5 /* HealthDevice+HKDevice.swift in Sources */,
 				A96C56BF2C0E334A00D6A50B /* BloodPressureCuffDevice.swift in Sources */,
 				A996F4552C11117C002328C5 /* ProcessedMeasurement.swift in Sources */,

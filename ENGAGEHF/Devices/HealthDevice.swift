@@ -17,8 +17,9 @@ protocol HealthDevice: AnyObject, GenericBluetoothPeripheral {
     var id: UUID { get }
     var name: String? { get }
     var advertisementData: AdvertisementData { get }
-
+    
     var deviceInformation: DeviceInformationService { get }
+    var battery: BatteryService { get } // TODO: this might be optional to implement
 
     var icon: ImageReference? { get }
 }
