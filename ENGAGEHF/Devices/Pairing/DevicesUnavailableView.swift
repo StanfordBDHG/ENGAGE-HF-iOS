@@ -30,3 +30,10 @@ struct DevicesUnavailableView: View {
         self._presentingDevicePairing = presentingDevicePairing
     }
 }
+
+
+#if DEBUG
+#Preview {
+    DevicesUnavailableView(presentingDevicePairing: .constant(false))
+}
+#endif

@@ -77,7 +77,7 @@ struct DevicesGrid: View {
 }
 
 
-// TODO: does that hurt?
+// TODO: does that hurt? probably!!! we need to remove it anyways (for update issues)
 extension Binding: Hashable, Equatable where Value: Hashable {
     public static func == (lhs: Binding<Value>, rhs: Binding<Value>) -> Bool {
         lhs.wrappedValue == rhs.wrappedValue
