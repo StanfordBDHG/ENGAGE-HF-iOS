@@ -14,11 +14,10 @@ import Spezi
 import SpeziFirebaseConfiguration
 
 
-// Notification manager
-//
-// Maintains a list of Notifications associated with the current user in firebase
-// On configuration of the app, adds a snapshot listener to the user's notification collection
-//
+/// Notification manager
+///
+/// Maintains a list of Notifications associated with the current user in firebase
+/// On configuration of the app, adds a snapshot listener to the user's notification collection
 @Observable
 class NotificationManager: Module, EnvironmentAccessible {
     @ObservationIgnored @Dependency private var configureFirebaseApp: ConfigureFirebaseApp
@@ -66,7 +65,7 @@ class NotificationManager: Module, EnvironmentAccessible {
     }
     
     
-    // Adds three mock notifications to the user's notification collection in firestore
+    /// Adds three mock notifications to the user's notification collection in firestore
     func setupNotificationTests(user: User) async throws {
         let firestore = Firestore.firestore()
         let notificationsCollection = firestore.collection("users").document(user.uid).collection("notifications")
@@ -99,10 +98,9 @@ class NotificationManager: Module, EnvironmentAccessible {
     }
     
     
-    // Call on initialization
-    //
-    // Creates a snapshot listener to save new notifications to the manager
-    // as they are added to the user's directory in Firebase
+    /// Call on initialization and sign-in of user
+    ///
+    /// Creates a snapshot listener to save new notifications to the manager as they are added to the user's directory in Firebase
     func registerSnapshotListener(user: User?) {
         logger.info("Initializing notifiation snapshot listener...")
         

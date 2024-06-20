@@ -320,9 +320,6 @@
         }
       }
     },
-    "Introductory Videos go here" : {
-
-    },
     "Invalid Sample" : {
 
     },
@@ -358,9 +355,6 @@
     "List Without Sections" : {
 
     },
-    "Loading To-do List..." : {
-
-    },
     "Measurement Recorded" : {
 
     },
@@ -371,9 +365,6 @@
 
     },
     "Most Recent Vitals" : {
-
-    },
-    "Nothing to do!" : {
 
     },
     "NOTIFICATION_PERMISSIONS_BUTTON" : {
@@ -437,12 +428,6 @@
     },
     "The invitation code is invalid or has already been used." : {
       "comment" : "Invitation Code Invalid"
-    },
-    "To-do" : {
-
-    },
-    "To-do Checkbox" : {
-
     },
     "Trigger Blood Pressure Measurement" : {
 
