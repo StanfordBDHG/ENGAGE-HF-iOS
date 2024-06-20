@@ -9,8 +9,6 @@
 import SpeziViews
 import SwiftUI
 
-// TODO: 180x120 ASKit dimenaions
-
 
 struct DeviceDetailsView: View {
     @Environment(\.dismiss) private var dismiss
@@ -51,7 +49,9 @@ struct DeviceDetailsView: View {
                     presentForgetConfirmation = true
                 }
             } footer: {
-                if lastSeenToday { // TODO: determine if connected?
+                if deviceManager.isConnected(device: deviceInfo.id) {
+                    Text("Synchronizing ...")
+                } else if lastSeenToday {
                     Text("This device was last seen at \(Text(deviceInfo.lastSeen, style: .time))")
                 } else {
                     Text("This device was last seen on \(Text(deviceInfo.lastSeen, style: .date)) at \(Text(deviceInfo.lastSeen, style: .time))")
@@ -67,6 +67,13 @@ struct DeviceDetailsView: View {
                     dismiss()
                 }
                 Button("Cancel", role: .cancel) {}
+            }
+            .toolbar {
+                if deviceManager.isConnected(device: deviceInfo.id) {
+                    ToolbarItem(placement: .primaryAction) {
+                        ProgressView()
+                    }
+                }
             }
     }
 

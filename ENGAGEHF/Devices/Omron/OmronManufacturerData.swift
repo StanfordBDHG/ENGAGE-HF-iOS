@@ -7,8 +7,9 @@
 //
 
 import ByteCoding
-
 import NIOCore
+import SpeziBluetooth
+
 
 struct OmronManufacturerData {
     enum PairingMode {
@@ -16,7 +17,7 @@ struct OmronManufacturerData {
         case pairingMode
     }
 
-    enum StreamingMode { // TODO: unused?
+    enum StreamingMode {
         case dataCommunication
         case streaming
     }
@@ -25,6 +26,11 @@ struct OmronManufacturerData {
         let id: UInt8
         let sequenceNumber: UInt16
         let recordsNumber: UInt8
+    }
+
+    enum Mode {
+        case bluetoothStandard
+        case omronExtension
     }
 
     fileprivate struct Flags: OptionSet {
@@ -47,25 +53,32 @@ struct OmronManufacturerData {
     let timeSet: Bool
     let pairingMode: PairingMode
     let streamingMode: StreamingMode
-    // TODO: bluetooth mode!
+    let mode: Mode
 
     let users: [UserSlot] // max 4 slots
 }
 
 
+extension ManufacturerIdentifier {
+    /// Bluetooth manufacturer code for "Omron Healthcare Co., Ltd.".
+    static var omronHealthcareCoLtd: ManufacturerIdentifier {
+        ManufacturerIdentifier(rawValue: 0x020E)
+    }
+}
+
+
 extension OmronManufacturerData: ByteDecodable {
     init?(from byteBuffer: inout ByteBuffer) {
-        // TODO: endianness = .little ???
-        guard let companyIdentifier = UInt16(from: &byteBuffer) else {
+        guard let companyIdentifier = ManufacturerIdentifier(from: &byteBuffer) else {
             return nil
         }
 
-        guard companyIdentifier == 0x020E else { // TODO: magic: "Omron Healthcare Co., Ltd."
+        guard companyIdentifier == .omronHealthcareCoLtd else {
             return nil
         }
 
         guard let dataType = UInt8(from: &byteBuffer),
-              dataType == 0x01 else { // TODO: each user data
+              dataType == 0x01 else { // 0x01 signifies start of "Each User Data"
             return nil
         }
 
@@ -76,7 +89,7 @@ extension OmronManufacturerData: ByteDecodable {
         self.timeSet = !flags.contains(.timeNotSet)
         self.pairingMode = flags.contains(.pairingMode) ? .pairingMode : .transferMode
         self.streamingMode = flags.contains(.streamingMode) ? .streaming : .dataCommunication
-        // TODO: bluetooth mode??
+        self.mode = flags.contains(.wlpStp) ? .bluetoothStandard : .omronExtension
 
         var userSlots: [UserSlot] = []
         for userNumber in 1...flags.numberOfUsers {

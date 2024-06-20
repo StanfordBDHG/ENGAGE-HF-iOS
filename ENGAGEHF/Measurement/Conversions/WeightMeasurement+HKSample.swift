@@ -17,7 +17,7 @@ extension WeightMeasurement {
         let value = weight(of: resolution ?? .unspecified)
 
         let quantity = HKQuantity(unit: unit.massUnit, doubleValue: value)
-        let date = timeStamp?.date ?? .now // TODO: don't default to now
+        let date = timeStamp?.date ?? .now
 
         return HKQuantitySample(
             type: quantityType,

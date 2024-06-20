@@ -29,7 +29,6 @@ class BloodPressureCuffDevice: BluetoothDevice, Identifiable, OmronHealthDevice 
     @Service var time = CurrentTimeService()
     @Service var battery = BatteryService()
     @Service var bloodPressure = BloodPressureService()
-    @Service var omronOptions = OmronOptionService()
 
     @DeviceAction(\.connect) var connect
     @DeviceAction(\.disconnect) var disconnect
@@ -46,27 +45,27 @@ class BloodPressureCuffDevice: BluetoothDevice, Identifiable, OmronHealthDevice 
     required init() {
         $state
             .onChange(perform: handleStateChange(_:))
+        $advertisementData.onChange(initial: true, perform: handleAdvertisement(_:))
+        $discarded.onChange { @MainActor discarded in
+            if discarded {
+                self.deviceManager?.handleDiscardedDevice(self)
+            }
+        }
+
         bloodPressure.$bloodPressureMeasurement
             .onChange(perform: processMeasurement(_:))
         battery.$batteryLevel
             .onChange(perform: handleBatteryChange(_:))
         time.$currentTime
             .onChange(perform: handleCurrentTimeChange(_:))
-        $discarded.onChange { @MainActor discarded in
-            if discarded {
-                self.deviceManager?.handleDiscardedDevice(self)
-            }
-        }
     }
 
-    func configure() {
+    private func handleAdvertisement(_ data: AdvertisementData) {
         guard let manufacturerData else {
-            Self.logger.debug("Ignoring unknown blood pressure cuff device \(self.label).")
+            // e.g., happens when device is connected without prior advertising
             return
         }
 
-
-        Self.logger.info("Detected nearby blood pressure cuff with manufacturer data \(String(describing: manufacturerData))")
         if case .pairingMode = manufacturerData.pairingMode {
             Task { @MainActor in
                 deviceManager?.nearbyPairableDevice(self)
@@ -79,32 +78,10 @@ class BloodPressureCuffDevice: BluetoothDevice, Identifiable, OmronHealthDevice 
             await handleDeviceDisconnected()
         }
 
-        guard case .connected = state else {
-            return
-        }
+        await deviceManager?.handleDeviceStateUpdated(self, state)
 
-        time.synchronizeDeviceTime()
-
-
-        return;
-        Task {
-            try? await Task.sleep(for: .seconds(1)) // TODO: isNotifying is outdated at this point!
-            print("Requesting latest sequence number!")
-            do {
-                let recordsCount = try await omronOptions.reportNumberOfStoredRecords(.allRecords)
-                print("Records count: \(recordsCount)")
-                let sequenceNumber = try await omronOptions.reportSequenceNumberOfLatestRecords()
-
-                print("latest sequence number: \(sequenceNumber)")
-            } catch {
-                print("Error occurred: \(error)")
-            }
-
-            do {
-                try await omronOptions.reportStoredRecords(.lastRecord)
-            } catch {
-                print("Failed to report stored records: \(error)")
-            }
+        if case .connected = state {
+            time.synchronizeDeviceTime()
         }
     }
 

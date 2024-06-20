@@ -48,27 +48,30 @@ class WeightScaleDevice: BluetoothDevice, Identifiable, OmronHealthDevice {
     required init() {
         $state
             .onChange(perform: handleStateChange(_:))
+        $advertisementData.onChange(initial: true, perform: handleAdvertisement(_:))
+        $discarded.onChange { @MainActor discarded in
+            if discarded {
+                self.deviceManager?.handleDiscardedDevice(self)
+            }
+        }
+
         weightScale.$weightMeasurement
             .onChange(perform: processMeasurement(_:))
         battery.$batteryLevel
             .onChange(perform: handleBatteryChange(_:))
         time.$currentTime
             .onChange(perform: handleCurrentTimeChange(_:))
-        $discarded.onChange { @MainActor discarded in
-            if discarded {
-                self.deviceManager?.handleDiscardedDevice(self)
-            }
-        }
     }
 
-    func configure() {
+    private func handleAdvertisement(_ data: AdvertisementData) {
+        // TODO: are initial states called without dependencies injected?
+
         guard let manufacturerData else {
-            Self.logger.debug("Ignoring unknown weight scale device \(self.label).")
+            // e.g., happens when device is connected without prior advertising
             return
         }
 
 
-        Self.logger.info("Detected nearby weight scale with manufacturer data \(String(describing: manufacturerData))")
         if case .pairingMode = manufacturerData.pairingMode {
             Task { @MainActor in
                 deviceManager?.nearbyPairableDevice(self)
@@ -81,11 +84,11 @@ class WeightScaleDevice: BluetoothDevice, Identifiable, OmronHealthDevice {
             await handleDeviceDisconnected()
         }
 
-        guard case .connected = state else {
-            return
-        }
+        await deviceManager?.handleDeviceStateUpdated(self, state)
 
-        time.synchronizeDeviceTime()
+        if case .connected = state {
+            time.synchronizeDeviceTime()
+        }
     }
 
     private func processMeasurement(_ measurement: WeightMeasurement) {
@@ -105,6 +108,7 @@ class WeightScaleDevice: BluetoothDevice, Identifiable, OmronHealthDevice {
 
     @MainActor
     private func handleCurrentTimeChange(_ time: CurrentTime) {
+        // TODO: paired is successful even before Pair button is pressed! also model was queried to early for that?
         Self.logger.debug("Updated device time for \(self.label) is \(String(describing: time))")
         handleDeviceInteraction()
     }

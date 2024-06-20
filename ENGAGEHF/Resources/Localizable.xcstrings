@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "\"%@\" was successfully paired with the ENGAGE app." : {
+
+    },
     "%@" : {
 
     },
@@ -16,6 +19,9 @@
           }
         }
       }
+    },
+    "Accessory Paired" : {
+
     },
     "ACCOUNT_NEXT" : {
       "localizations" : {
@@ -144,13 +150,10 @@
     "Discovering" : {
 
     },
-    "Dismiss" : {
-
-    },
     "Do you really want to forget this device?" : {
 
     },
-    "Do you want to pair \"%@\" with the ENGAGE app?" : {
+    "Do you want to pair %@ with the ENGAGE app?" : {
 
     },
     "Done" : {
@@ -465,6 +468,19 @@
     "Open Settings" : {
 
     },
+    "Page" : {
+
+    },
+    "Page %lld of %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Page %1$lld of %2$lld"
+          }
+        }
+      }
+    },
     "Pair" : {
 
     },
@@ -489,7 +505,7 @@
     "Save" : {
 
     },
-    "Successfully Paired" : {
+    "Synchronizing ..." : {
 
     },
     "The device is busy and failed to complete pairing." : {
@@ -504,9 +520,6 @@
     "The invitation code is invalid or has already been used." : {
       "comment" : "Invitation Code Invalid"
     },
-    "The operation timed out." : {
-
-    },
     "This device was last seen at %@" : {
 
     },
@@ -519,9 +532,6 @@
           }
         }
       }
-    },
-    "Timeout" : {
-
     },
     "Trigger Blood Pressure Measurement" : {
 

@@ -45,21 +45,10 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
                     FirebaseStorageConfiguration()
                 }
             }
-            
-            // TODO: only auto-connect with devices that are a) omron devices in b) transfer mode (non pairing) and c) have been paired
-            Bluetooth(advertisementStaleInterval: 15) {
-                // TODO: global discover is a bit weird with Omron device pairing!
-                Discover(WeightScaleDevice.self, by: .advertisedService(WeightScaleService.self))
-                Discover(BloodPressureCuffDevice.self, by: .advertisedService(BloodPressureService.self))
 
-                // TODO: omron pairing
-                /*
-                 The function of registering user is available only when the device is in Pairing Mode.
-                 Consent Code range of user authentication is 0x0000-0x270F.
-                 Need to set 0x020E to Consent Code to share the measurement data with an application made by
-                 OMRON.
-                 “Register New User With User Index” is recommended when the user is registered.
-                 */
+            Bluetooth(advertisementStaleInterval: 15) {
+                Discover(WeightScaleDevice.self, by: .accessory(manufacturer: .omronHealthcareCoLtd, advertising: WeightScaleService.self))
+                Discover(BloodPressureCuffDevice.self, by: .accessory(manufacturer: .omronHealthcareCoLtd, advertising: BloodPressureService.self))
             }
             
             OnboardingDataSource()

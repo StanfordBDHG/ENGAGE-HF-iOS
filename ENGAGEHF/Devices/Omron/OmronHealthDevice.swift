@@ -6,6 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
+import OSLog
 import SpeziBluetooth
 import SpeziFoundation
 import SwiftUI
@@ -16,6 +17,8 @@ protocol OmronHealthDevice: HealthDevice {
     @MainActor var _pairingContinuation: CheckedContinuation<Void, Error>? { get set } // swiftlint:disable:this identifier_name
     // TODO: do not synchronize via MainActor??
     // TODO: use SPI instead of underscore when moving to SpeziDevices? => avoid swiftlint warning for implementors
+
+    var discarded: Bool { get }
 
     var connect: BluetoothConnectAction { get } // TODO: on which level to enforce that?
     var disconnect: BluetoothDisconnectAction { get }
@@ -30,6 +33,13 @@ protocol OmronHealthDevice: HealthDevice {
     /// Further, your implementation MUST call `handleDeviceDisconnected()` if the device disconnects to handle pairing issues.
     @MainActor // TODO: actor isolation?
     func pair() async throws
+}
+
+
+extension OmronHealthDevice {
+    static var logger: Logger {
+        Logger(subsystem: "edu.stanford.bdh.engagehf", category: "OmronHealthDevice")
+    }
 }
 
 
@@ -58,8 +68,11 @@ extension OmronHealthDevice {
             throw DevicePairingError.notInPairingMode
         }
 
-        // TODO: can we check if the device is still considered discovered???
         guard case .disconnected = state else {
+            throw DevicePairingError.invalidState
+        }
+
+        guard !discarded else {
             throw DevicePairingError.invalidState
         }
 
@@ -81,7 +94,7 @@ extension OmronHealthDevice {
         }
 
 
-        print("\(id) is now considered paired!") // TODO: logger!
+        Self.logger.debug("Device \(self.label) with id \(self.id) is now paired")
     }
 
     @MainActor

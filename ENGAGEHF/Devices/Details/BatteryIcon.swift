@@ -8,23 +8,6 @@
 
 import SwiftUI
 
-struct ReverseLabelStyle: LabelStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        HStack {
-            configuration.title
-            configuration.icon
-        }
-            .accessibilityElement(children: .combine)
-    }
-}
-
-
-extension LabelStyle where Self == ReverseLabelStyle {
-    static var reverse: ReverseLabelStyle {
-        ReverseLabelStyle()
-    }
-}
-
 
 struct BatteryIcon: View { // TODO: move to SpeziDevices
     private let percentage: Int

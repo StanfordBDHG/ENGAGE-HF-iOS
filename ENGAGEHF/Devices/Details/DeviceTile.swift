@@ -13,6 +13,8 @@ import SwiftUI
 struct DeviceTile: View {
     private let deviceInfo: PairedDeviceInfo
 
+    @Environment(DeviceManager.self) private var deviceManager
+
     private var image: Image {
         deviceInfo.icon?.image ?? Image(systemName: "sensor") // swiftlint:disable:this accessibility_label_for_image
     }
@@ -28,8 +30,10 @@ struct DeviceTile: View {
                     .accessibilityHidden(true)
                     .frame(minWidth: 0, maxWidth: 100, minHeight: 0, maxHeight: 120, alignment: .topLeading)
                 Spacer()
-                // TODO: top right loading indicator if connected?
-                // TODO: ProgressView()
+
+                if deviceManager.isConnected(device: deviceInfo.id) {
+                    ProgressView()
+                }
             }
             Spacer()
             HStack {
@@ -38,7 +42,7 @@ struct DeviceTile: View {
                     .font(.callout)
                     .fontWeight(.semibold)
                     .lineLimit(1)
-                    .truncationMode(.tail) // TODO: do we need a subheadline?
+                    .truncationMode(.tail)
                 Spacer()
                 if let percentage = deviceInfo.lastBatteryPercentage {
                     BatteryIcon(percentage: Int(percentage))
@@ -83,5 +87,8 @@ struct DeviceTile: View {
         .padding([.leading, .trailing], 12)
         .frame(maxHeight: .infinity)
         .background(Color(uiColor: .systemGroupedBackground))
+        .previewWith {
+            DeviceManager()
+        }
 }
 #endif

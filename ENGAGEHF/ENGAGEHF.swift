@@ -6,6 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
+import OSLog
 import Spezi
 import SpeziFirebaseAccount
 import SpeziViews
@@ -15,6 +16,7 @@ import TipKit
 
 @main
 struct ENGAGEHF: App {
+    static let logger = Logger(subsystem: "edu.stanford.bdh.engagehf", category: "App")
     @UIApplicationDelegateAdaptor(ENGAGEHFDelegate.self) var appDelegate
     @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
 
@@ -35,7 +37,11 @@ struct ENGAGEHF: App {
                     if FeatureFlags.testingTips {
                         Tips.showAllTipsForTesting()
                     }
-                    try? Tips.configure() // TODO: what is the error?
+                    do {
+                        try Tips.configure()
+                    } catch {
+                        Self.logger.error("Failed to configure TipKit: \(error)")
+                    }
                 }
                 .testingSetup()
                 .spezi(appDelegate)

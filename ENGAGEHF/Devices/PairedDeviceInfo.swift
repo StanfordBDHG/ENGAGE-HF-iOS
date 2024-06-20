@@ -8,16 +8,13 @@
 
 import Foundation
 
-// TODO: DeviceManager (provide a list of Model numbers and associated UI (and default names?)
-// TODO: but there is device-specific data?
-
 
 struct PairedDeviceInfo { // TODO: observable and editable?
     let id: UUID
-    let model: String // TODO: we don't really need to store the model?
+    let model: String
     let icon: ImageReference?
     
-    var name: String // TODO: customization?
+    var name: String
     var lastSeen: Date // TODO: update!
     var lastBatteryPercentage: UInt8?
     var lastSequenceNumber: UInt16?
@@ -25,6 +22,7 @@ struct PairedDeviceInfo { // TODO: observable and editable?
     // TODO: connected?
     // TODO: consent code?
     // TODO: last transfer time?
+    // TODO: handle extensibility?
 
     init<Model: RawRepresentable>(
         id: UUID,

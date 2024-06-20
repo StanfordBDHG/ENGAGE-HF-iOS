@@ -94,7 +94,7 @@ extension Binding: Hashable, Equatable where Value: Hashable {
     NavigationStack {
         DevicesGrid(devices: .constant([]), navigation: .constant(NavigationPath()), presentingDevicePairing: .constant(false))
     }
-        .onAppear { // TODO: show also in Home Previews!
+        .onAppear {
             Tips.showAllTipsForTesting()
             try? Tips.configure()
         }

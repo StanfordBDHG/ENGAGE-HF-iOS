@@ -1,5 +1,5 @@
 {
-  "originHash" : "b25955588f603a927a9a0b1631abda1fee3be336d7e8520c858b4e9b4344f8a6",
+  "originHash" : "d01a9834d94e6e01874e2d0eb907a585db743cdc7c793fd6015372fe6d090092",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -8,6 +8,15 @@
       "state" : {
         "revision" : "748c7837511d0e6a507737353af268484e1745e2",
         "version" : "1.2024011601.1"
+      }
+    },
+    {
+      "identity" : "acarousel",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/JWAutumn/ACarousel.git",
+      "state" : {
+        "revision" : "8a322513580f21288fd87eb3a1341c247b3e2a76",
+        "version" : "0.2.0"
       }
     },
     {
@@ -205,7 +214,7 @@
       "location" : "https://github.com/StanfordSpezi/SpeziBluetooth.git",
       "state" : {
         "branch" : "feature/accessory-discovery",
-        "revision" : "b507919eca1fd8c14aeb94eba9161b3279a3e086"
+        "revision" : "09ab40546edc4da821b8fbc919e7794157e85fee"
       }
     },
     {
@@ -238,10 +247,10 @@
     {
       "identity" : "spezifoundation",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/StanfordSpezi/SpeziFoundation",
+      "location" : "https://github.com/StanfordSpezi/SpeziFoundation.git",
       "state" : {
-        "revision" : "db3618b53fab1f69c4cf420265a2404b58cd2bdf",
-        "version" : "1.1.0"
+        "branch" : "feature/timeout-error-localization",
+        "revision" : "3363bf0c7b30912a910712876309cb5eff14f0c8"
       }
     },
     {
@@ -303,8 +312,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziViews.git",
       "state" : {
-        "revision" : "4d2a724d97c8f19ac7de7aa2c046b1cb3ef7b279",
-        "version" : "1.3.1"
+        "branch" : "feature/dismissbutton-label-style",
+        "revision" : "08174c1dcd8f7a4ab1b0a6f9f58f31c9166173a7"
       }
     },
     {

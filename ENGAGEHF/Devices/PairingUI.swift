@@ -6,118 +6,250 @@
 // SPDX-License-Identifier: MIT
 //
 
+import ACarousel
 import BluetoothViews
 import SpeziBluetooth
 import SpeziViews
 import SwiftUI
 
+// TODO: structure pairing UI
+// TODO: move sutff into SpeziDevices and abstract everything!
 
-struct PairingSheet: View { // TODO: move and preview! (with tips!)
-    @Environment(Bluetooth.self) private var bluetooth
-    @Environment(DeviceManager.self) private var deviceManager
+// TODO: 180x120 ASKit dimenaions
 
-    @State private var path = NavigationPath()
+struct PaneContent<Content: View, Action: View>: View {
+    private let title: Text
+    private let subtitle: Text
+    private let content: Content
+    private let action: Action
+
+    @AccessibilityFocusState private var isHeaderFocused: Bool
 
     var body: some View {
-        @Bindable var deviceManager = deviceManager
+        VStack {
+            VStack {
+                title
+                    .bold()
+                    .font(.largeTitle)
+                    .accessibilityAddTraits(.isHeader)
+                    .accessibilityFocused($isHeaderFocused)
+                subtitle
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+            }
+                .padding([.leading, .trailing], 20) // TODO: this is 12 in the pair device thingy?
+                .multilineTextAlignment(.center)
 
-        NavigationStack(path: $path) {
-            DevicesGrid(devices: $deviceManager.pairedDevices, navigation: $path, presentingDevicePairing: $deviceManager.presentingDevicePairing)
-                .scanNearbyDevices(enabled: deviceManager.scanningNearbyDevices, with: bluetooth) // automatically search if no devices are paired
-                .sheet(isPresented: $deviceManager.presentingDevicePairing) {
-                    AccessorySetupSheet(deviceManager.pairableDevice)
-                }
+            Spacer()
+            content
+            Spacer()
+
+            action
         }
+            .onAppear {
+                isHeaderFocused = true // TODO: should we do that?
+            }
+    }
+
+    init(title: Text, subtitle: Text, @ViewBuilder content: () -> Content, @ViewBuilder action: () -> Action = { EmptyView() }) {
+        self.title = title
+        self.subtitle = subtitle
+        self.content = content()
+        self.action = action()
+    }
+
+    init(
+        title: LocalizedStringResource,
+        subtitle: LocalizedStringResource,
+        @ViewBuilder content: () -> Content,
+        @ViewBuilder action: () -> Action = { EmptyView() }
+    ) {
+        self.init(title: Text(title), subtitle: Text(subtitle), content: content, action: action)
     }
 }
 
 
-// TODO: rename to PaneContent?
-struct PairDeviceView: View {
-    private let descriptor: AccessoryDescriptor
-    private let session: PairingSession
-    private let pairClosure: () async throws -> Void
+struct PairedDeviceView: View {
+    private let device: any OmronHealthDevice
 
-    @Environment(DeviceManager.self) private var deviceManager
     @Environment(\.dismiss) private var dismiss
 
-
     var body: some View {
-        @Bindable var session = session
-
-        VStack {
-            Text("Pair Accessory")
-                .bold()
-                .font(.largeTitle)
-            Text("Do you want to pair \"\(descriptor.name)\" with the ENGAGE app?")
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
-        }
-            .padding([.leading, .trailing], 12)
-            .multilineTextAlignment(.center)
-
-        Spacer()
-        descriptor.image // TODO: dark mode images!
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .foregroundStyle(.accent) // set accent color if one uses sf symbols
-            .symbolRenderingMode(.hierarchical) // set symbol rendering mode if one uses sf symbols
-            .frame(maxWidth: 250, maxHeight: 120) // TODO: image are a bit too small?
-        Spacer()
-
-        Label("Successfully Paired", systemImage: "checkmark.circle.fill")
-            .padding(.bottom, 6)
-            .foregroundStyle(.primary, .green)
-            .opacity(session.paired ? 1 : 0)
-            .accessibilityHidden(!session.paired) // TODO: better way to handle this?
-
-        AsyncButton(state: $session.viewState) {
-            if session.paired {
+        /* // TODO: brink back checkmark/color green for paired screen?
+         Label("Successfully Paired", systemImage: "checkmark.circle.fill")
+         .padding(.bottom, 6)
+         .foregroundStyle(.primary, .green)
+         */
+        PaneContent(title: "Accessory Paired", subtitle: "\"\(device.label)\" was successfully paired with the ENGAGE app.") {
+            AccessoryImageView(device)
+        } action: {
+            Button {
                 dismiss()
-                return
+            } label: {
+                Text("Done")
+                    .frame(maxWidth: .infinity, maxHeight: 35)
             }
-
-            do {
-                try await pairClosure()
-                session.paired = true
-            } catch {
-                print(error) // TODO: logger?
-                throw error
-            }
-        } label: {
-            Text(session.paired ? "Done" : "Pair")
-                .frame(maxWidth: .infinity, maxHeight: 35)
+                .buttonStyle(.borderedProminent)
+                .padding([.leading, .trailing], 36)
         }
-            .buttonStyle(.borderedProminent)
-            .padding([.leading, .trailing], 36)
     }
 
 
-    init(descriptor: AccessoryDescriptor, session: PairingSession, pair: @escaping () async throws -> Void) {
-        self.descriptor = descriptor
-        self.session = session
+    init(_ device: any OmronHealthDevice) {
+        self.device = device
+    }
+}
+
+
+struct AccessoryImageView: View {
+    private let device: any OmronHealthDevice
+
+    var body: some View {
+        let image = device.icon?.image ?? Image(systemName: "sensor") // swiftlint:disable:this accessibility_label_for_image
+        HStack {
+            image // TODO: dark mode images!
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .accessibilityHidden(true)
+                .foregroundStyle(.accent) // set accent color if one uses sf symbols
+                .symbolRenderingMode(.hierarchical) // set symbol rendering mode if one uses sf symbols
+                .frame(maxWidth: 250, maxHeight: 120)
+        }
+            .frame(maxWidth: .infinity, maxHeight: 150) // make drag-able area a bit larger
+            .background(Color(uiColor: .systemBackground)) // we need to set a non-clear color for it to be drag-able
+    }
+
+
+    init(_ device: any OmronHealthDevice) {
+        self.device = device
+    }
+}
+
+
+struct PairDeviceView<Collection: RandomAccessCollection>: View where Collection.Element == any OmronHealthDevice {
+    private let devices: Collection
+    private let pairClosure: (any OmronHealthDevice) async throws -> Void
+
+    @Environment(\.dismiss) private var dismiss
+
+    @Binding private var pairingState: PairingState
+    @State private var selectedDeviceIndex: Int = 0
+
+    @AccessibilityFocusState private var isHeaderFocused: Bool
+
+    private var selectedDevice: (any OmronHealthDevice)? {
+        guard selectedDeviceIndex < devices.count else {
+            return nil
+        }
+        let index = devices.index(devices.startIndex, offsetBy: selectedDeviceIndex) // TODO: compare that against end index?
+        return devices[index]
+    }
+
+    private var selectedDeviceName: String {
+        selectedDevice.map { "\"\($0.label)\"" } ?? "the accessory"
+    }
+
+    var body: some View {
+        PaneContent(title: "Pair Accessory", subtitle: "Do you want to pair \(selectedDeviceName) with the ENGAGE app?") {
+            if devices.count > 1 {
+                ACarousel(devices, id: \.id, index: $selectedDeviceIndex, spacing: 0, headspace: 0) { device in
+                    AccessoryImageView(device)
+                }
+                .frame(maxHeight: 150)
+                CarouselDots(count: devices.count, selectedIndex: $selectedDeviceIndex)
+            } else if let device = devices.first {
+                AccessoryImageView(device)
+            }
+        } action: {
+            AsyncButton {
+                guard let selectedDevice else {
+                    return
+                }
+
+                guard case .discovery = pairingState else {
+                    return
+                }
+
+                pairingState = .pairing
+
+                do {
+                    try await pairClosure(selectedDevice)
+                    pairingState = .paired(selectedDevice)
+                } catch {
+                    print(error) // TODO: logger?
+                    pairingState = .error(AnyLocalizedError(error: error))
+                }
+            } label: {
+                Text("Pair")
+                    .frame(maxWidth: .infinity, maxHeight: 35)
+            }
+            .buttonStyle(.borderedProminent)
+            .padding([.leading, .trailing], 36)
+        }
+    }
+
+
+    init(devices: Collection, state: Binding<PairingState>, pair: @escaping (any OmronHealthDevice) async throws -> Void) {
+        self.devices = devices
+        self._pairingState = state
         self.pairClosure = pair
+    }
+}
+
+
+struct CarouselDots: View {
+    private let count: Int
+    @Binding private var selectedIndex: Int
+
+    private var pageNumber: Binding<Int> {
+        .init {
+            selectedIndex + 1
+        } set: { newValue in
+            selectedIndex = newValue - 1
+        }
+    }
+
+    var body: some View {
+        HStack(spacing: 10) {
+            ForEach(0..<count, id: \.self) { index in
+                Circle()
+                    .frame(width: 7, height: 7)
+                    .foregroundStyle(index == selectedIndex ? .primary : .tertiary)
+                    .onTapGesture {
+                        withAnimation {
+                            selectedIndex = index // TODO: drag slider
+                        }
+                    }
+            }
+        }
+        .padding(10)
+        .background {
+            // make sure voice hover highlighter has round corners
+            RoundedRectangle(cornerSize: CGSize(width: 5, height: 5))
+                .foregroundColor(Color(uiColor: .systemBackground))
+        }
+        .accessibilityRepresentation {
+            Stepper("Page", value: pageNumber, in: 1...count, step: 1)
+                .accessibilityValue("Page \(pageNumber.wrappedValue) of \(count)")
+        }
+    }
+
+    init(count: Int, selectedIndex: Binding<Int>) {
+        self.count = count
+        self._selectedIndex = selectedIndex
     }
 }
 
 
 struct DiscoveryView: View {
     var body: some View {
-        VStack {
-            Text("Discovering")
-                .bold()
-                .font(.largeTitle)
-            Text("Hold down the Bluetooth button for 3 seconds to put the device into pairing mode.")
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
+        PaneContent(
+            title: "Discovering",
+            subtitle: "Hold down the Bluetooth button for 3 seconds to put the device into pairing mode."
+        ) {
+            ProgressView()
+                .controlSize(.large)
         }
-            .padding([.leading, .trailing], 20)
-            .multilineTextAlignment(.center)
-
-        Spacer()
-        ProgressView()
-            .controlSize(.large)
-        Spacer()
     }
 }
 
@@ -134,35 +266,24 @@ struct FailureContentView: View {
 
 
     var body: some View {
-        VStack {
-            Text("Pairing Failed")
-                .bold()
-                .font(.largeTitle)
-            Text(message)
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
-        }
-            .padding([.leading, .trailing], 20)
-            .multilineTextAlignment(.center)
-
-        Spacer()
-        Image(systemName: "exclamationmark.triangle.fill")
-            .symbolRenderingMode(.hierarchical)
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .accessibilityHidden(true)
-            .frame(maxWidth: 250, maxHeight: 120)
-            .foregroundStyle(.red)
-        Spacer()
-
-        Button {
-            dismiss()
-        } label: {
-            Text("OK")
-                .frame(maxWidth: .infinity, maxHeight: 35)
-        }
+        PaneContent(title: Text("Pairing Failed"), subtitle: Text(message)) {
+            Image(systemName: "exclamationmark.triangle.fill")
+                .symbolRenderingMode(.hierarchical)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .accessibilityHidden(true)
+                .frame(maxWidth: 250, maxHeight: 120)
+                .foregroundStyle(.red)
+        } action: {
+            Button {
+                dismiss()
+            } label: {
+                Text("OK")
+                    .frame(maxWidth: .infinity, maxHeight: 35)
+            }
             .buttonStyle(.borderedProminent)
             .padding([.leading, .trailing], 36)
+        }
     }
 
 
@@ -172,92 +293,59 @@ struct FailureContentView: View {
 }
 
 
-struct DismissButton: View { // TODO: SpeziViews? SpeziDevices?
-    @Environment(\.dismiss) private var dismiss
-
-    var body: some View {
-        Button {
-            dismiss()
-        } label: {
-            // TODO: increased button area?
-            Image(systemName: "xmark")
-                .accessibilityLabel("Dismiss")
-                .font(.system(size: 10, weight: .bold, design: .rounded))
-                .foregroundStyle(.secondary)
-                .background {
-                    Circle()
-                        .fill(Color(uiColor: .secondarySystemBackground))
-                        .frame(width: 25, height: 25)
-                }
-        }
-            .buttonStyle(.plain)
-    }
-}
-
-@Observable
-class PairingSession {
-    var device: (any OmronHealthDevice)?
-
-    var paired = false
-    var viewState: ViewState = .idle // TODO: OperationState?
-
-    init(_ device: (any OmronHealthDevice)? = nil) {
-        self.device = device
-        self.paired = paired
-        self.viewState = viewState
-    }
+enum PairingState {
+    case discovery
+    case pairing // processing!
+    case paired(any OmronHealthDevice)
+    case error(LocalizedError)
 }
 
 
-struct AccessorySetupSheet: View {
+struct AccessorySetupSheet<Collection: RandomAccessCollection>: View where Collection.Element == any OmronHealthDevice {
+    private let devices: Collection
+
     @Environment(DeviceManager.self) private var deviceManager
     @Environment(\.dismiss) private var dismiss
 
-    @State private var session: PairingSession
+    @State private var pairingState: PairingState = .discovery
 
     var body: some View {
         NavigationStack {
-            VStack {
-                if case let .error(error) = session.viewState {
+            VStack { // TODO: we can remove that later!
+                if case let .error(error) = pairingState {
                     FailureContentView(error)
-                } else if let device = session.device {
-                    let descriptor = AccessoryDescriptor(id: device.id, name: device.label, image: device.icon?.image ?? Image(systemName: "sensor"))
-                    PairDeviceView(descriptor: descriptor, session: session) {
-                        try await device.pair() // TODO: also reset pairable device on error (or only if it is still advertising?)
+                } else if case let .paired(device) = pairingState {
+                    PairedDeviceView(device)
+                } else if !devices.isEmpty {
+                    PairDeviceView(devices: devices, state: $pairingState) { device in
+                        try await device.pair()
+                        // TODO: set paired state here?
                         deviceManager.registerPairedDevice(device)
                     }
-                } else { // TODO: make its own view?
+                } else {
                     DiscoveryView()
                 }
             }
-                .toolbar {
+                .toolbar { // TODO: where to put that?
                     DismissButton()
                 }
         }
             .presentationDetents([.medium])
             .presentationCornerRadius(25)
-            .interactiveDismissDisabled() // TODO: allow in "discovery mode"?#
-            .onChange(of: deviceManager.pairableDevice?.id) { oldValue, newValue in
-                guard oldValue == nil && session.device == nil else {
-                    return
-                }
-                // TODO: should it replace a previous advertisement (that is now gone?)
-                session.device = deviceManager.pairableDevice
-            }
+            .interactiveDismissDisabled()
     }
 
-    init(_ device: (any OmronHealthDevice)?) {
-        self._session = State(wrappedValue: PairingSession(device))
+    init(_ devices: Collection) {
+        self.devices = devices
     }
 }
 
 
 #if DEBUG
-// TODO: inject devices as modules?
 #Preview {
     Text(verbatim: "")
         .sheet(isPresented: .constant(true)) {
-            AccessorySetupSheet(BloodPressureCuffDevice.createMockDevice(state: .disconnected))
+            AccessorySetupSheet([BloodPressureCuffDevice.createMockDevice(state: .disconnected)])
         }
         .previewWith {
             DeviceManager()
@@ -268,7 +356,11 @@ struct AccessorySetupSheet: View {
 #Preview {
     Text(verbatim: "")
         .sheet(isPresented: .constant(true)) {
-            AccessorySetupSheet(WeightScaleDevice.createMockDevice(state: .disconnected)) // TODO: image doesnt match!
+            let devices: [any OmronHealthDevice] = [
+                BloodPressureCuffDevice.createMockDevice(state: .disconnected),
+                WeightScaleDevice.createMockDevice(state: .disconnected)
+            ]
+            AccessorySetupSheet(devices)
         }
         .previewWith {
             DeviceManager()
@@ -278,7 +370,7 @@ struct AccessorySetupSheet: View {
 #Preview {
     Text(verbatim: "")
         .sheet(isPresented: .constant(true)) {
-            AccessorySetupSheet(nil)
+            AccessorySetupSheet([])
         }
         .previewWith {
             DeviceManager()
@@ -293,7 +385,7 @@ struct AccessorySetupSheet: View {
                     FailureContentView(DevicePairingError.notInPairingMode)
                 }
                     .toolbar {
-                        Button("Close") {}
+                        DismissButton()
                     }
             }
                 .presentationDetents([.medium]) // TODO: how to inject into Sheet view?

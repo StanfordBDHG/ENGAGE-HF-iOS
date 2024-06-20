@@ -12,6 +12,7 @@ import SpeziBluetooth
 import SpeziOnboarding
 import SpeziViews
 import SwiftUI
+import TipKit
 
 
 struct HomeView: View {
@@ -59,9 +60,7 @@ struct HomeView: View {
                 .tabItem {
                     Label("Devices", systemImage: "sensor.fill")
                 }
-            // TODO: pairing hint?
         }
-            // TODO: .autoConnect(enabled: bluetoothEnabled, with: bluetooth)
             .sheet(isPresented: $presentingAccount) {
                 AccountSheet()
             }
@@ -80,6 +79,10 @@ struct HomeView: View {
 #Preview {
     CommandLine.arguments.append("--disableFirebase")
     return HomeView()
+        .onAppear {
+            Tips.showAllTipsForTesting()
+            try? Tips.configure()
+        }
         .previewWith(standard: ENGAGEHFStandard()) {
             AccountConfiguration {
                 MockUserIdPasswordAccountService()

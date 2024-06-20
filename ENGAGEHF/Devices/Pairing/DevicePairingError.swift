@@ -45,14 +45,3 @@ extension DevicePairingError: LocalizedError {
         }
     }
 }
-
-
-extension TimeoutError: LocalizedError { // TODO: eventually move to SpeziFoundation!
-    public var errorDescription: String? {
-        String(localized: "Timeout")
-    }
-
-    public var failureReason: String? {
-        String(localized: "The operation timed out.")
-    }
-}
