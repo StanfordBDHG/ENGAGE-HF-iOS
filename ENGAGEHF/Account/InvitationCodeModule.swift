@@ -86,6 +86,7 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
 
         if let details = account.details,
            details.email == email {
+            logger.debug("Test account was already set up")
             return
         }
 
@@ -97,6 +98,7 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
             try await service.login(userId: email, password: password)
             return // account was already established previously
         } catch {
+            logger.debug("We failed to login with test account. This might be expected if it is a fresh installation: \(error)")
             // probably doesn't exists. We try to create a new one below
         }
 

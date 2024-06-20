@@ -12,8 +12,10 @@ import SwiftUI
 struct Dashboard: View {
     @Binding var presentingAccount: Bool
     @State var showSurvey = false
-
+    
+#if DEBUG || TEST
     @Environment(MeasurementManager.self) private var measurementManager
+#endif
 
     
     var body: some View {

@@ -14,7 +14,6 @@ import Spezi
 import SpeziFirebaseConfiguration
 
 
-//
 // Notification manager
 //
 // Maintains a list of Notifications associated with the current user in firebase
@@ -124,7 +123,8 @@ class NotificationManager: Module, EnvironmentAccessible {
         let thesholdTimeStamp = Timestamp(date: thresholdDate)
         
         // Set a snapshot listener on the query for valid notifications
-        firestore.collection("users")
+        firestore
+            .collection("users")
             .document(uid)
             .collection("notifications")
             .whereField("created", isGreaterThan: thesholdTimeStamp)

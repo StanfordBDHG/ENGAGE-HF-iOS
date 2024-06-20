@@ -31,12 +31,11 @@ struct HomeView: View {
         !ProcessInfo.processInfo.isPreviewSimulator
     }
 
-    @Environment(\.dismiss) private var dismiss
-
     
     @Environment(MeasurementManager.self) private var measurementManager
     @Environment(WeightScaleDevice.self) private var weightScale: WeightScaleDevice?
     @Environment(Bluetooth.self) private var bluetooth
+    @Environment(\.dismiss) private var dismiss
     
     @AppStorage(StorageKeys.homeTabSelection) private var selectedTab = Tabs.home
     @State private var presentingAccount = false
@@ -72,14 +71,7 @@ struct HomeView: View {
                 AccountSheet()
             }
             .accountRequired(Self.accountEnabled) {
-                OnboardingStack {
-                    InvitationCodeView()
-                    AccountSetup { _ in
-                        dismiss()
-                    } header: {
-                        AccountSetupHeader()
-                    }
-                }
+                AccountSetupSheet()
             }
             .verifyRequiredAccountDetails(Self.accountEnabled)
             .sheet(item: $measurementManager.newMeasurement) { measurement in

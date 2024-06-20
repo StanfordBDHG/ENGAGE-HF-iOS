@@ -22,7 +22,7 @@ private struct ENGAGEHFAppTestingSetup: ViewModifier {
     func body(content: Content) -> some View {
         content
             .task {
-                if FeatureFlags.skipOnboarding {
+                if FeatureFlags.assumeOnboardingComplete {
                     completedOnboardingFlow = true
                 }
                 if FeatureFlags.showOnboarding {
