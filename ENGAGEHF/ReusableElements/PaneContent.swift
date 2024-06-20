@@ -11,7 +11,7 @@ import SwiftUI
 
 
 #if DEBUG
-struct SheetPreview<Content>: View {
+struct SheetPreview<Content: View>: View {
     private let content: Content
 
     @State private var isPresented = true
@@ -31,7 +31,7 @@ struct SheetPreview<Content>: View {
     }
 
     init(@ViewBuilder content: () -> Content) {
-        self.content = content
+        self.content = content()
     }
 }
 #endif
