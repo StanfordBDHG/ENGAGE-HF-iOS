@@ -11,6 +11,8 @@ import CoreBluetooth
 import Foundation
 import OSLog
 @_spi(TestingSupport) import SpeziBluetooth
+import SpeziDevices
+import SpeziOmron
 
 
 /// A bluetooth peripheral representing a Weight Scale

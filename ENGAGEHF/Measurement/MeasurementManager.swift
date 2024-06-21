@@ -10,6 +10,7 @@ import Foundation
 import OSLog
 import Spezi
 import SpeziBluetooth
+import SpeziDevices
 
 
 /// Manage and process incoming measurements.
@@ -20,7 +21,7 @@ import SpeziBluetooth
 /// - Convert an incoming measurement into a HKSample and transform to FHIR Observation
 /// - Save a given measurement to Firebase
 @Observable
-class MeasurementManager: Module, EnvironmentAccessible {
+class MeasurementManager: Module, EnvironmentAccessible { // TODO: rename to HealthMeasurements?
     @ObservationIgnored @StandardActor private var standard: ENGAGEHFStandard
     private let logger = Logger(subsystem: "ENGAGEHF", category: "MeasurementManager")
 

@@ -10,6 +10,7 @@ import BluetoothServices
 import Spezi
 import SpeziAccount
 import SpeziBluetooth
+import SpeziDevices
 import SpeziFirebaseAccount
 import SpeziFirebaseStorage
 import SpeziFirestore

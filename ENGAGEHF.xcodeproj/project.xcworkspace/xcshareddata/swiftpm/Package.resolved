@@ -1,5 +1,5 @@
 {
-  "originHash" : "ba201996defa5e484fe91019cd45efc7db9ebc08233e6fdff3b430ad4adf5214",
+  "originHash" : "655ad721414a4ff9770a0a1dbf0e4edec76963cfb3628b7e06d9a8ca41ba5b8f",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -232,7 +232,7 @@
       "location" : "https://github.com/StanfordSpezi/SpeziDevices.git",
       "state" : {
         "branch" : "feature/initial-project-setup",
-        "revision" : "c54b3f4a506425a17549a4c12d0201c49adcb1e2"
+        "revision" : "f914a4a129f8317d9cc7199c3cc1567e7f6bd4df"
       }
     },
     {

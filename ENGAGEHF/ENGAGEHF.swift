@@ -20,6 +20,14 @@ struct ENGAGEHF: App {
     @UIApplicationDelegateAdaptor(ENGAGEHFDelegate.self) var appDelegate
     @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
 
+
+    static var appName: String? {
+        // TODO: CFBundleName vs CFBundleDisplayName
+        Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String
+            ?? Bundle.main.object(forInfoDictionaryKey: kCFBundleNameKey as String) as? String
+        // TODO: Bundle.main.infoDictionary?[kCFBundleNameKey as String] as? String
+    }
+
     
     var body: some Scene {
         WindowGroup {

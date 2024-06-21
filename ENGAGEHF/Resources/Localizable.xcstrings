@@ -1,9 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "\"%@\" was successfully paired with the ENGAGE app." : {
-
-    },
     "%@" : {
 
     },
@@ -19,9 +16,6 @@
           }
         }
       }
-    },
-    "Accessory Paired" : {
-
     },
     "ACCOUNT_NEXT" : {
       "localizations" : {
@@ -74,9 +68,6 @@
         }
       }
     },
-    "Add Device" : {
-
-    },
     "Add Mock" : {
 
     },
@@ -87,15 +78,6 @@
       "comment" : "General Error"
     },
     "An invitation code is at least 8 characters long." : {
-
-    },
-    "Battery" : {
-
-    },
-    "Button" : {
-
-    },
-    "Cancel" : {
 
     },
     "Close" : {
@@ -135,49 +117,13 @@
     "Content ..." : {
 
     },
-    "Device Busy" : {
-
-    },
-    "Device Details" : {
-
-    },
     "Devices" : {
 
     },
     "Discard" : {
 
     },
-    "Discovering" : {
-
-    },
-    "Do you really want to forget this device?" : {
-
-    },
-    "Do you want to pair %@ with the ENGAGE app?" : {
-
-    },
-    "Done" : {
-
-    },
     "Education" : {
-
-    },
-    "enter device name" : {
-
-    },
-    "Failed to pair accessory." : {
-
-    },
-    "Failed to pair with device. Please try again." : {
-
-    },
-    "Forget Device" : {
-
-    },
-    "Forget This Device" : {
-
-    },
-    "Fully Unpair Device" : {
 
     },
     "HEALTHKIT_PERMISSIONS_BUTTON" : {
@@ -224,9 +170,6 @@
           }
         }
       }
-    },
-    "Hold down the Bluetooth button for 3 seconds to put the device into pairing mode." : {
-
     },
     "Home" : {
 
@@ -368,9 +311,6 @@
     "Invalid Sample" : {
 
     },
-    "Invalid State" : {
-
-    },
     "Invitation Code" : {
 
     },
@@ -400,22 +340,7 @@
     "List Without Sections" : {
 
     },
-    "Make sure to to remove the device from the Bluetooth settings to fully unpair the device." : {
-
-    },
     "Measurement Recorded" : {
-
-    },
-    "Model" : {
-
-    },
-    "Name" : {
-
-    },
-    "No Devices" : {
-
-    },
-    "Not Ready" : {
 
     },
     "NOTIFICATION_PERMISSIONS_BUTTON" : {
@@ -462,40 +387,6 @@
     "Notifications" : {
 
     },
-    "OK" : {
-
-    },
-    "Open Settings" : {
-
-    },
-    "Page" : {
-
-    },
-    "Page %lld of %lld" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Page %1$lld of %2$lld"
-          }
-        }
-      }
-    },
-    "Pair" : {
-
-    },
-    "Pair Accessory" : {
-
-    },
-    "Pair New Device" : {
-
-    },
-    "Paired devices will appear here once set up." : {
-
-    },
-    "Pairing Failed" : {
-
-    },
     "Please enter your invitation code to join the ENGAGE-HF study." : {
 
     },
@@ -505,39 +396,8 @@
     "Save" : {
 
     },
-    "Synchronizing ..." : {
-
-    },
-    "The device is busy and failed to complete pairing." : {
-
-    },
-    "The device name cannot be longer than 50 characters." : {
-
-    },
-    "The device was not put into pairing mode." : {
-
-    },
     "The invitation code is invalid or has already been used." : {
       "comment" : "Invitation Code Invalid"
-    },
-    "The Subtitle" : {
-
-    },
-    "The Title" : {
-
-    },
-    "This device was last seen at %@" : {
-
-    },
-    "This device was last seen on %@ at %@" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "This device was last seen on %1$@ at %2$@"
-          }
-        }
-      }
     },
     "Trigger Blood Pressure Measurement" : {
 

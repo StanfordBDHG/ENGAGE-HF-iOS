@@ -9,6 +9,8 @@
 import BluetoothServices
 import SpeziAccount
 import SpeziBluetooth
+import SpeziDevices
+import SpeziDevicesUI
 import SpeziOnboarding
 import SpeziViews
 import SwiftUI
@@ -79,8 +81,8 @@ struct HomeView: View {
 #Preview {
     CommandLine.arguments.append("--disableFirebase")
     return HomeView()
-        .onAppear {
-            Tips.showAllTipsForTesting()
+        .onAppear { // TODO: move into module (for ALL appearances!)
+            Tips.showAllTipsForTesting() // TODO: either flag OR the running in (preview?) simulator?
             try? Tips.configure()
         }
         .previewWith(standard: ENGAGEHFStandard()) {

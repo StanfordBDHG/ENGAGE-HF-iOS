@@ -11,6 +11,7 @@ import CoreBluetooth
 import Foundation
 import OSLog
 @_spi(TestingSupport) import SpeziBluetooth
+import SpeziDevices
 import SpeziFoundation
 import SpeziNumerics
 import SpeziOmron
