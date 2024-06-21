@@ -92,6 +92,9 @@
     "Battery" : {
 
     },
+    "Button" : {
+
+    },
     "Cancel" : {
 
     },
@@ -138,9 +141,6 @@
     "Device Details" : {
 
     },
-    "Device Retrieval" : {
-
-    },
     "Devices" : {
 
     },
@@ -177,7 +177,7 @@
     "Forget This Device" : {
 
     },
-    "Fully Forget Device" : {
+    "Fully Unpair Device" : {
 
     },
     "HEALTHKIT_PERMISSIONS_BUTTON" : {
@@ -519,6 +519,12 @@
     },
     "The invitation code is invalid or has already been used." : {
       "comment" : "Invitation Code Invalid"
+    },
+    "The Subtitle" : {
+
+    },
+    "The Title" : {
+
     },
     "This device was last seen at %@" : {
 

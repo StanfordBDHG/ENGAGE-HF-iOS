@@ -12,16 +12,21 @@ import SpeziFoundation
 import SwiftUI
 
 
-protocol OmronHealthDevice: HealthDevice {
+protocol PairableDevice: HealthDevice {
+    /// Persistent identifier for the device type.
+    ///
+    /// This is used to associate pairing information with the implementing device. By default, the type name is used.
+    static var deviceTypeIdentifier: String { get }
+
     /// Storage for pairing continuation.
     @MainActor var _pairingContinuation: CheckedContinuation<Void, Error>? { get set } // swiftlint:disable:this identifier_name
     // TODO: do not synchronize via MainActor??
     // TODO: use SPI instead of underscore when moving to SpeziDevices? => avoid swiftlint warning for implementors
 
-    var discarded: Bool { get }
-
-    var connect: BluetoothConnectAction { get } // TODO: on which level to enforce that?
+    var connect: BluetoothConnectAction { get }
     var disconnect: BluetoothDisconnectAction { get }
+
+    var isInPairingMode: Bool { get }
 
     /// Pair Omron Health Device.
     ///
@@ -36,11 +41,7 @@ protocol OmronHealthDevice: HealthDevice {
 }
 
 
-extension OmronHealthDevice {
-    static var logger: Logger {
-        Logger(subsystem: "edu.stanford.bdh.engagehf", category: "OmronHealthDevice")
-    }
-}
+protocol OmronHealthDevice: PairableDevice {}
 
 
 extension OmronHealthDevice {
@@ -58,13 +59,30 @@ extension OmronHealthDevice {
 
 
 extension OmronHealthDevice {
+    var isInPairingMode: Bool {
+        if case .pairingMode = manufacturerData?.pairingMode {
+            return true
+        }
+        return false
+    }
+}
+
+
+extension PairableDevice {
+    static var deviceTypeIdentifier: String {
+        "\(Self.self)"
+    }
+}
+
+
+extension PairableDevice {
     @MainActor
     func pair() async throws {
         guard _pairingContinuation == nil else {
             throw DevicePairingError.busy
         }
 
-        guard case .pairingMode = manufacturerData?.pairingMode else {
+        guard isInPairingMode else {
             throw DevicePairingError.notInPairingMode
         }
 
@@ -92,9 +110,7 @@ extension OmronHealthDevice {
                 await disconnect()
             }
         }
-
-
-        Self.logger.debug("Device \(self.label) with id \(self.id) is now paired")
+        // TODO: Self.logger.debug("Device \(self.label) with id \(self.id) is now paired") // TODO: Move logger!
     }
 
     @MainActor

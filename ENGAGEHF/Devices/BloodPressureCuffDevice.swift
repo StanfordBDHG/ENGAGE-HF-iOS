@@ -7,6 +7,7 @@
 //
 
 import BluetoothServices
+import CoreBluetooth
 import Foundation
 import OSLog
 @_spi(TestingSupport) import SpeziBluetooth
@@ -15,7 +16,7 @@ import SpeziNumerics
 import SpeziOmron
 
 
-class BloodPressureCuffDevice: BluetoothDevice, Identifiable, OmronHealthDevice {
+class BloodPressureCuffDevice: BluetoothDevice, Identifiable, OmronHealthDevice, BatteryPoweredDevice {
     private static let logger = Logger(subsystem: "ENGAGEHF", category: "BloodPressureCuffDevice")
 
     @DeviceState(\.id) var id: UUID
@@ -114,9 +115,11 @@ extension BloodPressureCuffDevice {
         systolic: MedFloat16 = 103,
         diastolic: MedFloat16 = 64,
         pulseRate: MedFloat16 = 62,
-        state: PeripheralState = .connected
+        state: PeripheralState = .connected,
+        manufacturerData: OmronManufacturerData = OmronManufacturerData(pairingMode: .pairingMode, users: [
+            .init(id: 1, sequenceNumber: 2, recordsNumber: 1)
+        ])
     ) -> BloodPressureCuffDevice {
-        // TODO: inject manufacturer data?
         let device = BloodPressureCuffDevice()
 
         device.deviceInformation.$manufacturerName.inject("Mock Blood Pressure Cuff")
@@ -146,6 +149,11 @@ extension BloodPressureCuffDevice {
         device.$id.inject(UUID())
         device.$name.inject("Mock Blood Pressure Cuff")
         device.$state.inject(state)
+
+        let advertisementData = AdvertisementData([
+            CBAdvertisementDataManufacturerDataKey: manufacturerData.encode()
+        ])
+        device.$advertisementData.inject(advertisementData)
 
         device.$connect.inject { @MainActor [weak device] in
             device?.$state.inject(.connecting)

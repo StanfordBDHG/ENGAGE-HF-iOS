@@ -7,6 +7,7 @@
 //
 
 import BluetoothServices
+import CoreBluetooth
 import Foundation
 import OSLog
 @_spi(TestingSupport) import SpeziBluetooth
@@ -28,7 +29,6 @@ class WeightScaleDevice: BluetoothDevice, Identifiable, OmronHealthDevice {
     @Service var deviceInformation = DeviceInformationService()
 
     @Service var time = CurrentTimeService()
-    @Service var battery = BatteryService() // TODO: doesnt actualyl support battery LOL
     @Service var weightScale = WeightScaleService()
     
     @DeviceAction(\.connect) var connect
@@ -38,8 +38,6 @@ class WeightScaleDevice: BluetoothDevice, Identifiable, OmronHealthDevice {
     @Dependency private var deviceManager: DeviceManager?
 
     @MainActor var _pairingContinuation: CheckedContinuation<Void, any Error>? // swiftlint:disable:this identifier_name
-
-    // TODO: weight scale has some reserved flag set???
 
     var icon: ImageReference? {
         .asset("Omron-SC-150")
@@ -57,8 +55,6 @@ class WeightScaleDevice: BluetoothDevice, Identifiable, OmronHealthDevice {
 
         weightScale.$weightMeasurement
             .onChange(perform: processMeasurement(_:))
-        battery.$batteryLevel
-            .onChange(perform: handleBatteryChange(_:))
         time.$currentTime
             .onChange(perform: handleCurrentTimeChange(_:))
     }
@@ -100,15 +96,8 @@ class WeightScaleDevice: BluetoothDevice, Identifiable, OmronHealthDevice {
     }
 
     @MainActor
-    private func handleBatteryChange(_ level: UInt8) {
-        Self.logger.debug("Updated battery level for \(self.label) is \(level)")
-        handleDeviceInteraction()
-        deviceManager?.updateBattery(for: self, percentage: level)
-    }
-
-    @MainActor
     private func handleCurrentTimeChange(_ time: CurrentTime) {
-        // TODO: paired is successful even before Pair button is pressed! also model was queried to early for that?
+        // TODO: paired is successful even before Pair button is pressed?
         Self.logger.debug("Updated device time for \(self.label) is \(String(describing: time))")
         handleDeviceInteraction()
     }
@@ -119,7 +108,10 @@ extension WeightScaleDevice {
     static func createMockDevice(
         weight: UInt16 = 8400,
         resolution: WeightScaleFeature.WeightResolution = .resolution5g,
-        state: PeripheralState = .connected
+        state: PeripheralState = .connected,
+        manufacturerData: OmronManufacturerData = OmronManufacturerData(pairingMode: .pairingMode, users: [
+            .init(id: 1, sequenceNumber: 2, recordsNumber: 1)
+        ])
     ) -> WeightScaleDevice {
         let device = WeightScaleDevice()
 
@@ -146,6 +138,11 @@ extension WeightScaleDevice {
         device.$id.inject(UUID())
         device.$name.inject("Mock Health Scale")
         device.$state.inject(state)
+
+        let advertisementData = AdvertisementData([
+            CBAdvertisementDataManufacturerDataKey: manufacturerData.encode()
+        ])
+        device.$advertisementData.inject(advertisementData)
 
         device.$connect.inject { @MainActor [weak device] in
             device?.$state.inject(.connecting)

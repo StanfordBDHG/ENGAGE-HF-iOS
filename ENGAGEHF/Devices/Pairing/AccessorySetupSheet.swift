@@ -10,7 +10,7 @@ import SpeziViews
 import SwiftUI
 
 
-struct AccessorySetupSheet<Collection: RandomAccessCollection>: View where Collection.Element == any OmronHealthDevice {
+struct AccessorySetupSheet<Collection: RandomAccessCollection>: View where Collection.Element == any PairableDevice {
     private let devices: Collection
 
     @Environment(DeviceManager.self) private var deviceManager
@@ -29,8 +29,7 @@ struct AccessorySetupSheet<Collection: RandomAccessCollection>: View where Colle
                 } else if !devices.isEmpty {
                     PairDeviceView(devices: devices, state: $pairingState) { device in
                         try await device.pair()
-                        // TODO: set paired state here?
-                        deviceManager.registerPairedDevice(device)
+                        await deviceManager.registerPairedDevice(device)
                     }
                 } else {
                     DiscoveryView()
@@ -50,7 +49,6 @@ struct AccessorySetupSheet<Collection: RandomAccessCollection>: View where Colle
     }
 }
 
-// TODO: update previews!
 
 #if DEBUG
 #Preview {

@@ -35,6 +35,7 @@ struct DeviceTile: View {
                     ProgressView()
                 }
             }
+                .accessibilityHidden(true)
             Spacer()
             HStack {
                 Text(deviceInfo.name)
@@ -56,6 +57,7 @@ struct DeviceTile: View {
                     .foregroundStyle(Color(uiColor: .secondarySystemGroupedBackground))
             }
             .aspectRatio(1.0, contentMode: .fit) // explicit aspect ratio to ensure tile is always square
+            .accessibilityElement(children: .combine)
     }
 
     init(_ deviceInfo: PairedDeviceInfo) {
@@ -69,16 +71,16 @@ struct DeviceTile: View {
     VStack(spacing: 0) {
         HStack(spacing: 16) {
             Group {
-                DeviceTile(PairedDeviceInfo(id: UUID(), name: "BP5250", model: OmronModel.bp5250, icon: .asset("Omron-BP5250")))
-                DeviceTile(PairedDeviceInfo(id: UUID(), name: "Health Device 1", model: OmronModel.sc150, icon: nil))
+                DeviceTile(.mockBP5250)
+                DeviceTile(.mockHealthDevice1)
             }
                 .background(Color(uiColor: .systemGroupedBackground))
                 .frame(maxHeight: 190)
         }
         HStack(spacing: 16) {
             Group {
-                DeviceTile(PairedDeviceInfo(id: UUID(), name: "Health Device 2", model: OmronModel.sc150, icon: nil))
-                DeviceTile(PairedDeviceInfo(id: UUID(), name: "SC-150", model: OmronModel.bp5250, icon: .asset("Omron-SC-150")))
+                DeviceTile(.mockHealthDevice2)
+                DeviceTile(.mockSC150)
             }
                 .background(Color(uiColor: .systemGroupedBackground))
                 .frame(maxHeight: 190)

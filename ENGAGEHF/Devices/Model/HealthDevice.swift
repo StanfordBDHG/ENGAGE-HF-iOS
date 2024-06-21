@@ -13,13 +13,19 @@ import SpeziBluetooth
 import SwiftUI
 
 
-protocol HealthDevice: AnyObject, GenericBluetoothPeripheral {
+protocol BatteryPoweredDevice: BluetoothDevice {
+    var battery: BatteryService { get }
+}
+
+
+// TODO: not necessarily a HealthDevice?
+protocol HealthDevice: BluetoothDevice, GenericBluetoothPeripheral {
     var id: UUID { get }
     var name: String? { get }
     var advertisementData: AdvertisementData { get }
-    
+    var discarded: Bool { get }
+
     var deviceInformation: DeviceInformationService { get }
-    var battery: BatteryService { get } // TODO: this might be optional to implement
 
     var icon: ImageReference? { get }
 }

@@ -104,9 +104,9 @@ extension Binding: Hashable, Equatable where Value: Hashable {
 }
 
 #Preview {
-    let devices = [
-        PairedDeviceInfo(id: UUID(), name: "BP5250", model: OmronModel.bp5250, icon: .asset("Omron-BP5250")),
-        PairedDeviceInfo(id: UUID(), name: "SC-150", model: OmronModel.sc150, icon: .asset("Omron-SC-150"))
+    let devices: [PairedDeviceInfo] = [
+        .mockBP5250,
+        .mockSC150
     ]
 
     return NavigationStack {

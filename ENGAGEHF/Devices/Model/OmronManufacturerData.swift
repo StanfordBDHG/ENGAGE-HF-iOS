@@ -48,6 +48,11 @@ struct OmronManufacturerData {
         init(rawValue: UInt8) {
             self.rawValue = rawValue
         }
+
+        init(numberOfUsers: UInt8) {
+            precondition(numberOfUsers > 0 && numberOfUsers <= 4, "Only 4 users are supported and at least one.")
+            self.rawValue = numberOfUsers - 1
+        }
     }
 
     let timeSet: Bool
@@ -56,18 +61,41 @@ struct OmronManufacturerData {
     let mode: Mode
 
     let users: [UserSlot] // max 4 slots
-}
 
 
-extension ManufacturerIdentifier {
-    /// Bluetooth manufacturer code for "Omron Healthcare Co., Ltd.".
-    static var omronHealthcareCoLtd: ManufacturerIdentifier {
-        ManufacturerIdentifier(rawValue: 0x020E)
+    init( // swiftlint:disable:this function_default_parameter_at_end
+        timeSet: Bool = true,
+        pairingMode: PairingMode,
+        streamingMode: StreamingMode = .dataCommunication,
+        mode: Mode = .bluetoothStandard,
+        users: [UserSlot]
+    ) {
+        // swiftlint:disable:next empty_count
+        precondition(users.count > 0 && users.count <= 4, "Only 4 users are supported and at least one.")
+        self.timeSet = timeSet
+        self.pairingMode = pairingMode
+        self.streamingMode = streamingMode
+        self.mode = mode
+        self.users = users
     }
 }
 
 
-extension OmronManufacturerData: ByteDecodable {
+extension OmronManufacturerData.Flags: ByteCodable {
+    init?(from byteBuffer: inout ByteBuffer) {
+        guard let rawValue = UInt8(from: &byteBuffer) else {
+            return nil
+        }
+        self.init(rawValue: rawValue)
+    }
+
+    func encode(to byteBuffer: inout ByteBuffer) {
+        rawValue.encode(to: &byteBuffer)
+    }
+}
+
+
+extension OmronManufacturerData: ByteCodable {
     init?(from byteBuffer: inout ByteBuffer) {
         guard let companyIdentifier = ManufacturerIdentifier(from: &byteBuffer) else {
             return nil
@@ -103,14 +131,34 @@ extension OmronManufacturerData: ByteDecodable {
         }
         self.users = userSlots
     }
-}
 
+    func encode(to byteBuffer: inout ByteBuffer) {
+        ManufacturerIdentifier.omronHealthcareCoLtd.encode(to: &byteBuffer)
+        UInt8(0x01).encode(to: &byteBuffer)
 
-extension OmronManufacturerData.Flags: ByteDecodable {
-    init?(from byteBuffer: inout ByteBuffer) {
-        guard let rawValue = UInt8(from: &byteBuffer) else {
-            return nil
+        var flags = Flags(numberOfUsers: UInt8(users.count))
+
+        if !timeSet {
+            flags.insert(.timeNotSet)
         }
-        self.init(rawValue: rawValue)
+
+        if case .pairingMode = pairingMode {
+            flags.insert(.pairingMode)
+        }
+
+        if case .streaming = streamingMode {
+            flags.insert(.streamingMode)
+        }
+
+        if case .bluetoothStandard = mode {
+            flags.insert(.wlpStp)
+        }
+
+        flags.encode(to: &byteBuffer)
+
+        for user in users {
+            user.sequenceNumber.encode(to: &byteBuffer)
+            user.recordsNumber.encode(to: &byteBuffer)
+        }
     }
 }

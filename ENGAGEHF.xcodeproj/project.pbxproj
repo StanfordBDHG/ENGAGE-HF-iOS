@@ -97,6 +97,7 @@
 		A977DD472C248C2200A2A8E5 /* PairingFailureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A977DD462C248C2200A2A8E5 /* PairingFailureView.swift */; };
 		A977DD492C248C3500A2A8E5 /* AccessorySetupSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A977DD482C248C3500A2A8E5 /* AccessorySetupSheet.swift */; };
 		A977DD4C2C248C9B00A2A8E5 /* PairingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A977DD4B2C248C9B00A2A8E5 /* PairingState.swift */; };
+		A977DD502C25AD5F00A2A8E5 /* ManufacturerIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A977DD4F2C25AD5F00A2A8E5 /* ManufacturerIdentifier.swift */; };
 		A996F4442C1081A2002328C5 /* WeightMeasurement.Unit+HKUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A996F4432C1081A2002328C5 /* WeightMeasurement.Unit+HKUnit.swift */; };
 		A996F4462C1081EB002328C5 /* BloodPressureMeasurement.Unit+HKUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A996F4452C1081EB002328C5 /* BloodPressureMeasurement.Unit+HKUnit.swift */; };
 		A996F4482C1081F8002328C5 /* HealthDevice+HKDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = A996F4472C1081F8002328C5 /* HealthDevice+HKDevice.swift */; };
@@ -214,6 +215,7 @@
 		A977DD462C248C2200A2A8E5 /* PairingFailureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingFailureView.swift; sourceTree = "<group>"; };
 		A977DD482C248C3500A2A8E5 /* AccessorySetupSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessorySetupSheet.swift; sourceTree = "<group>"; };
 		A977DD4B2C248C9B00A2A8E5 /* PairingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingState.swift; sourceTree = "<group>"; };
+		A977DD4F2C25AD5F00A2A8E5 /* ManufacturerIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManufacturerIdentifier.swift; sourceTree = "<group>"; };
 		A996F4432C1081A2002328C5 /* WeightMeasurement.Unit+HKUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeightMeasurement.Unit+HKUnit.swift"; sourceTree = "<group>"; };
 		A996F4452C1081EB002328C5 /* BloodPressureMeasurement.Unit+HKUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BloodPressureMeasurement.Unit+HKUnit.swift"; sourceTree = "<group>"; };
 		A996F4472C1081F8002328C5 /* HealthDevice+HKDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HealthDevice+HKDevice.swift"; sourceTree = "<group>"; };
@@ -527,12 +529,13 @@
 			isa = PBXGroup;
 			children = (
 				A9D683FB2C21C01100183891 /* DevicePairingError.swift */,
-				A9D683F62C21B79200183891 /* OmronManufacturerData.swift */,
-				A9D683F82C21BA3400183891 /* OmronHealthDevice.swift */,
-				A9D683EF2C21B51E00183891 /* OmronModel.swift */,
 				A996F4492C1082BA002328C5 /* HealthDevice.swift */,
-				A9D683F22C21B57200183891 /* PairedDeviceInfo.swift */,
 				A963606D2C22EE2E00D17353 /* ImageReference.swift */,
+				A977DD4F2C25AD5F00A2A8E5 /* ManufacturerIdentifier.swift */,
+				A9D683F82C21BA3400183891 /* OmronHealthDevice.swift */,
+				A9D683F62C21B79200183891 /* OmronManufacturerData.swift */,
+				A9D683EF2C21B51E00183891 /* OmronModel.swift */,
+				A9D683F22C21B57200183891 /* PairedDeviceInfo.swift */,
 				A977DD4B2C248C9B00A2A8E5 /* PairingState.swift */,
 			);
 			path = Model;
@@ -824,6 +827,7 @@
 				A977DD472C248C2200A2A8E5 /* PairingFailureView.swift in Sources */,
 				A9DFE8A92ABE551400428242 /* AccountButton.swift in Sources */,
 				A9D6840F2C222E1200183891 /* ForgetDeviceTip.swift in Sources */,
+				A977DD502C25AD5F00A2A8E5 /* ManufacturerIdentifier.swift in Sources */,
 				4DDFC7392BF2C3C9002B07A1 /* NotificationSection.swift in Sources */,
 				4DDFC7872BFBFDDD002B07A1 /* NotificationManager.swift in Sources */,
 				A96360712C22F1E500D17353 /* PairingSheet.swift in Sources */,
@@ -1454,8 +1458,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/StanfordSpezi/SpeziViews.git";
 			requirement = {
-				branch = "feature/dismissbutton-label-style";
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.0;
 			};
 		};
 		2FE5DC9029EDD9C3004B9AB4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
@@ -1542,8 +1546,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/StanfordSpezi/SpeziFoundation.git";
 			requirement = {
-				branch = "feature/timeout-error-localization";
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.1;
 			};
 		};
 		A9E034BC2C2454F600E5F5E3 /* XCRemoteSwiftPackageReference "ACarousel" */ = {

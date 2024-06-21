@@ -40,9 +40,6 @@ struct Dashboard: View {
                             Button("Trigger Blood Pressure Measurement", systemImage: "drop.fill") {
                                 measurementManager.loadMockBloodPressureMeasurement()
                             }
-                            Button("Device Retrieval") {
-                                measurementManager.testDeviceRetrieval()
-                            }
                         }
                     }
                 }

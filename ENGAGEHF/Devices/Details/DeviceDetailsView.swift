@@ -97,9 +97,9 @@ struct DeviceDetailsView: View {
             }
         }
 
-        if deviceInfo.model != deviceInfo.name {
+        if let model = deviceInfo.model, model != deviceInfo.name {
             ListRow("Model") {
-                Text(deviceInfo.model)
+                Text(model)
             }
         }
     }
@@ -115,7 +115,14 @@ struct DeviceDetailsView: View {
 #Preview {
     NavigationStack {
         DeviceDetailsView(.constant(
-            PairedDeviceInfo(id: UUID(), name: "Blood Pressure Monitor", model: "BP5250", icon: .asset("Omron-BP5250"), batteryPercentage: 100)
+            PairedDeviceInfo(
+                id: UUID(),
+                deviceType: BloodPressureCuffDevice.deviceTypeIdentifier,
+                name: "Blood Pressure Monitor",
+                model: "BP5250",
+                icon: .asset("Omron-BP5250"),
+                batteryPercentage: 100
+            )
         ))
     }
         .previewWith {
@@ -128,6 +135,7 @@ struct DeviceDetailsView: View {
         DeviceDetailsView(.constant(
             PairedDeviceInfo(
                 id: UUID(),
+                deviceType: WeightScaleDevice.deviceTypeIdentifier,
                 name: "Weight Scale",
                 model: "SC-150",
                 icon: .asset("Omron-SC-150"),

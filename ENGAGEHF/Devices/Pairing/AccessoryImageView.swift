@@ -10,12 +10,12 @@ import SwiftUI
 
 
 struct AccessoryImageView: View {
-    private let device: any OmronHealthDevice
+    private let device: any HealthDevice
 
     var body: some View {
         let image = device.icon?.image ?? Image(systemName: "sensor") // swiftlint:disable:this accessibility_label_for_image
         HStack {
-            image // TODO: dark mode images!
+            image
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .accessibilityHidden(true)
@@ -28,7 +28,7 @@ struct AccessoryImageView: View {
     }
 
 
-    init(_ device: any OmronHealthDevice) {
+    init(_ device: any HealthDevice) {
         self.device = device
     }
 }

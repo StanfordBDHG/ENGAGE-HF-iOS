@@ -11,15 +11,20 @@ import Spezi
 import SpeziBluetooth
 import SwiftUI
 
+// TODO: Start SpeziDevices generalization
+// TODO: Finish SpeziBluetooth refactoring and cleanup "persistent devices"
+// TODO: dark mode device images
+// TODO: ask for more Omron infos? secret sauce?
+
 
 @Observable
 class DeviceManager: Module, EnvironmentAccessible {
     /// Determines if the device discovery sheet should be presented.
     @MainActor var presentingDevicePairing = false
-    @MainActor private(set) var discoveredDevices: OrderedDictionary<UUID, any OmronHealthDevice> = [:]
+    @MainActor private(set) var discoveredDevices: OrderedDictionary<UUID, any PairableDevice> = [:]
     @MainActor @AppStorage("pairedDevices") @ObservationIgnored private var _pairedDevices: [PairedDeviceInfo] = []
 
-    @MainActor private(set) var peripherals: [UUID: any OmronHealthDevice] = [:]
+    @MainActor private(set) var peripherals: [UUID: any PairableDevice] = [:]
 
     @MainActor var pairedDevices: [PairedDeviceInfo] {
         get {
@@ -45,26 +50,29 @@ class DeviceManager: Module, EnvironmentAccessible {
 
     func configure() {
         guard let bluetooth else {
+            self.logger.warning("DeviceManager initialized without Bluetooth dependency!")
             return // useful for e.g. previews
-            // TODO: preconditionFailure("Tried to configure DeviceManager without having Bluetooth module configured!")
         }
+
+        // we just reuse the configured Bluetooth devices
+        let configuredDevices = bluetooth.configuredPairableDevices
 
         // TODO: bit weird API wise!
         // We need to detach to not copy task local values
         Task.detached { @MainActor in
             // TODO: we need to redo this once bluetooth powers on?
             for deviceInfo in self.pairedDevices {
-                let device: (any OmronHealthDevice)?
-                switch deviceInfo.model {
-                case OmronModel.bp5250.rawValue:
-                    device = await bluetooth.retrievePeripheral(for: deviceInfo.id, as: BloodPressureCuffDevice.self)
-                case OmronModel.sc150.rawValue:
-                    device = await bluetooth.retrievePeripheral(for: deviceInfo.id, as: WeightScaleDevice.self)
-                default:
-                    self.logger.warning("Unsupported model: \(deviceInfo.model)") // TODO: what to do?
+                guard self.peripherals[deviceInfo.id] == nil else {
                     continue
                 }
-                // TODO: how to determine the device type?
+
+                guard let deviceType = configuredDevices[deviceInfo.deviceType] else {
+                    self.logger.error("Unsupported device type \"\(deviceInfo.deviceType)\" for paired device \(deviceInfo.name).")
+                    continue
+                }
+
+                let device = await deviceType.retrievePeripheral(from: bluetooth, with: deviceInfo.id)
+
                 guard let device else {
                     // TODO: once spezi bluetooth works (waiting for connected), this is an indication that the device was unpaired????
                     self.logger.warning("Device \(deviceInfo.id) \(deviceInfo.name) could not be retrieved!")
@@ -88,12 +96,12 @@ class DeviceManager: Module, EnvironmentAccessible {
     }
 
     @MainActor
-    func isPaired<Device: OmronHealthDevice>(_ device: Device) -> Bool {
+    func isPaired<Device: PairableDevice>(_ device: Device) -> Bool {
         pairedDevices.contains { $0.id == device.id } // TODO: more efficient lookup!
     }
 
     @MainActor
-    func handleDeviceStateUpdated<Device: OmronHealthDevice>(_ device: Device, _ state: PeripheralState) {
+    func handleDeviceStateUpdated<Device: PairableDevice>(_ device: Device, _ state: PeripheralState) {
         guard case .disconnected = state else {
             return
         }
@@ -102,6 +110,7 @@ class DeviceManager: Module, EnvironmentAccessible {
             return // not paired
         }
 
+        // TODO: only update if previous state was connected (might have been just connecting!)
         pairedDevices[deviceInfoIndex].lastSeen = .now
 
         Task {
@@ -111,7 +120,7 @@ class DeviceManager: Module, EnvironmentAccessible {
     }
 
     @MainActor
-    func nearbyPairableDevice<Device: OmronHealthDevice>(_ device: Device) {
+    func nearbyPairableDevice<Device: PairableDevice>(_ device: Device) {
         guard discoveredDevices[device.id] == nil else {
             return
         }
@@ -120,7 +129,8 @@ class DeviceManager: Module, EnvironmentAccessible {
             return
         }
 
-        self.logger.info("Detected nearby \(Device.self) with manufacturer data \(String(describing: device.manufacturerData))")
+        self.logger.info("Detected nearby \(Device.self) accessory.")
+        // TODO: previously we logged the manufacturer data!
 
         discoveredDevices[device.id] = device
         presentingDevicePairing = true
@@ -128,14 +138,26 @@ class DeviceManager: Module, EnvironmentAccessible {
 
 
     @MainActor
-    func registerPairedDevice<Device: OmronHealthDevice>(_ device: Device) {
+    func registerPairedDevice<Device: PairableDevice>(_ device: Device) async {
+        var batteryLevel: UInt8?
+        if let batteryDevice = device as? any BatteryPoweredDevice {
+            batteryLevel = batteryDevice.battery.batteryLevel
+        }
+
+        if device.deviceInformation.modelNumber == nil && device.deviceInformation.$modelNumber.isPresent {
+            // make sure it isn't just a race condition that we haven't received a value yet
+            let readModel = try? await device.deviceInformation.$modelNumber.read()
+            self.logger.info("ModelNumber was not present on device \(device.label), was read as \"\(readModel)\".")
+        }
+
         // TODO: let omronManufacturerData = device.manufacturerData?.users.first?.sequenceNumber (which user to choose from?)
         let deviceInfo = PairedDeviceInfo(
             id: device.id,
+            deviceType: Device.deviceTypeIdentifier,
             name: device.label,
-            model: device.model,
+            model: device.deviceInformation.modelNumber,
             icon: device.icon,
-            batteryPercentage: device.battery.batteryLevel
+            batteryPercentage: batteryLevel
         )
 
         pairedDevices.append(deviceInfo)
@@ -165,7 +187,6 @@ class DeviceManager: Module, EnvironmentAccessible {
                 await device.disconnect()
             }
         }
-        // TODO: also make sure they disconnect?
         // TODO: make sure to remove them from discoveredDevices?
     }
 
@@ -175,5 +196,24 @@ class DeviceManager: Module, EnvironmentAccessible {
             return
         }
         pairedDevices[index].lastBatteryPercentage = percentage
+    }
+}
+
+
+extension Bluetooth {
+    fileprivate nonisolated var configuredPairableDevices: [String: any PairableDevice.Type] {
+        configuration.reduce(into: [:]) { partialResult, descriptor in
+            guard let pairableDevice = descriptor.deviceType as? any PairableDevice.Type else {
+                return
+            }
+            partialResult[pairableDevice.deviceTypeIdentifier] = pairableDevice
+        }
+    }
+}
+
+
+extension PairableDevice {
+    fileprivate static func retrievePeripheral(from bluetooth: Bluetooth, with id: UUID) async -> Self? {
+        await bluetooth.retrievePeripheral(for: id, as: Self.self)
     }
 }

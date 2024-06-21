@@ -11,9 +11,9 @@ import SpeziViews
 import SwiftUI
 
 
-struct PairDeviceView<Collection: RandomAccessCollection>: View where Collection.Element == any OmronHealthDevice {
+struct PairDeviceView<Collection: RandomAccessCollection>: View where Collection.Element == any PairableDevice {
     private let devices: Collection
-    private let pairClosure: (any OmronHealthDevice) async throws -> Void
+    private let pairClosure: (any PairableDevice) async throws -> Void
 
     @Environment(\.dismiss) private var dismiss
 
@@ -22,7 +22,7 @@ struct PairDeviceView<Collection: RandomAccessCollection>: View where Collection
 
     @AccessibilityFocusState private var isHeaderFocused: Bool
 
-    private var selectedDevice: (any OmronHealthDevice)? {
+    private var selectedDevice: (any PairableDevice)? {
         guard selectedDeviceIndex < devices.count else {
             return nil
         }
@@ -74,7 +74,7 @@ struct PairDeviceView<Collection: RandomAccessCollection>: View where Collection
     }
 
 
-    init(devices: Collection, state: Binding<PairingState>, pair: @escaping (any OmronHealthDevice) async throws -> Void) {
+    init(devices: Collection, state: Binding<PairingState>, pair: @escaping (any PairableDevice) async throws -> Void) {
         self.devices = devices
         self._pairingState = state
         self.pairClosure = pair
@@ -86,7 +86,6 @@ struct PairDeviceView<Collection: RandomAccessCollection>: View where Collection
 #Preview {
     SheetPreview {
         PairDeviceView(devices: [BloodPressureCuffDevice.createMockDevice(state: .disconnected)], state: .constant(.discovery)) { _ in
-
         }
     }
 }
@@ -98,7 +97,6 @@ struct PairDeviceView<Collection: RandomAccessCollection>: View where Collection
             WeightScaleDevice.createMockDevice(state: .disconnected)
         ]
         PairDeviceView(devices: device, state: .constant(.discovery)) { _ in
-
         }
     }
 }

@@ -12,6 +12,6 @@ import Foundation
 enum PairingState {
     case discovery
     case pairing
-    case paired(any OmronHealthDevice)
+    case paired(any PairableDevice)
     case error(LocalizedError)
 }

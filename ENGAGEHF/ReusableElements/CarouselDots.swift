@@ -10,8 +10,14 @@ import SwiftUI
 
 
 struct CarouselDots: View {
+    private static let hStackSpacing: CGFloat = 10
+    private static let circleDiameter: CGFloat = 7
+    private static let padding: CGFloat = 10
+
     private let count: Int
     @Binding private var selectedIndex: Int
+
+    @State private var isDragging = false
 
     private var pageNumber: Binding<Int> {
         .init {
@@ -21,34 +27,68 @@ struct CarouselDots: View {
         }
     }
 
+    private var totalWidth: CGFloat {
+        CGFloat(count) * Self.circleDiameter + CGFloat((count - 1)) * Self.hStackSpacing + 2 * Self.padding
+    }
+
     var body: some View {
-        HStack(spacing: 10) {
+        HStack(spacing: Self.hStackSpacing) {
             ForEach(0..<count, id: \.self) { index in
                 Circle()
-                    .frame(width: 7, height: 7)
+                    .frame(width: Self.circleDiameter, height: Self.circleDiameter)
                     .foregroundStyle(index == selectedIndex ? .primary : .tertiary)
                     .onTapGesture {
                         withAnimation {
-                            selectedIndex = index // TODO: drag slider
+                            selectedIndex = index
                         }
                     }
             }
         }
-        .padding(10)
-        .background {
-            // make sure voice hover highlighter has round corners
-            RoundedRectangle(cornerSize: CGSize(width: 5, height: 5))
-                .foregroundColor(Color(uiColor: .systemBackground))
-        }
-        .accessibilityRepresentation {
-            Stepper("Page", value: pageNumber, in: 1...count, step: 1)
-                .accessibilityValue("Page \(pageNumber.wrappedValue) of \(count)")
-        }
+            .padding(Self.padding)
+            .background {
+                // make sure voice hover highlighter has round corners
+                RoundedRectangle(cornerSize: CGSize(width: 5, height: 5))
+                    .foregroundColor(Color(uiColor: isDragging ? .systemFill : .systemBackground))
+            }
+            .gesture(dragGesture)
+            .accessibilityRepresentation {
+                Stepper("Page", value: pageNumber, in: 1...count, step: 1)
+                    .accessibilityValue("Page \(pageNumber.wrappedValue) of \(count)")
+            }
     }
+
+
+    private var dragGesture: some Gesture {
+        DragGesture(minimumDistance: 2)
+            .onChanged { value in
+                isDragging = true
+                updateIndexBasedOnDrag(value.location)
+                print("location: \(value.location)")
+            }
+            .onEnded { value in
+                isDragging = false
+                print("ended: \(value)")
+                updateIndexBasedOnDrag(value.location)
+            }
+    }
+
 
     init(count: Int, selectedIndex: Binding<Int>) {
         self.count = count
         self._selectedIndex = selectedIndex
+    }
+
+
+    private func updateIndexBasedOnDrag(_ location: CGPoint) {
+        guard count > 0 else { // swiftlint:disable:this empty_count
+            return // swiftlint false positive
+        }
+
+        let pointWidths = totalWidth / CGFloat(count)
+        let relativePosition = location.x
+
+        let index = max(0, min(count - 1, Int(relativePosition / pointWidths)))
+        selectedIndex = index // TODO: this should not animate?
     }
 }
 

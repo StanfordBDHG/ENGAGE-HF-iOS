@@ -17,6 +17,7 @@ struct DiscoveryView: View {
         ) {
             ProgressView()
                 .controlSize(.large)
+                .accessibilityHidden(true)
         }
     }
 }

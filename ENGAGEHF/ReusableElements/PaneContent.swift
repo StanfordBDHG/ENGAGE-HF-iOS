@@ -67,7 +67,7 @@ struct PaneContent<Content: View, Action: View>: View {
             action
         }
             .onAppear {
-                isHeaderFocused = true // TODO: should we do that?
+                isHeaderFocused = true // TODO: doesn't work too great?
             }
     }
 

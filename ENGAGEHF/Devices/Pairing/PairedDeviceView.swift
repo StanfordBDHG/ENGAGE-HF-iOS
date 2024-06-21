@@ -10,16 +10,11 @@ import SwiftUI
 
 
 struct PairedDeviceView: View {
-    private let device: any OmronHealthDevice
+    private let device: any PairableDevice
 
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
-        /* // TODO: brink back checkmark/color green for paired screen?
-         Label("Successfully Paired", systemImage: "checkmark.circle.fill")
-         .padding(.bottom, 6)
-         .foregroundStyle(.primary, .green)
-         */
         PaneContent(title: "Accessory Paired", subtitle: "\"\(device.label)\" was successfully paired with the ENGAGE app.") {
             AccessoryImageView(device)
         } action: {
@@ -35,7 +30,7 @@ struct PairedDeviceView: View {
     }
 
 
-    init(_ device: any OmronHealthDevice) {
+    init(_ device: any PairableDevice) {
         self.device = device
     }
 }

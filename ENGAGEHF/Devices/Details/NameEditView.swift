@@ -57,7 +57,14 @@ extension ValidationRule {
 #Preview {
     NavigationStack {
         NameEditView(.constant(
-            PairedDeviceInfo(id: UUID(), name: "Blood Pressure Monitor", model: "BP5250", icon: .asset("Omron-BP5250"), batteryPercentage: 100)
+            PairedDeviceInfo(
+                id: UUID(),
+                deviceType: BloodPressureCuffDevice.deviceTypeIdentifier,
+                name: "Blood Pressure Monitor",
+                model: "BP5250",
+                icon: .asset("Omron-BP5250"),
+                batteryPercentage: 100
+            )
         ))
     }
 }
