@@ -126,6 +126,9 @@
     "Education" : {
 
     },
+    "End Date: " : {
+
+    },
     "Fill in rest of survey here." : {
 
     },
@@ -358,13 +361,13 @@
     "Measurement Recorded" : {
 
     },
+    "Measurement: " : {
+
+    },
     "Medications" : {
 
     },
     "Medications go here." : {
-
-    },
-    "Most Recent Vitals" : {
 
     },
     "NOTIFICATION_PERMISSIONS_BUTTON" : {
@@ -418,6 +421,9 @@
 
     },
     "Save" : {
+
+    },
+    "Start Date: " : {
 
     },
     "Survey" : {

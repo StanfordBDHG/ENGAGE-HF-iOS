@@ -68,7 +68,7 @@ class NotificationManager: Module, EnvironmentAccessible {
     /// Adds three mock notifications to the user's notification collection in firestore
     func setupNotificationTests(user: User) async throws {
         let firestore = Firestore.firestore()
-        let notificationsCollection = firestore.collection("users").document(user.uid).collection("notifications")
+        let notificationsCollection = firestore.collection("users").document(user.uid).collection("messages")
         
         let querySnapshot = try await notificationsCollection.getDocuments()
         
@@ -124,9 +124,7 @@ class NotificationManager: Module, EnvironmentAccessible {
         firestore
             .collection("users")
             .document(uid)
-            .collection("notifications")
-            .whereField("created", isGreaterThan: thesholdTimeStamp)
-            .whereField("completed", isEqualTo: false)
+            .collection("messages")
             .addSnapshotListener { querySnapshot, error in
                 guard let documentRefs = querySnapshot?.documents else {
                     self.logger.error("Error fetching documents: \(error)")
@@ -166,7 +164,7 @@ class NotificationManager: Module, EnvironmentAccessible {
 
         let docRef = firestore.collection("users")
             .document(user.uid)
-            .collection("notifications")
+            .collection("messages")
             .document(id)
         
         do {

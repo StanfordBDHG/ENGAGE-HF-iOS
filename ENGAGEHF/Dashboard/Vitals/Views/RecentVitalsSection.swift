@@ -39,25 +39,89 @@ struct WeightRow: View {
 
 
 struct RecentVitalsSection: View {
-    @State private var recentWeight: HKQuantitySample?
-    @State private var recentBP: HKQuantitySample?
-    @State private var recentHR: HKQuantitySample?
-    
+    @Environment(VitalsManager.self) private var vitalsManager
     
     var body: some View {
-        Section("Most Recent Vitals") {
-            WeightRow(sample: recentWeight)
-            BPRow(sample: recentBP)
-            HRRow(sample: recentHR)
+        Section("Weight") {
+            ForEach(vitalsManager.weightHistory) { weightSample in
+                VStack {
+                    HStack {
+                        Text("Measurement: ")
+                            .bold()
+                        Text(weightSample.quantity.description)
+                        Spacer()
+                    }
+                    HStack {
+                        Text("Start Date: ")
+                            .bold()
+                        Text(weightSample.startDate, format: .dateTime)
+                        Spacer()
+                    }
+                    HStack {
+                        Text("End Date: ")
+                            .bold()
+                        Text(weightSample.endDate, format: .dateTime)
+                        Spacer()
+                    }
+                }
+            }
+        }
+        .headerProminence(.increased)
+        Section("Heart Rate") {
+            ForEach(vitalsManager.heartRateHistory) { heartRateSample in
+                VStack {
+                    HStack {
+                        Text("Measurement: ")
+                            .bold()
+                        Text(heartRateSample.quantity.description)
+                        Spacer()
+                    }
+                    HStack {
+                        Text("Start Date: ")
+                            .bold()
+                        Text(heartRateSample.startDate, format: .dateTime)
+                        Spacer()
+                    }
+                    HStack {
+                        Text("End Date: ")
+                            .bold()
+                        Text(heartRateSample.endDate, format: .dateTime)
+                        Spacer()
+                    }
+                }
+            }
+        }
+        .headerProminence(.increased)
+        Section("Blood Pressure") {
+            ForEach(vitalsManager.bloodPressureHistory) { bloodPressureSample in
+                VStack {
+                    BloodPressureMeasurementLabel(bloodPressureSample)
+                    HStack {
+                        Text("Start Date: ")
+                            .bold()
+                        Text(bloodPressureSample.startDate, format: .dateTime)
+                        Spacer()
+                    }
+                    HStack {
+                        Text("End Date: ")
+                            .bold()
+                        Text(bloodPressureSample.endDate, format: .dateTime)
+                        Spacer()
+                    }
+                }
+            }
         }
         .headerProminence(.increased)
     }
     
-    // TODO: Add compatability with measurements other than Weight
-    func getMostRecent(of sampleType: HKSampleType) async throws {
+    private func getDisplay(sample: HKCorrelation) {
+        
     }
 }
 
 #Preview {
     RecentVitalsSection()
+        .previewWith {
+            VitalsManager()
+        }
 }
