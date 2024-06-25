@@ -1,8 +1,9 @@
 //
-//  RecentVitalsUITests.swift
-//  ENGAGEHFUITests
+// This source file is part of the ENGAGE-HF project based on the Stanford Spezi Template Application project
 //
-//  Created by Nick Riedman on 6/25/24.
+// SPDX-FileCopyrightText: 2024 Stanford University
+//
+// SPDX-License-Identifier: MIT
 //
 
 import XCTest
