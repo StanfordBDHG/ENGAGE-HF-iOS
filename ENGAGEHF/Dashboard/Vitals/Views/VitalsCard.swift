@@ -11,7 +11,6 @@ import SwiftUI
 
 
 struct VitalsCard: View {
-    @Environment(\.colorScheme) private var colorScheme
     @ScaledMetric private var quantityTextSize: CGFloat = 20
     
     let quantity: String?
@@ -19,35 +18,35 @@ struct VitalsCard: View {
     let type: String?
     let date: Date?
     
+    private var displayDate: String? {
+        date?.formatted(date: .numeric, time: .omitted)
+    }
+    
     
     var body: some View {
         StudyApplicationListCard {
             VStack(alignment: .center, spacing: 10) {
-                Text(type ?? "Unknown")
+                Text(type ?? "--")
                     .font(.headline)
                     .foregroundColor(.primary)
                     .multilineTextAlignment(.center)
                 HStack {
-                    Text(quantity ?? "???")
+                    Text(quantity ?? "--")
                         .font(.system(size: quantityTextSize, weight: .semibold, design: .rounded))
                         .multilineTextAlignment(.center)
-                    Text(units ?? "???")
+                        .accessibilityLabel("\(type ?? "--") Quantity: \(quantity ?? "--")")
+                    Text(units ?? "--")
                         .font(.subheadline)
                         .foregroundStyle(Color.secondary)
                         .multilineTextAlignment(.center)
+                        .accessibilityLabel("\(type ?? "--") Units: \(units ?? "--")")
                 }
-                Text(date?.formatted(date: .numeric, time: .omitted) ?? "???")
+                Text(displayDate ?? "--")
                     .multilineTextAlignment(.center)
+                    .accessibilityLabel("\(type ?? "--") Date: \(displayDate ?? "--")")
             }
-                .frame(maxWidth: .infinity, idealHeight: 100.0)
+                .frame(maxWidth: .infinity, idealHeight: 100.0, maxHeight: .infinity)
         }
-//            .padding()
-//            .frame(maxWidth: .infinity, idealHeight: 100.0)
-//            .background {
-//                Color(uiColor: colorScheme == .light ? .systemBackground : .secondarySystemBackground)
-//                    .ignoresSafeArea()
-//            }
-//            .clipShape(RoundedRectangle(cornerRadius: 10.0))
     }
 }
 

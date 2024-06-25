@@ -20,7 +20,7 @@ struct Dashboard: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                // TODO: Make the headers sticky
+                // TODO: Make the headers sticky?
                 LazyVStack(alignment: .leading, spacing: 20) {
                     // Notifications
                     NotificationSection()

@@ -11,7 +11,6 @@ import SwiftUI
 
 
 struct RecentVitalsSection: View {
-    @Environment(\.colorScheme) private var colorScheme
     @Environment(VitalsManager.self) private var vitalsManager
     
     
@@ -102,6 +101,7 @@ struct RecentVitalsSection: View {
         }
     }
 }
+
 
 #Preview {
     RecentVitalsSection()

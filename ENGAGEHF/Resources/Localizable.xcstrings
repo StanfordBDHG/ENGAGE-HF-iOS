@@ -4,6 +4,36 @@
     "%@" : {
 
     },
+    "%@ Date: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ Date: %2$@"
+          }
+        }
+      }
+    },
+    "%@ Quantity: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ Quantity: %2$@"
+          }
+        }
+      }
+    },
+    "%@ Units: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ Units: %2$@"
+          }
+        }
+      }
+    },
     "%lld BPM" : {
 
     },
