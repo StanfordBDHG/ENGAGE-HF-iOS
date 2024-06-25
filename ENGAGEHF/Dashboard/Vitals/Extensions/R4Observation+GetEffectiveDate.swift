@@ -53,9 +53,8 @@ extension Observation {
                     }
                     return nil
                 }
-                    .sorted()
                 
-                if let startDate = dates.first {
+                if let startDate = dates.min() {
                     return (startDate, Date.distantFuture)
                 }
             }
