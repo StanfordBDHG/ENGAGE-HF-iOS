@@ -80,9 +80,6 @@
     "An invitation code is at least 8 characters long." : {
 
     },
-    "Blood Pressure" : {
-
-    },
     "Close" : {
       "comment" : "For closing sheets."
     },
@@ -124,9 +121,6 @@
 
     },
     "Education" : {
-
-    },
-    "End Date: " : {
 
     },
     "Fill in rest of survey here." : {
@@ -181,9 +175,6 @@
 
     },
     "Heart health data goes here" : {
-
-    },
-    "Heart Rate" : {
 
     },
     "Home" : {
@@ -361,9 +352,6 @@
     "Measurement Recorded" : {
 
     },
-    "Measurement: " : {
-
-    },
     "Medications" : {
 
     },
@@ -417,13 +405,13 @@
     "Please enter your invitation code to join the ENGAGE-HF study." : {
 
     },
+    "Recent Vitals" : {
+
+    },
     "Redeem Invitation Code" : {
 
     },
     "Save" : {
-
-    },
-    "Start Date: " : {
 
     },
     "Survey" : {
@@ -449,9 +437,6 @@
     },
     "User not authenticated. Please sign in an try again." : {
       "comment" : "User Not Authenticated"
-    },
-    "Weight" : {
-
     },
     "WELCOME_AREA1_DESCRIPTION" : {
       "localizations" : {

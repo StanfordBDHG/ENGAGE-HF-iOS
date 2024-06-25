@@ -7,121 +7,105 @@
 //
 
 import HealthKit
-import HealthKitOnFHIR
 import SwiftUI
 
 
-struct HRRow: View {
-    var sample: HKQuantitySample?
-    
-    var body: some View {
-        Text("Heart Rate")
-    }
-}
-
-
-struct BPRow: View {
-    var sample: HKQuantitySample?
-    
-    var body: some View {
-        Text("Blood Pressure")
-    }
-}
-
-
-struct WeightRow: View {
-    var sample: HKQuantitySample?
-    
-    var body: some View {
-        Text("Weight")
-    }
-}
-
-
 struct RecentVitalsSection: View {
+    @Environment(\.colorScheme) private var colorScheme
     @Environment(VitalsManager.self) private var vitalsManager
     
-    var body: some View {
-        Section("Weight") {
-            ForEach(vitalsManager.weightHistory) { weightSample in
-                VStack {
-                    HStack {
-                        Text("Measurement: ")
-                            .bold()
-                        Text(weightSample.quantity.description)
-                        Spacer()
-                    }
-                    HStack {
-                        Text("Start Date: ")
-                            .bold()
-                        Text(weightSample.startDate, format: .dateTime)
-                        Spacer()
-                    }
-                    HStack {
-                        Text("End Date: ")
-                            .bold()
-                        Text(weightSample.endDate, format: .dateTime)
-                        Spacer()
-                    }
-                }
-            }
+    
+    private var massUnits: HKUnit {
+        switch Locale.current.measurementSystem {
+        case .us:
+            HKUnit.pound()
+        default:
+            HKUnit.gramUnit(with: .kilo)
         }
-        .headerProminence(.increased)
-        Section("Heart Rate") {
-            ForEach(vitalsManager.heartRateHistory) { heartRateSample in
-                VStack {
-                    HStack {
-                        Text("Measurement: ")
-                            .bold()
-                        Text(heartRateSample.quantity.description)
-                        Spacer()
-                    }
-                    HStack {
-                        Text("Start Date: ")
-                            .bold()
-                        Text(heartRateSample.startDate, format: .dateTime)
-                        Spacer()
-                    }
-                    HStack {
-                        Text("End Date: ")
-                            .bold()
-                        Text(heartRateSample.endDate, format: .dateTime)
-                        Spacer()
-                    }
-                }
-            }
-        }
-        .headerProminence(.increased)
-        Section("Blood Pressure") {
-            ForEach(vitalsManager.bloodPressureHistory) { bloodPressureSample in
-                VStack {
-                    BloodPressureMeasurementLabel(bloodPressureSample)
-                    HStack {
-                        Text("Start Date: ")
-                            .bold()
-                        Text(bloodPressureSample.startDate, format: .dateTime)
-                        Spacer()
-                    }
-                    HStack {
-                        Text("End Date: ")
-                            .bold()
-                        Text(bloodPressureSample.endDate, format: .dateTime)
-                        Spacer()
-                    }
-                }
-            }
-        }
-        .headerProminence(.increased)
     }
     
-    private func getDisplay(sample: HKCorrelation) {
+    private var weightDescription: String? {
+        if let weightMeasurement = vitalsManager.latestWeight {
+            return String(format: "%.2f", weightMeasurement.quantity.doubleValue(for: massUnits))
+        }
+        return nil
+    }
+    
+    private var heartRateDescription: String? {
+        if let heartRateMeasurement = vitalsManager.latestHeartRate {
+            return Int(heartRateMeasurement.quantity.doubleValue(for: .count().unitDivided(by: .minute()))).description
+        }
+        return nil
+    }
+    
+    
+    var body: some View {
+        Section(
+            content: {
+                VStack {
+                    HStack {
+                        VitalsCard(
+                            quantity: weightDescription,
+                            units: massUnits.unitString,
+                            type: "Weight",
+                            date: vitalsManager.latestWeight?.startDate
+                        )
+                        VitalsCard(
+                            quantity: heartRateDescription,
+                            units: "bpm",
+                            type: "Heart Rate",
+                            date: vitalsManager.latestHeartRate?.startDate
+                        )
+                    }
+                    VitalsCard(
+                        quantity: self.getBloodPressureDisplay(bloodPressureSample: vitalsManager.latestBloodPressure),
+                        units: "mmHg",
+                        type: "Blood Pressure",
+                        date: vitalsManager.latestBloodPressure?.startDate
+                    )
+                }
+            },
+            header: {
+                Text("Recent Vitals")
+                    .studyApplicationHeaderStyle()
+            }
+        )
+    }
+    
+    
+    private func getBloodPressureDisplay(bloodPressureSample: HKCorrelation?) -> String? {
+        guard let bloodPressureSample else {
+            return nil
+        }
         
+        var bloodPressureQuantitySamples: [HKQuantitySample] {
+            bloodPressureSample.objects
+                .compactMap { sample in
+                    sample as? HKQuantitySample
+                }
+        }
+        
+        var systolic: HKQuantitySample? {
+            bloodPressureQuantitySamples
+                .first(where: { $0.quantityType == HKQuantityType(.bloodPressureSystolic) })
+        }
+        var diastolic: HKQuantitySample? {
+            bloodPressureQuantitySamples
+                .first(where: { $0.quantityType == HKQuantityType(.bloodPressureDiastolic) })
+        }
+        
+        if let systolic,
+           let diastolic {
+            return "\(Int(systolic.quantity.doubleValue(for: .millimeterOfMercury())))/\(Int(diastolic.quantity.doubleValue(for: .millimeterOfMercury())))"
+        } else {
+            return nil
+        }
     }
 }
 
 #Preview {
     RecentVitalsSection()
-        .previewWith {
+        .previewWith(standard: ENGAGEHFStandard()) {
             VitalsManager()
         }
 }

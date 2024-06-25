@@ -61,6 +61,7 @@
 		4DA20B582C25FE4000715AA2 /* FHIRInstant+DateComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA20B572C25FE4000715AA2 /* FHIRInstant+DateComponents.swift */; };
 		4DA20B5A2C25FEDE00715AA2 /* Decimal+IntConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA20B592C25FEDE00715AA2 /* Decimal+IntConversion.swift */; };
 		4DA20B5C2C26098400715AA2 /* R4Observation+GetEffectiveDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA20B5B2C26098400715AA2 /* R4Observation+GetEffectiveDate.swift */; };
+		4DA20B642C2A0FF100715AA2 /* VitalsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA20B632C2A0FF100715AA2 /* VitalsCard.swift */; };
 		4DB025CA2BBE3A59002D2545 /* HomeViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB025C92BBE3A59002D2545 /* HomeViewUITests.swift */; };
 		4DB025D52BBF2E08002D2545 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB025D42BBF2E08002D2545 /* Dashboard.swift */; };
 		4DBDD3442BBFAD64001FB0CA /* InvitationCodeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDD3432BBFAD64001FB0CA /* InvitationCodeError.swift */; };
@@ -167,6 +168,7 @@
 		4DA20B572C25FE4000715AA2 /* FHIRInstant+DateComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FHIRInstant+DateComponents.swift"; sourceTree = "<group>"; };
 		4DA20B592C25FEDE00715AA2 /* Decimal+IntConversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decimal+IntConversion.swift"; sourceTree = "<group>"; };
 		4DA20B5B2C26098400715AA2 /* R4Observation+GetEffectiveDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "R4Observation+GetEffectiveDate.swift"; sourceTree = "<group>"; };
+		4DA20B632C2A0FF100715AA2 /* VitalsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalsCard.swift; sourceTree = "<group>"; };
 		4DB025C92BBE3A59002D2545 /* HomeViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewUITests.swift; sourceTree = "<group>"; };
 		4DB025D42BBF2E08002D2545 /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		4DBDD3432BBFAD64001FB0CA /* InvitationCodeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationCodeError.swift; sourceTree = "<group>"; };
@@ -409,7 +411,10 @@
 		4DDFC7502BF3404D002B07A1 /* Vitals */ = {
 			isa = PBXGroup;
 			children = (
+				4DA20B562C25FE2B00715AA2 /* Extensions */,
 				4DDFC7522BF34059002B07A1 /* Views */,
+				4DA20B4A2C249E7E00715AA2 /* VitalsManager.swift */,
+				4DA20B502C25E1A300715AA2 /* ObservationAlias.swift */,
 			);
 			path = Vitals;
 			sourceTree = "<group>";
@@ -418,6 +423,7 @@
 			isa = PBXGroup;
 			children = (
 				4DDFC7532BF3408F002B07A1 /* RecentVitalsSection.swift */,
+				4DA20B632C2A0FF100715AA2 /* VitalsCard.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -547,14 +553,11 @@
 		A996F4422C108186002328C5 /* Measurement */ = {
 			isa = PBXGroup;
 			children = (
-				4DA20B562C25FE2B00715AA2 /* Extensions */,
 				A996F44B2C1083B6002328C5 /* Conversions */,
 				4D19ECFC2BE5B9F200CDBAA8 /* Views */,
 				A996F4522C11113B002328C5 /* Measurement.swift */,
 				4D052DB72BE07892006A784E /* MeasurementManager.swift */,
 				A996F4542C11117C002328C5 /* ProcessedMeasurement.swift */,
-				4DA20B4A2C249E7E00715AA2 /* VitalsManager.swift */,
-				4DA20B502C25E1A300715AA2 /* ObservationAlias.swift */,
 			);
 			path = Measurement;
 			sourceTree = "<group>";
@@ -775,6 +778,7 @@
 				A996F4462C1081EB002328C5 /* BloodPressureMeasurement.Unit+HKUnit.swift in Sources */,
 				2FE5DC3829EDD7CA004B9AB4 /* InterestingModules.swift in Sources */,
 				2FE5DC3529EDD7CA004B9AB4 /* Consent.swift in Sources */,
+				4DA20B642C2A0FF100715AA2 /* VitalsCard.swift in Sources */,
 				A996F44A2C1082BA002328C5 /* HealthDevice.swift in Sources */,
 				4DBDD3442BBFAD64001FB0CA /* InvitationCodeError.swift in Sources */,
 				2FC975A82978F11A00BA99FE /* Home.swift in Sources */,

@@ -11,7 +11,6 @@ import SwiftUI
 
 struct Dashboard: View {
     @Binding var presentingAccount: Bool
-    @State var showSurvey = false
     
 #if DEBUG || TEST
     @Environment(MeasurementManager.self) private var measurementManager
@@ -20,20 +19,18 @@ struct Dashboard: View {
     
     var body: some View {
         NavigationStack {
-            List {
-                // Notifications
-                NotificationSection()
-                
-                // Most recent vitals
-                RecentVitalsSection()
-                
-                // Survey, if available
-                SurveySection(showFullSurvey: $showSurvey)
+            ScrollView {
+                // TODO: Make the headers sticky
+                LazyVStack(alignment: .leading, spacing: 20) {
+                    // Notifications
+                    NotificationSection()
+                    
+                    // Most recent vitals
+                    RecentVitalsSection()
+                }
+                .padding()
             }
-            .studyApplicationList()
-            .sheet(isPresented: $showSurvey) {
-                FullSurveyView()
-            }
+            .background(Color(.systemGroupedBackground))
             .navigationTitle("Home")
             .toolbar {
                 if AccountButton.shouldDisplay {

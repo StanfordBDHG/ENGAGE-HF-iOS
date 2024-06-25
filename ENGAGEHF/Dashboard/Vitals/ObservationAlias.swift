@@ -9,4 +9,4 @@
 import class ModelsR4.Observation
 
 
-typealias R4Observation = Observation
+typealias R4Observation = ModelsR4.Observation

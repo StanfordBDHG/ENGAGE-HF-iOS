@@ -24,7 +24,7 @@ import SpeziFirebaseConfiguration
 /// - Convert FHIR quantities to HK Samples
 /// - Manage units of the stored quantities, defaulting to the user's phone settings
 @Observable
-class VitalsManager: Module, EnvironmentAccessible {
+public class VitalsManager: Module, EnvironmentAccessible {
     enum VitalsError: Error {
         case invalidConversion
         case unknownUnit
@@ -41,15 +41,26 @@ class VitalsManager: Module, EnvironmentAccessible {
     private var snapshotListener: ListenerRegistration?
     
     // TODO: Localize the units based on either locale or user preferences in the phone settings
-    var heartRateHistory: [HKQuantitySample] = []
-    var bloodPressureHistory: [HKCorrelation] = []
-    var weightHistory: [HKQuantitySample] = []
+    public var heartRateHistory: [HKQuantitySample] = []
+    public var bloodPressureHistory: [HKCorrelation] = []
+    public var weightHistory: [HKQuantitySample] = []
+    
+    
+    public var latestHeartRate: HKQuantitySample? {
+        heartRateHistory.max { $0.startDate < $1.startDate }
+    }
+    public var latestBloodPressure: HKCorrelation? {
+        bloodPressureHistory.max { $0.startDate < $1.startDate }
+    }
+    public var latestWeight: HKQuantitySample? {
+        weightHistory.max { $0.startDate < $1.startDate }
+    }
     
     
     /// Call on initial configuration:
     /// - Add a snapshot listener to the three health data collections
     /// - Set the default units to the user's localized preferences
-    func configure() {
+    public func configure() {
         if ProcessInfo.processInfo.isPreviewSimulator {
             self.setupPreview()
             return
@@ -80,7 +91,7 @@ class VitalsManager: Module, EnvironmentAccessible {
         self.registerBloodPressureSnapshot(userDocRef: userDocRef)
     }
     
-    func registerWeightSnapshot(userDocRef: DocumentReference) {
+    private func registerWeightSnapshot(userDocRef: DocumentReference) {
         // Listen for Weight measurements
         userDocRef
             .collection("bodyWeightObservations")
@@ -104,7 +115,7 @@ class VitalsManager: Module, EnvironmentAccessible {
             }
     }
     
-    func registerHeartRateSnapshot(userDocRef: DocumentReference) {
+    private func registerHeartRateSnapshot(userDocRef: DocumentReference) {
         // Listen for Heart Rate measurements
         userDocRef
             .collection("heartRateObservations")
@@ -128,7 +139,7 @@ class VitalsManager: Module, EnvironmentAccessible {
             }
     }
     
-    func registerBloodPressureSnapshot(userDocRef: DocumentReference) {
+    private func registerBloodPressureSnapshot(userDocRef: DocumentReference) {
         // Listen for Blood Pressure measurements
         userDocRef
             .collection("bloodPressureObservations")
@@ -181,7 +192,7 @@ class VitalsManager: Module, EnvironmentAccessible {
         return HKQuantitySample(type: quantityType, quantity: hkQuantity, start: startDate, end: endDate)
     }
     
-    func convertToHKCorrelation(_ observation: R4Observation) throws -> HKCorrelation {
+    private func convertToHKCorrelation(_ observation: R4Observation) throws -> HKCorrelation {
         // For now, only handle Blood Pressure
         guard let observationType = observation.code.coding?.first?.code?.value?.string,
               observationType == "85354-9" else {
@@ -227,7 +238,7 @@ class VitalsManager: Module, EnvironmentAccessible {
     }
     
     
-    func getComponent(_ components: [ObservationComponent], code: String) throws -> ObservationComponent {
+    private func getComponent(_ components: [ObservationComponent], code: String) throws -> ObservationComponent {
         guard let component = components.first(
             where: {
                 $0.code.coding?.contains(
@@ -340,4 +351,3 @@ extension VitalsManager {
         self.weightHistory.append(dummyWeight)
     }
 }
-

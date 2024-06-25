@@ -25,10 +25,7 @@ class NotificationManager: Module, EnvironmentAccessible {
     
     private var authStateDidChangeListenerHandle: AuthStateDidChangeListenerHandle?
     private var snapshotListener: ListenerRegistration?
-    
     private let logger = Logger(subsystem: "ENGAGEHF", category: "NotificationManager")
-    
-    private let expirationDate = 10
     
     var notifications: [Notification] = []
     
@@ -111,14 +108,6 @@ class NotificationManager: Module, EnvironmentAccessible {
         }
         
         let firestore = Firestore.firestore()
-        
-        // Ignore notifications older than expirationDate
-        guard let thresholdDate = Calendar.current.date(byAdding: .day, value: -expirationDate, to: .now) else {
-            logger.error("Unable to get threshold date: \(FetchingError.invalidTimestamp)")
-            return
-        }
-        
-        let thesholdTimeStamp = Timestamp(date: thresholdDate)
         
         // Set a snapshot listener on the query for valid notifications
         firestore
