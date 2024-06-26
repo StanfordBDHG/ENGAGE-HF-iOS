@@ -14,18 +14,9 @@ struct RecentVitalsSection: View {
     @Environment(VitalsManager.self) private var vitalsManager
     
     
-    private var massUnits: HKUnit {
-        switch Locale.current.measurementSystem {
-        case .us:
-            HKUnit.pound()
-        default:
-            HKUnit.gramUnit(with: .kilo)
-        }
-    }
-    
     private var weightDescription: String? {
         if let weightMeasurement = vitalsManager.latestWeight {
-            return String(format: "%.2f", weightMeasurement.quantity.doubleValue(for: massUnits))
+            return String(format: "%.2f", weightMeasurement.quantity.doubleValue(for: vitalsManager.localMassUnits))
         }
         return nil
     }
@@ -45,7 +36,7 @@ struct RecentVitalsSection: View {
                     HStack {
                         VitalsCard(
                             quantity: weightDescription,
-                            units: massUnits.unitString,
+                            units: vitalsManager.localMassUnits.unitString,
                             type: "Weight",
                             date: vitalsManager.latestWeight?.startDate
                         )

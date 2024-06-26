@@ -28,28 +28,28 @@ struct Dashboard: View {
                     // Most recent vitals
                     RecentVitalsSection()
                 }
-                .padding()
+                    .padding()
             }
-            .background(Color(.systemGroupedBackground))
-            .navigationTitle("Home")
-            .toolbar {
-                if AccountButton.shouldDisplay {
-                    AccountButton(isPresented: $presentingAccount)
+                .background(Color(.systemGroupedBackground))
+                .navigationTitle("Home")
+                .toolbar {
+                    if AccountButton.shouldDisplay {
+                        AccountButton(isPresented: $presentingAccount)
+                    }
                 }
-            }
 #if DEBUG || TEST
-            .toolbar {
-                if FeatureFlags.testMockDevices {
-                    ToolbarItemGroup(placement: .secondaryAction) {
-                        Button("Trigger Weight Measurement", systemImage: "scalemass.fill") {
-                            measurementManager.loadMockWeightMeasurement()
-                        }
-                        Button("Trigger Blood Pressure Measurement", systemImage: "drop.fill") {
-                            measurementManager.loadMockBloodPressureMeasurement()
+                .toolbar {
+                    if FeatureFlags.testMockDevices {
+                        ToolbarItemGroup(placement: .secondaryAction) {
+                            Button("Trigger Weight Measurement", systemImage: "scalemass.fill") {
+                                measurementManager.loadMockWeightMeasurement()
+                            }
+                            Button("Trigger Blood Pressure Measurement", systemImage: "drop.fill") {
+                                measurementManager.loadMockBloodPressureMeasurement()
+                            }
                         }
                     }
                 }
-            }
 #endif
         }
     }

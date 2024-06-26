@@ -56,6 +56,15 @@ public class VitalsManager: Module, EnvironmentAccessible {
         weightHistory.max { $0.startDate < $1.startDate }
     }
     
+    public var localMassUnits: HKUnit {
+        switch Locale.current.measurementSystem {
+        case .us:
+            HKUnit.pound()
+        default:
+            HKUnit.gramUnit(with: .kilo)
+        }
+    }
+    
     
     /// Call on initial configuration:
     /// - Add a snapshot listener to the three health data collections
@@ -309,45 +318,60 @@ public class VitalsManager: Module, EnvironmentAccessible {
 
 
 extension VitalsManager {
+    /// Adds nine mock measurements to weight, heart rate, and blood pressure histories:
+    /// Three measurements on three sequential days, for three weeks
+    /// The quantity of each measurement differ by increments of 10, and the weight is in pounds
     private func setupPreview() {
-        let dummyHR = HKQuantitySample(
-            type: HKQuantityType(.heartRate),
-            quantity: HKQuantity(unit: .count().unitDivided(by: .minute()), doubleValue: Double(60)),
-            start: .now,
-            end: .now
-        )
-        
-        let diastolic = HKQuantity(unit: .millimeterOfMercury(), doubleValue: Double(120))
-        let systolic = HKQuantity(unit: .millimeterOfMercury(), doubleValue: Double(70))
-        
-        let dummyDiastolic = HKQuantitySample(
-            type: HKQuantityType(.bloodPressureDiastolic),
-            quantity: diastolic, 
-            start: .now,
-            end: .now
-        )
-        let dummySystolic = HKQuantitySample(
-            type: HKQuantityType(.bloodPressureSystolic),
-            quantity: systolic,
-            start: .now,
-            end: .now
-        )
-        let dummyBP = HKCorrelation(
-            type: HKCorrelationType(.bloodPressure),
-            start: .now,
-            end: .now,
-            objects: [dummyDiastolic, dummySystolic]
-        )
-        
-        let dummyWeight = HKQuantitySample(
-            type: HKQuantityType(.bodyMass),
-            quantity: HKQuantity(unit: .gramUnit(with: .kilo), doubleValue: Double(70)),
-            start: .now,
-            end: .now
-        )
-        
-        self.heartRateHistory.append(dummyHR)
-        self.bloodPressureHistory.append(dummyBP)
-        self.weightHistory.append(dummyWeight)
+        for weekOffset in 0..<3 {
+            for dayOffset in 0..<3 {
+                guard let startDateDay = Calendar.current.date(byAdding: .day, value: -dayOffset, to: .now) else {
+                    return
+                }
+                
+                guard let startDate = Calendar.current.date(byAdding: .weekOfYear, value: -weekOffset, to: startDateDay) else {
+                    return
+                }
+                
+                let dummyHR = HKQuantitySample(
+                    type: HKQuantityType(.heartRate),
+                    quantity: HKQuantity(unit: .count().unitDivided(by: .minute()), doubleValue: Double(60 + 10 * dayOffset)),
+                    start: startDate,
+                    end: startDate
+                )
+                
+                let diastolic = HKQuantity(unit: .millimeterOfMercury(), doubleValue: Double(120 + 10 * dayOffset))
+                let systolic = HKQuantity(unit: .millimeterOfMercury(), doubleValue: Double(70 + 10 * dayOffset))
+                
+                let dummyDiastolic = HKQuantitySample(
+                    type: HKQuantityType(.bloodPressureDiastolic),
+                    quantity: diastolic,
+                    start: startDate,
+                    end: startDate
+                )
+                let dummySystolic = HKQuantitySample(
+                    type: HKQuantityType(.bloodPressureSystolic),
+                    quantity: systolic,
+                    start: startDate,
+                    end: startDate
+                )
+                let dummyBP = HKCorrelation(
+                    type: HKCorrelationType(.bloodPressure),
+                    start: startDate,
+                    end: startDate,
+                    objects: [dummyDiastolic, dummySystolic]
+                )
+                
+                let dummyWeight = HKQuantitySample(
+                    type: HKQuantityType(.bodyMass),
+                    quantity: HKQuantity(unit: .pound(), doubleValue: Double(70 + 10 * dayOffset)),
+                    start: startDate,
+                    end: startDate
+                )
+                
+                self.heartRateHistory.append(dummyHR)
+                self.bloodPressureHistory.append(dummyBP)
+                self.weightHistory.append(dummyWeight)
+            }
+        }
     }
 }

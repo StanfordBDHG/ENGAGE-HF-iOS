@@ -50,6 +50,9 @@
 		4D0F389E2C09779100DA12F7 /* ShowMoreButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0F389D2C09779000DA12F7 /* ShowMoreButton.swift */; };
 		4D0F38A22C0A7AD900DA12F7 /* ExpandableText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0F38A12C0A7AD900DA12F7 /* ExpandableText.swift */; };
 		4D19ED012BE5CAFC00CDBAA8 /* MeasurementRecordedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D19ED002BE5CAFC00CDBAA8 /* MeasurementRecordedView.swift */; };
+		4D2D1D5A2C2B7E8D00ABDC19 /* VitalsContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2D1D592C2B7E8D00ABDC19 /* VitalsContentView.swift */; };
+		4D2D1D602C2B859C00ABDC19 /* GraphPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2D1D5F2C2B859C00ABDC19 /* GraphPicker.swift */; };
+		4D2D1D642C2B91B700ABDC19 /* VitalsContentHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2D1D632C2B91B700ABDC19 /* VitalsContentHeader.swift */; };
 		4D49AAFE2BC9D50400C77310 /* BluetoothServices in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49AAFD2BC9D50400C77310 /* BluetoothServices */; };
 		4D49AB002BC9D50400C77310 /* BluetoothViews in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49AAFF2BC9D50400C77310 /* BluetoothViews */; };
 		4D49AB022BC9D50400C77310 /* SpeziBluetooth in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49AB012BC9D50400C77310 /* SpeziBluetooth */; };
@@ -63,6 +66,10 @@
 		4DA20B5C2C26098400715AA2 /* R4Observation+GetEffectiveDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA20B5B2C26098400715AA2 /* R4Observation+GetEffectiveDate.swift */; };
 		4DA20B642C2A0FF100715AA2 /* VitalsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA20B632C2A0FF100715AA2 /* VitalsCard.swift */; };
 		4DA20B692C2B299700715AA2 /* RecentVitalsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA20B682C2B299700715AA2 /* RecentVitalsUITests.swift */; };
+		4DA20B702C2B5C7B00715AA2 /* SymptomOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA20B6F2C2B5C7B00715AA2 /* SymptomOverview.swift */; };
+		4DA20B732C2B5CA500715AA2 /* VitalsGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA20B722C2B5CA500715AA2 /* VitalsGraph.swift */; };
+		4DA20B812C2B6B6F00715AA2 /* BloodPressureGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA20B802C2B6B6F00715AA2 /* BloodPressureGraph.swift */; };
+		4DA20B832C2B6B8A00715AA2 /* WeightAndHeartRateGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA20B822C2B6B8A00715AA2 /* WeightAndHeartRateGraph.swift */; };
 		4DB025CA2BBE3A59002D2545 /* HomeViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB025C92BBE3A59002D2545 /* HomeViewUITests.swift */; };
 		4DB025D52BBF2E08002D2545 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB025D42BBF2E08002D2545 /* Dashboard.swift */; };
 		4DBDD3442BBFAD64001FB0CA /* InvitationCodeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDD3432BBFAD64001FB0CA /* InvitationCodeError.swift */; };
@@ -161,6 +168,9 @@
 		4D0F389D2C09779000DA12F7 /* ShowMoreButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMoreButton.swift; sourceTree = "<group>"; };
 		4D0F38A12C0A7AD900DA12F7 /* ExpandableText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableText.swift; sourceTree = "<group>"; };
 		4D19ED002BE5CAFC00CDBAA8 /* MeasurementRecordedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementRecordedView.swift; sourceTree = "<group>"; };
+		4D2D1D592C2B7E8D00ABDC19 /* VitalsContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalsContentView.swift; sourceTree = "<group>"; };
+		4D2D1D5F2C2B859C00ABDC19 /* GraphPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphPicker.swift; sourceTree = "<group>"; };
+		4D2D1D632C2B91B700ABDC19 /* VitalsContentHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalsContentHeader.swift; sourceTree = "<group>"; };
 		4D49AB052BC9D56900C77310 /* WeightScaleDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightScaleDevice.swift; sourceTree = "<group>"; };
 		4D4AA0A42BC5E43E00676489 /* OnboardingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingUITests.swift; sourceTree = "<group>"; };
 		4DA20B4A2C249E7E00715AA2 /* VitalsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalsManager.swift; sourceTree = "<group>"; };
@@ -171,6 +181,10 @@
 		4DA20B5B2C26098400715AA2 /* R4Observation+GetEffectiveDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "R4Observation+GetEffectiveDate.swift"; sourceTree = "<group>"; };
 		4DA20B632C2A0FF100715AA2 /* VitalsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalsCard.swift; sourceTree = "<group>"; };
 		4DA20B682C2B299700715AA2 /* RecentVitalsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentVitalsUITests.swift; sourceTree = "<group>"; };
+		4DA20B6F2C2B5C7B00715AA2 /* SymptomOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomOverview.swift; sourceTree = "<group>"; };
+		4DA20B722C2B5CA500715AA2 /* VitalsGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalsGraph.swift; sourceTree = "<group>"; };
+		4DA20B802C2B6B6F00715AA2 /* BloodPressureGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloodPressureGraph.swift; sourceTree = "<group>"; };
+		4DA20B822C2B6B8A00715AA2 /* WeightAndHeartRateGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightAndHeartRateGraph.swift; sourceTree = "<group>"; };
 		4DB025C92BBE3A59002D2545 /* HomeViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewUITests.swift; sourceTree = "<group>"; };
 		4DB025D42BBF2E08002D2545 /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		4DBDD3432BBFAD64001FB0CA /* InvitationCodeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationCodeError.swift; sourceTree = "<group>"; };
@@ -379,6 +393,17 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		4DA20B7E2C2B6B5500715AA2 /* GraphViews */ = {
+			isa = PBXGroup;
+			children = (
+				4DA20B6F2C2B5C7B00715AA2 /* SymptomOverview.swift */,
+				4DA20B722C2B5CA500715AA2 /* VitalsGraph.swift */,
+				4DA20B802C2B6B6F00715AA2 /* BloodPressureGraph.swift */,
+				4DA20B822C2B6B8A00715AA2 /* WeightAndHeartRateGraph.swift */,
+			);
+			path = GraphViews;
+			sourceTree = "<group>";
+		};
 		4DB025B52BBDE8EC002D2545 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -442,7 +467,11 @@
 		4DDFC7612BF34FAC002B07A1 /* HeartHealth */ = {
 			isa = PBXGroup;
 			children = (
+				4DA20B7E2C2B6B5500715AA2 /* GraphViews */,
 				4DDFC7682BF35113002B07A1 /* HeartHealth.swift */,
+				4D2D1D592C2B7E8D00ABDC19 /* VitalsContentView.swift */,
+				4D2D1D5F2C2B859C00ABDC19 /* GraphPicker.swift */,
+				4D2D1D632C2B91B700ABDC19 /* VitalsContentHeader.swift */,
 			);
 			path = HeartHealth;
 			sourceTree = "<group>";
@@ -767,6 +796,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DA20B702C2B5C7B00715AA2 /* SymptomOverview.swift in Sources */,
+				4DA20B732C2B5CA500715AA2 /* VitalsGraph.swift in Sources */,
 				2FE5DC4129EDD7EE004B9AB4 /* StorageKeys.swift in Sources */,
 				4D0F389E2C09779100DA12F7 /* ShowMoreButton.swift in Sources */,
 				4D19ED012BE5CAFC00CDBAA8 /* MeasurementRecordedView.swift in Sources */,
@@ -775,6 +806,7 @@
 				4DDFC75D2BF34700002B07A1 /* FullSurveyView.swift in Sources */,
 				A996F4532C11113B002328C5 /* Measurement.swift in Sources */,
 				2FE5DCB129EE6107004B9AB4 /* AccountOnboarding.swift in Sources */,
+				4DA20B832C2B6B8A00715AA2 /* WeightAndHeartRateGraph.swift in Sources */,
 				4DDFC73F2BF2CADD002B07A1 /* FetchingError.swift in Sources */,
 				2FE5DC3A29EDD7CA004B9AB4 /* Welcome.swift in Sources */,
 				4DD823022C17F63C004DC599 /* CloseButtonLayer.swift in Sources */,
@@ -802,6 +834,7 @@
 				4DDFC7592BF34361002B07A1 /* SurveySection.swift in Sources */,
 				2FE5DC4029EDD7EE004B9AB4 /* FeatureFlags.swift in Sources */,
 				2FE5DC4629EDD7F2004B9AB4 /* Bundle+Image.swift in Sources */,
+				4D2D1D642C2B91B700ABDC19 /* VitalsContentHeader.swift in Sources */,
 				4DA20B542C25F8A600715AA2 /* FHIRDateTime+DateComponents.swift in Sources */,
 				4DDFC7672BF350EC002B07A1 /* Medications.swift in Sources */,
 				4DDFC7542BF3408F002B07A1 /* RecentVitalsSection.swift in Sources */,
@@ -813,6 +846,7 @@
 				A96C56BB2C0DFFCE00D6A50B /* InvitationCodeModule.swift in Sources */,
 				A996F4482C1081F8002328C5 /* HealthDevice+HKDevice.swift in Sources */,
 				A96C56BF2C0E334A00D6A50B /* BloodPressureCuffDevice.swift in Sources */,
+				4D2D1D5A2C2B7E8D00ABDC19 /* VitalsContentView.swift in Sources */,
 				4DA20B5A2C25FEDE00715AA2 /* Decimal+IntConversion.swift in Sources */,
 				A996F4552C11117C002328C5 /* ProcessedMeasurement.swift in Sources */,
 				A996F4442C1081A2002328C5 /* WeightMeasurement.Unit+HKUnit.swift in Sources */,
@@ -823,7 +857,9 @@
 				2F65B44E2A3B8B0600A36932 /* NotificationPermissions.swift in Sources */,
 				4D0F38A22C0A7AD900DA12F7 /* ExpandableText.swift in Sources */,
 				2FE5DC2629EDD38A004B9AB4 /* Contacts.swift in Sources */,
+				4D2D1D602C2B859C00ABDC19 /* GraphPicker.swift in Sources */,
 				A996F45A2C11A9D1002328C5 /* WeightMeasurementLabel.swift in Sources */,
+				4DA20B812C2B6B6F00715AA2 /* BloodPressureGraph.swift in Sources */,
 				A996F44F2C10861D002328C5 /* BloodPressureMeasurement+HKSample.swift in Sources */,
 				4DBDD3462BBFAE2D001FB0CA /* InvitationCodeView.swift in Sources */,
 				4DDFC73D2BF2C4FA002B07A1 /* Notification.swift in Sources */,

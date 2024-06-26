@@ -9,15 +9,54 @@
 import SwiftUI
 
 
-struct HeartHealth: View {
-    @Binding var presentingAccount: Bool
+enum GraphSelection: CaseIterable, Identifiable, CustomStringConvertible {
+    case overview
+    case weight
+    case heartRate
+    case bloodPressure
     
+    var id: Self { self }
     
-    var body: some View {
-        Text("Heart health data goes here")
+    var description: String {
+        switch self {
+        case .overview: "Overview"
+        case .weight: "Weight"
+        case .heartRate: "Heart Rate"
+        case .bloodPressure: "Blood Pressure"
+        }
     }
 }
 
+
+struct HeartHealth: View {
+    @Binding var presentingAccount: Bool
+    @State private var currentSelection: GraphSelection = .overview
+    
+    
+    var body: some View {
+        NavigationStack {
+            ScrollView {
+                VStack(alignment: .leading) {
+                    GraphPicker(selection: $currentSelection)
+                    VitalsContentView(currentSelection: currentSelection)
+                    Spacer()
+                }
+            }
+                .navigationTitle("Heart Health")
+                .toolbar {
+                    if AccountButton.shouldDisplay {
+                        AccountButton(isPresented: $presentingAccount)
+                    }
+                }
+                .background(Color(.systemGroupedBackground))
+        }
+    }
+}
+
+
 #Preview {
     HeartHealth(presentingAccount: .constant(false))
+        .previewWith(standard: ENGAGEHFStandard()) {
+            VitalsManager()
+        }
 }

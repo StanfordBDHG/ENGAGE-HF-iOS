@@ -33,9 +33,7 @@ struct HomeView: View {
 
     
     @Environment(MeasurementManager.self) private var measurementManager
-    @Environment(WeightScaleDevice.self) private var weightScale: WeightScaleDevice?
     @Environment(Bluetooth.self) private var bluetooth
-    @Environment(\.dismiss) private var dismiss
     
     @AppStorage(StorageKeys.homeTabSelection) private var selectedTab = Tabs.home
     @State private var presentingAccount = false
