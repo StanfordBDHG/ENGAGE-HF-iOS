@@ -49,10 +49,9 @@ final class RecentVitalsUITests: XCTestCase {
         
         // Weight measurement has been successfully saved, and should be represented in the dashboard
         XCTAssert(app.staticTexts["Recent Vitals"].waitForExistence(timeout: 0.5))
-        XCTAssert(app.staticTexts["Weight"].waitForExistence(timeout: 0.5))
-        XCTAssert(app.staticTexts["Weight Quantity: 92.59"].exists)
-        XCTAssert(app.staticTexts["Weight Units: lb"].exists)
-        XCTAssert(app.staticTexts["Weight Date: \(Date.now.formatted(date: .numeric, time: .omitted))"].exists)
+        XCTAssert(app.staticTexts["Weight Quantity: 92.6"].exists)
+        XCTAssert(app.staticTexts["Weight Unit: lb"].exists)
+        XCTAssert(app.staticTexts["Weight Date: \(Date.now.formatted(date: .numeric, time: .shortened))"].exists)
     }
     
     func testHeartRateAndBloodPressure() throws {
@@ -86,14 +85,12 @@ final class RecentVitalsUITests: XCTestCase {
         // Measurement has been successfully saved, and should be represented in the dashboard
         XCTAssert(app.staticTexts["Recent Vitals"].waitForExistence(timeout: 0.5))
         
-        XCTAssert(app.staticTexts["Heart Rate"].waitForExistence(timeout: 0.5))
         XCTAssert(app.staticTexts["Heart Rate Quantity: 62"].exists)
-        XCTAssert(app.staticTexts["Heart Rate Units: bpm"].exists)
-        XCTAssert(app.staticTexts["Heart Rate Date: 6/5/2024"].exists)
+        XCTAssert(app.staticTexts["Heart Rate Unit: BPM"].exists)
+        XCTAssert(app.staticTexts["Heart Rate Date: 6/5/2024, 12:33 PM"].exists)
         
-        XCTAssert(app.staticTexts["Blood Pressure"].waitForExistence(timeout: 0.5))
         XCTAssert(app.staticTexts["Blood Pressure Quantity: 103/64"].exists)
-        XCTAssert(app.staticTexts["Blood Pressure Units: mmHg"].exists)
-        XCTAssert(app.staticTexts["Blood Pressure Date: 6/5/2024"].exists)
+        XCTAssert(app.staticTexts["Blood Pressure Unit: mmHg"].exists)
+        XCTAssert(app.staticTexts["Blood Pressure Date: 6/5/2024, 12:33 PM"].exists)
     }
 }
