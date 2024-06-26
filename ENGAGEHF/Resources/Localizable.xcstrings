@@ -4,6 +4,16 @@
     "%@" : {
 
     },
+    "%@ %@: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@: %3$@"
+          }
+        }
+      }
+    },
     "%@ Date: %@" : {
       "localizations" : {
         "en" : {
@@ -24,12 +34,12 @@
         }
       }
     },
-    "%@ Units: %@" : {
+    "%@ Unit: %@" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "%1$@ Units: %2$@"
+            "value" : "%1$@ Unit: %2$@"
           }
         }
       }
@@ -197,12 +207,6 @@
           }
         }
       }
-    },
-    "Heart Health" : {
-
-    },
-    "Heart health data goes here" : {
-
     },
     "Home" : {
 
@@ -376,10 +380,20 @@
     "Measurement Recorded" : {
 
     },
-    "Medications" : {
+    "No recent %@ %@ available" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "No recent %1$@ %2$@ available"
+          }
+        }
+      }
+    },
+    "No recent %@ measurement available" : {
 
     },
-    "Medications go here." : {
+    "No vitals" : {
 
     },
     "NOTIFICATION_PERMISSIONS_BUTTON" : {

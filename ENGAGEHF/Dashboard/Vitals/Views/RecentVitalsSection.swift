@@ -23,16 +23,32 @@ struct RecentVitalsSection: View {
         }
     }
     
-    private var weightDescription: String? {
-        if let weightMeasurement = vitalsManager.latestWeight {
-            return String(format: "%.1f", weightMeasurement.quantity.doubleValue(for: massUnits))
+    private var weightMeasurement: (value: String, date: String)? {
+        if let measurement = vitalsManager.latestWeight {
+            return (
+                String(format: "%.1f", measurement.quantity.doubleValue(for: massUnits)),
+                measurement.startDate.formatted(date: .numeric, time: .shortened)
+            )
         }
         return nil
     }
     
-    private var heartRateDescription: String? {
-        if let heartRateMeasurement = vitalsManager.latestHeartRate {
-            return Int(heartRateMeasurement.quantity.doubleValue(for: .count().unitDivided(by: .minute()))).description
+    private var heartRateMeasurement: (value: String, date: String)? {
+        if let measurement = vitalsManager.latestHeartRate {
+            return (
+                Int(measurement.quantity.doubleValue(for: .count().unitDivided(by: .minute()))).description,
+                measurement.startDate.formatted(date: .numeric, time: .shortened)
+            )
+        }
+        return nil
+    }
+    
+    private var bloodPressureMeasurement: (value: String, date: String)? {
+        if let measurement = vitalsManager.latestBloodPressure {
+            return (
+                self.getBloodPressureDisplay(bloodPressureSample: measurement),
+                measurement.startDate.formatted(date: .numeric, time: .shortened)
+            )
         }
         return nil
     }
@@ -44,29 +60,20 @@ struct RecentVitalsSection: View {
                 VStack {
                     HStack {
                         VitalsCard(
-                            measurement: (
-                                type: "Weight",
-                                value: weightDescription
-                            ),
+                            type: "Weight",
                             units: massUnits.unitString,
-                            date: vitalsManager.latestWeight?.startDate
+                            measurement: weightMeasurement
                         )
                         VitalsCard(
-                            measurement: (
-                                type: "Heart Rate",
-                                value: heartRateDescription
-                            ),
+                            type: "Heart Rate",
                             units: "BPM",
-                            date: vitalsManager.latestHeartRate?.startDate
+                            measurement: heartRateMeasurement
                         )
                     }
                     VitalsCard(
-                        measurement: (
-                            type: "Blood Pressure",
-                            value: self.getBloodPressureDisplay(bloodPressureSample: vitalsManager.latestBloodPressure)
-                        ),
+                        type: "Blood Pressure",
                         units: "mmHg",
-                        date: vitalsManager.latestBloodPressure?.startDate
+                        measurement: bloodPressureMeasurement
                     )
                 }
             },
@@ -78,11 +85,7 @@ struct RecentVitalsSection: View {
     }
     
     
-    private func getBloodPressureDisplay(bloodPressureSample: HKCorrelation?) -> String? {
-        guard let bloodPressureSample else {
-            return nil
-        }
-        
+    private func getBloodPressureDisplay(bloodPressureSample: HKCorrelation) -> String {
         var bloodPressureQuantitySamples: [HKQuantitySample] {
             bloodPressureSample.objects
                 .compactMap { sample in
@@ -103,7 +106,7 @@ struct RecentVitalsSection: View {
            let diastolic {
             return "\(Int(systolic.quantity.doubleValue(for: .millimeterOfMercury())))/\(Int(diastolic.quantity.doubleValue(for: .millimeterOfMercury())))"
         } else {
-            return nil
+            return "ERROR"
         }
     }
 }

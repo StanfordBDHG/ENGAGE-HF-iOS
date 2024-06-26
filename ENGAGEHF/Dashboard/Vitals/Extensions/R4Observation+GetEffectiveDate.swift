@@ -34,10 +34,10 @@ extension Observation {
             /// .period represents a potentially indefinite time interval
             /// Must have a start date - end date optional
             return period.getDates()
-        case .timing(let timing):
+        case .timing:
             /// .timing represents a repeating schedule of events
-            /// Take the earliest of the events as the start time, end time is indefinite
-            return timing.getDates()
+            /// Future work: Interpret .timing to accurately set start/end date in this format
+            return nil
         }
         
         return nil
