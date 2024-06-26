@@ -153,9 +153,6 @@
     "Education" : {
 
     },
-    "Fill in rest of survey here." : {
-
-    },
     "HEALTHKIT_PERMISSIONS_BUTTON" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -350,9 +347,6 @@
     "Invitation Code" : {
 
     },
-    "KCCQ-12 Symptom Survey" : {
-
-    },
     "LELAND_STANFORD_BIO" : {
       "localizations" : {
         "en" : {
@@ -442,12 +436,6 @@
 
     },
     "Save" : {
-
-    },
-    "Survey" : {
-
-    },
-    "Survey: %@" : {
 
     },
     "The invitation code is invalid or has already been used." : {

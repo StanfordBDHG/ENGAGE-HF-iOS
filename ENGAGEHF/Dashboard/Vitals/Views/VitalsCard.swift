@@ -11,41 +11,68 @@ import SwiftUI
 
 
 struct VitalsCard: View {
-    @ScaledMetric private var quantityTextSize: CGFloat = 20
+    private struct UnitsStyle: ViewModifier {
+        func body(content: Content) -> some View {
+            content
+                .font(.title2)
+                .foregroundStyle(Color.secondary)
+        }
+    }
     
-    let quantity: String?
-    let units: String?
-    let type: String?
-    let date: Date?
+    private struct MeasurementStyle: ViewModifier {
+        @ScaledMetric private var measurementTextSize: CGFloat = 40
+        
+        func body(content: Content) -> some View {
+            content
+                .font(.system(size: measurementTextSize, weight: .semibold, design: .rounded))
+        }
+    }
+    
+    private struct DateStyle: ViewModifier {
+        func body(content: Content) -> some View {
+            content
+                .font(.caption)
+                .foregroundStyle(Color.secondary)
+        }
+    }
     
     private var displayDate: String? {
-        date?.formatted(date: .numeric, time: .omitted)
+        date?.formatted(date: .numeric, time: .shortened)
     }
+    
+    
+    let measurement: (type: String, value: String?)
+    let units: String?
+    let date: Date?
+    
+    private let cardHeight: CGFloat = 80
     
     
     var body: some View {
         StudyApplicationListCard {
-            VStack(alignment: .center, spacing: 10) {
-                Text(type ?? "--")
-                    .font(.headline)
-                    .foregroundColor(.primary)
-                    .multilineTextAlignment(.center)
-                HStack {
-                    Text(quantity ?? "--")
-                        .font(.system(size: quantityTextSize, weight: .semibold, design: .rounded))
-                        .multilineTextAlignment(.center)
-                        .accessibilityLabel("\(type ?? "--") Quantity: \(quantity ?? "--")")
-                    Text(units ?? "--")
-                        .font(.subheadline)
-                        .foregroundStyle(Color.secondary)
-                        .multilineTextAlignment(.center)
-                        .accessibilityLabel("\(type ?? "--") Units: \(units ?? "--")")
+            VStack(alignment: .center, spacing: 7) {
+                HStack(alignment: .firstTextBaseline, spacing: 4) {
+                    VitalsCardText(
+                        quantityValue: measurement.value,
+                        vitalType: measurement.type,
+                        component: "Quantity",
+                        style: MeasurementStyle()
+                    )
+                    VitalsCardText(
+                        quantityValue: units,
+                        vitalType: measurement.type,
+                        component: "Unit",
+                        style: UnitsStyle()
+                    )
                 }
-                Text(displayDate ?? "--")
-                    .multilineTextAlignment(.center)
-                    .accessibilityLabel("\(type ?? "--") Date: \(displayDate ?? "--")")
+                VitalsCardText(
+                    quantityValue: displayDate,
+                    vitalType: measurement.type,
+                    component: "Date",
+                    style: DateStyle()
+                )
             }
-                .frame(maxWidth: .infinity, idealHeight: 100.0, maxHeight: .infinity)
+                .frame(maxWidth: .infinity, idealHeight: cardHeight, maxHeight: .infinity)
         }
     }
 }
@@ -60,9 +87,11 @@ struct VitalsCard: View {
     )
     
     return VitalsCard(
-        quantity: "\(dummyWeight.quantity.doubleValue(for: .pound()))",
-        units: "lb",
-        type: "Weight",
+        measurement: (
+            type: "Weight",
+            value: "\(dummyWeight.quantity.doubleValue(for: .gramUnit(with: .kilo)))"
+        ),
+        units: "kg",
         date: dummyWeight.startDate
     )
 }
@@ -76,9 +105,11 @@ struct VitalsCard: View {
     )
     
     return VitalsCard(
-        quantity: "\(dummyHR.quantity.doubleValue(for: .count().unitDivided(by: .minute())))",
+        measurement: (
+            type: "Heart Rate",
+            value: "\(dummyHR.quantity.doubleValue(for: .count().unitDivided(by: .minute())))"
+        ),
         units: "BPM",
-        type: "Heart Rate",
         date: dummyHR.startDate
     )
 }
@@ -101,9 +132,11 @@ struct VitalsCard: View {
     )
     
     return VitalsCard(
-        quantity: "\(dummySystolic.quantity.doubleValue(for: .millimeterOfMercury()))/\(dummyDiastolic.quantity.doubleValue(for: .millimeterOfMercury()))",
+        measurement: (
+            type: "Blood Pressure",
+            value: "\(Int(dummySystolic.quantity.doubleValue(for: .millimeterOfMercury())))/\(Int(dummyDiastolic.quantity.doubleValue(for: .millimeterOfMercury())))"
+        ),
         units: "mmHg",
-        type: "Blood Pressure",
         date: dummyDiastolic.startDate
     )
 }

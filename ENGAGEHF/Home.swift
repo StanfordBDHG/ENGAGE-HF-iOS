@@ -50,16 +50,6 @@ struct HomeView: View {
                 .tabItem {
                     Label("Home", systemImage: "house")
                 }
-            HeartHealth(presentingAccount: $presentingAccount)
-                .tag(Tabs.heart)
-                .tabItem {
-                    Label("Heart Health", systemImage: "heart")
-                }
-            Medications(presentingAccount: $presentingAccount)
-                .tag(Tabs.medications)
-                .tabItem {
-                    Label("Medications", systemImage: "pill")
-                }
             Education(presentingAccount: $presentingAccount)
                 .tag(Tabs.education)
                 .tabItem {
@@ -94,6 +84,7 @@ struct HomeView: View {
             Bluetooth {
                 Discover(WeightScaleDevice.self, by: .advertisedService(WeightScaleService.self))
             }
+            VitalsManager()
         }
 }
 #endif

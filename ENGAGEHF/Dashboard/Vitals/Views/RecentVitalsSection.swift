@@ -25,7 +25,7 @@ struct RecentVitalsSection: View {
     
     private var weightDescription: String? {
         if let weightMeasurement = vitalsManager.latestWeight {
-            return String(format: "%.2f", weightMeasurement.quantity.doubleValue(for: massUnits))
+            return String(format: "%.1f", weightMeasurement.quantity.doubleValue(for: massUnits))
         }
         return nil
     }
@@ -44,22 +44,28 @@ struct RecentVitalsSection: View {
                 VStack {
                     HStack {
                         VitalsCard(
-                            quantity: weightDescription,
+                            measurement: (
+                                type: "Weight",
+                                value: weightDescription
+                            ),
                             units: massUnits.unitString,
-                            type: "Weight",
                             date: vitalsManager.latestWeight?.startDate
                         )
                         VitalsCard(
-                            quantity: heartRateDescription,
-                            units: "bpm",
-                            type: "Heart Rate",
+                            measurement: (
+                                type: "Heart Rate",
+                                value: heartRateDescription
+                            ),
+                            units: "BPM",
                             date: vitalsManager.latestHeartRate?.startDate
                         )
                     }
                     VitalsCard(
-                        quantity: self.getBloodPressureDisplay(bloodPressureSample: vitalsManager.latestBloodPressure),
+                        measurement: (
+                            type: "Blood Pressure",
+                            value: self.getBloodPressureDisplay(bloodPressureSample: vitalsManager.latestBloodPressure)
+                        ),
                         units: "mmHg",
-                        type: "Blood Pressure",
                         date: vitalsManager.latestBloodPressure?.startDate
                     )
                 }

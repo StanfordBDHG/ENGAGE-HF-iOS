@@ -40,7 +40,6 @@ public class VitalsManager: Module, EnvironmentAccessible {
     private var authStateDidChangeListenerHandle: AuthStateDidChangeListenerHandle?
     private var snapshotListener: ListenerRegistration?
     
-    // TODO: Localize the units based on either locale or user preferences in the phone settings
     public var heartRateHistory: [HKQuantitySample] = []
     public var bloodPressureHistory: [HKCorrelation] = []
     public var weightHistory: [HKQuantitySample] = []
@@ -59,7 +58,6 @@ public class VitalsManager: Module, EnvironmentAccessible {
     
     /// Call on initial configuration:
     /// - Add a snapshot listener to the three health data collections
-    /// - Set the default units to the user's localized preferences
     public func configure() {
         if ProcessInfo.processInfo.isPreviewSimulator {
             self.setupPreview()
@@ -183,13 +181,13 @@ public class VitalsManager: Module, EnvironmentAccessible {
             throw VitalsError.invalidObservationType
         }
         
-        let (startDate, endDate) = observation.getEffectiveDate()
+        let effectiveDate = observation.getEffectiveDate()
         
-        guard let startDate, let endDate else {
+        guard let effectiveDate else {
             throw VitalsError.invalidConversion
         }
         
-        return HKQuantitySample(type: quantityType, quantity: hkQuantity, start: startDate, end: endDate)
+        return HKQuantitySample(type: quantityType, quantity: hkQuantity, start: effectiveDate.start, end: effectiveDate.end)
     }
     
     private func convertToHKCorrelation(_ observation: R4Observation) throws -> HKCorrelation {
@@ -199,9 +197,9 @@ public class VitalsManager: Module, EnvironmentAccessible {
             throw VitalsError.invalidObservationType
         }
         
-        let (startDate, endDate) = observation.getEffectiveDate()
+        let effectiveDate = observation.getEffectiveDate()
         
-        guard let startDate, let endDate else {
+        guard let effectiveDate else {
             throw VitalsError.invalidConversion
         }
         
@@ -219,20 +217,20 @@ public class VitalsManager: Module, EnvironmentAccessible {
         let systolicSample = HKQuantitySample(
             type: HKQuantityType(.bloodPressureSystolic),
             quantity: systolicQuantity,
-            start: startDate,
-            end: endDate
+            start: effectiveDate.start,
+            end: effectiveDate.end
         )
         let diastolicSample = HKQuantitySample(
             type: HKQuantityType(.bloodPressureDiastolic),
             quantity: diastolicQuantity,
-            start: startDate,
-            end: endDate
+            start: effectiveDate.start,
+            end: effectiveDate.end
         )
         
         return HKCorrelation(
             type: HKCorrelationType(.bloodPressure),
-            start: startDate,
-            end: endDate,
+            start: effectiveDate.start,
+            end: effectiveDate.end,
             objects: [systolicSample, diastolicSample]
         )
     }
@@ -264,7 +262,7 @@ public class VitalsManager: Module, EnvironmentAccessible {
             throw VitalsError.invalidConversion
         }
         
-        let quantity = NSDecimalNumber(decimal: sampleQuantity).doubleValue
+        let quantity = sampleQuantity.doubleValue
         
         let units: HKUnit
         switch fhirQuantity.unit?.value?.string {
@@ -290,7 +288,7 @@ public class VitalsManager: Module, EnvironmentAccessible {
             throw VitalsError.invalidConversion
         }
         
-        let quantity = NSDecimalNumber(decimal: sampleQuantity).doubleValue
+        let quantity = sampleQuantity.doubleValue
         
         let units: HKUnit
         switch fhirQuantity.unit?.value?.string {

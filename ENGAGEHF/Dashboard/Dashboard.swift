@@ -20,7 +20,6 @@ struct Dashboard: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                // TODO: Make the headers sticky?
                 LazyVStack(alignment: .leading, spacing: 20) {
                     // Notifications
                     NotificationSection()
@@ -62,6 +61,7 @@ struct Dashboard: View {
         .previewWith(standard: ENGAGEHFStandard()) {
             NotificationManager()
             MeasurementManager()
+            VitalsManager()
         }
 }
 #endif

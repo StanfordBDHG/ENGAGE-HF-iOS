@@ -10,6 +10,7 @@ import Foundation
 import struct ModelsR4.DateTime
 
 
+/// Include representatino of DateTime as DateComponents for easy conversion to Date type
 extension DateTime {
     var dateComponents: DateComponents {
         var components = DateComponents()
@@ -32,5 +33,13 @@ extension DateTime {
         components.timeZone = self.timeZone
         
         return components
+    }
+}
+
+
+/// Convert DateTime to Date
+extension DateTime {
+    func getDate() -> Date? {
+        Calendar.current.date(from: self.dateComponents)
     }
 }
