@@ -110,6 +110,12 @@
     "An invitation code is at least 8 characters long." : {
 
     },
+    "Blood Pressure Here" : {
+
+    },
+    "bpm" : {
+
+    },
     "Close" : {
       "comment" : "For closing sheets."
     },
@@ -147,13 +153,34 @@
     "Content ..." : {
 
     },
+    "Daily" : {
+
+    },
+    "Date" : {
+
+    },
+    "Date Resolution" : {
+
+    },
+    "Date type: %@" : {
+
+    },
     "Discard" : {
 
     },
     "Education" : {
 
     },
+    "Error" : {
+
+    },
+    "ERROR: Invalid graph selection." : {
+
+    },
     "Fill in rest of survey here." : {
+
+    },
+    "Graph Selection" : {
 
     },
     "HEALTHKIT_PERMISSIONS_BUTTON" : {
@@ -204,7 +231,7 @@
     "Heart Health" : {
 
     },
-    "Heart health data goes here" : {
+    "Hello, World!" : {
 
     },
     "Home" : {
@@ -388,6 +415,12 @@
     "Medications go here." : {
 
     },
+    "mmHg" : {
+
+    },
+    "Monthly" : {
+
+    },
     "NOTIFICATION_PERMISSIONS_BUTTON" : {
       "localizations" : {
         "en" : {
@@ -450,6 +483,81 @@
     "Survey: %@" : {
 
     },
+    "Symptom Overview" : {
+
+    },
+    "symptomOverall" : {
+      "comment" : "For Heart Health view",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This score shows how your heart failure affects you overall. You can score 0 to 100. A higher score means you are doing better. Over 80 is often considered doing well.\n\nA goal of heart medicines is to improve this score over time or keep it from decreasing. "
+          }
+        }
+      }
+    },
+    "symptomPhysical" : {
+      "comment" : "For Heart Health view",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This represents how your heart affects your ability to do activity. Higher scores mean you are less limited, and over 80 is often considered doing well."
+          }
+        }
+      }
+    },
+    "symptomQuality" : {
+      "comment" : "For Heart Health view",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This score represents how content you are with your heart symptoms. Higher scores mean you are overall more content, while lower scores mean you are less satisfied with how you are doing. "
+          }
+        }
+      }
+    },
+    "symptomsDizziness" : {
+      "comment" : "For Heart Health view",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your dizziness is important to keep track of because dizziness can be a side effect of your heart or your heart medicines."
+          }
+        }
+      }
+    },
+    "symptomSocial" : {
+      "comment" : "For Heart Health view",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This score represents how your heart affects your ability to do social activities. Higher scores mean you are able to do more, while lower scores mean you are more limited by your heart."
+          }
+        }
+      }
+    },
+    "symptomSpecific" : {
+      "comment" : "For Heart Health view",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This represents the frequency you are experiencing heart-related symptoms. Higher scores mean less frequent symptoms and lower scores mean more frequent symptoms."
+          }
+        }
+      }
+    },
     "The invitation code is invalid or has already been used." : {
       "comment" : "Invitation Code Invalid"
     },
@@ -467,6 +575,45 @@
     },
     "User not authenticated. Please sign in an try again." : {
       "comment" : "User Not Authenticated"
+    },
+    "vitalsBloodPressure" : {
+      "comment" : "For Heart Health view",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Blood Pressure description. This is blood pressure. This will describe all about blood pressure, and how it pertains to the heart. Lots of words, the real description will probably be shorter than this."
+          }
+        }
+      }
+    },
+    "vitalsHeartRate" : {
+      "comment" : "For Heart Health view",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heart Rate description. This is a description about heart rate. The rate at which the heart hearts. Long text that has many works makes the view look more like what it might actually look like."
+          }
+        }
+      }
+    },
+    "vitalsWeight" : {
+      "comment" : "For Heart Health view",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weight description goes here. This is a long text that includes many words about many things. The weight and the meaning of weight is described here."
+          }
+        }
+      }
+    },
+    "Weekly" : {
+
     },
     "WELCOME_AREA1_DESCRIPTION" : {
       "localizations" : {

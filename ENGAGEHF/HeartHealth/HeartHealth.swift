@@ -10,7 +10,7 @@ import SwiftUI
 
 
 enum GraphSelection: CaseIterable, Identifiable, CustomStringConvertible {
-    case overview
+    case symptoms
     case weight
     case heartRate
     case bloodPressure
@@ -19,10 +19,19 @@ enum GraphSelection: CaseIterable, Identifiable, CustomStringConvertible {
     
     var description: String {
         switch self {
-        case .overview: "Overview"
+        case .symptoms: "Overview"
         case .weight: "Weight"
         case .heartRate: "Heart Rate"
         case .bloodPressure: "Blood Pressure"
+        }
+    }
+    
+    var explanation: String {
+        switch self {
+        case .symptoms: "symptomOverall"
+        case .weight: "vitalsWeight"
+        case .heartRate: "vitalsHeartRate"
+        case .bloodPressure: "vitalsBloodPressure"
         }
     }
 }
@@ -30,16 +39,15 @@ enum GraphSelection: CaseIterable, Identifiable, CustomStringConvertible {
 
 struct HeartHealth: View {
     @Binding var presentingAccount: Bool
-    @State private var currentSelection: GraphSelection = .overview
+    @State private var vitalSelection: GraphSelection = .overview
     
     
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading) {
-                    GraphPicker(selection: $currentSelection)
-                    VitalsContentView(currentSelection: currentSelection)
-                    Spacer()
+                    GraphPicker(selection: $vitalSelection)
+                    HeartHealthContentView(selection: vitalSelection)
                 }
             }
                 .navigationTitle("Heart Health")

@@ -11,10 +11,8 @@ import HealthKit
 import SwiftUI
 
 
-struct WeightAndHeartRateGraph: View {
-    var data: [HKQuantitySample]
-    var units: HKUnit
-    @Binding var dateResolution: Calendar.Component
+struct HKSampleGraph: View {
+    var data: [HKSample]
     
     
     // The lower range to display on the Y-Axis in the chart
@@ -64,7 +62,7 @@ struct WeightAndHeartRateGraph: View {
             WeightAndHeartRateGraph(
                 data: vitalsManager.weightHistory,
                 units: .pound(),
-                dateResolution: .constant(.day)
+                dateResolution: .day
             )
         }
     }

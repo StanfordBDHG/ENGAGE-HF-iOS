@@ -12,6 +12,7 @@ import SwiftUI
 struct GraphPicker: View {
     @Binding var selection: GraphSelection
     
+    
     var body: some View {
         Picker("Graph Selection", selection: $selection) {
             ForEach(GraphSelection.allCases) { selection in
