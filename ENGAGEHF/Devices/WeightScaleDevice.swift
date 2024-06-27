@@ -35,6 +35,8 @@ class WeightScaleDevice: BluetoothDevice, Identifiable, OmronHealthDevice {
     @Dependency private var measurements: HealthMeasurements?
     @Dependency private var pairedDevices: PairedDevices?
 
+    private var dateOfConnection: Date?
+
     var icon: ImageReference? {
         .asset("Omron-SC-150")
     }
@@ -59,16 +61,38 @@ class WeightScaleDevice: BluetoothDevice, Identifiable, OmronHealthDevice {
     }
 
     private func handleStateChange(_ state: PeripheralState) async {
-        if case .connected = state { // TODO: is paired?
-            time.synchronizeDeviceTime()
+        switch state {
+        case .connected:
+            switch manufacturerData?.pairingMode {
+            case .pairingMode:
+                print("Device connection is NOW!")
+                dateOfConnection = .now
+            case .transferMode:
+                time.synchronizeDeviceTime()
+            case nil:
+                break
+            }
+        default:
+            break
         }
     }
 
     @MainActor
     private func handleCurrentTimeChange(_ time: CurrentTime) {
-        // TODO: paired is successful even before Pair button is pressed?
-        Self.logger.debug("Updated device time for \(self.label) is \(String(describing: time))")
-        pairedDevices?.signalDevicePaired(self)
+        if case .pairingMode = manufacturerData?.pairingMode,
+           let dateOfConnection,
+           abs(Date.now.timeIntervalSince1970 - dateOfConnection.timeIntervalSince1970) < 1 {
+            // if its pairing mode, and we just connected, we ignore the first current time notification as its triggered
+            // because of the notification registration.
+            return
+        }
+
+        Self.logger.debug("Received updated device time for \(self.label): \(String(describing: time))")
+        let paired = pairedDevices?.signalDevicePaired(self) == true
+        if paired {
+            dateOfConnection = nil
+            self.time.synchronizeDeviceTime()
+        }
     }
 }
 

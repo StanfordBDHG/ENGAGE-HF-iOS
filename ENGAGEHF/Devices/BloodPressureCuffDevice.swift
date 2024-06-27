@@ -64,7 +64,8 @@ class BloodPressureCuffDevice: BluetoothDevice, Identifiable, OmronHealthDevice,
     }
 
     private func handleStateChange(_ state: PeripheralState) async {
-        if case .connected = state { // TODO: only after pairing completed?
+        if case .connected = state,
+           case .transferMode = manufacturerData?.pairingMode {
             time.synchronizeDeviceTime()
         }
     }
@@ -76,8 +77,12 @@ class BloodPressureCuffDevice: BluetoothDevice, Identifiable, OmronHealthDevice,
 
     @MainActor
     private func handleCurrentTimeChange(_ time: CurrentTime) {
-        Self.logger.debug("Updated device time for \(self.label) is \(String(describing: time))")
-        pairedDevices?.signalDevicePaired(self)
+        Self.logger.debug("Received updated device time for \(self.label) is \(String(describing: time))")
+        let paired = pairedDevices?.signalDevicePaired(self)
+
+        if paired == true {
+            self.time.synchronizeDeviceTime()
+        }
     }
 }
 

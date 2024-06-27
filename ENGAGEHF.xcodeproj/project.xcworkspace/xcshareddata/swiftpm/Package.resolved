@@ -214,7 +214,7 @@
       "location" : "https://github.com/StanfordSpezi/SpeziBluetooth.git",
       "state" : {
         "branch" : "feature/accessory-discovery",
-        "revision" : "1447d5cc71bb15ed50aea0c2d857be3059b45057"
+        "revision" : "94b13eea099ab0c47480fd5fc97224d138abd6b4"
       }
     },
     {
@@ -232,7 +232,7 @@
       "location" : "https://github.com/StanfordSpezi/SpeziDevices.git",
       "state" : {
         "branch" : "feature/initial-project-setup",
-        "revision" : "0d2c3b1a85375be9e32f37e3e9f35ad53d06b300"
+        "revision" : "c349ac0f48a9e5cb69dff6a93019c089a57a0ab2"
       }
     },
     {
