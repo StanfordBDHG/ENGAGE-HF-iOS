@@ -121,8 +121,8 @@ public class VitalsManager: Module, EnvironmentAccessible {
         storage: ReferenceWritableKeyPath<VitalsManager, [T]>,
         mapObservation: @escaping (R4Observation) throws -> T
     ) -> ListenerRegistration {
-        // Listen for Weight measurements
-        let listener = collectionReference
+        // Return a listener for the given collection
+        collectionReference
             .addSnapshotListener { querySnapshot, error in
                 self.logger.debug("Fetching most recent \(collectionReference.collectionID) history...")
                 guard let documentRefs = querySnapshot?.documents else {
@@ -141,8 +141,6 @@ public class VitalsManager: Module, EnvironmentAccessible {
                 
                 self.logger.debug("\(collectionReference.collectionID) history updated successfully.")
             }
-        
-        return listener
     }
     
     

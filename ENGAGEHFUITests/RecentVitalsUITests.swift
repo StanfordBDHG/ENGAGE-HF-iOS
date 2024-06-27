@@ -56,7 +56,7 @@ final class RecentVitalsUITests: XCTestCase {
         for minuteOffset in 0...3 {
             if let offsetDate = Calendar.current.date(byAdding: .minute, value: -minuteOffset, to: .now) {
                 if app.staticTexts["Weight Date: \(offsetDate.formatted(date: .numeric, time: .shortened))"].exists {
-                    XCTAssert(true)
+                    // The date is present and correctly formatted, so end the test with a success
                     return
                 }
             }

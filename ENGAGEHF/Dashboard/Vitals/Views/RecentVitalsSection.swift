@@ -24,33 +24,36 @@ struct RecentVitalsSection: View {
     }
     
     private var weightMeasurement: (value: String, date: String)? {
-        if let measurement = vitalsManager.latestWeight {
-            return (
-                String(format: "%.1f", measurement.quantity.doubleValue(for: massUnits)),
-                measurement.startDate.formatted(date: .numeric, time: .shortened)
-            )
+        guard let measurement = vitalsManager.latestWeight else {
+            return nil
         }
-        return nil
+        
+        return (
+            String(format: "%.1f", measurement.quantity.doubleValue(for: massUnits)),
+            measurement.startDate.formatted(date: .numeric, time: .shortened)
+        )
     }
     
     private var heartRateMeasurement: (value: String, date: String)? {
-        if let measurement = vitalsManager.latestHeartRate {
-            return (
-                Int(measurement.quantity.doubleValue(for: .count().unitDivided(by: .minute()))).description,
-                measurement.startDate.formatted(date: .numeric, time: .shortened)
-            )
+        guard let measurement = vitalsManager.latestHeartRate else {
+            return nil
         }
-        return nil
+        
+        return (
+            Int(measurement.quantity.doubleValue(for: .count().unitDivided(by: .minute()))).description,
+            measurement.startDate.formatted(date: .numeric, time: .shortened)
+        )
     }
     
     private var bloodPressureMeasurement: (value: String, date: String)? {
-        if let measurement = vitalsManager.latestBloodPressure {
-            return (
-                self.getBloodPressureDisplay(bloodPressureSample: measurement),
-                measurement.startDate.formatted(date: .numeric, time: .shortened)
-            )
+        guard let measurement = vitalsManager.latestBloodPressure else {
+            return nil
         }
-        return nil
+        
+        return (
+            self.getBloodPressureDisplay(bloodPressureSample: measurement),
+            measurement.startDate.formatted(date: .numeric, time: .shortened)
+        )
     }
     
     
@@ -102,12 +105,11 @@ struct RecentVitalsSection: View {
                 .first(where: { $0.quantityType == HKQuantityType(.bloodPressureDiastolic) })
         }
         
-        if let systolic,
-           let diastolic {
-            return "\(Int(systolic.quantity.doubleValue(for: .millimeterOfMercury())))/\(Int(diastolic.quantity.doubleValue(for: .millimeterOfMercury())))"
-        } else {
+        guard let systolic, let diastolic else {
             return "ERROR"
         }
+        
+        return "\(Int(systolic.quantity.doubleValue(for: .millimeterOfMercury())))/\(Int(diastolic.quantity.doubleValue(for: .millimeterOfMercury())))"
     }
 }
 
