@@ -72,6 +72,7 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint, A
             return
         }
 
+        logger.debug("Saving \(samples.count) samples to firestore ...")
         let userDocument = try await userDocumentReference
 
         do {

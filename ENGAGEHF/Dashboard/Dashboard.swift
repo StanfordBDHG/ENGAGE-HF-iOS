@@ -50,6 +50,9 @@ struct Dashboard: View {
                             Button("Trigger Blood Pressure Measurement", systemImage: "drop.fill") {
                                 measurements.loadMockBloodPressureMeasurement()
                             }
+                            Button("Show Measurements", systemImage: "heart.text.square") {
+                                measurements.shouldPresentMeasurements = true
+                            }
                         }
                     }
                 }

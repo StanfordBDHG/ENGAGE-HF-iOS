@@ -272,10 +272,10 @@
 		2FE5DC2D29EDD792004B9AB4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				653A255428338800005D4D48 /* Assets.xcassets */,
-				2FA0BFEC2ACC977500E0EF83 /* Localizable.xcstrings */,
-				2FE5DC2C29EDD78E004B9AB4 /* ConsentDocument.md */,
 				2FE5DC2A29EDD78D004B9AB4 /* AppIcon.png */,
+				653A255428338800005D4D48 /* Assets.xcassets */,
+				2FE5DC2C29EDD78E004B9AB4 /* ConsentDocument.md */,
+				2FA0BFEC2ACC977500E0EF83 /* Localizable.xcstrings */,
 				2FE5DC5529EDD811004B9AB4 /* SocialSupportQuestionnaire.json */,
 			);
 			path = Resources;
@@ -1098,7 +1098,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.bdh.engagehf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Stanford BDHG ENGAGE-HF";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -1313,8 +1312,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/StanfordBDHG/XCTestExtensions.git";
 			requirement = {
-				branch = "feature/xctassert-throws-async";
-				kind = branch;
+				kind = upToNextMinorVersion;
+				minimumVersion = 0.4.11;
 			};
 		};
 		2FE5DC9A29EDD9EF004B9AB4 /* XCRemoteSwiftPackageReference "XCTHealthKit" */ = {
@@ -1329,8 +1328,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/StanfordSpezi/SpeziBluetooth.git";
 			requirement = {
-				branch = "feature/accessory-discovery";
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
 			};
 		};
 		5661551B2AB8384200209B80 /* XCRemoteSwiftPackageReference "swift-package-list" */ = {

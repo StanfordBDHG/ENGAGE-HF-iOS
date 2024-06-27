@@ -214,7 +214,7 @@
       "location" : "https://github.com/StanfordSpezi/SpeziBluetooth.git",
       "state" : {
         "branch" : "feature/accessory-discovery",
-        "revision" : "94b13eea099ab0c47480fd5fc97224d138abd6b4"
+        "revision" : "b93d32a603534b638eafab1c030b0dcdfc1fc10b"
       }
     },
     {
@@ -232,7 +232,7 @@
       "location" : "https://github.com/StanfordSpezi/SpeziDevices.git",
       "state" : {
         "branch" : "feature/initial-project-setup",
-        "revision" : "c617acc6212a27808939e927f9876e5fe24b574e"
+        "revision" : "0571017fc3e18dd6ae82a829b255e936863f2d6c"
       }
     },
     {
@@ -420,8 +420,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordBDHG/XCTestExtensions.git",
       "state" : {
-        "branch" : "feature/xctassert-throws-async",
-        "revision" : "7d4efa3072eea11c62804c983091dc33919a37e0"
+        "revision" : "69eae1a4490d3ec4f3cd20584aef3df9186e0904",
+        "version" : "0.4.11"
       }
     },
     {

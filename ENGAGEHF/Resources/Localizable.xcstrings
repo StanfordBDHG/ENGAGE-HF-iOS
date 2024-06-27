@@ -410,6 +410,9 @@
     "Redeem Invitation Code" : {
 
     },
+    "Show Measurements" : {
+
+    },
     "The invitation code is invalid or has already been used." : {
       "comment" : "Invitation Code Invalid"
     },

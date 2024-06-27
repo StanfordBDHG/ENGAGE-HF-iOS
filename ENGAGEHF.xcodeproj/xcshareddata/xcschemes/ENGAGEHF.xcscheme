@@ -91,7 +91,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--testMockDevices"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--skipOnboarding"
