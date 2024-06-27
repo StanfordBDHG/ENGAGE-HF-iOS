@@ -20,9 +20,8 @@ import SpeziFirebaseConfiguration
 /// Vitals History Manager
 ///
 /// Functionality:
-/// - Maintain local, up-to-date arrays of the patients health data
-/// - Convert FHIR quantities to HK Samples
-/// - Manage units of the stored quantities, defaulting to the user's phone settings
+/// - Maintain local, up-to-date arrays of the patients health data via Firestore SnapshotListeners
+/// - Convert FHIR observations to HKQuantitySamples and HKCorrelations
 @Observable
 public class VitalsManager: Module, EnvironmentAccessible {
     enum VitalsError: Error {
@@ -38,9 +37,8 @@ public class VitalsManager: Module, EnvironmentAccessible {
     private let logger = Logger(subsystem: "ENGAGEHF", category: "VitalsManager")
     
     private var authStateDidChangeListenerHandle: AuthStateDidChangeListenerHandle?
-    private var snapshotListener: ListenerRegistration?
+    private var snapshotListeners: [ListenerRegistration] = []
     
-    // TODO: Localize the units based on either locale or user preferences in the phone settings
     public var heartRateHistory: [HKQuantitySample] = []
     public var bloodPressureHistory: [HKCorrelation] = []
     public var weightHistory: [HKQuantitySample] = []
@@ -56,19 +54,9 @@ public class VitalsManager: Module, EnvironmentAccessible {
         weightHistory.max { $0.startDate < $1.startDate }
     }
     
-    public var localMassUnits: HKUnit {
-        switch Locale.current.measurementSystem {
-        case .us:
-            HKUnit.pound()
-        default:
-            HKUnit.gramUnit(with: .kilo)
-        }
-    }
-    
     
     /// Call on initial configuration:
     /// - Add a snapshot listener to the three health data collections
-    /// - Set the default units to the user's localized preferences
     public func configure() {
         if ProcessInfo.processInfo.isPreviewSimulator {
             self.setupPreview()
@@ -85,8 +73,13 @@ public class VitalsManager: Module, EnvironmentAccessible {
     private func registerSnapshotListeners(user: User?) {
         self.logger.debug("Initializing vitals snapshot listener...")
         
-        // Remove previous snapshot listener for the user before creating new one
-        snapshotListener?.remove()
+        // Remove previous snapshot listeners for the user before creating new ones
+        for prevListener in self.snapshotListeners {
+            prevListener.remove()
+        }
+        self.snapshotListeners = []
+        
+        // Only register snapshot listeners when a user is signed in
         guard let uid = user?.uid else {
             self.logger.debug("No user signed in, skipping snapshot listener.")
             return
@@ -95,80 +88,58 @@ public class VitalsManager: Module, EnvironmentAccessible {
         let firestore = Firestore.firestore()
         let userDocRef = firestore.collection("users").document(uid)
         
-        self.registerWeightSnapshot(userDocRef: userDocRef)
-        self.registerHeartRateSnapshot(userDocRef: userDocRef)
-        self.registerBloodPressureSnapshot(userDocRef: userDocRef)
+        // Weight snapshot listener
+        self.snapshotListeners.append(
+            self.registerSnapshot(
+                collectionReference: userDocRef.collection("bodyWeightObservations"),
+                storage: \.weightHistory,
+                mapObservation: convertToHKQuantitySample
+            )
+        )
+        
+        // Heart Rate snapshot listener
+        self.snapshotListeners.append(
+            self.registerSnapshot(
+                collectionReference: userDocRef.collection("heartRateObservations"),
+                storage: \.heartRateHistory,
+                mapObservation: convertToHKQuantitySample
+            )
+        )
+        
+        // Blood Pressure snapshot listener
+        self.snapshotListeners.append(
+            self.registerSnapshot(
+                collectionReference: userDocRef.collection("bloodPressureObservations"),
+                storage: \.bloodPressureHistory,
+                mapObservation: convertToHKCorrelation
+            )
+        )
     }
     
-    private func registerWeightSnapshot(userDocRef: DocumentReference) {
-        // Listen for Weight measurements
-        userDocRef
-            .collection("bodyWeightObservations")
+    private func registerSnapshot<T>(
+        collectionReference: CollectionReference,
+        storage: ReferenceWritableKeyPath<VitalsManager, [T]>,
+        mapObservation: @escaping (R4Observation) throws -> T
+    ) -> ListenerRegistration {
+        // Return a listener for the given collection
+        collectionReference
             .addSnapshotListener { querySnapshot, error in
-                self.logger.debug("Fetching most recent Weight history...")
+                self.logger.debug("Fetching most recent \(collectionReference.collectionID) history...")
                 guard let documentRefs = querySnapshot?.documents else {
-                    self.logger.error("Error fetching Weight observations: \(error)")
+                    self.logger.error("Error fetching \(collectionReference.collectionID) observations: \(error)")
                     return
                 }
                 
-                self.weightHistory = documentRefs.compactMap {
+                self[keyPath: storage] = documentRefs.compactMap {
                     do {
-                        return try self.convertToHKQuantitySample($0.data(as: R4Observation.self))
+                        return try mapObservation($0.data(as: R4Observation.self))
                     } catch {
-                        self.logger.error("Error saving Weight history: \(error)")
+                        self.logger.error("Error saving \(collectionReference.collectionID) history: \(error)")
                         return nil
                     }
                 }
                 
-                self.logger.debug("Weight history updated successfully.")
-            }
-    }
-    
-    private func registerHeartRateSnapshot(userDocRef: DocumentReference) {
-        // Listen for Heart Rate measurements
-        userDocRef
-            .collection("heartRateObservations")
-            .addSnapshotListener { querySnapshot, error in
-                self.logger.debug("Fetching most recent Heart Rate history...")
-                guard let documentRefs = querySnapshot?.documents else {
-                    self.logger.error("Error fetching Heart Rate observations: \(error)")
-                    return
-                }
-                
-                self.heartRateHistory = documentRefs.compactMap {
-                    do {
-                        return try self.convertToHKQuantitySample($0.data(as: R4Observation.self))
-                    } catch {
-                        self.logger.error("Error saving Heart Rate history: \(error)")
-                        return nil
-                    }
-                }
-                
-                self.logger.debug("Heart Rate history updated successfully.")
-            }
-    }
-    
-    private func registerBloodPressureSnapshot(userDocRef: DocumentReference) {
-        // Listen for Blood Pressure measurements
-        userDocRef
-            .collection("bloodPressureObservations")
-            .addSnapshotListener { querySnapshot, error in
-                self.logger.debug("Fetching most recent Blood Pressure history...")
-                guard let documentRefs = querySnapshot?.documents else {
-                    self.logger.error("Error fetching Blood Pressure observations: \(error)")
-                    return
-                }
-                
-                self.bloodPressureHistory = documentRefs.compactMap {
-                    do {
-                        return try self.convertToHKCorrelation($0.data(as: R4Observation.self))
-                    } catch {
-                        self.logger.error("Error saving Blood Pressure history: \(error)")
-                        return nil
-                    }
-                }
-                
-                self.logger.debug("Blood Pressure history updated successfully.")
+                self.logger.debug("\(collectionReference.collectionID) history updated successfully.")
             }
     }
     
@@ -192,13 +163,13 @@ public class VitalsManager: Module, EnvironmentAccessible {
             throw VitalsError.invalidObservationType
         }
         
-        let (startDate, endDate) = observation.getEffectiveDate()
+        let effectiveDate = observation.getEffectiveDate()
         
-        guard let startDate, let endDate else {
+        guard let effectiveDate else {
             throw VitalsError.invalidConversion
         }
         
-        return HKQuantitySample(type: quantityType, quantity: hkQuantity, start: startDate, end: endDate)
+        return HKQuantitySample(type: quantityType, quantity: hkQuantity, start: effectiveDate.start, end: effectiveDate.end)
     }
     
     private func convertToHKCorrelation(_ observation: R4Observation) throws -> HKCorrelation {
@@ -208,9 +179,9 @@ public class VitalsManager: Module, EnvironmentAccessible {
             throw VitalsError.invalidObservationType
         }
         
-        let (startDate, endDate) = observation.getEffectiveDate()
+        let effectiveDate = observation.getEffectiveDate()
         
-        guard let startDate, let endDate else {
+        guard let effectiveDate else {
             throw VitalsError.invalidConversion
         }
         
@@ -222,26 +193,26 @@ public class VitalsManager: Module, EnvironmentAccessible {
         let systolicComponent = try self.getComponent(components, code: "8480-6")
         let diastolicComponent = try self.getComponent(components, code: "8462-4")
         
-        let systolicQuantity = try self.getQuantity(component: systolicComponent)
-        let diastolicQuantity = try self.getQuantity(component: diastolicComponent)
+        let systolicQuantity = try self.getQuantity(observation: systolicComponent)
+        let diastolicQuantity = try self.getQuantity(observation: diastolicComponent)
         
         let systolicSample = HKQuantitySample(
             type: HKQuantityType(.bloodPressureSystolic),
             quantity: systolicQuantity,
-            start: startDate,
-            end: endDate
+            start: effectiveDate.start,
+            end: effectiveDate.end
         )
         let diastolicSample = HKQuantitySample(
             type: HKQuantityType(.bloodPressureDiastolic),
             quantity: diastolicQuantity,
-            start: startDate,
-            end: endDate
+            start: effectiveDate.start,
+            end: effectiveDate.end
         )
         
         return HKCorrelation(
             type: HKCorrelationType(.bloodPressure),
-            start: startDate,
-            end: endDate,
+            start: effectiveDate.start,
+            end: effectiveDate.end,
             objects: [systolicSample, diastolicSample]
         )
     }
@@ -263,9 +234,8 @@ public class VitalsManager: Module, EnvironmentAccessible {
         return component
     }
     
-    // TODO: Combine the two versions of this into a generic function?
-    private func getQuantity(observation: R4Observation) throws -> HKQuantity {
-        guard case let .quantity(fhirQuantity) = observation.value else {
+    private func getQuantity(observation: ObservationValueProtocol) throws -> HKQuantity {
+        guard case let .quantity(fhirQuantity) = observation.observationValue?.type else {
             throw VitalsError.invalidConversion
         }
         
@@ -273,7 +243,7 @@ public class VitalsManager: Module, EnvironmentAccessible {
             throw VitalsError.invalidConversion
         }
         
-        let quantity = NSDecimalNumber(decimal: sampleQuantity).doubleValue
+        let quantity = sampleQuantity.doubleValue
         
         let units: HKUnit
         switch fhirQuantity.unit?.value?.string {
@@ -283,31 +253,8 @@ public class VitalsManager: Module, EnvironmentAccessible {
             units = HKUnit.gramUnit(with: .kilo)
         case "beats/minute":
             units = .count().unitDivided(by: .minute())
-        default:
-            throw VitalsError.unknownUnit
-        }
-        
-        return HKQuantity(unit: units, doubleValue: quantity)
-    }
-    
-    private func getQuantity(component: ObservationComponent) throws -> HKQuantity {
-        guard case let .quantity(fhirQuantity) = component.value else {
-            throw VitalsError.invalidConversion
-        }
-        
-        guard let sampleQuantity = fhirQuantity.value?.value?.decimal else {
-            throw VitalsError.invalidConversion
-        }
-        
-        let quantity = NSDecimalNumber(decimal: sampleQuantity).doubleValue
-        
-        let units: HKUnit
-        switch fhirQuantity.unit?.value?.string {
         case "mmHg":
             units = HKUnit.millimeterOfMercury()
-        case "kPa":
-            // TODO: Make sure this string is a valid representation of the unit
-            units = HKUnit.pascalUnit(with: .kilo)
         default:
             throw VitalsError.unknownUnit
         }

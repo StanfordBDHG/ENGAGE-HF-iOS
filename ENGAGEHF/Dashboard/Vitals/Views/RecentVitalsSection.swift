@@ -14,18 +14,46 @@ struct RecentVitalsSection: View {
     @Environment(VitalsManager.self) private var vitalsManager
     
     
-    private var weightDescription: String? {
-        if let weightMeasurement = vitalsManager.latestWeight {
-            return String(format: "%.2f", weightMeasurement.quantity.doubleValue(for: vitalsManager.localMassUnits))
+    private var massUnits: HKUnit {
+        switch Locale.current.measurementSystem {
+        case .us:
+            HKUnit.pound()
+        default:
+            HKUnit.gramUnit(with: .kilo)
         }
-        return nil
     }
     
-    private var heartRateDescription: String? {
-        if let heartRateMeasurement = vitalsManager.latestHeartRate {
-            return Int(heartRateMeasurement.quantity.doubleValue(for: .count().unitDivided(by: .minute()))).description
+    private var weightMeasurement: (value: String, date: String)? {
+        guard let measurement = vitalsManager.latestWeight else {
+            return nil
         }
-        return nil
+        
+        return (
+            String(format: "%.1f", measurement.quantity.doubleValue(for: massUnits)),
+            measurement.startDate.formatted(date: .numeric, time: .shortened)
+        )
+    }
+    
+    private var heartRateMeasurement: (value: String, date: String)? {
+        guard let measurement = vitalsManager.latestHeartRate else {
+            return nil
+        }
+        
+        return (
+            Int(measurement.quantity.doubleValue(for: .count().unitDivided(by: .minute()))).description,
+            measurement.startDate.formatted(date: .numeric, time: .shortened)
+        )
+    }
+    
+    private var bloodPressureMeasurement: (value: String, date: String)? {
+        guard let measurement = vitalsManager.latestBloodPressure else {
+            return nil
+        }
+        
+        return (
+            self.getBloodPressureDisplay(bloodPressureSample: measurement),
+            measurement.startDate.formatted(date: .numeric, time: .shortened)
+        )
     }
     
     
@@ -35,23 +63,20 @@ struct RecentVitalsSection: View {
                 VStack {
                     HStack {
                         VitalsCard(
-                            quantity: weightDescription,
-                            units: vitalsManager.localMassUnits.unitString,
                             type: "Weight",
-                            date: vitalsManager.latestWeight?.startDate
+                            units: massUnits.unitString,
+                            measurement: weightMeasurement
                         )
                         VitalsCard(
-                            quantity: heartRateDescription,
-                            units: "bpm",
                             type: "Heart Rate",
-                            date: vitalsManager.latestHeartRate?.startDate
+                            units: "BPM",
+                            measurement: heartRateMeasurement
                         )
                     }
                     VitalsCard(
-                        quantity: self.getBloodPressureDisplay(bloodPressureSample: vitalsManager.latestBloodPressure),
-                        units: "mmHg",
                         type: "Blood Pressure",
-                        date: vitalsManager.latestBloodPressure?.startDate
+                        units: "mmHg",
+                        measurement: bloodPressureMeasurement
                     )
                 }
             },
@@ -63,11 +88,7 @@ struct RecentVitalsSection: View {
     }
     
     
-    private func getBloodPressureDisplay(bloodPressureSample: HKCorrelation?) -> String? {
-        guard let bloodPressureSample else {
-            return nil
-        }
-        
+    private func getBloodPressureDisplay(bloodPressureSample: HKCorrelation) -> String {
         var bloodPressureQuantitySamples: [HKQuantitySample] {
             bloodPressureSample.objects
                 .compactMap { sample in
@@ -84,12 +105,11 @@ struct RecentVitalsSection: View {
                 .first(where: { $0.quantityType == HKQuantityType(.bloodPressureDiastolic) })
         }
         
-        if let systolic,
-           let diastolic {
-            return "\(Int(systolic.quantity.doubleValue(for: .millimeterOfMercury())))/\(Int(diastolic.quantity.doubleValue(for: .millimeterOfMercury())))"
-        } else {
-            return nil
+        guard let systolic, let diastolic else {
+            return "ERROR"
         }
+        
+        return "\(Int(systolic.quantity.doubleValue(for: .millimeterOfMercury())))/\(Int(diastolic.quantity.doubleValue(for: .millimeterOfMercury())))"
     }
 }
 

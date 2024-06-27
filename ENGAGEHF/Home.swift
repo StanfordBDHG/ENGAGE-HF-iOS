@@ -92,6 +92,7 @@ struct HomeView: View {
             Bluetooth {
                 Discover(WeightScaleDevice.self, by: .advertisedService(WeightScaleService.self))
             }
+            VitalsManager()
         }
 }
 #endif

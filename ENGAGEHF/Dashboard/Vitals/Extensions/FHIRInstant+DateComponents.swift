@@ -10,6 +10,7 @@ import Foundation
 import struct ModelsR4.Instant
 
 
+/// Represent the Instant as DateComponents for easy conversion to Date type
 extension Instant {
     var dateComponents: DateComponents {
         var components = DateComponents()
@@ -23,5 +24,13 @@ extension Instant {
         components.timeZone = self.timeZone
         
         return components
+    }
+}
+
+
+/// Convert Instant to Date
+extension Instant {
+    func getDate() -> Date? {
+        Calendar.current.date(from: self.dateComponents)
     }
 }
