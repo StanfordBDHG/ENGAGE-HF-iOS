@@ -4,16 +4,6 @@
     "%@" : {
 
     },
-    "%@ %@: %@" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$@ %2$@: %3$@"
-          }
-        }
-      }
-    },
     "%@ Date: %@" : {
       "localizations" : {
         "en" : {
@@ -379,16 +369,6 @@
     },
     "Measurement Recorded" : {
 
-    },
-    "No recent %@ %@ available" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "No recent %1$@ %2$@ available"
-          }
-        }
-      }
     },
     "No recent %@ measurement available" : {
 
