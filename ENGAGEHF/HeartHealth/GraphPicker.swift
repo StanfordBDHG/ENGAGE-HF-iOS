@@ -27,7 +27,14 @@ struct GraphPicker: View {
 
 
 #Preview {
-    @State var selection: GraphSelection = .overview
+    struct GraphPickerPreviewWrapper: View {
+        @State var selection: GraphSelection = .symptoms
+        
+        
+        var body: some View {
+            GraphPicker(selection: $selection)
+        }
+    }
     
-    return GraphPicker(selection: $selection)
+    return GraphPickerPreviewWrapper()
 }

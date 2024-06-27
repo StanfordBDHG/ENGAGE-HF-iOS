@@ -110,12 +110,6 @@
     "An invitation code is at least 8 characters long." : {
 
     },
-    "Blood Pressure Here" : {
-
-    },
-    "bpm" : {
-
-    },
     "Close" : {
       "comment" : "For closing sheets."
     },
@@ -153,22 +147,22 @@
     "Content ..." : {
 
     },
-    "Daily" : {
-
-    },
-    "Date" : {
-
-    },
-    "Date Resolution" : {
-
-    },
-    "Date type: %@" : {
+    "Description" : {
 
     },
     "Discard" : {
 
     },
     "Education" : {
+
+    },
+    "Graph" : {
+
+    },
+    "Graph Selection" : {
+
+    },
+    "Heart Health" : {
 
     },
     "Home" : {
@@ -314,9 +308,6 @@
     "Invitation Code" : {
 
     },
-    "KCCQ-12 Symptom Survey" : {
-
-    },
     "LELAND_STANFORD_BIO" : {
       "localizations" : {
         "en" : {
@@ -345,12 +336,6 @@
     },
     "Measurement Recorded" : {
 
-    },
-    "mmHg" : {
-
-    },
-    "Monthly" : {
-        
     },
     "No recent %@ measurement available" : {
 
@@ -412,12 +397,6 @@
 
     },
     "Save" : {
-
-    },
-    "Survey" : {
-
-    },
-    "Survey: %@" : {
 
     },
     "Symptom Overview" : {
@@ -495,6 +474,9 @@
         }
       }
     },
+    "Temp" : {
+
+    },
     "The invitation code is invalid or has already been used." : {
       "comment" : "Invitation Code Invalid"
     },
@@ -548,9 +530,6 @@
           }
         }
       }
-    },
-    "Weekly" : {
-
     },
     "WELCOME_AREA1_DESCRIPTION" : {
       "localizations" : {

@@ -15,9 +15,10 @@ struct VitalsGraph: View {
     
     
     var body: some View {
-        switch vitalsType {
-        case .symptoms: SymptomGraph(data: vitalsManager.symptomHistory)
-        }
+        Text("Temp")
+//        switch vitalsType {
+//        case .symptoms: SymptomGraph(data: vitalsManager.symptomHistory)
+//        }
     }
     
     

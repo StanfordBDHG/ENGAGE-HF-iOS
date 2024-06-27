@@ -39,7 +39,7 @@ enum GraphSelection: CaseIterable, Identifiable, CustomStringConvertible {
 
 struct HeartHealth: View {
     @Binding var presentingAccount: Bool
-    @State private var vitalSelection: GraphSelection = .overview
+    @State private var vitalSelection: GraphSelection = .symptoms
     
     
     var body: some View {
