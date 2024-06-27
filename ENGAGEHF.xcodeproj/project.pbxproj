@@ -51,7 +51,6 @@
 		4D2D1D762C2CC8B200ABDC19 /* ValueXProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2D1D752C2CC8B200ABDC19 /* ValueXProtocol.swift */; };
 		4D2D1D782C2CD32C00ABDC19 /* ObservationValueProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2D1D772C2CD32C00ABDC19 /* ObservationValueProtocol.swift */; };
 		4D49AB022BC9D50400C77310 /* SpeziBluetooth in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49AB012BC9D50400C77310 /* SpeziBluetooth */; };
-		4D49AB062BC9D56900C77310 /* WeightScaleDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D49AB052BC9D56900C77310 /* WeightScaleDevice.swift */; };
 		4D4AA0A52BC5E43E00676489 /* OnboardingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4AA0A42BC5E43E00676489 /* OnboardingUITests.swift */; };
 		4DA20B4B2C249E7E00715AA2 /* VitalsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA20B4A2C249E7E00715AA2 /* VitalsManager.swift */; };
 		4DA20B512C25E1A300715AA2 /* ObservationAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA20B502C25E1A300715AA2 /* ObservationAlias.swift */; };
@@ -86,7 +85,6 @@
 		A9623C082C18D03F00189BA1 /* AccountSetupSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9623C072C18D03F00189BA1 /* AccountSetupSheet.swift */; };
 		A96C56B62C0A149B00D6A50B /* WeightScaleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96C56B52C0A149B00D6A50B /* WeightScaleTests.swift */; };
 		A96C56BB2C0DFFCE00D6A50B /* InvitationCodeModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96C56BA2C0DFFCE00D6A50B /* InvitationCodeModule.swift */; };
-		A96C56BF2C0E334A00D6A50B /* BloodPressureCuffDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96C56BE2C0E334A00D6A50B /* BloodPressureCuffDevice.swift */; };
 		A9720E432ABB68CC00872D23 /* AccountSetupHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9720E422ABB68CC00872D23 /* AccountSetupHeader.swift */; };
 		A977DD542C25E2DA00A2A8E5 /* SpeziDevices in Frameworks */ = {isa = PBXBuildFile; productRef = A977DD532C25E2DA00A2A8E5 /* SpeziDevices */; };
 		A977DD562C25E2DA00A2A8E5 /* SpeziDevicesUI in Frameworks */ = {isa = PBXBuildFile; productRef = A977DD552C25E2DA00A2A8E5 /* SpeziDevicesUI */; };
@@ -145,7 +143,6 @@
 		4D2D1D672C2C82A200ABDC19 /* FHIRPeriod+GetDates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FHIRPeriod+GetDates.swift"; sourceTree = "<group>"; };
 		4D2D1D752C2CC8B200ABDC19 /* ValueXProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueXProtocol.swift; sourceTree = "<group>"; };
 		4D2D1D772C2CD32C00ABDC19 /* ObservationValueProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationValueProtocol.swift; sourceTree = "<group>"; };
-		4D49AB052BC9D56900C77310 /* WeightScaleDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightScaleDevice.swift; sourceTree = "<group>"; };
 		4D4AA0A42BC5E43E00676489 /* OnboardingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingUITests.swift; sourceTree = "<group>"; };
 		4DA20B4A2C249E7E00715AA2 /* VitalsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalsManager.swift; sourceTree = "<group>"; };
 		4DA20B502C25E1A300715AA2 /* ObservationAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationAlias.swift; sourceTree = "<group>"; };
@@ -177,7 +174,6 @@
 		A9623C072C18D03F00189BA1 /* AccountSetupSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSetupSheet.swift; sourceTree = "<group>"; };
 		A96C56B52C0A149B00D6A50B /* WeightScaleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightScaleTests.swift; sourceTree = "<group>"; };
 		A96C56BA2C0DFFCE00D6A50B /* InvitationCodeModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationCodeModule.swift; sourceTree = "<group>"; };
-		A96C56BE2C0E334A00D6A50B /* BloodPressureCuffDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloodPressureCuffDevice.swift; sourceTree = "<group>"; };
 		A9720E422ABB68CC00872D23 /* AccountSetupHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSetupHeader.swift; sourceTree = "<group>"; };
 		A996F45D2C11B793002328C5 /* BoodPressureCuffTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoodPressureCuffTests.swift; sourceTree = "<group>"; };
 		A9DFE8A82ABE551400428242 /* AccountButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountButton.swift; sourceTree = "<group>"; };
@@ -322,15 +318,6 @@
 			path = "Protocols+Aliases";
 			sourceTree = "<group>";
 		};
-		4D49AB142BCF6FC400C77310 /* Devices */ = {
-			isa = PBXGroup;
-			children = (
-				A96C56BE2C0E334A00D6A50B /* BloodPressureCuffDevice.swift */,
-				4D49AB052BC9D56900C77310 /* WeightScaleDevice.swift */,
-			);
-			path = Devices;
-			sourceTree = "<group>";
-		};
 		4DA20B562C25FE2B00715AA2 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -433,7 +420,6 @@
 				2FC975A72978F11A00BA99FE /* Home.swift */,
 				4D065BDE2C093FF600EBB3AE /* ReusableElements */,
 				4DDFC7632BF34FC1002B07A1 /* Education */,
-				4D49AB142BCF6FC400C77310 /* Devices */,
 				4DB025B52BBDE8EC002D2545 /* Dashboard */,
 				A9720E412ABB68B300872D23 /* Account */,
 				2FE5DC2829EDD398004B9AB4 /* Onboarding */,
@@ -713,7 +699,6 @@
 				4DA20B512C25E1A300715AA2 /* ObservationAlias.swift in Sources */,
 				4D065BE02C09401700EBB3AE /* StudyApplicationListCard.swift in Sources */,
 				A96C56BB2C0DFFCE00D6A50B /* InvitationCodeModule.swift in Sources */,
-				A96C56BF2C0E334A00D6A50B /* BloodPressureCuffDevice.swift in Sources */,
 				4DA20B5A2C25FEDE00715AA2 /* Decimal+IntConversion.swift in Sources */,
 				A9FE7AD02AA39BAB0077B045 /* AccountSheet.swift in Sources */,
 				653A2551283387FE005D4D48 /* ENGAGEHF.swift in Sources */,
@@ -723,7 +708,6 @@
 				4DBDD3462BBFAE2D001FB0CA /* InvitationCodeView.swift in Sources */,
 				4DDFC73D2BF2C4FA002B07A1 /* Notification.swift in Sources */,
 				4DA20B5C2C26098400715AA2 /* R4Observation+GetEffectiveDate.swift in Sources */,
-				4D49AB062BC9D56900C77310 /* WeightScaleDevice.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

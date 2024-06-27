@@ -14,6 +14,7 @@ import SpeziDevices
 import SpeziFirebaseAccount
 import SpeziFirebaseStorage
 import SpeziFirestore
+import SpeziOmron
 import SpeziOnboarding
 import SpeziViews
 import SwiftUI
@@ -49,8 +50,8 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
             }
 
             Bluetooth {
-                Discover(WeightScaleDevice.self, by: .accessory(manufacturer: .omronHealthcareCoLtd, advertising: WeightScaleService.self))
-                Discover(BloodPressureCuffDevice.self, by: .accessory(manufacturer: .omronHealthcareCoLtd, advertising: BloodPressureService.self))
+                Discover(OmronWeightScale.self, by: .accessory(manufacturer: .omronHealthcareCoLtd, advertising: WeightScaleService.self))
+                Discover(OmronBloodPressureCuff.self, by: .accessory(manufacturer: .omronHealthcareCoLtd, advertising: BloodPressureService.self))
             }
             
             PairedDevices()

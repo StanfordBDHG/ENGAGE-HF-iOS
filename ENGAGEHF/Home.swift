@@ -98,9 +98,7 @@ struct HomeView: View {
             NotificationManager()
             PairedDevices()
             ConfigureTipKit()
-            Bluetooth {
-                Discover(WeightScaleDevice.self, by: .advertisedService(WeightScaleService.self))
-            }
+            Bluetooth {}
             VitalsManager()
         }
 }
