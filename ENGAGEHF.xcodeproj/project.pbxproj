@@ -47,9 +47,21 @@
 		4D065BE02C09401700EBB3AE /* StudyApplicationListCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D065BDF2C09401700EBB3AE /* StudyApplicationListCard.swift */; };
 		4D0F389E2C09779100DA12F7 /* ShowMoreButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0F389D2C09779000DA12F7 /* ShowMoreButton.swift */; };
 		4D0F38A22C0A7AD900DA12F7 /* ExpandableText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0F38A12C0A7AD900DA12F7 /* ExpandableText.swift */; };
+		4D19ED012BE5CAFC00CDBAA8 /* MeasurementRecordedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D19ED002BE5CAFC00CDBAA8 /* MeasurementRecordedView.swift */; };
+		4D2D1D682C2C82A200ABDC19 /* FHIRPeriod+GetDates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2D1D672C2C82A200ABDC19 /* FHIRPeriod+GetDates.swift */; };
+		4D2D1D762C2CC8B200ABDC19 /* ValueXProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2D1D752C2CC8B200ABDC19 /* ValueXProtocol.swift */; };
+		4D2D1D782C2CD32C00ABDC19 /* ObservationValueProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2D1D772C2CD32C00ABDC19 /* ObservationValueProtocol.swift */; };
 		4D49AB022BC9D50400C77310 /* SpeziBluetooth in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49AB012BC9D50400C77310 /* SpeziBluetooth */; };
 		4D49AB062BC9D56900C77310 /* WeightScaleDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D49AB052BC9D56900C77310 /* WeightScaleDevice.swift */; };
 		4D4AA0A52BC5E43E00676489 /* OnboardingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4AA0A42BC5E43E00676489 /* OnboardingUITests.swift */; };
+		4DA20B4B2C249E7E00715AA2 /* VitalsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA20B4A2C249E7E00715AA2 /* VitalsManager.swift */; };
+		4DA20B512C25E1A300715AA2 /* ObservationAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA20B502C25E1A300715AA2 /* ObservationAlias.swift */; };
+		4DA20B542C25F8A600715AA2 /* FHIRDateTime+DateComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA20B532C25F8A600715AA2 /* FHIRDateTime+DateComponents.swift */; };
+		4DA20B582C25FE4000715AA2 /* FHIRInstant+DateComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA20B572C25FE4000715AA2 /* FHIRInstant+DateComponents.swift */; };
+		4DA20B5A2C25FEDE00715AA2 /* Decimal+IntConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA20B592C25FEDE00715AA2 /* Decimal+IntConversion.swift */; };
+		4DA20B5C2C26098400715AA2 /* R4Observation+GetEffectiveDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA20B5B2C26098400715AA2 /* R4Observation+GetEffectiveDate.swift */; };
+		4DA20B642C2A0FF100715AA2 /* VitalsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA20B632C2A0FF100715AA2 /* VitalsCard.swift */; };
+		4DA20B692C2B299700715AA2 /* RecentVitalsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA20B682C2B299700715AA2 /* RecentVitalsUITests.swift */; };
 		4DB025CA2BBE3A59002D2545 /* HomeViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB025C92BBE3A59002D2545 /* HomeViewUITests.swift */; };
 		4DB025D52BBF2E08002D2545 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB025D42BBF2E08002D2545 /* Dashboard.swift */; };
 		4DBDD3442BBFAD64001FB0CA /* InvitationCodeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDD3432BBFAD64001FB0CA /* InvitationCodeError.swift */; };
@@ -59,6 +71,7 @@
 		4DDFC7392BF2C3C9002B07A1 /* NotificationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC7382BF2C3C9002B07A1 /* NotificationSection.swift */; };
 		4DDFC73D2BF2C4FA002B07A1 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC73C2BF2C4FA002B07A1 /* Notification.swift */; };
 		4DDFC73F2BF2CADD002B07A1 /* FetchingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC73E2BF2CADD002B07A1 /* FetchingError.swift */; };
+		4DDFC7542BF3408F002B07A1 /* RecentVitalsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC7532BF3408F002B07A1 /* RecentVitalsSection.swift */; };
 		4DDFC7652BF350C2002B07A1 /* Education.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC7642BF350C2002B07A1 /* Education.swift */; };
 		4DDFC7872BFBFDDD002B07A1 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC7862BFBFDDD002B07A1 /* NotificationManager.swift */; };
 		4DDFC78A2BFC1312002B07A1 /* NotificationRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC7892BFC1312002B07A1 /* NotificationRow.swift */; };
@@ -130,8 +143,20 @@
 		4D065BDF2C09401700EBB3AE /* StudyApplicationListCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyApplicationListCard.swift; sourceTree = "<group>"; };
 		4D0F389D2C09779000DA12F7 /* ShowMoreButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMoreButton.swift; sourceTree = "<group>"; };
 		4D0F38A12C0A7AD900DA12F7 /* ExpandableText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableText.swift; sourceTree = "<group>"; };
+		4D19ED002BE5CAFC00CDBAA8 /* MeasurementRecordedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementRecordedView.swift; sourceTree = "<group>"; };
+		4D2D1D672C2C82A200ABDC19 /* FHIRPeriod+GetDates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FHIRPeriod+GetDates.swift"; sourceTree = "<group>"; };
+		4D2D1D752C2CC8B200ABDC19 /* ValueXProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueXProtocol.swift; sourceTree = "<group>"; };
+		4D2D1D772C2CD32C00ABDC19 /* ObservationValueProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationValueProtocol.swift; sourceTree = "<group>"; };
 		4D49AB052BC9D56900C77310 /* WeightScaleDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightScaleDevice.swift; sourceTree = "<group>"; };
 		4D4AA0A42BC5E43E00676489 /* OnboardingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingUITests.swift; sourceTree = "<group>"; };
+		4DA20B4A2C249E7E00715AA2 /* VitalsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalsManager.swift; sourceTree = "<group>"; };
+		4DA20B502C25E1A300715AA2 /* ObservationAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationAlias.swift; sourceTree = "<group>"; };
+		4DA20B532C25F8A600715AA2 /* FHIRDateTime+DateComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FHIRDateTime+DateComponents.swift"; sourceTree = "<group>"; };
+		4DA20B572C25FE4000715AA2 /* FHIRInstant+DateComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FHIRInstant+DateComponents.swift"; sourceTree = "<group>"; };
+		4DA20B592C25FEDE00715AA2 /* Decimal+IntConversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decimal+IntConversion.swift"; sourceTree = "<group>"; };
+		4DA20B5B2C26098400715AA2 /* R4Observation+GetEffectiveDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "R4Observation+GetEffectiveDate.swift"; sourceTree = "<group>"; };
+		4DA20B632C2A0FF100715AA2 /* VitalsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalsCard.swift; sourceTree = "<group>"; };
+		4DA20B682C2B299700715AA2 /* RecentVitalsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentVitalsUITests.swift; sourceTree = "<group>"; };
 		4DB025C92BBE3A59002D2545 /* HomeViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewUITests.swift; sourceTree = "<group>"; };
 		4DB025D42BBF2E08002D2545 /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		4DBDD3432BBFAD64001FB0CA /* InvitationCodeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationCodeError.swift; sourceTree = "<group>"; };
@@ -140,6 +165,7 @@
 		4DDFC7382BF2C3C9002B07A1 /* NotificationSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSection.swift; sourceTree = "<group>"; };
 		4DDFC73C2BF2C4FA002B07A1 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		4DDFC73E2BF2CADD002B07A1 /* FetchingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchingError.swift; sourceTree = "<group>"; };
+		4DDFC7532BF3408F002B07A1 /* RecentVitalsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentVitalsSection.swift; sourceTree = "<group>"; };
 		4DDFC7642BF350C2002B07A1 /* Education.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Education.swift; sourceTree = "<group>"; };
 		4DDFC7862BFBFDDD002B07A1 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		4DDFC7892BFC1312002B07A1 /* NotificationRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationRow.swift; sourceTree = "<group>"; };
@@ -288,6 +314,29 @@
 			path = ReusableElements;
 			sourceTree = "<group>";
 		};
+		4D19ECFC2BE5B9F200CDBAA8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A996F45B2C11AA15002328C5 /* BloodPressureMeasurementLabel.swift */,
+				4DDFC76F2BFAEAD7002B07A1 /* ConfirmMeasurementButton.swift */,
+				4DDFC7752BFB46FF002B07A1 /* MeasurementLayer.swift */,
+				4D19ED002BE5CAFC00CDBAA8 /* MeasurementRecordedView.swift */,
+				A996F4592C11A9D1002328C5 /* WeightMeasurementLabel.swift */,
+				4DD823012C17F63C004DC599 /* CloseButtonLayer.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4D2D1D732C2CC89600ABDC19 /* Protocols+Aliases */ = {
+			isa = PBXGroup;
+			children = (
+				4DA20B502C25E1A300715AA2 /* ObservationAlias.swift */,
+				4D2D1D752C2CC8B200ABDC19 /* ValueXProtocol.swift */,
+				4D2D1D772C2CD32C00ABDC19 /* ObservationValueProtocol.swift */,
+			);
+			path = "Protocols+Aliases";
+			sourceTree = "<group>";
+		};
 		4D49AB142BCF6FC400C77310 /* Devices */ = {
 			isa = PBXGroup;
 			children = (
@@ -297,10 +346,23 @@
 			path = Devices;
 			sourceTree = "<group>";
 		};
+		4DA20B562C25FE2B00715AA2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4DA20B532C25F8A600715AA2 /* FHIRDateTime+DateComponents.swift */,
+				4DA20B572C25FE4000715AA2 /* FHIRInstant+DateComponents.swift */,
+				4DA20B592C25FEDE00715AA2 /* Decimal+IntConversion.swift */,
+				4DA20B5B2C26098400715AA2 /* R4Observation+GetEffectiveDate.swift */,
+				4D2D1D672C2C82A200ABDC19 /* FHIRPeriod+GetDates.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		4DB025B52BBDE8EC002D2545 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
 				4DDFC73B2BF2C46E002B07A1 /* Notifications */,
+				4DDFC7502BF3404D002B07A1 /* Vitals */,
 				4DB025D42BBF2E08002D2545 /* Dashboard.swift */,
 				4DDFC73E2BF2CADD002B07A1 /* FetchingError.swift */,
 			);
@@ -322,6 +384,26 @@
 			children = (
 				4DDFC7382BF2C3C9002B07A1 /* NotificationSection.swift */,
 				4DDFC7892BFC1312002B07A1 /* NotificationRow.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4DDFC7502BF3404D002B07A1 /* Vitals */ = {
+			isa = PBXGroup;
+			children = (
+				4D2D1D732C2CC89600ABDC19 /* Protocols+Aliases */,
+				4DA20B562C25FE2B00715AA2 /* Extensions */,
+				4DDFC7522BF34059002B07A1 /* Views */,
+				4DA20B4A2C249E7E00715AA2 /* VitalsManager.swift */,
+			);
+			path = Vitals;
+			sourceTree = "<group>";
+		};
+		4DDFC7522BF34059002B07A1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4DDFC7532BF3408F002B07A1 /* RecentVitalsSection.swift */,
+				4DA20B632C2A0FF100715AA2 /* VitalsCard.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -397,6 +479,7 @@
 				A996F45D2C11B793002328C5 /* BoodPressureCuffTests.swift */,
 				4DD823052C17FF79004DC599 /* NotificationsUITests.swift */,
 				A9F2138D2C18EBAB00A7578F /* AccountTests.swift */,
+				4DA20B682C2B299700715AA2 /* RecentVitalsUITests.swift */,
 			);
 			path = ENGAGEHFUITests;
 			sourceTree = "<group>";
@@ -619,6 +702,8 @@
 				2FE5DC3A29EDD7CA004B9AB4 /* Welcome.swift in Sources */,
 				2FE5DC3829EDD7CA004B9AB4 /* InterestingModules.swift in Sources */,
 				2FE5DC3529EDD7CA004B9AB4 /* Consent.swift in Sources */,
+				4DA20B642C2A0FF100715AA2 /* VitalsCard.swift in Sources */,
+				A996F44A2C1082BA002328C5 /* HealthDevice.swift in Sources */,
 				4DBDD3442BBFAD64001FB0CA /* InvitationCodeError.swift in Sources */,
 				2FC975A82978F11A00BA99FE /* Home.swift in Sources */,
 				A9623C082C18D03F00189BA1 /* AccountSetupSheet.swift in Sources */,
@@ -632,11 +717,31 @@
 				2FE5DC4729EDD7F2004B9AB4 /* CodableArray+RawRepresentable.swift in Sources */,
 				A9720E432ABB68CC00872D23 /* AccountSetupHeader.swift in Sources */,
 				2FE5DC4029EDD7EE004B9AB4 /* FeatureFlags.swift in Sources */,
+				A996F45C2C11AA15002328C5 /* BloodPressureMeasurementLabel.swift in Sources */,
+				4DA20B582C25FE4000715AA2 /* FHIRInstant+DateComponents.swift in Sources */,
+				2FF53D8D2A8729D600042B76 /* ENGAGEHFStandard.swift in Sources */,
+				4DDFC78A2BFC1312002B07A1 /* NotificationRow.swift in Sources */,
+				2FE5DC4729EDD7F2004B9AB4 /* CodableArray+RawRepresentable.swift in Sources */,
+				4D2D1D782C2CD32C00ABDC19 /* ObservationValueProtocol.swift in Sources */,
+				4D052DB82BE07892006A784E /* MeasurementManager.swift in Sources */,
+				A9720E432ABB68CC00872D23 /* AccountSetupHeader.swift in Sources */,
+				2FE5DC4029EDD7EE004B9AB4 /* FeatureFlags.swift in Sources */,
+				2FE5DC4629EDD7F2004B9AB4 /* Bundle+Image.swift in Sources */,
+				4D2D1D682C2C82A200ABDC19 /* FHIRPeriod+GetDates.swift in Sources */,
+				4D2D1D762C2CC8B200ABDC19 /* ValueXProtocol.swift in Sources */,
+				4DA20B542C25F8A600715AA2 /* FHIRDateTime+DateComponents.swift in Sources */,
+				4DDFC7542BF3408F002B07A1 /* RecentVitalsSection.swift in Sources */,
 				2F4E23832989D51F0013F3D9 /* ENGAGEHFTestingSetup.swift in Sources */,
+				4DA20B4B2C249E7E00715AA2 /* VitalsManager.swift in Sources */,
 				2F5E32BD297E05EA003432F8 /* ENGAGEHFDelegate.swift in Sources */,
+				4DA20B512C25E1A300715AA2 /* ObservationAlias.swift in Sources */,
 				4D065BE02C09401700EBB3AE /* StudyApplicationListCard.swift in Sources */,
 				A96C56BB2C0DFFCE00D6A50B /* InvitationCodeModule.swift in Sources */,
 				A96C56BF2C0E334A00D6A50B /* BloodPressureCuffDevice.swift in Sources */,
+				4DA20B5A2C25FEDE00715AA2 /* Decimal+IntConversion.swift in Sources */,
+				A996F4552C11117C002328C5 /* ProcessedMeasurement.swift in Sources */,
+				A996F4442C1081A2002328C5 /* WeightMeasurement.Unit+HKUnit.swift in Sources */,
+				4DDFC7702BFAEAD7002B07A1 /* ConfirmMeasurementButton.swift in Sources */,
 				A9FE7AD02AA39BAB0077B045 /* AccountSheet.swift in Sources */,
 				653A2551283387FE005D4D48 /* ENGAGEHF.swift in Sources */,
 				2F65B44E2A3B8B0600A36932 /* NotificationPermissions.swift in Sources */,
@@ -644,6 +749,7 @@
 				2FE5DC2629EDD38A004B9AB4 /* Contacts.swift in Sources */,
 				4DBDD3462BBFAE2D001FB0CA /* InvitationCodeView.swift in Sources */,
 				4DDFC73D2BF2C4FA002B07A1 /* Notification.swift in Sources */,
+				4DA20B5C2C26098400715AA2 /* R4Observation+GetEffectiveDate.swift in Sources */,
 				4D49AB062BC9D56900C77310 /* WeightScaleDevice.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -661,6 +767,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A96C56B62C0A149B00D6A50B /* WeightScaleTests.swift in Sources */,
+				4DA20B692C2B299700715AA2 /* RecentVitalsUITests.swift in Sources */,
 				A9F2138E2C18EBAB00A7578F /* AccountTests.swift in Sources */,
 				4D4AA0A52BC5E43E00676489 /* OnboardingUITests.swift in Sources */,
 				4DD823062C17FF79004DC599 /* NotificationsUITests.swift in Sources */,

@@ -58,6 +58,7 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
             
             OnboardingDataSource()
             NotificationManager()
+            VitalsManager()
             InvitationCodeModule()
 
             ConfigureTipKit()

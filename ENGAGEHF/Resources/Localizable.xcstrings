@@ -4,6 +4,49 @@
     "%@" : {
 
     },
+    "%@ Date: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ Date: %2$@"
+          }
+        }
+      }
+    },
+    "%@ Quantity: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ Quantity: %2$@"
+          }
+        }
+      }
+    },
+    "%@ Unit: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ Unit: %2$@"
+          }
+        }
+      }
+    },
+    "%lld BPM" : {
+
+    },
+    "%lld/%lld mmHg" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld/%2$lld mmHg"
+          }
+        }
+      }
+    },
     "ACCOUNT_NEXT" : {
       "localizations" : {
         "en" : {
@@ -107,6 +150,7 @@
     "Education" : {
 
     },
+<<<<<<< HEAD
     "HEALTHKIT_PERMISSIONS_BUTTON" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -155,6 +199,8 @@
     "Hold down the Bluetooth button for 3 seconds to put the device into pairing mode." : {
 
     },
+=======
+>>>>>>> main
     "Home" : {
 
     },
@@ -321,6 +367,15 @@
     "List Without Sections" : {
 
     },
+    "Measurement Recorded" : {
+
+    },
+    "No recent %@ measurement available" : {
+
+    },
+    "No vitals" : {
+
+    },
     "NOTIFICATION_PERMISSIONS_BUTTON" : {
       "localizations" : {
         "en" : {
@@ -366,6 +421,9 @@
 
     },
     "Please enter your invitation code to join the ENGAGE-HF study." : {
+
+    },
+    "Recent Vitals" : {
 
     },
     "Redeem Invitation Code" : {

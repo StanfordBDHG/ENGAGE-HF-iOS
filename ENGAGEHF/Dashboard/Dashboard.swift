@@ -15,7 +15,6 @@ import SwiftUI
 
 struct Dashboard: View {
     @Binding var presentingAccount: Bool
-    @State var showSurvey = false
     
 #if DEBUG || TEST
     @Environment(HealthMeasurements.self) private var measurements
@@ -24,10 +23,17 @@ struct Dashboard: View {
     
     var body: some View {
         NavigationStack {
-            List {
-                NotificationSection()
+            ScrollView {
+                LazyVStack(alignment: .leading, spacing: 20) {
+                    // Notifications
+                    NotificationSection()
+                    
+                    // Most recent vitals
+                    RecentVitalsSection()
+                }
+                .padding()
             }
-                .studyApplicationList()
+                .background(Color(.systemGroupedBackground))
                 .navigationTitle("Home")
                 .toolbar {
                     if AccountButton.shouldDisplay {
@@ -59,6 +65,7 @@ struct Dashboard: View {
         .previewWith(standard: ENGAGEHFStandard()) {
             NotificationManager()
             HealthMeasurements()
+            VitalsManager()
         }
 }
 #endif

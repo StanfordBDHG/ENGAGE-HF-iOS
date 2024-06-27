@@ -23,12 +23,11 @@ struct NotificationSection: View {
         if !notificationManager.notifications.isEmpty {
             Section(
                 content: {
-                    ForEach(notificationManager.notifications, id: \.id) { notification in
+                    ForEach(notificationManager.notifications) { notification in
                         StudyApplicationListCard {
                             NotificationRow(notification: notification)
                         }
                     }
-                    .listRowSeparator(.hidden)
                     .buttonStyle(.borderless)
                 },
                 header: {

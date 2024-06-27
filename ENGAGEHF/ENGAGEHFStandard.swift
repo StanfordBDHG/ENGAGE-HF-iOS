@@ -25,6 +25,7 @@ import SwiftUI
 actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint, AccountStorageConstraint {
     enum ENGAGEHFStandardError: Error {
         case userNotAuthenticatedYet
+        case invalidHKSampleType
     }
 
     private static var userCollection: CollectionReference {
@@ -106,12 +107,28 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint, A
         }
     }
     
-    
+
     private func healthKitDocument(for user: DocumentReference, id uuid: UUID, type: HKSampleType) -> DocumentReference {
-        user
-            .collection("HealthData") // Add all HealthKit sources to a /HealthData collection.
-            .document(type.description) // Group measurements by type (BodyMass and BloodPressure)
-            .collection("Measurements")
+        var collectionBucket: String? {
+            switch type {
+            case HKQuantityType(.bodyMass):
+                return "bodyWeightObservations"
+            case HKQuantityType(.heartRate):
+                return "heartRateObservations"
+            case HKCorrelationType(.bloodPressure):
+                return "bloodPressureObservations"
+            // TODO: update
+            default:
+                return nil
+            }
+        }
+        
+        guard let collectionBucket else {
+            throw ENGAGEHFStandardError.invalidHKSampleType
+        }
+        
+        return user
+            .collection(collectionBucket)
             .document(uuid.uuidString) // Set the document identifier to the UUID of the document.
     }
 
