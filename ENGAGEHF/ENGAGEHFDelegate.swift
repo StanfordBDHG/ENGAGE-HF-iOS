@@ -6,15 +6,16 @@
 // SPDX-License-Identifier: MIT
 //
 
-import BluetoothServices
 import Spezi
 import SpeziAccount
 import SpeziBluetooth
+import SpeziBluetoothServices
 import SpeziDevices
 import SpeziFirebaseAccount
 import SpeziFirebaseStorage
 import SpeziFirestore
 import SpeziOnboarding
+import SpeziViews
 import SwiftUI
 
 
@@ -47,16 +48,19 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
                 }
             }
 
-            Bluetooth(advertisementStaleInterval: 15) {
+            Bluetooth {
                 Discover(WeightScaleDevice.self, by: .accessory(manufacturer: .omronHealthcareCoLtd, advertising: WeightScaleService.self))
                 Discover(BloodPressureCuffDevice.self, by: .accessory(manufacturer: .omronHealthcareCoLtd, advertising: BloodPressureService.self))
             }
             
+            PairedDevices()
+            HealthMeasurements()
+            
             OnboardingDataSource()
-            MeasurementManager()
             NotificationManager()
-            DeviceManager()
             InvitationCodeModule()
+
+            ConfigureTipKit()
         }
     }
     

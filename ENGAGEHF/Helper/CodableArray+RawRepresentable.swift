@@ -28,7 +28,7 @@ extension Array: RawRepresentable where Element: Codable {
     
     public init?(rawValue: String) {
         guard let data = rawValue.data(using: .utf8) else {
-            ENGAGEHF.logger.error("Failed to convert strubg of \(Self.self) to data: \(rawValue)")
+            ENGAGEHF.logger.error("Failed to convert string of \(Self.self) to data: \(rawValue)")
             return nil
         }
 

@@ -4,19 +4,6 @@
     "%@" : {
 
     },
-    "%lld BPM" : {
-
-    },
-    "%lld/%lld mmHg" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$lld/%2$lld mmHg"
-          }
-        }
-      }
-    },
     "ACCOUNT_NEXT" : {
       "localizations" : {
         "en" : {
@@ -80,9 +67,6 @@
     "An invitation code is at least 8 characters long." : {
 
     },
-    "Close" : {
-      "comment" : "For closing sheets."
-    },
     "CLOSE" : {
       "comment" : "MARK: General",
       "localizations" : {
@@ -118,9 +102,6 @@
 
     },
     "Devices" : {
-
-    },
-    "Discard" : {
 
     },
     "Education" : {
@@ -170,6 +151,9 @@
           }
         }
       }
+    },
+    "Hold down the Bluetooth button for 3 seconds to put the device into pairing mode." : {
+
     },
     "Home" : {
 
@@ -308,9 +292,6 @@
         }
       }
     },
-    "Invalid Sample" : {
-
-    },
     "Invitation Code" : {
 
     },
@@ -338,9 +319,6 @@
 
     },
     "List Without Sections" : {
-
-    },
-    "Measurement Recorded" : {
 
     },
     "NOTIFICATION_PERMISSIONS_BUTTON" : {
@@ -391,9 +369,6 @@
 
     },
     "Redeem Invitation Code" : {
-
-    },
-    "Save" : {
 
     },
     "The invitation code is invalid or has already been used." : {

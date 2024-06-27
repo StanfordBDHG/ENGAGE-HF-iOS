@@ -13,6 +13,7 @@ import OSLog
 import PDFKit
 import Spezi
 import SpeziAccount
+import SpeziDevices
 import SpeziFirebaseAccountStorage
 import SpeziFirestore
 import SpeziHealthKit
@@ -64,18 +65,18 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint, A
         }
     }
 
-    func add(sample: HKSample) async { // kept for compatibility with the Standard Constraint
-        do {
-            try await self.addMeasurement(sample: sample)
-        } catch {
-            logger.error("Could not store HealthKit sample: \(error)")
-        }
-    }
 
-
-    func addMeasurement(sample: HKSample) async throws {
+    func addMeasurement(samples: [HKSample]) async throws {
         do {
-            try await healthKitDocument(id: sample.id, type: sample.sampleType).setData(from: sample.resource)
+            let userDocument = try await userDocumentReference
+
+            let batch = Firestore.firestore().batch()
+            for sample in samples {
+                let document = healthKitDocument(for: userDocument, id: sample.id, type: sample.sampleType)
+                try batch.setData(from: sample.resource, forDocument: document)
+            }
+
+            try await batch.commit()
         } catch {
             throw FirestoreError(error)
         }
@@ -106,8 +107,8 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint, A
     }
     
     
-    private func healthKitDocument(id uuid: UUID, type: HKSampleType) async throws -> DocumentReference {
-        try await userDocumentReference
+    private func healthKitDocument(for user: DocumentReference, id uuid: UUID, type: HKSampleType) -> DocumentReference {
+        user
             .collection("HealthData") // Add all HealthKit sources to a /HealthData collection.
             .document(type.description) // Group measurements by type (BodyMass and BloodPressure)
             .collection("Measurements")

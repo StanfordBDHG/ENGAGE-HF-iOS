@@ -6,13 +6,12 @@
 // SPDX-License-Identifier: MIT
 //
 
-import BluetoothServices
 import CoreBluetooth
 import Foundation
 import OSLog
 @_spi(TestingSupport) import SpeziBluetooth
+import SpeziBluetoothServices
 import SpeziDevices
-import SpeziFoundation
 import SpeziNumerics
 import SpeziOmron
 
@@ -24,7 +23,7 @@ class BloodPressureCuffDevice: BluetoothDevice, Identifiable, OmronHealthDevice,
     @DeviceState(\.name) var name: String?
     @DeviceState(\.state) var state: PeripheralState
     @DeviceState(\.advertisementData) var advertisementData: AdvertisementData
-    @DeviceState(\.discarded) var discarded
+    @DeviceState(\.nearby) var nearby
 
     @Service var deviceInformation = DeviceInformationService()
 
@@ -35,82 +34,55 @@ class BloodPressureCuffDevice: BluetoothDevice, Identifiable, OmronHealthDevice,
     @DeviceAction(\.connect) var connect
     @DeviceAction(\.disconnect) var disconnect
     
-    @Dependency private var measurementManager: MeasurementManager?
-    @Dependency private var deviceManager: DeviceManager?
-
-    @MainActor var _pairingContinuation: CheckedContinuation<Void, Error>? // swiftlint:disable:this identifier_name
+    @Dependency private var measurements: HealthMeasurements?
+    @Dependency private var pairedDevices: PairedDevices?
 
     var icon: ImageReference? {
         .asset("Omron-BP5250")
     }
 
-    required init() {
-        $state
-            .onChange(perform: handleStateChange(_:))
-        $advertisementData.onChange(initial: true, perform: handleAdvertisement(_:))
-        $discarded.onChange { @MainActor discarded in
-            if discarded {
-                self.deviceManager?.handleDiscardedDevice(self)
-            }
+    required init() {}
+
+    func configure() {
+        $state.onChange { [weak self] value in
+            await self?.handleStateChange(value)
         }
 
-        bloodPressure.$bloodPressureMeasurement
-            .onChange(perform: processMeasurement(_:))
-        battery.$batteryLevel
-            .onChange(perform: handleBatteryChange(_:))
-        time.$currentTime
-            .onChange(perform: handleCurrentTimeChange(_:))
-    }
-
-    private func handleAdvertisement(_ data: AdvertisementData) {
-        guard let manufacturerData else {
-            // e.g., happens when device is connected without prior advertising
-            return
+        battery.$batteryLevel.onChange { [weak self] value in
+            await self?.handleBatteryChange(value)
+        }
+        time.$currentTime.onChange { [weak self] value in
+            await self?.handleCurrentTimeChange(value)
         }
 
-        if case .pairingMode = manufacturerData.pairingMode {
-            Task { @MainActor in
-                deviceManager?.nearbyPairableDevice(self)
-            }
+        if let pairedDevices {
+            pairedDevices.configure(device: self, accessing: $state, $advertisementData, $nearby)
+        }
+        if let measurements {
+            measurements.configureReceivingMeasurements(for: self, on: bloodPressure)
         }
     }
 
     private func handleStateChange(_ state: PeripheralState) async {
-        if case .disconnected = state {
-            await handleDeviceDisconnected()
-        }
-
-        await deviceManager?.handleDeviceStateUpdated(self, state)
-
-        if case .connected = state {
+        if case .connected = state { // TODO: only after pairing completed?
             time.synchronizeDeviceTime()
         }
     }
 
-    private func processMeasurement(_ measurement: BloodPressureMeasurement) {
-        guard let measurementManager else {
-            preconditionFailure("Measurement Manager was not configured")
-        }
-
-        Self.logger.debug("Received new blood pressure measurement: \(String(describing: measurement))")
-        measurementManager.handleNewMeasurement(.bloodPressure(measurement, bloodPressure.features ?? []), from: self)
-    }
-
     @MainActor
     private func handleBatteryChange(_ level: UInt8) {
-        Self.logger.debug("Updated battery level for \(self.label) is \(level)")
-        handleDeviceInteraction()
-        deviceManager?.updateBattery(for: self, percentage: level)
+        pairedDevices?.signalDevicePaired(self)
     }
 
     @MainActor
     private func handleCurrentTimeChange(_ time: CurrentTime) {
         Self.logger.debug("Updated device time for \(self.label) is \(String(describing: time))")
-        handleDeviceInteraction()
+        pairedDevices?.signalDevicePaired(self)
     }
 }
 
 
+#if DEBUG || TEST
 extension BloodPressureCuffDevice {
     static func createMockDevice(
         systolic: MedFloat16 = 103,
@@ -174,3 +146,4 @@ extension BloodPressureCuffDevice {
         return device
     }
 }
+#endif

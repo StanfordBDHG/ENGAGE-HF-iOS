@@ -6,15 +6,14 @@
 // SPDX-License-Identifier: MIT
 //
 
-import BluetoothServices
 import SpeziAccount
 import SpeziBluetooth
+import SpeziBluetoothServices
 import SpeziDevices
 import SpeziDevicesUI
 import SpeziOnboarding
 import SpeziViews
 import SwiftUI
-import TipKit
 
 
 struct HomeView: View {
@@ -34,9 +33,10 @@ struct HomeView: View {
     }
 
     
-    @Environment(MeasurementManager.self) private var measurementManager
-    @Environment(WeightScaleDevice.self) private var weightScale: WeightScaleDevice?
+    @Environment(HealthMeasurements.self) private var measurements
     @Environment(Bluetooth.self) private var bluetooth
+    @Environment(ENGAGEHFStandard.self) private var standard
+
     @Environment(\.dismiss) private var dismiss
     
     @AppStorage(StorageKeys.homeTabSelection) private var selectedTab = Tabs.home
@@ -44,8 +44,8 @@ struct HomeView: View {
     
 
     var body: some View {
-        @Bindable var measurementManager = measurementManager
-        
+        @Bindable var measurements = measurements
+
         TabView(selection: $selectedTab) {
             Dashboard(presentingAccount: $presentingAccount)
                 .tag(Tabs.home)
@@ -57,7 +57,12 @@ struct HomeView: View {
                 .tabItem {
                     Label("Education", systemImage: "brain")
                 }
-            PairingSheet()
+            NavigationStack {
+                DevicesTab(appName: ENGAGEHF.appName ?? "ENGAGE") {
+                    Text("Hold down the Bluetooth button for 3 seconds to put the device into pairing mode.")
+                }
+                    .environment(\.advertisementStaleInterval, 15)
+            }
                 .tag(Tabs.devices)
                 .tabItem {
                     Label("Devices", systemImage: "sensor.fill")
@@ -70,8 +75,10 @@ struct HomeView: View {
                 AccountSetupSheet()
             }
             .verifyRequiredAccountDetails(Self.accountEnabled)
-            .sheet(item: $measurementManager.newMeasurement) { measurement in
-                MeasurementRecordedView(measurement: measurement)
+            .sheet(isPresented: $measurements.shouldPresentMeasurements) {
+                MeasurementRecordedSheet { samples in
+                    try await standard.addMeasurement(samples: samples)
+                }
             }
     }
 }
@@ -81,17 +88,14 @@ struct HomeView: View {
 #Preview {
     CommandLine.arguments.append("--disableFirebase")
     return HomeView()
-        .onAppear { // TODO: move into module (for ALL appearances!)
-            Tips.showAllTipsForTesting() // TODO: either flag OR the running in (preview?) simulator?
-            try? Tips.configure()
-        }
         .previewWith(standard: ENGAGEHFStandard()) {
             AccountConfiguration {
                 MockUserIdPasswordAccountService()
             }
-            MeasurementManager()
+            HealthMeasurements()
             NotificationManager()
-            DeviceManager()
+            PairedDevices()
+            ConfigureTipKit()
             Bluetooth {
                 Discover(WeightScaleDevice.self, by: .advertisedService(WeightScaleService.self))
             }

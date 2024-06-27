@@ -6,6 +6,10 @@
 // SPDX-License-Identifier: MIT
 //
 
+#if DEBUG || TEST
+@_spi(TestingSupport)
+#endif
+import SpeziDevices
 import SwiftUI
 
 
@@ -14,7 +18,7 @@ struct Dashboard: View {
     @State var showSurvey = false
     
 #if DEBUG || TEST
-    @Environment(MeasurementManager.self) private var measurementManager
+    @Environment(HealthMeasurements.self) private var measurements
 #endif
 
     
@@ -35,10 +39,10 @@ struct Dashboard: View {
                     if FeatureFlags.testMockDevices {
                         ToolbarItemGroup(placement: .secondaryAction) {
                             Button("Trigger Weight Measurement", systemImage: "scalemass.fill") {
-                                measurementManager.loadMockWeightMeasurement()
+                                measurements.loadMockWeightMeasurement()
                             }
                             Button("Trigger Blood Pressure Measurement", systemImage: "drop.fill") {
-                                measurementManager.loadMockBloodPressureMeasurement()
+                                measurements.loadMockBloodPressureMeasurement()
                             }
                         }
                     }
@@ -54,7 +58,7 @@ struct Dashboard: View {
     Dashboard(presentingAccount: .constant(false))
         .previewWith(standard: ENGAGEHFStandard()) {
             NotificationManager()
-            MeasurementManager()
+            HealthMeasurements()
         }
 }
 #endif
