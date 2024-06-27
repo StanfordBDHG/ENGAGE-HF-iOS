@@ -17,6 +17,8 @@ import SwiftUI
 struct HomeView: View {
     enum Tabs: String {
         case home
+        case heart
+        case medications
         case education
     }
     
@@ -82,6 +84,7 @@ struct HomeView: View {
             Bluetooth {
                 Discover(WeightScaleDevice.self, by: .advertisedService(WeightScaleService.self))
             }
+            VitalsManager()
         }
 }
 #endif

@@ -102,6 +102,10 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
+            argument = "--skipOnboarding"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
             argument = "--testSchedule"
             isEnabled = "NO">
          </CommandLineArgument>

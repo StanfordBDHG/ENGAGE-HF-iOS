@@ -14,11 +14,10 @@ import Spezi
 import SpeziFirebaseConfiguration
 
 
-// Notification manager
-//
-// Maintains a list of Notifications associated with the current user in firebase
-// On configuration of the app, adds a snapshot listener to the user's notification collection
-//
+/// Notification manager
+///
+/// Maintains a list of Notifications associated with the current user in firebase
+/// On configuration of the app, adds a snapshot listener to the user's notification collection
 @Observable
 class NotificationManager: Module, EnvironmentAccessible {
     @ObservationIgnored @Dependency private var configureFirebaseApp: ConfigureFirebaseApp
@@ -26,10 +25,7 @@ class NotificationManager: Module, EnvironmentAccessible {
     
     private var authStateDidChangeListenerHandle: AuthStateDidChangeListenerHandle?
     private var snapshotListener: ListenerRegistration?
-    
     private let logger = Logger(subsystem: "ENGAGEHF", category: "NotificationManager")
-    
-    private let expirationDate = 10
     
     var notifications: [Notification] = []
     
@@ -66,10 +62,10 @@ class NotificationManager: Module, EnvironmentAccessible {
     }
     
     
-    // Adds three mock notifications to the user's notification collection in firestore
+    /// Adds three mock notifications to the user's notification collection in firestore
     func setupNotificationTests(user: User) async throws {
         let firestore = Firestore.firestore()
-        let notificationsCollection = firestore.collection("users").document(user.uid).collection("notifications")
+        let notificationsCollection = firestore.collection("users").document(user.uid).collection("messages")
         
         let querySnapshot = try await notificationsCollection.getDocuments()
         
@@ -99,10 +95,9 @@ class NotificationManager: Module, EnvironmentAccessible {
     }
     
     
-    // Call on initialization
-    //
-    // Creates a snapshot listener to save new notifications to the manager
-    // as they are added to the user's directory in Firebase
+    /// Call on initialization and sign-in of user
+    ///
+    /// Creates a snapshot listener to save new notifications to the manager as they are added to the user's directory in Firebase
     func registerSnapshotListener(user: User?) {
         logger.info("Initializing notifiation snapshot listener...")
         
@@ -114,21 +109,11 @@ class NotificationManager: Module, EnvironmentAccessible {
         
         let firestore = Firestore.firestore()
         
-        // Ignore notifications older than expirationDate
-        guard let thresholdDate = Calendar.current.date(byAdding: .day, value: -expirationDate, to: .now) else {
-            logger.error("Unable to get threshold date: \(FetchingError.invalidTimestamp)")
-            return
-        }
-        
-        let thesholdTimeStamp = Timestamp(date: thresholdDate)
-        
         // Set a snapshot listener on the query for valid notifications
         firestore
             .collection("users")
             .document(uid)
-            .collection("notifications")
-            .whereField("created", isGreaterThan: thesholdTimeStamp)
-            .whereField("completed", isEqualTo: false)
+            .collection("messages")
             .addSnapshotListener { querySnapshot, error in
                 guard let documentRefs = querySnapshot?.documents else {
                     self.logger.error("Error fetching documents: \(error)")
@@ -168,7 +153,7 @@ class NotificationManager: Module, EnvironmentAccessible {
 
         let docRef = firestore.collection("users")
             .document(user.uid)
-            .collection("notifications")
+            .collection("messages")
             .document(id)
         
         do {

@@ -14,8 +14,6 @@ import Spezi
 /// Manage and process incoming measurements.
 ///
 /// Functionality:
-/// - Store the user's measurement history in an array
-///      - Watch for changes in the user's blood pressure and weight measurement collections in firebase
 /// - Convert an incoming measurement into a HKSample and transform to FHIR Observation
 /// - Save a given measurement to Firebase
 @Observable
