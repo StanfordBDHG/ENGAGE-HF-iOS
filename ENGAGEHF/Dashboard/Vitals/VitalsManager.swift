@@ -280,7 +280,7 @@ extension VitalsManager {
         
         let dummyDiastolic = HKQuantitySample(
             type: HKQuantityType(.bloodPressureDiastolic),
-            quantity: diastolic, 
+            quantity: diastolic,
             start: .now,
             end: .now
         )
