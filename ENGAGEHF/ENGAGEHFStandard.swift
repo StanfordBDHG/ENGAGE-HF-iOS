@@ -68,13 +68,22 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint, A
 
 
     func addMeasurement(samples: [HKSample]) async throws {
-        do {
-            let userDocument = try await userDocumentReference
+        guard !samples.isEmpty else {
+            return
+        }
 
+        let userDocument = try await userDocumentReference
+
+        do {
             let batch = Firestore.firestore().batch()
             for sample in samples {
-                let document = healthKitDocument(for: userDocument, id: sample.id, type: sample.sampleType)
-                try batch.setData(from: sample.resource, forDocument: document)
+                do {
+                    let document = try healthKitDocument(for: userDocument, id: sample.id, type: sample.sampleType)
+                    try batch.setData(from: sample.resource, forDocument: document)
+                } catch {
+                    // either document retrieval or encoding failed, this should not stop other samples from getting saved
+                    logger.debug("Failed to store sample in firebase, discarding: \(sample)")
+                }
             }
 
             try await batch.commit()
@@ -108,16 +117,19 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint, A
     }
     
 
-    private func healthKitDocument(for user: DocumentReference, id uuid: UUID, type: HKSampleType) -> DocumentReference {
+    private func healthKitDocument(for user: DocumentReference, id uuid: UUID, type: HKSampleType) throws -> DocumentReference {
         var collectionBucket: String? {
             switch type {
             case HKQuantityType(.bodyMass):
                 return "bodyWeightObservations"
+            case HKQuantityType(.bodyMassIndex):
+                return "bodyMassIndexObservations"
+            case HKQuantityType(.height):
+                return "heightObservations"
             case HKQuantityType(.heartRate):
                 return "heartRateObservations"
             case HKCorrelationType(.bloodPressure):
                 return "bloodPressureObservations"
-            // TODO: update
             default:
                 return nil
             }
