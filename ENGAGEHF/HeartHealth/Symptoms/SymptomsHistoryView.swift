@@ -34,9 +34,17 @@ struct SymptomsHistoryView: View {
     
     
     var body: some View {
-        switch format {
-        case .list: SymptomsHistoryList(data: data, symptomType: symptomType)
-        case .graph: Text("Graph") /*SymptomsHistoryGraph(data: data)*/
+        if !data.isEmpty {
+            switch format {
+            case .list: SymptomsHistoryList(data: data, symptomType: symptomType)
+            case .graph: Text("Graph") /*SymptomsHistoryGraph(data: data)*/
+            }
+        } else {
+            StudyApplicationListCard {
+                Text("No recent symptom scores available.")
+                    .font(.caption)
+                    .frame(maxWidth: .infinity)
+            }
         }
     }
 }

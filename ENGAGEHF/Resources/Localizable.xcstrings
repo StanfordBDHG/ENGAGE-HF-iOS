@@ -346,6 +346,9 @@
     "No recent %@ measurement available" : {
 
     },
+    "No recent symptom scores available." : {
+
+    },
     "No vitals" : {
 
     },
