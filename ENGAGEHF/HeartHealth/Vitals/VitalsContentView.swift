@@ -9,13 +9,22 @@
 import SwiftUI
 
 
-struct SymptomOverview: View {
+struct VitalsContentView: View {
+    private var vitalsType: VitalsType
+    
+    
     var body: some View {
-        Text("Symptom Overview")
+        Text(vitalsType.description)
+            .padding()
+    }
+    
+    
+    init(for vitals: VitalsType) {
+        self.vitalsType = vitals
     }
 }
 
 
 #Preview {
-    SymptomOverview()
+    VitalsContentView(for: .weight)
 }

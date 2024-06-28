@@ -17,11 +17,16 @@ struct HeartHealth: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack(alignment: .center) {
+                LazyVStack(alignment: .trailing, spacing: 20) {
                     GraphPicker(selection: $vitalSelection)
-                    HeartHealthContentView(selection: vitalSelection)
-                        .padding()
+                    switch vitalSelection {
+                    case .symptoms: SymptomsContentView()
+                    case .weight: VitalsContentView(for: .weight)
+                    case .heartRate: VitalsContentView(for: .heartRate)
+                    case .bloodPressure: VitalsContentView(for: .bloodPressure)
+                    }
                 }
+                .padding(.horizontal)
             }
                 .navigationTitle("Heart Health")
                 .toolbar {

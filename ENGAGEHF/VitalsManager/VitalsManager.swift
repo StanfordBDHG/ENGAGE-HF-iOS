@@ -276,106 +276,85 @@ public class VitalsManager: Module, EnvironmentAccessible {
 
 
 extension VitalsManager {
-    /// Adds a month's worth of daily mock measurements to weight, heart rate, and blood pressure histories
-    /// 30 total measurements (1 each day) with random quantities
+    /// Adds just over a month's worth of daily mock measurements to weight, heart rate, blood pressure, and symptoms histories
+    /// 40 total measurements (1 each day) with random quantities
     private func setupPreview() {
-        for dayOffset in 0..<30 {
+        for dayOffset in 0..<40 {
             guard let startDate = Calendar.current.date(byAdding: .day, value: -dayOffset, to: .now) else {
                 return
             }
             
-            let dummyHR = HKQuantitySample(
-                type: HKQuantityType(.heartRate),
-                quantity: HKQuantity(unit: .count().unitDivided(by: .minute()), doubleValue: Double.random(in: 40...160)),
-                start: startDate,
-                end: startDate
-            )
+            self.addMockBP(forDate: startDate)
+            self.addMockHR(forDate: startDate)
+            self.addMockWeight(forDate: startDate)
             
-            let diastolic = HKQuantity(unit: .millimeterOfMercury(), doubleValue: Double.random(in: 40...90))
-            let systolic = HKQuantity(unit: .millimeterOfMercury(), doubleValue: Double.random(in: 90...140))
-            
-            let dummyDiastolic = HKQuantitySample(
-                type: HKQuantityType(.bloodPressureDiastolic),
-                quantity: diastolic,
-                start: startDate,
-                end: startDate
-            )
-            let dummySystolic = HKQuantitySample(
-                type: HKQuantityType(.bloodPressureSystolic),
-                quantity: systolic,
-                start: startDate,
-                end: startDate
-            )
-            let dummyBP = HKCorrelation(
-                type: HKCorrelationType(.bloodPressure),
-                start: startDate,
-                end: startDate,
-                objects: [dummyDiastolic, dummySystolic]
-            )
-            
-            let dummyWeight = HKQuantitySample(
-                type: HKQuantityType(.bodyMass),
-                quantity: HKQuantity(unit: .pound(), doubleValue: Double.random(in: 80...180)),
-                start: startDate,
-                end: startDate
-            )
-            
-            self.heartRateHistory.append(dummyHR)
-            self.bloodPressureHistory.append(dummyBP)
-            self.weightHistory.append(dummyWeight)
-        }
-        
-        
-        for weekOffset in 0..<3 {
-            for dayOffset in 0..<3 {
-                guard let startDateDay = Calendar.current.date(byAdding: .day, value: -dayOffset, to: .now) else {
-                    return
-                }
-                
-                guard let startDate = Calendar.current.date(byAdding: .weekOfYear, value: -weekOffset, to: startDateDay) else {
-                    return
-                }
-                
-                let dummyHR = HKQuantitySample(
-                    type: HKQuantityType(.heartRate),
-                    quantity: HKQuantity(unit: .count().unitDivided(by: .minute()), doubleValue: Double(60 + 10 * dayOffset)),
-                    start: startDate,
-                    end: startDate
-                )
-                
-                let diastolic = HKQuantity(unit: .millimeterOfMercury(), doubleValue: Double(120 + 10 * dayOffset))
-                let systolic = HKQuantity(unit: .millimeterOfMercury(), doubleValue: Double(70 + 10 * dayOffset))
-                
-                let dummyDiastolic = HKQuantitySample(
-                    type: HKQuantityType(.bloodPressureDiastolic),
-                    quantity: diastolic,
-                    start: startDate,
-                    end: startDate
-                )
-                let dummySystolic = HKQuantitySample(
-                    type: HKQuantityType(.bloodPressureSystolic),
-                    quantity: systolic,
-                    start: startDate,
-                    end: startDate
-                )
-                let dummyBP = HKCorrelation(
-                    type: HKCorrelationType(.bloodPressure),
-                    start: startDate,
-                    end: startDate,
-                    objects: [dummyDiastolic, dummySystolic]
-                )
-                
-                let dummyWeight = HKQuantitySample(
-                    type: HKQuantityType(.bodyMass),
-                    quantity: HKQuantity(unit: .pound(), doubleValue: Double(70 + 10 * dayOffset)),
-                    start: startDate,
-                    end: startDate
-                )
-                
-                self.heartRateHistory.append(dummyHR)
-                self.bloodPressureHistory.append(dummyBP)
-                self.weightHistory.append(dummyWeight)
+            // Only add mock symptoms once a week
+            if dayOffset % 7 == 0 {
+                self.addMockSymptoms(forDate: startDate)
             }
         }
+    }
+    
+    private func addMockBP(forDate startDate: Date) {
+        let diastolic = HKQuantity(unit: .millimeterOfMercury(), doubleValue: Double.random(in: 40...90))
+        let systolic = HKQuantity(unit: .millimeterOfMercury(), doubleValue: Double.random(in: 90...140))
+        
+        let dummyDiastolic = HKQuantitySample(
+            type: HKQuantityType(.bloodPressureDiastolic),
+            quantity: diastolic,
+            start: startDate,
+            end: startDate
+        )
+        let dummySystolic = HKQuantitySample(
+            type: HKQuantityType(.bloodPressureSystolic),
+            quantity: systolic,
+            start: startDate,
+            end: startDate
+        )
+        let dummyBP = HKCorrelation(
+            type: HKCorrelationType(.bloodPressure),
+            start: startDate,
+            end: startDate,
+            objects: [dummyDiastolic, dummySystolic]
+        )
+        
+        self.bloodPressureHistory.append(dummyBP)
+    }
+    
+    private func addMockHR(forDate startDate: Date) {
+        let dummyHR = HKQuantitySample(
+            type: HKQuantityType(.heartRate),
+            quantity: HKQuantity(unit: .count().unitDivided(by: .minute()), doubleValue: Double.random(in: 40...160)),
+            start: startDate,
+            end: startDate
+        )
+        
+        self.heartRateHistory.append(dummyHR)
+    }
+    
+    private func addMockWeight(forDate startDate: Date) {
+        let dummyWeight = HKQuantitySample(
+            type: HKQuantityType(.bodyMass),
+            quantity: HKQuantity(unit: .pound(), doubleValue: Double.random(in: 80...180)),
+            start: startDate,
+            end: startDate
+        )
+        
+        self.weightHistory.append(dummyWeight)
+    }
+    
+    private func addMockSymptoms(forDate startDate: Date) {
+        let dummySymptoms = SymptomScore(
+            id: UUID().uuidString,
+            date: startDate,
+            overallScore: Double.random(in: 0...100),
+            physicalLimitsScore: Double.random(in: 0...100),
+            socialLimitsScore: Double.random(in: 0...100),
+            qualityOfLifeScore: Double.random(in: 0...100),
+            specificSymptomsScore: Double.random(in: 0...100),
+            dizzinessScore: Double.random(in: 0...100)
+        )
+        
+        self.symptomHistory.append(dummySymptoms)
     }
 }

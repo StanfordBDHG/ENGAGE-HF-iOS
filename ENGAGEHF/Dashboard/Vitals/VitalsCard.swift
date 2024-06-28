@@ -15,7 +15,7 @@ struct VitalsCard: View {
     let units: String
     let measurement: (value: String, date: String)?
     
-    @ScaledMetric private var measurementTextSize: CGFloat = 40
+    var measurementTextSize: CGFloat = 40
     private let cardHeight: CGFloat = 80
     
     
@@ -23,15 +23,12 @@ struct VitalsCard: View {
         StudyApplicationListCard {
             VStack(alignment: .center, spacing: 7) {
                 if let measurement {
-                    HStack(alignment: .firstTextBaseline, spacing: 4) {
-                        Text(measurement.value)
-                            .font(.system(size: measurementTextSize, weight: .semibold, design: .rounded))
-                            .accessibilityLabel("\(type) Quantity: \(measurement.value)")
-                        Text(units)
-                            .font(.title2)
-                            .foregroundStyle(Color.secondary)
-                            .accessibilityLabel("\(type) Unit: \(units)")
-                    }
+                    DisplayMeasurement(
+                        quantity: measurement.value,
+                        units: units,
+                        type: type,
+                        quantityTextSize: measurementTextSize
+                    )
                     Text(measurement.date)
                         .font(.caption)
                         .foregroundStyle(Color.secondary)

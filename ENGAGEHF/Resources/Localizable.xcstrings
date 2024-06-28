@@ -147,7 +147,7 @@
     "Content ..." : {
 
     },
-    "Description" : {
+    "Date" : {
 
     },
     "Discard" : {
@@ -157,6 +157,9 @@
 
     },
     "Graph" : {
+
+    },
+    "Graph Record Format" : {
 
     },
     "Graph Selection" : {
@@ -328,6 +331,9 @@
         }
       }
     },
+    "List Record Format" : {
+
+    },
     "List With Sections" : {
 
     },
@@ -387,10 +393,16 @@
     "Notifications" : {
 
     },
+    "Picker" : {
+
+    },
     "Please enter your invitation code to join the ENGAGE-HF study." : {
 
     },
     "Recent Vitals" : {
+
+    },
+    "Record Picker" : {
 
     },
     "Redeem Invitation Code" : {
@@ -399,8 +411,23 @@
     "Save" : {
 
     },
-    "Symptom Overview" : {
+    "Score" : {
 
+    },
+    "Section Name" : {
+
+    },
+    "symptomDizziness" : {
+      "comment" : "For Heart Health view",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your dizziness is important to keep track of because dizziness can be a side effect of your heart or your heart medicines."
+          }
+        }
+      }
     },
     "symptomOverall" : {
       "comment" : "For Heart Health view",
@@ -438,17 +465,8 @@
         }
       }
     },
-    "symptomsDizziness" : {
-      "comment" : "For Heart Health view",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Your dizziness is important to keep track of because dizziness can be a side effect of your heart or your heart medicines."
-          }
-        }
-      }
+    "Symptoms Picker" : {
+
     },
     "symptomSocial" : {
       "comment" : "For Heart Health view",
@@ -473,9 +491,6 @@
           }
         }
       }
-    },
-    "Temp" : {
-
     },
     "The invitation code is invalid or has already been used." : {
       "comment" : "Invitation Code Invalid"

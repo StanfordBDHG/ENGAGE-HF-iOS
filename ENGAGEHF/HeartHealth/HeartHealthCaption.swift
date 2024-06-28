@@ -10,26 +10,26 @@ import SwiftUI
 
 
 struct HeartHealthCaption: View {
-    var vitalsType: GraphSelection
+    var title: String
+    var descriptionKey: LocalizedStringKey
     
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
-            Text("Description")
-                .studyApplicationHeaderStyle()
-            StudyApplicationListCard {
-                Text(LocalizedStringKey(vitalsType.explanation))
+        DisclosureGroup(
+            content: {
+                StudyApplicationListCard {
+                    Text(descriptionKey)
+                }
+            },
+            label: {
+                Text(title)
+                    .studyApplicationHeaderStyle()
             }
-        }
-    }
-    
-
-    init(describing vitalsType: GraphSelection) {
-        self.vitalsType = vitalsType
+        )
     }
 }
 
 
 #Preview {
-    HeartHealthCaption(describing: .weight)
+    HeartHealthCaption(title: "Weight", descriptionKey: "vitalsWeight")
 }
