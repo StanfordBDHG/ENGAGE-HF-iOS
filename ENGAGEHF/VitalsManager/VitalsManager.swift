@@ -42,6 +42,7 @@ public class VitalsManager: Module, EnvironmentAccessible {
     public var heartRateHistory: [HKQuantitySample] = []
     public var bloodPressureHistory: [HKCorrelation] = []
     public var weightHistory: [HKQuantitySample] = []
+    
     public var symptomHistory: [SymptomScore] = []
     
     
@@ -120,15 +121,16 @@ public class VitalsManager: Module, EnvironmentAccessible {
         self.snapshotListeners.append(
             self.registerSnapshot(
                 collectionReference: userDocRef.collection("kccqResults"),
-                storage: \.
+                storage: \.symptomHistory,
+                mapObservation: { $0 }
             )
         )
     }
     
-    private func registerSnapshot<T>(
+    private func registerSnapshot<T, V: Decodable>(
         collectionReference: CollectionReference,
         storage: ReferenceWritableKeyPath<VitalsManager, [T]>,
-        mapObservation: @escaping (R4Observation) throws -> T
+        mapObservation: @escaping (V) throws -> T
     ) -> ListenerRegistration {
         // Return a listener for the given collection
         collectionReference
@@ -141,7 +143,7 @@ public class VitalsManager: Module, EnvironmentAccessible {
                 
                 self[keyPath: storage] = documentRefs.compactMap {
                     do {
-                        return try mapObservation($0.data(as: R4Observation.self))
+                        return try mapObservation($0.data(as: V.self))
                     } catch {
                         self.logger.error("Error saving \(collectionReference.collectionID) history: \(error)")
                         return nil
@@ -274,10 +276,56 @@ public class VitalsManager: Module, EnvironmentAccessible {
 
 
 extension VitalsManager {
-    /// Adds nine mock measurements to weight, heart rate, and blood pressure histories:
-    /// Three measurements on three sequential days, for three weeks
-    /// The quantity of each measurement differ by increments of 10, and the weight is in pounds
+    /// Adds a month's worth of daily mock measurements to weight, heart rate, and blood pressure histories
+    /// 30 total measurements (1 each day) with random quantities
     private func setupPreview() {
+        for dayOffset in 0..<30 {
+            guard let startDate = Calendar.current.date(byAdding: .day, value: -dayOffset, to: .now) else {
+                return
+            }
+            
+            let dummyHR = HKQuantitySample(
+                type: HKQuantityType(.heartRate),
+                quantity: HKQuantity(unit: .count().unitDivided(by: .minute()), doubleValue: Double.random(in: 40...160)),
+                start: startDate,
+                end: startDate
+            )
+            
+            let diastolic = HKQuantity(unit: .millimeterOfMercury(), doubleValue: Double.random(in: 40...90))
+            let systolic = HKQuantity(unit: .millimeterOfMercury(), doubleValue: Double.random(in: 90...140))
+            
+            let dummyDiastolic = HKQuantitySample(
+                type: HKQuantityType(.bloodPressureDiastolic),
+                quantity: diastolic,
+                start: startDate,
+                end: startDate
+            )
+            let dummySystolic = HKQuantitySample(
+                type: HKQuantityType(.bloodPressureSystolic),
+                quantity: systolic,
+                start: startDate,
+                end: startDate
+            )
+            let dummyBP = HKCorrelation(
+                type: HKCorrelationType(.bloodPressure),
+                start: startDate,
+                end: startDate,
+                objects: [dummyDiastolic, dummySystolic]
+            )
+            
+            let dummyWeight = HKQuantitySample(
+                type: HKQuantityType(.bodyMass),
+                quantity: HKQuantity(unit: .pound(), doubleValue: Double.random(in: 80...180)),
+                start: startDate,
+                end: startDate
+            )
+            
+            self.heartRateHistory.append(dummyHR)
+            self.bloodPressureHistory.append(dummyBP)
+            self.weightHistory.append(dummyWeight)
+        }
+        
+        
         for weekOffset in 0..<3 {
             for dayOffset in 0..<3 {
                 guard let startDateDay = Calendar.current.date(byAdding: .day, value: -dayOffset, to: .now) else {
