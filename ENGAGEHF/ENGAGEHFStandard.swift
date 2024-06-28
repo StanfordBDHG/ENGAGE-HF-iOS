@@ -57,6 +57,20 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint, A
             return Storage.storage().reference().child("users/\(details.accountId)")
         }
     }
+    
+    private var hkSampleMapping: HKSampleMapping {
+        var sampleMapping = HKSampleMapping.default
+        var bodyMassMapping = sampleMapping.quantitySampleMapping[HKQuantityType(.bodyMass)]
+        bodyMassMapping?.unit = MappedUnit(
+            hkunit: .gramUnit(with: .kilo),
+            unit: "kg",
+            system: URL(string: "http://unitsofmeasure.org")!,
+            code: "kg"
+        )
+        sampleMapping.quantitySampleMapping[HKQuantityType(.bodyMass)] = bodyMassMapping
+        
+        return sampleMapping
+    }
 
 
     init() {
@@ -76,7 +90,7 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint, A
 
     func addMeasurement(sample: HKSample) async throws {
         do {
-            try await healthKitDocument(id: sample.id, type: sample.sampleType).setData(from: sample.resource)
+            try await healthKitDocument(id: sample.id, type: sample.sampleType).setData(from: sample.resource(withMapping: hkSampleMapping))
         } catch {
             throw FirestoreError(error)
         }

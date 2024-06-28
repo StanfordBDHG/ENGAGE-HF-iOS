@@ -10,13 +10,11 @@ import FirebaseFirestore
 import Foundation
 
 
-// A notification
-//
-// Mirrors the representation of a notification in firestore
-// When assigned to a patient, the title will be displayed
-// and the description will be displayed in a drop-down field
-//
-// Title and Descprition may be markdown text
+/// A notification
+///
+/// Mirrors the representation of a notification in firestore
+/// When assigned to a patient, the title will be displayed
+/// and the description will be displayed in a drop-down field
 struct Notification: Identifiable, Equatable, Codable {
     @DocumentID var id: String?
     var type: String

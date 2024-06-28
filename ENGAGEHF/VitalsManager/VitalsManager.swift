@@ -42,6 +42,7 @@ public class VitalsManager: Module, EnvironmentAccessible {
     public var heartRateHistory: [HKQuantitySample] = []
     public var bloodPressureHistory: [HKCorrelation] = []
     public var weightHistory: [HKQuantitySample] = []
+    public var symptomHistory: [SymptomScore] = []
     
     
     public var latestHeartRate: HKQuantitySample? {
@@ -112,6 +113,14 @@ public class VitalsManager: Module, EnvironmentAccessible {
                 collectionReference: userDocRef.collection("bloodPressureObservations"),
                 storage: \.bloodPressureHistory,
                 mapObservation: convertToHKCorrelation
+            )
+        )
+        
+        // Symptom Survey Scores snapshot listener
+        self.snapshotListeners.append(
+            self.registerSnapshot(
+                collectionReference: userDocRef.collection("kccqResults"),
+                storage: \.
             )
         )
     }

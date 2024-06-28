@@ -9,34 +9,6 @@
 import SwiftUI
 
 
-enum GraphSelection: CaseIterable, Identifiable, CustomStringConvertible {
-    case symptoms
-    case weight
-    case heartRate
-    case bloodPressure
-    
-    var id: Self { self }
-    
-    var description: String {
-        switch self {
-        case .symptoms: "Overview"
-        case .weight: "Weight"
-        case .heartRate: "Heart Rate"
-        case .bloodPressure: "Blood Pressure"
-        }
-    }
-    
-    var explanation: String {
-        switch self {
-        case .symptoms: "symptomOverall"
-        case .weight: "vitalsWeight"
-        case .heartRate: "vitalsHeartRate"
-        case .bloodPressure: "vitalsBloodPressure"
-        }
-    }
-}
-
-
 struct HeartHealth: View {
     @Binding var presentingAccount: Bool
     @State private var vitalSelection: GraphSelection = .symptoms
@@ -45,9 +17,10 @@ struct HeartHealth: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack(alignment: .leading) {
+                VStack(alignment: .center) {
                     GraphPicker(selection: $vitalSelection)
                     HeartHealthContentView(selection: vitalSelection)
+                        .padding()
                 }
             }
                 .navigationTitle("Heart Health")

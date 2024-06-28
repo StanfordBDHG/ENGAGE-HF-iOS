@@ -22,6 +22,7 @@ struct GraphPicker: View {
         }
             .pickerStyle(.segmented)
             .padding()
+            .padding(.bottom, 0.0)
     }
 }
 

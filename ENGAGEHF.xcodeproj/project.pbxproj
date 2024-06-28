@@ -82,7 +82,6 @@
 		4DDFC73F2BF2CADD002B07A1 /* FetchingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC73E2BF2CADD002B07A1 /* FetchingError.swift */; };
 		4DDFC7542BF3408F002B07A1 /* RecentVitalsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC7532BF3408F002B07A1 /* RecentVitalsSection.swift */; };
 		4DDFC7652BF350C2002B07A1 /* Education.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC7642BF350C2002B07A1 /* Education.swift */; };
-		4DDFC7672BF350EC002B07A1 /* Medications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC7662BF350EC002B07A1 /* Medications.swift */; };
 		4DDFC7692BF35113002B07A1 /* HeartHealth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC7682BF35113002B07A1 /* HeartHealth.swift */; };
 		4DDFC7702BFAEAD7002B07A1 /* ConfirmMeasurementButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC76F2BFAEAD7002B07A1 /* ConfirmMeasurementButton.swift */; };
 		4DDFC7762BFB46FF002B07A1 /* MeasurementLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC7752BFB46FF002B07A1 /* MeasurementLayer.swift */; };
@@ -90,6 +89,8 @@
 		4DDFC78A2BFC1312002B07A1 /* NotificationRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC7892BFC1312002B07A1 /* NotificationRow.swift */; };
 		4DF506122C2DDC5A003E7EFB /* HeartHealthCaption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF506112C2DDC5A003E7EFB /* HeartHealthCaption.swift */; };
 		4DF506152C2DDEFC003E7EFB /* VitalsGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF506142C2DDEFC003E7EFB /* VitalsGraph.swift */; };
+		4DF506192C2E1AAE003E7EFB /* GraphSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF506182C2E1AAD003E7EFB /* GraphSelection.swift */; };
+		4DF506212C2E1C89003E7EFB /* SymptomScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF506202C2E1C89003E7EFB /* SymptomScore.swift */; };
 		56E708352BB06B7100B08F0A /* SpeziLicense in Frameworks */ = {isa = PBXBuildFile; productRef = 56E708342BB06B7100B08F0A /* SpeziLicense */; };
 		56E7083B2BB06F6F00B08F0A /* SwiftPackageList in Frameworks */ = {isa = PBXBuildFile; productRef = 56E7083A2BB06F6F00B08F0A /* SwiftPackageList */; };
 		653A2551283387FE005D4D48 /* ENGAGEHF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653A2550283387FE005D4D48 /* ENGAGEHF.swift */; };
@@ -196,7 +197,6 @@
 		4DDFC73E2BF2CADD002B07A1 /* FetchingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchingError.swift; sourceTree = "<group>"; };
 		4DDFC7532BF3408F002B07A1 /* RecentVitalsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentVitalsSection.swift; sourceTree = "<group>"; };
 		4DDFC7642BF350C2002B07A1 /* Education.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Education.swift; sourceTree = "<group>"; };
-		4DDFC7662BF350EC002B07A1 /* Medications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Medications.swift; sourceTree = "<group>"; };
 		4DDFC7682BF35113002B07A1 /* HeartHealth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartHealth.swift; sourceTree = "<group>"; };
 		4DDFC76F2BFAEAD7002B07A1 /* ConfirmMeasurementButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmMeasurementButton.swift; sourceTree = "<group>"; };
 		4DDFC7752BFB46FF002B07A1 /* MeasurementLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementLayer.swift; sourceTree = "<group>"; };
@@ -204,6 +204,8 @@
 		4DDFC7892BFC1312002B07A1 /* NotificationRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationRow.swift; sourceTree = "<group>"; };
 		4DF506112C2DDC5A003E7EFB /* HeartHealthCaption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartHealthCaption.swift; sourceTree = "<group>"; };
 		4DF506142C2DDEFC003E7EFB /* VitalsGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalsGraph.swift; sourceTree = "<group>"; };
+		4DF506182C2E1AAD003E7EFB /* GraphSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphSelection.swift; sourceTree = "<group>"; };
+		4DF506202C2E1C89003E7EFB /* SymptomScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomScore.swift; sourceTree = "<group>"; };
 		653A254D283387FE005D4D48 /* ENGAGEHF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ENGAGEHF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		653A2550283387FE005D4D48 /* ENGAGEHF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ENGAGEHF.swift; sourceTree = "<group>"; };
 		653A255428338800005D4D48 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -418,7 +420,6 @@
 				4DDFC73B2BF2C46E002B07A1 /* Notifications */,
 				4DDFC7502BF3404D002B07A1 /* Vitals */,
 				4DB025D42BBF2E08002D2545 /* Dashboard.swift */,
-				4DDFC73E2BF2CADD002B07A1 /* FetchingError.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -426,40 +427,19 @@
 		4DDFC73B2BF2C46E002B07A1 /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
-				4DDFC7422BF2DC49002B07A1 /* Views */,
-				4DDFC73C2BF2C4FA002B07A1 /* Notification.swift */,
-				4DDFC7862BFBFDDD002B07A1 /* NotificationManager.swift */,
-			);
-			path = Notifications;
-			sourceTree = "<group>";
-		};
-		4DDFC7422BF2DC49002B07A1 /* Views */ = {
-			isa = PBXGroup;
-			children = (
 				4DDFC7382BF2C3C9002B07A1 /* NotificationSection.swift */,
 				4DDFC7892BFC1312002B07A1 /* NotificationRow.swift */,
 			);
-			path = Views;
+			path = Notifications;
 			sourceTree = "<group>";
 		};
 		4DDFC7502BF3404D002B07A1 /* Vitals */ = {
 			isa = PBXGroup;
 			children = (
-				4D2D1D732C2CC89600ABDC19 /* Protocols+Aliases */,
-				4DA20B562C25FE2B00715AA2 /* Extensions */,
-				4DDFC7522BF34059002B07A1 /* Views */,
-				4DA20B4A2C249E7E00715AA2 /* VitalsManager.swift */,
-			);
-			path = Vitals;
-			sourceTree = "<group>";
-		};
-		4DDFC7522BF34059002B07A1 /* Views */ = {
-			isa = PBXGroup;
-			children = (
 				4DDFC7532BF3408F002B07A1 /* RecentVitalsSection.swift */,
 				4DA20B632C2A0FF100715AA2 /* VitalsCard.swift */,
 			);
-			path = Views;
+			path = Vitals;
 			sourceTree = "<group>";
 		};
 		4DDFC7612BF34FAC002B07A1 /* HeartHealth */ = {
@@ -471,6 +451,7 @@
 				4D2D1D5F2C2B859C00ABDC19 /* GraphPicker.swift */,
 				4D2D1D592C2B7E8D00ABDC19 /* HeartHealthContentView.swift */,
 				4DF506112C2DDC5A003E7EFB /* HeartHealthCaption.swift */,
+				4DF506182C2E1AAD003E7EFB /* GraphSelection.swift */,
 			);
 			path = HeartHealth;
 			sourceTree = "<group>";
@@ -498,6 +479,27 @@
 				4DF506142C2DDEFC003E7EFB /* VitalsGraph.swift */,
 			);
 			path = Vitals;
+			sourceTree = "<group>";
+		};
+		4DF5061C2C2E1BD0003E7EFB /* VitalsManager */ = {
+			isa = PBXGroup;
+			children = (
+				4D2D1D732C2CC89600ABDC19 /* Protocols+Aliases */,
+				4DA20B562C25FE2B00715AA2 /* Extensions */,
+				4DA20B4A2C249E7E00715AA2 /* VitalsManager.swift */,
+				4DF506202C2E1C89003E7EFB /* SymptomScore.swift */,
+			);
+			path = VitalsManager;
+			sourceTree = "<group>";
+		};
+		4DF5061E2C2E1C10003E7EFB /* NotificationManager */ = {
+			isa = PBXGroup;
+			children = (
+				4DDFC73E2BF2CADD002B07A1 /* FetchingError.swift */,
+				4DDFC73C2BF2C4FA002B07A1 /* Notification.swift */,
+				4DDFC7862BFBFDDD002B07A1 /* NotificationManager.swift */,
+			);
+			path = NotificationManager;
 			sourceTree = "<group>";
 		};
 		653A2544283387FE005D4D48 = {
@@ -530,9 +532,10 @@
 				2FF53D8C2A8729D600042B76 /* ENGAGEHFStandard.swift */,
 				2F4E23822989D51F0013F3D9 /* ENGAGEHFTestingSetup.swift */,
 				2FC975A72978F11A00BA99FE /* Home.swift */,
+				4DF5061E2C2E1C10003E7EFB /* NotificationManager */,
+				4DF5061C2C2E1BD0003E7EFB /* VitalsManager */,
 				4D065BDE2C093FF600EBB3AE /* ReusableElements */,
 				4DDFC7632BF34FC1002B07A1 /* Education */,
-				4DDFC7622BF34FB4002B07A1 /* Medications */,
 				4DDFC7612BF34FAC002B07A1 /* HeartHealth */,
 				4D49AB142BCF6FC400C77310 /* Devices */,
 				A996F4422C108186002328C5 /* Measurement */,
@@ -810,9 +813,9 @@
 				4D19ED012BE5CAFC00CDBAA8 /* MeasurementRecordedView.swift in Sources */,
 				4DDFC7652BF350C2002B07A1 /* Education.swift in Sources */,
 				4DDFC7692BF35113002B07A1 /* HeartHealth.swift in Sources */,
-				4DDFC75D2BF34700002B07A1 /* FullSurveyView.swift in Sources */,
 				A996F4532C11113B002328C5 /* Measurement.swift in Sources */,
 				2FE5DCB129EE6107004B9AB4 /* AccountOnboarding.swift in Sources */,
+				4DF506192C2E1AAE003E7EFB /* GraphSelection.swift in Sources */,
 				4DA20B832C2B6B8A00715AA2 /* HKSampleGraph.swift in Sources */,
 				4DDFC73F2BF2CADD002B07A1 /* FetchingError.swift in Sources */,
 				2FE5DC3A29EDD7CA004B9AB4 /* Welcome.swift in Sources */,
@@ -839,7 +842,6 @@
 				4D2D1D782C2CD32C00ABDC19 /* ObservationValueProtocol.swift in Sources */,
 				4D052DB82BE07892006A784E /* MeasurementManager.swift in Sources */,
 				A9720E432ABB68CC00872D23 /* AccountSetupHeader.swift in Sources */,
-				4DDFC7592BF34361002B07A1 /* SurveySection.swift in Sources */,
 				2FE5DC4029EDD7EE004B9AB4 /* FeatureFlags.swift in Sources */,
 				2FE5DC4629EDD7F2004B9AB4 /* Bundle+Image.swift in Sources */,
 				4DF506122C2DDC5A003E7EFB /* HeartHealthCaption.swift in Sources */,
@@ -871,6 +873,7 @@
 				A996F45A2C11A9D1002328C5 /* WeightMeasurementLabel.swift in Sources */,
 				A996F44F2C10861D002328C5 /* BloodPressureMeasurement+HKSample.swift in Sources */,
 				4DBDD3462BBFAE2D001FB0CA /* InvitationCodeView.swift in Sources */,
+				4DF506212C2E1C89003E7EFB /* SymptomScore.swift in Sources */,
 				4DDFC73D2BF2C4FA002B07A1 /* Notification.swift in Sources */,
 				4DA20B5C2C26098400715AA2 /* R4Observation+GetEffectiveDate.swift in Sources */,
 				4D49AB062BC9D56900C77310 /* WeightScaleDevice.swift in Sources */,

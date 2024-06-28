@@ -18,7 +18,7 @@ struct HeartHealthCaption: View {
             Text("Description")
                 .studyApplicationHeaderStyle()
             StudyApplicationListCard {
-                ExpandableText(text: vitalsType.explanation, lineLimit: 1)
+                Text(LocalizedStringKey(vitalsType.explanation))
             }
         }
     }
