@@ -37,7 +37,13 @@ struct SymptomsHistoryView: View {
         if !data.isEmpty {
             switch format {
             case .list: SymptomsHistoryList(data: data, symptomType: symptomType)
-            case .graph: Text("Graph") /*SymptomsHistoryGraph(data: data)*/
+            case .graph:
+                SymptomsHistoryGraph(
+                    data: data,
+                    symptomType: symptomType,
+                    startDate: dateRangeStart,
+                    endDate: dateRangeEnd
+                )
             }
         } else {
             StudyApplicationListCard {

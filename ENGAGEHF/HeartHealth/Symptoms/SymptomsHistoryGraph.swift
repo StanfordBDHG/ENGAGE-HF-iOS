@@ -12,15 +12,48 @@ import SwiftUI
 
 struct SymptomsHistoryGraph: View {
     var data: [SymptomScore]
-    var field: KeyPath<SymptomScore, Double>
+    var symptomType: SymptomsType
+    
+    var startDate: Date
+    var endDate: Date
     
     
     var body: some View {
-        Chart(data) { score in
-            LineMark(
-                x: .value("Date", score.date, unit: .day),
-                y: .value("Score", score[keyPath: field])
-            )
+        StudyApplicationListCard {
+            Chart(data) { score in
+                LineMark(
+                    x: .value("Date", score.date, unit: .day),
+                    y: .value("Score", score[keyPath: symptomType.symptomScoreKeyMap])
+                )
+                .lineStyle(StrokeStyle(lineWidth: 1, dash: [2]))
+                
+                PointMark(
+                    x: .value("Date", score.date, unit: .day),
+                    y: .value("Score", score[keyPath: symptomType.symptomScoreKeyMap])
+                )
+            }
+            .chartYScale(domain: 0...100)
+            .chartXScale(domain: startDate...endDate)
+            .chartYAxis {
+                AxisMarks(
+                    values: [0, 50, 100]
+                ) {
+                    AxisValueLabel(format: Decimal.FormatStyle.Percent.percent.scale(1))
+                }
+                
+                AxisMarks(
+                    values: [0, 25, 50, 75, 100]
+                ) {
+                    AxisGridLine()
+                }
+            }
+            .chartXAxis {
+                
+            }
+            
+            
+            .frame(maxWidth: .infinity, idealHeight: 200)
+            .padding(.vertical, 8)
         }
     }
 }
@@ -50,7 +83,12 @@ struct SymptomsHistoryGraph: View {
         
         
         var body: some View {
-            SymptomsHistoryGraph(data: data, field: symptomType.symptomScoreKeyMap)
+            SymptomsHistoryGraph(
+                data: data,
+                symptomType: symptomType,
+                startDate: dateRangeStart,
+                endDate: dateRangeEnd
+            )
         }
     }
     

@@ -26,7 +26,7 @@ struct HeartHealth: View {
                     case .bloodPressure: VitalsContentView(for: .bloodPressure)
                     }
                 }
-                .padding(.horizontal)
+                    .padding(.horizontal)
             }
                 .navigationTitle("Heart Health")
                 .toolbar {
