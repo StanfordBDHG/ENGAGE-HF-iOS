@@ -11,7 +11,7 @@ import SwiftUI
 
 struct SymptomsContentView: View {
     @State private var symptomsType: SymptomsType = .overall
-    @State private var recordFormat: RecordFormat = .list
+    @State private var recordFormat: RecordFormat = .graph
     
     
     var body: some View {

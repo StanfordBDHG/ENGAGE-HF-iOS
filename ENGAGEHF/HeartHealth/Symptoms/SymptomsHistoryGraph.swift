@@ -47,11 +47,6 @@ struct SymptomsHistoryGraph: View {
                     AxisGridLine()
                 }
             }
-            .chartXAxis {
-                
-            }
-            
-            
             .frame(maxWidth: .infinity, idealHeight: 200)
             .padding(.vertical, 8)
         }

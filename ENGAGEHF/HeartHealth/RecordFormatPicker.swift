@@ -18,10 +18,10 @@ struct RecordFormatPicker: View {
     
     var body: some View {
         Picker("Record Picker", selection: $recordFormat) {
-            Image(systemName: "list.bullet").tag(RecordFormat.list)
-                .accessibilityLabel("List Record Format")
             Image(systemName: "chart.xyaxis.line").tag(RecordFormat.graph)
                 .accessibilityLabel("Graph Record Format")
+            Image(systemName: "list.bullet").tag(RecordFormat.list)
+                .accessibilityLabel("List Record Format")
         }
             .pickerStyle(.segmented)
             .frame(width: width, height: height)

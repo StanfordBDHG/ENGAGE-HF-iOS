@@ -289,7 +289,7 @@ extension VitalsManager {
             self.addMockWeight(forDate: startDate)
             
             // Only add mock symptoms once a week
-            if dayOffset % 7 == 0 {
+            if dayOffset.isMultiple(of: 7) {
                 self.addMockSymptoms(forDate: startDate)
             }
         }
