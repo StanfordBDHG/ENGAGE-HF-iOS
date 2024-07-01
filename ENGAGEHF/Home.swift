@@ -78,7 +78,7 @@ struct HomeView: View {
             }
             .verifyRequiredAccountDetails(Self.accountEnabled)
             .sheet(isPresented: $measurements.shouldPresentMeasurements) {
-                MeasurementRecordedSheet { samples in
+                MeasurementsRecordedSheet { samples in
                     try await standard.addMeasurement(samples: samples)
                 }
             }

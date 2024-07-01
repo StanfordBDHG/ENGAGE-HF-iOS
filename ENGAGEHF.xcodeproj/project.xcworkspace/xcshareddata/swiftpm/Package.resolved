@@ -11,15 +11,6 @@
       }
     },
     {
-      "identity" : "acarousel",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/JWAutumn/ACarousel.git",
-      "state" : {
-        "revision" : "8a322513580f21288fd87eb3a1341c247b3e2a76",
-        "version" : "0.2.0"
-      }
-    },
-    {
       "identity" : "antlr4",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/antlr/antlr4",
@@ -178,7 +169,7 @@
       "location" : "https://github.com/StanfordBDHG/ResearchKitOnFHIR",
       "state" : {
         "revision" : "dcd5f95522ed02a873b03c9638dbf397b99c74e0",
-        "version" : "1.4.0"
+        "version" : "2.0.0"
       }
     },
     {
@@ -213,8 +204,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziBluetooth.git",
       "state" : {
-        "branch" : "feature/accessory-discovery",
-        "revision" : "b93d32a603534b638eafab1c030b0dcdfc1fc10b"
+        "revision" : "6b88cae1ea9a18ec875dcc8fae80cbeb291133f0",
+        "version" : "2.0.1"
       }
     },
     {
@@ -232,7 +223,7 @@
       "location" : "https://github.com/StanfordSpezi/SpeziDevices.git",
       "state" : {
         "branch" : "feature/initial-project-setup",
-        "revision" : "0571017fc3e18dd6ae82a829b255e936863f2d6c"
+        "revision" : "5daa2c122db5d30586f405b7908e251220dfc776"
       }
     },
     {
@@ -276,8 +267,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziNetworking",
       "state" : {
-        "revision" : "8f5c9c3920f2a0df423865895f4a6ba404cd7bce",
-        "version" : "2.1.0"
+        "revision" : "35e558d7839cde81f50bf7d187d0d7cb3513ca94",
+        "version" : "2.1.1"
       }
     },
     {
@@ -294,8 +285,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziQuestionnaire.git",
       "state" : {
-        "revision" : "76732ebcb0b521fa94d41c38a5fe35e6e1a87173",
-        "version" : "1.2.1"
+        "revision" : "853585fbdd5d2d0af440c805d629a025ef5545d9",
+        "version" : "1.2.2"
       }
     },
     {
@@ -348,8 +339,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-nio.git",
       "state" : {
-        "revision" : "e5a216ba89deba84356bad9d4c2eab99071c745b",
-        "version" : "2.67.0"
+        "revision" : "fc79798d5a150d61361a27ce0c51169b889e23de",
+        "version" : "2.68.0"
       }
     },
     {
