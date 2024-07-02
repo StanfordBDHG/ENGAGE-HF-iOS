@@ -222,8 +222,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziDevices.git",
       "state" : {
-        "branch" : "feature/initial-project-setup",
-        "revision" : "5daa2c122db5d30586f405b7908e251220dfc776"
+        "revision" : "6b5e24f9983ae0ffccd57d078edb3981400af721",
+        "version" : "1.0.0"
       }
     },
     {
@@ -267,8 +267,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziNetworking",
       "state" : {
-        "revision" : "35e558d7839cde81f50bf7d187d0d7cb3513ca94",
-        "version" : "2.1.1"
+        "revision" : "b01333fbe46bc02445cc06a1d721bc490d77d95e",
+        "version" : "2.1.2"
       }
     },
     {
@@ -411,8 +411,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordBDHG/XCTestExtensions.git",
       "state" : {
-        "revision" : "69eae1a4490d3ec4f3cd20584aef3df9186e0904",
-        "version" : "0.4.11"
+        "revision" : "cc2705fde81978eacd5496e14c9caf58909e2322",
+        "version" : "0.4.12"
       }
     },
     {

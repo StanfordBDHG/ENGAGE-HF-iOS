@@ -60,7 +60,7 @@ struct HomeView: View {
                     Label("Education", systemImage: "brain")
                 }
             NavigationStack {
-                DevicesTab(appName: ENGAGEHF.appName ?? "ENGAGE") {
+                DevicesView(appName: ENGAGEHF.appName ?? "ENGAGE") {
                     Text("Hold down the Bluetooth button for 3 seconds to put the device into pairing mode.")
                 }
                     .environment(\.advertisementStaleInterval, 15)
