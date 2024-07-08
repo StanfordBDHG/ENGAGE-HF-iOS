@@ -67,6 +67,14 @@ public class VitalsManager: Module, EnvironmentAccessible {
         
         authStateDidChangeListenerHandle = Auth.auth().addStateDidChangeListener { [weak self] _, user in
             self?.registerSnapshotListeners(user: user)
+            
+            /// If testing, add mock measurements to the user's heart rate, blood pressure, weight, and symptoms histories
+            /// Called each time a new user signs in
+            if FeatureFlags.setupTestEnvironment, let user {
+                Task {
+                    try await self?.setupHeartHealthTesting(user: user)
+                }
+            }
         }
         
         self.registerSnapshotListeners(user: Auth.auth().currentUser)
@@ -276,26 +284,26 @@ public class VitalsManager: Module, EnvironmentAccessible {
 
 
 extension VitalsManager {
-    /// Adds just over a month's worth of daily mock measurements to weight, heart rate, blood pressure, and symptoms histories
+    /// Adds just over a month's worth of daily mock measurements to local weight, heart rate, blood pressure, and symptoms histories
     /// 40 total measurements (1 each day) with random quantities
     private func setupPreview() {
-        for dayOffset in 0..<40 {
-            guard let startDate = Calendar.current.date(byAdding: .day, value: -dayOffset, to: .now) else {
+        for count in 0..<40 {
+            guard let startDate = Calendar.current.date(byAdding: .day, value: -Int.random(in: 0..<40), to: .now) else {
                 return
             }
             
-            self.addMockBP(forDate: startDate)
-            self.addMockHR(forDate: startDate)
-            self.addMockWeight(forDate: startDate)
+            self.bloodPressureHistory.append(self.getRandomBloodPressure(forDate: startDate))
+            self.heartRateHistory.append(self.getRandomHeartRate(forDate: startDate))
+            self.weightHistory.append(self.getRandomWeight(forDate: startDate))
             
             // Only add mock symptoms once a week
-            if dayOffset.isMultiple(of: 7) {
-                self.addMockSymptoms(forDate: startDate)
+            if count.isMultiple(of: 7) {
+                self.symptomHistory.append(self.getRandomSymptoms(forDate: startDate))
             }
         }
     }
     
-    private func addMockBP(forDate startDate: Date) {
+    private func getRandomBloodPressure(forDate startDate: Date) -> HKCorrelation {
         let diastolic = HKQuantity(unit: .millimeterOfMercury(), doubleValue: Double.random(in: 40...90))
         let systolic = HKQuantity(unit: .millimeterOfMercury(), doubleValue: Double.random(in: 90...140))
         
@@ -318,10 +326,10 @@ extension VitalsManager {
             objects: [dummyDiastolic, dummySystolic]
         )
         
-        self.bloodPressureHistory.append(dummyBP)
+        return dummyBP
     }
     
-    private func addMockHR(forDate startDate: Date) {
+    private func getRandomHeartRate(forDate startDate: Date) -> HKQuantitySample {
         let dummyHR = HKQuantitySample(
             type: HKQuantityType(.heartRate),
             quantity: HKQuantity(unit: .count().unitDivided(by: .minute()), doubleValue: Double.random(in: 40...160)),
@@ -329,10 +337,10 @@ extension VitalsManager {
             end: startDate
         )
         
-        self.heartRateHistory.append(dummyHR)
+        return dummyHR
     }
     
-    private func addMockWeight(forDate startDate: Date) {
+    private func getRandomWeight(forDate startDate: Date) -> HKQuantitySample {
         let dummyWeight = HKQuantitySample(
             type: HKQuantityType(.bodyMass),
             quantity: HKQuantity(unit: .pound(), doubleValue: Double.random(in: 80...180)),
@@ -340,12 +348,12 @@ extension VitalsManager {
             end: startDate
         )
         
-        self.weightHistory.append(dummyWeight)
+        return dummyWeight
     }
     
-    private func addMockSymptoms(forDate startDate: Date) {
+    private func getRandomSymptoms(forDate startDate: Date) -> SymptomScore {
         let dummySymptoms = SymptomScore(
-            id: UUID().uuidString,
+            id: ProcessInfo.processInfo.isPreviewSimulator ? UUID().uuidString : nil,
             date: startDate,
             overallScore: Double.random(in: 0...100),
             physicalLimitsScore: Double.random(in: 0...100),
@@ -355,6 +363,101 @@ extension VitalsManager {
             dizzinessScore: Double.random(in: 0...100)
         )
         
-        self.symptomHistory.append(dummySymptoms)
+        return dummySymptoms
+    }
+}
+
+
+extension VitalsManager {
+    private func setupHeartHealthTesting(user: User) async throws {
+        let firestore = Firestore.firestore()
+        let userDocRef = firestore
+            .collection("users")
+            .document(user.uid)
+        
+        
+        // Make sure the user has not already had mock data initialized
+        for collectionID in ["bodyWeightObservations", "heartRateObservations", "bloodPressureObservations", "kccqResults"] {
+            let querySnapshot = try await userDocRef.collection(collectionID).getDocuments()
+            
+            // Not recommended to delete collections from the client, so for now just skipping if the collection already exists
+            guard querySnapshot.documents.isEmpty else {
+                // Collection exists and is not empty, so skip
+                self.logger.debug("\(collectionID) already exist, skipping user.")
+                return
+            }
+        }
+        
+        for _ in 0..<40 {
+            guard let date = Calendar.current.date(byAdding: .day, value: -Int.random(in: 0..<40), to: .now) else {
+                self.logger.error("Unable to create date for Heart Health testing setup.")
+                return
+            }
+            
+            await self.standard.add(sample: self.getRandomWeight(forDate: date))
+            await self.standard.add(sample: self.getRandomHeartRate(forDate: date))
+            await self.standard.add(sample: self.getRandomBloodPressure(forDate: date))
+            await self.standard.add(symptomScore: self.getRandomSymptoms(forDate: date))
+        }
+    }
+}
+
+
+extension VitalsManager {
+    /// A function for structuring the data stored in the VitalsManager in a format suitable for displaying in a chart.
+    /// Supports multiple quantities per datapoint (such as Systolic and Diastolic quantities for Blood Pressure).
+    /// For data with multiple quantites, each quantity must be in the same unit.
+    /// Datapoints that fall on the same interval are averaged.
+    ///
+    /// - Parameters:
+    ///   - dateRange: The time interval in which to display the data
+    ///   - resolution: The component of the date that will be used for the x-axis
+    ///   - storage: The KeyPath to the data that will be displayed
+    ///   - unit: The unit or sub-type of the data.
+    ///         For HKSamples, must be one of the strings described in https://developer.apple.com/documentation/healthkit/hkunit/1615733-init
+    ///         For SymptomScores, must be one of the raw values of the enum as defined in the `SymptomType` enum
+    public func collate<T: Graphable>(
+        dateRange: ClosedRange<Date>,
+        resolution: Calendar.Component,
+        storage: KeyPath<VitalsManager, [T]>,
+        unit: String
+    ) -> [(date: Date, averageValues: [Double])] {
+        var dataBins: [Date: [[Double]]] = [:]
+        let calendar = Calendar.current
+        
+        /// Filter for the datapoints within the specified date range
+        let filteredData = self[keyPath: storage].filter { dateRange.contains($0.date) }
+        
+        
+        /// Bin the data according to the time interval in dateRange their resolution component falls into
+        for dataPoint in filteredData {
+            guard let binStartDate = calendar.dateInterval(of: resolution, for: dataPoint.date)?.start else {
+                continue
+            }
+            
+            if !dataBins.contains(where: { $0.key == binStartDate }) {
+                dataBins[binStartDate] = []
+            }
+            
+            let values = dataPoint.getDoubleValues(for: unit)
+            dataBins[binStartDate]?.append(values)
+        }
+        
+        /// Take the average across each quantity for each time interval
+        var result: [(date: Date, averageValues: [Double])] = []
+        
+        for (date, values) in dataBins {
+            let averages: [Double] = values.compactMap { quantitySamples in
+                guard !quantitySamples.isEmpty else {
+                    return nil
+                }
+                
+                return quantitySamples.reduce(0, +) / Double(quantitySamples.count)
+            }
+            
+            result.append((date, averages))
+        }
+
+        return result
     }
 }

@@ -30,11 +30,17 @@ enum GraphSelection: CaseIterable, Identifiable, CustomStringConvertible {
 }
 
 
-/// The type of health data to be displayed as the main content of Heart Health view when GraphSelection is .weight, .heartRate, or .bloodPressure
+/// The type of health data to be displayed as the main content of Heart Health view, after picking symptom type
 enum VitalsType: CustomStringConvertible {
     case weight
     case heartRate
     case bloodPressure
+    case overall
+    case physical
+    case social
+    case quality
+    case specific
+    case dizziness
     
     
     /// The full name of the vital, displayed in the Description Header and Graph Legend
@@ -43,6 +49,12 @@ enum VitalsType: CustomStringConvertible {
         case .weight: "Weight"
         case .heartRate: "Heart Rate"
         case .bloodPressure: "Blood Pressure"
+        case .overall: "Overall"
+        case .physical: "Physical"
+        case .social: "Social"
+        case .quality: "Quality"
+        case .specific: "Specific"
+        case .dizziness: "Dizziness"
         }
     }
     
@@ -52,6 +64,12 @@ enum VitalsType: CustomStringConvertible {
         case .weight: "vitalsWeight"
         case .heartRate: "vitalsHeartRate"
         case .bloodPressure: "vitalsBloodPressure"
+        case .overall: "symptomOverall"
+        case .physical: "symptomPhysical"
+        case .social: "symptomSocial"
+        case .quality: "symptomQuality"
+        case .specific: "symptomSpecific"
+        case .dizziness: "symptomDizziness"
         }
     }
 }
@@ -59,7 +77,7 @@ enum VitalsType: CustomStringConvertible {
 
 /// The subfield of Symptom Score to be displayed as the main content of Heart Health view when GraphSelection is .symptom
 /// Chosen by the SymptomPicker in SymptomContentView
-enum SymptomsType: CaseIterable, Identifiable, CustomStringConvertible {
+enum SymptomsType: String, CaseIterable, Identifiable, CustomStringConvertible {
     case overall
     case physical
     case social
@@ -121,7 +139,23 @@ enum SymptomsType: CaseIterable, Identifiable, CustomStringConvertible {
 }
 
 
-/// The format by which to display the Health History data (either a graph or a list of entries)
+enum DisplayDateResolution: CaseIterable, Identifiable, CustomStringConvertible {
+    case daily
+    case weekly
+    case monthly
+    
+    var id: Self { self }
+    
+    var description: String {
+        switch self {
+        case .daily: "Daily"
+        case .weekly: "Weekly"
+        case .monthly: "Monthly"
+        }
+    }
+}
+
+
 enum RecordFormat {
     case graph, list
 }

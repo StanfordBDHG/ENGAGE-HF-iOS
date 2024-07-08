@@ -19,37 +19,35 @@ struct SymptomsHistoryGraph: View {
     
     
     var body: some View {
-        StudyApplicationListCard {
-            Chart(data) { score in
-                LineMark(
-                    x: .value("Date", score.date, unit: .day),
-                    y: .value("Score", score[keyPath: symptomType.symptomScoreKeyMap])
-                )
-                .lineStyle(StrokeStyle(lineWidth: 1, dash: [2]))
-                
-                PointMark(
-                    x: .value("Date", score.date, unit: .day),
-                    y: .value("Score", score[keyPath: symptomType.symptomScoreKeyMap])
-                )
-            }
-            .chartYScale(domain: 0...100)
-            .chartXScale(domain: startDate...endDate)
-            .chartYAxis {
-                AxisMarks(
-                    values: [0, 50, 100]
-                ) {
-                    AxisValueLabel(format: Decimal.FormatStyle.Percent.percent.scale(1))
-                }
-                
-                AxisMarks(
-                    values: [0, 25, 50, 75, 100]
-                ) {
-                    AxisGridLine()
-                }
-            }
-            .frame(maxWidth: .infinity, idealHeight: 200)
-            .padding(.vertical, 8)
+        Chart(data) { score in
+            LineMark(
+                x: .value("Date", score.date, unit: .day),
+                y: .value("Score", score[keyPath: symptomType.symptomScoreKeyMap])
+            )
+            .lineStyle(StrokeStyle(lineWidth: 1, dash: [2]))
+            
+            PointMark(
+                x: .value("Date", score.date, unit: .day),
+                y: .value("Score", score[keyPath: symptomType.symptomScoreKeyMap])
+            )
         }
+        .chartYScale(domain: 0...100)
+        .chartXScale(domain: startDate...endDate)
+        .chartYAxis {
+            AxisMarks(
+                values: [0, 50, 100]
+            ) {
+                AxisValueLabel(format: Decimal.FormatStyle.Percent.percent.scale(1))
+            }
+            
+            AxisMarks(
+                values: [0, 25, 50, 75, 100]
+            ) {
+                AxisGridLine()
+            }
+        }
+        .frame(maxWidth: .infinity, idealHeight: 200)
+        .padding(.vertical, 8)
     }
 }
 

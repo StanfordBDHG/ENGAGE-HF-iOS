@@ -104,10 +104,19 @@
     "Add mock notification" : {
 
     },
+    "All Data" : {
+
+    },
+    "All Measurements" : {
+
+    },
     "An error occurred: %@" : {
       "comment" : "General Error"
     },
     "An invitation code is at least 8 characters long." : {
+
+    },
+    "Blah" : {
 
     },
     "Close" : {
@@ -144,19 +153,25 @@
         }
       }
     },
+    "Content" : {
+
+    },
     "Content ..." : {
 
     },
+    "Daily" : {
+
+    },
     "Date" : {
+
+    },
+    "Description" : {
 
     },
     "Discard" : {
 
     },
     "Education" : {
-
-    },
-    "Graph" : {
 
     },
     "Graph Record Format" : {
@@ -343,6 +358,9 @@
     "Measurement Recorded" : {
 
     },
+    "Monthly" : {
+
+    },
     "No recent %@ measurement available" : {
 
     },
@@ -409,6 +427,9 @@
 
     },
     "Redeem Invitation Code" : {
+
+    },
+    "Resolution Picker" : {
 
     },
     "Save" : {
@@ -548,6 +569,9 @@
           }
         }
       }
+    },
+    "Weekly" : {
+
     },
     "WELCOME_AREA1_DESCRIPTION" : {
       "localizations" : {

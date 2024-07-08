@@ -64,9 +64,11 @@ class NotificationManager: Module, EnvironmentAccessible {
     
     /// Adds three mock notifications to the user's notification collection in firestore
     func setupNotificationTests(user: User) async throws {
+        // Check that the collection has not already been initialized
         let firestore = Firestore.firestore()
         let notificationsCollection = firestore.collection("users").document(user.uid).collection("messages")
         
+        // Not recommended to delete collections from the client, so for now just skipping if the collection already exists
         let querySnapshot = try await notificationsCollection.getDocuments()
         
         guard querySnapshot.documents.isEmpty else {

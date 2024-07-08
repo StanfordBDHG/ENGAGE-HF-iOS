@@ -15,11 +15,11 @@ import Foundation
 /// https://github.com/StanfordBDHG/ENGAGE-HF-Firebase/tree/web-data-scheme
 public struct SymptomScore: Identifiable, Equatable, Codable {
     @DocumentID public var id: String?
-    var date: Date
-    var overallScore: Double
-    var physicalLimitsScore: Double
-    var socialLimitsScore: Double
-    var qualityOfLifeScore: Double
-    var specificSymptomsScore: Double
-    var dizzinessScore: Double
+    public var date: Date
+    public var overallScore: Double
+    public var physicalLimitsScore: Double
+    public var socialLimitsScore: Double
+    public var qualityOfLifeScore: Double
+    public var specificSymptomsScore: Double
+    public var dizzinessScore: Double
 }

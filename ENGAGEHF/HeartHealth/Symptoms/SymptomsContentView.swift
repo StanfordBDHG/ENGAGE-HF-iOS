@@ -10,35 +10,85 @@ import SwiftUI
 
 
 struct SymptomsContentView: View {
+    @Environment(VitalsManager.self) private var vitalsManager
+    
     @State private var symptomsType: SymptomsType = .overall
-    @State private var recordFormat: RecordFormat = .graph
+    @State private var resolution: Calendar.Component = .day
     
     
     var body: some View {
         Section(
             content: {
-                // Symptom Scores List or Graph
-                SymptomsHistoryView(symptomType: symptomsType, format: recordFormat)
-                
-                // Picker for changing the symptoms type
-                SymptomsPicker(symptomsType: $symptomsType)
-                
-                // Symptoms description
-                HeartHealthCaption(
-                    title: "Description",
-                    descriptionKey: LocalizedStringKey(symptomsType.explanationKey)
-                )
+                SymptomsHistoryView(symptomType: symptomsType, resolution: resolution)
             },
             header: {
                 // Header with picker for score type
                 HStack {
-                    Text(symptomsType.fullName)
-                        .studyApplicationHeaderStyle()
+                    SymptomsPicker(symptomsType: $symptomsType)
                     Spacer()
-                    RecordFormatPicker(recordFormat: $recordFormat)
+                    ResolutionPicker(selection: $resolution)
                 }
             }
         )
+        
+        Section(
+            content: {
+                Text(LocalizedStringKey(symptomsType.explanationKey))
+            },
+            header: {
+                Text("Description")
+            }
+        )
+        
+        Section(
+            content: {
+                ForEach(vitalsManager.symptomHistory) { score in
+                    HStack(alignment: .firstTextBaseline) {
+                        DisplayMeasurement(
+                            quantity: String(format: "%.1f", score[keyPath: symptomsType.symptomScoreKeyMap]),
+                            units: "%",
+                            type: symptomsType.fullName,
+                            quantityTextSize: 25.0
+                        )
+                        Spacer()
+                        Text(score.date.formatted(date: .numeric, time: .omitted))
+                            .font(.title2)
+                            .foregroundStyle(Color.secondary)
+                            .accessibilityLabel("\(symptomsType.fullName) Date: \(score.date.formatted(date: .numeric, time: .omitted))")
+                    }
+//                    .padding(.vertical, 4)
+                }
+            },
+            header: {
+                Text("All Data")
+            }
+        )
+        
+        
+//        Section(
+//            content: {
+//                // Symptom Scores List or Graph
+//                SymptomsHistoryView(symptomType: symptomsType, format: recordFormat)
+//                
+//                // Picker for changing the symptoms type
+//                SymptomsPicker(symptomsType: $symptomsType)
+//                
+//                // Symptoms description
+//                HeartHealthCaption(
+//                    title: "Description",
+//                    descriptionKey: LocalizedStringKey(symptomsType.explanationKey)
+//                )
+//            },
+//            header: {
+//                // Header with picker for score type
+//                HStack {
+//                    Text(symptomsType.fullName)
+//                        .studyApplicationHeaderStyle()
+//                    Spacer()
+//                    RecordFormatPicker(recordFormat: $recordFormat)
+//                }
+//            }
+//        )
     }
 }
 

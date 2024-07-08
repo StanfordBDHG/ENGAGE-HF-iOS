@@ -1,5 +1,5 @@
 {
-  "originHash" : "4680bbbdca4179318420f5e90c76b7b5892a3fbaf02dc6668d80ce474e195a4d",
+  "originHash" : "bc4976ad3e72e9db3abfaee4ac8175ea9dffa9abd3345781e6e8efb5ffc4e257",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -44,6 +44,15 @@
       "state" : {
         "revision" : "c9c3df6ab812de32bae61fc0cd1bf6d45170ebf0",
         "version" : "1.8.2"
+      }
+    },
+    {
+      "identity" : "exceptioncatcher",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sindresorhus/ExceptionCatcher.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "81cf83b117ec368e2ebb7fbcd9f7a3deb115ab07"
       }
     },
     {

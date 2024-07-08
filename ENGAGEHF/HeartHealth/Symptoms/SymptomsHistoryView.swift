@@ -11,7 +11,7 @@ import SwiftUI
 
 struct SymptomsHistoryView: View {
     var symptomType: SymptomsType
-    var format: RecordFormat
+    var resolution: Calendar.Component = .day
     
     @Environment(VitalsManager.self) private var vitalsManager
     
@@ -30,21 +30,20 @@ struct SymptomsHistoryView: View {
             .filter {
                 (dateRangeStart...dateRangeEnd).contains($0.date)
             }
+            .sorted {
+                $0.date > $1.date
+            }
     }
     
     
     var body: some View {
         if !data.isEmpty {
-            switch format {
-            case .list: SymptomsHistoryList(data: data, symptomType: symptomType)
-            case .graph:
-                SymptomsHistoryGraph(
-                    data: data,
-                    symptomType: symptomType,
-                    startDate: dateRangeStart,
-                    endDate: dateRangeEnd
-                )
-            }
+            SymptomsHistoryGraph(
+                data: data,
+                symptomType: symptomType,
+                startDate: dateRangeStart,
+                endDate: dateRangeEnd
+            )
         } else {
             StudyApplicationListCard {
                 Text("No recent symptom scores available.")
@@ -57,7 +56,7 @@ struct SymptomsHistoryView: View {
 
 
 #Preview {
-    SymptomsHistoryView(symptomType: .overall, format: .list)
+    SymptomsHistoryView(symptomType: .overall)
         .previewWith(standard: ENGAGEHFStandard()) {
             VitalsManager()
         }

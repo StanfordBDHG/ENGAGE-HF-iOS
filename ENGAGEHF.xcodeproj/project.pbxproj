@@ -72,6 +72,15 @@
 		4DBDD3442BBFAD64001FB0CA /* InvitationCodeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDD3432BBFAD64001FB0CA /* InvitationCodeError.swift */; };
 		4DBDD3462BBFAE2D001FB0CA /* InvitationCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDD3452BBFAE2D001FB0CA /* InvitationCodeView.swift */; };
 		4DBDD3482BC073EF001FB0CA /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 4DBDD3472BC073EF001FB0CA /* FirebaseFunctions */; };
+		4DC0F66F2C3480440025AB13 /* GraphableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC0F66E2C3480440025AB13 /* GraphableProtocol.swift */; };
+		4DC0F6712C34818B0025AB13 /* HKSample+Graphable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC0F6702C34818B0025AB13 /* HKSample+Graphable.swift */; };
+		4DC0F6742C34929C0025AB13 /* ExceptionCatcher in Frameworks */ = {isa = PBXBuildFile; productRef = 4DC0F6732C34929C0025AB13 /* ExceptionCatcher */; };
+		4DC0F6762C3493680025AB13 /* SymptomScore+Graphable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC0F6752C3493680025AB13 /* SymptomScore+Graphable.swift */; };
+		4DC0F67A2C34AD620025AB13 /* VitalsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC0F6792C34AD620025AB13 /* VitalsList.swift */; };
+		4DC0F67E2C34B2880025AB13 /* VitalsGraphSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC0F67D2C34B2880025AB13 /* VitalsGraphSection.swift */; };
+		4DC0F6812C34B5750025AB13 /* AddMeasurementButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC0F6802C34B5750025AB13 /* AddMeasurementButton.swift */; };
+		4DC0F6842C34B66F0025AB13 /* ResolutionPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC0F6832C34B66F0025AB13 /* ResolutionPicker.swift */; };
+		4DC0F68D2C34B9EC0025AB13 /* VitalsListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC0F68C2C34B9EC0025AB13 /* VitalsListSection.swift */; };
 		4DD823022C17F63C004DC599 /* CloseButtonLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD823012C17F63C004DC599 /* CloseButtonLayer.swift */; };
 		4DD823062C17FF79004DC599 /* NotificationsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD823052C17FF79004DC599 /* NotificationsUITests.swift */; };
 		4DDFC7392BF2C3C9002B07A1 /* NotificationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC7382BF2C3C9002B07A1 /* NotificationSection.swift */; };
@@ -192,6 +201,14 @@
 		4DB025D42BBF2E08002D2545 /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		4DBDD3432BBFAD64001FB0CA /* InvitationCodeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationCodeError.swift; sourceTree = "<group>"; };
 		4DBDD3452BBFAE2D001FB0CA /* InvitationCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationCodeView.swift; sourceTree = "<group>"; };
+		4DC0F66E2C3480440025AB13 /* GraphableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphableProtocol.swift; sourceTree = "<group>"; };
+		4DC0F6702C34818B0025AB13 /* HKSample+Graphable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HKSample+Graphable.swift"; sourceTree = "<group>"; };
+		4DC0F6752C3493680025AB13 /* SymptomScore+Graphable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SymptomScore+Graphable.swift"; sourceTree = "<group>"; };
+		4DC0F6792C34AD620025AB13 /* VitalsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalsList.swift; sourceTree = "<group>"; };
+		4DC0F67D2C34B2880025AB13 /* VitalsGraphSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalsGraphSection.swift; sourceTree = "<group>"; };
+		4DC0F6802C34B5750025AB13 /* AddMeasurementButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMeasurementButton.swift; sourceTree = "<group>"; };
+		4DC0F6832C34B66F0025AB13 /* ResolutionPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolutionPicker.swift; sourceTree = "<group>"; };
+		4DC0F68C2C34B9EC0025AB13 /* VitalsListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalsListSection.swift; sourceTree = "<group>"; };
 		4DD823012C17F63C004DC599 /* CloseButtonLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButtonLayer.swift; sourceTree = "<group>"; };
 		4DD823052C17FF79004DC599 /* NotificationsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsUITests.swift; sourceTree = "<group>"; };
 		4DDFC7382BF2C3C9002B07A1 /* NotificationSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSection.swift; sourceTree = "<group>"; };
@@ -250,6 +267,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9733CFC62A8066DE001B7ABC /* SpeziOnboarding in Frameworks */,
+				4DC0F6742C34929C0025AB13 /* ExceptionCatcher in Frameworks */,
 				2FE5DC6429EDD883004B9AB4 /* SpeziAccount in Frameworks */,
 				A9A0BF032C13121D00B8F3F3 /* SpeziNumerics in Frameworks */,
 				2FB099AF2A875DF100B20952 /* FirebaseAuth in Frameworks */,
@@ -391,6 +409,7 @@
 				4DA20B502C25E1A300715AA2 /* ObservationAlias.swift */,
 				4D2D1D752C2CC8B200ABDC19 /* ValueXProtocol.swift */,
 				4D2D1D772C2CD32C00ABDC19 /* ObservationValueProtocol.swift */,
+				4DC0F66E2C3480440025AB13 /* GraphableProtocol.swift */,
 			);
 			path = "Protocols+Aliases";
 			sourceTree = "<group>";
@@ -413,6 +432,8 @@
 				4DA20B592C25FEDE00715AA2 /* Decimal+IntConversion.swift */,
 				4DA20B5B2C26098400715AA2 /* R4Observation+GetEffectiveDate.swift */,
 				4D2D1D672C2C82A200ABDC19 /* FHIRPeriod+GetDates.swift */,
+				4DC0F6702C34818B0025AB13 /* HKSample+Graphable.swift */,
+				4DC0F6752C3493680025AB13 /* SymptomScore+Graphable.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -425,6 +446,16 @@
 				4DB025D42BBF2E08002D2545 /* Dashboard.swift */,
 			);
 			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		4DC0F6882C34B9CC0025AB13 /* Generic */ = {
+			isa = PBXGroup;
+			children = (
+				4DC0F6792C34AD620025AB13 /* VitalsList.swift */,
+				4DC0F67D2C34B2880025AB13 /* VitalsGraphSection.swift */,
+				4DC0F68C2C34B9EC0025AB13 /* VitalsListSection.swift */,
+			);
+			path = Generic;
 			sourceTree = "<group>";
 		};
 		4DDFC73B2BF2C46E002B07A1 /* Notifications */ = {
@@ -448,6 +479,7 @@
 		4DDFC7612BF34FAC002B07A1 /* HeartHealth */ = {
 			isa = PBXGroup;
 			children = (
+				4DC0F6882C34B9CC0025AB13 /* Generic */,
 				4DF5062C2C2F261D003E7EFB /* Vitals */,
 				4DF5062B2C2F2617003E7EFB /* Symptoms */,
 				4DDFC7682BF35113002B07A1 /* HeartHealth.swift */,
@@ -456,6 +488,8 @@
 				4D2D1D5F2C2B859C00ABDC19 /* GraphPicker.swift */,
 				4DF506422C2F6A71003E7EFB /* RecordFormatPicker.swift */,
 				4DF506182C2E1AAD003E7EFB /* SelectionTypes.swift */,
+				4DC0F6802C34B5750025AB13 /* AddMeasurementButton.swift */,
+				4DC0F6832C34B66F0025AB13 /* ResolutionPicker.swift */,
 			);
 			path = HeartHealth;
 			sourceTree = "<group>";
@@ -670,6 +704,7 @@
 				4D49AAFF2BC9D50400C77310 /* BluetoothViews */,
 				4D49AB012BC9D50400C77310 /* SpeziBluetooth */,
 				A9A0BF022C13121D00B8F3F3 /* SpeziNumerics */,
+				4DC0F6732C34929C0025AB13 /* ExceptionCatcher */,
 			);
 			productName = ENGAGEHF;
 			productReference = 653A254D283387FE005D4D48 /* ENGAGEHF.app */;
@@ -767,6 +802,7 @@
 				2F66D20D2BB723180010D555 /* XCRemoteSwiftPackageReference "SwiftLint" */,
 				4D49AAFC2BC9D50400C77310 /* XCRemoteSwiftPackageReference "SpeziBluetooth" */,
 				A9A0BF012C13121D00B8F3F3 /* XCRemoteSwiftPackageReference "SpeziNetworking" */,
+				4DC0F6722C34929C0025AB13 /* XCRemoteSwiftPackageReference "ExceptionCatcher" */,
 			);
 			productRefGroup = 653A254E283387FE005D4D48 /* Products */;
 			projectDirPath = "";
@@ -816,6 +852,8 @@
 			files = (
 				2FE5DC4129EDD7EE004B9AB4 /* StorageKeys.swift in Sources */,
 				4D0F389E2C09779100DA12F7 /* ShowMoreButton.swift in Sources */,
+				4DC0F6812C34B5750025AB13 /* AddMeasurementButton.swift in Sources */,
+				4DC0F66F2C3480440025AB13 /* GraphableProtocol.swift in Sources */,
 				4D19ED012BE5CAFC00CDBAA8 /* MeasurementRecordedView.swift in Sources */,
 				4DDFC7652BF350C2002B07A1 /* Education.swift in Sources */,
 				4DDFC7692BF35113002B07A1 /* HeartHealth.swift in Sources */,
@@ -827,9 +865,11 @@
 				2FE5DC3A29EDD7CA004B9AB4 /* Welcome.swift in Sources */,
 				4DD823022C17F63C004DC599 /* CloseButtonLayer.swift in Sources */,
 				4DF506372C2F42EA003E7EFB /* SymptomsHistoryGraph.swift in Sources */,
+				4DC0F67A2C34AD620025AB13 /* VitalsList.swift in Sources */,
 				A996F4462C1081EB002328C5 /* BloodPressureMeasurement.Unit+HKUnit.swift in Sources */,
 				2FE5DC3829EDD7CA004B9AB4 /* InterestingModules.swift in Sources */,
 				2FE5DC3529EDD7CA004B9AB4 /* Consent.swift in Sources */,
+				4DC0F68D2C34B9EC0025AB13 /* VitalsListSection.swift in Sources */,
 				4DA20B642C2A0FF100715AA2 /* VitalsCard.swift in Sources */,
 				A996F44A2C1082BA002328C5 /* HealthDevice.swift in Sources */,
 				4DBDD3442BBFAD64001FB0CA /* InvitationCodeError.swift in Sources */,
@@ -840,6 +880,8 @@
 				A9DFE8A92ABE551400428242 /* AccountButton.swift in Sources */,
 				4DDFC7392BF2C3C9002B07A1 /* NotificationSection.swift in Sources */,
 				4DF506342C2F3D89003E7EFB /* SymptomsHistoryList.swift in Sources */,
+				4DC0F6712C34818B0025AB13 /* HKSample+Graphable.swift in Sources */,
+				4DC0F67E2C34B2880025AB13 /* VitalsGraphSection.swift in Sources */,
 				4DDFC7872BFBFDDD002B07A1 /* NotificationManager.swift in Sources */,
 				4DF506432C2F6A71003E7EFB /* RecordFormatPicker.swift in Sources */,
 				2FE5DC3729EDD7CA004B9AB4 /* OnboardingFlow.swift in Sources */,
@@ -876,11 +918,13 @@
 				A9FE7AD02AA39BAB0077B045 /* AccountSheet.swift in Sources */,
 				A996F44D2C1083E4002328C5 /* WeightMeasurement+HKSample.swift in Sources */,
 				653A2551283387FE005D4D48 /* ENGAGEHF.swift in Sources */,
+				4DC0F6842C34B66F0025AB13 /* ResolutionPicker.swift in Sources */,
 				2F65B44E2A3B8B0600A36932 /* NotificationPermissions.swift in Sources */,
 				4D0F38A22C0A7AD900DA12F7 /* ExpandableText.swift in Sources */,
 				2FE5DC2629EDD38A004B9AB4 /* Contacts.swift in Sources */,
 				4D2D1D602C2B859C00ABDC19 /* GraphPicker.swift in Sources */,
 				A996F45A2C11A9D1002328C5 /* WeightMeasurementLabel.swift in Sources */,
+				4DC0F6762C3493680025AB13 /* SymptomScore+Graphable.swift in Sources */,
 				A996F44F2C10861D002328C5 /* BloodPressureMeasurement+HKSample.swift in Sources */,
 				4DBDD3462BBFAE2D001FB0CA /* InvitationCodeView.swift in Sources */,
 				4DF506312C2F3421003E7EFB /* SymptomsHistoryView.swift in Sources */,
@@ -1514,6 +1558,14 @@
 				minimumVersion = 1.6.0;
 			};
 		};
+		4DC0F6722C34929C0025AB13 /* XCRemoteSwiftPackageReference "ExceptionCatcher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/ExceptionCatcher.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		5661551B2AB8384200209B80 /* XCRemoteSwiftPackageReference "swift-package-list" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/FelixHerrmann/swift-package-list";
@@ -1666,6 +1718,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2FE5DC9029EDD9C3004B9AB4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFunctions;
+		};
+		4DC0F6732C34929C0025AB13 /* ExceptionCatcher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4DC0F6722C34929C0025AB13 /* XCRemoteSwiftPackageReference "ExceptionCatcher" */;
+			productName = ExceptionCatcher;
 		};
 		56E708342BB06B7100B08F0A /* SpeziLicense */ = {
 			isa = XCSwiftPackageProductDependency;
