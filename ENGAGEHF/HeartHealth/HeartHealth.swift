@@ -6,12 +6,15 @@
 // SPDX-License-Identifier: MIT
 //
 
+import SpeziViews
 import SwiftUI
 
 
 struct HeartHealth: View {
     @Binding var presentingAccount: Bool
     @State private var vitalSelection: GraphSelection = .symptoms
+    
+    @Environment(VitalsManager.self) private var vitalsManager
     
     
     var body: some View {

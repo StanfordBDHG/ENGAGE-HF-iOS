@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import HealthKit
 
 
 /// The type of Vitals to be displayed as the main content of the Heart Health view
@@ -30,17 +31,11 @@ enum GraphSelection: CaseIterable, Identifiable, CustomStringConvertible {
 }
 
 
-/// The type of health data to be displayed as the main content of Heart Health view, after picking symptom type
+/// The type of health data to be displayed as the main content of Heart Health view, after selecting .bloodPressure, .weight, or .heartRate
 enum VitalsType: CustomStringConvertible {
     case weight
     case heartRate
     case bloodPressure
-    case overall
-    case physical
-    case social
-    case quality
-    case specific
-    case dizziness
     
     
     /// The full name of the vital, displayed in the Description Header and Graph Legend
@@ -49,12 +44,6 @@ enum VitalsType: CustomStringConvertible {
         case .weight: "Weight"
         case .heartRate: "Heart Rate"
         case .bloodPressure: "Blood Pressure"
-        case .overall: "Overall"
-        case .physical: "Physical"
-        case .social: "Social"
-        case .quality: "Quality"
-        case .specific: "Specific"
-        case .dizziness: "Dizziness"
         }
     }
     
@@ -64,12 +53,16 @@ enum VitalsType: CustomStringConvertible {
         case .weight: "vitalsWeight"
         case .heartRate: "vitalsHeartRate"
         case .bloodPressure: "vitalsBloodPressure"
-        case .overall: "symptomOverall"
-        case .physical: "symptomPhysical"
-        case .social: "symptomSocial"
-        case .quality: "symptomQuality"
-        case .specific: "symptomSpecific"
-        case .dizziness: "symptomDizziness"
+        }
+    }
+    
+    
+    /// The corresponding GraphSelection associted with each VitalsType
+    var graphType: GraphSelection {
+        switch self {
+        case .weight: .weight
+        case .heartRate: .heartRate
+        case .bloodPressure: .bloodPressure
         }
     }
 }

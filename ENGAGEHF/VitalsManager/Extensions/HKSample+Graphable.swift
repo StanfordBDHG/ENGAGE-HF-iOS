@@ -43,14 +43,29 @@ extension HKSample: Graphable {
             
             return [quantity.doubleValue(for: unit)]
         case let correlation as HKCorrelation:
+            /// For now, assume the HKCorrelation is a Blood Pressure measurement
             let quantitySamples = correlation.objects.compactMap { $0 as? HKQuantitySample }
             
-            var doubleValues: [Double] = []
-            for object in quantitySamples where object.quantity.is(compatibleWith: unit) {
-                doubleValues.append(object.quantity.doubleValue(for: unit))
+            var systolic: HKQuantitySample? {
+                quantitySamples
+                    .first(where: { $0.quantityType == HKQuantityType(.bloodPressureSystolic) })
+            }
+            var diastolic: HKQuantitySample? {
+                quantitySamples
+                    .first(where: { $0.quantityType == HKQuantityType(.bloodPressureDiastolic) })
             }
             
-            return doubleValues
+            guard let systolicQuantity = systolic?.quantity,
+                  let diastolicQuantity = diastolic?.quantity else {
+                return []
+            }
+            
+            guard systolicQuantity.is(compatibleWith: unit),
+                  diastolicQuantity.is(compatibleWith: unit) else {
+                return []
+            }
+            
+            return [systolicQuantity.doubleValue(for: unit), diastolicQuantity.doubleValue(for: unit)]
         default:
             return []
         }

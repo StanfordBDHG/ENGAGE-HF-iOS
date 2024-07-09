@@ -461,3 +461,34 @@ extension VitalsManager {
         return result
     }
 }
+
+
+extension VitalsManager {
+    /// Call on deletion of a measurement -- removes the measurement with the given document id from the user's collection 
+    func deleteMeasurement(id: String?, collectionID: String) async {
+        guard let id else {
+            self.logger.error("Attempting to delete nonexistant measurement from \(collectionID).")
+            return
+        }
+        
+        self.logger.debug("Attempting to delete measurement (\(id)) from \(collectionID)")
+        let firestore = Firestore.firestore()
+        
+        guard let user = Auth.auth().currentUser else {
+            logger.error("Unable to delete measurement: User not authenticated")
+            return
+        }
+        
+        let collectionRef = firestore
+            .collection("users")
+            .document(user.uid)
+            .collection(collectionID)
+        
+        do {
+            try await collectionRef.document(id).delete()
+            self.logger.debug("Successfully deleted measurement (\(id)) from \(collectionID)")
+        } catch {
+            self.logger.error("Error deleting measurement (\(id)) from \(collectionID): \(error)")
+        }
+    }
+} // swiftlint:disable:this file_length

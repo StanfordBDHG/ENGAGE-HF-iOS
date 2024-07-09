@@ -107,16 +107,10 @@
     "All Data" : {
 
     },
-    "All Measurements" : {
-
-    },
     "An error occurred: %@" : {
       "comment" : "General Error"
     },
     "An invitation code is at least 8 characters long." : {
-
-    },
-    "Blah" : {
 
     },
     "Close" : {
@@ -153,9 +147,6 @@
         }
       }
     },
-    "Content" : {
-
-    },
     "Content ..." : {
 
     },
@@ -181,6 +172,9 @@
 
     },
     "Heart Health" : {
+
+    },
+    "Hello, World!" : {
 
     },
     "Home" : {
@@ -359,6 +353,9 @@
 
     },
     "Monthly" : {
+
+    },
+    "No %@ available." : {
 
     },
     "No recent %@ measurement available" : {

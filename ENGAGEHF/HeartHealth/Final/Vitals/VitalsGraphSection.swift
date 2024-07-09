@@ -9,22 +9,13 @@
 import SwiftUI
 
 
-struct VitalsContentView: View {
-    private var vitalsType: VitalsType
-    
-    
+struct VitalsGraphSection: View {
     var body: some View {
-        Text(vitalsType.description)
-            .padding()
-    }
-    
-    
-    init(for vitals: VitalsType) {
-        self.vitalsType = vitals
+        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
 }
 
 
 #Preview {
-    VitalsContentView(for: .weight)
+    VitalsGraphSection()
 }

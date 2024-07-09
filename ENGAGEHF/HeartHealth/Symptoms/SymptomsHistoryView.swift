@@ -45,11 +45,8 @@ struct SymptomsHistoryView: View {
                 endDate: dateRangeEnd
             )
         } else {
-            StudyApplicationListCard {
-                Text("No recent symptom scores available.")
-                    .font(.caption)
-                    .frame(maxWidth: .infinity)
-            }
+            Text("No recent symptom scores available.")
+                .font(.caption)
         }
     }
 }
