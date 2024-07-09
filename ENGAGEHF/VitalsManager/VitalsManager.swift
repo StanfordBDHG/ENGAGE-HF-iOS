@@ -101,7 +101,7 @@ public class VitalsManager: Module, EnvironmentAccessible {
         // Weight snapshot listener
         self.snapshotListeners.append(
             self.registerSnapshot(
-                collectionReference: userDocRef.collection("bodyWeightObservations"),
+                collectionReference: userDocRef.collection(CollectionID.bodyWeightObservations.rawValue),
                 storage: \.weightHistory,
                 mapObservation: convertToHKQuantitySample
             )
@@ -110,7 +110,7 @@ public class VitalsManager: Module, EnvironmentAccessible {
         // Heart Rate snapshot listener
         self.snapshotListeners.append(
             self.registerSnapshot(
-                collectionReference: userDocRef.collection("heartRateObservations"),
+                collectionReference: userDocRef.collection(CollectionID.heartRateObservations.rawValue),
                 storage: \.heartRateHistory,
                 mapObservation: convertToHKQuantitySample
             )
@@ -119,7 +119,7 @@ public class VitalsManager: Module, EnvironmentAccessible {
         // Blood Pressure snapshot listener
         self.snapshotListeners.append(
             self.registerSnapshot(
-                collectionReference: userDocRef.collection("bloodPressureObservations"),
+                collectionReference: userDocRef.collection(CollectionID.bloodPressureObservations.rawValue),
                 storage: \.bloodPressureHistory,
                 mapObservation: convertToHKCorrelation
             )
@@ -128,7 +128,7 @@ public class VitalsManager: Module, EnvironmentAccessible {
         // Symptom Survey Scores snapshot listener
         self.snapshotListeners.append(
             self.registerSnapshot(
-                collectionReference: userDocRef.collection("kccqResults"),
+                collectionReference: userDocRef.collection(CollectionID.kccqResults.rawValue),
                 storage: \.symptomHistory,
                 mapObservation: { $0 }
             )
@@ -377,18 +377,18 @@ extension VitalsManager {
         
         
         // Make sure the user has not already had mock data initialized
-        for collectionID in ["bodyWeightObservations", "heartRateObservations", "bloodPressureObservations", "kccqResults"] {
-            let querySnapshot = try await userDocRef.collection(collectionID).getDocuments()
+        for collectionID in CollectionID.allCases {
+            let querySnapshot = try await userDocRef.collection(collectionID.rawValue).getDocuments()
             
             // Not recommended to delete collections from the client, so for now just skipping if the collection already exists
             guard querySnapshot.documents.isEmpty else {
                 // Collection exists and is not empty, so skip
-                self.logger.debug("\(collectionID) already exist, skipping user.")
+                self.logger.debug("\(collectionID.rawValue) already exist, skipping user.")
                 return
             }
         }
         
-        for _ in 0..<40 {
+        for _ in 0..<3 {
             guard let date = Calendar.current.date(byAdding: .day, value: -Int.random(in: 0..<40), to: .now) else {
                 self.logger.error("Unable to create date for Heart Health testing setup.")
                 return
@@ -465,13 +465,13 @@ extension VitalsManager {
 
 extension VitalsManager {
     /// Call on deletion of a measurement -- removes the measurement with the given document id from the user's collection 
-    func deleteMeasurement(id: String?, collectionID: String) async {
+    func deleteMeasurement(id: String?, collectionID: CollectionID) async {
         guard let id else {
-            self.logger.error("Attempting to delete nonexistant measurement from \(collectionID).")
+            self.logger.error("Attempting to delete nonexistant measurement from \(collectionID.rawValue).")
             return
         }
         
-        self.logger.debug("Attempting to delete measurement (\(id)) from \(collectionID)")
+        self.logger.debug("Attempting to delete measurement (\(id)) from \(collectionID.rawValue)")
         let firestore = Firestore.firestore()
         
         guard let user = Auth.auth().currentUser else {
@@ -482,13 +482,13 @@ extension VitalsManager {
         let collectionRef = firestore
             .collection("users")
             .document(user.uid)
-            .collection(collectionID)
+            .collection(collectionID.rawValue)
         
         do {
             try await collectionRef.document(id).delete()
-            self.logger.debug("Successfully deleted measurement (\(id)) from \(collectionID)")
+            self.logger.debug("Successfully deleted measurement (\(id)) from \(collectionID.rawValue)")
         } catch {
-            self.logger.error("Error deleting measurement (\(id)) from \(collectionID): \(error)")
+            self.logger.error("Error deleting measurement (\(id)) from \(collectionID.rawValue): \(error)")
         }
     }
 } // swiftlint:disable:this file_length

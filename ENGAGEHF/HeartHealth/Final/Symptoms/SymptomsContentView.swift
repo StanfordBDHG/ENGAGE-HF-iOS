@@ -10,16 +10,30 @@ import SwiftUI
 
 
 struct SymptomsContentView: View {
-    @Environment(VitalsManager.self) private var  
-    
+    @Environment(VitalsManager.self) private var  vitalsManager
     @State private var symptomsType: SymptomsType = .overall
+    
+    
+    private var listDisplayData: [VitalMeasurement] {
+        vitalsManager.symptomHistory
+            .compactMap { score in
+                VitalMeasurement(
+                    id: score.id,
+                    value: String(format: "%.1f", score[keyPath: symptomsType.symptomScoreKeyMap]),
+                    date: score.date
+                )
+            }
+            .sorted {
+                $0.date > $1.date
+            }
+    }
     
     
     var body: some View {
         SymptomsGraphSection(symptomsType: $symptomsType)
         DescriptionSection(explanationKey: symptomsType.explanationKey)
         SymptomsListSection(
-            data: self.getDisplayInfo(for: symptomsType),
+            data: listDisplayData,
             units: "%",
             type: .symptoms
         )

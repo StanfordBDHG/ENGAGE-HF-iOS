@@ -79,55 +79,6 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint, A
         }
     }
     
-    
-    /// Setup an arbitrary collection for testing. Called on change of user sign-in status
-    ///
-    /// Params:
-    /// - collectionID: the name of the collection that needs setup
-    /// - numSamples: the number of documents to add to the collection
-    /// - sampler: a function that returns an instance of the object to fill the collection with
-    ///
-    func setupTesting<T: Codable>(
-        collectionID: String,
-        numSamples: Int,
-        sampler: () -> T
-    ) async throws {
-        let collectionRef = try await userDocumentReference.collection(collectionID)
-        
-        // Check that the collection has not already been initialized
-        let querySnapshot = try await collectionRef.getDocuments()
-        
-        // Not recommended to delete collections from the client, so for now just skipping if the collection already exists
-        guard querySnapshot.documents.isEmpty else {
-            self.logger.debug("\(collectionID) collection already exists, skipping testing setup.")
-            return
-        }
-        
-        self.logger.debug("Adding \(numSamples) samples to \(collectionID).")
-        
-        // Collect the write operations in a batch
-        let batch = Firestore.firestore().batch()
-        for idx in 0..<numSamples {
-            let newSample = sampler()
-            
-            do {
-                try batch.setData(from: newSample, forDocument: collectionRef.document(UUID().uuidString))
-            } catch {
-                self.logger.error("Error setting up batch write \(idx) to \(collectionID): \(error)")
-                return
-            }
-        }
-        
-        // Execute the batched writes
-        do {
-            try await batch.commit()
-        } catch {
-            self.logger.error("Unable to load test batch to \(collectionID): \(error)")
-        }
-        
-        self.logger.debug("Successfully set up \(collectionID) for testing with \(numSamples) samples.")
-    }
-    
 
     func add(sample: HKSample) async { // kept for compatibility with the Standard Constraint
         do {
@@ -182,14 +133,14 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint, A
     
     
     private func healthKitDocument(id uuid: UUID, type: HKSampleType) async throws -> DocumentReference {
-        var collectionBucket: String? {
+        var collectionBucket: CollectionID? {
             switch type {
             case HKQuantityType(.bodyMass):
-                return "bodyWeightObservations"
+                return .bodyWeightObservations
             case HKQuantityType(.heartRate):
-                return "heartRateObservations"
+                return .heartRateObservations
             case HKCorrelationType(.bloodPressure):
-                return "bloodPressureObservations"
+                return .bloodPressureObservations
             default:
                 return nil
             }
@@ -200,7 +151,7 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint, A
         }
         
         return try await userDocumentReference
-            .collection(collectionBucket)
+            .collection(collectionBucket.rawValue)
             .document(uuid.uuidString) // Set the document identifier to the UUID of the document.
     }
 

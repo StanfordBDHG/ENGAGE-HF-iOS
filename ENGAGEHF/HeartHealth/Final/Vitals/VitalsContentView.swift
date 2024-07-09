@@ -50,6 +50,8 @@ struct VitalsContentView: View {
     
     
     private func getDisplayInfo() -> [VitalMeasurement] {
+        print(#function)
+        
         let data: [HKSample] = switch vitalsType {
         case .weight: vitalsManager.weightHistory
         case .heartRate: vitalsManager.heartRateHistory
