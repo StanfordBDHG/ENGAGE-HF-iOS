@@ -66,6 +66,8 @@
 		4D92BA012C3C932300ABCED7 /* VitalsGraphSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D92BA002C3C932300ABCED7 /* VitalsGraphSection.swift */; };
 		4D92BA072C3CAE5300ABCED7 /* VitalMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D92BA062C3CAE5300ABCED7 /* VitalMeasurement.swift */; };
 		4D92BA0D2C3DCC4D00ABCED7 /* CollectionID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D92BA0C2C3DCC4D00ABCED7 /* CollectionID.swift */; };
+		4D92BA172C3E108700ABCED7 /* CodeableConcept+Contains.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D92BA162C3E108700ABCED7 /* CodeableConcept+Contains.swift */; };
+		4D92BA1A2C3E13F300ABCED7 /* FHIRSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D92BA192C3E13F300ABCED7 /* FHIRSystem.swift */; };
 		4DA20B4B2C249E7E00715AA2 /* VitalsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA20B4A2C249E7E00715AA2 /* VitalsManager.swift */; };
 		4DA20B512C25E1A300715AA2 /* ObservationAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA20B502C25E1A300715AA2 /* ObservationAlias.swift */; };
 		4DA20B542C25F8A600715AA2 /* FHIRDateTime+DateComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA20B532C25F8A600715AA2 /* FHIRDateTime+DateComponents.swift */; };
@@ -201,6 +203,8 @@
 		4D92BA002C3C932300ABCED7 /* VitalsGraphSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalsGraphSection.swift; sourceTree = "<group>"; };
 		4D92BA062C3CAE5300ABCED7 /* VitalMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalMeasurement.swift; sourceTree = "<group>"; };
 		4D92BA0C2C3DCC4D00ABCED7 /* CollectionID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionID.swift; sourceTree = "<group>"; };
+		4D92BA162C3E108700ABCED7 /* CodeableConcept+Contains.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CodeableConcept+Contains.swift"; sourceTree = "<group>"; };
+		4D92BA192C3E13F300ABCED7 /* FHIRSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FHIRSystem.swift; sourceTree = "<group>"; };
 		4DA20B4A2C249E7E00715AA2 /* VitalsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalsManager.swift; sourceTree = "<group>"; };
 		4DA20B502C25E1A300715AA2 /* ObservationAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationAlias.swift; sourceTree = "<group>"; };
 		4DA20B532C25F8A600715AA2 /* FHIRDateTime+DateComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FHIRDateTime+DateComponents.swift"; sourceTree = "<group>"; };
@@ -476,6 +480,7 @@
 				4D2D1D672C2C82A200ABDC19 /* FHIRPeriod+GetDates.swift */,
 				4DC0F6702C34818B0025AB13 /* HKSample+Graphable.swift */,
 				4DC0F6752C3493680025AB13 /* SymptomScore+Graphable.swift */,
+				4D92BA162C3E108700ABCED7 /* CodeableConcept+Contains.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -611,6 +616,7 @@
 				2FE5DC2D29EDD792004B9AB4 /* Resources */,
 				2FC9759D2978E30800BA99FE /* Supporting Files */,
 				4D92BA0C2C3DCC4D00ABCED7 /* CollectionID.swift */,
+				4D92BA192C3E13F300ABCED7 /* FHIRSystem.swift */,
 			);
 			path = ENGAGEHF;
 			sourceTree = "<group>";
@@ -886,8 +892,10 @@
 				4DF506192C2E1AAE003E7EFB /* SelectionTypes.swift in Sources */,
 				4DF5062F2C2F2B00003E7EFB /* SymptomsPicker.swift in Sources */,
 				4DDFC73F2BF2CADD002B07A1 /* FetchingError.swift in Sources */,
+				4D92BA1A2C3E13F300ABCED7 /* FHIRSystem.swift in Sources */,
 				2FE5DC3A29EDD7CA004B9AB4 /* Welcome.swift in Sources */,
 				4D92BA0D2C3DCC4D00ABCED7 /* CollectionID.swift in Sources */,
+				4D92BA172C3E108700ABCED7 /* CodeableConcept+Contains.swift in Sources */,
 				4DD823022C17F63C004DC599 /* CloseButtonLayer.swift in Sources */,
 				4DF506372C2F42EA003E7EFB /* SymptomsHistoryGraph.swift in Sources */,
 				4DC0F67A2C34AD620025AB13 /* VitalsList.swift in Sources */,

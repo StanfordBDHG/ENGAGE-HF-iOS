@@ -164,21 +164,18 @@ public class VitalsManager: Module, EnvironmentAccessible {
     
     
     private func convertToHKQuantitySample(_ observation: R4Observation) throws -> HKQuantitySample {
-        guard let observationType = observation.code.coding?.first?.code?.value?.string else {
-            throw VitalsError.invalidConversion
-        }
-        
         let hkQuantity: HKQuantity
         let quantityType: HKQuantityType
         
-        switch observationType {
-        case "29463-7": // Weight
+        if observation.code.containsCoding(code: "29463-7", system: FHIRSystem.loinc.url) {
+            // Weight
             hkQuantity = try self.getQuantity(observation: observation)
             quantityType = HKQuantityType(.bodyMass)
-        case "8867-4": // Heart Rate
+        } else if observation.code.containsCoding(code: "8867-4", system: FHIRSystem.loinc.url) {
+            // Heart Rate
             hkQuantity = try self.getQuantity(observation: observation)
             quantityType = HKQuantityType(.heartRate)
-        default:
+        } else {
             throw VitalsError.invalidObservationType
         }
         
@@ -188,13 +185,22 @@ public class VitalsManager: Module, EnvironmentAccessible {
             throw VitalsError.invalidConversion
         }
         
-        return HKQuantitySample(type: quantityType, quantity: hkQuantity, start: effectiveDate.start, end: effectiveDate.end)
+        guard let identifier = observation.id?.value?.string else {
+            throw VitalsError.missingField
+        }
+        
+        return HKQuantitySample(
+            type: quantityType,
+            quantity: hkQuantity,
+            start: effectiveDate.start,
+            end: effectiveDate.end,
+            metadata: [HKMetadataKeyExternalUUID: identifier]
+        )
     }
     
     private func convertToHKCorrelation(_ observation: R4Observation) throws -> HKCorrelation {
         // For now, only handle Blood Pressure
-        guard let observationType = observation.code.coding?.first?.code?.value?.string,
-              observationType == "85354-9" else {
+        guard observation.code.containsCoding(code: "85354-9", system: FHIRSystem.loinc.url) else {
             throw VitalsError.invalidObservationType
         }
         
@@ -209,8 +215,8 @@ public class VitalsManager: Module, EnvironmentAccessible {
             throw VitalsError.missingField
         }
         
-        let systolicComponent = try self.getComponent(components, code: "8480-6")
-        let diastolicComponent = try self.getComponent(components, code: "8462-4")
+        let systolicComponent = try self.getComponent(components, code: "8480-6", system: FHIRSystem.loinc.url)
+        let diastolicComponent = try self.getComponent(components, code: "8462-4", system: FHIRSystem.loinc.url)
         
         let systolicQuantity = try self.getQuantity(observation: systolicComponent)
         let diastolicQuantity = try self.getQuantity(observation: diastolicComponent)
@@ -228,23 +234,28 @@ public class VitalsManager: Module, EnvironmentAccessible {
             end: effectiveDate.end
         )
         
+        guard let identifier = observation.id?.value?.string else {
+            throw VitalsError.missingField
+        }
+        
+        guard let identifier = observation.id?.value?.string else {
+            throw VitalsError.missingField
+        }
+        
         return HKCorrelation(
             type: HKCorrelationType(.bloodPressure),
             start: effectiveDate.start,
             end: effectiveDate.end,
-            objects: [systolicSample, diastolicSample]
+            objects: [systolicSample, diastolicSample],
+            metadata: [HKMetadataKeyExternalUUID: identifier]
         )
     }
     
     
-    private func getComponent(_ components: [ObservationComponent], code: String) throws -> ObservationComponent {
+    private func getComponent(_ components: [ObservationComponent], code: String, system: URL) throws -> ObservationComponent {
         guard let component = components.first(
             where: {
-                $0.code.coding?.contains(
-                    where: {
-                        $0.code?.value?.string == code
-                    }
-                ) ?? false
+                $0.code.containsCoding(code: code, system: system)
             }
         ) else {
             throw VitalsError.missingField
