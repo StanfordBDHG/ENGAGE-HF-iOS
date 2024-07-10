@@ -54,6 +54,7 @@
 		4D2D1D682C2C82A200ABDC19 /* FHIRPeriod+GetDates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2D1D672C2C82A200ABDC19 /* FHIRPeriod+GetDates.swift */; };
 		4D2D1D762C2CC8B200ABDC19 /* ValueXProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2D1D752C2CC8B200ABDC19 /* ValueXProtocol.swift */; };
 		4D2D1D782C2CD32C00ABDC19 /* ObservationValueProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2D1D772C2CD32C00ABDC19 /* ObservationValueProtocol.swift */; };
+		4D34B3E52C3EECDE006F0D40 /* HKObject+ExternalUUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D34B3E42C3EECDE006F0D40 /* HKObject+ExternalUUID.swift */; };
 		4D49AAFE2BC9D50400C77310 /* BluetoothServices in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49AAFD2BC9D50400C77310 /* BluetoothServices */; };
 		4D49AB002BC9D50400C77310 /* BluetoothViews in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49AAFF2BC9D50400C77310 /* BluetoothViews */; };
 		4D49AB022BC9D50400C77310 /* SpeziBluetooth in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49AB012BC9D50400C77310 /* SpeziBluetooth */; };
@@ -194,6 +195,7 @@
 		4D2D1D672C2C82A200ABDC19 /* FHIRPeriod+GetDates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FHIRPeriod+GetDates.swift"; sourceTree = "<group>"; };
 		4D2D1D752C2CC8B200ABDC19 /* ValueXProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueXProtocol.swift; sourceTree = "<group>"; };
 		4D2D1D772C2CD32C00ABDC19 /* ObservationValueProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationValueProtocol.swift; sourceTree = "<group>"; };
+		4D34B3E42C3EECDE006F0D40 /* HKObject+ExternalUUID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HKObject+ExternalUUID.swift"; sourceTree = "<group>"; };
 		4D49AB052BC9D56900C77310 /* WeightScaleDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightScaleDevice.swift; sourceTree = "<group>"; };
 		4D4AA0A42BC5E43E00676489 /* OnboardingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingUITests.swift; sourceTree = "<group>"; };
 		4D92B9F12C3C8D1E00ABCED7 /* SymptomsListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomsListSection.swift; sourceTree = "<group>"; };
@@ -378,6 +380,8 @@
 		2FE5DC3C29EDD7DA004B9AB4 /* SharedContext */ = {
 			isa = PBXGroup;
 			children = (
+				4D92BA0C2C3DCC4D00ABCED7 /* CollectionID.swift */,
+				4D92BA192C3E13F300ABCED7 /* FHIRSystem.swift */,
 				2FE5DC3E29EDD7ED004B9AB4 /* FeatureFlags.swift */,
 				2FE5DC3F29EDD7EE004B9AB4 /* StorageKeys.swift */,
 			);
@@ -481,6 +485,7 @@
 				4DC0F6702C34818B0025AB13 /* HKSample+Graphable.swift */,
 				4DC0F6752C3493680025AB13 /* SymptomScore+Graphable.swift */,
 				4D92BA162C3E108700ABCED7 /* CodeableConcept+Contains.swift */,
+				4D34B3E42C3EECDE006F0D40 /* HKObject+ExternalUUID.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -615,8 +620,6 @@
 				2FE5DC3D29EDD7E4004B9AB4 /* Helper */,
 				2FE5DC2D29EDD792004B9AB4 /* Resources */,
 				2FC9759D2978E30800BA99FE /* Supporting Files */,
-				4D92BA0C2C3DCC4D00ABCED7 /* CollectionID.swift */,
-				4D92BA192C3E13F300ABCED7 /* FHIRSystem.swift */,
 			);
 			path = ENGAGEHF;
 			sourceTree = "<group>";
@@ -946,6 +949,7 @@
 				A96C56BF2C0E334A00D6A50B /* BloodPressureCuffDevice.swift in Sources */,
 				4DA20B5A2C25FEDE00715AA2 /* Decimal+IntConversion.swift in Sources */,
 				4D92B9F42C3C8DF900ABCED7 /* SymptomsListRow.swift in Sources */,
+				4D34B3E52C3EECDE006F0D40 /* HKObject+ExternalUUID.swift in Sources */,
 				A996F4552C11117C002328C5 /* ProcessedMeasurement.swift in Sources */,
 				A996F4442C1081A2002328C5 /* WeightMeasurement.Unit+HKUnit.swift in Sources */,
 				4DDFC7702BFAEAD7002B07A1 /* ConfirmMeasurementButton.swift in Sources */,

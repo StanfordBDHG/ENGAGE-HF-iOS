@@ -11,10 +11,14 @@ import SwiftUI
 
 
 struct VitalsContentView: View {
-    var vitalsType: VitalsType
-    
     @Environment(VitalsManager.self) private var vitalsManager
     
+    var vitalsType: VitalsType
+    
+    
+    private var listDisplayData: [VitalMeasurement] {
+        getDisplayInfo(for: vitalsType)
+    }
     
     private var hkUnit: String {
         switch vitalsType {
@@ -37,7 +41,7 @@ struct VitalsContentView: View {
         VitalsGraphSection()
         DescriptionSection(explanationKey: vitalsType.explanationKey)
         SymptomsListSection(
-            data: self.getDisplayInfo(),
+            data: listDisplayData,
             units: displayUnit,
             type: vitalsType.graphType
         )
@@ -49,10 +53,8 @@ struct VitalsContentView: View {
     }
     
     
-    private func getDisplayInfo() -> [VitalMeasurement] {
-        print(#function)
-        
-        let data: [HKSample] = switch vitalsType {
+    private func getDisplayInfo(for vital: VitalsType) -> [VitalMeasurement] {
+        let data: [HKSample] = switch vital {
         case .weight: vitalsManager.weightHistory
         case .heartRate: vitalsManager.heartRateHistory
         case .bloodPressure: vitalsManager.bloodPressureHistory
@@ -61,8 +63,8 @@ struct VitalsContentView: View {
         return data
             .map { sample in
                 VitalMeasurement(
-                    id: sample.id.uuidString,
-                    value: self.getDisplayQuantity(sample: sample, type: vitalsType, units: hkUnit),
+                    id: sample.externalUUID?.uuidString,
+                    value: getDisplayQuantity(sample: sample, type: vitalsType, units: hkUnit),
                     date: sample.date
                 )
             }

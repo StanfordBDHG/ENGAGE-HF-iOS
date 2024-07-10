@@ -13,13 +13,17 @@ struct SymptomsContentView: View {
     @Environment(VitalsManager.self) private var  vitalsManager
     @State private var symptomsType: SymptomsType = .overall
     
+    @State private var symptomsType1: SymptomsType = .overall
+    
     
     private var listDisplayData: [VitalMeasurement] {
-        vitalsManager.symptomHistory
-            .compactMap { score in
+        let keyPath = symptomsType1.symptomScoreKeyMap
+        print("Reloading List Display Data")
+        return vitalsManager.symptomHistory
+            .map { score in
                 VitalMeasurement(
                     id: score.id,
-                    value: String(format: "%.1f", score[keyPath: symptomsType.symptomScoreKeyMap]),
+                    value: String(format: "%.1f", score[keyPath: keyPath]),
                     date: score.date
                 )
             }
@@ -37,6 +41,7 @@ struct SymptomsContentView: View {
             units: "%",
             type: .symptoms
         )
+        .onChange(of: symptomsType) { symptomsType1 = symptomsType }
     }
     
     

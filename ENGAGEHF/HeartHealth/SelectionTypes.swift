@@ -70,7 +70,7 @@ enum VitalsType: CustomStringConvertible {
 
 /// The subfield of Symptom Score to be displayed as the main content of Heart Health view when GraphSelection is .symptom
 /// Chosen by the SymptomPicker in SymptomContentView
-enum SymptomsType: String, CaseIterable, Identifiable, CustomStringConvertible {
+enum SymptomsType: String, CaseIterable, Identifiable, CustomStringConvertible, Equatable {
     case overall
     case physical
     case social

@@ -1,8 +1,9 @@
 //
-//  CodeableConcept+Contains.swift
-//  ENGAGEHF
+// This source file is part of the ENGAGE-HF project based on the Stanford Spezi Template Application project
 //
-//  Created by Nick Riedman on 7/9/24.
+// SPDX-FileCopyrightText: 2024 Stanford University
+//
+// SPDX-License-Identifier: MIT
 //
 
 import Foundation

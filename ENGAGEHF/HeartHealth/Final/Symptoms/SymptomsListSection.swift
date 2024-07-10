@@ -10,8 +10,6 @@ import SwiftUI
 
 
 struct SymptomsListSection: View {
-    @State private var actualListData: [VitalMeasurement] = []
-    
     var data: [VitalMeasurement]
     var units: String
     var type: GraphSelection
@@ -22,8 +20,8 @@ struct SymptomsListSection: View {
     var body: some View {
         Section(
             content: {
-                if !actualListData.isEmpty {
-                    ForEach(actualListData, id: \.id) { measurement in
+                if !data.isEmpty {
+                    ForEach(data, id: \.id) { measurement in
                         SymptomsListRow(
                             displayQuantity: measurement.value,
                             displayUnit: units,
@@ -43,8 +41,6 @@ struct SymptomsListSection: View {
                 Text("All Data")
             }
         )
-        .task { actualListData = data }
-        .onChange(of: data.map(\.id)) { actualListData = data }
     }
     
     private func deleteIndices(indexSet: IndexSet) {
@@ -58,8 +54,7 @@ struct SymptomsListSection: View {
         }
         
         for idx in indexSet {
-            let objectToRemove = actualListData[idx]
-            actualListData.remove(at: idx)
+            let objectToRemove = data[idx]
             
             if ProcessInfo.processInfo.isPreviewSimulator || FeatureFlags.disableFirebase {
                 vitalsManager.symptomHistory.removeAll {
