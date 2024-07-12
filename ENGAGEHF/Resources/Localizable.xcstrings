@@ -150,9 +150,6 @@
     "Content ..." : {
 
     },
-    "Daily" : {
-
-    },
     "Date" : {
 
     },
@@ -163,9 +160,6 @@
 
     },
     "Education" : {
-
-    },
-    "Graph Record Format" : {
 
     },
     "Graph Selection" : {
@@ -340,9 +334,6 @@
         }
       }
     },
-    "List Record Format" : {
-
-    },
     "List With Sections" : {
 
     },
@@ -350,9 +341,6 @@
 
     },
     "Measurement Recorded" : {
-
-    },
-    "Monthly" : {
 
     },
     "No %@ available." : {
@@ -420,9 +408,6 @@
     "Recent Vitals" : {
 
     },
-    "Record Picker" : {
-
-    },
     "Redeem Invitation Code" : {
 
     },
@@ -486,7 +471,7 @@
         }
       }
     },
-    "Symptoms Picker" : {
+    "Symptoms Picker Chevron" : {
 
     },
     "symptomSocial" : {
@@ -520,6 +505,12 @@
 
     },
     "Trigger Weight Measurement" : {
+
+    },
+    "Unable to create time interval for date: %@" : {
+
+    },
+    "Unable to delete measurement, check network connection." : {
 
     },
     "Unable to get notification timestamp." : {
@@ -566,9 +557,6 @@
           }
         }
       }
-    },
-    "Weekly" : {
-
     },
     "WELCOME_AREA1_DESCRIPTION" : {
       "localizations" : {

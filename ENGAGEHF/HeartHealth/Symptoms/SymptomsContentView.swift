@@ -32,11 +32,12 @@ struct SymptomsContentView: View {
     var body: some View {
         SymptomsGraphSection(symptomsType: $symptomsType)
         DescriptionSection(explanationKey: symptomsType.explanationKey)
-        SymptomsListSection(
+        MeasurementListSection(
             data: listDisplayData,
             units: "%",
             type: .symptoms
         )
+            .deleteDisabled(true)
     }
     
     

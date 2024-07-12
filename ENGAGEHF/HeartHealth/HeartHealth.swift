@@ -12,9 +12,9 @@ import SwiftUI
 
 struct HeartHealth: View {
     @Binding var presentingAccount: Bool
-    @State private var vitalSelection: GraphSelection = .symptoms
     
     @Environment(VitalsManager.self) private var vitalsManager
+    @State private var vitalSelection: GraphSelection = .symptoms
     
     
     var body: some View {

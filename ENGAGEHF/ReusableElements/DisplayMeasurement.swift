@@ -22,7 +22,7 @@ struct DisplayMeasurement: View {
                 .font(.system(size: quantityTextSize, weight: .semibold, design: .rounded))
                 .accessibilityLabel("\(type) Quantity: \(quantity)")
             Text(units)
-                .font(.title2)
+                .font(.title3)
                 .foregroundStyle(Color.secondary)
                 .accessibilityLabel("\(type) Unit: \(units)")
         }

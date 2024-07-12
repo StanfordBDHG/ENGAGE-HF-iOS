@@ -238,10 +238,6 @@ public class VitalsManager: Module, EnvironmentAccessible {
             throw VitalsError.missingField
         }
         
-        guard let identifier = observation.id?.value?.string else {
-            throw VitalsError.missingField
-        }
-        
         return HKCorrelation(
             type: HKCorrelationType(.bloodPressure),
             start: effectiveDate.start,
@@ -476,7 +472,7 @@ extension VitalsManager {
 
 extension VitalsManager {
     /// Call on deletion of a measurement -- removes the measurement with the given document id from the user's collection 
-    func deleteMeasurement(id: String?, collectionID: CollectionID) async {
+    func deleteMeasurement(id: String?, collectionID: CollectionID) async throws {
         guard let id else {
             self.logger.error("Attempting to delete nonexistant measurement from \(collectionID.rawValue).")
             return
@@ -500,6 +496,7 @@ extension VitalsManager {
             self.logger.debug("Successfully deleted measurement (\(id)) from \(collectionID.rawValue)")
         } catch {
             self.logger.error("Error deleting measurement (\(id)) from \(collectionID.rawValue): \(error)")
+            throw error
         }
     }
 } // swiftlint:disable:this file_length

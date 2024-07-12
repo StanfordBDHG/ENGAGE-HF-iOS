@@ -20,29 +20,13 @@ struct VitalsContentView: View {
         getDisplayInfo(for: vitalsType)
     }
     
-    private var hkUnit: String {
-        switch vitalsType {
-        case .weight: Locale.current.measurementSystem == .us ? "lb" : "kg"
-        case .heartRate: "count/min"
-        case .bloodPressure: "mmHg"
-        }
-    }
-    
-    private var displayUnit: String {
-        switch vitalsType {
-        case .weight: Locale.current.measurementSystem == .us ? "lb" : "kg"
-        case .heartRate: "BPM"
-        case .bloodPressure: "mmHg"
-        }
-    }
-    
     
     var body: some View {
-        VitalsGraphSection()
+        VitalsGraphSection(vitalsType: vitalsType)
         DescriptionSection(explanationKey: vitalsType.explanationKey)
-        SymptomsListSection(
+        MeasurementListSection(
             data: listDisplayData,
-            units: displayUnit,
+            units: vitalsType.unit.description,
             type: vitalsType.graphType
         )
     }
@@ -64,7 +48,7 @@ struct VitalsContentView: View {
             .map { sample in
                 VitalMeasurement(
                     id: sample.externalUUID?.uuidString,
-                    value: getDisplayQuantity(sample: sample, type: vitalsType, units: hkUnit),
+                    value: getDisplayQuantity(sample: sample, type: vital),
                     date: sample.date
                 )
             }
@@ -73,8 +57,8 @@ struct VitalsContentView: View {
             }
     }
     
-    private func getDisplayQuantity(sample: HKSample, type: VitalsType, units: String) -> String {
-        let doubleValues = sample.getDoubleValues(for: units)
+    private func getDisplayQuantity(sample: HKSample, type: VitalsType) -> String {
+        let doubleValues = sample.getDoubleValues(for: type.unit.hkUnitString)
         
         guard !doubleValues.isEmpty else {
             return "ERROR"

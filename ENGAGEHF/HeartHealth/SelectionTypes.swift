@@ -41,7 +41,7 @@ enum VitalsType: CustomStringConvertible {
     /// The full name of the vital, displayed in the Description Header and Graph Legend
     var description: String {
         switch self {
-        case .weight: "Weight"
+        case .weight: "Body Weight"
         case .heartRate: "Heart Rate"
         case .bloodPressure: "Blood Pressure"
         }
@@ -56,13 +56,21 @@ enum VitalsType: CustomStringConvertible {
         }
     }
     
-    
     /// The corresponding GraphSelection associted with each VitalsType
     var graphType: GraphSelection {
         switch self {
         case .weight: .weight
         case .heartRate: .heartRate
         case .bloodPressure: .bloodPressure
+        }
+    }
+    
+    /// The unit corresponding to each vitlas type
+    var unit: VitalsUnit {
+        switch self {
+        case .weight: Locale.current.measurementSystem == .us ? .lb : .kg
+        case .heartRate: .bpm
+        case .bloodPressure: .mmHg
         }
     }
 }
@@ -146,9 +154,12 @@ enum DisplayDateResolution: CaseIterable, Identifiable, CustomStringConvertible 
         case .monthly: "Monthly"
         }
     }
-}
-
-
-enum RecordFormat {
-    case graph, list
+    
+    var intervalComponent: Calendar.Component {
+        switch self {
+        case .daily: .day
+        case .weekly: .weekOfYear
+        case .monthly: .month
+        }
+    }
 }

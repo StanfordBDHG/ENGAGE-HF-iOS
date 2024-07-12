@@ -6,15 +6,17 @@
 // SPDX-License-Identifier: MIT
 //
 
+import SpeziViews
 import SwiftUI
 
 
-struct SymptomsListSection: View {
+struct MeasurementListSection: View {
     var data: [VitalMeasurement]
     var units: String
     var type: GraphSelection
     
     @Environment(VitalsManager.self) private var vitalsManager
+    @State private var viewState: ViewState = .idle
     
     
     var body: some View {
@@ -22,7 +24,7 @@ struct SymptomsListSection: View {
             content: {
                 if !data.isEmpty {
                     ForEach(data, id: \.id) { measurement in
-                        SymptomsListRow(
+                        MeasurementListRow(
                             displayQuantity: measurement.value,
                             displayUnit: units,
                             displayDate: measurement.date.formatted(date: .abbreviated, time: .omitted),
@@ -30,7 +32,11 @@ struct SymptomsListSection: View {
                         )
                     }
                     .onDelete { indexSet in
-                        deleteIndices(indexSet: indexSet)
+                        do {
+                            try deleteIndices(indexSet: indexSet)
+                        } catch {
+                            viewState = .error(HeartHealthError.failedDeletion)
+                        }
                     }
                 } else {
                     Text("No \(type.description) available.")
@@ -39,11 +45,14 @@ struct SymptomsListSection: View {
             },
             header: {
                 Text("All Data")
+                    .font(.title3.bold())
             }
         )
+        .viewStateAlert(state: $viewState)
     }
     
-    private func deleteIndices(indexSet: IndexSet) {
+    
+    private func deleteIndices(indexSet: IndexSet) throws {
         var collectionID: CollectionID {
             switch type {
             case .symptoms: .kccqResults
@@ -62,7 +71,7 @@ struct SymptomsListSection: View {
                 }
             } else {
                 Task {
-                    await vitalsManager.deleteMeasurement(
+                    try await vitalsManager.deleteMeasurement(
                         id: objectToRemove.id,
                         collectionID: collectionID
                     )
@@ -74,7 +83,7 @@ struct SymptomsListSection: View {
 
 
 #Preview {
-    SymptomsListSection(
+    MeasurementListSection(
         data: [
             VitalMeasurement(id: "TEST1", value: "60", date: .now),
             VitalMeasurement(id: "TEST2", value: "54", date: .now),

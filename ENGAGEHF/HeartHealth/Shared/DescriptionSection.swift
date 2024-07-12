@@ -20,6 +20,7 @@ struct DescriptionSection: View {
             },
             header: {
                 Text("Description")
+                    .font(.title3.bold())
             }
         )
     }

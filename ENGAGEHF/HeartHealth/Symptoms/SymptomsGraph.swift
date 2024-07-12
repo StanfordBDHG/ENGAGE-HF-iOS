@@ -9,30 +9,36 @@
 import Charts
 import SwiftUI
 
-
-struct SymptomsHistoryGraph: View {
+struct SymptomsGraph: View {
     var data: [SymptomScore]
+    var granularity: DateGranularity
     var symptomType: SymptomsType
     
-    var startDate: Date
-    var endDate: Date
+    
+    private var dateDomain: DateInterval {
+        do {
+            return try granularity.getDateInterval(endDate: .now)
+        } catch {
+            return DateInterval(start: .now, end: .now)
+        }
+    }
     
     
     var body: some View {
         Chart(data) { score in
             LineMark(
-                x: .value("Date", score.date, unit: .day),
+                x: .value("Date", score.date, unit: granularity.intervalComponent),
                 y: .value("Score", score[keyPath: symptomType.symptomScoreKeyMap])
             )
             .lineStyle(StrokeStyle(lineWidth: 1, dash: [2]))
             
             PointMark(
-                x: .value("Date", score.date, unit: .day),
+                x: .value("Date", score.date, unit: granularity.intervalComponent),
                 y: .value("Score", score[keyPath: symptomType.symptomScoreKeyMap])
             )
         }
         .chartYScale(domain: 0...100)
-        .chartXScale(domain: startDate...endDate)
+        .chartXScale(domain: dateDomain.start...dateDomain.end)
         .chartYAxis {
             AxisMarks(
                 values: [0, 50, 100]
@@ -53,40 +59,7 @@ struct SymptomsHistoryGraph: View {
 
 
 #Preview {
-    struct SymptomsHistoryGraphPreviewWrapper: View {
-        @Environment(VitalsManager.self) private var vitalsManager
-        var symptomType: SymptomsType
-        
-        
-        // For now, take the measurements from the last month
-        private var dateRangeStart: Date {
-            Calendar.current.date(byAdding: .month, value: -1, to: .now) ?? .now
-        }
-
-        private var dateRangeEnd: Date {
-            .now
-        }
-        
-        private var data: [SymptomScore] {
-            vitalsManager.symptomHistory
-                .filter {
-                    (dateRangeStart...dateRangeEnd).contains($0.date)
-                }
-        }
-        
-        
-        var body: some View {
-            SymptomsHistoryGraph(
-                data: data,
-                symptomType: symptomType,
-                startDate: dateRangeStart,
-                endDate: dateRangeEnd
-            )
-        }
-    }
-    
-    
-    return SymptomsHistoryGraphPreviewWrapper(symptomType: .overall)
+    SymptomsGraph(data: [], granularity: .weekly, symptomType: .overall)
         .previewWith(standard: ENGAGEHFStandard()) {
             VitalsManager()
         }

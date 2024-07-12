@@ -14,11 +14,24 @@ struct SymptomsPicker: View {
     
     
     var body: some View {
-        Picker("Symptoms Picker", selection: $symptomsType) {
-            ForEach(SymptomsType.allCases) { symptom in
-                Text(symptom.description)
+        Menu(
+            content: {
+                ForEach(SymptomsType.allCases) { symptom in
+                    Button(symptom.fullName) {
+                        symptomsType = symptom
+                    }
+                }
+            },
+            label: {
+                HStack(alignment: .firstTextBaseline, spacing: 4) {
+                    Text(symptomsType.fullName)
+                        .font(.title3.bold())
+                        .foregroundStyle(Color(.label))
+                    Image(systemName: "chevron.down")
+                        .accessibilityLabel("Symptoms Picker Chevron")
+                }
             }
-        }
+        )
     }
 }
 

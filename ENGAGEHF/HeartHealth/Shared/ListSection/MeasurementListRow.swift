@@ -9,7 +9,7 @@
 import SwiftUI
 
 
-struct SymptomsListRow: View {
+struct MeasurementListRow: View {
     var displayQuantity: String
     var displayUnit: String
     var displayDate: String
@@ -26,7 +26,7 @@ struct SymptomsListRow: View {
             )
             Spacer()
             Text(displayDate)
-                .font(.title2)
+                .font(.title3)
                 .foregroundStyle(Color.secondary)
                 .accessibilityLabel("\(type) Date: \(displayDate)")
         }
@@ -35,7 +35,7 @@ struct SymptomsListRow: View {
 
 
 #Preview {
-    SymptomsListRow(
+     MeasurementListRow(
         displayQuantity: "90.0",
         displayUnit: "lbs",
         displayDate: "6/23/2024",
