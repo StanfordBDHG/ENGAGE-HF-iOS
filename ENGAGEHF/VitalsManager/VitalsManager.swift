@@ -395,7 +395,7 @@ extension VitalsManager {
             }
         }
         
-        for _ in 0..<3 {
+        for _ in 0..<40 {
             guard let date = Calendar.current.date(byAdding: .day, value: -Int.random(in: 0..<40), to: .now) else {
                 self.logger.error("Unable to create date for Heart Health testing setup.")
                 return
@@ -406,66 +406,6 @@ extension VitalsManager {
             await self.standard.add(sample: self.getRandomBloodPressure(forDate: date))
             await self.standard.add(symptomScore: self.getRandomSymptoms(forDate: date))
         }
-    }
-}
-
-
-extension VitalsManager {
-    /// A function for structuring the data stored in the VitalsManager in a format suitable for displaying in a chart.
-    /// Supports multiple quantities per datapoint (such as Systolic and Diastolic quantities for Blood Pressure).
-    /// For data with multiple quantites, each quantity must be in the same unit.
-    /// Datapoints that fall on the same interval are averaged.
-    ///
-    /// - Parameters:
-    ///   - dateRange: The time interval in which to display the data
-    ///   - resolution: The component of the date that will be used for the x-axis
-    ///   - storage: The KeyPath to the data that will be displayed
-    ///   - unit: The unit or sub-type of the data.
-    ///         For HKSamples, must be one of the strings described in https://developer.apple.com/documentation/healthkit/hkunit/1615733-init
-    ///         For SymptomScores, must be one of the raw values of the enum as defined in the `SymptomType` enum
-    public func collate<T: Graphable>(
-        dateRange: ClosedRange<Date>,
-        resolution: Calendar.Component,
-        storage: KeyPath<VitalsManager, [T]>,
-        unit: String
-    ) -> [(date: Date, averageValues: [Double])] {
-        var dataBins: [Date: [[Double]]] = [:]
-        let calendar = Calendar.current
-        
-        /// Filter for the datapoints within the specified date range
-        let filteredData = self[keyPath: storage].filter { dateRange.contains($0.date) }
-        
-        
-        /// Bin the data according to the time interval in dateRange their resolution component falls into
-        for dataPoint in filteredData {
-            guard let binStartDate = calendar.dateInterval(of: resolution, for: dataPoint.date)?.start else {
-                continue
-            }
-            
-            if !dataBins.contains(where: { $0.key == binStartDate }) {
-                dataBins[binStartDate] = []
-            }
-            
-            let values = dataPoint.getDoubleValues(for: unit)
-            dataBins[binStartDate]?.append(values)
-        }
-        
-        /// Take the average across each quantity for each time interval
-        var result: [(date: Date, averageValues: [Double])] = []
-        
-        for (date, values) in dataBins {
-            let averages: [Double] = values.compactMap { quantitySamples in
-                guard !quantitySamples.isEmpty else {
-                    return nil
-                }
-                
-                return quantitySamples.reduce(0, +) / Double(quantitySamples.count)
-            }
-            
-            result.append((date, averages))
-        }
-
-        return result
     }
 }
 
@@ -499,4 +439,4 @@ extension VitalsManager {
             throw error
         }
     }
-} // swiftlint:disable:this file_length
+}
