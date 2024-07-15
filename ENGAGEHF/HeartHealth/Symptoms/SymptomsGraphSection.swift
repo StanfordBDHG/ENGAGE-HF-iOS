@@ -12,7 +12,7 @@ struct SymptomsGraphSection: View {
     @Binding var symptomsType: SymptomsType
     
     @Environment(VitalsManager.self) private var vitalsManager
-    private var resolution: DateGranularity = .weekly
+    private let resolution: DateGranularity = .weekly
     
     
     private var dateInterval: DateInterval {
@@ -25,12 +25,6 @@ struct SymptomsGraphSection: View {
     
     private var data: [SymptomScore] {
         vitalsManager.symptomHistory
-            .filter {
-                dateInterval.contains($0.date)
-            }
-            .sorted {
-                $0.date > $1.date
-            }
     }
     
     

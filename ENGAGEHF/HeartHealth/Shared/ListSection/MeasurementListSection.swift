@@ -11,7 +11,7 @@ import SwiftUI
 
 
 struct MeasurementListSection: View {
-    var data: [VitalMeasurement]
+    var data: [VitalListMeasurement]
     var units: String
     var type: GraphSelection
     
@@ -39,7 +39,7 @@ struct MeasurementListSection: View {
                         }
                     }
                 } else {
-                    Text("No \(type.description) available.")
+                    Text(LocalizedStringKey(type.emptyHistoryKey))
                         .font(.caption)
                 }
             },
@@ -85,12 +85,15 @@ struct MeasurementListSection: View {
 #Preview {
     MeasurementListSection(
         data: [
-            VitalMeasurement(id: "TEST1", value: "60", date: .now),
-            VitalMeasurement(id: "TEST2", value: "54", date: .now),
-            VitalMeasurement(id: "TEST3", value: "25.0", date: .now),
-            VitalMeasurement(id: "TEST4", value: "120.4", date: .now)
+            VitalListMeasurement(id: "TEST1", value: "60", date: .now),
+            VitalListMeasurement(id: "TEST2", value: "54", date: .now),
+            VitalListMeasurement(id: "TEST3", value: "25.0", date: .now),
+            VitalListMeasurement(id: "TEST4", value: "120.4", date: .now)
         ],
         units: "lbs",
         type: .weight
     )
+        .previewWith(standard: ENGAGEHFStandard()) {
+            VitalsManager()
+        }
 }

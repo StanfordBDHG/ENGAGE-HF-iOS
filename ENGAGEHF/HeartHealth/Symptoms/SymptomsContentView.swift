@@ -14,10 +14,10 @@ struct SymptomsContentView: View {
     @State private var symptomsType: SymptomsType = .overall
     
     
-    private var listDisplayData: [VitalMeasurement] {
+    private var listDisplayData: [VitalListMeasurement] {
         vitalsManager.symptomHistory
             .map { score in
-                VitalMeasurement(
+                VitalListMeasurement(
                     id: score.id,
                     value: String(format: "%.1f", score[keyPath: symptomsType.symptomScoreKeyMap]),
                     date: score.date
@@ -31,7 +31,10 @@ struct SymptomsContentView: View {
     
     var body: some View {
         SymptomsGraphSection(symptomsType: $symptomsType)
-        DescriptionSection(explanationKey: symptomsType.explanationKey)
+        DescriptionSection(
+            explanationKey: symptomsType.explanationKey,
+            quantityName: symptomsType.fullName
+        )
         MeasurementListSection(
             data: listDisplayData,
             units: "%",
@@ -41,10 +44,10 @@ struct SymptomsContentView: View {
     }
     
     
-    private func getDisplayInfo(for type: SymptomsType) -> [VitalMeasurement] {
+    private func getDisplayInfo(for type: SymptomsType) -> [VitalListMeasurement] {
         vitalsManager.symptomHistory
             .compactMap { score in
-                VitalMeasurement(
+                VitalListMeasurement(
                     id: score.id,
                     value: String(format: "%.1f", score[keyPath: symptomsType.symptomScoreKeyMap]),
                     date: score.date

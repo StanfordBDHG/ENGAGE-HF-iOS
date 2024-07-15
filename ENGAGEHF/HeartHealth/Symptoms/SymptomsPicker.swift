@@ -17,7 +17,7 @@ struct SymptomsPicker: View {
         Menu(
             content: {
                 ForEach(SymptomsType.allCases) { symptom in
-                    Button(symptom.fullName) {
+                    Button(symptom.description) {
                         symptomsType = symptom
                     }
                 }

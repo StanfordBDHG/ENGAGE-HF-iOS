@@ -16,14 +16,17 @@ struct VitalsContentView: View {
     var vitalsType: VitalsType
     
     
-    private var listDisplayData: [VitalMeasurement] {
+    private var listDisplayData: [VitalListMeasurement] {
         getDisplayInfo(for: vitalsType)
     }
     
     
     var body: some View {
         VitalsGraphSection(vitalsType: vitalsType)
-        DescriptionSection(explanationKey: vitalsType.explanationKey)
+        DescriptionSection(
+            explanationKey: vitalsType.explanationKey,
+            quantityName: vitalsType.description
+        )
         MeasurementListSection(
             data: listDisplayData,
             units: vitalsType.unit.description,
@@ -37,7 +40,7 @@ struct VitalsContentView: View {
     }
     
     
-    private func getDisplayInfo(for vital: VitalsType) -> [VitalMeasurement] {
+    private func getDisplayInfo(for vital: VitalsType) -> [VitalListMeasurement] {
         let data: [HKSample] = switch vital {
         case .weight: vitalsManager.weightHistory
         case .heartRate: vitalsManager.heartRateHistory
@@ -46,7 +49,7 @@ struct VitalsContentView: View {
         
         return data
             .map { sample in
-                VitalMeasurement(
+                VitalListMeasurement(
                     id: sample.externalUUID?.uuidString,
                     value: getDisplayQuantity(sample: sample, type: vital),
                     date: sample.date

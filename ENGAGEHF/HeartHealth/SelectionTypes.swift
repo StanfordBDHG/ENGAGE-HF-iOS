@@ -28,6 +28,16 @@ enum GraphSelection: CaseIterable, Identifiable, CustomStringConvertible {
         case .bloodPressure: "BP"
         }
     }
+    
+    /// The localized string key corresponding to the message to display when this vital has no measurements
+    var emptyHistoryKey: String {
+        switch self {
+        case .symptoms: "symptomsMissing"
+        case .weight: "weightMissing"
+        case .heartRate: "heartRateMissing"
+        case .bloodPressure: "bloodPressureMissing"
+        }
+    }
 }
 
 
@@ -105,12 +115,12 @@ enum SymptomsType: String, CaseIterable, Identifiable, CustomStringConvertible, 
     /// The full name of the score, displayed in the Description Header
     var fullName: String {
         switch self {
-        case .overall: "Overall"
-        case .physical: "Physical Limits"
-        case .social: "Social Limits"
-        case .quality: "Quality of Life"
-        case .specific: "Specific Symptoms"
-        case .dizziness: "Dizziness"
+        case .overall: "Overall Score"
+        case .physical: "Physical Limits Score"
+        case .social: "Social Limits Score"
+        case .quality: "Quality of Life Score"
+        case .specific: "Specific Symptoms Score"
+        case .dizziness: "Dizziness Score"
         }
     }
     

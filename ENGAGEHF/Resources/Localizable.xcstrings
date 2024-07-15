@@ -47,6 +47,9 @@
         }
       }
     },
+    "About %@" : {
+
+    },
     "ACCOUNT_NEXT" : {
       "localizations" : {
         "en" : {
@@ -113,6 +116,18 @@
     "An invitation code is at least 8 characters long." : {
 
     },
+    "bloodPressureMissing" : {
+      "comment" : "Displayed in the MeasurementListSection of the Heart Health view when no Blood Pressure history found.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Blood Pressure measurements available. Please connect your Blood Pressure Cuff device to begin recording."
+          }
+        }
+      }
+    },
     "Close" : {
       "comment" : "For closing sheets."
     },
@@ -153,9 +168,6 @@
     "Date" : {
 
     },
-    "Description" : {
-
-    },
     "Discard" : {
 
     },
@@ -167,6 +179,18 @@
     },
     "Heart Health" : {
 
+    },
+    "heartRateMissing" : {
+      "comment" : "Displayed in the MeasurementListSection of the Heart Health view when no heart rate measurements were found.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Heart Rate measurements available. Please connect your blood pressure cuff to begin recording."
+          }
+        }
+      }
     },
     "Hello, World!" : {
 
@@ -343,9 +367,6 @@
     "Measurement Recorded" : {
 
     },
-    "No %@ available." : {
-
-    },
     "No recent %@ measurement available" : {
 
     },
@@ -399,9 +420,6 @@
     "Notifications" : {
 
     },
-    "Picker" : {
-
-    },
     "Please enter your invitation code to join the ENGAGE-HF study." : {
 
     },
@@ -418,9 +436,6 @@
 
     },
     "Score" : {
-
-    },
-    "Section Name" : {
 
     },
     "symptomDizziness" : {
@@ -473,6 +488,18 @@
     },
     "Symptoms Picker Chevron" : {
 
+    },
+    "symptomsMissing" : {
+      "comment" : "Displayed in the MeasurementListSection in the Heart Health view when no symptom scores were found.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Symptom Scores available. Please complete the KCCQ-12 survey to begin recording symptoms history."
+          }
+        }
+      }
     },
     "symptomSocial" : {
       "comment" : "For Heart Health view",
@@ -554,6 +581,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Weight description goes here. This is a long text that includes many words about many things. The weight and the meaning of weight is described here."
+          }
+        }
+      }
+    },
+    "weightMissing" : {
+      "comment" : "Displayed in the MeasurementListSection of the Heart Health view when no weight history was found.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Body Weight measurements available. Please connect your weight scale device to begin recording."
           }
         }
       }

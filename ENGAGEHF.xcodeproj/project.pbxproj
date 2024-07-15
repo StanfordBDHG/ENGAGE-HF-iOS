@@ -59,6 +59,8 @@
 		4D34B3F02C40518C006F0D40 /* HKSampleGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D34B3EF2C40518C006F0D40 /* HKSampleGraph.swift */; };
 		4D34B3F42C406340006F0D40 /* DateGranularity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D34B3F32C406340006F0D40 /* DateGranularity.swift */; };
 		4D34B3F62C4065A5006F0D40 /* HeartHealthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D34B3F52C4065A4006F0D40 /* HeartHealthError.swift */; };
+		4D4072662C4586AB007C5621 /* VitalGraphMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4072652C4586AB007C5621 /* VitalGraphMeasurement.swift */; };
+		4D4072682C458F1F007C5621 /* PointDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4072672C458F1F007C5621 /* PointDetails.swift */; };
 		4D49AAFE2BC9D50400C77310 /* BluetoothServices in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49AAFD2BC9D50400C77310 /* BluetoothServices */; };
 		4D49AB002BC9D50400C77310 /* BluetoothViews in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49AAFF2BC9D50400C77310 /* BluetoothViews */; };
 		4D49AB022BC9D50400C77310 /* SpeziBluetooth in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49AB012BC9D50400C77310 /* SpeziBluetooth */; };
@@ -69,7 +71,7 @@
 		4D92B9F62C3C8FA100ABCED7 /* DescriptionSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D92B9F52C3C8FA100ABCED7 /* DescriptionSection.swift */; };
 		4D92B9F82C3C901500ABCED7 /* SymptomsGraphSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D92B9F72C3C901500ABCED7 /* SymptomsGraphSection.swift */; };
 		4D92BA012C3C932300ABCED7 /* VitalsGraphSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D92BA002C3C932300ABCED7 /* VitalsGraphSection.swift */; };
-		4D92BA072C3CAE5300ABCED7 /* VitalMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D92BA062C3CAE5300ABCED7 /* VitalMeasurement.swift */; };
+		4D92BA072C3CAE5300ABCED7 /* VitalListMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D92BA062C3CAE5300ABCED7 /* VitalListMeasurement.swift */; };
 		4D92BA0D2C3DCC4D00ABCED7 /* CollectionID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D92BA0C2C3DCC4D00ABCED7 /* CollectionID.swift */; };
 		4D92BA172C3E108700ABCED7 /* CodeableConcept+Contains.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D92BA162C3E108700ABCED7 /* CodeableConcept+Contains.swift */; };
 		4D92BA1A2C3E13F300ABCED7 /* FHIRSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D92BA192C3E13F300ABCED7 /* FHIRSystem.swift */; };
@@ -198,6 +200,8 @@
 		4D34B3EF2C40518C006F0D40 /* HKSampleGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKSampleGraph.swift; sourceTree = "<group>"; };
 		4D34B3F32C406340006F0D40 /* DateGranularity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateGranularity.swift; sourceTree = "<group>"; };
 		4D34B3F52C4065A4006F0D40 /* HeartHealthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartHealthError.swift; sourceTree = "<group>"; };
+		4D4072652C4586AB007C5621 /* VitalGraphMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalGraphMeasurement.swift; sourceTree = "<group>"; };
+		4D4072672C458F1F007C5621 /* PointDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointDetails.swift; sourceTree = "<group>"; };
 		4D49AB052BC9D56900C77310 /* WeightScaleDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightScaleDevice.swift; sourceTree = "<group>"; };
 		4D4AA0A42BC5E43E00676489 /* OnboardingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingUITests.swift; sourceTree = "<group>"; };
 		4D92B9F12C3C8D1E00ABCED7 /* MeasurementListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementListSection.swift; sourceTree = "<group>"; };
@@ -205,7 +209,7 @@
 		4D92B9F52C3C8FA100ABCED7 /* DescriptionSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionSection.swift; sourceTree = "<group>"; };
 		4D92B9F72C3C901500ABCED7 /* SymptomsGraphSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomsGraphSection.swift; sourceTree = "<group>"; };
 		4D92BA002C3C932300ABCED7 /* VitalsGraphSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalsGraphSection.swift; sourceTree = "<group>"; };
-		4D92BA062C3CAE5300ABCED7 /* VitalMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalMeasurement.swift; sourceTree = "<group>"; };
+		4D92BA062C3CAE5300ABCED7 /* VitalListMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalListMeasurement.swift; sourceTree = "<group>"; };
 		4D92BA0C2C3DCC4D00ABCED7 /* CollectionID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionID.swift; sourceTree = "<group>"; };
 		4D92BA162C3E108700ABCED7 /* CodeableConcept+Contains.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CodeableConcept+Contains.swift"; sourceTree = "<group>"; };
 		4D92BA192C3E13F300ABCED7 /* FHIRSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FHIRSystem.swift; sourceTree = "<group>"; };
@@ -432,7 +436,6 @@
 			isa = PBXGroup;
 			children = (
 				4D34B3EF2C40518C006F0D40 /* HKSampleGraph.swift */,
-				4D34B3F32C406340006F0D40 /* DateGranularity.swift */,
 			);
 			path = HKSampleGraph;
 			sourceTree = "<group>";
@@ -449,6 +452,8 @@
 		4D34B4032C41C8D4006F0D40 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				4D34B3F32C406340006F0D40 /* DateGranularity.swift */,
+				4D4072672C458F1F007C5621 /* PointDetails.swift */,
 				4D92B9F52C3C8FA100ABCED7 /* DescriptionSection.swift */,
 				4D34B4022C41C887006F0D40 /* ListSection */,
 			);
@@ -539,7 +544,8 @@
 				4D2D1D5F2C2B859C00ABDC19 /* GraphPicker.swift */,
 				4DF506182C2E1AAD003E7EFB /* SelectionTypes.swift */,
 				4D34B3F52C4065A4006F0D40 /* HeartHealthError.swift */,
-				4D92BA062C3CAE5300ABCED7 /* VitalMeasurement.swift */,
+				4D92BA062C3CAE5300ABCED7 /* VitalListMeasurement.swift */,
+				4D4072652C4586AB007C5621 /* VitalGraphMeasurement.swift */,
 				4D34B4032C41C8D4006F0D40 /* Shared */,
 				4D92B9FC2C3C91CB00ABCED7 /* Vitals */,
 				4D92B9F92C3C91AC00ABCED7 /* Symptoms */,
@@ -890,7 +896,7 @@
 				4D19ED012BE5CAFC00CDBAA8 /* MeasurementRecordedView.swift in Sources */,
 				4DDFC7652BF350C2002B07A1 /* Education.swift in Sources */,
 				4DDFC7692BF35113002B07A1 /* HeartHealth.swift in Sources */,
-				4D92BA072C3CAE5300ABCED7 /* VitalMeasurement.swift in Sources */,
+				4D92BA072C3CAE5300ABCED7 /* VitalListMeasurement.swift in Sources */,
 				A996F4532C11113B002328C5 /* Measurement.swift in Sources */,
 				2FE5DCB129EE6107004B9AB4 /* AccountOnboarding.swift in Sources */,
 				4DF506192C2E1AAE003E7EFB /* SelectionTypes.swift in Sources */,
@@ -938,6 +944,7 @@
 				4D2D1D762C2CC8B200ABDC19 /* ValueXProtocol.swift in Sources */,
 				4DA20B542C25F8A600715AA2 /* FHIRDateTime+DateComponents.swift in Sources */,
 				4DDFC7542BF3408F002B07A1 /* RecentVitalsSection.swift in Sources */,
+				4D4072662C4586AB007C5621 /* VitalGraphMeasurement.swift in Sources */,
 				4D34B3F02C40518C006F0D40 /* HKSampleGraph.swift in Sources */,
 				2F4E23832989D51F0013F3D9 /* ENGAGEHFTestingSetup.swift in Sources */,
 				4DA20B4B2C249E7E00715AA2 /* VitalsManager.swift in Sources */,
@@ -972,6 +979,7 @@
 				4DDFC73D2BF2C4FA002B07A1 /* Notification.swift in Sources */,
 				4DA20B5C2C26098400715AA2 /* R4Observation+GetEffectiveDate.swift in Sources */,
 				4DF5062A2C2F260E003E7EFB /* SymptomsContentView.swift in Sources */,
+				4D4072682C458F1F007C5621 /* PointDetails.swift in Sources */,
 				4D49AB062BC9D56900C77310 /* WeightScaleDevice.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

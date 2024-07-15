@@ -9,9 +9,9 @@
 import Foundation
 
 
-/// A structure for storing measurements ready for display
-/// Contains all the necessary information for display in the VitalsList in the All Data and Graph sections
-struct VitalMeasurement: Identifiable, Hashable {
+/// A structure for storing a measurement ready for display in the row of a list
+/// Contains all the necessary information for display in the VitalsList in the All Data section
+struct VitalListMeasurement: Identifiable, Hashable {
     var id: String?
 
     var value: String
