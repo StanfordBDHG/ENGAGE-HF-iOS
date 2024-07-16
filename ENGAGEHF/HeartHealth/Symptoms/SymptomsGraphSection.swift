@@ -54,6 +54,7 @@ struct SymptomsGraphSection: View {
                     VitalsGraph(
                         data: data,
                         granularity: resolution,
+                        displayUnit: "%",
                         chartModifier: AnyModifier(YAxisModifier())
                     )
                 } else {

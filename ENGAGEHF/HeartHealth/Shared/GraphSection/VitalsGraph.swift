@@ -13,6 +13,7 @@ import SwiftUI
 struct VitalsGraph: View {
     var data: [VitalGraphMeasurement]
     var granularity: DateGranularity
+    var displayUnit: String
     
     /// Allow for custom modifiers on the Chart
     var chartModifier: AnyModifier?
@@ -103,7 +104,7 @@ struct VitalsGraph: View {
                         PointDetails(
                             interval: selectedInterval,
                             value: String(format: "%.1f", binnedData[selectedInterval.start] ?? 0.0),
-                            unit: "%",
+                            unit: displayUnit,
                             idealHeight: annotationHeight
                         )
                     }
@@ -123,6 +124,11 @@ struct VitalsGraph: View {
         }
         // Make sure to reset selected interval when, for example, a different symptom score type is selected
         .onChange(of: data) { selectedInterval = nil }
+        .onChange(of: granularity) { selectedInterval = nil }
+        .onAppear {
+            print("Graph Appeared")
+            selectedInterval = nil
+        }
         .chartOverlay { proxy in
             GeometryReader { geometry in
                 Rectangle().fill(.clear)
@@ -181,5 +187,5 @@ struct VitalsGraph: View {
 
 
 #Preview {
-    VitalsGraph(data: [], granularity: .weekly)
+    VitalsGraph(data: [], granularity: .weekly, displayUnit: "lbs")
 }

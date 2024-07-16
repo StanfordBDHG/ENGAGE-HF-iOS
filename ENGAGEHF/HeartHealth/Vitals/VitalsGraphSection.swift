@@ -33,15 +33,7 @@ struct VitalsGraphSection: View {
             content: {
                 HKSampleGraph(
                     data: graphData,
-                    dateRange: {
-                        do {
-                            return try granularity.getDateInterval(endDate: .now)
-                        } catch {
-                            viewState = .error(HeartHealthError.invalidDate(.now))
-                            return DateInterval(start: .now, end: .now)
-                        }
-                    }(),
-                    granularity: granularity.intervalComponent
+                    granularity: granularity
                 )
             },
             header: {

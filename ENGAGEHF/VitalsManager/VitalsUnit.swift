@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import HealthKit
 
 
 enum VitalsUnit: CustomStringConvertible {
