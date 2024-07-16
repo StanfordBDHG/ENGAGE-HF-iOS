@@ -15,16 +15,13 @@ struct SymptomsGraphSection: View {
     private let resolution: DateGranularity = .weekly
     
     
-    private var dateInterval: DateInterval {
-        do {
-            return try resolution.getDateInterval(endDate: .now)
-        } catch {
-            return DateInterval(start: .now, end: .now)
+    private var data: [VitalGraphMeasurement] {
+        vitalsManager.symptomHistory.map { score in
+            VitalGraphMeasurement(
+                date: score.date,
+                value: score[keyPath: symptomsType.symptomScoreKeyMap]
+            )
         }
-    }
-    
-    private var data: [SymptomScore] {
-        vitalsManager.symptomHistory
     }
     
     
@@ -32,10 +29,9 @@ struct SymptomsGraphSection: View {
         Section(
             content: {
                 if !data.isEmpty {
-                    SymptomsGraph(
+                    VitalsGraph(
                         data: data,
-                        granularity: resolution,
-                        symptomType: symptomsType
+                        granularity: resolution
                     )
                 } else {
                     Text("No recent symptom scores available.")

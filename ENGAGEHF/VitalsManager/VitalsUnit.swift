@@ -11,15 +11,15 @@ import Foundation
 
 enum VitalsUnit: CustomStringConvertible {
     case mmHg
-    case lb
-    case kg
+    case lbs
+    case kgs
     case bpm
     
     
     var description: String {
         switch self {
-        case .lb: "lb"
-        case .kg: "kg"
+        case .lbs: "lb"
+        case .kgs: "kg"
         case .mmHg: "mmHg"
         case .bpm: "BPM"
         }
@@ -27,8 +27,8 @@ enum VitalsUnit: CustomStringConvertible {
     
     var hkUnitString: String {
         switch self {
-        case .lb: "lb"
-        case .kg: "kg"
+        case .lbs: "lb"
+        case .kgs: "kg"
         case .mmHg: "mmHg"
         case .bpm: "count/min"
         }

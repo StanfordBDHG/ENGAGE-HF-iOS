@@ -78,7 +78,7 @@ enum VitalsType: CustomStringConvertible {
     /// The unit corresponding to each vitlas type
     var unit: VitalsUnit {
         switch self {
-        case .weight: Locale.current.measurementSystem == .us ? .lb : .kg
+        case .weight: Locale.current.measurementSystem == .us ? .lbs : .kgs
         case .heartRate: .bpm
         case .bloodPressure: .mmHg
         }
