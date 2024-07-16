@@ -6,9 +6,31 @@
 // SPDX-License-Identifier: MIT
 //
 
+import Charts
 import SwiftUI
 
 struct SymptomsGraphSection: View {
+    private struct YAxisModifier: ViewModifier {
+        func body(content: Content) -> some View {
+            content
+                .chartYScale(domain: 0...100)
+                .chartYAxis {
+                    AxisMarks(
+                        values: [0, 50, 100]
+                    ) {
+                        AxisValueLabel(format: Decimal.FormatStyle.Percent.percent.scale(1))
+                    }
+                    
+                    AxisMarks(
+                        values: [0, 25, 50, 75, 100]
+                    ) {
+                        AxisGridLine()
+                    }
+                }
+        }
+    }
+    
+    
     @Binding var symptomsType: SymptomsType
     
     @Environment(VitalsManager.self) private var vitalsManager
@@ -31,7 +53,8 @@ struct SymptomsGraphSection: View {
                 if !data.isEmpty {
                     VitalsGraph(
                         data: data,
-                        granularity: resolution
+                        granularity: resolution,
+                        chartModifier: AnyModifier(YAxisModifier())
                     )
                 } else {
                     Text("No recent symptom scores available.")

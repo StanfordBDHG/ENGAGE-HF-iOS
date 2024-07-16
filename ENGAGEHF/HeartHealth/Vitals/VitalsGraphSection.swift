@@ -18,8 +18,6 @@ struct VitalsGraphSection: View {
     @State private var granularity: DateGranularity = .daily
     @State private var viewState: ViewState = .idle
     
-    private let endDate = Date()
-    
     
     private var graphData: [HKSample] {
         switch vitalsType {
@@ -37,10 +35,10 @@ struct VitalsGraphSection: View {
                     data: graphData,
                     dateRange: {
                         do {
-                            return try granularity.getDateInterval(endDate: endDate)
+                            return try granularity.getDateInterval(endDate: .now)
                         } catch {
-                            viewState = .error(HeartHealthError.invalidDate(endDate))
-                            return DateInterval(start: endDate, end: endDate)
+                            viewState = .error(HeartHealthError.invalidDate(.now))
+                            return DateInterval(start: .now, end: .now)
                         }
                     }(),
                     granularity: granularity.intervalComponent

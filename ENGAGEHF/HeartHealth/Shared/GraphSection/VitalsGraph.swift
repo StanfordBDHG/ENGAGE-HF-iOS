@@ -14,6 +14,9 @@ struct VitalsGraph: View {
     var data: [VitalGraphMeasurement]
     var granularity: DateGranularity
     
+    /// Allow for custom modifiers on the Chart
+    var chartModifier: AnyModifier?
+    
     @State private var viewState: ViewState = .idle
     @State private var selectedInterval: DateInterval?
     
@@ -76,6 +79,7 @@ struct VitalsGraph: View {
         return averagedBins
     }
     
+    /// The aggregated data, in a RandomAccessCollection as required for the Chart
     private var graphableData: [VitalGraphMeasurement] {
         binnedData.map { startDate, value in
             VitalGraphMeasurement(
@@ -119,7 +123,6 @@ struct VitalsGraph: View {
         }
         // Make sure to reset selected interval when, for example, a different symptom score type is selected
         .onChange(of: data) { selectedInterval = nil }
-        
         .chartOverlay { proxy in
             GeometryReader { geometry in
                 Rectangle().fill(.clear)
@@ -138,24 +141,8 @@ struct VitalsGraph: View {
                     )
             }
         }
-        
-        .chartYScale(domain: 0...100)
         .chartXScale(domain: graphDateRange)
-        
-        .chartYAxis {
-            AxisMarks(
-                values: [0, 50, 100]
-            ) {
-                AxisValueLabel(format: Decimal.FormatStyle.Percent.percent.scale(1))
-            }
-            
-            AxisMarks(
-                values: [0, 25, 50, 75, 100]
-            ) {
-                AxisGridLine()
-            }
-        }
-        
+        .modifier(chartModifier ?? AnyModifier(EmptyModifier()))
         .frame(maxWidth: .infinity, idealHeight: 200)
         .padding(.top, annotationHeight + 4)
         .viewStateAlert(state: $viewState)
