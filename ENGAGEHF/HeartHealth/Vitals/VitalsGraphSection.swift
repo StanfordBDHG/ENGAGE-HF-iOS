@@ -16,7 +16,6 @@ struct VitalsGraphSection: View {
     
     @Environment(VitalsManager.self) private var vitalsManager
     @State private var granularity: DateGranularity = .daily
-    @State private var viewState: ViewState = .idle
     
     
     private var graphData: [HKSample] {
@@ -33,7 +32,8 @@ struct VitalsGraphSection: View {
             content: {
                 HKSampleGraph(
                     data: graphData,
-                    granularity: granularity
+                    dateRange: granularity.getDateRange(endDate: .now),
+                    dateResolution: granularity.defaultDateUnit
                 )
             },
             header: {
@@ -44,7 +44,6 @@ struct VitalsGraphSection: View {
                 }
             }
         )
-        .viewStateAlert(state: $viewState)
     }
 }
 

@@ -9,6 +9,7 @@
 import Charts
 import SwiftUI
 
+
 struct SymptomsGraphSection: View {
     private struct YAxisModifier: ViewModifier {
         func body(content: Content) -> some View {
@@ -37,11 +38,12 @@ struct SymptomsGraphSection: View {
     private let resolution: DateGranularity = .weekly
     
     
-    private var data: [VitalGraphMeasurement] {
+    private var data: [VitalMeasurement] {
         vitalsManager.symptomHistory.map { score in
-            VitalGraphMeasurement(
+            VitalMeasurement(
                 date: score.date,
-                value: score[keyPath: symptomsType.symptomScoreKeyMap]
+                value: score[keyPath: symptomsType.symptomScoreKeyMap],
+                type: symptomsType.fullName
             )
         }
     }
@@ -53,7 +55,8 @@ struct SymptomsGraphSection: View {
                 if !data.isEmpty {
                     VitalsGraph(
                         data: data,
-                        granularity: resolution,
+                        dateRange: resolution.getDateRange(endDate: .now),
+                        dateResolution: .day,
                         displayUnit: "%",
                         chartModifier: AnyModifier(YAxisModifier())
                     )

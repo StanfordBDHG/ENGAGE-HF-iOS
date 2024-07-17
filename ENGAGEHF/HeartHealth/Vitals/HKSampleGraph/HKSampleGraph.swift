@@ -13,10 +13,10 @@ import SwiftUI
 
 struct HKSampleGraph: View {
     var data: [HKSample]
-    var granularity: DateGranularity
+    var dateRange: ClosedRange<Date>
+    var dateResolution: Calendar.Component
     
     @State private var viewState: ViewState = .idle
-    
     
     private var units: HKUnit {
         guard let sample = data.first else {
@@ -42,28 +42,39 @@ struct HKSampleGraph: View {
         return identifiedUnits
     }
     
-    private var graphData: [VitalGraphMeasurement] {
-        data.compactMap { measurement in
+    private var graphData: [VitalMeasurement] {
+        data.flatMap { measurement in
             switch measurement {
             case let quantitySample as HKQuantitySample:
-                return VitalGraphMeasurement(
-                    date: quantitySample.startDate,
-                    value: quantitySample.quantity.doubleValue(for: units)
-                )
+                return [
+                    VitalMeasurement(
+                        date: quantitySample.startDate,
+                        value: quantitySample.quantity.doubleValue(for: units),
+                        type: quantitySample.quantityType.description
+                    )
+                ]
             case let correlation as HKCorrelation:
-                // TODO: Handle multiple quantity types (i.e. plot multiple series on the same chart)
-                // This will involve being safer with type names, so using a dictionary mapping enumed keys to series values
+                // For now, just handling the case where the correlation is blood pressure
                 let doubleValues = correlation.getDoubleValues(for: units.unitString)
-                guard let systolicValue = doubleValues.first else {
+                guard doubleValues.count == 2 else {
                     viewState = .error(HKSampleGraphError.failedToFetchUnits)
-                    return nil
+                    return []
                 }
-                return VitalGraphMeasurement(
-                    date: correlation.date,
-                    value: systolicValue
-                )
+                return [
+                    VitalMeasurement(
+                        date: correlation.date,
+                        value: doubleValues[0],
+                        type: "Systolic"
+                    ),
+                    VitalMeasurement(
+                        date: correlation.date,
+                        value: doubleValues[1],
+                        type: "Disatolic"
+                    )
+                ]
             default:
-                return nil
+                viewState = .error(HKSampleGraphError.unknownHKSample)
+                return []
             }
         }
     }
@@ -72,7 +83,8 @@ struct HKSampleGraph: View {
     var body: some View {
         VitalsGraph(
             data: graphData,
-            granularity: granularity,
+            dateRange: dateRange,
+            dateResolution: dateResolution,
             displayUnit: units.localizedUnitString()
         )
             .viewStateAlert(state: $viewState)
@@ -95,5 +107,9 @@ struct HKSampleGraph: View {
 
 
 #Preview {
-    HKSampleGraph(data: [], granularity: .daily)
+    HKSampleGraph(
+        data: [],
+        dateRange: Date()...Date(),
+        dateResolution: .day
+    )
 }

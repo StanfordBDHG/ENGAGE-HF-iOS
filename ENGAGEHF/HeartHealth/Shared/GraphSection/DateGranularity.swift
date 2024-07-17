@@ -25,7 +25,7 @@ enum DateGranularity: CustomStringConvertible, CaseIterable, Identifiable {
         }
     }
     
-    var intervalComponent: Calendar.Component {
+    var defaultDateUnit: Calendar.Component {
         switch self {
         case .daily: .day
         case .weekly: .weekOfYear
@@ -34,23 +34,35 @@ enum DateGranularity: CustomStringConvertible, CaseIterable, Identifiable {
     }
     
     
-    func getDateInterval(endDate: Date) throws -> DateInterval {
+    /// Instantiates the date domain determined by the granularity and relative to the current date
+    /// Returns a date range expanded to the neartest interval to the boundary dates determined by the granularity
+    func getDateRange(endDate: Date) -> ClosedRange<Date> {
         let calendar = Calendar.current
         
-        
-        let startDate: Date? = switch self {
-        case .daily:
-            calendar.date(byAdding: .day, value: -30, to: endDate)
-        case .weekly:
-            calendar.date(byAdding: .month, value: -3, to: endDate)
-        case .monthly:
-            calendar.date(byAdding: .month, value: -6, to: endDate)
+        /// The range of dates determined by the granularity
+        var dateRange: DateInterval {
+            /// Get range according to the granularity and relative to the current date
+            let startDate: Date? = switch self {
+            case .daily:
+                calendar.date(byAdding: .day, value: -30, to: endDate)
+            case .weekly:
+                calendar.date(byAdding: .month, value: -3, to: endDate)
+            case .monthly:
+                calendar.date(byAdding: .month, value: -6, to: endDate)
+            }
+            
+            guard let startDate else {
+                return DateInterval(start: endDate, end: endDate)
+            }
+            return DateInterval(start: startDate, end: endDate)
         }
         
-        guard let startDate else {
-            throw HeartHealthError.invalidDate(endDate)
+        /// The final date range to display
+        /// Expand the ends to the nearest interval
+        guard let upperBoundDate = calendar.dateInterval(of: self.defaultDateUnit, for: dateRange.end)?.end,
+              let lowerBoundDate = calendar.dateInterval(of: self.defaultDateUnit, for: dateRange.start)?.start else {
+            return endDate...endDate
         }
-        
-        return DateInterval(start: startDate, end: endDate)
+        return lowerBoundDate...upperBoundDate
     }
 }
