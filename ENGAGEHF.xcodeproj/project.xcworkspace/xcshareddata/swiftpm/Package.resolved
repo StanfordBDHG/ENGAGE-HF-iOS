@@ -60,8 +60,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/firebase-ios-sdk.git",
       "state" : {
-        "revision" : "e57841b296d04370ea23580f908881b0ccab17b9",
-        "version" : "10.28.1"
+        "revision" : "eca84fd638116dd6adb633b5a3f31cc7befcbb7d",
+        "version" : "10.29.0"
       }
     },
     {
@@ -114,8 +114,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordBDHG/HealthKitOnFHIR.git",
       "state" : {
-        "revision" : "418929f315f37e6d9c8f30f40030bc65b9cc47c9",
-        "version" : "0.2.8"
+        "revision" : "b0cfe35a2263a517b22196b559d2dd1d1e2afcd9",
+        "version" : "0.2.9"
       }
     },
     {
@@ -186,8 +186,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/Spezi",
       "state" : {
-        "revision" : "5ada3f3a18c86a658d140c6f4c45ca2e9d5e61ce",
-        "version" : "1.4.0"
+        "revision" : "afdf500a23cc7eabcb759044f5524514e91a99dc",
+        "version" : "1.5.1"
       }
     },
     {
@@ -202,10 +202,10 @@
     {
       "identity" : "spezibluetooth",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/StanfordSpezi/SpeziBluetooth.git",
+      "location" : "https://github.com/StanfordSpezi/SpeziBluetooth",
       "state" : {
-        "revision" : "6b88cae1ea9a18ec875dcc8fae80cbeb291133f0",
-        "version" : "2.0.1"
+        "branch" : "feature/strict-concurrency",
+        "revision" : "2c1946127fe5ae295ad4b62893b8a6242bc112f0"
       }
     },
     {
@@ -222,8 +222,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziDevices.git",
       "state" : {
-        "revision" : "6b5e24f9983ae0ffccd57d078edb3981400af721",
-        "version" : "1.0.0"
+        "branch" : "feature/bluetooth-update",
+        "revision" : "49df573893f70076bd2d221b15ae29b7988dc40c"
       }
     },
     {
@@ -231,8 +231,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziFirebase.git",
       "state" : {
-        "revision" : "00ff0db12bf72ba39354e263d8f916ae8392368b",
-        "version" : "1.1.2"
+        "revision" : "67981d0f0b4f0bb70f120f9b5304e7c0b08e5717",
+        "version" : "1.1.3"
       }
     },
     {
@@ -240,8 +240,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziFoundation",
       "state" : {
-        "revision" : "3326feab3dac120c16af63243615592990d33516",
-        "version" : "1.1.2"
+        "revision" : "4781d96a09587f3d47ac3f3e71d197149b288146",
+        "version" : "1.1.3"
       }
     },
     {
@@ -330,8 +330,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-collections.git",
       "state" : {
-        "revision" : "ee97538f5b81ae89698fd95938896dec5217b148",
-        "version" : "1.1.1"
+        "revision" : "3d2dc41a01f9e49d84f0a3925fb858bed64f702d",
+        "version" : "1.1.2"
       }
     },
     {
@@ -357,8 +357,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-protobuf.git",
       "state" : {
-        "revision" : "9f0c76544701845ad98716f3f6a774a892152bcb",
-        "version" : "1.26.0"
+        "revision" : "d57a5aecf24a25b32ec4a74be2f5d0a995a47c4b",
+        "version" : "1.27.0"
       }
     },
     {
@@ -429,8 +429,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordBDHG/XCTRuntimeAssertions",
       "state" : {
-        "revision" : "51da3403f128b120705571ce61e0fe190f8889e6",
-        "version" : "1.0.1"
+        "revision" : "7ce28015c0bee62b523a860e343e3d6b7ec40fda",
+        "version" : "1.1.1"
       }
     },
     {
@@ -438,8 +438,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/jpsim/Yams.git",
       "state" : {
-        "revision" : "9234124cff5e22e178988c18d8b95a8ae8007f76",
-        "version" : "5.1.2"
+        "revision" : "3036ba9d69cf1fd04d433527bc339dc0dc75433d",
+        "version" : "5.1.3"
       }
     }
   ],
