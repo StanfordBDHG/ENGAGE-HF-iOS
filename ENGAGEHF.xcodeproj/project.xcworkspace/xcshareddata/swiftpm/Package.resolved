@@ -205,7 +205,7 @@
       "location" : "https://github.com/StanfordSpezi/SpeziBluetooth",
       "state" : {
         "branch" : "feature/strict-concurrency",
-        "revision" : "2c1946127fe5ae295ad4b62893b8a6242bc112f0"
+        "revision" : "23c9c5afdd2c61ba68c6e2c7a52c874dc21c4496"
       }
     },
     {
@@ -223,7 +223,7 @@
       "location" : "https://github.com/StanfordSpezi/SpeziDevices.git",
       "state" : {
         "branch" : "feature/bluetooth-update",
-        "revision" : "49df573893f70076bd2d221b15ae29b7988dc40c"
+        "revision" : "75bafd9e04ea0f8be2d869d47043ced0cd0f3853"
       }
     },
     {
