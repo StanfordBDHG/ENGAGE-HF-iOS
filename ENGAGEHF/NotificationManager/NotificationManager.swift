@@ -52,7 +52,7 @@ class NotificationManager: Module, EnvironmentAccessible {
             if FeatureFlags.setupTestEnvironment, let user {
                 // Make sure to not load the mock notifications multiple times
                 if let notifications = self?.notifications, notifications.isEmpty {
-                    Task {
+                    Task { [weak self] in
                         try await self?.setupNotificationTests(user: user)
                     }
                 }
@@ -101,8 +101,8 @@ class NotificationManager: Module, EnvironmentAccessible {
     ///
     /// Creates a snapshot listener to save new notifications to the manager as they are added to the user's directory in Firebase
     func registerSnapshotListener(user: User?) {
-        logger.info("Initializing notifiation snapshot listener...")
-        
+        logger.info("Initializing notification snapshot listener...")
+
         // Remove previous snapshot listener for the user before creating new one
         snapshotListener?.remove()
         guard let uid = user?.uid else {
@@ -141,12 +141,12 @@ class NotificationManager: Module, EnvironmentAccessible {
             return
         }
         
-        logger.debug("Marking notitification complete with the following id: \(id)")
-        
+        logger.debug("Marking notification complete with the following id: \(id)")
+
         let firestore = Firestore.firestore()
         
         guard let user = Auth.auth().currentUser else {
-            logger.error("Unable to mark notitificaitons complete: \(FetchingError.userNotAuthenticated)")
+            logger.error("Unable to mark notifications complete: \(FetchingError.userNotAuthenticated)")
             return
         }
         

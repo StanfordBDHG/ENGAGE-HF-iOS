@@ -7,12 +7,14 @@
 //
 
 import HealthKit
+@_spi(TestingSupport) import SpeziDevices
 import SwiftUI
 
 
 struct RecentVitalsSection: View {
     @Environment(VitalsManager.self) private var vitalsManager
-    
+    @Environment(HealthMeasurements.self) private var measurements
+
     
     private var massUnits: HKUnit {
         switch Locale.current.measurementSystem {
@@ -58,33 +60,38 @@ struct RecentVitalsSection: View {
     
     
     var body: some View {
-        Section(
-            content: {
-                VStack {
-                    HStack {
-                        VitalsCard(
-                            type: "Weight",
-                            units: massUnits.unitString,
-                            measurement: weightMeasurement
-                        )
-                        VitalsCard(
-                            type: "Heart Rate",
-                            units: "BPM",
-                            measurement: heartRateMeasurement
-                        )
-                    }
+        Section {
+            VStack {
+                HStack {
                     VitalsCard(
-                        type: "Blood Pressure",
-                        units: "mmHg",
-                        measurement: bloodPressureMeasurement
+                        type: "Weight",
+                        units: massUnits.unitString,
+                        measurement: weightMeasurement
+                    )
+                    VitalsCard(
+                        type: "Heart Rate",
+                        units: "BPM",
+                        measurement: heartRateMeasurement
                     )
                 }
-            },
-            header: {
+                VitalsCard(
+                    type: "Blood Pressure",
+                    units: "mmHg",
+                    measurement: bloodPressureMeasurement
+                )
+            }
+        } header: {
+            HStack {
                 Text("Recent Vitals")
                     .studyApplicationHeaderStyle()
+                Spacer()
+                if !measurements.pendingMeasurements.isEmpty {
+                    Button("Review", systemImage: "heart.text.square") {
+                        measurements.shouldPresentMeasurements = true
+                    }
+                }
             }
-        )
+        }
     }
     
     
@@ -118,5 +125,6 @@ struct RecentVitalsSection: View {
     RecentVitalsSection()
         .previewWith(standard: ENGAGEHFStandard()) {
             VitalsManager()
+            HealthMeasurements(mock: [.weight(.mockWeighSample)])
         }
 }

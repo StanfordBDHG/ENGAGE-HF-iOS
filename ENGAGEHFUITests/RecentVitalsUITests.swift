@@ -42,8 +42,8 @@ final class RecentVitalsUITests: XCTestCase {
         XCTAssert(app.buttons["Save"].exists)
 
         app.buttons["Save"].tap()
-        sleep(6)
-        
+        sleep(1)
+
         XCTAssertFalse(app.alerts.element.exists)
         
         
@@ -51,19 +51,7 @@ final class RecentVitalsUITests: XCTestCase {
         XCTAssert(app.staticTexts["Recent Vitals"].waitForExistence(timeout: 0.5))
         XCTAssert(app.staticTexts["Weight Quantity: 92.6"].exists)
         XCTAssert(app.staticTexts["Weight Unit: lb"].exists)
-        
-        // Check that any of the dates in the last three minutes has appeared, and if so consider the test passed
-        for minuteOffset in 0...3 {
-            if let offsetDate = Calendar.current.date(byAdding: .minute, value: -minuteOffset, to: .now) {
-                if app.staticTexts["Weight Date: \(offsetDate.formatted(date: .numeric, time: .shortened))"].exists {
-                    // The date is present and correctly formatted, so end the test with a success
-                    return
-                }
-            }
-        }
-        
-        // None of the dates in the last three minutes appeared, so the date has not displayed correctly
-        XCTAssert(false)
+        XCTAssert(app.staticTexts["Weight Date: 6/5/2024, 12:33 PM"].exists)
     }
     
     func testHeartRateAndBloodPressure() throws {
@@ -89,8 +77,8 @@ final class RecentVitalsUITests: XCTestCase {
         XCTAssert(app.buttons["Save"].exists)
 
         app.buttons["Save"].tap()
-        sleep(6)
-        
+        sleep(1)
+
         XCTAssertFalse(app.alerts.element.exists)
         
         

@@ -6,6 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
+@_spi(TestingSupport) import SpeziDevices
 import SwiftUI
 
 
@@ -13,7 +14,7 @@ struct Dashboard: View {
     @Binding var presentingAccount: Bool
     
 #if DEBUG || TEST
-    @Environment(MeasurementManager.self) private var measurementManager
+    @Environment(HealthMeasurements.self) private var measurements
 #endif
 
     
@@ -29,26 +30,29 @@ struct Dashboard: View {
                 }
                 .padding()
             }
-            .background(Color(.systemGroupedBackground))
-            .navigationTitle("Home")
-            .toolbar {
-                if AccountButton.shouldDisplay {
-                    AccountButton(isPresented: $presentingAccount)
+                .background(Color(.systemGroupedBackground))
+                .navigationTitle("Home")
+                .toolbar {
+                    if AccountButton.shouldDisplay {
+                        AccountButton(isPresented: $presentingAccount)
+                    }
                 }
-            }
 #if DEBUG || TEST
-            .toolbar {
-                if FeatureFlags.testMockDevices {
-                    ToolbarItemGroup(placement: .secondaryAction) {
-                        Button("Trigger Weight Measurement", systemImage: "scalemass.fill") {
-                            measurementManager.loadMockWeightMeasurement()
-                        }
-                        Button("Trigger Blood Pressure Measurement", systemImage: "drop.fill") {
-                            measurementManager.loadMockBloodPressureMeasurement()
+                .toolbar {
+                    if FeatureFlags.testMockDevices {
+                        ToolbarItemGroup(placement: .secondaryAction) {
+                            Button("Trigger Weight Measurement", systemImage: "scalemass.fill") {
+                                measurements.loadMockWeightMeasurement()
+                            }
+                            Button("Trigger Blood Pressure Measurement", systemImage: "drop.fill") {
+                                measurements.loadMockBloodPressureMeasurement()
+                            }
+                            Button("Show Measurements", systemImage: "heart.text.square") {
+                                measurements.shouldPresentMeasurements = true
+                            }
                         }
                     }
                 }
-            }
 #endif
         }
     }
@@ -60,7 +64,7 @@ struct Dashboard: View {
     Dashboard(presentingAccount: .constant(false))
         .previewWith(standard: ENGAGEHFStandard()) {
             NotificationManager()
-            MeasurementManager()
+            HealthMeasurements(mock: [.weight(.mockWeighSample)])
             VitalsManager()
         }
 }

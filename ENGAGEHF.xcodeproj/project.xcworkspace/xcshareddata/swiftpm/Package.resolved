@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "originHash" : "0e4d8ffd81afa299dc54c485ed466a2f0b38a5fd9765e3b8d2bd04de5bdf1347",
+=======
+  "originHash" : "bf5084f3a1640b549abaeb7502f3d1650efe31a71ce63ae49ff0fb7732a037e2",
+>>>>>>> main
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -211,10 +215,10 @@
     {
       "identity" : "spezibluetooth",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/StanfordSpezi/SpeziBluetooth.git",
+      "location" : "https://github.com/StanfordSpezi/SpeziBluetooth",
       "state" : {
-        "revision" : "f3b8cc8461f12268b15db17aa45cc66b889cd1d0",
-        "version" : "1.6.0"
+        "revision" : "387ed5d79be6ae990f714b648ed6a157c30d5b4d",
+        "version" : "3.0.0-beta.1"
       }
     },
     {
@@ -224,6 +228,15 @@
       "state" : {
         "revision" : "494b776f8c98d771e4a609a1fb706097dba4c030",
         "version" : "1.0.0"
+      }
+    },
+    {
+      "identity" : "spezidevices",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordSpezi/SpeziDevices.git",
+      "state" : {
+        "revision" : "ac008a4d6fcbd3ad6e10fcf9dc4954df94251bb7",
+        "version" : "1.1.0"
       }
     },
     {
@@ -267,8 +280,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziNetworking",
       "state" : {
-        "revision" : "71236efc911d5580fbf4d53748f38ad22ef00a2d",
-        "version" : "1.0.0"
+        "revision" : "b01333fbe46bc02445cc06a1d721bc490d77d95e",
+        "version" : "2.1.2"
       }
     },
     {
