@@ -17,9 +17,12 @@ extension VitalsGraph {
         var viewState: ViewState = .idle
         
         private(set) var aggregatedData: [AggregatedMeasurement] = []
-        private(set) var selectedPoints: [AggregatedMeasurement] = []
         private(set) var multipleTypesPresent = false
+        private(set) var overallAverages: [String: Double] = [:]
+        private(set) var selection: (interval: Range<Date>, points: [AggregatedMeasurement])?
         
+        private var dateUnit: Calendar.Component = .day
+        private var dateRange: ClosedRange<Date> = Date()...Date()
         private let calendar = Calendar.current
         private typealias SeriesDictionary = [String: [Date: (score: Double, count: Int)]]
         
@@ -46,54 +49,65 @@ extension VitalsGraph {
                 .sorted { $0.date < $1.date }
             }()
             
-            
+            self.overallAverages = calculateAverages(data)
             self.aggregatedData = processedData
             self.multipleTypesPresent = dataBins.keys.count > 1
-            self.selectedPoints = []
+            self.selection = nil
+            self.dateUnit = dateUnit
+            self.dateRange = dateRange
         }
         
-//        func selectPoint(value: GestureValue, proxy: ChartProxy, geometry: GeometryProxy) {
-//            // Convert the tap location to the coordinate space of the plot area
-//            let origin = geometry[proxy.plotFrame!].origin
-//            let location = CGPoint(
-//                x: value.eventLocation.x - origin.x,
-//                y: value.eventLocation.y - origin.y
-//            )
-//            
-//            // Get the start-date of the tapped interval, if any
-//            if let (date, _) = proxy.value(at: location, as: (Date, Double).self) {
-//                
-//                guard let pointInterval =
-//                        
-//                        
-//                        
-//                        
-//                        getInterval(for: date, using: calendar, with: dateGranularity),
-//                      let pointValue = binnedData[pointInterval.start] else {
-//                    // Clicking on "empty space" clears the graph
-//                    selectedPoint = nil
-//                    return
-//                }
-//                selectedPoint = (pointInterval, pointValue)
-//            }
-//        }
+        func selectPoint(value: GestureValue, proxy: ChartProxy, geometry: GeometryProxy, clearOnGap: Bool) {
+            // Convert the tap location to the coordinate space of the plot area
+            let origin = geometry[proxy.plotFrame!].origin
+            let location = CGPoint(
+                x: value.eventLocation.x - origin.x,
+                y: value.eventLocation.y - origin.y
+            )
+            
+            // Mark the points in the tapped interval as selected, if there are any
+            if let (date, _) = proxy.value(at: location, as: (Date, Double).self) {
+                // If the user taps or drags outside the edges of the graph, then clear the selection
+                guard dateRange.contains(date) else {
+                    self.selection = nil
+                    return
+                }
+                
+                let selectedPoints = aggregatedData.filter { dataPoint in
+                    calendar.isDate(dataPoint.date, equalTo: date, toGranularity: dateUnit)
+                }
+                
+                // Optionally, if no point was selected, just use the previously selected point
+                guard !selectedPoints.isEmpty,
+                      let interval = getInterval(for: date, using: self.calendar, with: dateUnit) else {
+                    if clearOnGap {
+                        self.selection = nil
+                    }
+                    return
+                }
+                
+                self.selection = (interval, selectedPoints)
+            }
+        }
         
         
-        // TODO: Update this documentation
-        /// Aggregate the given data into averge scores over each interval at the given granularity
-        /// Key: Interval start date
-        /// Value: The average score during that interval
+        private func calculateAverages(_ data: [VitalMeasurement]) -> [String: Double] {
+            Dictionary(grouping: data, by: { $0.type })
+                .compactMapValues {
+                    $0.map(\.value).reduce(0, +) / Double($0.count)
+                }
+        }
+
+        /// Group the given data by series type, then aggregate each series by averaging over the interval determined by dateUnit
         private func binData(
             _ data: [VitalMeasurement],
             dateRange: ClosedRange<Date>,
             dateUnit: Calendar.Component
         ) -> SeriesDictionary {
-            let filteredData = data.filter { dateRange.contains($0.date) }
-            
-            return Dictionary(grouping: filteredData) { $0.type }
+            Dictionary(grouping: data) { $0.type }
                 .compactMapValues { measurements in
                     Dictionary(grouping: measurements) {
-                        getInterval(for: $0.date, using: self.calendar, with: dateUnit)?.start ?? self.calendar.startOfDay(for: $0.date)
+                        getInterval(for: $0.date, using: self.calendar, with: dateUnit)?.lowerBound ?? self.calendar.startOfDay(for: $0.date)
                     }
                         .compactMapValues {
                             ($0.map(\.value).reduce(0, +) / Double($0.count), $0.count)
@@ -102,17 +116,17 @@ extension VitalsGraph {
         }
         
         /// Returns a closed date interval, if possible for the given date
-        /// Adjusts the upper bound to be inclusive on both the upper and lower bounds
+        /// Adjusts the upper bound to be inclusive on both the upper and lower bounds without overlapping adjacent intervals
         private func getInterval(
             for date: Date,
             using calendar: Calendar,
             with dateUnit: Calendar.Component
-        ) -> DateInterval? {
+        ) -> Range<Date>? {
             guard let interval = calendar.dateInterval(of: dateUnit, for: date),
                   let adjustedEnd = calendar.date(byAdding: .second, value: -1, to: interval.end) else {
                 return nil
             }
-            return DateInterval(start: interval.start, end: adjustedEnd)
+            return interval.start..<adjustedEnd
         }
     }
 }

@@ -6,6 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
+import Charts
 import SwiftUI
 
 
@@ -18,6 +19,16 @@ extension VitalsGraph {
         func body(content: Content) -> some View {
             content
                 .chartXScale(domain: dateRange)
+                .chartXAxis {
+                    AxisMarks(values: .automatic()) {
+                        AxisGridLine()
+                        AxisValueLabel()
+                    }
+                    // Add a solid vertical boundary line to the left half of the chart
+                    AxisMarks(values: [dateRange.lowerBound]) {
+                        AxisGridLine(stroke: StrokeStyle(lineWidth: 0.5, dash: [0]))
+                    }
+                }
                 .chartForegroundStyleScale(range: [Color.accentColor, Color.complement])
                 .chartLegend(viewModel.multipleTypesPresent ? .visible : .hidden)
         }

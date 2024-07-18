@@ -60,7 +60,7 @@
 		4D34B3F42C406340006F0D40 /* DateGranularity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D34B3F32C406340006F0D40 /* DateGranularity.swift */; };
 		4D34B3F62C4065A5006F0D40 /* HeartHealthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D34B3F52C4065A4006F0D40 /* HeartHealthError.swift */; };
 		4D4072662C4586AB007C5621 /* VitalMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4072652C4586AB007C5621 /* VitalMeasurement.swift */; };
-		4D4072682C458F1F007C5621 /* PointDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4072672C458F1F007C5621 /* PointDetails.swift */; };
+		4D4072682C458F1F007C5621 /* IntervalSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4072672C458F1F007C5621 /* IntervalSummary.swift */; };
 		4D4072762C45FF5B007C5621 /* GestureValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4072752C45FF5B007C5621 /* GestureValue.swift */; };
 		4D4072782C460014007C5621 /* TapDrag+GestureValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4072772C460014007C5621 /* TapDrag+GestureValue.swift */; };
 		4D40727A2C464B21007C5621 /* AnyModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4072792C464B21007C5621 /* AnyModifier.swift */; };
@@ -70,6 +70,9 @@
 		4D40728F2C483A5C007C5621 /* VitalsGraph+GestureOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D40728E2C483A5C007C5621 /* VitalsGraph+GestureOverlay.swift */; };
 		4D4072932C4841D4007C5621 /* VitalsGraph+DefaultStyling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4072922C4841D4007C5621 /* VitalsGraph+DefaultStyling.swift */; };
 		4D4072972C484716007C5621 /* VitalsGraph+ChartContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4072962C484716007C5621 /* VitalsGraph+ChartContent.swift */; };
+		4D40729C2C487D29007C5621 /* OverallSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D40729B2C487D29007C5621 /* OverallSummary.swift */; };
+		4D40729F2C488172007C5621 /* KnownSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D40729E2C488172007C5621 /* KnownSeries.swift */; };
+		4D4072A12C489A91007C5621 /* VitalsGraph+SummaryOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4072A02C489A91007C5621 /* VitalsGraph+SummaryOverlay.swift */; };
 		4D49AAFE2BC9D50400C77310 /* BluetoothServices in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49AAFD2BC9D50400C77310 /* BluetoothServices */; };
 		4D49AB002BC9D50400C77310 /* BluetoothViews in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49AAFF2BC9D50400C77310 /* BluetoothViews */; };
 		4D49AB022BC9D50400C77310 /* SpeziBluetooth in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49AB012BC9D50400C77310 /* SpeziBluetooth */; };
@@ -210,7 +213,7 @@
 		4D34B3F32C406340006F0D40 /* DateGranularity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateGranularity.swift; sourceTree = "<group>"; };
 		4D34B3F52C4065A4006F0D40 /* HeartHealthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartHealthError.swift; sourceTree = "<group>"; };
 		4D4072652C4586AB007C5621 /* VitalMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalMeasurement.swift; sourceTree = "<group>"; };
-		4D4072672C458F1F007C5621 /* PointDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointDetails.swift; sourceTree = "<group>"; };
+		4D4072672C458F1F007C5621 /* IntervalSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalSummary.swift; sourceTree = "<group>"; };
 		4D4072752C45FF5B007C5621 /* GestureValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureValue.swift; sourceTree = "<group>"; };
 		4D4072772C460014007C5621 /* TapDrag+GestureValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TapDrag+GestureValue.swift"; sourceTree = "<group>"; };
 		4D4072792C464B21007C5621 /* AnyModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyModifier.swift; sourceTree = "<group>"; };
@@ -220,6 +223,9 @@
 		4D40728E2C483A5C007C5621 /* VitalsGraph+GestureOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VitalsGraph+GestureOverlay.swift"; sourceTree = "<group>"; };
 		4D4072922C4841D4007C5621 /* VitalsGraph+DefaultStyling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VitalsGraph+DefaultStyling.swift"; sourceTree = "<group>"; };
 		4D4072962C484716007C5621 /* VitalsGraph+ChartContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VitalsGraph+ChartContent.swift"; sourceTree = "<group>"; };
+		4D40729B2C487D29007C5621 /* OverallSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverallSummary.swift; sourceTree = "<group>"; };
+		4D40729E2C488172007C5621 /* KnownSeries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnownSeries.swift; sourceTree = "<group>"; };
+		4D4072A02C489A91007C5621 /* VitalsGraph+SummaryOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VitalsGraph+SummaryOverlay.swift"; sourceTree = "<group>"; };
 		4D49AB052BC9D56900C77310 /* WeightScaleDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightScaleDevice.swift; sourceTree = "<group>"; };
 		4D4AA0A42BC5E43E00676489 /* OnboardingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingUITests.swift; sourceTree = "<group>"; };
 		4D92B9F12C3C8D1E00ABCED7 /* MeasurementListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementListSection.swift; sourceTree = "<group>"; };
@@ -473,6 +479,7 @@
 			isa = PBXGroup;
 			children = (
 				4D92B9F52C3C8FA100ABCED7 /* DescriptionSection.swift */,
+				4D34B3F32C406340006F0D40 /* DateGranularity.swift */,
 				4D40726F2C45E88A007C5621 /* GraphSection */,
 				4D34B4022C41C887006F0D40 /* ListSection */,
 			);
@@ -487,9 +494,8 @@
 				4D4072732C45FF41007C5621 /* GestureProtocols */,
 				4DF506302C2F3421003E7EFB /* VitalsGraph.swift */,
 				4D4072832C46DDB2007C5621 /* VitalsGraph+ViewModel.swift */,
-				4D34B3F32C406340006F0D40 /* DateGranularity.swift */,
-				4D4072672C458F1F007C5621 /* PointDetails.swift */,
 				4D4072792C464B21007C5621 /* AnyModifier.swift */,
+				4D40729E2C488172007C5621 /* KnownSeries.swift */,
 			);
 			path = GraphSection;
 			sourceTree = "<group>";
@@ -517,6 +523,8 @@
 			children = (
 				4D4072942C4846BE007C5621 /* Modifiers */,
 				4D4072962C484716007C5621 /* VitalsGraph+ChartContent.swift */,
+				4D40729B2C487D29007C5621 /* OverallSummary.swift */,
+				4D4072672C458F1F007C5621 /* IntervalSummary.swift */,
 			);
 			path = VitalsGraphSubViews;
 			sourceTree = "<group>";
@@ -526,6 +534,7 @@
 			children = (
 				4D40728E2C483A5C007C5621 /* VitalsGraph+GestureOverlay.swift */,
 				4D4072922C4841D4007C5621 /* VitalsGraph+DefaultStyling.swift */,
+				4D4072A02C489A91007C5621 /* VitalsGraph+SummaryOverlay.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -991,12 +1000,14 @@
 				A9DFE8A92ABE551400428242 /* AccountButton.swift in Sources */,
 				4DDFC7392BF2C3C9002B07A1 /* NotificationSection.swift in Sources */,
 				4D34B3F42C406340006F0D40 /* DateGranularity.swift in Sources */,
+				4D40729F2C488172007C5621 /* KnownSeries.swift in Sources */,
 				4DC0F6712C34818B0025AB13 /* HKSample+Graphable.swift in Sources */,
 				4D34B3F62C4065A5006F0D40 /* HeartHealthError.swift in Sources */,
 				4DDFC7872BFBFDDD002B07A1 /* NotificationManager.swift in Sources */,
 				2FE5DC3729EDD7CA004B9AB4 /* OnboardingFlow.swift in Sources */,
 				4D4072972C484716007C5621 /* VitalsGraph+ChartContent.swift in Sources */,
 				4DF506282C2F2598003E7EFB /* VitalsContentView.swift in Sources */,
+				4D4072A12C489A91007C5621 /* VitalsGraph+SummaryOverlay.swift in Sources */,
 				4D40728F2C483A5C007C5621 /* VitalsGraph+GestureOverlay.swift in Sources */,
 				A996F45C2C11AA15002328C5 /* BloodPressureMeasurementLabel.swift in Sources */,
 				4D92B9F82C3C901500ABCED7 /* SymptomsGraphSection.swift in Sources */,
@@ -1035,6 +1046,7 @@
 				4D34B3E52C3EECDE006F0D40 /* HKObject+ExternalUUID.swift in Sources */,
 				A996F4552C11117C002328C5 /* ProcessedMeasurement.swift in Sources */,
 				A996F4442C1081A2002328C5 /* WeightMeasurement.Unit+HKUnit.swift in Sources */,
+				4D40729C2C487D29007C5621 /* OverallSummary.swift in Sources */,
 				4DDFC7702BFAEAD7002B07A1 /* ConfirmMeasurementButton.swift in Sources */,
 				A9FE7AD02AA39BAB0077B045 /* AccountSheet.swift in Sources */,
 				A996F44D2C1083E4002328C5 /* WeightMeasurement+HKSample.swift in Sources */,
@@ -1055,7 +1067,7 @@
 				4DDFC73D2BF2C4FA002B07A1 /* Notification.swift in Sources */,
 				4DA20B5C2C26098400715AA2 /* R4Observation+GetEffectiveDate.swift in Sources */,
 				4DF5062A2C2F260E003E7EFB /* SymptomsContentView.swift in Sources */,
-				4D4072682C458F1F007C5621 /* PointDetails.swift in Sources */,
+				4D4072682C458F1F007C5621 /* IntervalSummary.swift in Sources */,
 				4D49AB062BC9D56900C77310 /* WeightScaleDevice.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -18,29 +18,42 @@ struct VitalsGraph: View {
     var chartModifier: AnyModifier?
     
     @State private var viewModel = ViewModel()
-    private let annotationHeight: CGFloat = 6
+    private let annotationHeight: CGFloat = 70
     
     
     var body: some View {
-        VStack {
-            ChartContent(viewModel: viewModel, dateUnit: dateResolution)
-                .modifier(DefaultChartStyle(viewModel: viewModel, dateRange: dateRange))
-                .modifier(chartModifier ?? AnyModifier(EmptyModifier()))
-                .modifier(GestureOverlay(viewModel: viewModel))
-        }
-        // Make sure to reset selected interval when, for example, a different symptom score type is selected
-        .onChange(of: data) {
-            viewModel.processData(data, dateRange: dateRange, dateUnit: dateResolution)
-        }
-        .onChange(of: dateResolution) {
-            viewModel.processData(data, dateRange: dateRange, dateUnit: dateResolution)
-        }
-        .onAppear {
-            viewModel.processData(data, dateRange: dateRange, dateUnit: dateResolution)
-        }
-        .frame(maxWidth: .infinity, idealHeight: 200)
-        .padding(.top, annotationHeight + 4)
-        .viewStateAlert(state: $viewModel.viewState)
+        ChartContent(
+            viewModel: viewModel,
+            dateUnit: dateResolution,
+            quantityUnit: displayUnit,
+            intervalSummaryHeight: annotationHeight
+        )
+            // Default + custom chart modifiers for styling
+            .modifier(DefaultChartStyle(viewModel: viewModel, dateRange: dateRange))
+            .modifier(chartModifier ?? AnyModifier(EmptyModifier()))
+            .frame(maxWidth: .infinity, idealHeight: 200)
+            .padding(.top, annotationHeight + 4)
+            // Overlay modifiers to present detailed point information
+            .modifier(
+                SummaryOverlay(
+                    viewModel: viewModel,
+                    dateRange: dateRange,
+                    annotationHeight: annotationHeight,
+                    displayUnit: displayUnit
+                )
+            )
+            .modifier(GestureOverlay(viewModel: viewModel))
+            // State change modifiers to listen for updates to the environment and handle errors
+            .onChange(of: data) {
+                viewModel.processData(data, dateRange: dateRange, dateUnit: dateResolution)
+            }
+            .onChange(of: dateResolution) {
+                viewModel.processData(data, dateRange: dateRange, dateUnit: dateResolution)
+            }
+            .onAppear {
+                viewModel.processData(data, dateRange: dateRange, dateUnit: dateResolution)
+            }
+            .viewStateAlert(state: $viewModel.viewState)
     }
 }
 

@@ -18,13 +18,15 @@ struct HKSampleGraph: View {
     
     @State private var viewState: ViewState = .idle
     
-    private var units: HKUnit {
+    
+    private var units: (hkUnit: HKUnit, display: String) {
         guard let sample = data.first else {
             viewState = .error(HKSampleGraphError.failedToFetchUnits)
-            return HKUnit.pound()   // Dummy value
+            return (HKUnit.pound(), "lbs")   // Dummy value
         }
         
-        let identifiedUnits: HKUnit?
+        // For now, only allow for HKQuantitySample and HKCorrelation
+        let identifiedUnits: (hkUnit: HKUnit, display: String)?
         switch sample {
         case let quantitySample as HKQuantitySample:
             identifiedUnits = getUnitsFor(identifier: quantitySample.quantityType.identifier)
@@ -36,7 +38,7 @@ struct HKSampleGraph: View {
         
         guard let identifiedUnits else {
             viewState = .error(HKSampleGraphError.failedToFetchUnits)
-            return HKUnit.pound()   // Dummy value
+            return (HKUnit.pound(), "lbs")   // Dummy value
         }
         
         return identifiedUnits
@@ -49,13 +51,14 @@ struct HKSampleGraph: View {
                 return [
                     VitalMeasurement(
                         date: quantitySample.startDate,
-                        value: quantitySample.quantity.doubleValue(for: units),
+                        value: quantitySample.quantity.doubleValue(for: units.hkUnit),
                         type: quantitySample.quantityType.description
                     )
                 ]
             case let correlation as HKCorrelation:
                 // For now, just handling the case where the correlation is blood pressure
-                let doubleValues = correlation.getDoubleValues(for: units.unitString)
+                // getDoubleValues for an HKCorrelation returns the array: [systolicDoubleVal, diastolicDoubleVal]
+                let doubleValues = correlation.getDoubleValues(for: units.hkUnit.unitString)
                 guard doubleValues.count == 2 else {
                     viewState = .error(HKSampleGraphError.failedToFetchUnits)
                     return []
@@ -64,12 +67,12 @@ struct HKSampleGraph: View {
                     VitalMeasurement(
                         date: correlation.date,
                         value: doubleValues[0],
-                        type: "Systolic"
+                        type: String(describing: KnownSeries.bloodPressureSystolic)
                     ),
                     VitalMeasurement(
                         date: correlation.date,
                         value: doubleValues[1],
-                        type: "Disatolic"
+                        type: String(describing: KnownSeries.bloodPressureDiastolic)
                     )
                 ]
             default:
@@ -85,20 +88,20 @@ struct HKSampleGraph: View {
             data: graphData,
             dateRange: dateRange,
             dateResolution: dateResolution,
-            displayUnit: units.localizedUnitString()
+            displayUnit: units.display
         )
             .viewStateAlert(state: $viewState)
     }
     
     
-    private func getUnitsFor(identifier: String) -> HKUnit? {
+    private func getUnitsFor(identifier: String) -> (HKUnit, String)? {
         switch identifier {
         case HKQuantityTypeIdentifier.bodyMass.rawValue:
-            return Locale.current.measurementSystem == .us ? HKUnit.pound() : HKUnit.gramUnit(with: .kilo)
+            return (Locale.current.measurementSystem == .us ? HKUnit.pound() : HKUnit.gramUnit(with: .kilo), "lbs")
         case HKQuantityTypeIdentifier.heartRate.rawValue:
-            return HKUnit.count().unitDivided(by: .minute())
+            return (HKUnit.count().unitDivided(by: .minute()), "bpm")
         case HKCorrelationTypeIdentifier.bloodPressure.rawValue:
-            return HKUnit.millimeterOfMercury()
+            return (HKUnit.millimeterOfMercury(), "mmHg")
         default:
             return nil
         }

@@ -10,20 +10,19 @@ import SpeziViews
 import SwiftUI
 
 
-struct PointDetails: View {
-    let interval: DateInterval
-    let value: String
+struct IntervalSummary: View {
+    let quantity: String
+    let interval: Range<Date>
     let unit: String
+    let averaged: Bool
     let idealHeight: CGFloat
+    let accessibilityLabel: String
     
     @ScaledMetric private var valueTextSize: CGFloat = 25.0
-    @State private var viewState: ViewState = .idle
     
     
     private var displayInterval: String {
-        let dateRange = interval.start ..< interval.end
-        
-        return dateRange.formatted(
+        interval.formatted(
             Date.IntervalFormatStyle()
                 .day()
                 .month(.abbreviated)
@@ -33,10 +32,17 @@ struct PointDetails: View {
     
     var body: some View {
         VStack(alignment: .leading) {
+            if averaged {
+                Text("Average")
+                    .font(.subheadline.bold())
+                    .foregroundStyle(.secondary)
+            } else {
+                Spacer()
+            }
             DisplayMeasurement(
-                quantity: value,
+                quantity: quantity,
                 units: unit,
-                type: "Avg Symptom Score",
+                type: accessibilityLabel,
                 quantityTextSize: valueTextSize
             )
             Text(displayInterval)
@@ -44,29 +50,17 @@ struct PointDetails: View {
                 .foregroundStyle(.secondary)
         }
             .frame(idealHeight: idealHeight)
-            .viewStateAlert(state: $viewState)
     }
 }
 
 
 #Preview {
-    var startComponents = DateComponents()
-    startComponents.year = 2024
-    startComponents.month = 6
-    startComponents.day = 23
-    let startDate = Calendar.current.date(from: startComponents)!
-    
-    var endComponents = DateComponents()
-    endComponents.year = 2024
-    endComponents.month = 6
-    endComponents.day = 27
-    let endDate = Calendar.current.date(from: endComponents)!
-    
-    
-    return PointDetails(
-        interval: DateInterval(start: startDate, end: endDate),
-        value: String(format: "%.1f", 67.2),
+    IntervalSummary(
+        quantity: "60.0",
+        interval: Date()..<Date(),
         unit: "%",
-        idealHeight: 60
+        averaged: true,
+        idealHeight: 60,
+        accessibilityLabel: "Symptom Score"
     )
 }

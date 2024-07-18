@@ -18,23 +18,34 @@ struct VitalsGraphSection: View {
     @State private var granularity: DateGranularity = .daily
     
     
+    private var dateRange: ClosedRange<Date> {
+        granularity.getDateRange(endDate: .now)
+    }
+    
     private var graphData: [HKSample] {
-        switch vitalsType {
+        let unfilteredData: [HKSample] = switch vitalsType {
         case .weight: vitalsManager.weightHistory
         case .heartRate: vitalsManager.heartRateHistory
         case .bloodPressure: vitalsManager.bloodPressureHistory
         }
+        
+        return unfilteredData.filter { dateRange.contains($0.startDate) }
     }
     
     
     var body: some View {
         Section(
             content: {
-                HKSampleGraph(
-                    data: graphData,
-                    dateRange: granularity.getDateRange(endDate: .now),
-                    dateResolution: granularity.defaultDateUnit
-                )
+                if !graphData.isEmpty {
+                    HKSampleGraph(
+                        data: graphData,
+                        dateRange: dateRange,
+                        dateResolution: granularity.defaultDateUnit
+                    )
+                } else {
+                    Text("No recent \(vitalsType.description) available.")
+                        .font(.caption)
+                }
             },
             header: {
                 HStack {

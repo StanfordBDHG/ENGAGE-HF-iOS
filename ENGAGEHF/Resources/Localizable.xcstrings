@@ -116,6 +116,9 @@
     "An invitation code is at least 8 characters long." : {
 
     },
+    "Average" : {
+
+    },
     "bloodPressureMissing" : {
       "comment" : "Displayed in the MeasurementListSection of the Heart Health view when no Blood Pressure history found.",
       "extractionState" : "manual",
@@ -197,6 +200,9 @@
           }
         }
       }
+    },
+    "Hello, World!" : {
+
     },
     "Home" : {
 
@@ -368,6 +374,9 @@
 
     },
     "Measurement Recorded" : {
+
+    },
+    "No recent %@ available." : {
 
     },
     "No recent %@ measurement available" : {

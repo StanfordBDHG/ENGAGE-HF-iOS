@@ -14,6 +14,7 @@ extension VitalsGraph {
     struct GestureOverlay: ViewModifier {
         var viewModel: ViewModel
         
+        
         func body(content: Content) -> some View {
             content
                 .chartOverlay { proxy in
@@ -23,15 +24,13 @@ extension VitalsGraph {
                             .gesture(
                                 SpatialTapGesture()
                                     .onEnded { value in
-                                        print("Graph tapped")
-//                                        viewModel.selectPoints(value: value, proxy: proxy, geometry: geometry)
+                                        viewModel.selectPoint(value: value, proxy: proxy, geometry: geometry, clearOnGap: true)
                                     }
                             )
                             .gesture(
                                 DragGesture()
                                     .onChanged { value in
-                                        print("Graph dragged")
-//                                        viewModel.selectPoints(value: value, proxy: proxy, geometry: geometry)
+                                        viewModel.selectPoint(value: value, proxy: proxy, geometry: geometry, clearOnGap: false)
                                     }
                             )
                     }

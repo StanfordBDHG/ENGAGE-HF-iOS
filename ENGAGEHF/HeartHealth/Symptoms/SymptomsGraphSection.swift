@@ -38,6 +38,10 @@ struct SymptomsGraphSection: View {
     private let resolution: DateGranularity = .weekly
     
     
+    private var dateRange: ClosedRange<Date> {
+        resolution.getDateRange(endDate: .now)
+    }
+    
     private var data: [VitalMeasurement] {
         vitalsManager.symptomHistory.map { score in
             VitalMeasurement(
@@ -45,7 +49,7 @@ struct SymptomsGraphSection: View {
                 value: score[keyPath: symptomsType.symptomScoreKeyMap],
                 type: symptomsType.fullName
             )
-        }
+        }.filter { dateRange.contains($0.date) }
     }
     
     
@@ -55,7 +59,7 @@ struct SymptomsGraphSection: View {
                 if !data.isEmpty {
                     VitalsGraph(
                         data: data,
-                        dateRange: resolution.getDateRange(endDate: .now),
+                        dateRange: dateRange,
                         dateResolution: .day,
                         displayUnit: "%",
                         chartModifier: AnyModifier(YAxisModifier())

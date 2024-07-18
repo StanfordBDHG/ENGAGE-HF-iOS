@@ -395,7 +395,7 @@ extension VitalsManager {
             }
         }
         
-        for _ in 0..<50 {
+        for count in 0..<50 {
             guard let date = Calendar.current.date(byAdding: .day, value: -Int.random(in: 0..<100), to: .now) else {
                 self.logger.error("Unable to create date for Heart Health testing setup.")
                 return
@@ -404,7 +404,10 @@ extension VitalsManager {
             await self.standard.add(sample: self.getRandomWeight(forDate: date))
             await self.standard.add(sample: self.getRandomHeartRate(forDate: date))
             await self.standard.add(sample: self.getRandomBloodPressure(forDate: date))
-            await self.standard.add(symptomScore: self.getRandomSymptoms(forDate: date))
+            
+            if count.isMultiple(of: 10) {
+                await self.standard.add(symptomScore: self.getRandomSymptoms(forDate: date))
+            }
         }
     }
 }
