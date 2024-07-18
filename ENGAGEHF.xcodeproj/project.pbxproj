@@ -73,6 +73,7 @@
 		4D40729C2C487D29007C5621 /* OverallSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D40729B2C487D29007C5621 /* OverallSummary.swift */; };
 		4D40729F2C488172007C5621 /* KnownSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D40729E2C488172007C5621 /* KnownSeries.swift */; };
 		4D4072A12C489A91007C5621 /* VitalsGraph+SummaryOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4072A02C489A91007C5621 /* VitalsGraph+SummaryOverlay.swift */; };
+		4D4072A42C49A07C007C5621 /* HKSampleGraph+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4072A32C49A07C007C5621 /* HKSampleGraph+ViewModel.swift */; };
 		4D49AAFE2BC9D50400C77310 /* BluetoothServices in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49AAFD2BC9D50400C77310 /* BluetoothServices */; };
 		4D49AB002BC9D50400C77310 /* BluetoothViews in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49AAFF2BC9D50400C77310 /* BluetoothViews */; };
 		4D49AB022BC9D50400C77310 /* SpeziBluetooth in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49AB012BC9D50400C77310 /* SpeziBluetooth */; };
@@ -226,6 +227,7 @@
 		4D40729B2C487D29007C5621 /* OverallSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverallSummary.swift; sourceTree = "<group>"; };
 		4D40729E2C488172007C5621 /* KnownSeries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnownSeries.swift; sourceTree = "<group>"; };
 		4D4072A02C489A91007C5621 /* VitalsGraph+SummaryOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VitalsGraph+SummaryOverlay.swift"; sourceTree = "<group>"; };
+		4D4072A32C49A07C007C5621 /* HKSampleGraph+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HKSampleGraph+ViewModel.swift"; sourceTree = "<group>"; };
 		4D49AB052BC9D56900C77310 /* WeightScaleDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightScaleDevice.swift; sourceTree = "<group>"; };
 		4D4AA0A42BC5E43E00676489 /* OnboardingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingUITests.swift; sourceTree = "<group>"; };
 		4D92B9F12C3C8D1E00ABCED7 /* MeasurementListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementListSection.swift; sourceTree = "<group>"; };
@@ -461,6 +463,7 @@
 			children = (
 				4D40727D2C465554007C5621 /* HKSampleGraphError.swift */,
 				4D34B3EF2C40518C006F0D40 /* HKSampleGraph.swift */,
+				4D4072A32C49A07C007C5621 /* HKSampleGraph+ViewModel.swift */,
 			);
 			path = HKSampleGraph;
 			sourceTree = "<group>";
@@ -988,6 +991,7 @@
 				A996F4462C1081EB002328C5 /* BloodPressureMeasurement.Unit+HKUnit.swift in Sources */,
 				2FE5DC3829EDD7CA004B9AB4 /* InterestingModules.swift in Sources */,
 				2FE5DC3529EDD7CA004B9AB4 /* Consent.swift in Sources */,
+				4D4072A42C49A07C007C5621 /* HKSampleGraph+ViewModel.swift in Sources */,
 				4DA20B642C2A0FF100715AA2 /* VitalsCard.swift in Sources */,
 				A996F44A2C1082BA002328C5 /* HealthDevice.swift in Sources */,
 				4DBDD3442BBFAD64001FB0CA /* InvitationCodeError.swift in Sources */,
