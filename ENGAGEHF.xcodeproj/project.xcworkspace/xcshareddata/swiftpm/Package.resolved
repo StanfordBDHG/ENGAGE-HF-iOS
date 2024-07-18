@@ -1,9 +1,5 @@
 {
-<<<<<<< HEAD
-  "originHash" : "0e4d8ffd81afa299dc54c485ed466a2f0b38a5fd9765e3b8d2bd04de5bdf1347",
-=======
-  "originHash" : "bf5084f3a1640b549abaeb7502f3d1650efe31a71ce63ae49ff0fb7732a037e2",
->>>>>>> main
+  "originHash" : "6bd7e40821a5b353535fdb54974b349e3110c201f1d1c1877d9692312d31e059",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -215,7 +211,7 @@
     {
       "identity" : "spezibluetooth",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/StanfordSpezi/SpeziBluetooth",
+      "location" : "https://github.com/StanfordSpezi/SpeziBluetooth.git",
       "state" : {
         "revision" : "387ed5d79be6ae990f714b648ed6a157c30d5b4d",
         "version" : "3.0.0-beta.1"
@@ -323,7 +319,7 @@
     {
       "identity" : "swift-argument-parser",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-argument-parser",
+      "location" : "https://github.com/apple/swift-argument-parser.git",
       "state" : {
         "revision" : "41982a3656a71c768319979febd796c6fd111d5c",
         "version" : "1.5.0"

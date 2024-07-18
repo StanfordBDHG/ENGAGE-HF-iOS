@@ -43,13 +43,15 @@ struct SymptomsGraphSection: View {
     }
     
     private var data: [VitalMeasurement] {
-        vitalsManager.symptomHistory.map { score in
-            VitalMeasurement(
-                date: score.date,
-                value: score[keyPath: symptomsType.symptomScoreKeyMap],
-                type: symptomsType.fullName
-            )
-        }.filter { dateRange.contains($0.date) }
+        vitalsManager.symptomHistory
+            .map { score in
+                VitalMeasurement(
+                    date: score.date,
+                    value: score[keyPath: symptomsType.symptomScoreKeyMap],
+                    type: symptomsType.fullName
+                )
+            }
+            .filter { dateRange.contains($0.date) }
     }
     
     

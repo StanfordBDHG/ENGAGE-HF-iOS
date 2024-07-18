@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%@" : {
+
+    },
     "%@ Date: %@" : {
       "localizations" : {
         "en" : {
@@ -27,19 +30,6 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "%1$@ Unit: %2$@"
-          }
-        }
-      }
-    },
-    "%lld BPM" : {
-
-    },
-    "%lld/%lld mmHg" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$lld/%2$lld mmHg"
           }
         }
       }
@@ -128,9 +118,6 @@
         }
       }
     },
-    "Close" : {
-      "comment" : "For closing sheets."
-    },
     "CLOSE" : {
       "comment" : "MARK: General",
       "localizations" : {
@@ -168,9 +155,6 @@
     "Date" : {
 
     },
-    "Discard" : {
-    
-    },
     "Devices" : {
 
     },
@@ -185,13 +169,6 @@
     },
     "Graph Selection" : {
 
-    },
-    "Heart Health" : {
-
-    },
-    "heartRateMissing" : {
-      "comment" : "Displayed in the MeasurementListSection of the Heart Health view when no heart rate measurements were found.",
-      "extractionState" : "manual"
     },
     "HEALTHKIT_PERMISSIONS_BUTTON" : {
       "extractionState" : "stale",
@@ -237,6 +214,13 @@
           }
         }
       }
+    },
+    "Heart Health" : {
+
+    },
+    "heartRateMissing" : {
+      "comment" : "Displayed in the MeasurementListSection of the Heart Health view when no heart rate measurements were found.",
+      "extractionState" : "manual"
     },
     "Hold down the Bluetooth button for 3 seconds to put the device into pairing mode." : {
 
@@ -407,9 +391,6 @@
     "List Without Sections" : {
 
     },
-    "Measurement Recorded" : {
-
-    },
     "No recent %@ available." : {
 
     },
@@ -478,16 +459,13 @@
     "Resolution Picker" : {
 
     },
-    "Save" : {
-      
-    },
     "Review" : {
 
     },
-    "Show Measurements" : {
+    "Score" : {
 
     },
-    "Score" : {
+    "Show Measurements" : {
 
     },
     "symptomDizziness" : {

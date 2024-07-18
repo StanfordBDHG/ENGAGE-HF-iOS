@@ -401,9 +401,13 @@ extension VitalsManager {
                 return
             }
             
-            await self.standard.add(sample: self.getRandomWeight(forDate: date))
-            await self.standard.add(sample: self.getRandomHeartRate(forDate: date))
-            await self.standard.add(sample: self.getRandomBloodPressure(forDate: date))
+            try await self.standard.addMeasurement(
+                samples: [
+                    self.getRandomWeight(forDate: date),
+                    self.getRandomHeartRate(forDate: date),
+                    self.getRandomBloodPressure(forDate: date)
+                ]
+            )
             
             if count.isMultiple(of: 10) {
                 await self.standard.add(symptomScore: self.getRandomSymptoms(forDate: date))

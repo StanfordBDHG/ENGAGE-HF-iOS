@@ -81,7 +81,6 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint, A
     }
     
 
-
     func addMeasurement(samples: [HKSample]) async throws {
         guard !samples.isEmpty else {
             return
@@ -147,15 +146,15 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint, A
         var collectionBucket: String? {
             switch type {
             case HKQuantityType(.bodyMass):
-                return "bodyWeightObservations"
+                return CollectionID.bodyWeightObservations.rawValue
             case HKQuantityType(.bodyMassIndex):
                 return "bodyMassIndexObservations"
             case HKQuantityType(.height):
                 return "heightObservations"
             case HKQuantityType(.heartRate):
-                return .heartRateObservations
+                return CollectionID.heartRateObservations.rawValue
             case HKCorrelationType(.bloodPressure):
-                return .bloodPressureObservations
+                return CollectionID.bloodPressureObservations.rawValue
             default:
                 return nil
             }
