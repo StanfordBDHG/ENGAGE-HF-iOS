@@ -10,6 +10,7 @@ import Charts
 import SpeziViews
 import SwiftUI
 
+
 struct VitalsGraph: View {
     var data: [VitalMeasurement]
     var dateRange: ClosedRange<Date>
