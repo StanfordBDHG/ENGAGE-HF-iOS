@@ -82,6 +82,7 @@ struct SymptomsGraphSection: View {
             },
             header: {
                 SymptomsPicker(symptomsType: $symptomsType)
+                    .padding(.vertical, 5)
             }
         )
     }
