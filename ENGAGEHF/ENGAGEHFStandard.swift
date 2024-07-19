@@ -65,7 +65,7 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint, A
         bodyMassMapping?.unit = MappedUnit(
             hkunit: .gramUnit(with: .kilo),
             unit: "kg",
-            system: URL(string: "http://unitsofmeasure.org")!,
+            system: URL(string: "http://unitsofmeasure.org")!,  // swiftlint:disable:this force_unwrapping
             code: "kg"
         )
         sampleMapping.quantitySampleMapping[HKQuantityType(.bodyMass)] = bodyMassMapping

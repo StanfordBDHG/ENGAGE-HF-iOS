@@ -26,12 +26,12 @@ enum VitalsUnit: CustomStringConvertible {
         }
     }
     
-    var hkUnitString: String {
+    var hkUnit: HKUnit {
         switch self {
-        case .lbs: "lb"
-        case .kgs: "kg"
-        case .mmHg: "mmHg"
-        case .bpm: "count/min"
+        case .lbs: .pound()
+        case .kgs: .gramUnit(with: .kilo)
+        case .mmHg: .millimeterOfMercury()
+        case .bpm: .count().unitDivided(by: .minute())
         }
     }
 }

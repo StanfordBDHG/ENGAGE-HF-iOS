@@ -52,7 +52,7 @@ struct VitalsContentView: View {
                 VitalListMeasurement(
                     id: sample.externalUUID?.uuidString,
                     value: getDisplayQuantity(sample: sample, type: vital),
-                    date: sample.date
+                    date: sample.startDate
                 )
             }
             .sorted {
@@ -61,32 +61,30 @@ struct VitalsContentView: View {
     }
     
     private func getDisplayQuantity(sample: HKSample, type: VitalsType) -> String {
-        let doubleValues = sample.getDoubleValues(for: type.unit.hkUnitString)
+        let doubleValues = sample.getDoubleValues(for: type.unit.hkUnit)
         
         guard !doubleValues.isEmpty else {
-            return "ERROR"
+            return "---"
         }
         
         switch type {
         case .weight:
-            guard let weight = doubleValues.first else {
-                return "ERROR"
+            guard let weight = doubleValues[HKQuantityTypeIdentifier.bodyMass.rawValue] else {
+                return "---"
             }
             return String(format: "%.1f", weight)
         case .heartRate:
-            guard let heartRate = doubleValues.first else {
-                return "ERROR"
+            guard let heartRate = doubleValues[HKQuantityTypeIdentifier.heartRate.rawValue] else {
+                return "---"
             }
             return Int(heartRate).description
         case .bloodPressure:
-            guard doubleValues.count == 2 else {
-                return "ERROR"
+            guard let systolic = doubleValues[HKQuantityTypeIdentifier.bloodPressureSystolic.rawValue],
+                  let diastolic = doubleValues[HKQuantityTypeIdentifier.bloodPressureDiastolic.rawValue] else {
+                return "---"
             }
             
-            let systolic = Int(doubleValues[0])
-            let diastolic = Int(doubleValues[1])
-            
-            return "\(systolic)/\(diastolic)"
+            return "\(Int(systolic))/\(Int(diastolic))"
         }
     }
 }

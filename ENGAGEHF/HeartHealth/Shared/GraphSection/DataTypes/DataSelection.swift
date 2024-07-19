@@ -9,13 +9,7 @@
 import Foundation
 
 
-enum FHIRSystem {
-    case loinc
-    
-    
-    var url: URL {
-        switch self {
-        case .loinc: URL(string: "http://loinc.org")!  // swiftlint:disable:this force_unwrapping
-        }
-    }
+struct DataSelection {
+    let interval: Range<Date>
+    let points: [(String, Double)]
 }

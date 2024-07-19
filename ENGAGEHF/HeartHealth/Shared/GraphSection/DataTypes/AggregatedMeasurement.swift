@@ -16,5 +16,5 @@ struct AggregatedMeasurement: Hashable, Identifiable {
     var date: Date
     var value: Double
     var count: Int
-    var type: String
+    var series: String
 }

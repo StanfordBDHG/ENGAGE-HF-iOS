@@ -12,10 +12,11 @@ import SwiftUI
 
 extension VitalsGraph {
     struct ChartContent: View {
-        var viewModel: ViewModel
-        var dateUnit: Calendar.Component
-        var quantityUnit: String
-        var intervalSummaryHeight: CGFloat
+        let viewModel: ViewModel
+        let dateUnit: Calendar.Component
+        let quantityUnit: String
+
+        private let intervalSummaryHeight: CGFloat = 70
         
         
         var body: some View {
@@ -28,7 +29,7 @@ extension VitalsGraph {
                             overflowResolution: .init(x: .fit, y: .disabled)
                         ) {
                             IntervalSummary(
-                                quantity: getDisplayQuantity(points: selection.points),
+                                quantity: viewModel.selectionFormatter(selection.points.map { ($0.series, $0.value) }),
                                 interval: selection.interval,
                                 unit: quantityUnit,
                                 averaged: selection.points.contains(where: { $0.count > 1 }),
@@ -38,42 +39,38 @@ extension VitalsGraph {
                         }
                 }
                 
-                ForEach(viewModel.aggregatedData) { score in
-                    LineMark(
-                        x: .value("Date", score.date, unit: dateUnit),
-                        y: .value("Score", score.value)
-                    )
-                        .foregroundStyle(by: .value("VitalType", score.type))
-                    PointMark(
-                        x: .value("Date", score.date, unit: dateUnit),
-                        y: .value("Score", score.value)
-                    )
-                        .foregroundStyle(by: .value("VitalType", score.type))
+                ForEach(viewModel.aggregatedData) { series in
+                    ForEach(series.data) { point in
+                        LineMark(
+                            x: .value("Date", point.date, unit: dateUnit),
+                            y: .value("Score", point.value)
+                        )
+                            .foregroundStyle(by: .value("Series", series.seriesName))
+                        PointMark(
+                            x: .value("Date", point.date, unit: dateUnit),
+                            y: .value("Score", point.value)
+                        )
+                        .foregroundStyle(by: .value("Series", series.seriesName))
+                    }
                 }
             }
-        }
-        
-        
-        private func getDisplayQuantity(points: [AggregatedMeasurement]) -> String {
-            switch points.count {
-            case 1: return String(format: "%.1f", points.first!.value)
-            case 2:
-                let systolic: AggregatedMeasurement? = points.first(
-                    where: { point in
-                        point.type == "\(KnownSeries.bloodPressureSystolic)"
+                .frame(maxWidth: .infinity, idealHeight: 200)
+                .padding(.top, intervalSummaryHeight + 4)
+                .overlay(alignment: .topLeading) {
+                    if viewModel.selection == nil {
+                        IntervalSummary(
+                            quantity: viewModel.selectionFormatter(viewModel.aggregatedData.map { ($0.seriesName, $0.average ) }),
+                            interval: DateInterval(
+                                start: viewModel.dateRange.lowerBound,
+                                end: viewModel.dateRange.upperBound
+                            ).asAdjustedRange(using: viewModel.calendar) ?? Date()..<Date(),
+                            unit: quantityUnit,
+                            averaged: true,
+                            idealHeight: intervalSummaryHeight,
+                            accessibilityLabel: "Overall Summary"
+                        )
                     }
-                )
-                let diastolic: AggregatedMeasurement? = points.first(
-                    where: { point in
-                        point.type == "\(KnownSeries.bloodPressureDiastolic)"
-                    }
-                )
-                guard let systolic, let diastolic else {
-                    return "---"
                 }
-                return "\(Int(systolic.value))/\(Int(diastolic.value))"
-            default: return "---"
-            }
         }
     }
 }

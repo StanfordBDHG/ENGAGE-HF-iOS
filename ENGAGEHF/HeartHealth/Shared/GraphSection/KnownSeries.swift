@@ -10,21 +10,10 @@ import Foundation
 
 
 /// A collection of known vitals types that may be encountered while plotting data using VtalsGraph
-enum KnownSeries: CustomStringConvertible {
-    case symptomScore
-    case bodyWeight
-    case heartRate
-    case bloodPressureSystolic
-    case bloodPressureDiastolic
-    
-    
-    var description: String {
-        switch self {
-        case .symptomScore: "Symptom Score"
-        case .bodyWeight: "Body Weight"
-        case .heartRate: "Heart Rate"
-        case .bloodPressureSystolic: "Systolic"
-        case .bloodPressureDiastolic: "Diastolic"
-        }
-    }
+enum KnownSeries: String {
+    case symptomScore = "Symptom Score"
+    case bodyWeight = "Body Weight"
+    case heartRate = "Heart Rate"
+    case bloodPressureSystolic = "Systolic"
+    case bloodPressureDiastolic = "Diastolic"
 }

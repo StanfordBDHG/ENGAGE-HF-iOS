@@ -9,13 +9,10 @@
 import Foundation
 
 
-enum FHIRSystem {
-    case loinc
-    
-    
-    var url: URL {
-        switch self {
-        case .loinc: URL(string: "http://loinc.org")!  // swiftlint:disable:this force_unwrapping
-        }
-    }
+/// A container for representing an aggregated data series
+struct MeasurementSeries: Identifiable {
+    let id = UUID()
+    let seriesName: String
+    let data: [AggregatedMeasurement]
+    let average: Double
 }

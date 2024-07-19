@@ -42,16 +42,29 @@ struct SymptomsGraphSection: View {
         resolution.getDateRange(endDate: .now)
     }
     
-    private var data: [VitalMeasurement] {
-        vitalsManager.symptomHistory
+    private var data: [String: [VitalMeasurement]] {
+        let ungroupedData = vitalsManager.symptomHistory
             .map { score in
                 VitalMeasurement(
                     date: score.date,
                     value: score[keyPath: symptomsType.symptomScoreKeyMap],
-                    type: symptomsType.fullName
+                    type: KnownSeries.symptomScore.rawValue
                 )
             }
             .filter { dateRange.contains($0.date) }
+        
+        return Dictionary(grouping: ungroupedData) { $0.type }
+    }
+    
+    private var options: VitalsGraphOptions {
+        VitalsGraphOptions(
+            dateRange: resolution.getDateRange(endDate: .now),
+            granularity: .day,
+            localizedUnitString: "%",
+            selectionFormatter: { selected in
+                String(format: "%.1f", selected.first(where: { $0.0 == KnownSeries.symptomScore.rawValue })?.1 ?? "---")
+            }
+        )
     }
     
     
@@ -59,13 +72,8 @@ struct SymptomsGraphSection: View {
         Section(
             content: {
                 if !data.isEmpty {
-                    VitalsGraph(
-                        data: data,
-                        dateRange: dateRange,
-                        dateResolution: .day,
-                        displayUnit: "%",
-                        chartModifier: AnyModifier(YAxisModifier())
-                    )
+                    VitalsGraph(data: data, options: options)
+                      .modifier(YAxisModifier())
                 } else {
                     Text("No recent symptom scores available.")
                         .font(.caption)

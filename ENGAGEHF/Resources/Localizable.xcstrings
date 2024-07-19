@@ -465,6 +465,9 @@
     "Score" : {
 
     },
+    "Series" : {
+
+    },
     "Show Measurements" : {
 
     },
@@ -614,9 +617,6 @@
           }
         }
       }
-    },
-    "VitalType" : {
-
     },
     "weightMissing" : {
       "comment" : "Displayed in the MeasurementListSection of the Heart Health view when no weight history was found.",

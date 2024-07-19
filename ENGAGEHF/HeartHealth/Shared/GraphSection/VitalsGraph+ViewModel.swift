@@ -12,54 +12,61 @@ import SwiftUI
 
 
 extension VitalsGraph {
+    typealias SelectedInterval = (interval: Range<Date>, points: [AggregatedMeasurement])
+    
+    
     @Observable
     class ViewModel {
         var viewState: ViewState = .idle
         
-        private(set) var aggregatedData: [AggregatedMeasurement] = []
-        private(set) var multipleTypesPresent = false
-        private(set) var overallAverages: [String: Double] = [:]
-        private(set) var selection: (interval: Range<Date>, points: [AggregatedMeasurement])?
-        
-        private var dateUnit: Calendar.Component = .day
-        private var dateRange: ClosedRange<Date> = Date()...Date()
-        private let calendar = Calendar.current
-        private typealias SeriesDictionary = [String: [Date: (score: Double, count: Int)]]
+        private(set) var aggregatedData: [MeasurementSeries] = []
+        private(set) var selection: SelectedInterval?
+        private(set) var selectionFormatter: ([(String, Double)]) -> String = { _ in "---" }
+        private(set) var localizedUnitString: String = "---"
+        private(set) var dateRange: ClosedRange<Date> = Date()...Date()
+        private(set) var dateUnit: Calendar.Component = .day
+        let calendar = Calendar.current
         
         
-        /// Prepares the given array of VitalGraphMeasurements for display
-        /// Aggregates the data by calculating the average across the intervals determined by granularity
-        /// Calculates and saves the granularity, date range, aggregated data, and binned data
-        func processData(_ data: [VitalMeasurement], dateRange: ClosedRange<Date>, dateUnit: Calendar.Component) {
-            let dataBins: SeriesDictionary = binData(data, dateRange: dateRange, dateUnit: dateUnit)
+        /// Prepares the given data for display.
+        /// Aggregates the data by calculating the average across the intervals determined by the granularity of dateUnit.
+        /// Saves the dateRange, dateUnit, and aggregatedData for later use.
+        func processData(_ data: SeriesDictionary, options: VitalsGraphOptions) {
+            // Aggregate the data across time and group by series type
+            let aggregatedSeries: [String: [AggregatedMeasurement]] = aggregateData(data: data, dateUnit: options.granularity)
+            let seriesAverages: [String: Double] = data.mapValues { average(series: $0) ?? 0 }
             
-            /// The aggregated data, in a RandomAccessCollection as required for the Chart
-            let processedData: [AggregatedMeasurement] = {
-                dataBins.flatMap { type, seriesDict in
-                    seriesDict.map { date, aggregated in
-                        AggregatedMeasurement(
-                            date: date,
-                            value: aggregated.score,
-                            count: aggregated.count,
-                            type: type
+            // Organize series data into a list of MeasurementSeries, in order of seriesName
+            self.aggregatedData = {
+                aggregatedSeries
+                    .map { seriesName, data in
+                        MeasurementSeries(
+                            seriesName: seriesName,
+                            data: data.sorted { $0.date < $1.date },
+                            average: seriesAverages[seriesName] ?? 0
                         )
                     }
-                }
-                .sorted { $0.type > $1.type }
-                .sorted { $0.date < $1.date }
+                    .sorted { $0.seriesName > $1.seriesName }
             }()
-            
-            self.overallAverages = calculateAverages(data)
-            self.aggregatedData = processedData
-            self.multipleTypesPresent = dataBins.keys.count > 1
+
+            // Save the options for later use
+            if let dateRange = options.dateRange {
+                self.dateRange = dateRange
+            } else {
+                self.dateRange = getDateRange(from: aggregatedData, using: options.granularity)
+            }
+            self.dateUnit = options.granularity
+            self.selectionFormatter = options.selectionFormatter
+            self.localizedUnitString = options.localizedUnitString
             self.selection = nil
-            self.dateUnit = dateUnit
-            self.dateRange = dateRange
         }
         
         func selectPoint(value: GestureValue, proxy: ChartProxy, geometry: GeometryProxy, clearOnGap: Bool) {
             // Convert the tap location to the coordinate space of the plot area
-            let origin = geometry[proxy.plotFrame!].origin
+            guard let anchor: Anchor<CGRect> = proxy.plotFrame else {
+                return
+            }
+            let origin = geometry[anchor].origin
             let location = CGPoint(
                 x: value.eventLocation.x - origin.x,
                 y: value.eventLocation.y - origin.y
@@ -67,19 +74,17 @@ extension VitalsGraph {
             
             // Mark the points in the tapped interval as selected, if there are any
             if let (date, _) = proxy.value(at: location, as: (Date, Double).self) {
-                // If the user taps or drags outside the edges of the graph, then clear the selection
+                // If the user taps or drags outside the edges of the graph, then clear the selection and show the header
                 guard dateRange.contains(date) else {
                     self.selection = nil
                     return
                 }
                 
-                let selectedPoints = aggregatedData.filter { dataPoint in
-                    calendar.isDate(dataPoint.date, equalTo: date, toGranularity: dateUnit)
-                }
-                
+                let selectedPoints = aggregatedData.flatMap { getPoints(from: $0, onDate: date, granularity: dateUnit) }
+
                 // Optionally, if no point was selected, just use the previously selected point
                 guard !selectedPoints.isEmpty,
-                      let interval = getInterval(for: date, using: self.calendar, with: dateUnit) else {
+                      let interval = getInterval(date: date, unit: dateUnit)?.asAdjustedRange(using: calendar) else {
                     if clearOnGap {
                         self.selection = nil
                     }
@@ -91,42 +96,60 @@ extension VitalsGraph {
         }
         
         
-        private func calculateAverages(_ data: [VitalMeasurement]) -> [String: Double] {
-            Dictionary(grouping: data, by: { $0.type })
-                .compactMapValues {
-                    $0.map(\.value).reduce(0, +) / Double($0.count)
+        /// Aggregate each series by averaging over the interval determined by dateUnit.
+        /// Records the result as a dictionary mapping the series name to a list of AggregatedMeasurements representing each point in the series.
+        private func aggregateData(data: SeriesDictionary, dateUnit: Calendar.Component) -> [String: [AggregatedMeasurement]] {
+            let allSeriesData = data.flatMap { seriesName, data in
+                Dictionary(grouping: data) {
+                    getInterval(date: $0.date, unit: dateUnit)?.start ?? self.calendar.startOfDay(for: $0.date)
                 }
-        }
-
-        /// Group the given data by series type, then aggregate each series by averaging over the interval determined by dateUnit
-        private func binData(
-            _ data: [VitalMeasurement],
-            dateRange: ClosedRange<Date>,
-            dateUnit: Calendar.Component
-        ) -> SeriesDictionary {
-            Dictionary(grouping: data) { $0.type }
-                .compactMapValues { measurements in
-                    Dictionary(grouping: measurements) {
-                        getInterval(for: $0.date, using: self.calendar, with: dateUnit)?.lowerBound ?? self.calendar.startOfDay(for: $0.date)
-                    }
-                        .compactMapValues {
-                            ($0.map(\.value).reduce(0, +) / Double($0.count), $0.count)
-                        }
+                .map { date, measurements in
+                    AggregatedMeasurement(
+                        date: date,
+                        value: average(series: measurements) ?? 0,
+                        count: measurements.count,
+                        series: seriesName
+                    )
                 }
+            }
+            return Dictionary(grouping: allSeriesData) { $0.series }
         }
         
-        /// Returns a closed date interval, if possible for the given date
-        /// Adjusts the upper bound to be inclusive on both the upper and lower bounds without overlapping adjacent intervals
-        private func getInterval(
-            for date: Date,
-            using calendar: Calendar,
-            with dateUnit: Calendar.Component
-        ) -> Range<Date>? {
-            guard let interval = calendar.dateInterval(of: dateUnit, for: date),
-                  let adjustedEnd = calendar.date(byAdding: .second, value: -1, to: interval.end) else {
+        private func average(series: [VitalMeasurement]) -> Double? {
+            guard !series.isEmpty else {
                 return nil
             }
-            return interval.start..<adjustedEnd
+            return series.map(\.value).reduce(0, +) / Double(series.count)
+        }
+        
+        private func getDateRange(from data: [MeasurementSeries], using dateUnit: Calendar.Component) -> ClosedRange<Date> {
+            let minDate: Date? = data
+                .map { series in
+                    series.data.min {
+                        calendar.compare($0.date, to: $1.date, toGranularity: dateUnit) == .orderedAscending
+                    }?.date ?? .distantFuture
+                }
+                .min()
+            let maxDate: Date? = data
+                .map { series in
+                    series.data.max {
+                        calendar.compare($0.date, to: $1.date, toGranularity: dateUnit) == .orderedDescending
+                    }?.date ?? .distantPast
+                }
+                .max()
+            
+            guard let minDate, let maxDate else {
+                return Date()...Date()
+            }
+            return minDate ... maxDate
+        }
+        
+        private func getPoints(from series: MeasurementSeries, onDate date: Date, granularity: Calendar.Component) -> [AggregatedMeasurement] {
+            series.data.filter { calendar.isDate($0.date, equalTo: date, toGranularity: granularity) }
+        }
+        
+        private func getInterval(date: Date, unit: Calendar.Component) -> DateInterval? {
+            calendar.dateInterval(of: dateUnit, for: date)
         }
     }
 }

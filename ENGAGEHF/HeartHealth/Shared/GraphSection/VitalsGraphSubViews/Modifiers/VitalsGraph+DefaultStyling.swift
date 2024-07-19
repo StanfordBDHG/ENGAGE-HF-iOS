@@ -30,7 +30,7 @@ extension VitalsGraph {
                     }
                 }
                 .chartForegroundStyleScale(range: [Color.accentColor, Color.complement])
-                .chartLegend(viewModel.multipleTypesPresent ? .visible : .hidden)
+                .chartLegend(viewModel.aggregatedData.count > 1 ? .visible : .hidden)
         }
     }
 }

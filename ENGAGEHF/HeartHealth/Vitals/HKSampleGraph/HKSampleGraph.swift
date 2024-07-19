@@ -19,22 +19,18 @@ struct HKSampleGraph: View {
     @State private var viewModel = ViewModel()
     
     
-    private var units: (hkUnit: HKUnit, display: String) {
-        viewModel.getUnits(data: data)
-    }
-    
-    private var graphData: [VitalMeasurement] {
-        viewModel.processData(data: data, units: units.hkUnit)
-    }
-    
-    
     var body: some View {
         VitalsGraph(
-            data: graphData,
-            dateRange: dateRange,
-            dateResolution: dateResolution,
-            displayUnit: units.display
+            data: viewModel.seriesData,
+            options: VitalsGraphOptions(
+                dateRange: dateRange,
+                granularity: dateResolution,
+                localizedUnitString: viewModel.displayUnit,
+                selectionFormatter: viewModel.formatter
+            )
         )
+            .onChange(of: data) { viewModel.processData(data: data) }
+            .onAppear { viewModel.processData(data: data) }
             .viewStateAlert(state: $viewModel.viewState)
     }
 }

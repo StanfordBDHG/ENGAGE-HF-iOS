@@ -12,47 +12,31 @@ import SwiftUI
 
 
 struct VitalsGraph: View {
-    var data: [VitalMeasurement]
-    var dateRange: ClosedRange<Date>
-    var dateResolution: Calendar.Component
-    var displayUnit: String
-    var chartModifier: AnyModifier?
+    var data: [String: [VitalMeasurement]]
+    var options: VitalsGraphOptions = .defaultOptions
     
     @State private var viewModel = ViewModel()
-    private let annotationHeight: CGFloat = 70
     
     
     var body: some View {
         ChartContent(
             viewModel: viewModel,
-            dateUnit: dateResolution,
-            quantityUnit: displayUnit,
-            intervalSummaryHeight: annotationHeight
+            dateUnit: viewModel.dateUnit,
+            quantityUnit: viewModel.localizedUnitString
         )
-            // Default + custom chart modifiers for styling
-            .modifier(DefaultChartStyle(viewModel: viewModel, dateRange: dateRange))
-            .modifier(chartModifier ?? AnyModifier(EmptyModifier()))
-            .frame(maxWidth: .infinity, idealHeight: 200)
-            .padding(.top, annotationHeight + 4)
-            // Overlay modifiers to present detailed point information
-            .modifier(
-                SummaryOverlay(
-                    viewModel: viewModel,
-                    dateRange: dateRange,
-                    annotationHeight: annotationHeight,
-                    displayUnit: displayUnit
-                )
-            )
+            // Default styling
+            .modifier(DefaultChartStyle(viewModel: viewModel, dateRange: viewModel.dateRange))
+            // Overlay for tracking gestures
             .modifier(GestureOverlay(viewModel: viewModel))
             // State change modifiers to listen for updates to the environment and handle errors
             .onChange(of: data) {
-                viewModel.processData(data, dateRange: dateRange, dateUnit: dateResolution)
+                viewModel.processData(data, options: options)
             }
-            .onChange(of: dateResolution) {
-                viewModel.processData(data, dateRange: dateRange, dateUnit: dateResolution)
+            .onChange(of: options) {
+                viewModel.processData(data, options: options)
             }
             .onAppear {
-                viewModel.processData(data, dateRange: dateRange, dateUnit: dateResolution)
+                viewModel.processData(data, options: options)
             }
             .viewStateAlert(state: $viewModel.viewState)
     }
@@ -61,9 +45,7 @@ struct VitalsGraph: View {
 
 #Preview {
     VitalsGraph(
-        data: [],
-        dateRange: Date()...Date(),
-        dateResolution: .day,
-        displayUnit: ""
+        data: [:],
+        options: .defaultOptions
     )
 }
