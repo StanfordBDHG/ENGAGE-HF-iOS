@@ -48,7 +48,7 @@ struct SymptomsGraphSection: View {
                 VitalMeasurement(
                     date: score.date,
                     value: score[keyPath: symptomsType.symptomScoreKeyMap],
-                    type: KnownSeries.symptomScore.rawValue
+                    type: KnownVitalsSeries.symptomScore.rawValue
                 )
             }
             .filter { dateRange.contains($0.date) }
@@ -62,7 +62,7 @@ struct SymptomsGraphSection: View {
             granularity: .day,
             localizedUnitString: "%",
             selectionFormatter: { selected in
-                String(format: "%.1f", selected.first(where: { $0.0 == KnownSeries.symptomScore.rawValue })?.1 ?? "---")
+                String(format: "%.1f", selected.first(where: { $0.0 == KnownVitalsSeries.symptomScore.rawValue })?.1 ?? "---")
             }
         )
     }
@@ -71,8 +71,9 @@ struct SymptomsGraphSection: View {
     var body: some View {
         Section(
             content: {
-                if !data.isEmpty {
-                    VitalsGraph(data: data, options: options)
+                let graphData = data
+                if !graphData.isEmpty {
+                    VitalsGraph(data: graphData, options: options)
                       .modifier(YAxisModifier())
                 } else {
                     Text("No recent symptom scores available.")

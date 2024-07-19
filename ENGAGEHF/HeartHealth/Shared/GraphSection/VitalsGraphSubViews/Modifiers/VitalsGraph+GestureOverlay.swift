@@ -12,7 +12,7 @@ import SwiftUI
 
 extension VitalsGraph {
     struct GestureOverlay: ViewModifier {
-        var viewModel: ViewModel
+        let viewModel: ViewModel
         
         
         func body(content: Content) -> some View {

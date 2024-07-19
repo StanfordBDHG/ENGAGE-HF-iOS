@@ -10,14 +10,14 @@ import SwiftUI
 
 
 struct DescriptionSection: View {
-    var explanationKey: String
+    var localizedExplanation: String
     var quantityName: String
     
     
     var body: some View {
         Section(
             content: {
-                Text(LocalizedStringKey(explanationKey))
+                Text(localizedExplanation)
             },
             header: {
                 Text("About \(quantityName)")
@@ -29,5 +29,5 @@ struct DescriptionSection: View {
 
 
 #Preview {
-    DescriptionSection(explanationKey: "symptomsOverall", quantityName: "Overall Score")
+    DescriptionSection(localizedExplanation: "Symptoms Explanation", quantityName: "Overall Score")
 }

@@ -48,12 +48,12 @@ extension HKSampleGraph {
                         VitalMeasurement(
                             date: correlation.startDate,
                             value: systolic,
-                            type: KnownSeries.bloodPressureSystolic.rawValue
+                            type: KnownVitalsSeries.bloodPressureSystolic.rawValue
                         ),
                         VitalMeasurement(
                             date: correlation.startDate,
                             value: diastolic,
-                            type: KnownSeries.bloodPressureDiastolic.rawValue
+                            type: KnownVitalsSeries.bloodPressureDiastolic.rawValue
                         )
                     ]
                 default:
@@ -102,8 +102,8 @@ extension HKSampleGraph {
             case HKCorrelationTypeIdentifier.bloodPressure.rawValue:
                 self.formatter = {
                     [
-                        "\(Int($0.first(where: { $0.0 == KnownSeries.bloodPressureSystolic.rawValue })?.1 ?? 0))",
-                        "\(Int($0.first(where: { $0.0 == KnownSeries.bloodPressureDiastolic.rawValue })?.1 ?? 0))"
+                        "\(Int($0.first(where: { $0.0 == KnownVitalsSeries.bloodPressureSystolic.rawValue })?.1 ?? 0))",
+                        "\(Int($0.first(where: { $0.0 == KnownVitalsSeries.bloodPressureDiastolic.rawValue })?.1 ?? 0))"
                     ].joined(separator: "/")
                 }
                 return (HKUnit.millimeterOfMercury(), "mmHg")

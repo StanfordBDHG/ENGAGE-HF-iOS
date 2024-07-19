@@ -49,7 +49,6 @@
 		4D2D1D602C2B859C00ABDC19 /* GraphPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2D1D5F2C2B859C00ABDC19 /* GraphPicker.swift */; };
 		4D2D1D682C2C82A200ABDC19 /* FHIRPeriod+GetDates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2D1D672C2C82A200ABDC19 /* FHIRPeriod+GetDates.swift */; };
 		4D2D1D762C2CC8B200ABDC19 /* ValueXProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2D1D752C2CC8B200ABDC19 /* ValueXProtocol.swift */; };
-		4D2D1D782C2CD32C00ABDC19 /* ObservationValueProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2D1D772C2CD32C00ABDC19 /* ObservationValueProtocol.swift */; };
 		4D34B3E52C3EECDE006F0D40 /* HKObject+ExternalUUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D34B3E42C3EECDE006F0D40 /* HKObject+ExternalUUID.swift */; };
 		4D34B3ED2C404C61006F0D40 /* VitalsUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D34B3EC2C404C61006F0D40 /* VitalsUnit.swift */; };
 		4D34B3F02C40518C006F0D40 /* HKSampleGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D34B3EF2C40518C006F0D40 /* HKSampleGraph.swift */; };
@@ -65,14 +64,13 @@
 		4D40728F2C483A5C007C5621 /* VitalsGraph+GestureOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D40728E2C483A5C007C5621 /* VitalsGraph+GestureOverlay.swift */; };
 		4D4072932C4841D4007C5621 /* VitalsGraph+DefaultStyling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4072922C4841D4007C5621 /* VitalsGraph+DefaultStyling.swift */; };
 		4D4072972C484716007C5621 /* VitalsGraph+ChartContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4072962C484716007C5621 /* VitalsGraph+ChartContent.swift */; };
-		4D40729F2C488172007C5621 /* KnownSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D40729E2C488172007C5621 /* KnownSeries.swift */; };
+		4D40729F2C488172007C5621 /* KnownVitalsSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D40729E2C488172007C5621 /* KnownVitalsSeries.swift */; };
 		4D4072A42C49A07C007C5621 /* HKSampleGraph+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4072A32C49A07C007C5621 /* HKSampleGraph+ViewModel.swift */; };
 		4D49AB022BC9D50400C77310 /* SpeziBluetooth in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49AB012BC9D50400C77310 /* SpeziBluetooth */; };
 		4D4AA0A52BC5E43E00676489 /* OnboardingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4AA0A42BC5E43E00676489 /* OnboardingUITests.swift */; };
 		4D8AD2C22C49D51E00CB4F3E /* SeriesDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8AD2C12C49D51E00CB4F3E /* SeriesDictionary.swift */; };
 		4D8AD2C52C4A180300CB4F3E /* MeasurementSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8AD2C42C4A180300CB4F3E /* MeasurementSeries.swift */; };
 		4D8AD2C82C4A2BE900CB4F3E /* VitalsGraphOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8AD2C72C4A2BE900CB4F3E /* VitalsGraphOptions.swift */; };
-		4D8AD2CA2C4A347300CB4F3E /* DataSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8AD2C92C4A347300CB4F3E /* DataSelection.swift */; };
 		4D8AD2CD2C4ACFB700CB4F3E /* DateInterval+asAdjustedRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8AD2CC2C4ACFB700CB4F3E /* DateInterval+asAdjustedRange.swift */; };
 		4D92B9F22C3C8D1E00ABCED7 /* MeasurementListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D92B9F12C3C8D1E00ABCED7 /* MeasurementListSection.swift */; };
 		4D92B9F42C3C8DF900ABCED7 /* MeasurementListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D92B9F32C3C8DF900ABCED7 /* MeasurementListRow.swift */; };
@@ -86,7 +84,6 @@
 		4DA20B4B2C249E7E00715AA2 /* VitalsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA20B4A2C249E7E00715AA2 /* VitalsManager.swift */; };
 		4DA20B512C25E1A300715AA2 /* ObservationAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA20B502C25E1A300715AA2 /* ObservationAlias.swift */; };
 		4DA20B542C25F8A600715AA2 /* FHIRDateTime+DateComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA20B532C25F8A600715AA2 /* FHIRDateTime+DateComponents.swift */; };
-		4DA20B582C25FE4000715AA2 /* FHIRInstant+DateComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA20B572C25FE4000715AA2 /* FHIRInstant+DateComponents.swift */; };
 		4DA20B5A2C25FEDE00715AA2 /* Decimal+IntConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA20B592C25FEDE00715AA2 /* Decimal+IntConversion.swift */; };
 		4DA20B5C2C26098400715AA2 /* R4Observation+GetEffectiveDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA20B5B2C26098400715AA2 /* R4Observation+GetEffectiveDate.swift */; };
 		4DA20B642C2A0FF100715AA2 /* VitalsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA20B632C2A0FF100715AA2 /* VitalsCard.swift */; };
@@ -199,13 +196,12 @@
 		4D40728E2C483A5C007C5621 /* VitalsGraph+GestureOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VitalsGraph+GestureOverlay.swift"; sourceTree = "<group>"; };
 		4D4072922C4841D4007C5621 /* VitalsGraph+DefaultStyling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VitalsGraph+DefaultStyling.swift"; sourceTree = "<group>"; };
 		4D4072962C484716007C5621 /* VitalsGraph+ChartContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VitalsGraph+ChartContent.swift"; sourceTree = "<group>"; };
-		4D40729E2C488172007C5621 /* KnownSeries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnownSeries.swift; sourceTree = "<group>"; };
+		4D40729E2C488172007C5621 /* KnownVitalsSeries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnownVitalsSeries.swift; sourceTree = "<group>"; };
 		4D4072A32C49A07C007C5621 /* HKSampleGraph+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HKSampleGraph+ViewModel.swift"; sourceTree = "<group>"; };
 		4D4AA0A42BC5E43E00676489 /* OnboardingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingUITests.swift; sourceTree = "<group>"; };
 		4D8AD2C12C49D51E00CB4F3E /* SeriesDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesDictionary.swift; sourceTree = "<group>"; };
 		4D8AD2C42C4A180300CB4F3E /* MeasurementSeries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementSeries.swift; sourceTree = "<group>"; };
 		4D8AD2C72C4A2BE900CB4F3E /* VitalsGraphOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalsGraphOptions.swift; sourceTree = "<group>"; };
-		4D8AD2C92C4A347300CB4F3E /* DataSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSelection.swift; sourceTree = "<group>"; };
 		4D8AD2CC2C4ACFB700CB4F3E /* DateInterval+asAdjustedRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateInterval+asAdjustedRange.swift"; sourceTree = "<group>"; };
 		4D92B9F12C3C8D1E00ABCED7 /* MeasurementListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementListSection.swift; sourceTree = "<group>"; };
 		4D92B9F32C3C8DF900ABCED7 /* MeasurementListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementListRow.swift; sourceTree = "<group>"; };
@@ -436,7 +432,7 @@
 				4DF506302C2F3421003E7EFB /* VitalsGraph.swift */,
 				4D4072832C46DDB2007C5621 /* VitalsGraph+ViewModel.swift */,
 				4D8AD2C72C4A2BE900CB4F3E /* VitalsGraphOptions.swift */,
-				4D40729E2C488172007C5621 /* KnownSeries.swift */,
+				4D40729E2C488172007C5621 /* KnownVitalsSeries.swift */,
 			);
 			path = GraphSection;
 			sourceTree = "<group>";
@@ -457,7 +453,6 @@
 				4D4072882C46FC98007C5621 /* AggregatedMeasurement.swift */,
 				4D8AD2C42C4A180300CB4F3E /* MeasurementSeries.swift */,
 				4D8AD2C12C49D51E00CB4F3E /* SeriesDictionary.swift */,
-				4D8AD2C92C4A347300CB4F3E /* DataSelection.swift */,
 			);
 			path = DataTypes;
 			sourceTree = "<group>";
@@ -907,7 +902,7 @@
 				A9DFE8A92ABE551400428242 /* AccountButton.swift in Sources */,
 				4DDFC7392BF2C3C9002B07A1 /* NotificationSection.swift in Sources */,
 				4D34B3F42C406340006F0D40 /* DateGranularity.swift in Sources */,
-				4D40729F2C488172007C5621 /* KnownSeries.swift in Sources */,
+				4D40729F2C488172007C5621 /* KnownVitalsSeries.swift in Sources */,
 				4DC0F6712C34818B0025AB13 /* HKSample+GetDoubleValues.swift in Sources */,
 				4D34B3F62C4065A5006F0D40 /* HeartHealthError.swift in Sources */,
 				4DDFC7872BFBFDDD002B07A1 /* NotificationManager.swift in Sources */,
@@ -916,18 +911,14 @@
 				4DF506282C2F2598003E7EFB /* VitalsContentView.swift in Sources */,
 				4D40728F2C483A5C007C5621 /* VitalsGraph+GestureOverlay.swift in Sources */,
 				4D92B9F82C3C901500ABCED7 /* SymptomsGraphSection.swift in Sources */,
-				4DA20B582C25FE4000715AA2 /* FHIRInstant+DateComponents.swift in Sources */,
 				2FF53D8D2A8729D600042B76 /* ENGAGEHFStandard.swift in Sources */,
 				4DDFC78A2BFC1312002B07A1 /* NotificationRow.swift in Sources */,
 				4D92B9F22C3C8D1E00ABCED7 /* MeasurementListSection.swift in Sources */,
-				4D2D1D782C2CD32C00ABDC19 /* ObservationValueProtocol.swift in Sources */,
 				4D34B3ED2C404C61006F0D40 /* VitalsUnit.swift in Sources */,
 				4DF5063A2C2F5104003E7EFB /* DisplayMeasurement.swift in Sources */,
 				4D4072842C46DDB2007C5621 /* VitalsGraph+ViewModel.swift in Sources */,
 				A9720E432ABB68CC00872D23 /* AccountSetupHeader.swift in Sources */,
 				2FE5DC4029EDD7EE004B9AB4 /* FeatureFlags.swift in Sources */,
-				4DA20B582C25FE4000715AA2 /* FHIRInstant+DateComponents.swift in Sources */,
-				4D2D1D782C2CD32C00ABDC19 /* ObservationValueProtocol.swift in Sources */,
 				4D2D1D682C2C82A200ABDC19 /* FHIRPeriod+GetDates.swift in Sources */,
 				4D2D1D762C2CC8B200ABDC19 /* ValueXProtocol.swift in Sources */,
 				4DA20B542C25F8A600715AA2 /* FHIRDateTime+DateComponents.swift in Sources */,
@@ -938,7 +929,6 @@
 				4DA20B4B2C249E7E00715AA2 /* VitalsManager.swift in Sources */,
 				2F5E32BD297E05EA003432F8 /* ENGAGEHFDelegate.swift in Sources */,
 				4DA20B512C25E1A300715AA2 /* ObservationAlias.swift in Sources */,
-				4D8AD2CA2C4A347300CB4F3E /* DataSelection.swift in Sources */,
 				4D065BE02C09401700EBB3AE /* StudyApplicationListCard.swift in Sources */,
 				4D8AD2CD2C4ACFB700CB4F3E /* DateInterval+asAdjustedRange.swift in Sources */,
 				A96C56BB2C0DFFCE00D6A50B /* InvitationCodeModule.swift in Sources */,

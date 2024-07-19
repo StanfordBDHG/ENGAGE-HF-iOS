@@ -10,9 +10,9 @@ import SwiftUI
 
 
 struct DisplayMeasurement: View {
-    var quantity: String
-    var units: String
-    var type: String
+    let quantity: String
+    let units: String
+    let type: String
     @ScaledMetric var quantityTextSize: CGFloat
     
     

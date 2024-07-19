@@ -36,9 +36,10 @@ struct VitalsGraphSection: View {
     var body: some View {
         Section(
             content: {
-                if !graphData.isEmpty {
+                let data = graphData
+                if !data.isEmpty {
                     HKSampleGraph(
-                        data: graphData,
+                        data: data,
                         dateRange: dateRange,
                         dateResolution: granularity.defaultDateUnit
                     )

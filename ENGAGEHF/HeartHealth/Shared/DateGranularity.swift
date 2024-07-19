@@ -40,7 +40,7 @@ enum DateGranularity: CustomStringConvertible, CaseIterable, Identifiable {
         let calendar = Calendar.current
         
         /// The range of dates determined by the granularity
-        var dateRange: DateInterval {
+        let dateRange: DateInterval = {
             /// Get range according to the granularity and relative to the current date
             let startDate: Date? = switch self {
             case .daily:
@@ -55,7 +55,7 @@ enum DateGranularity: CustomStringConvertible, CaseIterable, Identifiable {
                 return DateInterval(start: endDate, end: endDate)
             }
             return DateInterval(start: startDate, end: endDate)
-        }
+        }()
         
         /// The final date range to display
         /// Expand the ends to the nearest interval

@@ -58,20 +58,6 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint, A
             return Storage.storage().reference().child("users/\(details.accountId)")
         }
     }
-    
-    private var hkSampleMapping: HKSampleMapping {
-        var sampleMapping = HKSampleMapping.default
-        var bodyMassMapping = sampleMapping.quantitySampleMapping[HKQuantityType(.bodyMass)]
-        bodyMassMapping?.unit = MappedUnit(
-            hkunit: .gramUnit(with: .kilo),
-            unit: "kg",
-            system: URL(string: "http://unitsofmeasure.org")!,  // swiftlint:disable:this force_unwrapping
-            code: "kg"
-        )
-        sampleMapping.quantitySampleMapping[HKQuantityType(.bodyMass)] = bodyMassMapping
-        
-        return sampleMapping
-    }
 
 
     init() {

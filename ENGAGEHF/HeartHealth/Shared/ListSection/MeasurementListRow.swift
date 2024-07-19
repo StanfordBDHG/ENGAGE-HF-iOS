@@ -10,10 +10,10 @@ import SwiftUI
 
 
 struct MeasurementListRow: View {
-    var displayQuantity: String
-    var displayUnit: String
-    var displayDate: String
-    var type: String
+    let displayQuantity: String
+    let displayUnit: String
+    let displayDate: String
+    let type: String
     
     
     var body: some View {

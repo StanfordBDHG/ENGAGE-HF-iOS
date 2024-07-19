@@ -29,8 +29,7 @@ enum GraphSelection: CaseIterable, Identifiable, CustomStringConvertible {
         }
     }
     
-    /// The localized string key corresponding to the message to display when this vital has no measurements
-    var emptyHistoryKey: String {
+    var emptyHistoryLocalizedKey: String {
         switch self {
         case .symptoms: "symptomsMissing"
         case .weight: "weightMissing"
@@ -48,7 +47,6 @@ enum VitalsType: CustomStringConvertible {
     case bloodPressure
     
     
-    /// The full name of the vital, displayed in the Description Header and Graph Legend
     var description: String {
         switch self {
         case .weight: "Body Weight"
@@ -57,12 +55,12 @@ enum VitalsType: CustomStringConvertible {
         }
     }
     
-    /// The name of the LocalizedStringKey which maps to the localized description of the vitals type
-    var explanationKey: String {
+    /// The localized description of the vitals type
+    var localizedExplanation: String {
         switch self {
-        case .weight: "vitalsWeight"
-        case .heartRate: "vitalsHeartRate"
-        case .bloodPressure: "vitalsBloodPressure"
+        case .weight: String(localized: "vitalsWeight")
+        case .heartRate: String(localized: "vitalsHeartRate")
+        case .bloodPressure: String(localized: "vitalsBloodPressure")
         }
     }
     
@@ -75,37 +73,12 @@ enum VitalsType: CustomStringConvertible {
         }
     }
     
-    /// The unit corresponding to each vitlas type
+    /// The HKUnit corresponding to each vitals type
     var unit: VitalsUnit {
         switch self {
         case .weight: Locale.current.measurementSystem == .us ? .lbs : .kgs
         case .heartRate: .bpm
         case .bloodPressure: .mmHg
-        }
-    }
-}
-
-
-enum DisplayDateResolution: CaseIterable, Identifiable, CustomStringConvertible {
-    case daily
-    case weekly
-    case monthly
-    
-    var id: Self { self }
-    
-    var description: String {
-        switch self {
-        case .daily: "Daily"
-        case .weekly: "Weekly"
-        case .monthly: "Monthly"
-        }
-    }
-    
-    var intervalComponent: Calendar.Component {
-        switch self {
-        case .daily: .day
-        case .weekly: .weekOfYear
-        case .monthly: .month
         }
     }
 }
@@ -149,15 +122,15 @@ enum SymptomsType: String, CaseIterable, Identifiable, CustomStringConvertible, 
         }
     }
     
-    /// The name of the LocalizedStringKey which maps to the localized description of the symptoms score
-    var explanationKey: String {
+    /// The localized description of the symptoms score
+    var localizedExplanation: String {
         switch self {
-        case .overall: "symptomOverall"
-        case .physical: "symptomPhysical"
-        case .social: "symptomSocial"
-        case .quality: "symptomQuality"
-        case .specific: "symptomSpecific"
-        case .dizziness: "symptomDizziness"
+        case .overall: String(localized: "symptomOverall")
+        case .physical: String(localized: "symptomPhysical")
+        case .social: String(localized: "symptomSocial")
+        case .quality: String(localized: "symptomQuality")
+        case .specific: String(localized: "symptomSpecific")
+        case .dizziness: String(localized: "symptomDizziness")
         }
     }
     

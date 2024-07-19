@@ -121,19 +121,19 @@ class EngageHFTests: XCTestCase {
         ].compactMap { $0 }
         
         let expectedOutput: SeriesDictionary = [
-            KnownSeries.bloodPressureSystolic.rawValue: [
-                VitalMeasurement(date: Date().addingTimeInterval(-5 * 60 * 60), value: 120, type: KnownSeries.bloodPressureSystolic.rawValue),
-                VitalMeasurement(date: Date().addingTimeInterval(-4 * 60 * 60), value: 125, type: KnownSeries.bloodPressureSystolic.rawValue),
-                VitalMeasurement(date: Date().addingTimeInterval(-3 * 60 * 60), value: 130, type: KnownSeries.bloodPressureSystolic.rawValue),
-                VitalMeasurement(date: Date().addingTimeInterval(-2 * 60 * 60), value: 128, type: KnownSeries.bloodPressureSystolic.rawValue),
-                VitalMeasurement(date: Date().addingTimeInterval(-1 * 60 * 60), value: 122, type: KnownSeries.bloodPressureSystolic.rawValue)
+            KnownVitalsSeries.bloodPressureSystolic.rawValue: [
+                VitalMeasurement(date: Date().addingTimeInterval(-5 * 60 * 60), value: 120, type: KnownVitalsSeries.bloodPressureSystolic.rawValue),
+                VitalMeasurement(date: Date().addingTimeInterval(-4 * 60 * 60), value: 125, type: KnownVitalsSeries.bloodPressureSystolic.rawValue),
+                VitalMeasurement(date: Date().addingTimeInterval(-3 * 60 * 60), value: 130, type: KnownVitalsSeries.bloodPressureSystolic.rawValue),
+                VitalMeasurement(date: Date().addingTimeInterval(-2 * 60 * 60), value: 128, type: KnownVitalsSeries.bloodPressureSystolic.rawValue),
+                VitalMeasurement(date: Date().addingTimeInterval(-1 * 60 * 60), value: 122, type: KnownVitalsSeries.bloodPressureSystolic.rawValue)
             ],
-            KnownSeries.bloodPressureDiastolic.rawValue: [
-                VitalMeasurement(date: Date().addingTimeInterval(-5 * 60 * 60), value: 80, type: KnownSeries.bloodPressureDiastolic.rawValue),
-                VitalMeasurement(date: Date().addingTimeInterval(-4 * 60 * 60), value: 82, type: KnownSeries.bloodPressureDiastolic.rawValue),
-                VitalMeasurement(date: Date().addingTimeInterval(-3 * 60 * 60), value: 85, type: KnownSeries.bloodPressureDiastolic.rawValue),
-                VitalMeasurement(date: Date().addingTimeInterval(-2 * 60 * 60), value: 84, type: KnownSeries.bloodPressureDiastolic.rawValue),
-                VitalMeasurement(date: Date().addingTimeInterval(-1 * 60 * 60), value: 81, type: KnownSeries.bloodPressureDiastolic.rawValue)
+            KnownVitalsSeries.bloodPressureDiastolic.rawValue: [
+                VitalMeasurement(date: Date().addingTimeInterval(-5 * 60 * 60), value: 80, type: KnownVitalsSeries.bloodPressureDiastolic.rawValue),
+                VitalMeasurement(date: Date().addingTimeInterval(-4 * 60 * 60), value: 82, type: KnownVitalsSeries.bloodPressureDiastolic.rawValue),
+                VitalMeasurement(date: Date().addingTimeInterval(-3 * 60 * 60), value: 85, type: KnownVitalsSeries.bloodPressureDiastolic.rawValue),
+                VitalMeasurement(date: Date().addingTimeInterval(-2 * 60 * 60), value: 84, type: KnownVitalsSeries.bloodPressureDiastolic.rawValue),
+                VitalMeasurement(date: Date().addingTimeInterval(-1 * 60 * 60), value: 81, type: KnownVitalsSeries.bloodPressureDiastolic.rawValue)
             ],
         ]
         

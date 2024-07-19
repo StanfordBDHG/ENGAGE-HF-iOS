@@ -12,8 +12,8 @@ import SwiftUI
 
 
 struct VitalsGraph: View {
-    var data: [String: [VitalMeasurement]]
-    var options: VitalsGraphOptions = .defaultOptions
+    let data: SeriesDictionary
+    let options: VitalsGraphOptions
     
     @State private var viewModel = ViewModel()
     
@@ -39,6 +39,12 @@ struct VitalsGraph: View {
                 viewModel.processData(data, options: options)
             }
             .viewStateAlert(state: $viewModel.viewState)
+    }
+    
+     
+    init(data: SeriesDictionary, options: VitalsGraphOptions = .defaultOptions) {
+        self.data = data
+        self.options = options
     }
 }
 

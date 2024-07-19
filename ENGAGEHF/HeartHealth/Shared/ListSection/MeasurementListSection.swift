@@ -39,7 +39,7 @@ struct MeasurementListSection: View {
                         }
                     }
                 } else {
-                    Text(LocalizedStringKey(type.emptyHistoryKey))
+                    Text(LocalizedStringKey(type.emptyHistoryLocalizedKey))
                         .font(.caption)
                 }
             },

@@ -15,7 +15,7 @@ struct VitalsCard: View {
     let units: String
     let measurement: (value: String, date: String)?
     
-    var measurementTextSize: CGFloat = 40
+    @ScaledMetric var measurementTextSize: CGFloat = 40
     private let cardHeight: CGFloat = 80
     
     

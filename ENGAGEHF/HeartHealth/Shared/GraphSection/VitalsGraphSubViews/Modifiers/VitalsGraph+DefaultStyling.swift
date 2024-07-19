@@ -12,8 +12,8 @@ import SwiftUI
 
 extension VitalsGraph {
     struct DefaultChartStyle: ViewModifier {
-        var viewModel: ViewModel
-        var dateRange: ClosedRange<Date>
+        let viewModel: ViewModel
+        let dateRange: ClosedRange<Date>
         
         
         func body(content: Content) -> some View {

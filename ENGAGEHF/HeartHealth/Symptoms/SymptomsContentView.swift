@@ -10,7 +10,7 @@ import SwiftUI
 
 
 struct SymptomsContentView: View {
-    @Environment(VitalsManager.self) private var  vitalsManager
+    @Environment(VitalsManager.self) private var vitalsManager
     @State private var symptomsType: SymptomsType = .overall
     
     
@@ -32,7 +32,7 @@ struct SymptomsContentView: View {
     var body: some View {
         SymptomsGraphSection(symptomsType: $symptomsType)
         DescriptionSection(
-            explanationKey: symptomsType.explanationKey,
+            localizedExplanation: symptomsType.localizedExplanation,
             quantityName: symptomsType.fullName
         )
         MeasurementListSection(
@@ -41,21 +41,6 @@ struct SymptomsContentView: View {
             type: .symptoms
         )
             .deleteDisabled(true)
-    }
-    
-    
-    private func getDisplayInfo(for type: SymptomsType) -> [VitalListMeasurement] {
-        vitalsManager.symptomHistory
-            .compactMap { score in
-                VitalListMeasurement(
-                    id: score.id,
-                    value: String(format: "%.1f", score[keyPath: symptomsType.symptomScoreKeyMap]),
-                    date: score.date
-                )
-            }
-            .sorted {
-                $0.date > $1.date
-            }
     }
 }
 

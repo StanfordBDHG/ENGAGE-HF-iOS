@@ -72,27 +72,29 @@ extension VitalsGraph {
                 y: value.eventLocation.y - origin.y
             )
             
-            // Mark the points in the tapped interval as selected, if there are any
-            if let (date, _) = proxy.value(at: location, as: (Date, Double).self) {
-                // If the user taps or drags outside the edges of the graph, then clear the selection and show the header
-                guard dateRange.contains(date) else {
-                    self.selection = nil
-                    return
-                }
-                
-                let selectedPoints = aggregatedData.flatMap { getPoints(from: $0, onDate: date, granularity: dateUnit) }
-
-                // Optionally, if no point was selected, just use the previously selected point
-                guard !selectedPoints.isEmpty,
-                      let interval = getInterval(date: date, unit: dateUnit)?.asAdjustedRange(using: calendar) else {
-                    if clearOnGap {
-                        self.selection = nil
-                    }
-                    return
-                }
-                
-                self.selection = (interval, selectedPoints)
+            // If nothing is selected, do nothing
+            guard let (date, _) = proxy.value(at: location, as: (Date, Double).self) else {
+                return
             }
+            
+            // If the user taps or drags outside the edges of the graph, then clear the selection and show the header
+            guard dateRange.contains(date) else {
+                self.selection = nil
+                return
+            }
+            
+            let selectedPoints = aggregatedData.flatMap { getPoints(from: $0, onDate: date, granularity: dateUnit) }
+
+            // Optionally, if no point was selected, just use the previously selected point
+            guard !selectedPoints.isEmpty,
+                  let interval = getInterval(date: date, unit: dateUnit)?.asAdjustedRange(using: calendar) else {
+                if clearOnGap {
+                    self.selection = nil
+                }
+                return
+            }
+            
+            self.selection = (interval, selectedPoints)
         }
         
         
