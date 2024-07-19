@@ -31,7 +31,7 @@ extension HKSampleGraph {
                         VitalMeasurement(
                             date: quantitySample.startDate,
                             value: quantitySample.quantity.doubleValue(for: hkUnits),
-                            type: quantitySample.quantityType.description
+                            type: quantitySample.quantityType.identifier
                         )
                     ]
                 case let correlation as HKCorrelation:
@@ -95,7 +95,7 @@ extension HKSampleGraph {
             switch identifier {
             case HKQuantityTypeIdentifier.bodyMass.rawValue:
                 self.formatter = { String(format: "%.1f", $0.first(where: { $0.0 == identifier })?.1 ?? 0) }
-                return (Locale.current.measurementSystem == .us ? HKUnit.pound() : HKUnit.gramUnit(with: .kilo), "lbs")
+                return Locale.current.measurementSystem == .us ? (HKUnit.pound(), "lbs") : (HKUnit.gramUnit(with: .kilo), "kg")
             case HKQuantityTypeIdentifier.heartRate.rawValue:
                 self.formatter = { "\(Int($0.first(where: { $0.0 == identifier })?.1 ?? 0))" }
                 return (HKUnit.count().unitDivided(by: .minute()), "BPM")

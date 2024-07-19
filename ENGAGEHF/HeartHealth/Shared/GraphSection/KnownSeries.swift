@@ -10,6 +10,7 @@ import Foundation
 
 
 /// A collection of known vitals types that may be encountered while plotting data using VtalsGraph
+/// Note: Currently, HKSampleGraph.ViewModel uses the HKQuantityTypeIdentifier for bodyWeight and heartRate instead
 enum KnownSeries: String {
     case symptomScore = "Symptom Score"
     case bodyWeight = "Body Weight"
