@@ -12,7 +12,7 @@ import Foundation
 /// A graph-ready representation of a vitals measurement
 /// Represents a single, aggregated (averaged across an interval) data point
 struct AggregatedMeasurement: Hashable, Identifiable {
-    let id: Self { self }
+    var id: Self { self }
     let date: Date
     let value: Double
     let count: Int

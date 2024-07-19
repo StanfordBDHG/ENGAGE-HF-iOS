@@ -12,7 +12,7 @@ import Foundation
 /// The name of the collections in the Firebase backend as defined in:
 /// https://github.com/StanfordBDHG/ENGAGE-HF-Firebase/tree/web-data-scheme
 enum CollectionID: String, CaseIterable {
-    case kccqResults
+    case symptomScores
     case heartRateObservations
     case bodyWeightObservations
     case bloodPressureObservations

@@ -96,7 +96,7 @@ public class VitalsManager: Module, EnvironmentAccessible {
         }
         
         let firestore = Firestore.firestore()
-        let userDocRef = firestore.collection("users").document(uid)
+        let userDocRef = firestore.collection("patients").document(uid)
         
         // Weight snapshot listener
         self.snapshotListeners.append(
@@ -128,7 +128,7 @@ public class VitalsManager: Module, EnvironmentAccessible {
         // Symptom Survey Scores snapshot listener
         self.snapshotListeners.append(
             self.registerSnapshot(
-                collectionReference: userDocRef.collection(CollectionID.kccqResults.rawValue),
+                collectionReference: userDocRef.collection(CollectionID.symptomScores.rawValue),
                 storage: \.symptomHistory,
                 mapObservation: { $0 }
             )
@@ -167,11 +167,11 @@ public class VitalsManager: Module, EnvironmentAccessible {
         let hkQuantity: HKQuantity
         let quantityType: HKQuantityType
         
-        if observation.code.containsCoding(code: "29463-7", system: FHIRSystem.loinc.url) {
+        if observation.code.containsCoding(code: "29463-7", system: FHIRSystem.loinc) {
             // Weight
             hkQuantity = try self.getQuantity(observation: observation)
             quantityType = HKQuantityType(.bodyMass)
-        } else if observation.code.containsCoding(code: "8867-4", system: FHIRSystem.loinc.url) {
+        } else if observation.code.containsCoding(code: "8867-4", system: FHIRSystem.loinc) {
             // Heart Rate
             hkQuantity = try self.getQuantity(observation: observation)
             quantityType = HKQuantityType(.heartRate)
@@ -200,7 +200,7 @@ public class VitalsManager: Module, EnvironmentAccessible {
     
     private func convertToHKCorrelation(_ observation: R4Observation) throws -> HKCorrelation {
         // For now, only handle Blood Pressure
-        guard observation.code.containsCoding(code: "85354-9", system: FHIRSystem.loinc.url) else {
+        guard observation.code.containsCoding(code: "85354-9", system: FHIRSystem.loinc) else {
             throw VitalsError.invalidObservationType
         }
         
@@ -215,8 +215,8 @@ public class VitalsManager: Module, EnvironmentAccessible {
             throw VitalsError.missingField
         }
         
-        let systolicComponent = try self.getComponent(components, code: "8480-6", system: FHIRSystem.loinc.url)
-        let diastolicComponent = try self.getComponent(components, code: "8462-4", system: FHIRSystem.loinc.url)
+        let systolicComponent = try self.getComponent(components, code: "8480-6", system: FHIRSystem.loinc)
+        let diastolicComponent = try self.getComponent(components, code: "8462-4", system: FHIRSystem.loinc)
         
         let systolicQuantity = try self.getQuantity(observation: systolicComponent)
         let diastolicQuantity = try self.getQuantity(observation: diastolicComponent)
@@ -379,7 +379,7 @@ extension VitalsManager {
     private func setupHeartHealthTesting(user: User) async throws {
         let firestore = Firestore.firestore()
         let userDocRef = firestore
-            .collection("users")
+            .collection("patients")
             .document(user.uid)
         
         
@@ -434,7 +434,7 @@ extension VitalsManager {
         }
         
         let collectionRef = firestore
-            .collection("users")
+            .collection("patients")
             .document(user.uid)
             .collection(collectionID.rawValue)
         

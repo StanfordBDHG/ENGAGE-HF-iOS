@@ -55,7 +55,7 @@ struct MeasurementListSection: View {
     private func deleteIndices(indexSet: IndexSet) throws {
         var collectionID: CollectionID {
             switch type {
-            case .symptoms: .kccqResults
+            case .symptoms: .symptomScores
             case .weight: .bodyWeightObservations
             case .heartRate: .heartRateObservations
             case .bloodPressure: .bloodPressureObservations

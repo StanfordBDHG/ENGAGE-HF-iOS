@@ -12,7 +12,7 @@ import Foundation
 /// A representation of a measurement passed to VitalsGraph
 /// Converted to an AggregatedMeasurement before plotting
 struct VitalMeasurement: Hashable, Identifiable {
-    let id: Self { self }
+    var id: Self { self }
     let date: Date
     let value: Double
     let type: String

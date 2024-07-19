@@ -31,6 +31,10 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint, A
     private static var userCollection: CollectionReference {
         Firestore.firestore().collection("users")
     }
+    
+    private static var patientCollection: CollectionReference {
+        Firestore.firestore().collection("patients")
+    }
 
     @Dependency var accountStorage: FirestoreAccountStorage?
 
@@ -46,6 +50,16 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint, A
             }
 
             return Self.userCollection.document(details.accountId)
+        }
+    }
+    
+    private var patientDocumentReference: DocumentReference {
+        get async throws {
+            guard let details = await account.details else {
+                throw ENGAGEHFStandardError.userNotAuthenticatedYet
+            }
+            
+            return Self.patientCollection.document(details.accountId)
         }
     }
     
@@ -73,13 +87,13 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint, A
         }
 
         logger.debug("Saving \(samples.count) samples to firestore ...")
-        let userDocument = try await userDocumentReference
+        let patientDocument = try await patientDocumentReference
 
         do {
             let batch = Firestore.firestore().batch()
             for sample in samples {
                 do {
-                    let document = try healthKitDocument(for: userDocument, id: sample.id, type: sample.sampleType)
+                    let document = try healthKitDocument(for: patientDocument, id: sample.id, type: sample.sampleType)
                     try batch.setData(from: sample.resource, forDocument: document)
                 } catch {
                     // either document retrieval or encoding failed, this should not stop other samples from getting saved
@@ -96,8 +110,8 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint, A
     
     func add(symptomScore: SymptomScore) async {
         do {
-            let userDoc = try await userDocumentReference
-            try userDoc.collection("kccqResults").addDocument(from: symptomScore)
+            let patientDoc = try await patientDocumentReference
+            try patientDoc.collection("symptomScores").addDocument(from: symptomScore)
         } catch {
             logger.error("Could not store the symptom scores: \(error)")
         }
@@ -107,7 +121,7 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint, A
     func add(notification: Notification) async {
         do {
             let userDoc = try await userDocumentReference
-            try userDoc.collection("notifications").addDocument(from: notification)
+            try userDoc.collection("messages").addDocument(from: notification)
         } catch {
             logger.error("Could not store the notification: \(error)")
         }
@@ -134,9 +148,9 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint, A
             case HKQuantityType(.bodyMass):
                 return CollectionID.bodyWeightObservations.rawValue
             case HKQuantityType(.bodyMassIndex):
-                return "bodyMassIndexObservations"
+                return nil
             case HKQuantityType(.height):
-                return "heightObservations"
+                return nil
             case HKQuantityType(.heartRate):
                 return CollectionID.heartRateObservations.rawValue
             case HKCorrelationType(.bloodPressure):
