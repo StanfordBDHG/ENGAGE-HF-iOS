@@ -86,6 +86,31 @@ enum VitalsType: CustomStringConvertible {
 }
 
 
+enum DisplayDateResolution: CaseIterable, Identifiable, CustomStringConvertible {
+    case daily
+    case weekly
+    case monthly
+    
+    var id: Self { self }
+    
+    var description: String {
+        switch self {
+        case .daily: "Daily"
+        case .weekly: "Weekly"
+        case .monthly: "Monthly"
+        }
+    }
+    
+    var intervalComponent: Calendar.Component {
+        switch self {
+        case .daily: .day
+        case .weekly: .weekOfYear
+        case .monthly: .month
+        }
+    }
+}
+
+
 /// The subfield of Symptom Score to be displayed as the main content of Heart Health view when GraphSelection is .symptom
 /// Chosen by the SymptomPicker in SymptomContentView
 enum SymptomsType: String, CaseIterable, Identifiable, CustomStringConvertible, Equatable {
@@ -145,31 +170,6 @@ enum SymptomsType: String, CaseIterable, Identifiable, CustomStringConvertible, 
         case .quality: \.qualityOfLifeScore
         case .specific: \.specificSymptomsScore
         case .dizziness: \.dizzinessScore
-        }
-    }
-}
-
-
-enum DisplayDateResolution: CaseIterable, Identifiable, CustomStringConvertible {
-    case daily
-    case weekly
-    case monthly
-    
-    var id: Self { self }
-    
-    var description: String {
-        switch self {
-        case .daily: "Daily"
-        case .weekly: "Weekly"
-        case .monthly: "Monthly"
-        }
-    }
-    
-    var intervalComponent: Calendar.Component {
-        switch self {
-        case .daily: .day
-        case .weekly: .weekOfYear
-        case .monthly: .month
         }
     }
 }
