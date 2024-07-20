@@ -22,7 +22,11 @@ import SpeziQuestionnaire
 import SwiftUI
 
 
-actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint, AccountStorageConstraint, AccountNotifyConstraint {
+actor ENGAGEHFStandard: Standard,
+                        EnvironmentAccessible,
+                        OnboardingConstraint,
+                        AccountStorageConstraint,
+                        AccountNotifyConstraint {
     enum ENGAGEHFStandardError: LocalizedError {
         case userNotAuthenticatedYet
         case invalidHKSampleType
