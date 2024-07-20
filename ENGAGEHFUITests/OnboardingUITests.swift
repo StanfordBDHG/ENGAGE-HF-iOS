@@ -197,7 +197,12 @@ extension XCUIApplication {
         XCTAssertFalse(navigationBars.buttons["Close"].exists)
 
         XCTAssert(buttons["Delete Account"].waitForExistence(timeout: 2))
+        buttons["Delete Account"].tap()
+
+        let alert = "Are you sure you want to delete your account?"
+        XCTAssert(alerts[alert].waitForExistence(timeout: 6.0))
+        alerts[alert].buttons["Delete"].tap()
         
-        // Note: Once account deletion is disabled, we should test for an alert here
+        XCTAssert(alerts["Error"].waitForExistence(timeout: 2))
     }
 }

@@ -37,6 +37,7 @@ extension VitalsGraph {
                                 accessibilityLabel: "Interval Summary"
                             )
                         }
+                        .accessibilityIdentifier("Interval Selected: \(selection.interval.formatted())")
                 }
                 
                 ForEach(viewModel.aggregatedData) { series in
@@ -50,10 +51,11 @@ extension VitalsGraph {
                             x: .value("Date", point.date, unit: dateUnit),
                             y: .value("Score", point.value)
                         )
-                        .foregroundStyle(by: .value("Series", series.seriesName))
+                            .foregroundStyle(by: .value("Series", series.seriesName))
                     }
                 }
             }
+                .accessibilityIdentifier("Vitals Graph")
                 .frame(maxWidth: .infinity, idealHeight: 200)
                 .padding(.top, intervalSummaryHeight + 4)
                 .overlay(alignment: .topLeading) {

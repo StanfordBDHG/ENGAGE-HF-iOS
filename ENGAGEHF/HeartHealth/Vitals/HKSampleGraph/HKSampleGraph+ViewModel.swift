@@ -69,7 +69,7 @@ extension HKSampleGraph {
         private func getUnits(data: [HKSample]) -> (HKUnit, String) {
             guard let sample = data.first else {
                 viewState = .error(HKSampleGraphError.failedToFetchUnits)
-                return (HKUnit.pound(), "lbs")   // Dummy value
+                return (HKUnit.pound(), "lb")   // Dummy value
             }
             
             // For now, only allow for HKQuantitySample and HKCorrelation
@@ -85,7 +85,7 @@ extension HKSampleGraph {
             
             guard let identifiedUnits else {
                 viewState = .error(HKSampleGraphError.failedToFetchUnits)
-                return (HKUnit.pound(), "lbs")   // Dummy value
+                return (HKUnit.pound(), "lb")   // Dummy value
             }
             
             return identifiedUnits
@@ -95,16 +95,25 @@ extension HKSampleGraph {
             switch identifier {
             case HKQuantityTypeIdentifier.bodyMass.rawValue:
                 self.formatter = { String(format: "%.1f", $0.first(where: { $0.0 == identifier })?.1 ?? 0) }
-                return Locale.current.measurementSystem == .us ? (HKUnit.pound(), "lbs") : (HKUnit.gramUnit(with: .kilo), "kg")
+                return Locale.current.measurementSystem == .us ? (HKUnit.pound(), "lb") : (HKUnit.gramUnit(with: .kilo), "kg")
             case HKQuantityTypeIdentifier.heartRate.rawValue:
                 self.formatter = { "\(Int($0.first(where: { $0.0 == identifier })?.1 ?? 0))" }
                 return (HKUnit.count().unitDivided(by: .minute()), "BPM")
             case HKCorrelationTypeIdentifier.bloodPressure.rawValue:
                 self.formatter = {
-                    [
-                        "\(Int($0.first(where: { $0.0 == KnownVitalsSeries.bloodPressureSystolic.rawValue })?.1 ?? 0))",
-                        "\(Int($0.first(where: { $0.0 == KnownVitalsSeries.bloodPressureDiastolic.rawValue })?.1 ?? 0))"
-                    ].joined(separator: "/")
+                    let systolic = $0.first(where: { $0.0 == KnownVitalsSeries.bloodPressureSystolic.rawValue })?.1
+                    let diastolic = $0.first(where: { $0.0 == KnownVitalsSeries.bloodPressureDiastolic.rawValue })?.1
+                    
+                    var systolicString = "---"
+                    if let systolic {
+                        systolicString = "\(Int(systolic))"
+                    }
+                    var diastolicString = "---"
+                    if let diastolic {
+                        diastolicString = "\(Int(diastolic))"
+                    }
+                    
+                    return "\(systolicString)/\(diastolicString)"
                 }
                 return (HKUnit.millimeterOfMercury(), "mmHg")
             default:
