@@ -76,8 +76,9 @@ struct SymptomsGraphSection: View {
                     VitalsGraph(data: graphData, options: options)
                       .modifier(YAxisModifier())
                 } else {
-                    Text("No recent symptom scores available.")
+                    Text(symptomsType.localizedEmptyHistoryWarning)
                         .font(.caption)
+                        .accessibilityLabel("Empty Symptoms Graph")
                 }
             },
             header: {

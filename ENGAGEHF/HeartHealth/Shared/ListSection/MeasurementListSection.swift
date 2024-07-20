@@ -41,7 +41,7 @@ struct MeasurementListSection: View {
                 } else {
                     Text(type.localizedEmptyHistoryWarning)
                         .font(.caption)
-                        .accessibilityLabel("Empty \(type)")
+                        .accessibilityLabel("Empty \(type) List")
                 }
             },
             header: {

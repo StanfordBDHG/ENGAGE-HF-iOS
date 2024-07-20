@@ -44,8 +44,9 @@ struct VitalsGraphSection: View {
                         dateResolution: granularity.defaultDateUnit
                     )
                 } else {
-                    Text("No recent \(vitalsType.description) available.")
+                    Text(vitalsType.localizedEmptyHistoryWarning)
                         .font(.caption)
+                        .accessibilityLabel("Empty \(vitalsType.description) Graph")
                 }
             },
             header: {

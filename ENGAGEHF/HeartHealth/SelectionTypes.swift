@@ -55,6 +55,10 @@ enum VitalsType: CustomStringConvertible {
         }
     }
     
+    var localizedEmptyHistoryWarning: String {
+        graphType.localizedEmptyHistoryWarning
+    }
+    
     /// The localized description of the vitals type
     var localizedExplanation: String {
         switch self {
@@ -120,6 +124,10 @@ enum SymptomsType: String, CaseIterable, Identifiable, CustomStringConvertible, 
         case .specific: "Specific Symptoms Score"
         case .dizziness: "Dizziness Score"
         }
+    }
+    
+    var localizedEmptyHistoryWarning: String {
+        GraphSelection.symptoms.localizedEmptyHistoryWarning
     }
     
     /// The localized description of the symptoms score
