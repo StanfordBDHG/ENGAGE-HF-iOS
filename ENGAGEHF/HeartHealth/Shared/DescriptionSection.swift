@@ -18,6 +18,7 @@ struct DescriptionSection: View {
         Section(
             content: {
                 Text(localizedExplanation)
+                    .accessibilityLabel("\(quantityName) Description")
             },
             header: {
                 Text("About \(quantityName)")

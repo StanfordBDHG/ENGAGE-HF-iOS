@@ -49,7 +49,7 @@ class NotificationManager: Module, EnvironmentAccessible {
             
             // If testing, add 3 notifications to firestore
             // Called when a user's sign in status changes
-            if FeatureFlags.setupTestEnvironment, let user {
+            if FeatureFlags.setupMockMessages, let user {
                 // Make sure to not load the mock notifications multiple times
                 if let notifications = self?.notifications, notifications.isEmpty {
                     Task { [weak self] in

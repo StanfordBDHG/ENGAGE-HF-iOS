@@ -39,8 +39,9 @@ struct MeasurementListSection: View {
                         }
                     }
                 } else {
-                    Text(LocalizedStringKey(type.emptyHistoryLocalizedKey))
+                    Text(type.localizedEmptyHistoryWarning)
                         .font(.caption)
+                        .accessibilityLabel("Empty \(type)")
                 }
             },
             header: {

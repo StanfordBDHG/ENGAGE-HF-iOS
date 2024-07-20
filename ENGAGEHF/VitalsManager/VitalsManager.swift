@@ -70,7 +70,7 @@ public class VitalsManager: Module, EnvironmentAccessible {
             
             /// If testing, add mock measurements to the user's heart rate, blood pressure, weight, and symptoms histories
             /// Called each time a new user signs in
-            if FeatureFlags.setupTestEnvironment, let user {
+            if FeatureFlags.setupMockVitals, let user {
                 Task {
                     try await self?.setupHeartHealthTesting(user: user)
                 }

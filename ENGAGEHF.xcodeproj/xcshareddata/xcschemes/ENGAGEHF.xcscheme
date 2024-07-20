@@ -82,6 +82,14 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
+            argument = "--setupMockMessages"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--setupMockVitals"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
             argument = "--assumeOnboardingComplete"
             isEnabled = "NO">
          </CommandLineArgument>

@@ -29,12 +29,12 @@ enum GraphSelection: CaseIterable, Identifiable, CustomStringConvertible {
         }
     }
     
-    var emptyHistoryLocalizedKey: String {
+    var localizedEmptyHistoryWarning: String {
         switch self {
-        case .symptoms: "symptomsMissing"
-        case .weight: "weightMissing"
-        case .heartRate: "heartRateMissing"
-        case .bloodPressure: "bloodPressureMissing"
+        case .symptoms: String(localized: "symptomsMissing")
+        case .weight: String(localized: "weightMissing")
+        case .heartRate: String(localized: "heartRateMissing")
+        case .bloodPressure: String(localized: "bloodPressureMissing")
         }
     }
 }

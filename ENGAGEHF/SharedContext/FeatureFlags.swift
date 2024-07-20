@@ -16,6 +16,10 @@ enum FeatureFlags {
     static let assumeOnboardingComplete = CommandLine.arguments.contains("--assumeOnboardingComplete") || skipOnboarding
     /// Disables the Firebase interactions, including the login/sign-up step and the Firebase Firestore upload.
     static let disableFirebase = CommandLine.arguments.contains("--disableFirebase")
+    /// On sign in, fills the user's vitals observation collections (body weight, blood pressure, heart rate, and symptom scores) with random data if none already present
+    static let setupMockVitals = CommandLine.arguments.contains("--setupMockVitals")
+    /// On sign in, fills the user's messages collection with three mock notifications if none already present
+    static let setupMockMessages = CommandLine.arguments.contains("--setupMockMessages")
     #if targetEnvironment(simulator)
     /// Defines if the application should connect to the local firebase emulator. Always set to true when using the iOS simulator.
     static let useFirebaseEmulator = true
