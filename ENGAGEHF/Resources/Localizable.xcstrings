@@ -1,9 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "%@" : {
-
-    },
     "%@ Date: %@" : {
       "localizations" : {
         "en" : {
@@ -98,12 +95,6 @@
         }
       }
     },
-    "Add Mock" : {
-
-    },
-    "Add mock notification" : {
-
-    },
     "All Data" : {
 
     },
@@ -158,9 +149,6 @@
           }
         }
       }
-    },
-    "Content ..." : {
-
     },
     "Date" : {
 
@@ -359,12 +347,6 @@
           }
         }
       }
-    },
-    "List With Sections" : {
-
-    },
-    "List Without Sections" : {
-
     },
     "No recent %@ available." : {
 

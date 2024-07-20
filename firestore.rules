@@ -71,7 +71,7 @@ service cloud.firestore {
     }
 
     match /users/{userId}/{documents=**} {
-      allow read: if isUser(request, userId)
+      allow read, write: if isUser(request, userId)
       allow update: if isUser(request, userId) && !('organization' in request.resource.data)
       allow read, write: if isAdmin(request)
       allow read, update: if isOwner(request, organizationIdFromUserId(userId))
