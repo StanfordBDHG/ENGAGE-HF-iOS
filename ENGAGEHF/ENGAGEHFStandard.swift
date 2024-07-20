@@ -23,9 +23,18 @@ import SwiftUI
 
 
 actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint, AccountStorageConstraint {
-    enum ENGAGEHFStandardError: Error {
+    enum ENGAGEHFStandardError: LocalizedError {
         case userNotAuthenticatedYet
         case invalidHKSampleType
+        case accountDeletionNotAllowed
+        
+        var errorDescription: String? {
+            switch self {
+            case .userNotAuthenticatedYet: String(localized: "userNotSignedIn")
+            case .invalidHKSampleType: String(localized: "invalidHKSample")
+            case .accountDeletionNotAllowed: String(localized: "accountDeletionError")
+            }
+        }
     }
 
     private static var userCollection: CollectionReference {
@@ -170,12 +179,8 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint, A
     }
 
     func deletedAccount() async throws {
-        // delete all user associated data
-        do {
-            try await userDocumentReference.delete()
-        } catch {
-            logger.error("Could not delete user document: \(error)")
-        }
+        // account deletion prohibited
+        throw ENGAGEHFStandardError.accountDeletionNotAllowed
     }
     
     /// Stores the given consent form in the user's document directory with a unique timestamped filename.

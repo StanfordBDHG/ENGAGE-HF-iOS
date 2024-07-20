@@ -197,37 +197,7 @@ extension XCUIApplication {
         XCTAssertFalse(navigationBars.buttons["Close"].exists)
 
         XCTAssert(buttons["Delete Account"].waitForExistence(timeout: 2))
-        buttons["Delete Account"].tap()
-
-        let alert = "Are you sure you want to delete your account?"
-        XCTAssert(alerts[alert].waitForExistence(timeout: 6.0))
-        alerts[alert].buttons["Delete"].tap()
-
-        XCTAssert(alerts["Authentication Required"].waitForExistence(timeout: 2.0))
-        XCTAssert(alerts["Authentication Required"].secureTextFields["Password"].waitForExistence(timeout: 0.5))
-        typeText("12345678") // the password field has focus already
-        XCTAssertTrue(alerts["Authentication Required"].buttons["Login"].waitForExistence(timeout: 0.5))
-        alerts["Authentication Required"].buttons["Login"].tap()
         
-        sleep(2)
-
-        // Login
-        if buttons["I Already Have an Account"].waitForExistence(timeout: 2.0) {
-            buttons["I Already Have an Account"].tap()
-        }
-
-        XCTAssert(textFields["E-Mail Address"].waitForExistence(timeout: 5))
-        textFields["E-Mail Address"].tap()
-        textFields["E-Mail Address"].typeText(email)
-        
-        XCTAssert(secureTextFields["Password"].waitForExistence(timeout: 5))
-        secureTextFields["Password"].tap()
-        secureTextFields["Password"].tap()
-        secureTextFields["Password"].typeText("12345678")
-
-        XCTAssertTrue(buttons["Login"].waitForExistence(timeout: 0.5))
-        buttons["Login"].tap()
-
-        XCTAssertTrue(alerts["Invalid Credentials"].waitForExistence(timeout: 2.0))
+        // Note: Once account deletion is disabled, we should test for an alert here
     }
 }
