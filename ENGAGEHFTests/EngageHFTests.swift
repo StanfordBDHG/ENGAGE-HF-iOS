@@ -12,16 +12,56 @@ import XCTest
 
 
 class EngageHFTests: XCTestCase {
-    func testVitalsGraphViewModelAggregation() {
+    func testAggregationEmptySeries() {
         let viewModel = VitalsGraph.ViewModel()
+        
+        let emptyData: SeriesDictionary = [:]
+        viewModel.processData(emptyData, options: .defaultOptions)
+        
+        XCTAssertTrue(viewModel.aggregatedData.isEmpty)
+    }
+    
+    func testAggregationSingleSeriesSameInterval() {
+        let viewModel = VitalsGraph.ViewModel()
+        
+        var seedDateComponents = DateComponents()
+        seedDateComponents.year = 2024
+        seedDateComponents.month = 6
+        seedDateComponents.day = 23
+        seedDateComponents.hour = 16
+        let seedDate = Calendar.current.date(from: seedDateComponents) ?? Date()
+        
+        let measurements: [VitalMeasurement] = [
+            VitalMeasurement(date: seedDate, value: 70, type: "Weight"),
+            VitalMeasurement(date: seedDate.addingTimeInterval(60), value: 80, type: "Weight")
+        ]
+        let data: SeriesDictionary = ["Weight": measurements]
+        viewModel.processData(data, options: .defaultOptions)
+        
+        let seriesCount = viewModel.aggregatedData.count
+        XCTAssertEqual(seriesCount, 1, "There should only be one series, but \(seriesCount) present.")
+        
+        let pointCount = viewModel.aggregatedData[0].data.count
+        XCTAssertEqual(pointCount, 1, "There should only be one aggregated point, but \(pointCount) present.")
+        
+        let numAveraged = viewModel.aggregatedData[0].data[0].count
+        XCTAssertEqual(numAveraged, 2, "The point should be the average of 2 values.")
+        
+        let average = viewModel.aggregatedData[0].data[0].value
+        XCTAssertEqual(average, 75.0)
+    }
+    
+    func testAggregationMultipleSeriesMultipleTimeIntervals() {
+        let viewModel = VitalsGraph.ViewModel()
+        let now = Date()
         
         // Generate sample data over several weeks with multiple data points per day
         var sampleData: SeriesDictionary = [:]
-        let startDate = Calendar.current.date(byAdding: .weekOfYear, value: -2, to: Date())!
+        let startDate = Calendar.current.date(byAdding: .weekOfYear, value: -2, to: now)!
         
         for dayOffset in 0..<14 {  // 2 weeks of data
             for pointOffset in 0..<5 {  // 5 data points per day
-                let date = Calendar.current.date(byAdding: .hour, value: pointOffset * 2, to: Calendar.current.date(byAdding: .day, value: dayOffset, to: startDate)!)!
+                let date = Calendar.current.date(byAdding: .day, value: dayOffset, to: startDate)!
                 
                 let bodyMassSample = VitalMeasurement(date: date, value: 70 + Double(dayOffset) + Double(pointOffset), type: HKQuantityTypeIdentifier.bodyMass.rawValue)
                 let heartRateSample = VitalMeasurement(date: date, value: 60 + Double(dayOffset) + Double(pointOffset), type: HKQuantityTypeIdentifier.heartRate.rawValue)
@@ -43,19 +83,22 @@ class EngageHFTests: XCTestCase {
         var totalBodyMass = 0.0
         var totalHeartRate = 0.0
         var totalMeasurementCount = 0
+        var sampleDate = Date()
         
         for dayOffset in 0..<14 {
-            let date = Calendar.current.date(byAdding: .day, value: dayOffset, to: startDate)!
+            sampleDate = Calendar.current.date(byAdding: .day, value: dayOffset, to: startDate)!
             let bodyMassValue = ((70 + Double(dayOffset)) * 5 + (0.0 + 1.0 + 2.0 + 3.0 + 4.0)) / 5.0
             let heartRateValue = ((60 + Double(dayOffset)) * 5 + (0.0 + 1.0 + 2.0 + 3.0 + 4.0)) / 5.0
             
-            bodyMassData.append(AggregatedMeasurement(date: date, value: bodyMassValue, count: 5, series: HKQuantityTypeIdentifier.bodyMass.rawValue))
-            heartRateData.append(AggregatedMeasurement(date: date, value: heartRateValue, count: 5, series: HKQuantityTypeIdentifier.heartRate.rawValue))
+            bodyMassData.append(AggregatedMeasurement(date: sampleDate, value: bodyMassValue, count: 5, series: HKQuantityTypeIdentifier.bodyMass.rawValue))
+            heartRateData.append(AggregatedMeasurement(date: sampleDate, value: heartRateValue, count: 5, series: HKQuantityTypeIdentifier.heartRate.rawValue))
             
             totalBodyMass += (70 + Double(dayOffset)) * 5 + (0.0 + 1.0 + 2.0 + 3.0 + 4.0)
             totalHeartRate += (60 + Double(dayOffset)) * 5 + (0.0 + 1.0 + 2.0 + 3.0 + 4.0)
             totalMeasurementCount += 5
         }
+        
+        let finalDate = sampleDate
         
         let expectedAggregatedData = [
             MeasurementSeries(
@@ -74,7 +117,11 @@ class EngageHFTests: XCTestCase {
         viewModel.processData(sampleData, options: optionsNoRange)
         
         // Validate the results
-        XCTAssertEqual(viewModel.aggregatedData.count, expectedAggregatedData.count, "The number of series in aggregatedData does not match the expected output.")
+        XCTAssertEqual(
+            viewModel.aggregatedData.count,
+            expectedAggregatedData.count,
+            "The number of series in aggregatedData does not match the expected output."
+        )
         
         for expectedSeries in expectedAggregatedData {
             guard let actualSeries = viewModel.aggregatedData.first(where: { $0.seriesName == expectedSeries.seriesName }) else {
@@ -82,7 +129,17 @@ class EngageHFTests: XCTestCase {
                 continue
             }
             
-            XCTAssertEqual(actualSeries.average, expectedSeries.average, "Average mismatch for series \(expectedSeries.seriesName): Expected \(expectedSeries.average) but found \(actualSeries.average)")
+            XCTAssertEqual(
+                actualSeries.average,
+                expectedSeries.average,
+                "Average mismatch for series \(expectedSeries.seriesName): Expected \(expectedSeries.average) but found \(actualSeries.average)"
+            )
+            
+            XCTAssertEqual(
+                actualSeries.data.count,
+                expectedSeries.data.count,
+                "Count mismatch for series \(expectedSeries.seriesName): Expected \(expectedSeries.data.count) but found \(actualSeries.data.count)"
+            )
             
             for expectedPoint in expectedSeries.data {
                 XCTAssert(
@@ -98,12 +155,12 @@ class EngageHFTests: XCTestCase {
         
         // Make sure the date range was calculated correctly and the options stored
         let expectedStart = Calendar.current.startOfDay(for: startDate)
-        let expectedEnd = Calendar.current.dateInterval(of: .day, for: Date())!.end
+        let expectedEnd = Calendar.current.dateInterval(of: .day, for: finalDate)!.end
         let expectedRange = expectedStart...expectedEnd
-        XCTAssertEqual(viewModel.dateRange, expectedRange, "Date range mismatch: expected \(expectedRange), received: \(viewModel.dateRange).")
+        XCTAssertEqual(viewModel.dateRange, expectedRange, "Date range mismatch: expected \(expectedRange) but found \(viewModel.dateRange).")
         
         XCTAssertEqual(viewModel.dateUnit, Calendar.Component.day, "Date unit mismatch.")
-        XCTAssertEqual(viewModel.localizedUnitString, "Units", "Localized unit string mismatch.")
+        XCTAssertEqual(viewModel.localizedUnitString, optionsNoRange.localizedUnitString, "Localized unit string mismatch.")
         XCTAssertNil(viewModel.selection, "Selection should be nil.")
     }
     

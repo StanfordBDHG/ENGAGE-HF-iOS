@@ -32,6 +32,10 @@ extension VitalsGraph {
         /// Aggregates the data by calculating the average across the intervals determined by the granularity of dateUnit.
         /// Saves the dateRange, dateUnit, and aggregatedData for later use.
         func processData(_ data: SeriesDictionary, options: VitalsGraphOptions) {
+            guard !data.isEmpty else {
+                return
+            }
+            
             // Aggregate the data across time and group by series type
             let aggregatedSeries: [String: [AggregatedMeasurement]] = aggregateData(data: data, dateUnit: options.granularity)
             let seriesAverages: [String: Double] = data.mapValues { average(series: $0) ?? 0 }
@@ -125,25 +129,18 @@ extension VitalsGraph {
         }
         
         private func getDateRange(from data: [MeasurementSeries], using dateUnit: Calendar.Component) -> ClosedRange<Date> {
-            let minDate: Date? = data
-                .map { series in
-                    series.data.min {
-                        calendar.compare($0.date, to: $1.date, toGranularity: dateUnit) == .orderedAscending
-                    }?.date ?? .distantFuture
-                }
-                .min()
-            let maxDate: Date? = data
-                .map { series in
-                    series.data.max {
-                        calendar.compare($0.date, to: $1.date, toGranularity: dateUnit) == .orderedDescending
-                    }?.date ?? .distantPast
-                }
-                .max()
+            let allDates = data.flatMap { $0.data.map(\.date) }
             
-            guard let minDate, let maxDate else {
+            guard let minDate = allDates.min(), let maxDate = allDates.max() else {
                 return Date()...Date()
             }
-            return minDate ... maxDate
+            
+            guard let domainStart = calendar.dateInterval(of: dateUnit, for: minDate)?.start,
+                  let domainEnd = calendar.dateInterval(of: dateUnit, for: maxDate)?.end else {
+                return Date()...Date()
+            }
+            
+            return domainStart ... domainEnd
         }
         
         private func getPoints(from series: MeasurementSeries, onDate date: Date, granularity: Calendar.Component) -> [AggregatedMeasurement] {
