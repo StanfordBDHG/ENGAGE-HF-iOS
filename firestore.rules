@@ -59,7 +59,7 @@ service cloud.firestore {
     }
 
     match /patients/{patientId}/{documents=**} {
-      allow read, update, create: if isUser(request, patientId)
+      allow read, update, create, write: if isUser(request, patientId)
       allow read, write: if isAdmin(request)
       allow read, update: if isOwner(request, organizationIdFromUserId(patientId))
       allow read, update: if isClinician(request, organizationIdFromUserId(patientId))

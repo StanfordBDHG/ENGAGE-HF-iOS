@@ -31,13 +31,13 @@ struct MeasurementListSection: View {
                             type: type.description
                         )
                     }
-                    .onDelete { indexSet in
-                        do {
-                            try deleteIndices(indexSet: indexSet)
-                        } catch {
-                            viewState = .error(HeartHealthError.failedDeletion)
+                        .onDelete { indexSet in
+                            do {
+                                try deleteIndices(indexSet: indexSet)
+                            } catch {
+                                viewState = .error(HeartHealthError.failedDeletion)
+                            }
                         }
-                    }
                 } else {
                     Text(type.localizedEmptyHistoryWarning)
                         .font(.caption)
@@ -49,7 +49,7 @@ struct MeasurementListSection: View {
                     .font(.title3.bold())
             }
         )
-        .viewStateAlert(state: $viewState)
+            .viewStateAlert(state: $viewState)
     }
     
     

@@ -22,6 +22,8 @@ final class RecentVitalsUITests: XCTestCase {
     func testWeight() throws {
         let app = XCUIApplication()
         
+        let expectedWeight = Locale.current.measurementSystem == .us ? "92.6" : "42"
+        let weightUnit = Locale.current.measurementSystem == .us ? "lb" : "kg"
         
         // Make sure we're on the home screen
         XCTAssert(app.buttons["Home"].waitForExistence(timeout: 2.0))
@@ -49,8 +51,8 @@ final class RecentVitalsUITests: XCTestCase {
         
         // Weight measurement has been successfully saved, and should be represented in the dashboard
         XCTAssert(app.staticTexts["Recent Vitals"].waitForExistence(timeout: 0.5))
-        XCTAssert(app.staticTexts["Weight Quantity: 92.6"].exists)
-        XCTAssert(app.staticTexts["Weight Unit: lb"].exists)
+        XCTAssert(app.staticTexts["Weight Quantity: \(expectedWeight)"].exists)
+        XCTAssert(app.staticTexts["Weight Unit: \(weightUnit)"].exists)
         XCTAssert(app.staticTexts["Weight Date: 6/5/2024, 12:33 PM"].exists)
     }
     

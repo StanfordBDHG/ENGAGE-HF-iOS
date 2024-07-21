@@ -29,10 +29,17 @@ final class HeartHealthUITests: XCTestCase {
         
         sleep(2)
         
+        let expectedWeight = Locale.current.measurementSystem == .us ? "92.6" : "42"
+        let weightUnit = Locale.current.measurementSystem == .us ? "lb" : "kg"
+        
         // Make sure we're on the Heart Health view
         try app.goTo(tab: "Heart Health")
         
-        // There should not be any data displayed at first
+        // Clear out any data present before continuing
+        try app.deleteAllMeasurements("Weight", header: "Body Weight", expectedDate: "Jun 5, 2024")
+        try app.deleteAllMeasurements("HR", header: "Heart Rate", expectedDate: "Jun 5, 2024")
+        try app.deleteAllMeasurements("BP", header: "Blood Pressure", expectedDate: "Jun 5, 2024")
+        
         try app.testAllEmptyViews()
         
         // Add mock vitals to the user's collections in firestore
@@ -45,8 +52,8 @@ final class HeartHealthUITests: XCTestCase {
         try app.goTo(tab: "Weight", header: "Body Weight")
         
         // Make sure the measurement is displayed in "All Data" section
-        XCTAssert(app.staticTexts["Weight Quantity: 92.6"].waitForExistence(timeout: 0.5))
-        XCTAssert(app.staticTexts["Weight Unit: lb"].waitForExistence(timeout: 0.5))
+        XCTAssert(app.staticTexts["Weight Quantity: \(expectedWeight)"].waitForExistence(timeout: 0.5))
+        XCTAssert(app.staticTexts["Weight Unit: \(weightUnit)"].waitForExistence(timeout: 0.5))
         XCTAssert(app.staticTexts["Weight Date: Jun 5, 2024"].waitForExistence(timeout: 0.5))
         
         // Navigate to weekly data
@@ -62,8 +69,8 @@ final class HeartHealthUITests: XCTestCase {
         
         // Make sure the data appears in the list section
         XCTAssert(app.staticTexts["Average"].waitForExistence(timeout: 0.5))
-        XCTAssert(app.staticTexts["Overall Summary Quantity: 92.6"].waitForExistence(timeout: 0.5))
-        XCTAssert(app.staticTexts["Overall Summary Unit: lb"].waitForExistence(timeout: 0.5))
+        XCTAssert(app.staticTexts["Overall Summary Quantity: \(expectedWeight)"].waitForExistence(timeout: 0.5))
+        XCTAssert(app.staticTexts["Overall Summary Unit: \(weightUnit)"].waitForExistence(timeout: 0.5))
         
         // Make sure the overall average appears correctly
         let now = Date()
@@ -80,11 +87,35 @@ final class HeartHealthUITests: XCTestCase {
         )
         
         XCTAssert(app.staticTexts[formattedRange].waitForExistence(timeout: 0.5))
+        
+        try app.deleteAllMeasurements("Weight", header: "Body Weight", expectedDate: "Jun 5, 2024")
+        try app.deleteAllMeasurements("HR", header: "Heart Rate", expectedDate: "Jun 5, 2024")
+        try app.deleteAllMeasurements("BP", header: "Blood Pressure", expectedDate: "Jun 5, 2024")
     }
 }
 
 
 extension XCUIApplication {
+    fileprivate func deleteAllMeasurements(_ id: String, header: String, expectedDate: String) throws {
+        try goTo(tab: id, header: header)
+        
+        var dataPresent = !staticTexts["Empty \(id) List"].exists
+        var totalRows = 0
+        
+        while dataPresent {
+            swipeUp()
+            staticTexts["\(id) Date: \(expectedDate)"].firstMatch.swipeLeft()
+            if buttons["Delete"].waitForExistence(timeout: 0.5) {
+                buttons["Delete"].tap()
+            }
+            
+            dataPresent = !staticTexts["Empty \(id) List"].waitForExistence(timeout: 0.5)
+            XCTAssert(totalRows < 10)
+            totalRows += 1
+        }
+    }
+    
+    
     fileprivate func triggerMockMeasurement(_ displayName: String, expect measurements: [String]) throws {
         XCTAssert(navigationBars.buttons["More"].exists)
         navigationBars.buttons["More"].tap()
