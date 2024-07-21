@@ -16,7 +16,12 @@ final class NotificationsUITests: XCTestCase {
         continueAfterFailure = false
 
         let app = XCUIApplication()
-        app.launchArguments = ["--skipOnboarding", "--useFirebaseEmulator", "--setupTestEnvironment"]
+        app.launchArguments = [
+            "--skipOnboarding",
+            "--useFirebaseEmulator",
+            "--setupTestEnvironment",
+            "--setupMockMessages"
+        ]
         app.launch()
     }
     

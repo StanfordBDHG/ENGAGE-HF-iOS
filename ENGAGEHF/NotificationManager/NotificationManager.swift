@@ -49,7 +49,7 @@ class NotificationManager: Module, EnvironmentAccessible {
             
             // If testing, add 3 notifications to firestore
             // Called when a user's sign in status changes
-            if FeatureFlags.setupTestEnvironment, let user {
+            if FeatureFlags.setupMockMessages, let user {
                 // Make sure to not load the mock notifications multiple times
                 if let notifications = self?.notifications, notifications.isEmpty {
                     Task { [weak self] in
@@ -64,9 +64,11 @@ class NotificationManager: Module, EnvironmentAccessible {
     
     /// Adds three mock notifications to the user's notification collection in firestore
     func setupNotificationTests(user: User) async throws {
+        // Check that the collection has not already been initialized
         let firestore = Firestore.firestore()
         let notificationsCollection = firestore.collection("users").document(user.uid).collection("messages")
         
+        // Not recommended to delete collections from the client, so for now just skipping if the collection already exists
         let querySnapshot = try await notificationsCollection.getDocuments()
         
         guard querySnapshot.documents.isEmpty else {

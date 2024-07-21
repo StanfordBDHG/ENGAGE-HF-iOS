@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%@" : {
+
+    },
     "%@ Date: %@" : {
       "localizations" : {
         "en" : {
@@ -10,6 +13,9 @@
           }
         }
       }
+    },
+    "%@ Description" : {
+
     },
     "%@ Quantity: %@" : {
       "localizations" : {
@@ -30,6 +36,9 @@
           }
         }
       }
+    },
+    "About %@" : {
+
     },
     "ACCOUNT_NEXT" : {
       "localizations" : {
@@ -82,11 +91,45 @@
         }
       }
     },
+    "accountDeletionError" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Account deletion within the app is not currently supported. Please contact your study coordinator."
+          }
+        }
+      }
+    },
+    "Add Mock" : {
+
+    },
+    "Add mock notification" : {
+
+    },
+    "All Data" : {
+
+    },
     "An error occurred: %@" : {
       "comment" : "General Error"
     },
     "An invitation code is at least 8 characters long." : {
 
+    },
+    "Average" : {
+
+    },
+    "bloodPressureMissing" : {
+      "comment" : "Displayed in the MeasurementListSection of the Heart Health view when no Blood Pressure history found.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No blood pressure measurements available. Please connect your Blood Pressure Cuff device to begin recording."
+          }
+        }
+      }
     },
     "CLOSE" : {
       "comment" : "MARK: General",
@@ -119,53 +162,44 @@
         }
       }
     },
+    "Content ..." : {
+
+    },
+    "Date" : {
+
+    },
     "Devices" : {
 
     },
     "Education" : {
 
     },
-    "HEALTHKIT_PERMISSIONS_BUTTON" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Grant Access"
-          }
-        }
-      }
+    "Empty %@ Graph" : {
+
     },
-    "HEALTHKIT_PERMISSIONS_DESCRIPTION" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "This onboarding step allows you to customize the onboarding flow to explain how the application uses the HealhtKit data and allows a user to cusomize the selection."
-          }
-        }
-      }
+    "Empty Symptoms Graph" : {
+
     },
-    "HEALTHKIT_PERMISSIONS_SUBTITLE" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Spezi can access data from HealthKit using the HealthKitDataSource module."
-          }
-        }
-      }
+    "Failed to fetch HKUnits for the given samples." : {
+
     },
-    "HEALTHKIT_PERMISSIONS_TITLE" : {
-      "comment" : "MARK: HealthKit",
-      "extractionState" : "stale",
+    "Failed to identify HKSample concrete subclass." : {
+
+    },
+    "Graph Selection" : {
+
+    },
+    "Heart Health" : {
+
+    },
+    "heartRateMissing" : {
+      "comment" : "Displayed in the MeasurementListSection of the Heart Health view when no heart rate measurements were found.",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "HealthKit Access"
+            "value" : "No recent heart rate measurements available. Please connect your Blood Pressure Cuff device to begin recording."
           }
         }
       }
@@ -310,6 +344,16 @@
         }
       }
     },
+    "invalidHKSample" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sample type not supported."
+          }
+        }
+      }
+    },
     "Invitation Code" : {
 
     },
@@ -332,6 +376,12 @@
           }
         }
       }
+    },
+    "List With Sections" : {
+
+    },
+    "List Without Sections" : {
+
     },
     "No recent %@ measurement available" : {
 
@@ -392,11 +442,107 @@
     "Redeem Invitation Code" : {
 
     },
+    "Resolution Picker" : {
+
+    },
     "Review" : {
+
+    },
+    "Score" : {
+
+    },
+    "Series" : {
 
     },
     "Show Measurements" : {
 
+    },
+    "symptomDizziness" : {
+      "comment" : "For Heart Health view",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your dizziness is important to keep track of because dizziness can be a side effect of your heart or your heart medicines."
+          }
+        }
+      }
+    },
+    "symptomOverall" : {
+      "comment" : "For Heart Health view",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This score shows how your heart failure affects you overall. You can score 0 to 100. A higher score means you are doing better. Over 80 is often considered doing well.\n\nA goal of heart medicines is to improve this score over time or keep it from decreasing. "
+          }
+        }
+      }
+    },
+    "symptomPhysical" : {
+      "comment" : "For Heart Health view",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This represents how your heart affects your ability to do activity. Higher scores mean you are less limited, and over 80 is often considered doing well."
+          }
+        }
+      }
+    },
+    "symptomQuality" : {
+      "comment" : "For Heart Health view",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This score represents how content you are with your heart symptoms. Higher scores mean you are overall more content, while lower scores mean you are less satisfied with how you are doing. "
+          }
+        }
+      }
+    },
+    "Symptoms Picker Chevron" : {
+
+    },
+    "symptomsMissing" : {
+      "comment" : "Displayed in the MeasurementListSection in the Heart Health view when no symptom scores were found.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No symptom scores available. Please complete the KCCQ-12 survey to begin recording symptoms history."
+          }
+        }
+      }
+    },
+    "symptomSocial" : {
+      "comment" : "For Heart Health view",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This score represents how your heart affects your ability to do social activities. Higher scores mean you are able to do more, while lower scores mean you are more limited by your heart."
+          }
+        }
+      }
+    },
+    "symptomSpecific" : {
+      "comment" : "For Heart Health view",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This represents the frequency you are experiencing heart-related symptoms. Higher scores mean less frequent symptoms and lower scores mean more frequent symptoms."
+          }
+        }
+      }
     },
     "The invitation code is invalid or has already been used." : {
       "comment" : "Invitation Code Invalid"
@@ -407,6 +553,12 @@
     "Trigger Weight Measurement" : {
 
     },
+    "Unable to create time interval for date: %@" : {
+
+    },
+    "Unable to delete measurement, check network connection." : {
+
+    },
     "Unable to get notification timestamp." : {
       "comment" : "Invalid Timestamp"
     },
@@ -415,6 +567,64 @@
     },
     "User not authenticated. Please sign in an try again." : {
       "comment" : "User Not Authenticated"
+    },
+    "userNotSignedIn" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "User not signed in."
+          }
+        }
+      }
+    },
+    "vitalsBloodPressure" : {
+      "comment" : "For Heart Health view",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Blood Pressure description. This is blood pressure. This will describe all about blood pressure, and how it pertains to the heart. Lots of words, the real description will probably be shorter than this."
+          }
+        }
+      }
+    },
+    "vitalsHeartRate" : {
+      "comment" : "For Heart Health view",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heart Rate description. This is a description about heart rate. The rate at which the heart hearts. Long text that has many works makes the view look more like what it might actually look like."
+          }
+        }
+      }
+    },
+    "vitalsWeight" : {
+      "comment" : "For Heart Health view",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weight description goes here. This is a long text that includes many words about many things. The weight and the meaning of weight is described here."
+          }
+        }
+      }
+    },
+    "weightMissing" : {
+      "comment" : "Displayed in the MeasurementListSection of the Heart Health view when no weight history was found.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No body weight measurements available. Please connect your Weight Wcale device to begin recording."
+          }
+        }
+      }
     },
     "WELCOME_AREA1_DESCRIPTION" : {
       "localizations" : {

@@ -6,12 +6,10 @@
 // SPDX-License-Identifier: MIT
 //
 
-@testable import ENGAGEHF
-import XCTest
+import Foundation
 
 
-class EngageHFTests: XCTestCase {
-    func testEngage() {
-        XCTAssertTrue(true)
-    }
+enum FHIRSystem {
+    // swiftlint:disable:next force_unwrapping
+    static let loinc = URL(string: "http://loinc.org")!
 }

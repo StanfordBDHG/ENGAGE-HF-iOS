@@ -43,6 +43,8 @@ public class VitalsManager: Module, EnvironmentAccessible {
     public var bloodPressureHistory: [HKCorrelation] = []
     public var weightHistory: [HKQuantitySample] = []
     
+    public var symptomHistory: [SymptomScore] = []
+    
     
     public var latestHeartRate: HKQuantitySample? {
         heartRateHistory.max { $0.startDate < $1.startDate }
@@ -65,6 +67,14 @@ public class VitalsManager: Module, EnvironmentAccessible {
         
         authStateDidChangeListenerHandle = Auth.auth().addStateDidChangeListener { [weak self] _, user in
             self?.registerSnapshotListeners(user: user)
+            
+            /// If testing, add mock measurements to the user's heart rate, blood pressure, weight, and symptoms histories
+            /// Called each time a new user signs in
+            if FeatureFlags.setupMockVitals, let user {
+                Task {
+                    try await self?.setupHeartHealthTesting(user: user)
+                }
+            }
         }
         
         self.registerSnapshotListeners(user: Auth.auth().currentUser)
@@ -86,12 +96,12 @@ public class VitalsManager: Module, EnvironmentAccessible {
         }
         
         let firestore = Firestore.firestore()
-        let userDocRef = firestore.collection("users").document(uid)
+        let userDocRef = firestore.collection("patients").document(uid)
         
         // Weight snapshot listener
         self.snapshotListeners.append(
             self.registerSnapshot(
-                collectionReference: userDocRef.collection("bodyWeightObservations"),
+                collectionReference: userDocRef.collection(CollectionID.bodyWeightObservations.rawValue),
                 storage: \.weightHistory,
                 mapObservation: convertToHKQuantitySample
             )
@@ -100,7 +110,7 @@ public class VitalsManager: Module, EnvironmentAccessible {
         // Heart Rate snapshot listener
         self.snapshotListeners.append(
             self.registerSnapshot(
-                collectionReference: userDocRef.collection("heartRateObservations"),
+                collectionReference: userDocRef.collection(CollectionID.heartRateObservations.rawValue),
                 storage: \.heartRateHistory,
                 mapObservation: convertToHKQuantitySample
             )
@@ -109,17 +119,26 @@ public class VitalsManager: Module, EnvironmentAccessible {
         // Blood Pressure snapshot listener
         self.snapshotListeners.append(
             self.registerSnapshot(
-                collectionReference: userDocRef.collection("bloodPressureObservations"),
+                collectionReference: userDocRef.collection(CollectionID.bloodPressureObservations.rawValue),
                 storage: \.bloodPressureHistory,
                 mapObservation: convertToHKCorrelation
             )
         )
+        
+        // Symptom Survey Scores snapshot listener
+        self.snapshotListeners.append(
+            self.registerSnapshot(
+                collectionReference: userDocRef.collection(CollectionID.symptomScores.rawValue),
+                storage: \.symptomHistory,
+                mapObservation: { $0 }
+            )
+        )
     }
     
-    private func registerSnapshot<T>(
+    private func registerSnapshot<T, V: Decodable>(
         collectionReference: CollectionReference,
         storage: ReferenceWritableKeyPath<VitalsManager, [T]>,
-        mapObservation: @escaping (R4Observation) throws -> T
+        mapObservation: @escaping (V) throws -> T
     ) -> ListenerRegistration {
         // Return a listener for the given collection
         collectionReference
@@ -132,7 +151,7 @@ public class VitalsManager: Module, EnvironmentAccessible {
                 
                 self[keyPath: storage] = documentRefs.compactMap {
                     do {
-                        return try mapObservation($0.data(as: R4Observation.self))
+                        return try mapObservation($0.data(as: V.self))
                     } catch {
                         self.logger.error("Error saving \(collectionReference.collectionID) history: \(error)")
                         return nil
@@ -145,21 +164,18 @@ public class VitalsManager: Module, EnvironmentAccessible {
     
     
     private func convertToHKQuantitySample(_ observation: R4Observation) throws -> HKQuantitySample {
-        guard let observationType = observation.code.coding?.first?.code?.value?.string else {
-            throw VitalsError.invalidConversion
-        }
-        
         let hkQuantity: HKQuantity
         let quantityType: HKQuantityType
         
-        switch observationType {
-        case "29463-7": // Weight
+        if observation.code.containsCoding(code: "29463-7", system: FHIRSystem.loinc) {
+            // Weight
             hkQuantity = try self.getQuantity(observation: observation)
             quantityType = HKQuantityType(.bodyMass)
-        case "8867-4": // Heart Rate
+        } else if observation.code.containsCoding(code: "8867-4", system: FHIRSystem.loinc) {
+            // Heart Rate
             hkQuantity = try self.getQuantity(observation: observation)
             quantityType = HKQuantityType(.heartRate)
-        default:
+        } else {
             throw VitalsError.invalidObservationType
         }
         
@@ -169,13 +185,22 @@ public class VitalsManager: Module, EnvironmentAccessible {
             throw VitalsError.invalidConversion
         }
         
-        return HKQuantitySample(type: quantityType, quantity: hkQuantity, start: effectiveDate.start, end: effectiveDate.end)
+        guard let identifier = observation.id?.value?.string else {
+            throw VitalsError.missingField
+        }
+        
+        return HKQuantitySample(
+            type: quantityType,
+            quantity: hkQuantity,
+            start: effectiveDate.start,
+            end: effectiveDate.end,
+            metadata: [HKMetadataKeyExternalUUID: identifier]
+        )
     }
     
     private func convertToHKCorrelation(_ observation: R4Observation) throws -> HKCorrelation {
         // For now, only handle Blood Pressure
-        guard let observationType = observation.code.coding?.first?.code?.value?.string,
-              observationType == "85354-9" else {
+        guard observation.code.containsCoding(code: "85354-9", system: FHIRSystem.loinc) else {
             throw VitalsError.invalidObservationType
         }
         
@@ -190,8 +215,8 @@ public class VitalsManager: Module, EnvironmentAccessible {
             throw VitalsError.missingField
         }
         
-        let systolicComponent = try self.getComponent(components, code: "8480-6")
-        let diastolicComponent = try self.getComponent(components, code: "8462-4")
+        let systolicComponent = try self.getComponent(components, code: "8480-6", system: FHIRSystem.loinc)
+        let diastolicComponent = try self.getComponent(components, code: "8462-4", system: FHIRSystem.loinc)
         
         let systolicQuantity = try self.getQuantity(observation: systolicComponent)
         let diastolicQuantity = try self.getQuantity(observation: diastolicComponent)
@@ -209,23 +234,24 @@ public class VitalsManager: Module, EnvironmentAccessible {
             end: effectiveDate.end
         )
         
+        guard let identifier = observation.id?.value?.string else {
+            throw VitalsError.missingField
+        }
+        
         return HKCorrelation(
             type: HKCorrelationType(.bloodPressure),
             start: effectiveDate.start,
             end: effectiveDate.end,
-            objects: [systolicSample, diastolicSample]
+            objects: [systolicSample, diastolicSample],
+            metadata: [HKMetadataKeyExternalUUID: identifier]
         )
     }
     
     
-    private func getComponent(_ components: [ObservationComponent], code: String) throws -> ObservationComponent {
+    private func getComponent(_ components: [ObservationComponent], code: String, system: URL) throws -> ObservationComponent {
         guard let component = components.first(
             where: {
-                $0.code.coding?.contains(
-                    where: {
-                        $0.code?.value?.string == code
-                    }
-                ) ?? false
+                $0.code.containsCoding(code: code, system: system)
             }
         ) else {
             throw VitalsError.missingField
@@ -265,45 +291,159 @@ public class VitalsManager: Module, EnvironmentAccessible {
 
 
 extension VitalsManager {
+    /// Adds just over a month's worth of daily mock measurements to local weight, heart rate, blood pressure, and symptoms histories
+    /// 40 total measurements (1 each day) with random quantities
     private func setupPreview() {
-        let dummyHR = HKQuantitySample(
-            type: HKQuantityType(.heartRate),
-            quantity: HKQuantity(unit: .count().unitDivided(by: .minute()), doubleValue: Double(60)),
-            start: .now,
-            end: .now
-        )
-        
-        let diastolic = HKQuantity(unit: .millimeterOfMercury(), doubleValue: Double(120))
-        let systolic = HKQuantity(unit: .millimeterOfMercury(), doubleValue: Double(70))
+        for count in 0..<40 {
+            guard let startDate = Calendar.current.date(byAdding: .day, value: -Int.random(in: 0..<40), to: .now) else {
+                return
+            }
+            
+            self.bloodPressureHistory.append(self.getRandomBloodPressure(forDate: startDate))
+            self.heartRateHistory.append(self.getRandomHeartRate(forDate: startDate))
+            self.weightHistory.append(self.getRandomWeight(forDate: startDate))
+            
+            // Only add mock symptoms once a week
+            if count.isMultiple(of: 7) {
+                self.symptomHistory.append(self.getRandomSymptoms(forDate: startDate))
+            }
+        }
+    }
+    
+    private func getRandomBloodPressure(forDate startDate: Date) -> HKCorrelation {
+        let diastolic = HKQuantity(unit: .millimeterOfMercury(), doubleValue: Double.random(in: 40...90))
+        let systolic = HKQuantity(unit: .millimeterOfMercury(), doubleValue: Double.random(in: 90...140))
         
         let dummyDiastolic = HKQuantitySample(
             type: HKQuantityType(.bloodPressureDiastolic),
             quantity: diastolic,
-            start: .now,
-            end: .now
+            start: startDate,
+            end: startDate
         )
         let dummySystolic = HKQuantitySample(
             type: HKQuantityType(.bloodPressureSystolic),
             quantity: systolic,
-            start: .now,
-            end: .now
+            start: startDate,
+            end: startDate
         )
         let dummyBP = HKCorrelation(
             type: HKCorrelationType(.bloodPressure),
-            start: .now,
-            end: .now,
+            start: startDate,
+            end: startDate,
             objects: [dummyDiastolic, dummySystolic]
         )
         
-        let dummyWeight = HKQuantitySample(
-            type: HKQuantityType(.bodyMass),
-            quantity: HKQuantity(unit: .gramUnit(with: .kilo), doubleValue: Double(70)),
-            start: .now,
-            end: .now
+        return dummyBP
+    }
+    
+    private func getRandomHeartRate(forDate startDate: Date) -> HKQuantitySample {
+        let dummyHR = HKQuantitySample(
+            type: HKQuantityType(.heartRate),
+            quantity: HKQuantity(unit: .count().unitDivided(by: .minute()), doubleValue: Double.random(in: 40...160)),
+            start: startDate,
+            end: startDate
         )
         
-        self.heartRateHistory.append(dummyHR)
-        self.bloodPressureHistory.append(dummyBP)
-        self.weightHistory.append(dummyWeight)
+        return dummyHR
+    }
+    
+    private func getRandomWeight(forDate startDate: Date) -> HKQuantitySample {
+        let dummyWeight = HKQuantitySample(
+            type: HKQuantityType(.bodyMass),
+            quantity: HKQuantity(unit: .pound(), doubleValue: Double.random(in: 80...180)),
+            start: startDate,
+            end: startDate
+        )
+        
+        return dummyWeight
+    }
+    
+    private func getRandomSymptoms(forDate startDate: Date) -> SymptomScore {
+        let dummySymptoms = SymptomScore(
+            id: ProcessInfo.processInfo.isPreviewSimulator ? UUID().uuidString : nil,
+            date: startDate,
+            overallScore: Double.random(in: 0...100),
+            physicalLimitsScore: Double.random(in: 0...100),
+            socialLimitsScore: Double.random(in: 0...100),
+            qualityOfLifeScore: Double.random(in: 0...100),
+            specificSymptomsScore: Double.random(in: 0...100),
+            dizzinessScore: Double.random(in: 0...100)
+        )
+        
+        return dummySymptoms
+    }
+}
+
+
+extension VitalsManager {
+    private func setupHeartHealthTesting(user: User) async throws {
+        let firestore = Firestore.firestore()
+        let userDocRef = firestore
+            .collection("patients")
+            .document(user.uid)
+        
+        
+        // Make sure the user has not already had mock data initialized
+        for collectionID in CollectionID.allCases {
+            let querySnapshot = try await userDocRef.collection(collectionID.rawValue).getDocuments()
+            
+            // Not recommended to delete collections from the client, so for now just skipping if the collection already exists
+            guard querySnapshot.documents.isEmpty else {
+                // Collection exists and is not empty, so skip
+                self.logger.debug("\(collectionID.rawValue) already exist, skipping user.")
+                return
+            }
+        }
+        
+        for count in 0..<50 {
+            guard let date = Calendar.current.date(byAdding: .day, value: -Int.random(in: 0..<100), to: .now) else {
+                self.logger.error("Unable to create date for Heart Health testing setup.")
+                return
+            }
+            
+            try await self.standard.addMeasurement(
+                samples: [
+                    self.getRandomWeight(forDate: date),
+                    self.getRandomHeartRate(forDate: date),
+                    self.getRandomBloodPressure(forDate: date)
+                ]
+            )
+            
+            if count.isMultiple(of: 10) {
+                await self.standard.add(symptomScore: self.getRandomSymptoms(forDate: date))
+            }
+        }
+    }
+}
+
+
+extension VitalsManager {
+    /// Call on deletion of a measurement -- removes the measurement with the given document id from the user's collection 
+    func deleteMeasurement(id: String?, collectionID: CollectionID) async throws {
+        guard let id else {
+            self.logger.error("Attempting to delete nonexistant measurement from \(collectionID.rawValue).")
+            return
+        }
+        
+        self.logger.debug("Attempting to delete measurement (\(id)) from \(collectionID.rawValue)")
+        let firestore = Firestore.firestore()
+        
+        guard let user = Auth.auth().currentUser else {
+            logger.error("Unable to delete measurement: User not authenticated")
+            return
+        }
+        
+        let collectionRef = firestore
+            .collection("patients")
+            .document(user.uid)
+            .collection(collectionID.rawValue)
+        
+        do {
+            try await collectionRef.document(id).delete()
+            self.logger.debug("Successfully deleted measurement (\(id)) from \(collectionID.rawValue)")
+        } catch {
+            self.logger.error("Error deleting measurement (\(id)) from \(collectionID.rawValue): \(error)")
+            throw error
+        }
     }
 }

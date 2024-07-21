@@ -54,6 +54,11 @@ struct HomeView: View {
                 .tabItem {
                     Label("Home", systemImage: "house")
                 }
+            HeartHealth(presentingAccount: $presentingAccount)
+                .tag(Tabs.heart)
+                .tabItem {
+                    Label("Heart Health", systemImage: "heart")
+                }
             Education(presentingAccount: $presentingAccount)
                 .tag(Tabs.education)
                 .tabItem {

@@ -1,9 +1,85 @@
 rules_version = '2';
 service cloud.firestore {
-  match /databases/{database}/documents {
-    // Allow only authenticated content owners access
+  match /databases/{databaseId}/documents {
+    function isAuthenticated(request) {
+      return request.auth != null
+    }
+
+    function isClinician(request, organizationId) {
+      return isAuthenticated(request)
+        && exists(/databases/$(databaseId)/documents/clinicians/$(request.auth.uid))
+        && get(/databases/$(databaseId)/documents/users/$(request.auth.uid)).data.organization == organizationId
+    }
+
+    function isOwner(request, organizationId) {
+      return isAuthenticated(request) 
+        && request.auth.uid in get(/databases/$(databaseId)/documents/organizations/$(organizationId)).data.owners
+    }
+
+    function isAdmin(request) {
+      return isAuthenticated(request)
+        && exists(/databases/$(databaseId)/documents/admins/$(request.auth.uid))
+    }
+
+    function isUser(request, userId) {
+      return isAuthenticated(request) && request.auth.uid == userId
+    }
+
+    function organizationIdFromUserId(userId) {
+      return get(/databases/$(databaseId)/documents/users/$(userId)).data.organization
+    }
+
+    match /admins/{adminId} {
+      allow read, write: if isAdmin(request)
+    }
+
+    match /clinicians/{clinicianId} {
+      allow read, write: if isAdmin(request)
+      allow read, write: if isOwner(request, organizationIdFromUserId(clinicianId))
+      allow read: if isClinician(request, organizationIdFromUserId(clinicianId))
+      allow read, write: if isUser(request, clinicianId)
+    }
+
+    match /invitations/{invitationId} {
+      allow read, write: if isAdmin(request)
+      allow read, update: if isOwner(request, resource.data.user.organization) 
+        && !('organization' in request.resource.data.user.organization) 
+        && !('admin' in request.resource.data)
+    }
+
+    match /medications/{documents=**} {
+      allow read: if isAuthenticated(request)
+      allow read, write: if isAdmin(request)
+    }
+
+    match /organizations/{organizationId} {
+      allow read: if isAuthenticated(request)
+      allow read, write: if isAdmin(request)
+      allow read, update: if isOwner(request, organizationId)
+    }
+
+    match /patients/{patientId}/{documents=**} {
+      allow read, update, create, write: if isUser(request, patientId)
+      allow read, write: if isAdmin(request)
+      allow read, update: if isOwner(request, organizationIdFromUserId(patientId))
+      allow read, update: if isClinician(request, organizationIdFromUserId(patientId))
+    }
+
+    match /questionnaires/{questionnaireId} {
+      allow read: if isAuthenticated(request)
+      allow read, write: if isAdmin(request)
+    }
+
     match /users/{userId}/{documents=**} {
-      allow read, write: if request.auth != null && request.auth.uid == userId;
+      allow read, write: if isUser(request, userId)
+      allow update: if isUser(request, userId) && !('organization' in request.resource.data)
+      allow read, write: if isAdmin(request)
+      allow read, update: if isOwner(request, organizationIdFromUserId(userId))
+    }
+
+    match /videoSections/{documents=**} {
+      allow read: if isAuthenticated(request)
+      allow read, write: if isAdmin(request)
     }
   }
 }

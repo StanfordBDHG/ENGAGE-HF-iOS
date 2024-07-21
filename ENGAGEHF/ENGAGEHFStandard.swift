@@ -22,14 +22,31 @@ import SpeziQuestionnaire
 import SwiftUI
 
 
-actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint, AccountStorageConstraint {
-    enum ENGAGEHFStandardError: Error {
+actor ENGAGEHFStandard: Standard,
+                        EnvironmentAccessible,
+                        OnboardingConstraint,
+                        AccountStorageConstraint,
+                        AccountNotifyConstraint {
+    enum ENGAGEHFStandardError: LocalizedError {
         case userNotAuthenticatedYet
         case invalidHKSampleType
+        case accountDeletionNotAllowed
+        
+        var errorDescription: String? {
+            switch self {
+            case .userNotAuthenticatedYet: String(localized: "userNotSignedIn")
+            case .invalidHKSampleType: String(localized: "invalidHKSample")
+            case .accountDeletionNotAllowed: String(localized: "accountDeletionError")
+            }
+        }
     }
 
     private static var userCollection: CollectionReference {
         Firestore.firestore().collection("users")
+    }
+    
+    private static var patientCollection: CollectionReference {
+        Firestore.firestore().collection("patients")
     }
 
     @Dependency var accountStorage: FirestoreAccountStorage?
@@ -49,6 +66,16 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint, A
         }
     }
     
+    private var patientDocumentReference: DocumentReference {
+        get async throws {
+            guard let details = await account.details else {
+                throw ENGAGEHFStandardError.userNotAuthenticatedYet
+            }
+            
+            return Self.patientCollection.document(details.accountId)
+        }
+    }
+    
     private var userBucketReference: StorageReference {
         get async throws {
             guard let details = await account.details else {
@@ -65,7 +92,7 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint, A
             _accountStorage = Dependency(wrappedValue: FirestoreAccountStorage(storeIn: ENGAGEHFStandard.userCollection))
         }
     }
-
+    
 
     func addMeasurement(samples: [HKSample]) async throws {
         guard !samples.isEmpty else {
@@ -73,13 +100,13 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint, A
         }
 
         logger.debug("Saving \(samples.count) samples to firestore ...")
-        let userDocument = try await userDocumentReference
+        let patientDocument = try await patientDocumentReference
 
         do {
             let batch = Firestore.firestore().batch()
             for sample in samples {
                 do {
-                    let document = try healthKitDocument(for: userDocument, id: sample.id, type: sample.sampleType)
+                    let document = try healthKitDocument(for: patientDocument, id: sample.id, type: sample.sampleType)
                     try batch.setData(from: sample.resource, forDocument: document)
                 } catch {
                     // either document retrieval or encoding failed, this should not stop other samples from getting saved
@@ -94,10 +121,20 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint, A
     }
     
     
+    func add(symptomScore: SymptomScore) async {
+        do {
+            let patientDoc = try await patientDocumentReference
+            try patientDoc.collection("symptomScores").addDocument(from: symptomScore)
+        } catch {
+            logger.error("Could not store the symptom scores: \(error)")
+        }
+    }
+    
+    
     func add(notification: Notification) async {
         do {
             let userDoc = try await userDocumentReference
-            try userDoc.collection("notifications").addDocument(from: notification)
+            try userDoc.collection("messages").addDocument(from: notification)
         } catch {
             logger.error("Could not store the notification: \(error)")
         }
@@ -122,15 +159,15 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint, A
         var collectionBucket: String? {
             switch type {
             case HKQuantityType(.bodyMass):
-                return "bodyWeightObservations"
+                return CollectionID.bodyWeightObservations.rawValue
             case HKQuantityType(.bodyMassIndex):
-                return "bodyMassIndexObservations"
+                return nil
             case HKQuantityType(.height):
-                return "heightObservations"
+                return nil
             case HKQuantityType(.heartRate):
-                return "heartRateObservations"
+                return CollectionID.heartRateObservations.rawValue
             case HKCorrelationType(.bloodPressure):
-                return "bloodPressureObservations"
+                return CollectionID.bloodPressureObservations.rawValue
             default:
                 return nil
             }
@@ -146,12 +183,8 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint, A
     }
 
     func deletedAccount() async throws {
-        // delete all user associated data
-        do {
-            try await userDocumentReference.delete()
-        } catch {
-            logger.error("Could not delete user document: \(error)")
-        }
+        // account deletion prohibited
+        throw ENGAGEHFStandardError.accountDeletionNotAllowed
     }
     
     /// Stores the given consent form in the user's document directory with a unique timestamped filename.
