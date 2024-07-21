@@ -48,54 +48,105 @@ final class HeartHealthUITests: XCTestCase {
         try app.triggerMockMeasurement("Blood Pressure", expect: ["103/64 mmHg", "62 BPM"])
         try app.goTo(tab: "Heart Health")
         
-        // Make sure the vitals are correctly displayed
-        try app.goTo(tab: "Weight", header: "Body Weight")
-        
-        // Make sure the measurement is displayed in "All Data" section
-        XCTAssert(app.staticTexts["Weight Quantity: \(expectedWeight)"].waitForExistence(timeout: 0.5))
-        XCTAssert(app.staticTexts["Weight Unit: \(weightUnit)"].waitForExistence(timeout: 0.5))
-        XCTAssert(app.staticTexts["Weight Date: Jun 5, 2024"].waitForExistence(timeout: 0.5))
-        
-        // Navigate to weekly data
-        XCTAssert(app.staticTexts["Empty Body Weight Graph"].waitForExistence(timeout: 0.5))
-        XCTAssert(app.buttons["Resolution Picker, Daily"].waitForExistence(timeout: 0.5))
-        app.buttons["Resolution Picker, Daily"].tap()
-        XCTAssert(app.buttons["Weekly"].waitForExistence(timeout: 0.5))
-        app.buttons["Weekly"].tap()
-        sleep(1)
-        
-        // Make sure the vitals graph is present
-        XCTAssert(app.otherElements["Vitals Graph"].waitForExistence(timeout: 2.0))
-        
-        // Make sure the data appears in the list section
-        XCTAssert(app.staticTexts["Average"].waitForExistence(timeout: 0.5))
-        XCTAssert(app.staticTexts["Overall Summary Quantity: \(expectedWeight)"].waitForExistence(timeout: 0.5))
-        XCTAssert(app.staticTexts["Overall Summary Unit: \(weightUnit)"].waitForExistence(timeout: 0.5))
-        
-        // Make sure the overall average appears correctly
-        let now = Date()
-        let calendar = Calendar.current
-        let weeklyDomainStart = try XCTUnwrap(calendar.date(byAdding: .month, value: -3, to: now))
-        let displayRangeStart = try XCTUnwrap(calendar.dateInterval(of: .weekOfYear, for: weeklyDomainStart)?.start)
-        let displayRangeEnd = try XCTUnwrap(calendar.dateInterval(of: .weekOfYear, for: now)?.end)
-        let adjustedDisplayRangeEnd = displayRangeEnd.addingTimeInterval(-1)
-        
-        let formattedRange = (displayRangeStart..<adjustedDisplayRangeEnd).formatted(
-            Date.IntervalFormatStyle()
-                .day()
-                .month(.abbreviated)
-        )
-        
-        XCTAssert(app.staticTexts[formattedRange].waitForExistence(timeout: 0.5))
+        // Make sure the graphs displayed
+        try app.testHeartHealthWithHKSamples(expectedWeight: expectedWeight, weightUnit: weightUnit)
         
         try app.deleteAllMeasurements("Weight", header: "Body Weight", expectedDate: "Jun 5, 2024")
         try app.deleteAllMeasurements("HR", header: "Heart Rate", expectedDate: "Jun 5, 2024")
         try app.deleteAllMeasurements("BP", header: "Blood Pressure", expectedDate: "Jun 5, 2024")
+        
+        // Make sure the views are empty again
+        try app.testAllEmptyViews()
     }
 }
 
 
 extension XCUIApplication {
+    fileprivate func testHeartHealthWithHKSamples(expectedWeight: String, weightUnit: String) throws {
+        let now = Date()
+        let calendar = Calendar.current
+        
+        let weeklyDomainStart = try XCTUnwrap(calendar.date(byAdding: .month, value: -3, to: now))
+        let weekRangeStart = try XCTUnwrap(calendar.dateInterval(of: .weekOfYear, for: weeklyDomainStart)?.start)
+        let weekRangeEnd = try XCTUnwrap(calendar.dateInterval(of: .weekOfYear, for: now)?.end)
+        let adjustedWeekRangeEnd = weekRangeEnd.addingTimeInterval(-1)
+        
+        let weeklyRange = (weekRangeStart..<adjustedWeekRangeEnd).formatted(
+            Date.IntervalFormatStyle()
+                .day()
+                .month(.abbreviated)
+        )
+        
+        let monthlyDomainStart = try XCTUnwrap(calendar.date(byAdding: .month, value: -6, to: now))
+        let monthRangeStart = try XCTUnwrap(calendar.dateInterval(of: .month, for: monthlyDomainStart)?.start)
+        let monthRangeEnd = try XCTUnwrap(calendar.dateInterval(of: .month, for: now)?.end)
+        let adjustedMonthRangeEnd = monthRangeEnd.addingTimeInterval(-1)
+        
+        let monthlyRange = (monthRangeStart..<adjustedMonthRangeEnd).formatted(
+            Date.IntervalFormatStyle()
+                .day()
+                .month(.abbreviated)
+        )
+        
+        // Verify that each graph appears correctly
+        for (resolution, expectedRange) in [("Weekly", weeklyRange), ("Monthly", monthlyRange)] {
+            let pickerID = resolution == "Weekly" ? "Daily" : "Weekly"
+            
+            try testGraph(
+                id: ("Weight", "Body Weight"),
+                expectedQuantity: (expectedWeight, weightUnit),
+                dateInfo: (resolution, expectedRange),
+                pickerID: pickerID
+            )
+            try testGraph(
+                id: ("HR", "Heart Rate"),
+                expectedQuantity: ("62", "BPM"),
+                dateInfo: (resolution, expectedRange),
+                pickerID: pickerID
+            )
+            try testGraph(
+                id: ("BP", "Blood Pressure"),
+                expectedQuantity: ("103/64", "mmHg"),
+                dateInfo: (resolution, expectedRange),
+                pickerID: pickerID
+            )
+        }
+    }
+    
+    
+    fileprivate func testGraph(
+        id: (short: String, full: String),
+        expectedQuantity: (value: String, unit: String),
+        dateInfo: (granularity: String, range: String),
+        pickerID: String
+    ) throws {
+        // Make sure the vitals are correctly displayed
+        try goTo(tab: id.short, header: id.full)
+        
+        // Make sure the measurement is displayed in "All Data" section
+        XCTAssert(staticTexts["\(id.short) Quantity: \(expectedQuantity.value)"].waitForExistence(timeout: 0.5))
+        XCTAssert(staticTexts["\(id.short) Unit: \(expectedQuantity.unit)"].waitForExistence(timeout: 0.5))
+        XCTAssert(staticTexts["\(id.short) Date: Jun 5, 2024"].waitForExistence(timeout: 0.5))
+        
+        // Navigate to weekly data
+        XCTAssert(buttons["Resolution Picker, \(pickerID)"].waitForExistence(timeout: 0.5))
+        buttons["Resolution Picker, \(pickerID)"].tap()
+        XCTAssert(buttons[dateInfo.granularity].waitForExistence(timeout: 0.5))
+        buttons[dateInfo.granularity].tap()
+        sleep(1)
+        
+        // Make sure the vitals graph is present
+        XCTAssert(otherElements["Vitals Graph"].waitForExistence(timeout: 2.0))
+        
+        // Make sure the data appears in the list section
+        XCTAssert(staticTexts["Average"].waitForExistence(timeout: 0.5))
+        XCTAssert(staticTexts["Overall Summary Quantity: \(expectedQuantity.value)"].waitForExistence(timeout: 0.5))
+        XCTAssert(staticTexts["Overall Summary Unit: \(expectedQuantity.unit)"].waitForExistence(timeout: 0.5))
+        
+        // Make sure the overall average appears correctly
+        XCTAssert(staticTexts[dateInfo.range].waitForExistence(timeout: 0.5))
+    }
+    
     fileprivate func deleteAllMeasurements(_ id: String, header: String, expectedDate: String) throws {
         try goTo(tab: id, header: header)
         
