@@ -13,15 +13,16 @@ struct VitalsList: View {
     @Environment(VitalsManager.self) private var vitalsManager
     
     var vitalSelection: GraphSelection
+    @Binding var addingMeasurement: GraphSelection?
     
     
     var body: some View {
         List {
             switch vitalSelection {
             case .symptoms: SymptomsContentView()
-            case .weight: VitalsContentView(for: .weight)
-            case .heartRate: VitalsContentView(for: .heartRate)
-            case .bloodPressure: VitalsContentView(for: .bloodPressure)
+            case .weight: VitalsContentView(for: .weight, addingMeasurement: $addingMeasurement)
+            case .heartRate: VitalsContentView(for: .heartRate, addingMeasurement: $addingMeasurement)
+            case .bloodPressure: VitalsContentView(for: .bloodPressure, addingMeasurement: $addingMeasurement)
             }
         }
             .listStyle(.insetGrouped)
@@ -31,7 +32,7 @@ struct VitalsList: View {
 
 
 #Preview {
-    VitalsList(vitalSelection: .symptoms)
+    VitalsList(vitalSelection: .symptoms, addingMeasurement: .constant(nil))
         .previewWith(standard: ENGAGEHFStandard()) {
             VitalsManager()
         }

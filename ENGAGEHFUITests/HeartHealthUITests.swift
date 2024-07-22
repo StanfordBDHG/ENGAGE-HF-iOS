@@ -36,9 +36,9 @@ final class HeartHealthUITests: XCTestCase {
         try app.goTo(tab: "Heart Health")
         
         // Clear out any data present before continuing
-        try app.deleteAllMeasurements("Weight", header: "Body Weight", expectedDate: "Jun 5, 2024")
-        try app.deleteAllMeasurements("HR", header: "Heart Rate", expectedDate: "Jun 5, 2024")
-        try app.deleteAllMeasurements("BP", header: "Blood Pressure", expectedDate: "Jun 5, 2024")
+        try app.deleteAllMeasurements("Weight", header: "Body Weight")
+        try app.deleteAllMeasurements("HR", header: "Heart Rate")
+        try app.deleteAllMeasurements("BP", header: "Blood Pressure")
         
         try app.testAllEmptyViews()
         
@@ -51,9 +51,9 @@ final class HeartHealthUITests: XCTestCase {
         // Make sure the graphs displayed
         try app.testHeartHealthWithHKSamples(expectedWeight: expectedWeight, weightUnit: weightUnit)
         
-        try app.deleteAllMeasurements("Weight", header: "Body Weight", expectedDate: "Jun 5, 2024")
-        try app.deleteAllMeasurements("HR", header: "Heart Rate", expectedDate: "Jun 5, 2024")
-        try app.deleteAllMeasurements("BP", header: "Blood Pressure", expectedDate: "Jun 5, 2024")
+        try app.deleteAllMeasurements("Weight", header: "Body Weight")
+        try app.deleteAllMeasurements("HR", header: "Heart Rate")
+        try app.deleteAllMeasurements("BP", header: "Blood Pressure")
         
         // Make sure the views are empty again
         try app.testAllEmptyViews()
@@ -147,25 +147,6 @@ extension XCUIApplication {
         XCTAssert(staticTexts[dateInfo.range].waitForExistence(timeout: 0.5))
     }
     
-    fileprivate func deleteAllMeasurements(_ id: String, header: String, expectedDate: String) throws {
-        try goTo(tab: id, header: header)
-        
-        var dataPresent = !staticTexts["Empty \(id) List"].exists
-        var totalRows = 0
-        
-        while dataPresent {
-            swipeUp()
-            staticTexts["\(id) Date: \(expectedDate)"].firstMatch.swipeLeft()
-            if buttons["Delete"].waitForExistence(timeout: 0.5) {
-                buttons["Delete"].tap()
-            }
-            
-            dataPresent = !staticTexts["Empty \(id) List"].waitForExistence(timeout: 0.5)
-            XCTAssert(totalRows < 10)
-            totalRows += 1
-        }
-    }
-    
     
     fileprivate func triggerMockMeasurement(_ displayName: String, expect measurements: [String]) throws {
         XCTAssert(navigationBars.buttons["More"].exists)
@@ -186,13 +167,6 @@ extension XCUIApplication {
         sleep(1)
 
         XCTAssertFalse(alerts.element.exists)
-    }
-    
-    
-    fileprivate func goTo(tab tabName: String, header: String? = nil) throws {
-        XCTAssert(buttons[tabName].waitForExistence(timeout: 1.0))
-        buttons[tabName].tap()
-        XCTAssert(staticTexts[header ?? tabName].waitForExistence(timeout: 1.0))
     }
 }
 

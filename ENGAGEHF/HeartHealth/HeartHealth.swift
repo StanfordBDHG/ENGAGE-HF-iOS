@@ -15,6 +15,7 @@ struct HeartHealth: View {
     
     @Environment(VitalsManager.self) private var vitalsManager
     @State private var vitalSelection: GraphSelection = .symptoms
+    @State private var addingMeasurement: GraphSelection?
     
     
     var body: some View {
@@ -22,7 +23,7 @@ struct HeartHealth: View {
             VStack(alignment: .trailing) {
                 GraphPicker(selection: $vitalSelection)
                     .padding(.horizontal)
-                VitalsList(vitalSelection: vitalSelection)
+                VitalsList(vitalSelection: vitalSelection, addingMeasurement: $addingMeasurement)
             }
                 .navigationTitle("Heart Health")
                 .toolbar {
@@ -31,6 +32,9 @@ struct HeartHealth: View {
                     }
                 }
                 .background(Color(.systemGroupedBackground))
+                .sheet(item: $addingMeasurement, onDismiss: { addingMeasurement = nil }) { measurementType in
+                    AddMeasurementView(for: measurementType)
+                }
         }
     }
 }

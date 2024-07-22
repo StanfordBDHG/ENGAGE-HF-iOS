@@ -76,13 +76,13 @@ actor ENGAGEHFStandard: Standard,
         }
     }
     
-    private var userBucketReference: StorageReference {
+    private var patientBucketReference: StorageReference {
         get async throws {
             guard let details = await account.details else {
                 throw ENGAGEHFStandardError.userNotAuthenticatedYet
             }
 
-            return Storage.storage().reference().child("users/\(details.accountId)")
+            return Storage.storage().reference().child("patients/\(details.accountId)")
         }
     }
 
@@ -215,7 +215,7 @@ actor ENGAGEHFStandard: Standard,
             
             let metadata = StorageMetadata()
             metadata.contentType = "application/pdf"
-            _ = try await userBucketReference.child("consent/\(dateString).pdf").putDataAsync(consentData, metadata: metadata)
+            _ = try await patientBucketReference.child("consent/\(dateString).pdf").putDataAsync(consentData, metadata: metadata)
         } catch {
             logger.error("Could not store consent form: \(error)")
         }

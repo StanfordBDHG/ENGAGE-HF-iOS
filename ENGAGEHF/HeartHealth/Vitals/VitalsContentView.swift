@@ -14,6 +14,7 @@ struct VitalsContentView: View {
     @Environment(VitalsManager.self) private var vitalsManager
     
     var vitalsType: VitalsType
+    @Binding var addingMeasurement: GraphSelection?
     
     
     private var listDisplayData: [VitalListMeasurement] {
@@ -30,13 +31,15 @@ struct VitalsContentView: View {
         MeasurementListSection(
             data: listDisplayData,
             units: vitalsType.unit.description,
-            type: vitalsType.graphType
+            type: vitalsType.graphType,
+            addingMeasurement: $addingMeasurement
         )
     }
     
     
-    init(for vitals: VitalsType) {
+    init(for vitals: VitalsType, addingMeasurement: Binding<GraphSelection?>) {
         self.vitalsType = vitals
+        self._addingMeasurement = addingMeasurement
     }
     
     
@@ -91,5 +94,5 @@ struct VitalsContentView: View {
 
 
 #Preview {
-    VitalsContentView(for: .weight)
+    VitalsContentView(for: .weight, addingMeasurement: .constant(nil))
 }

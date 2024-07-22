@@ -29,6 +29,7 @@ struct MeasurementListRow: View {
                 .font(.title3)
                 .foregroundStyle(Color.secondary)
                 .accessibilityLabel("\(type) Date: \(displayDate)")
+                .accessibilityIdentifier("Measurement Row")
         }
     }
 }

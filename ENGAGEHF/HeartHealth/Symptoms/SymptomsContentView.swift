@@ -38,7 +38,8 @@ struct SymptomsContentView: View {
         MeasurementListSection(
             data: listDisplayData,
             units: "%",
-            type: .symptoms
+            type: .symptoms,
+            addingMeasurement: .constant(nil)
         )
             .deleteDisabled(true)
     }
