@@ -14,6 +14,7 @@ extension XCUIApplication {
     func goTo(tab tabName: String, header: String? = nil) throws {
         XCTAssert(buttons[tabName].waitForExistence(timeout: 1.0))
         buttons[tabName].tap()
+        swipeDown()
         XCTAssert(staticTexts[header ?? tabName].waitForExistence(timeout: 1.0))
     }
 }

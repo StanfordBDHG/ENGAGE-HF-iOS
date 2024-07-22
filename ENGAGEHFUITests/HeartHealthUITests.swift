@@ -24,45 +24,138 @@ final class HeartHealthUITests: XCTestCase {
         app.launch()
     }
     
-    func testHeartHealth() throws {
+    func testSymptomScores() throws {
         let app = XCUIApplication()
         
-        sleep(2)
-        
-        let expectedWeight = Locale.current.measurementSystem == .us ? "92.6" : "42"
-        let weightUnit = Locale.current.measurementSystem == .us ? "lb" : "kg"
-        
+        try app.goTo(tab: "Heart Health")
+        try app.testEmptySymptomScores()
+    }
+    
+    func testEmptyBodyWeight() throws {
+        let app = XCUIApplication()
+
         // Make sure we're on the Heart Health view
         try app.goTo(tab: "Heart Health")
         
         // Clear out any data present before continuing
         try app.deleteAllMeasurements("Weight", header: "Body Weight")
+        try app.testEmptyVitals(for: "Body Weight", pickerLabel: "Weight")
+    }
+    
+    func testEmptyHeartRate() throws {
+        let app = XCUIApplication()
+        
+        try app.goTo(tab: "Heart Health")
+        // Clear out any data present before continuing
         try app.deleteAllMeasurements("HR", header: "Heart Rate")
+        try app.testEmptyVitals(for: "Heart Rate", pickerLabel: "HR")
+    }
+    
+    func testEmptyBloodPressure() throws {
+        let app = XCUIApplication()
+        
+        try app.goTo(tab: "Heart Health")
         try app.deleteAllMeasurements("BP", header: "Blood Pressure")
+        try app.testEmptyVitals(for: "Blood Pressure", pickerLabel: "BP")
+    }
+    
+    func testWithWeightSample() throws {
+        let app = XCUIApplication()
         
-        try app.testAllEmptyViews()
+        let expectedWeight = Locale.current.measurementSystem == .us ? "92.6" : "42.0"
+        let expectedUnit = Locale.current.measurementSystem == .us ? "lb" : "kg"
         
-        // Add mock vitals to the user's collections in firestore
+        // Start fresh
+        try app.goTo(tab: "Heart Health")
+        try app.deleteAllMeasurements("Weight", header: "Body Weight")
+        
+        // Trigger a measurement
         try app.goTo(tab: "Home")
         try app.triggerMockMeasurement("Weight", expect: ["42 kg"])
+        try app.goTo(tab: "Heart Health")
+        
+        // Test to make sure the graph appears
+        try app.testGraphWithSamples(
+            id: ("Weight", "Body Weight"),
+            expectedQuantity: (expectedWeight, expectedUnit)
+        )
+        
+        // Test to make sure the All Data section has an item in it
+        app.swipeUp()
+        XCTAssertFalse(app.staticTexts["Empty Weight List"].waitForExistence(timeout: 0.5))
+        XCTAssert(app.staticTexts["Weight Quantity: \(expectedWeight)"].exists)
+        XCTAssert(app.staticTexts["Weight Unit: \(expectedUnit)"].exists)
+        XCTAssert(app.staticTexts["Weight Date: Jun 5, 2024"].exists)
+        
+        // Make sure the empty views return when we delete the data
+        try app.deleteAllMeasurements("Weight", header: "Body Weight")
+        try app.testEmptyVitals(for: "Body Weight", pickerLabel: "Weight")
+    }
+    
+    func testWithHeartRateSample() throws {
+        let app = XCUIApplication()
+
+        // Start fresh
+        try app.goTo(tab: "Heart Health")
+        try app.deleteAllMeasurements("HR", header: "Heart Rate")
+        
+        // Trigger a measurement
+        try app.goTo(tab: "Home")
         try app.triggerMockMeasurement("Blood Pressure", expect: ["103/64 mmHg", "62 BPM"])
         try app.goTo(tab: "Heart Health")
         
-        // Make sure the graphs displayed
-        try app.testHeartHealthWithHKSamples(expectedWeight: expectedWeight, weightUnit: weightUnit)
+        // Test to make sure the graph appears
+        try app.testGraphWithSamples(
+            id: ("HR", "Heart Rate"),
+            expectedQuantity: ("62", "BPM")
+        )
         
-        try app.deleteAllMeasurements("Weight", header: "Body Weight")
+        // Test to make sure the All Data section has an item in it
+        app.swipeUp()
+        XCTAssertFalse(app.staticTexts["Empty HR List"].waitForExistence(timeout: 0.5))
+        XCTAssert(app.staticTexts["HR Quantity: 62"].exists)
+        XCTAssert(app.staticTexts["HR Unit: BPM"].exists)
+        XCTAssert(app.staticTexts["HR Date: Jun 5, 2024"].exists)
+        
+        // Make sure the empty views return when we delete the data
         try app.deleteAllMeasurements("HR", header: "Heart Rate")
+        try app.testEmptyVitals(for: "Heart Rate", pickerLabel: "HR")
+    }
+    
+    func testWithBloodPressureSample() throws {
+        let app = XCUIApplication()
+        
+        // Start fresh
+        try app.goTo(tab: "Heart Health")
         try app.deleteAllMeasurements("BP", header: "Blood Pressure")
         
-        // Make sure the views are empty again
-        try app.testAllEmptyViews()
+        // Trigger a measurement
+        try app.goTo(tab: "Home")
+        try app.triggerMockMeasurement("Blood Pressure", expect: ["103/64 mmHg", "62 BPM"])
+        try app.goTo(tab: "Heart Health")
+        
+        // Test to make sure the graph appears
+        try app.testGraphWithSamples(
+            id: ("BP", "Blood Pressure"),
+            expectedQuantity: ("103/64", "mmHg")
+        )
+        
+        // Test to make sure the All Data section has an item in it
+        app.swipeUp()
+        XCTAssertFalse(app.staticTexts["Empty BP List"].waitForExistence(timeout: 0.5))
+        XCTAssert(app.staticTexts["BP Quantity: 103/64"].exists)
+        XCTAssert(app.staticTexts["BP Unit: mmHg"].exists)
+        XCTAssert(app.staticTexts["BP Date: Jun 5, 2024"].exists)
+        
+        // Make sure the empty views return when we delete the data
+        try app.deleteAllMeasurements("BP", header: "Blood Pressure")
+        try app.testEmptyVitals(for: "Blood Pressure", pickerLabel: "BP")
     }
 }
 
 
 extension XCUIApplication {
-    fileprivate func testHeartHealthWithHKSamples(expectedWeight: String, weightUnit: String) throws {
+    private func getExpectedDateRanges() throws -> [String] {
         let now = Date()
         let calendar = Calendar.current
         
@@ -88,25 +181,23 @@ extension XCUIApplication {
                 .month(.abbreviated)
         )
         
+        return [weeklyRange, monthlyRange]
+    }
+    
+    
+    fileprivate func testGraphWithSamples(
+        id: (short: String, full: String),
+        expectedQuantity: (value: String, unit: String)
+    ) throws {
+        let expectedRanges = try getExpectedDateRanges()
+        
         // Verify that each graph appears correctly
-        for (resolution, expectedRange) in [("Weekly", weeklyRange), ("Monthly", monthlyRange)] {
+        for (resolution, expectedRange) in zip(["Weekly", "Monthly"], expectedRanges) {
             let pickerID = resolution == "Weekly" ? "Daily" : "Weekly"
             
             try testGraph(
-                id: ("Weight", "Body Weight"),
-                expectedQuantity: (expectedWeight, weightUnit),
-                dateInfo: (resolution, expectedRange),
-                pickerID: pickerID
-            )
-            try testGraph(
-                id: ("HR", "Heart Rate"),
-                expectedQuantity: ("62", "BPM"),
-                dateInfo: (resolution, expectedRange),
-                pickerID: pickerID
-            )
-            try testGraph(
-                id: ("BP", "Blood Pressure"),
-                expectedQuantity: ("103/64", "mmHg"),
+                id: id,
+                expectedQuantity: expectedQuantity,
                 dateInfo: (resolution, expectedRange),
                 pickerID: pickerID
             )
@@ -172,15 +263,6 @@ extension XCUIApplication {
 
 
 extension XCUIApplication {
-    fileprivate func testAllEmptyViews() throws {
-        try testEmptyVitals(for: "Body Weight", pickerLabel: "Weight")
-        try testEmptyVitals(for: "Heart Rate", pickerLabel: "HR")
-        try testEmptyVitals(for: "Blood Pressure", pickerLabel: "BP")
-        try testEmptySymptomScores()
-        // Should end at symptoms view with Overall symptoms
-    }
-    
-    
     fileprivate func testEmptyVitals(for vitalType: String, pickerLabel: String) throws {
         XCTAssert(buttons[pickerLabel].waitForExistence(timeout: 0.5))
         buttons[pickerLabel].tap()
