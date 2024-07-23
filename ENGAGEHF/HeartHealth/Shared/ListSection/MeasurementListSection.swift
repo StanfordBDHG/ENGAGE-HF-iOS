@@ -14,7 +14,6 @@ struct MeasurementListSection: View {
     var data: [VitalListMeasurement]
     var units: String
     var type: GraphSelection
-    @Binding var addingMeasurement: GraphSelection?
     
     @Environment(VitalsManager.self) private var vitalsManager
     @State private var viewState: ViewState = .idle
@@ -46,11 +45,7 @@ struct MeasurementListSection: View {
                 }
             },
             header: {
-                MeasurementListHeader(
-                    addingEnabled: type != .symptoms,
-                    for: type,
-                    addingMeasurement: $addingMeasurement
-                )
+                MeasurementListHeader(for: type)
             }
         )
             .viewStateAlert(state: $viewState)
@@ -96,8 +91,7 @@ struct MeasurementListSection: View {
             VitalListMeasurement(id: "TEST4", value: "120.4", date: .now)
         ],
         units: "lbs",
-        type: .weight,
-        addingMeasurement: .constant(nil)
+        type: .weight
     )
         .previewWith(standard: ENGAGEHFStandard()) {
             VitalsManager()

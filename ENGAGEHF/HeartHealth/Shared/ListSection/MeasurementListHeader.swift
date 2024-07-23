@@ -10,9 +10,9 @@ import SwiftUI
 
 
 struct MeasurementListHeader: View {
-    let addingEnabled: Bool
     let measurementType: GraphSelection
-    @Binding var addingMeasurement: GraphSelection?
+    
+    @State private var addingMeasurement: GraphSelection?
     
     
     var body: some View {
@@ -20,21 +20,31 @@ struct MeasurementListHeader: View {
             Text("All Data")
                 .font(.title3.bold())
             Spacer()
-            if addingEnabled {
-                TriggerNewMeasurementButton(measurementType: measurementType, addingMeasurement: $addingMeasurement)
+            if measurementType != .symptoms {
+                TriggerNewMeasurementButton(
+                    measurementType: measurementType,
+                    addingMeasurement: $addingMeasurement
+                )
             }
         }
+            .sheet(
+                item: $addingMeasurement,
+                onDismiss: {
+                    addingMeasurement = nil
+                },
+                content: { measurementType in
+                    AddMeasurementView(for: measurementType)
+                }
+            )
     }
     
     
-    init(addingEnabled: Bool, for type: GraphSelection, addingMeasurement: Binding<GraphSelection?>) {
-        self.addingEnabled = addingEnabled
+    init(for type: GraphSelection) {
         self.measurementType = type
-        self._addingMeasurement = addingMeasurement
     }
 }
 
 
 #Preview {
-    MeasurementListHeader(addingEnabled: true, for: .weight, addingMeasurement: .constant(nil))
+    MeasurementListHeader(for: .weight)
 }

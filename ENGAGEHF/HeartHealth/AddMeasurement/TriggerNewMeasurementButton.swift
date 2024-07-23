@@ -11,7 +11,7 @@ import SwiftUI
 
 
 struct TriggerNewMeasurementButton: View {
-    var measurementType: GraphSelection
+    let measurementType: GraphSelection
     @Binding var addingMeasurement: GraphSelection?
     
     

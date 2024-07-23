@@ -73,6 +73,7 @@ struct AddMeasurementView: View {
                 }
             }
             .navigationTitle(type.fullName)
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") {

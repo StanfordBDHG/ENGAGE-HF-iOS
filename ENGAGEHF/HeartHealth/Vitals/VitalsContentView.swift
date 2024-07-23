@@ -12,9 +12,7 @@ import SwiftUI
 
 struct VitalsContentView: View {
     @Environment(VitalsManager.self) private var vitalsManager
-    
     var vitalsType: VitalsType
-    @Binding var addingMeasurement: GraphSelection?
     
     
     private var listDisplayData: [VitalListMeasurement] {
@@ -31,15 +29,13 @@ struct VitalsContentView: View {
         MeasurementListSection(
             data: listDisplayData,
             units: vitalsType.unit.description,
-            type: vitalsType.graphType,
-            addingMeasurement: $addingMeasurement
+            type: vitalsType.graphType
         )
     }
     
     
-    init(for vitals: VitalsType, addingMeasurement: Binding<GraphSelection?>) {
+    init(for vitals: VitalsType) {
         self.vitalsType = vitals
-        self._addingMeasurement = addingMeasurement
     }
     
     
@@ -94,5 +90,5 @@ struct VitalsContentView: View {
 
 
 #Preview {
-    VitalsContentView(for: .weight, addingMeasurement: .constant(nil))
+    VitalsContentView(for: .weight)
 }
