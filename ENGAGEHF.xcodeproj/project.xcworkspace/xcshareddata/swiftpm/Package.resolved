@@ -186,8 +186,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/Spezi",
       "state" : {
-        "revision" : "afdf500a23cc7eabcb759044f5524514e91a99dc",
-        "version" : "1.5.1"
+        "revision" : "d87e3d8104a0732c0e294e9ae6354db4a7058800",
+        "version" : "1.6.0"
       }
     },
     {
@@ -231,8 +231,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziFirebase.git",
       "state" : {
-        "revision" : "67981d0f0b4f0bb70f120f9b5304e7c0b08e5717",
-        "version" : "1.1.3"
+        "branch" : "feature/improveSetup",
+        "revision" : "488fba3d9be4c13d0462faf60c313dc7305f0ff6"
       }
     },
     {
@@ -357,8 +357,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-protobuf.git",
       "state" : {
-        "revision" : "d57a5aecf24a25b32ec4a74be2f5d0a995a47c4b",
-        "version" : "1.27.0"
+        "revision" : "e17d61f26df0f0e06f58f6977ba05a097a720106",
+        "version" : "1.27.1"
       }
     },
     {

@@ -28,25 +28,15 @@ actor ENGAGEHFStandard: Standard,
                         AccountStorageConstraint,
                         AccountNotifyConstraint {
     enum ENGAGEHFStandardError: LocalizedError {
-        case userNotAuthenticatedYet
         case invalidHKSampleType
         case accountDeletionNotAllowed
         
         var errorDescription: String? {
             switch self {
-            case .userNotAuthenticatedYet: String(localized: "userNotSignedIn")
             case .invalidHKSampleType: String(localized: "invalidHKSample")
             case .accountDeletionNotAllowed: String(localized: "accountDeletionError")
             }
         }
-    }
-
-    private static var userCollection: CollectionReference {
-        Firestore.firestore().collection("users")
-    }
-    
-    private static var patientCollection: CollectionReference {
-        Firestore.firestore().collection("patients")
     }
 
     @Dependency var accountStorage: FirestoreAccountStorage?
@@ -55,44 +45,6 @@ actor ENGAGEHFStandard: Standard,
 
     private let logger = Logger(subsystem: "ENGAGEHF", category: "Standard")
     
-    
-    private var userDocumentReference: DocumentReference {
-        get async throws {
-            guard let details = await account.details else {
-                throw ENGAGEHFStandardError.userNotAuthenticatedYet
-            }
-
-            return Self.userCollection.document(details.accountId)
-        }
-    }
-    
-    private var patientDocumentReference: DocumentReference {
-        get async throws {
-            guard let details = await account.details else {
-                throw ENGAGEHFStandardError.userNotAuthenticatedYet
-            }
-            
-            return Self.patientCollection.document(details.accountId)
-        }
-    }
-    
-    private var userBucketReference: StorageReference {
-        get async throws {
-            guard let details = await account.details else {
-                throw ENGAGEHFStandardError.userNotAuthenticatedYet
-            }
-
-            return Storage.storage().reference().child("users/\(details.accountId)")
-        }
-    }
-
-
-    init() {
-        if !FeatureFlags.disableFirebase {
-            _accountStorage = Dependency(wrappedValue: FirestoreAccountStorage(storeIn: ENGAGEHFStandard.userCollection))
-        }
-    }
-    
 
     func addMeasurement(samples: [HKSample]) async throws {
         guard !samples.isEmpty else {
@@ -100,13 +52,13 @@ actor ENGAGEHFStandard: Standard,
         }
 
         logger.debug("Saving \(samples.count) samples to firestore ...")
-        let patientDocument = try await patientDocumentReference
+        let patientDocumentReference = try await Firestore.patientDocumentReference
 
         do {
             let batch = Firestore.firestore().batch()
             for sample in samples {
                 do {
-                    let document = try healthKitDocument(for: patientDocument, id: sample.id, type: sample.sampleType)
+                    let document = try healthKitDocument(for: patientDocumentReference, id: sample.id, type: sample.sampleType)
                     try batch.setData(from: sample.resource, forDocument: document)
                 } catch {
                     // either document retrieval or encoding failed, this should not stop other samples from getting saved
@@ -123,7 +75,7 @@ actor ENGAGEHFStandard: Standard,
     
     func add(symptomScore: SymptomScore) async {
         do {
-            let patientDoc = try await patientDocumentReference
+            let patientDoc = try await Firestore.patientDocumentReference
             try patientDoc.collection("symptomScores").addDocument(from: symptomScore)
         } catch {
             logger.error("Could not store the symptom scores: \(error)")
@@ -133,7 +85,7 @@ actor ENGAGEHFStandard: Standard,
     
     func add(notification: Notification) async {
         do {
-            let userDoc = try await userDocumentReference
+            let userDoc = try await Firestore.userDocumentReference
             try userDoc.collection("messages").addDocument(from: notification)
         } catch {
             logger.error("Could not store the notification: \(error)")
@@ -145,7 +97,7 @@ actor ENGAGEHFStandard: Standard,
         let id = response.identifier?.value?.value?.string ?? UUID().uuidString
         
         do {
-            try await userDocumentReference
+            try await Firestore.patientDocumentReference
                 .collection("QuestionnaireResponse") // Add all HealthKit sources in a /QuestionnaireResponse collection.
                 .document(id) // Set the document identifier to the id of the response.
                 .setData(from: response)
@@ -215,7 +167,7 @@ actor ENGAGEHFStandard: Standard,
             
             let metadata = StorageMetadata()
             metadata.contentType = "application/pdf"
-            _ = try await userBucketReference.child("consent/\(dateString).pdf").putDataAsync(consentData, metadata: metadata)
+            _ = try await Storage.patientBucketReference.child("consent/\(dateString).pdf").putDataAsync(consentData, metadata: metadata)
         } catch {
             logger.error("Could not store consent form: \(error)")
         }
