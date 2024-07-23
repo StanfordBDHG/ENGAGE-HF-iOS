@@ -29,13 +29,11 @@ struct VitalsGraph: View {
             // Overlay for tracking gestures
             .modifier(GestureOverlay(viewModel: viewModel))
             // State change modifiers to listen for updates to the environment and handle errors
-            .onChange(of: data) {
-                viewModel.processData(data, options: options)
-            }
             .onChange(of: options) {
+                print("Options changed")
                 viewModel.processData(data, options: options)
             }
-            .onAppear {
+            .task {
                 viewModel.processData(data, options: options)
             }
             .viewStateAlert(state: $viewModel.viewState)

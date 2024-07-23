@@ -30,7 +30,7 @@ struct HKSampleGraph: View {
             )
         )
             .onChange(of: data) { viewModel.processData(data: data) }
-            .onAppear { viewModel.processData(data: data) }
+            .task { viewModel.processData(data: data) }
             .viewStateAlert(state: $viewModel.viewState)
     }
 }
