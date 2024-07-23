@@ -25,6 +25,9 @@ final class RecentVitalsUITests: XCTestCase {
         let expectedWeight = Locale.current.measurementSystem == .us ? "92.6" : "42"
         let weightUnit = Locale.current.measurementSystem == .us ? "lb" : "kg"
         
+        // Delete all previous measurements
+        try app.deleteAllMeasurements("Weight", header: "Body Weight")
+        
         // Make sure we're on the home screen
         XCTAssert(app.buttons["Home"].waitForExistence(timeout: 2.0))
         app.buttons["Home"].tap()
@@ -59,13 +62,16 @@ final class RecentVitalsUITests: XCTestCase {
     func testHeartRateAndBloodPressure() throws {
         let app = XCUIApplication()
         
+        // Delete previous measurements
+        try app.deleteAllMeasurements("HR", header: "Heart Rate")
+        try app.deleteAllMeasurements("BP", header: "Blood Pressure")
+        
         // Make sure we're on the home screen
         XCTAssert(app.buttons["Home"].waitForExistence(timeout: 2.0))
         app.buttons["Home"].tap()
         
         XCTAssert(app.navigationBars.buttons["More"].exists)
         app.navigationBars.buttons["More"].tap()
-
         
         // Trigger a mock blood pressure measurement
         XCTAssert(app.buttons["Trigger Blood Pressure Measurement"].waitForExistence(timeout: 0.5))

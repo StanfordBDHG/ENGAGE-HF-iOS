@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
     "%@" : {
 
     },
@@ -101,6 +104,12 @@
         }
       }
     },
+    "Add" : {
+
+    },
+    "Add Measurement: %@" : {
+
+    },
     "Add Mock" : {
 
     },
@@ -114,6 +123,9 @@
       "comment" : "General Error"
     },
     "An invitation code is at least 8 characters long." : {
+
+    },
+    "Attempted to add a symptom score without first taking survey." : {
 
     },
     "Average" : {
@@ -130,6 +142,9 @@
           }
         }
       }
+    },
+    "Cancel" : {
+
     },
     "CLOSE" : {
       "comment" : "MARK: General",
@@ -186,6 +201,9 @@
     "Failed to identify HKSample concrete subclass." : {
 
     },
+    "Failed to save new %@ measurement." : {
+
+    },
     "Graph Selection" : {
 
     },
@@ -211,6 +229,9 @@
 
     },
     "I Already Have an Account" : {
+
+    },
+    "Input: %@" : {
 
     },
     "INTERESTING_MODULES_AREA1_DESCRIPTION" : {
@@ -547,7 +568,13 @@
     "The invitation code is invalid or has already been used." : {
       "comment" : "Invitation Code Invalid"
     },
+    "Time" : {
+
+    },
     "Trigger Blood Pressure Measurement" : {
+
+    },
+    "Trigger Sheet" : {
 
     },
     "Trigger Weight Measurement" : {

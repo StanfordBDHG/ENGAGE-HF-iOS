@@ -12,7 +12,6 @@ import SwiftUI
 
 struct VitalsContentView: View {
     @Environment(VitalsManager.self) private var vitalsManager
-    
     var vitalsType: VitalsType
     
     
