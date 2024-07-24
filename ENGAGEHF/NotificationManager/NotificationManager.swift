@@ -104,7 +104,7 @@ class NotificationManager: Module, EnvironmentAccessible {
         logger.info("Initializing notification snapshot listener...")
 
         // Remove previous snapshot listener for the user before creating new one
-        snapshotListener?.remove()
+        self.snapshotListener?.remove()
         guard let uid = user?.uid else {
             return
         }
@@ -112,7 +112,7 @@ class NotificationManager: Module, EnvironmentAccessible {
         let firestore = Firestore.firestore()
         
         // Set a snapshot listener on the query for valid notifications
-        firestore
+        self.snapshotListener = firestore
             .collection("users")
             .document(uid)
             .collection("messages")
