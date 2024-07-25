@@ -29,6 +29,15 @@ enum GraphSelection: CaseIterable, Identifiable, CustomStringConvertible {
         }
     }
     
+    var fullName: String {
+        switch self {
+        case .symptoms: "Symptom Score"
+        case .weight: "Body Weight"
+        case .heartRate: "Heart Rate"
+        case .bloodPressure: "Blood Pressure"
+        }
+    }
+    
     var localizedEmptyHistoryWarning: String {
         switch self {
         case .symptoms: String(localized: "symptomsMissing")

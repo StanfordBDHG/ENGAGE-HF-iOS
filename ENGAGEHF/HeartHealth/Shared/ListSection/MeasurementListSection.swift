@@ -45,8 +45,7 @@ struct MeasurementListSection: View {
                 }
             },
             header: {
-                Text("All Data")
-                    .font(.title3.bold())
+                MeasurementListHeader(for: type)
             }
         )
             .viewStateAlert(state: $viewState)

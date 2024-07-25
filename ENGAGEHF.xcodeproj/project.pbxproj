@@ -69,6 +69,14 @@
 		4D4072A42C49A07C007C5621 /* HKSampleGraph+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4072A32C49A07C007C5621 /* HKSampleGraph+ViewModel.swift */; };
 		4D49AB022BC9D50400C77310 /* SpeziBluetooth in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49AB012BC9D50400C77310 /* SpeziBluetooth */; };
 		4D4AA0A52BC5E43E00676489 /* OnboardingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4AA0A42BC5E43E00676489 /* OnboardingUITests.swift */; };
+		4D8402702C4EBE7D00817495 /* AddMeasurementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D84026F2C4EBE7D00817495 /* AddMeasurementView.swift */; };
+		4D8402722C4EC0D400817495 /* MeasurementListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8402712C4EC0D400817495 /* MeasurementListHeader.swift */; };
+		4D8402752C4EC64D00817495 /* TriggerNewMeasurementButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8402742C4EC64D00817495 /* TriggerNewMeasurementButton.swift */; };
+		4D8402772C4EE52000817495 /* AddMeasurementUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8402762C4EE51F00817495 /* AddMeasurementUITests.swift */; };
+		4D84027A2C4EE56000817495 /* XCUIApplication+GoTo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8402792C4EE56000817495 /* XCUIApplication+GoTo.swift */; };
+		4D84027E2C4EF82D00817495 /* AddMeasurementAsyncButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D84027D2C4EF82D00817495 /* AddMeasurementAsyncButton.swift */; };
+		4D8402812C4F067D00817495 /* FieldDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8402802C4F067D00817495 /* FieldDetails.swift */; };
+		4D8402842C4F11CB00817495 /* XCUIApplication+DeleteMeasurements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8402832C4F11CB00817495 /* XCUIApplication+DeleteMeasurements.swift */; };
 		4D8AD2C22C49D51E00CB4F3E /* SeriesDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8AD2C12C49D51E00CB4F3E /* SeriesDictionary.swift */; };
 		4D8AD2C52C4A180300CB4F3E /* MeasurementSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8AD2C42C4A180300CB4F3E /* MeasurementSeries.swift */; };
 		4D8AD2C82C4A2BE900CB4F3E /* VitalsGraphOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8AD2C72C4A2BE900CB4F3E /* VitalsGraphOptions.swift */; };
@@ -204,6 +212,14 @@
 		4D40729E2C488172007C5621 /* KnownVitalsSeries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnownVitalsSeries.swift; sourceTree = "<group>"; };
 		4D4072A32C49A07C007C5621 /* HKSampleGraph+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HKSampleGraph+ViewModel.swift"; sourceTree = "<group>"; };
 		4D4AA0A42BC5E43E00676489 /* OnboardingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingUITests.swift; sourceTree = "<group>"; };
+		4D84026F2C4EBE7D00817495 /* AddMeasurementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMeasurementView.swift; sourceTree = "<group>"; };
+		4D8402712C4EC0D400817495 /* MeasurementListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementListHeader.swift; sourceTree = "<group>"; };
+		4D8402742C4EC64D00817495 /* TriggerNewMeasurementButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggerNewMeasurementButton.swift; sourceTree = "<group>"; };
+		4D8402762C4EE51F00817495 /* AddMeasurementUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMeasurementUITests.swift; sourceTree = "<group>"; };
+		4D8402792C4EE56000817495 /* XCUIApplication+GoTo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCUIApplication+GoTo.swift"; sourceTree = "<group>"; };
+		4D84027D2C4EF82D00817495 /* AddMeasurementAsyncButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMeasurementAsyncButton.swift; sourceTree = "<group>"; };
+		4D8402802C4F067D00817495 /* FieldDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldDetails.swift; sourceTree = "<group>"; };
+		4D8402832C4F11CB00817495 /* XCUIApplication+DeleteMeasurements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCUIApplication+DeleteMeasurements.swift"; sourceTree = "<group>"; };
 		4D8AD2C12C49D51E00CB4F3E /* SeriesDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesDictionary.swift; sourceTree = "<group>"; };
 		4D8AD2C42C4A180300CB4F3E /* MeasurementSeries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementSeries.swift; sourceTree = "<group>"; };
 		4D8AD2C72C4A2BE900CB4F3E /* VitalsGraphOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalsGraphOptions.swift; sourceTree = "<group>"; };
@@ -414,6 +430,7 @@
 				4D92B9F12C3C8D1E00ABCED7 /* MeasurementListSection.swift */,
 				4D92B9F32C3C8DF900ABCED7 /* MeasurementListRow.swift */,
 				4D92BA062C3CAE5300ABCED7 /* VitalListMeasurement.swift */,
+				4D8402712C4EC0D400817495 /* MeasurementListHeader.swift */,
 			);
 			path = ListSection;
 			sourceTree = "<group>";
@@ -481,6 +498,26 @@
 				4D4072922C4841D4007C5621 /* VitalsGraph+DefaultStyling.swift */,
 			);
 			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		4D84026E2C4EBE6600817495 /* AddMeasurement */ = {
+			isa = PBXGroup;
+			children = (
+				4D84026F2C4EBE7D00817495 /* AddMeasurementView.swift */,
+				4D8402742C4EC64D00817495 /* TriggerNewMeasurementButton.swift */,
+				4D84027D2C4EF82D00817495 /* AddMeasurementAsyncButton.swift */,
+				4D8402802C4F067D00817495 /* FieldDetails.swift */,
+			);
+			path = AddMeasurement;
+			sourceTree = "<group>";
+		};
+		4D84027B2C4EE61C00817495 /* HelperFunctions */ = {
+			isa = PBXGroup;
+			children = (
+				4D8402792C4EE56000817495 /* XCUIApplication+GoTo.swift */,
+				4D8402832C4F11CB00817495 /* XCUIApplication+DeleteMeasurements.swift */,
+			);
+			path = HelperFunctions;
 			sourceTree = "<group>";
 		};
 		4D8AD2CB2C4ACF5C00CB4F3E /* Extensions */ = {
@@ -563,6 +600,7 @@
 				4D2D1D5F2C2B859C00ABDC19 /* GraphPicker.swift */,
 				4DF506182C2E1AAD003E7EFB /* SelectionTypes.swift */,
 				4D34B3F52C4065A4006F0D40 /* HeartHealthError.swift */,
+				4D84026E2C4EBE6600817495 /* AddMeasurement */,
 				4D34B4032C41C8D4006F0D40 /* Shared */,
 				4D92B9FC2C3C91CB00ABCED7 /* Vitals */,
 				4D92B9F92C3C91AC00ABCED7 /* Symptoms */,
@@ -658,6 +696,7 @@
 		653A256A28338800005D4D48 /* ENGAGEHFUITests */ = {
 			isa = PBXGroup;
 			children = (
+				4D84027B2C4EE61C00817495 /* HelperFunctions */,
 				2F4E237D2989A2FE0013F3D9 /* LaunchTests.swift */,
 				4DB025C92BBE3A59002D2545 /* HomeViewUITests.swift */,
 				4D4AA0A42BC5E43E00676489 /* OnboardingUITests.swift */,
@@ -665,6 +704,7 @@
 				A9F2138D2C18EBAB00A7578F /* AccountTests.swift */,
 				4DA20B682C2B299700715AA2 /* RecentVitalsUITests.swift */,
 				4D8AD2E02C4B5D1600CB4F3E /* HeartHealthUITests.swift */,
+				4D8402762C4EE51F00817495 /* AddMeasurementUITests.swift */,
 			);
 			path = ENGAGEHFUITests;
 			sourceTree = "<group>";
@@ -905,6 +945,7 @@
 				4D4072A42C49A07C007C5621 /* HKSampleGraph+ViewModel.swift in Sources */,
 				4DA20B642C2A0FF100715AA2 /* VitalsCard.swift in Sources */,
 				4DBDD3442BBFAD64001FB0CA /* InvitationCodeError.swift in Sources */,
+				4D84027E2C4EF82D00817495 /* AddMeasurementAsyncButton.swift in Sources */,
 				2FC975A82978F11A00BA99FE /* Home.swift in Sources */,
 				A9623C082C18D03F00189BA1 /* AccountSetupSheet.swift in Sources */,
 				4D40727E2C465554007C5621 /* HKSampleGraphError.swift in Sources */,
@@ -917,6 +958,7 @@
 				2FF350E42C4F3F0B0095F08F /* Firebase+References.swift in Sources */,
 				4DC0F6712C34818B0025AB13 /* HKSample+GetDoubleValues.swift in Sources */,
 				4D34B3F62C4065A5006F0D40 /* HeartHealthError.swift in Sources */,
+				4D8402812C4F067D00817495 /* FieldDetails.swift in Sources */,
 				4DDFC7872BFBFDDD002B07A1 /* NotificationManager.swift in Sources */,
 				2FE5DC3729EDD7CA004B9AB4 /* OnboardingFlow.swift in Sources */,
 				4D4072972C484716007C5621 /* VitalsGraph+ChartContent.swift in Sources */,
@@ -925,12 +967,14 @@
 				4D92B9F82C3C901500ABCED7 /* SymptomsGraphSection.swift in Sources */,
 				2FF53D8D2A8729D600042B76 /* ENGAGEHFStandard.swift in Sources */,
 				4DDFC78A2BFC1312002B07A1 /* NotificationRow.swift in Sources */,
+				4D8402722C4EC0D400817495 /* MeasurementListHeader.swift in Sources */,
 				4D92B9F22C3C8D1E00ABCED7 /* MeasurementListSection.swift in Sources */,
 				4D34B3ED2C404C61006F0D40 /* VitalsUnit.swift in Sources */,
 				4DF5063A2C2F5104003E7EFB /* DisplayMeasurement.swift in Sources */,
 				4D4072842C46DDB2007C5621 /* VitalsGraph+ViewModel.swift in Sources */,
 				A9720E432ABB68CC00872D23 /* AccountSetupHeader.swift in Sources */,
 				2FE5DC4029EDD7EE004B9AB4 /* FeatureFlags.swift in Sources */,
+				4D8402752C4EC64D00817495 /* TriggerNewMeasurementButton.swift in Sources */,
 				4D2D1D682C2C82A200ABDC19 /* FHIRPeriod+GetDates.swift in Sources */,
 				4D2D1D762C2CC8B200ABDC19 /* ValueXProtocol.swift in Sources */,
 				4DA20B542C25F8A600715AA2 /* FHIRDateTime+DateComponents.swift in Sources */,
@@ -957,6 +1001,7 @@
 				4D8AD2C82C4A2BE900CB4F3E /* VitalsGraphOptions.swift in Sources */,
 				4D0F38A22C0A7AD900DA12F7 /* ExpandableText.swift in Sources */,
 				2FE5DC2629EDD38A004B9AB4 /* Contacts.swift in Sources */,
+				4D8402702C4EBE7D00817495 /* AddMeasurementView.swift in Sources */,
 				4D2D1D602C2B859C00ABDC19 /* GraphPicker.swift in Sources */,
 				4DBDD3462BBFAE2D001FB0CA /* InvitationCodeView.swift in Sources */,
 				4D92BA012C3C932300ABCED7 /* VitalsGraphSection.swift in Sources */,
@@ -984,10 +1029,13 @@
 			files = (
 				4DA20B692C2B299700715AA2 /* RecentVitalsUITests.swift in Sources */,
 				A9F2138E2C18EBAB00A7578F /* AccountTests.swift in Sources */,
+				4D84027A2C4EE56000817495 /* XCUIApplication+GoTo.swift in Sources */,
 				4D4AA0A52BC5E43E00676489 /* OnboardingUITests.swift in Sources */,
 				4DD823062C17FF79004DC599 /* NotificationsUITests.swift in Sources */,
 				2F4E237E2989A2FE0013F3D9 /* LaunchTests.swift in Sources */,
 				4DB025CA2BBE3A59002D2545 /* HomeViewUITests.swift in Sources */,
+				4D8402842C4F11CB00817495 /* XCUIApplication+DeleteMeasurements.swift in Sources */,
+				4D8402772C4EE52000817495 /* AddMeasurementUITests.swift in Sources */,
 				4D8AD2E12C4B5D1600CB4F3E /* HeartHealthUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1492,7 +1540,7 @@
 			repositoryURL = "https://github.com/StanfordSpezi/Spezi";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.4.0;
+				minimumVersion = 1.6.0;
 			};
 		};
 		2F66D20D2BB723180010D555 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
