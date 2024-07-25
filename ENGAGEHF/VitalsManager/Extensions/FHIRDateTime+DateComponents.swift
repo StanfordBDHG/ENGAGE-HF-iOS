@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import struct ModelsR4.DateTime
+import ModelsR4
 
 
 /// Include representatino of DateTime as DateComponents for easy conversion to Date type

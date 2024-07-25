@@ -10,8 +10,6 @@ import FirebaseAuth
 import FirebaseFirestore
 import Foundation
 import HealthKit
-import struct ModelsR4.DateTime
-import class ModelsR4.ObservationComponent
 import OSLog
 import Spezi
 import SpeziFirebaseConfiguration
@@ -163,7 +161,7 @@ public class VitalsManager: Module, EnvironmentAccessible {
     }
     
     
-    private func convertToHKQuantitySample(_ observation: R4Observation) throws -> HKQuantitySample {
+    private func convertToHKQuantitySample(_ observation: FHIRObservation) throws -> HKQuantitySample {
         let hkQuantity: HKQuantity
         let quantityType: HKQuantityType
         
@@ -198,7 +196,7 @@ public class VitalsManager: Module, EnvironmentAccessible {
         )
     }
     
-    private func convertToHKCorrelation(_ observation: R4Observation) throws -> HKCorrelation {
+    private func convertToHKCorrelation(_ observation: FHIRObservation) throws -> HKCorrelation {
         // For now, only handle Blood Pressure
         guard observation.code.containsCoding(code: "85354-9", system: FHIRSystem.loinc) else {
             throw VitalsError.invalidObservationType
@@ -248,7 +246,7 @@ public class VitalsManager: Module, EnvironmentAccessible {
     }
     
     
-    private func getComponent(_ components: [ObservationComponent], code: String, system: URL) throws -> ObservationComponent {
+    private func getComponent(_ components: [FHIRObservationComponent], code: String, system: URL) throws -> FHIRObservationComponent {
         guard let component = components.first(
             where: {
                 $0.code.containsCoding(code: code, system: system)

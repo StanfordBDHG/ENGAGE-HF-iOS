@@ -13,5 +13,5 @@ struct FieldDetails: Identifiable {
     let id = UUID()
     
     var title: String
-    var value: Int?
+    var value: Double?
 }

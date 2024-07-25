@@ -198,9 +198,6 @@
     "Failed to fetch HKUnits for the given samples." : {
 
     },
-    "Failed to fetch recommended medication." : {
-
-    },
     "Failed to identify HKSample concrete subclass." : {
 
     },
@@ -232,9 +229,6 @@
 
     },
     "I Already Have an Account" : {
-
-    },
-    "improvementAvailable" : {
 
     },
     "Input: %@" : {
@@ -410,22 +404,13 @@
     "List Without Sections" : {
 
     },
-    "moreLabObservationsRequired" : {
-
-    },
-    "morePatientObservationsRequired" : {
-
-    },
-    "No display name present." : {
+    "Medications" : {
 
     },
     "No recent %@ measurement available" : {
 
     },
     "No vitals" : {
-
-    },
-    "noActionRequired" : {
 
     },
     "NOTIFICATION_PERMISSIONS_BUTTON" : {
@@ -470,12 +455,6 @@
       }
     },
     "Notifications" : {
-
-    },
-    "notStarted" : {
-
-    },
-    "personalTargetDoseReached" : {
 
     },
     "Please enter your invitation code to join the ENGAGE-HF study." : {
@@ -588,9 +567,6 @@
           }
         }
       }
-    },
-    "targetDoseReached" : {
-
     },
     "The invitation code is invalid or has already been used." : {
       "comment" : "Invitation Code Invalid"

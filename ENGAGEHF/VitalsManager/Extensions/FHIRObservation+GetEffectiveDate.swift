@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import class ModelsR4.Observation
+import ModelsR4
 
 
 extension Observation {
