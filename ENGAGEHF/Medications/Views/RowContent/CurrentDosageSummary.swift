@@ -33,28 +33,6 @@ struct CurrentDosageSummary: View {
             Gauge(value: currentTotalDose, in: minimumTotalDose...targetTotalDose, label: {})
                 .padding(.vertical, 2)
         }
-        
-        
-        
-        // Gauge Drafts:
-            // Only one guage featuring the total daily dose (combined across subcomponents)
-//            MedicationGauge(
-//                currentDose: dosageInformation.doses.map(\.current).reduce(0, +),
-//                minimumDose: dosageInformation.doses.map(\.minimum).reduce(0, +),
-//                targetDose: dosageInformation.doses.map(\.target).reduce(0, +),
-//                unit: dosageInformation.unit
-//            )
-//            .padding(.vertical, 2)
-            // One guage per subcomponent
-//            ForEach(medication.dosageInformation.doses, id: \.self) { dose in
-//                MedicationGauge(
-//                    currentDose: dose.current,
-//                    minimumDose: dose.minimum,
-//                    targetDose: dose.target,
-//                    unit: medication.dosageInformation.unit
-//                )
-//            }
-//                .padding(.vertical, 2)
     }
 }
 

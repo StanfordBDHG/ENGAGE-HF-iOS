@@ -14,5 +14,4 @@ extension Double {
         let roundedFormatStyle = FloatingPointFormatStyle<Double>().precision(.fractionLength(minimumFractionDigits...maximumFractionDigits))
         return roundedFormatStyle.format(self)
     }
-    
 }
