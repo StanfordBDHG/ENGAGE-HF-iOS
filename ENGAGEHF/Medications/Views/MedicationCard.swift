@@ -12,34 +12,18 @@ import SwiftUI
 struct MedicationCard: View {
     let medication: MedicationDetails
     
-    
-    private var displayCurrentDosage: String {
-        medication.doses.map({ String(format: "%.1f", $0.current) }).joined(separator: "/") + " " + (medication.doses.first?.unit ?? "")
-    }
+    @State private var isExpanded = false
     
     
     var body: some View {
-        VStack(alignment: .leading) {
-            HStack {
-                MedicationRecommendationSymbol(type: medication.type)
-                VStack(alignment: .leading) {
-                    Text(medication.title)
-                        .font(.headline)
-                    Text(medication.subtitle)
-                        .font(.subheadline)
-                        .foregroundColor(.gray)
-                }
-            }
-            Text(medication.description)
-                .font(.body)
-                .padding(.top, 2)
+        VStack {
+            MedicationRowLabel(medication: medication, isExpanded: $isExpanded)
             
-            Text(displayCurrentDosage)
+            if isExpanded {
+                Divider()
+                MedicationRowContent(medication: medication)
+            }
         }
-            .padding()
-            .background(Color(.systemBackground))
-            .cornerRadius(10)
-            .shadow(radius: 2)
     }
 }
 
@@ -52,10 +36,13 @@ struct MedicationCard: View {
             subtitle: "Ipsum",
             description: "Description ",
             type: .targetDoseReached,
-            doses: [
-                Dose(current: 67.3, minimum: 24.0, target: 100.0, unit: "mg"),
-                Dose(current: 42.3, minimum: 12.0, target: 50.0, unit: "mg")
-            ]
+            dosageInformation: DosageInformation(
+                doses: [
+                    Dose(current: 67.3, minimum: 24.0, target: 100.0),
+                    Dose(current: 42.3, minimum: 12.0, target: 50.0)
+                ],
+                unit: "mg"
+            )
         )
     )
 }

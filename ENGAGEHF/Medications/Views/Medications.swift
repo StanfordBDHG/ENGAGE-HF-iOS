@@ -17,13 +17,13 @@ struct Medications: View {
     
     var body: some View {
         NavigationStack {
-            ScrollView {
-                LazyVStack(spacing: 20) {
-                    ForEach(medicationsManager.medications) { medication in
-                        MedicationCard(medication: medication)
-                    }
+            List {
+                ForEach(medicationsManager.medications) { medication in
+                    MedicationCard(medication: medication)
                 }
             }
+                .listRowSeparator(.hidden)
+                .listRowSpacing(4)
                 .navigationTitle("Medications")
         }
     }

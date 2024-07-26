@@ -20,6 +20,12 @@
     "%@ Description" : {
 
     },
+    "%@ Dosage:" : {
+
+    },
+    "%@ More Information" : {
+
+    },
     "%@ Quantity: %@" : {
       "localizations" : {
         "en" : {
@@ -176,6 +182,9 @@
           }
         }
       }
+    },
+    "Content" : {
+
     },
     "Content ..." : {
 
@@ -378,6 +387,9 @@
     "Invitation Code" : {
 
     },
+    "Label" : {
+
+    },
     "LELAND_STANFORD_BIO" : {
       "localizations" : {
         "en" : {
@@ -402,6 +414,12 @@
 
     },
     "List Without Sections" : {
+
+    },
+    "Medication Expansion Button" : {
+
+    },
+    "Medication Label: %@" : {
 
     },
     "Medications" : {

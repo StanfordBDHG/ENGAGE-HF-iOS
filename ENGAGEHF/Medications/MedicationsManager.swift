@@ -38,7 +38,21 @@ class MedicationsManager: Module, EnvironmentAccessible {
                     subtitle: "Ipsum",
                     description: "Description ",
                     type: .targetDoseReached,
-                    doses: [Dose(current: 67.3, minimum: 24.0, target: 100.0, unit: "mg")]
+                    dosageInformation: DosageInformation(
+                        doses: [Dose(current: 67.3, minimum: 24.0, target: 100.0)],
+                        unit: "mg"
+                    )
+                ),
+                MedicationDetails(
+                    id: "test2",
+                    title: "Lozinopril",
+                    subtitle: "Beta Blocker",
+                    description: "Long description goes here",
+                    type: .improvementAvailable,
+                    dosageInformation: DosageInformation(
+                        doses: [Dose(current: 67.3, minimum: 24.0, target: 100.0)],
+                        unit: "mg"
+                    )
                 )
             ]
             return
