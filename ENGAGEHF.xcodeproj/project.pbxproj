@@ -91,7 +91,6 @@
 		4D92B9F82C3C901500ABCED7 /* SymptomsGraphSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D92B9F72C3C901500ABCED7 /* SymptomsGraphSection.swift */; };
 		4D92BA012C3C932300ABCED7 /* VitalsGraphSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D92BA002C3C932300ABCED7 /* VitalsGraphSection.swift */; };
 		4D92BA072C3CAE5300ABCED7 /* VitalListMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D92BA062C3CAE5300ABCED7 /* VitalListMeasurement.swift */; };
-		4D92BA0D2C3DCC4D00ABCED7 /* CollectionID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D92BA0C2C3DCC4D00ABCED7 /* CollectionID.swift */; };
 		4D92BA172C3E108700ABCED7 /* CodeableConcept+Contains.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D92BA162C3E108700ABCED7 /* CodeableConcept+Contains.swift */; };
 		4D92BA1A2C3E13F300ABCED7 /* FHIRSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D92BA192C3E13F300ABCED7 /* FHIRSystem.swift */; };
 		4DA20B4B2C249E7E00715AA2 /* VitalsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA20B4A2C249E7E00715AA2 /* VitalsManager.swift */; };
@@ -232,7 +231,6 @@
 		4D92B9F72C3C901500ABCED7 /* SymptomsGraphSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomsGraphSection.swift; sourceTree = "<group>"; };
 		4D92BA002C3C932300ABCED7 /* VitalsGraphSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalsGraphSection.swift; sourceTree = "<group>"; };
 		4D92BA062C3CAE5300ABCED7 /* VitalListMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalListMeasurement.swift; sourceTree = "<group>"; };
-		4D92BA0C2C3DCC4D00ABCED7 /* CollectionID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionID.swift; sourceTree = "<group>"; };
 		4D92BA162C3E108700ABCED7 /* CodeableConcept+Contains.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CodeableConcept+Contains.swift"; sourceTree = "<group>"; };
 		4D92BA192C3E13F300ABCED7 /* FHIRSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FHIRSystem.swift; sourceTree = "<group>"; };
 		4DA20B4A2C249E7E00715AA2 /* VitalsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalsManager.swift; sourceTree = "<group>"; };
@@ -384,7 +382,6 @@
 		2FE5DC3C29EDD7DA004B9AB4 /* SharedContext */ = {
 			isa = PBXGroup;
 			children = (
-				4D92BA0C2C3DCC4D00ABCED7 /* CollectionID.swift */,
 				4D92BA192C3E13F300ABCED7 /* FHIRSystem.swift */,
 				2FE5DC3E29EDD7ED004B9AB4 /* FeatureFlags.swift */,
 				2FE5DC3F29EDD7EE004B9AB4 /* StorageKeys.swift */,
@@ -936,7 +933,6 @@
 				4D8AD2C52C4A180300CB4F3E /* MeasurementSeries.swift in Sources */,
 				4D92BA1A2C3E13F300ABCED7 /* FHIRSystem.swift in Sources */,
 				2FE5DC3A29EDD7CA004B9AB4 /* Welcome.swift in Sources */,
-				4D92BA0D2C3DCC4D00ABCED7 /* CollectionID.swift in Sources */,
 				4D92BA172C3E108700ABCED7 /* CodeableConcept+Contains.swift in Sources */,
 				4DC0F67A2C34AD620025AB13 /* VitalsList.swift in Sources */,
 				2FE5DC3829EDD7CA004B9AB4 /* InterestingModules.swift in Sources */,
