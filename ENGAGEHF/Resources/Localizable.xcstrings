@@ -183,9 +183,6 @@
         }
       }
     },
-    "Content" : {
-
-    },
     "Content ..." : {
 
     },
@@ -387,9 +384,6 @@
     "Invitation Code" : {
 
     },
-    "Label" : {
-
-    },
     "LELAND_STANFORD_BIO" : {
       "localizations" : {
         "en" : {
@@ -423,6 +417,9 @@
 
     },
     "Medications" : {
+
+    },
+    "No medication recommendations currently available." : {
 
     },
     "No recent %@ measurement available" : {

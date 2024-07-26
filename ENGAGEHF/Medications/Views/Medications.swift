@@ -18,12 +18,16 @@ struct Medications: View {
     var body: some View {
         NavigationStack {
             List {
-                ForEach(medicationsManager.medications) { medication in
-                    MedicationCard(medication: medication)
+                if !medicationsManager.medications.isEmpty {
+                    ForEach(medicationsManager.medications.sorted(by: { $0.type < $1.type })) { medication in
+                        MedicationCard(medication: medication)
+                    }
+                } else {
+                    EmptyMedicationsView()
                 }
             }
                 .listRowSeparator(.hidden)
-                .listRowSpacing(4)
+                .listRowSpacing(8)
                 .navigationTitle("Medications")
         }
     }

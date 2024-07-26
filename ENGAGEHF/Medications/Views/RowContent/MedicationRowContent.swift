@@ -15,21 +15,19 @@ struct MedicationRowContent: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            if let dosageInformation = medication.dosageInformation {
-                CurrentDosageSummary(dosageInformation: dosageInformation)
-                Divider()
-            }
-            
             Text(medication.description)
                 .font(.body)
                 .padding(.vertical, 2)
             
-            HStack {
-                Spacer()
-                Button(action: {}) {
-                    Image(systemName: "questionmark.circle")
-                        .accessibilityLabel("\(medication.title) More Information")
-                }
+            Button(action: {}) {
+                Image(systemName: "questionmark.circle")
+                    .accessibilityLabel("\(medication.title) More Information")
+            }
+                .frame(maxWidth: .infinity, alignment: .trailing)
+            
+            if let dosageInformation = medication.dosageInformation {
+                Divider()
+                CurrentDosageSummary(dosageInformation: dosageInformation)
             }
         }
     }

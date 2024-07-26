@@ -41,7 +41,7 @@ struct MedicationRecommendationSymbol: View {
     var body: some View {
         Image(systemName: labelSystemName)
             .resizable()
-            .frame(width: 40, height: 40)
+            .frame(width: 35, height: 35)
             .foregroundStyle(labelColor)
             .accessibilityLabel("Medication Label: \(type.rawValue)")
     }

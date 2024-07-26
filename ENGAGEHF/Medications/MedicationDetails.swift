@@ -58,7 +58,7 @@ struct DosageInformation: Codable {
 
 
 /// A medication that the patient is either currently taking or which is recommended for the patient to start
-struct MedicationDetails: Identifiable, Codable, Comparable {
+struct MedicationDetails: Identifiable, Codable {
     @DocumentID var id: String?
     
     let title: String
@@ -66,13 +66,4 @@ struct MedicationDetails: Identifiable, Codable, Comparable {
     let description: String
     let type: MedicationRecommendationType
     let dosageInformation: DosageInformation?
-    
-    
-    static func < (lhs: MedicationDetails, rhs: MedicationDetails) -> Bool {
-        lhs.type < rhs.type
-    }
-    
-    static func == (lhs: MedicationDetails, rhs: MedicationDetails) -> Bool {
-        lhs.type == rhs.type
-    }
 }
