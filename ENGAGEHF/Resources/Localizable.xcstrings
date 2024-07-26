@@ -20,9 +20,6 @@
     "%@ Description" : {
 
     },
-    "%@ Dosage:" : {
-
-    },
     "%@ More Information" : {
 
     },
@@ -45,6 +42,9 @@
           }
         }
       }
+    },
+    "%lldx daily" : {
+
     },
     "About %@" : {
 
@@ -184,6 +184,9 @@
       }
     },
     "Content ..." : {
+
+    },
+    "Current Schedule:" : {
 
     },
     "Date" : {
@@ -419,6 +422,9 @@
     "Medications" : {
 
     },
+    "No medication recommendations" : {
+
+    },
     "No medication recommendations currently available." : {
 
     },
@@ -582,6 +588,9 @@
           }
         }
       }
+    },
+    "Target Daily Intake:" : {
+
     },
     "The invitation code is invalid or has already been used." : {
       "comment" : "Invitation Code Invalid"

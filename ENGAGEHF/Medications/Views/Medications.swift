@@ -17,18 +17,26 @@ struct Medications: View {
     
     var body: some View {
         NavigationStack {
-            List {
+            Group {
                 if !medicationsManager.medications.isEmpty {
-                    ForEach(medicationsManager.medications.sorted(by: { $0.type < $1.type })) { medication in
-                        MedicationCard(medication: medication)
+                    List {
+                        ForEach(medicationsManager.medications.sorted(by: { $0.type > $1.type })) { medication in
+                            MedicationCard(medication: medication)
+                        }
                     }
+                    .listRowSeparator(.hidden)
+                    .listRowSpacing(8)
                 } else {
-                    EmptyMedicationsView()
+                    ContentUnavailableView("No medication recommendations", systemImage: "pill.fill")
+                        .symbolVariant(.slash)
                 }
             }
-                .listRowSeparator(.hidden)
-                .listRowSpacing(8)
                 .navigationTitle("Medications")
+                .toolbar {
+                    if AccountButton.shouldDisplay {
+                        AccountButton(isPresented: $presentingAccount)
+                    }
+                }
         }
     }
 }

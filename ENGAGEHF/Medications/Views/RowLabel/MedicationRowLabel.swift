@@ -39,7 +39,12 @@ struct MedicationRowLabel: View {
             description: "Description of the recommendation",
             type: .targetDoseReached,
             dosageInformation: DosageInformation(
-                doses: [Dose(current: 50, minimum: 0, target: 100)],
+                currentSchedule: [
+                    DoseSchedule(timesDaily: 2, dose: 25),
+                    DoseSchedule(timesDaily: 1, dose: 15)
+                ],
+                minimumDailyIntake: 10,
+                targetDailyIntake: 70,
                 unit: "mg"
             )
         ),

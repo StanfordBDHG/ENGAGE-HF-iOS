@@ -31,16 +31,18 @@ struct MedicationCard: View {
 #Preview {
     MedicationCard(
         medication: MedicationDetails(
-            id: "test1",
-            title: "Lorem",
-            subtitle: "Ipsum",
-            description: "Description ",
-            type: .targetDoseReached,
+            id: "test2",
+            title: "Lozinopril",
+            subtitle: "Beta Blocker",
+            description: "Long description goes here",
+            type: .improvementAvailable,
             dosageInformation: DosageInformation(
-                doses: [
-                    Dose(current: 67.3, minimum: 24.0, target: 100.0),
-                    Dose(current: 42.3, minimum: 12.0, target: 50.0)
+                currentSchedule: [
+                    DoseSchedule(timesDaily: 2, dose: 25),
+                    DoseSchedule(timesDaily: 1, dose: 15)
                 ],
+                minimumDailyIntake: 10,
+                targetDailyIntake: 70,
                 unit: "mg"
             )
         )

@@ -15,19 +15,12 @@ struct MedicationRowContent: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text(medication.description)
-                .font(.body)
+            MedicationDescription(title: medication.title, description: medication.description)
                 .padding(.vertical, 2)
-            
-            Button(action: {}) {
-                Image(systemName: "questionmark.circle")
-                    .accessibilityLabel("\(medication.title) More Information")
-            }
-                .frame(maxWidth: .infinity, alignment: .trailing)
             
             if let dosageInformation = medication.dosageInformation {
                 Divider()
-                CurrentDosageSummary(dosageInformation: dosageInformation)
+                DosageSummary(dosageInformation: dosageInformation)
             }
         }
     }
@@ -43,7 +36,12 @@ struct MedicationRowContent: View {
             description: "Description of the recommendation",
             type: .targetDoseReached,
             dosageInformation: DosageInformation(
-                doses: [Dose(current: 50, minimum: 0, target: 100)],
+                currentSchedule: [
+                    DoseSchedule(timesDaily: 2, dose: 25),
+                    DoseSchedule(timesDaily: 1, dose: 15)
+                ],
+                minimumDailyIntake: 10,
+                targetDailyIntake: 70,
                 unit: "mg"
             )
         )

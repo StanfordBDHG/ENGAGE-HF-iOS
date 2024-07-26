@@ -42,24 +42,50 @@ enum MedicationRecommendationType: String, Codable, Comparable {
 }
 
 
-/// A description of the medication's dose, for now in units 'unit/day'
-struct Dose: Hashable, Codable {
-    let current: Double
-    let minimum: Double
-    let target: Double
+/// A daily medication schedule. Includes current, minimum, and target schedules.
+/// Example: 20.0 mg twice daily would have dose=20.0 and timesDaily=2.
+struct DoseSchedule: Hashable, Codable {
+    let timesDaily: Int
+    let dose: Double
+    
+    
+    var dailyTotal: Double { dose * Double(timesDaily) }
 }
 
 
-/// A collection containing all of the doses associated with the patient's medication
+/// A collection containing details of a patients dose for a single medication.
+/// Describes the dosage in terms of total medication across all ingredients.
 struct DosageInformation: Codable {
-    let doses: [Dose]
+    let currentSchedule: [DoseSchedule]
+    let minimumDailyIntake: Double
+    let targetDailyIntake: Double
     let unit: String
+    
+    
+    var currentDailyIntake: Double {
+        self.currentSchedule.map(\.dailyTotal).reduce(0, +)
+    }
 }
 
 
-/// A medication that the patient is either currently taking or which is recommended for the patient to start
-struct MedicationDetails: Identifiable, Codable {
+/// Wrapper for decoding medication details from firestore.
+struct MedicationDetailsWrapper: Identifiable, Codable {
     @DocumentID var id: String?
+    
+    let displayInformation: MedicationDetails
+    
+    
+    var medicationDetails: MedicationDetails {
+        var copy = displayInformation
+        copy.id = self.id
+        return copy
+    }
+}
+
+
+/// A medication that the patient is either currently taking or which is recommended for the patient to start.
+struct MedicationDetails: Identifiable, Codable {
+    var id: String?
     
     let title: String
     let subtitle: String

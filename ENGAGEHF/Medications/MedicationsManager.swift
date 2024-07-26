@@ -39,7 +39,9 @@ class MedicationsManager: Module, EnvironmentAccessible {
                     description: "Description ",
                     type: .targetDoseReached,
                     dosageInformation: DosageInformation(
-                        doses: [Dose(current: 67.3, minimum: 24.0, target: 100.0)],
+                        currentSchedule: [DoseSchedule(timesDaily: 2, dose: 20.0)],
+                        minimumDailyIntake: 15,
+                        targetDailyIntake: 100,
                         unit: "mg"
                     )
                 ),
@@ -50,7 +52,12 @@ class MedicationsManager: Module, EnvironmentAccessible {
                     description: "Long description goes here",
                     type: .improvementAvailable,
                     dosageInformation: DosageInformation(
-                        doses: [Dose(current: 67.3, minimum: 24.0, target: 100.0)],
+                        currentSchedule: [
+                            DoseSchedule(timesDaily: 2, dose: 25),
+                            DoseSchedule(timesDaily: 1, dose: 15)
+                        ],
+                        minimumDailyIntake: 10,
+                        targetDailyIntake: 70,
                         unit: "mg"
                     )
                 )
@@ -84,6 +91,8 @@ class MedicationsManager: Module, EnvironmentAccessible {
         self.snapshotListener = patientDocumentReference
             .collection("medicationRecommendations")
             .addSnapshotListener { querySnapshot, error in
+                self.logger.debug("Fetching medications.")
+                
                 guard let recommendationRefs = querySnapshot?.documents else {
                     self.logger.error("Error fetching medication recommendation documents: \(error)")
                     return
@@ -91,9 +100,9 @@ class MedicationsManager: Module, EnvironmentAccessible {
                 
                 self.medications = recommendationRefs.compactMap {
                     do {
-                        return try $0.data(as: MedicationDetails.self)
+                        return try $0.data(as: MedicationDetailsWrapper.self).medicationDetails
                     } catch {
-                        self.logger.error("Error decoding medication details: \(error)")
+                        self.logger.error("Failed to decode medication recommendation: \(error)")
                         return nil
                     }
                 }
@@ -102,64 +111,3 @@ class MedicationsManager: Module, EnvironmentAccessible {
             }
     }
 }
-
-
-//private extension MedicationsManager {
-//    func getMedications(
-//        recommendations recommendationRefs: [QueryDocumentSnapshot],
-//        patientReference: FirebaseFirestore.DocumentReference,
-//        using firestore: Firestore
-//    ) async {
-//        let medicationRecommendations: [MedicationRecommendationContext] = recommendationRefs.compactMap {
-//            do {
-//                return try $0.data(as: MedicationRecommendationContext.self)
-//            } catch {
-//                self.logger.error("Unable to decode medication recommendation: \(error)")
-//                return nil
-//            }
-//        }
-//        
-//        let medicationRequests = await retrieveMedicationRequests(from: patientReference)
-//        
-//        var medications: [MedicationDetails] = []
-//        for recommendation in medicationRecommendations {
-//            do {
-//                medications.append(try await recommendation.fetchAssociatedMedication(using: firestore, requests: medicationRequests))
-//            } catch {
-//                self.logger.error("Failed to fetch medication for \(recommendation.type.rawValue) recommendation: \(error)")
-//                continue
-//            }
-//        }
-//        
-//        self.medications = medications
-//        self.logger.debug("Medications successfully updated.")
-//    }
-//    
-//    
-//    /// Reduces number of firestore queries by collecting all documents from the patient's medicationRequests collection with one query.
-//    /// Stores the results in a dictionary mapping reference path to medication request.
-//    func retrieveMedicationRequests(from patientDocumentReference: DocumentReference) async -> [String: FHIRMedicationRequest] {
-//        let medicationRequestsDocSnapshots: [QueryDocumentSnapshot]
-//        do {
-//            medicationRequestsDocSnapshots = try await patientDocumentReference
-//                .collection("medicationRequests")
-//                .getDocuments()
-//                .documents
-//        } catch {
-//            self.logger.error("Failed to fetch documents from medication requests collection: \(error)")
-//            return [:]
-//        }
-//        
-//        // A dictionary mapping document reference path to the MedicationRequest found there
-//        return Dictionary(grouping: medicationRequestsDocSnapshots, by: \.reference.path)
-//            .compactMapValues {
-//                do {
-//                    // There should only be one MedicationRequest per reference path
-//                    return try $0.first?.data(as: FHIRMedicationRequest.self)
-//                } catch {
-//                    self.logger.error("Failed to decode medication request \(error)")
-//                    return nil
-//                }
-//            }
-//    }
-//}
