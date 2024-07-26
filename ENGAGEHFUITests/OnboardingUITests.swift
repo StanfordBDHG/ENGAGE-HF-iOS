@@ -117,20 +117,6 @@ extension XCUIApplication {
         collectionViews.secureTextFields["Password"].tap()
         collectionViews.secureTextFields["Password"].typeText("12345678")
         
-        // Enter first name
-        XCTAssert(textFields["enter first name"].exists)
-        textFields["enter first name"].tap()
-        textFields["enter first name"].typeText("Leland")
-        
-        // Enter last name
-        XCTAssert(textFields["enter last name"].exists)
-        textFields["enter last name"].tap()
-        textFields["enter last name"].typeText("Stanford")
-        
-        // Tap DoB button to enter today's date
-        XCTAssert(buttons["Add Date of Birth"].waitForExistence(timeout: 2))
-        buttons["Add Date of Birth"].tap()
-        
         // Sign up
         XCTAssert(collectionViews.buttons["Signup"].waitForExistence(timeout: 2)
                   && collectionViews.buttons["Signup"].isEnabled)
