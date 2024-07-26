@@ -53,29 +53,25 @@ struct MeasurementListSection: View {
     
     
     private func deleteIndices(indexSet: IndexSet) throws {
-        var collectionID: CollectionID {
-            switch type {
-            case .symptoms: .symptomScores
-            case .weight: .bodyWeightObservations
-            case .heartRate: .heartRateObservations
-            case .bloodPressure: .bloodPressureObservations
+        guard !ProcessInfo.processInfo.isPreviewSimulator && !FeatureFlags.disableFirebase else {
+            for idx in indexSet {
+                let objectToRemove = data[idx]
+                vitalsManager.symptomHistory.removeAll {
+                    $0.id == objectToRemove.id
+                }
             }
+            return
         }
+        
         
         for idx in indexSet {
             let objectToRemove = data[idx]
             
-            if ProcessInfo.processInfo.isPreviewSimulator || FeatureFlags.disableFirebase {
-                vitalsManager.symptomHistory.removeAll {
-                    $0.id == objectToRemove.id
-                }
-            } else {
-                Task {
-                    try await vitalsManager.deleteMeasurement(
-                        id: objectToRemove.id,
-                        collectionID: collectionID
-                    )
-                }
+            Task {
+                try await vitalsManager.deleteMeasurement(
+                    id: objectToRemove.id,
+                    graphSelection: type
+                )
             }
         }
     }

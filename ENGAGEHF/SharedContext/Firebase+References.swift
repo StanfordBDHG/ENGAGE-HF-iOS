@@ -9,15 +9,18 @@
 import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
+import HealthKit
 
 
 enum FirebaseError: LocalizedError {
     case userNotAuthenticatedYet
+    case accountDeletionNotAllowed
     
     
     var errorDescription: String? {
         switch self {
         case .userNotAuthenticatedYet: String(localized: "userNotSignedIn")
+        case .accountDeletionNotAllowed: String(localized: "accountDeletionError")
         }
     }
 }
@@ -25,16 +28,12 @@ enum FirebaseError: LocalizedError {
 
 extension Firestore {
     static var userCollection: CollectionReference {
-        Firestore.firestore().collection("patients")
-    }
-    
-    static var patientCollection: CollectionReference {
-        Firestore.firestore().collection("patients")
+        Firestore.firestore().collection("users")
     }
     
     
     static var userDocumentReference: DocumentReference {
-        get async throws {
+        get throws {
             guard let userId = Auth.auth().currentUser?.uid else {
                 throw FirebaseError.userNotAuthenticatedYet
             }
@@ -42,19 +41,58 @@ extension Firestore {
         }
     }
     
-    static var patientDocumentReference: DocumentReference {
-        get async throws {
-            guard let userId = Auth.auth().currentUser?.uid else {
-                throw FirebaseError.userNotAuthenticatedYet
-            }
-            return Self.patientCollection.document(userId)
+    static var messagesCollectionReference: CollectionReference {
+        get throws {
+            try userDocumentReference.collection("messages")
+        }
+    }
+    
+    static var symptomScoresCollectionReference: CollectionReference {
+        get throws {
+            try userDocumentReference.collection("symptomScores")
+        }
+    }
+    
+    static var questionnaireResponseCollectionReference: CollectionReference {
+        get throws {
+            try userDocumentReference.collection("questionnaireResponses")
+        }
+    }
+    
+    static var heartHealthCollectionReferences: [CollectionReference] {
+        get throws {
+            try [
+                symptomScoresCollectionReference,
+                collectionReference(for: HKQuantityType(.bodyMass)),
+                collectionReference(for: HKQuantityType(.heartRate)),
+                collectionReference(for: HKCorrelationType(.bloodPressure))
+            ]
+                .compactMap { $0 }
+        }
+    }
+    
+    
+    static func collectionReference(for type: HKSampleType) throws -> CollectionReference? {
+        switch type {
+        case HKQuantityType(.bodyMass):
+            try userDocumentReference.collection("bodyWeightObservations")
+        case HKQuantityType(.bodyMassIndex):
+            nil
+        case HKQuantityType(.height):
+            nil
+        case HKQuantityType(.heartRate):
+            try userDocumentReference.collection("heartRateObservations")
+        case HKCorrelationType(.bloodPressure):
+            try userDocumentReference.collection("bloodPressureObservations")
+        default:
+            nil
         }
     }
 }
 
 extension Storage {
     static var patientBucketReference: StorageReference {
-        get async throws {
+        get throws {
             guard let userId = Auth.auth().currentUser?.uid else {
                 throw FirebaseError.userNotAuthenticatedYet
             }

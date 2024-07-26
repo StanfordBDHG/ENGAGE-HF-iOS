@@ -6,19 +6,23 @@
 // SPDX-License-Identifier: MIT
 //
 
+import FirebaseFirestore
 import Foundation
 import HealthKit
 
 
 /// The type of Vitals to be displayed as the main content of the Heart Health view
 /// Chosen by GraphPicker in HeartHealth
-enum GraphSelection: CaseIterable, Identifiable, CustomStringConvertible {
+enum GraphSelection: String, CaseIterable, Identifiable, CustomStringConvertible {
     case symptoms
     case weight
     case heartRate
     case bloodPressure
     
-    var id: Self { self }
+    
+    var id: RawValue {
+        rawValue
+    }
     
     var description: String {
         switch self {
@@ -44,6 +48,19 @@ enum GraphSelection: CaseIterable, Identifiable, CustomStringConvertible {
         case .weight: String(localized: "weightMissing")
         case .heartRate: String(localized: "heartRateMissing")
         case .bloodPressure: String(localized: "bloodPressureMissing")
+        }
+    }
+    
+    var collectionReference: CollectionReference? {
+        switch self {
+        case .symptoms:
+            try? Firestore.symptomScoresCollectionReference
+        case .weight:
+            try? Firestore.collectionReference(for: HKQuantityType(.bodyMass))
+        case .heartRate:
+            try? Firestore.collectionReference(for: HKQuantityType(.heartRate))
+        case .bloodPressure:
+            try? Firestore.collectionReference(for: HKCorrelationType(.bloodPressure))
         }
     }
 }

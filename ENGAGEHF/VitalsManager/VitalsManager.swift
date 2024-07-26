@@ -15,6 +15,7 @@ import class ModelsR4.ObservationComponent
 import OSLog
 import Spezi
 import SpeziFirebaseConfiguration
+import SpeziFirestore
 
 
 /// Vitals History Manager
@@ -90,18 +91,18 @@ public class VitalsManager: Module, EnvironmentAccessible {
         self.snapshotListeners = []
         
         // Only register snapshot listeners when a user is signed in
-        guard let uid = user?.uid else {
+        guard let bodyMassCollectionReference = try? Firestore.collectionReference(for: HKQuantityType(.bodyMass)),
+              let heartRateCollectionReference = try? Firestore.collectionReference(for: HKQuantityType(.heartRate)),
+              let bloodPressureCollectionReference = try? Firestore.collectionReference(for: HKCorrelationType(.bloodPressure)),
+              let symptomsCollectionReference = try? Firestore.symptomScoresCollectionReference else {
             self.logger.debug("No user signed in, skipping snapshot listener.")
             return
         }
         
-        let firestore = Firestore.firestore()
-        let userDocRef = firestore.collection("patients").document(uid)
-        
         // Weight snapshot listener
         self.snapshotListeners.append(
             self.registerSnapshot(
-                collectionReference: userDocRef.collection(CollectionID.bodyWeightObservations.rawValue),
+                collectionReference: bodyMassCollectionReference,
                 storage: \.weightHistory,
                 mapObservation: convertToHKQuantitySample
             )
@@ -110,7 +111,7 @@ public class VitalsManager: Module, EnvironmentAccessible {
         // Heart Rate snapshot listener
         self.snapshotListeners.append(
             self.registerSnapshot(
-                collectionReference: userDocRef.collection(CollectionID.heartRateObservations.rawValue),
+                collectionReference: heartRateCollectionReference,
                 storage: \.heartRateHistory,
                 mapObservation: convertToHKQuantitySample
             )
@@ -119,7 +120,7 @@ public class VitalsManager: Module, EnvironmentAccessible {
         // Blood Pressure snapshot listener
         self.snapshotListeners.append(
             self.registerSnapshot(
-                collectionReference: userDocRef.collection(CollectionID.bloodPressureObservations.rawValue),
+                collectionReference: bloodPressureCollectionReference,
                 storage: \.bloodPressureHistory,
                 mapObservation: convertToHKCorrelation
             )
@@ -128,7 +129,7 @@ public class VitalsManager: Module, EnvironmentAccessible {
         // Symptom Survey Scores snapshot listener
         self.snapshotListeners.append(
             self.registerSnapshot(
-                collectionReference: userDocRef.collection(CollectionID.symptomScores.rawValue),
+                collectionReference: symptomsCollectionReference,
                 storage: \.symptomHistory,
                 mapObservation: { $0 }
             )
@@ -143,9 +144,9 @@ public class VitalsManager: Module, EnvironmentAccessible {
         // Return a listener for the given collection
         collectionReference
             .addSnapshotListener { querySnapshot, error in
-                self.logger.debug("Fetching most recent \(collectionReference.collectionID) history...")
+                self.logger.debug("Fetching most recent \(collectionReference) history...")
                 guard let documentRefs = querySnapshot?.documents else {
-                    self.logger.error("Error fetching \(collectionReference.collectionID) observations: \(error)")
+                    self.logger.error("Error fetching \(collectionReference) observations: \(error)")
                     return
                 }
                 
@@ -153,12 +154,12 @@ public class VitalsManager: Module, EnvironmentAccessible {
                     do {
                         return try mapObservation($0.data(as: V.self))
                     } catch {
-                        self.logger.error("Error saving \(collectionReference.collectionID) history: \(error)")
+                        self.logger.error("Error saving \(collectionReference) history: \(error)")
                         return nil
                     }
                 }
                 
-                self.logger.debug("\(collectionReference.collectionID) history updated successfully.")
+                self.logger.debug("\(collectionReference) history updated successfully.")
             }
     }
     
@@ -377,20 +378,12 @@ extension VitalsManager {
 
 extension VitalsManager {
     private func setupHeartHealthTesting(user: User) async throws {
-        let firestore = Firestore.firestore()
-        let userDocRef = firestore
-            .collection("patients")
-            .document(user.uid)
-        
-        
         // Make sure the user has not already had mock data initialized
-        for collectionID in CollectionID.allCases {
-            let querySnapshot = try await userDocRef.collection(collectionID.rawValue).getDocuments()
-            
+        for collectionReference in GraphSelection.allCases.compactMap({ $0.collectionReference }) {
             // Not recommended to delete collections from the client, so for now just skipping if the collection already exists
-            guard querySnapshot.documents.isEmpty else {
+            guard try await collectionReference.getDocuments().documents.isEmpty else {
                 // Collection exists and is not empty, so skip
-                self.logger.debug("\(collectionID.rawValue) already exist, skipping user.")
+                self.logger.debug("\(collectionReference) already exist, skipping user.")
                 return
             }
         }
@@ -410,7 +403,7 @@ extension VitalsManager {
             )
             
             if count.isMultiple(of: 10) {
-                await self.standard.add(symptomScore: self.getRandomSymptoms(forDate: date))
+                try await self.standard.add(symptomScore: self.getRandomSymptoms(forDate: date))
             }
         }
     }
@@ -419,31 +412,19 @@ extension VitalsManager {
 
 extension VitalsManager {
     /// Call on deletion of a measurement -- removes the measurement with the given document id from the user's collection 
-    func deleteMeasurement(id: String?, collectionID: CollectionID) async throws {
-        guard let id else {
-            self.logger.error("Attempting to delete nonexistant measurement from \(collectionID.rawValue).")
+    func deleteMeasurement(id: String?, graphSelection: GraphSelection) async throws {
+        guard let collectionReference = graphSelection.collectionReference,
+              let id else {
+            self.logger.warning("Attempting to delete \(graphSelection) measurement.")
             return
         }
-        
-        self.logger.debug("Attempting to delete measurement (\(id)) from \(collectionID.rawValue)")
-        let firestore = Firestore.firestore()
-        
-        guard let user = Auth.auth().currentUser else {
-            logger.error("Unable to delete measurement: User not authenticated")
-            return
-        }
-        
-        let collectionRef = firestore
-            .collection("patients")
-            .document(user.uid)
-            .collection(collectionID.rawValue)
         
         do {
-            try await collectionRef.document(id).delete()
-            self.logger.debug("Successfully deleted measurement (\(id)) from \(collectionID.rawValue)")
+            try await collectionReference.document(id).delete()
+            self.logger.debug("Successfully deleted measurement (\(id)) from \(collectionReference)")
         } catch {
-            self.logger.error("Error deleting measurement (\(id)) from \(collectionID.rawValue): \(error)")
-            throw error
+            self.logger.error("Error deleting measurement (\(id)) from \(collectionReference): \(error)")
+            throw FirestoreError(error)
         }
     }
 }
