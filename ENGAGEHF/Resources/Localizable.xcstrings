@@ -4,9 +4,6 @@
     "" : {
 
     },
-    "%@" : {
-
-    },
     "%@ Date: %@" : {
       "localizations" : {
         "en" : {
@@ -110,12 +107,6 @@
     "Add Measurement: %@" : {
 
     },
-    "Add Mock" : {
-
-    },
-    "Add mock notification" : {
-
-    },
     "All Data" : {
 
     },
@@ -176,9 +167,6 @@
           }
         }
       }
-    },
-    "Content ..." : {
-
     },
     "Date" : {
 
@@ -366,6 +354,7 @@
       }
     },
     "invalidHKSample" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -397,12 +386,6 @@
           }
         }
       }
-    },
-    "List With Sections" : {
-
-    },
-    "List Without Sections" : {
-
     },
     "No recent %@ measurement available" : {
 
