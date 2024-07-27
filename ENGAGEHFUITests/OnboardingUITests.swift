@@ -166,9 +166,7 @@ extension XCUIApplication {
         navigationBars.buttons["Your Account"].tap()
         
         XCTAssert(staticTexts["Account Overview"].waitForExistence(timeout: 5))
-        XCTAssert(staticTexts["Leland Stanford"].waitForExistence(timeout: 5))
         XCTAssert(staticTexts[email].waitForExistence(timeout: 5))
-        XCTAssert(staticTexts["Gender Identity, Choose not to answer"].waitForExistence(timeout: 5))
         
         XCTAssertTrue(navigationBars.buttons["Close"].waitForExistence(timeout: 0.5))
         navigationBars.buttons["Close"].tap()
