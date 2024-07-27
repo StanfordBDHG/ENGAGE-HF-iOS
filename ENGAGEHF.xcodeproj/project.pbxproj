@@ -43,6 +43,8 @@
 		2FE5DC9C29EDD9EF004B9AB4 /* XCTHealthKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2FE5DC9B29EDD9EF004B9AB4 /* XCTHealthKit */; };
 		2FE5DCB129EE6107004B9AB4 /* AccountOnboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE5DCAC29EE6107004B9AB4 /* AccountOnboarding.swift */; };
 		2FF53D8D2A8729D600042B76 /* ENGAGEHFStandard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF53D8C2A8729D600042B76 /* ENGAGEHFStandard.swift */; };
+		4D05F26A2C5466B700201581 /* DosageGauge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D05F2692C5466B700201581 /* DosageGauge.swift */; };
+		4D05F26D2C54696100201581 /* DosageGaugeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D05F26C2C54696100201581 /* DosageGaugeStyle.swift */; };
 		4D065BE02C09401700EBB3AE /* StudyApplicationListCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D065BDF2C09401700EBB3AE /* StudyApplicationListCard.swift */; };
 		4D0F389E2C09779100DA12F7 /* ShowMoreButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0F389D2C09779000DA12F7 /* ShowMoreButton.swift */; };
 		4D0F38A22C0A7AD900DA12F7 /* ExpandableText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0F38A12C0A7AD900DA12F7 /* ExpandableText.swift */; };
@@ -199,6 +201,8 @@
 		2FE5DC5529EDD811004B9AB4 /* SocialSupportQuestionnaire.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SocialSupportQuestionnaire.json; sourceTree = "<group>"; };
 		2FE5DCAC29EE6107004B9AB4 /* AccountOnboarding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountOnboarding.swift; sourceTree = "<group>"; };
 		2FF53D8C2A8729D600042B76 /* ENGAGEHFStandard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ENGAGEHFStandard.swift; sourceTree = "<group>"; };
+		4D05F2692C5466B700201581 /* DosageGauge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DosageGauge.swift; sourceTree = "<group>"; };
+		4D05F26C2C54696100201581 /* DosageGaugeStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DosageGaugeStyle.swift; sourceTree = "<group>"; };
 		4D065BDF2C09401700EBB3AE /* StudyApplicationListCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyApplicationListCard.swift; sourceTree = "<group>"; };
 		4D0F389D2C09779000DA12F7 /* ShowMoreButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMoreButton.swift; sourceTree = "<group>"; };
 		4D0F38A12C0A7AD900DA12F7 /* ExpandableText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableText.swift; sourceTree = "<group>"; };
@@ -599,9 +603,11 @@
 		4D8402E22C5459DD00817495 /* DosageSummary */ = {
 			isa = PBXGroup;
 			children = (
-				4D8402C82C52F7C100817495 /* TextualDosageSummary.swift */,
 				4D8402D12C532D7100817495 /* DosageSummary.swift */,
+				4D05F2692C5466B700201581 /* DosageGauge.swift */,
+				4D8402C82C52F7C100817495 /* TextualDosageSummary.swift */,
 				4D8402E42C545A4B00817495 /* CurrentScheduleSummary.swift */,
+				4D05F26C2C54696100201581 /* DosageGaugeStyle.swift */,
 			);
 			path = DosageSummary;
 			sourceTree = "<group>";
@@ -1008,6 +1014,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D05F26A2C5466B700201581 /* DosageGauge.swift in Sources */,
 				4D8AD2D62C4B252000CB4F3E /* FHIRInstant+DateComponents.swift in Sources */,
 				4D8AD2D42C4B250B00CB4F3E /* ObservationValueProtocol.swift in Sources */,
 				2FE5DC4129EDD7EE004B9AB4 /* StorageKeys.swift in Sources */,
@@ -1064,6 +1071,7 @@
 				4D8402722C4EC0D400817495 /* MeasurementListHeader.swift in Sources */,
 				4D92B9F22C3C8D1E00ABCED7 /* MeasurementListSection.swift in Sources */,
 				4D34B3ED2C404C61006F0D40 /* VitalsUnit.swift in Sources */,
+				4D05F26D2C54696100201581 /* DosageGaugeStyle.swift in Sources */,
 				4DF5063A2C2F5104003E7EFB /* DisplayMeasurement.swift in Sources */,
 				4D4072842C46DDB2007C5621 /* VitalsGraph+ViewModel.swift in Sources */,
 				A9720E432ABB68CC00872D23 /* AccountSetupHeader.swift in Sources */,

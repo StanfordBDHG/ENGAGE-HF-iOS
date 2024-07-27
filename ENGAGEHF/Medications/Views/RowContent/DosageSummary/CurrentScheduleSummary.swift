@@ -20,7 +20,7 @@ struct CurrentScheduleSummary: View {
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
             Spacer()
-            VStack {
+            VStack(alignment: .trailing) {
                 ForEach(currentSchedule, id: \.self) { dosageSchedule in
                     HStack(alignment: .firstTextBaseline) {
                         HStack(spacing: 2) {

@@ -13,30 +13,11 @@ struct DosageSummary: View {
     let dosageInformation: DosageInformation
     
     
-    private var clampedCurrentDailyIntake: Double {
-        let current = dosageInformation.currentDailyIntake
-        let minimum = dosageInformation.minimumDailyIntake
-        let target = dosageInformation.targetDailyIntake
-        
-        if current < minimum {
-            return minimum
-        }
-        if current > target {
-            return target
-        }
-        return current
-    }
-    
-    
     var body: some View {
         VStack {
-            Gauge(
-                value: clampedCurrentDailyIntake,
-                in: dosageInformation.minimumDailyIntake...dosageInformation.targetDailyIntake,
-                label: {}
-            )
-                .padding(.vertical, 2)
             TextualDosageSummary(dosageInformation: dosageInformation)
+                .padding(.vertical, 2)
+            DosageGauge(dosageInformation: dosageInformation)
                 .padding(.vertical, 2)
         }
     }
