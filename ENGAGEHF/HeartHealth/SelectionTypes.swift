@@ -6,6 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
+import FirebaseFirestore
 import Foundation
 import HealthKit
 
@@ -18,7 +19,10 @@ enum GraphSelection: CaseIterable, Identifiable, CustomStringConvertible {
     case heartRate
     case bloodPressure
     
-    var id: Self { self }
+    
+    var id: Self {
+        self
+    }
     
     var description: String {
         switch self {
@@ -44,6 +48,19 @@ enum GraphSelection: CaseIterable, Identifiable, CustomStringConvertible {
         case .weight: String(localized: "weightMissing")
         case .heartRate: String(localized: "heartRateMissing")
         case .bloodPressure: String(localized: "bloodPressureMissing")
+        }
+    }
+    
+    var collectionReference: CollectionReference? {
+        switch self {
+        case .symptoms:
+            try? Firestore.symptomScoresCollectionReference
+        case .weight:
+            try? Firestore.collectionReference(for: HKQuantityType(.bodyMass))
+        case .heartRate:
+            try? Firestore.collectionReference(for: HKQuantityType(.heartRate))
+        case .bloodPressure:
+            try? Firestore.collectionReference(for: HKCorrelationType(.bloodPressure))
         }
     }
 }

@@ -148,7 +148,7 @@ extension VitalsGraph {
         }
         
         private func getInterval(date: Date, unit: Calendar.Component) -> DateInterval? {
-            calendar.dateInterval(of: dateUnit, for: date)
+            calendar.dateInterval(of: unit, for: date)
         }
     }
 }

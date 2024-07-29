@@ -64,12 +64,8 @@ class NotificationManager: Module, EnvironmentAccessible {
     
     /// Adds three mock notifications to the user's notification collection in firestore
     func setupNotificationTests(user: User) async throws {
-        // Check that the collection has not already been initialized
-        let firestore = Firestore.firestore()
-        let notificationsCollection = firestore.collection("users").document(user.uid).collection("messages")
-        
         // Not recommended to delete collections from the client, so for now just skipping if the collection already exists
-        let querySnapshot = try await notificationsCollection.getDocuments()
+        let querySnapshot = try await Firestore.messagesCollectionReference.getDocuments()
         
         guard querySnapshot.documents.isEmpty else {
             // Notifications collections exists and is not empty, so skip
@@ -89,7 +85,7 @@ class NotificationManager: Module, EnvironmentAccessible {
             )
             
             do {
-                try notificationsCollection.addDocument(from: newNotification)
+                try Firestore.messagesCollectionReference.addDocument(from: newNotification)
             } catch {
                 self.logger.error("Unable to load notifications to firestore: \(error)")
             }
@@ -104,18 +100,14 @@ class NotificationManager: Module, EnvironmentAccessible {
         logger.info("Initializing notification snapshot listener...")
 
         // Remove previous snapshot listener for the user before creating new one
-        self.snapshotListener?.remove()
-        guard let uid = user?.uid else {
+        snapshotListener?.remove()
+        
+        guard let messagesCollectionReference = try? Firestore.messagesCollectionReference else {
             return
         }
         
-        let firestore = Firestore.firestore()
-        
         // Set a snapshot listener on the query for valid notifications
-        self.snapshotListener = firestore
-            .collection("users")
-            .document(uid)
-            .collection("messages")
+        messagesCollectionReference
             .addSnapshotListener { querySnapshot, error in
                 guard let documentRefs = querySnapshot?.documents else {
                     self.logger.error("Error fetching documents: \(error)")
@@ -142,26 +134,14 @@ class NotificationManager: Module, EnvironmentAccessible {
         }
         
         logger.debug("Marking notification complete with the following id: \(id)")
-
-        let firestore = Firestore.firestore()
-        
-        guard let user = Auth.auth().currentUser else {
-            logger.error("Unable to mark notifications complete: \(FetchingError.userNotAuthenticated)")
-            return
-        }
-        
-        // Mark the notifications as completed in the Firestore
-        let timestamp = Timestamp(date: .now)
-
-        let docRef = firestore.collection("users")
-            .document(user.uid)
-            .collection("messages")
-            .document(id)
         
         do {
-            try await docRef.updateData([
-                "completed": timestamp
-            ])
+            let messagesDocumentReference = try Firestore.messagesCollectionReference.document(id)
+            try await messagesDocumentReference.updateData(
+                [
+                    "completed": Timestamp(date: .now)
+                ]
+            )
         } catch {
             logger.error("Unable to update notification \(id): \(error)")
         }

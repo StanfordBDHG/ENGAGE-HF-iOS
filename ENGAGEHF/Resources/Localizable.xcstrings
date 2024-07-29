@@ -4,9 +4,6 @@
     "" : {
 
     },
-    "%@" : {
-
-    },
     "%@ Date: %@" : {
       "localizations" : {
         "en" : {
@@ -111,12 +108,6 @@
 
     },
     "Add Measurement: %@" : {
-
-    },
-    "Add Mock" : {
-
-    },
-    "Add mock notification" : {
 
     },
     "All Data" : {
@@ -375,6 +366,7 @@
       }
     },
     "invalidHKSample" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -675,7 +667,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No body weight measurements available. Please connect your Weight Wcale device to begin recording."
+            "value" : "No body weight measurements available. Please connect your Weight Scale device to begin recording."
           }
         }
       }

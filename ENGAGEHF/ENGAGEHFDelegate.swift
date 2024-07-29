@@ -6,12 +6,14 @@
 // SPDX-License-Identifier: MIT
 //
 
+import FirebaseFirestore
 import Spezi
 import SpeziAccount
 import SpeziBluetooth
 import SpeziBluetoothServices
 import SpeziDevices
 import SpeziFirebaseAccount
+import SpeziFirebaseAccountStorage
 import SpeziFirebaseStorage
 import SpeziFirestore
 import SpeziOmron
@@ -26,11 +28,8 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
             if !FeatureFlags.disableFirebase {
                 AccountConfiguration(configuration: [
                     .requires(\.userId),
-                    .requires(\.name),
-
-                    // additional values stored using the `FirestoreAccountStorage` within our Standard implementation
-                    .collects(\.genderIdentity),
-                    .collects(\.dateOfBirth)
+                    .supports(\.name),
+                    .supports(\.dateOfBirth)
                 ])
 
                 if FeatureFlags.useFirebaseEmulator {
@@ -41,7 +40,10 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
                 } else {
                     FirebaseAccountConfiguration(authenticationMethods: [.emailAndPassword, .signInWithApple])
                 }
-                firestore
+                FirestoreAccountStorage(storeIn: Firestore.userCollection)
+                
+                Firestore(settings: FeatureFlags.useFirebaseEmulator ? .emulator : FirestoreSettings())
+                
                 if FeatureFlags.useFirebaseEmulator {
                     FirebaseStorageConfiguration(emulatorSettings: (host: "localhost", port: 9199))
                 } else {
@@ -65,19 +67,5 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
 
             ConfigureTipKit()
         }
-    }
-    
-    
-    private var firestore: Firestore {
-        let settings = FirestoreSettings()
-        if FeatureFlags.useFirebaseEmulator {
-            settings.host = "localhost:8080"
-            settings.cacheSettings = MemoryCacheSettings()
-            settings.isSSLEnabled = false
-        }
-        
-        return Firestore(
-            settings: settings
-        )
     }
 }
