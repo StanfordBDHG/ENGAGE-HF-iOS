@@ -85,7 +85,7 @@ class MedicationsManager: Module, EnvironmentAccessible {
         let firestore = Firestore.firestore()
         
         let patientDocumentReference = firestore
-            .collection("patients")
+            .collection("users")
             .document(uid)
         
         self.snapshotListener = patientDocumentReference

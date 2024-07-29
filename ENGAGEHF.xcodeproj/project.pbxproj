@@ -70,6 +70,12 @@
 		4D4072A42C49A07C007C5621 /* HKSampleGraph+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4072A32C49A07C007C5621 /* HKSampleGraph+ViewModel.swift */; };
 		4D49AB022BC9D50400C77310 /* SpeziBluetooth in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49AB012BC9D50400C77310 /* SpeziBluetooth */; };
 		4D4AA0A52BC5E43E00676489 /* OnboardingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4AA0A42BC5E43E00676489 /* OnboardingUITests.swift */; };
+		4D73A50E2C5807B500CCEC46 /* CapsuleStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D73A50D2C5807B500CCEC46 /* CapsuleStack.swift */; };
+		4D73A5112C58088E00CCEC46 /* PositionedCurrentLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D73A5102C58088E00CCEC46 /* PositionedCurrentLabel.swift */; };
+		4D73A5142C5816AF00CCEC46 /* View+ReadSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D73A5132C5816AF00CCEC46 /* View+ReadSize.swift */; };
+		4D73A5192C581C2300CCEC46 /* CurrentLabelSizeKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D73A5182C581C2300CCEC46 /* CurrentLabelSizeKey.swift */; };
+		4D73A51B2C581C8F00CCEC46 /* TargetLabelSizeKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D73A51A2C581C8F00CCEC46 /* TargetLabelSizeKey.swift */; };
+		4D73A51E2C581CB200CCEC46 /* GaugeSizeKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D73A51D2C581CB200CCEC46 /* GaugeSizeKey.swift */; };
 		4D8402702C4EBE7D00817495 /* AddMeasurementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D84026F2C4EBE7D00817495 /* AddMeasurementView.swift */; };
 		4D8402722C4EC0D400817495 /* MeasurementListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8402712C4EC0D400817495 /* MeasurementListHeader.swift */; };
 		4D8402752C4EC64D00817495 /* TriggerNewMeasurementButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8402742C4EC64D00817495 /* TriggerNewMeasurementButton.swift */; };
@@ -228,6 +234,12 @@
 		4D40729E2C488172007C5621 /* KnownVitalsSeries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnownVitalsSeries.swift; sourceTree = "<group>"; };
 		4D4072A32C49A07C007C5621 /* HKSampleGraph+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HKSampleGraph+ViewModel.swift"; sourceTree = "<group>"; };
 		4D4AA0A42BC5E43E00676489 /* OnboardingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingUITests.swift; sourceTree = "<group>"; };
+		4D73A50D2C5807B500CCEC46 /* CapsuleStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleStack.swift; sourceTree = "<group>"; };
+		4D73A5102C58088E00CCEC46 /* PositionedCurrentLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionedCurrentLabel.swift; sourceTree = "<group>"; };
+		4D73A5132C5816AF00CCEC46 /* View+ReadSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+ReadSize.swift"; sourceTree = "<group>"; };
+		4D73A5182C581C2300CCEC46 /* CurrentLabelSizeKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLabelSizeKey.swift; sourceTree = "<group>"; };
+		4D73A51A2C581C8F00CCEC46 /* TargetLabelSizeKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetLabelSizeKey.swift; sourceTree = "<group>"; };
+		4D73A51D2C581CB200CCEC46 /* GaugeSizeKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaugeSizeKey.swift; sourceTree = "<group>"; };
 		4D84026F2C4EBE7D00817495 /* AddMeasurementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMeasurementView.swift; sourceTree = "<group>"; };
 		4D8402712C4EC0D400817495 /* MeasurementListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementListHeader.swift; sourceTree = "<group>"; };
 		4D8402742C4EC64D00817495 /* TriggerNewMeasurementButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggerNewMeasurementButton.swift; sourceTree = "<group>"; };
@@ -529,6 +541,26 @@
 			path = Modifiers;
 			sourceTree = "<group>";
 		};
+		4D73A50A2C58074E00CCEC46 /* ScheduleSummary */ = {
+			isa = PBXGroup;
+			children = (
+				4D8402C82C52F7C100817495 /* TextualDosageSummary.swift */,
+				4D8402E42C545A4B00817495 /* CurrentScheduleSummary.swift */,
+			);
+			path = ScheduleSummary;
+			sourceTree = "<group>";
+		};
+		4D73A5162C581BF100CCEC46 /* SizePreferences */ = {
+			isa = PBXGroup;
+			children = (
+				4D73A5132C5816AF00CCEC46 /* View+ReadSize.swift */,
+				4D73A5182C581C2300CCEC46 /* CurrentLabelSizeKey.swift */,
+				4D73A51A2C581C8F00CCEC46 /* TargetLabelSizeKey.swift */,
+				4D73A51D2C581CB200CCEC46 /* GaugeSizeKey.swift */,
+			);
+			path = SizePreferences;
+			sourceTree = "<group>";
+		};
 		4D84026E2C4EBE6600817495 /* AddMeasurement */ = {
 			isa = PBXGroup;
 			children = (
@@ -585,8 +617,10 @@
 		4D8402C32C52C57500817495 /* RowContent */ = {
 			isa = PBXGroup;
 			children = (
-				4D8402E22C5459DD00817495 /* DosageSummary */,
+				4D73A50A2C58074E00CCEC46 /* ScheduleSummary */,
+				4D8402E22C5459DD00817495 /* DosageGauge */,
 				4D8402CE2C530BEB00817495 /* MedicationRowContent.swift */,
+				4D8402D12C532D7100817495 /* DosageSummary.swift */,
 				4D8402DD2C5417F400817495 /* MedicationDescription.swift */,
 			);
 			path = RowContent;
@@ -600,16 +634,16 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		4D8402E22C5459DD00817495 /* DosageSummary */ = {
+		4D8402E22C5459DD00817495 /* DosageGauge */ = {
 			isa = PBXGroup;
 			children = (
-				4D8402D12C532D7100817495 /* DosageSummary.swift */,
+				4D73A5162C581BF100CCEC46 /* SizePreferences */,
 				4D05F2692C5466B700201581 /* DosageGauge.swift */,
-				4D8402C82C52F7C100817495 /* TextualDosageSummary.swift */,
-				4D8402E42C545A4B00817495 /* CurrentScheduleSummary.swift */,
 				4D05F26C2C54696100201581 /* DosageGaugeStyle.swift */,
+				4D73A50D2C5807B500CCEC46 /* CapsuleStack.swift */,
+				4D73A5102C58088E00CCEC46 /* PositionedCurrentLabel.swift */,
 			);
-			path = DosageSummary;
+			path = DosageGauge;
 			sourceTree = "<group>";
 		};
 		4D8AD2CB2C4ACF5C00CB4F3E /* Extensions */ = {
@@ -1018,10 +1052,12 @@
 				4D8AD2D62C4B252000CB4F3E /* FHIRInstant+DateComponents.swift in Sources */,
 				4D8AD2D42C4B250B00CB4F3E /* ObservationValueProtocol.swift in Sources */,
 				2FE5DC4129EDD7EE004B9AB4 /* StorageKeys.swift in Sources */,
+				4D73A51B2C581C8F00CCEC46 /* TargetLabelSizeKey.swift in Sources */,
 				4D0F389E2C09779100DA12F7 /* ShowMoreButton.swift in Sources */,
 				4DDFC7652BF350C2002B07A1 /* Education.swift in Sources */,
 				4DDFC7692BF35113002B07A1 /* HeartHealth.swift in Sources */,
 				4D92BA072C3CAE5300ABCED7 /* VitalListMeasurement.swift in Sources */,
+				4D73A51E2C581CB200CCEC46 /* GaugeSizeKey.swift in Sources */,
 				4D4072932C4841D4007C5621 /* VitalsGraph+DefaultStyling.swift in Sources */,
 				4D8402932C5067F000817495 /* MedicationDetails.swift in Sources */,
 				2FE5DCB129EE6107004B9AB4 /* AccountOnboarding.swift in Sources */,
@@ -1038,6 +1074,7 @@
 				2FE5DC3829EDD7CA004B9AB4 /* InterestingModules.swift in Sources */,
 				4D8402B22C51D62400817495 /* MedicationCard.swift in Sources */,
 				2FE5DC3529EDD7CA004B9AB4 /* Consent.swift in Sources */,
+				4D73A5112C58088E00CCEC46 /* PositionedCurrentLabel.swift in Sources */,
 				4D8AD2C22C49D51E00CB4F3E /* SeriesDictionary.swift in Sources */,
 				4D4072A42C49A07C007C5621 /* HKSampleGraph+ViewModel.swift in Sources */,
 				4DA20B642C2A0FF100715AA2 /* VitalsCard.swift in Sources */,
@@ -1072,12 +1109,15 @@
 				4D92B9F22C3C8D1E00ABCED7 /* MeasurementListSection.swift in Sources */,
 				4D34B3ED2C404C61006F0D40 /* VitalsUnit.swift in Sources */,
 				4D05F26D2C54696100201581 /* DosageGaugeStyle.swift in Sources */,
+				4D73A5142C5816AF00CCEC46 /* View+ReadSize.swift in Sources */,
 				4DF5063A2C2F5104003E7EFB /* DisplayMeasurement.swift in Sources */,
+				4D73A5192C581C2300CCEC46 /* CurrentLabelSizeKey.swift in Sources */,
 				4D4072842C46DDB2007C5621 /* VitalsGraph+ViewModel.swift in Sources */,
 				A9720E432ABB68CC00872D23 /* AccountSetupHeader.swift in Sources */,
 				2FE5DC4029EDD7EE004B9AB4 /* FeatureFlags.swift in Sources */,
 				4D8402752C4EC64D00817495 /* TriggerNewMeasurementButton.swift in Sources */,
 				4D8402CC2C53019B00817495 /* Double+asString.swift in Sources */,
+				4D73A50E2C5807B500CCEC46 /* CapsuleStack.swift in Sources */,
 				4D2D1D682C2C82A200ABDC19 /* FHIRPeriod+GetDates.swift in Sources */,
 				4D2D1D762C2CC8B200ABDC19 /* ValueXProtocol.swift in Sources */,
 				4DA20B542C25F8A600715AA2 /* FHIRDateTime+DateComponents.swift in Sources */,

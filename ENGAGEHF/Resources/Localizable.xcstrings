@@ -186,6 +186,9 @@
     "Content ..." : {
 
     },
+    "Current" : {
+
+    },
     "Current Schedule:" : {
 
     },
@@ -202,6 +205,9 @@
 
     },
     "Empty Symptoms Graph" : {
+
+    },
+    "Expected Progress: %lf" : {
 
     },
     "Failed to fetch HKUnits for the given samples." : {
@@ -588,6 +594,9 @@
           }
         }
       }
+    },
+    "Target" : {
+
     },
     "Target Daily Intake:" : {
 

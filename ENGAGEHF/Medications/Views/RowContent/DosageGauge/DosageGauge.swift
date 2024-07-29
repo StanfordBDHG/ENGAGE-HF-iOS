@@ -27,15 +27,27 @@ struct DosageGauge: View {
         return current
     }
     
+    private var dosageRange: ClosedRange<Double> {
+        dosageInformation.minimumDailyIntake...dosageInformation.targetDailyIntake
+    }
+    
     
     var body: some View {
-        Gauge(
-            value: clampedCurrentDailyIntake,
-            in: dosageInformation.minimumDailyIntake...dosageInformation.targetDailyIntake,
-            label: {},
-            currentValueLabel: {},
-            markedValueLabels: { Text(clampedCurrentDailyIntake.asString()) }
-        )
+        Gauge(value: clampedCurrentDailyIntake, in: dosageRange) {
+            // No overall label
+        } currentValueLabel: {
+            Text("Current")
+                .foregroundStyle(.secondary)
+                .font(.caption)
+        } minimumValueLabel: {
+            // No minimum label
+            Text("")
+        } maximumValueLabel: {
+            Text("Target")
+                .foregroundStyle(.secondary)
+                .font(.caption)
+        }
+            .gaugeStyle(DosageGaugeStyle())
     }
 }
 

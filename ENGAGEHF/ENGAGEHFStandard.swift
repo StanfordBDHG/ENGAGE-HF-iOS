@@ -44,10 +44,6 @@ actor ENGAGEHFStandard: Standard,
     private static var userCollection: CollectionReference {
         Firestore.firestore().collection("users")
     }
-    
-    private static var patientCollection: CollectionReference {
-        Firestore.firestore().collection("patients")
-    }
 
     @Dependency var accountStorage: FirestoreAccountStorage?
 
@@ -66,23 +62,13 @@ actor ENGAGEHFStandard: Standard,
         }
     }
     
-    private var patientDocumentReference: DocumentReference {
-        get async throws {
-            guard let details = await account.details else {
-                throw ENGAGEHFStandardError.userNotAuthenticatedYet
-            }
-            
-            return Self.patientCollection.document(details.accountId)
-        }
-    }
-    
-    private var patientBucketReference: StorageReference {
+    private var userBucketReference: StorageReference {
         get async throws {
             guard let details = await account.details else {
                 throw ENGAGEHFStandardError.userNotAuthenticatedYet
             }
 
-            return Storage.storage().reference().child("patients/\(details.accountId)")
+            return Storage.storage().reference().child("users/\(details.accountId)")
         }
     }
 
@@ -100,13 +86,13 @@ actor ENGAGEHFStandard: Standard,
         }
 
         logger.debug("Saving \(samples.count) samples to firestore ...")
-        let patientDocument = try await patientDocumentReference
+        let userDocument = try await userDocumentReference
 
         do {
             let batch = Firestore.firestore().batch()
             for sample in samples {
                 do {
-                    let document = try healthKitDocument(for: patientDocument, id: sample.id, type: sample.sampleType)
+                    let document = try healthKitDocument(for: userDocument, id: sample.id, type: sample.sampleType)
                     try batch.setData(from: sample.resource, forDocument: document)
                 } catch {
                     // either document retrieval or encoding failed, this should not stop other samples from getting saved
@@ -123,8 +109,8 @@ actor ENGAGEHFStandard: Standard,
     
     func add(symptomScore: SymptomScore) async {
         do {
-            let patientDoc = try await patientDocumentReference
-            try patientDoc.collection("symptomScores").addDocument(from: symptomScore)
+            let userDocument = try await userDocumentReference
+            try userDocument.collection("symptomScores").addDocument(from: symptomScore)
         } catch {
             logger.error("Could not store the symptom scores: \(error)")
         }
@@ -133,8 +119,8 @@ actor ENGAGEHFStandard: Standard,
     
     func add(notification: Notification) async {
         do {
-            let userDoc = try await userDocumentReference
-            try userDoc.collection("messages").addDocument(from: notification)
+            let userDocument = try await userDocumentReference
+            try userDocument.collection("messages").addDocument(from: notification)
         } catch {
             logger.error("Could not store the notification: \(error)")
         }
@@ -215,7 +201,7 @@ actor ENGAGEHFStandard: Standard,
             
             let metadata = StorageMetadata()
             metadata.contentType = "application/pdf"
-            _ = try await patientBucketReference.child("consent/\(dateString).pdf").putDataAsync(consentData, metadata: metadata)
+            _ = try await userBucketReference.child("consent/\(dateString).pdf").putDataAsync(consentData, metadata: metadata)
         } catch {
             logger.error("Could not store consent form: \(error)")
         }

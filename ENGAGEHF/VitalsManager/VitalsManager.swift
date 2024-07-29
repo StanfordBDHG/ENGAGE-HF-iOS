@@ -94,7 +94,7 @@ public class VitalsManager: Module, EnvironmentAccessible {
         }
         
         let firestore = Firestore.firestore()
-        let userDocRef = firestore.collection("patients").document(uid)
+        let userDocRef = firestore.collection("users").document(uid)
         
         // Weight snapshot listener
         self.snapshotListeners.append(
@@ -377,7 +377,7 @@ extension VitalsManager {
     private func setupHeartHealthTesting(user: User) async throws {
         let firestore = Firestore.firestore()
         let userDocRef = firestore
-            .collection("patients")
+            .collection("users")
             .document(user.uid)
         
         
@@ -432,7 +432,7 @@ extension VitalsManager {
         }
         
         let collectionRef = firestore
-            .collection("patients")
+            .collection("users")
             .document(user.uid)
             .collection(collectionID.rawValue)
         
