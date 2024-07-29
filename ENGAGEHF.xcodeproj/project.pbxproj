@@ -77,6 +77,7 @@
 		4D73A5192C581C2300CCEC46 /* CurrentLabelSizeKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D73A5182C581C2300CCEC46 /* CurrentLabelSizeKey.swift */; };
 		4D73A51B2C581C8F00CCEC46 /* TargetLabelSizeKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D73A51A2C581C8F00CCEC46 /* TargetLabelSizeKey.swift */; };
 		4D73A51E2C581CB200CCEC46 /* GaugeSizeKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D73A51D2C581CB200CCEC46 /* GaugeSizeKey.swift */; };
+		4D73A5242C58505100CCEC46 /* MedicationsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D73A5232C58505100CCEC46 /* MedicationsUITests.swift */; };
 		4D8402702C4EBE7D00817495 /* AddMeasurementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D84026F2C4EBE7D00817495 /* AddMeasurementView.swift */; };
 		4D8402722C4EC0D400817495 /* MeasurementListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8402712C4EC0D400817495 /* MeasurementListHeader.swift */; };
 		4D8402752C4EC64D00817495 /* TriggerNewMeasurementButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8402742C4EC64D00817495 /* TriggerNewMeasurementButton.swift */; };
@@ -240,6 +241,7 @@
 		4D73A5182C581C2300CCEC46 /* CurrentLabelSizeKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLabelSizeKey.swift; sourceTree = "<group>"; };
 		4D73A51A2C581C8F00CCEC46 /* TargetLabelSizeKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetLabelSizeKey.swift; sourceTree = "<group>"; };
 		4D73A51D2C581CB200CCEC46 /* GaugeSizeKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaugeSizeKey.swift; sourceTree = "<group>"; };
+		4D73A5232C58505100CCEC46 /* MedicationsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationsUITests.swift; sourceTree = "<group>"; };
 		4D84026F2C4EBE7D00817495 /* AddMeasurementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMeasurementView.swift; sourceTree = "<group>"; };
 		4D8402712C4EC0D400817495 /* MeasurementListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementListHeader.swift; sourceTree = "<group>"; };
 		4D8402742C4EC64D00817495 /* TriggerNewMeasurementButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggerNewMeasurementButton.swift; sourceTree = "<group>"; };
@@ -428,7 +430,7 @@
 				2FE5DC3E29EDD7ED004B9AB4 /* FeatureFlags.swift */,
 				2FE5DC3F29EDD7EE004B9AB4 /* StorageKeys.swift */,
 				4D8402A92C51B6A000817495 /* FHIRAliases.swift */,
-				2FF350E32C4F3F0B0095F08F /* Firebase+References.swift */
+				2FF350E32C4F3F0B0095F08F /* Firebase+References.swift */,
 			);
 			path = SharedContext;
 			sourceTree = "<group>";
@@ -829,6 +831,7 @@
 				4DA20B682C2B299700715AA2 /* RecentVitalsUITests.swift */,
 				4D8AD2E02C4B5D1600CB4F3E /* HeartHealthUITests.swift */,
 				4D8402762C4EE51F00817495 /* AddMeasurementUITests.swift */,
+				4D73A5232C58505100CCEC46 /* MedicationsUITests.swift */,
 			);
 			path = ENGAGEHFUITests;
 			sourceTree = "<group>";
@@ -1173,6 +1176,7 @@
 			files = (
 				4DA20B692C2B299700715AA2 /* RecentVitalsUITests.swift in Sources */,
 				A9F2138E2C18EBAB00A7578F /* AccountTests.swift in Sources */,
+				4D73A5242C58505100CCEC46 /* MedicationsUITests.swift in Sources */,
 				4D84027A2C4EE56000817495 /* XCUIApplication+GoTo.swift in Sources */,
 				4D4AA0A52BC5E43E00676489 /* OnboardingUITests.swift in Sources */,
 				4DD823062C17FF79004DC599 /* NotificationsUITests.swift in Sources */,

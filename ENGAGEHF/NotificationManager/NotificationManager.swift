@@ -100,14 +100,14 @@ class NotificationManager: Module, EnvironmentAccessible {
         logger.info("Initializing notification snapshot listener...")
 
         // Remove previous snapshot listener for the user before creating new one
-        snapshotListener?.remove()
+        self.snapshotListener?.remove()
         
         guard let messagesCollectionReference = try? Firestore.messagesCollectionReference else {
             return
         }
         
         // Set a snapshot listener on the query for valid notifications
-        messagesCollectionReference
+        self.snapshotListener = messagesCollectionReference
             .addSnapshotListener { querySnapshot, error in
                 guard let documentRefs = querySnapshot?.documents else {
                     self.logger.error("Error fetching documents: \(error)")

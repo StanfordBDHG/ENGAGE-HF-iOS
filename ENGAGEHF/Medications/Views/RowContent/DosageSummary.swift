@@ -19,6 +19,7 @@ struct DosageSummary: View {
                 .padding(.vertical, 2)
             DosageGauge(dosageInformation: dosageInformation)
                 .padding(.vertical, 2)
+                .accessibilityIdentifier("Dosage Gauge")
         }
     }
 }

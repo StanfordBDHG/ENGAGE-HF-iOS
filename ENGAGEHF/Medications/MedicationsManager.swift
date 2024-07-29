@@ -35,6 +35,10 @@ class MedicationsManager: Module, EnvironmentAccessible {
             return
         }
         
+        if FeatureFlags.setupTestMedications {
+            return
+        }
+        
         authStateDidChangeListenerHandle = Auth.auth().addStateDidChangeListener { [weak self] _, user in
             self?.registerSnapshotListener(user: user)
         }
@@ -48,18 +52,12 @@ class MedicationsManager: Module, EnvironmentAccessible {
         logger.info("Initializing medications snapshot listener...")
         
         self.snapshotListener?.remove()
-        guard let uid = user?.uid else {
+        
+        guard let medicationRecsCollectionReference = try? Firestore.medicationRecsCollectionReference else {
             return
         }
         
-        let firestore = Firestore.firestore()
-        
-        let patientDocumentReference = firestore
-            .collection("users")
-            .document(uid)
-        
-        self.snapshotListener = patientDocumentReference
-            .collection("medicationRecommendations")
+        self.snapshotListener = medicationRecsCollectionReference
             .addSnapshotListener { querySnapshot, error in
                 self.logger.debug("Fetching medications.")
                 
@@ -133,3 +131,77 @@ extension MedicationsManager {
         ]
     }
 }
+
+#if DEBUG || TEST
+extension MedicationsManager {
+    func injectTestMedications() { // swiftlint:disable:this function_body_length
+        self.medications = [
+            // Single ingredient, single schedule, target dose reached
+            MedicationDetails(
+                id: UUID().uuidString,
+                title: "Carvedilol",
+                subtitle: "Beta Blocker",
+                description: "Your target does has been reached.",
+                type: .targetDoseReached,
+                dosageInformation: DosageInformation(
+                    currentSchedule: [DoseSchedule(frequency: 1, quantity: [200])],
+                    minimumSchedule: [DoseSchedule(frequency: 1, quantity: [6.25])],
+                    targetSchedule: [DoseSchedule(frequency: 1, quantity: [200])],
+                    unit: "mg"
+                )
+            ),
+            // Single ingredient, multiple schedules, personal target dose reached (middle range)
+            MedicationDetails(
+                id: UUID().uuidString,
+                title: "Empagliflozin",
+                subtitle: "SGLT2i",
+                description: "You have reached your personal target dose.",
+                type: .personalTargetDoseReached,
+                dosageInformation: DosageInformation(
+                    currentSchedule: [DoseSchedule(frequency: 1, quantity: [2.5]), DoseSchedule(frequency: 1, quantity: [5])],
+                    minimumSchedule: [DoseSchedule(frequency: 1, quantity: [5])],
+                    targetSchedule: [DoseSchedule(frequency: 1, quantity: [10])],
+                    unit: "mg"
+                )
+            ),
+            // Multi-ingredient, single schedule, at minimum dose
+            MedicationDetails(
+                id: UUID().uuidString,
+                title: "Sacubitril-Valsartan",
+                subtitle: "ARNI",
+                description: "You are eligible for a new dosage.",
+                type: .improvementAvailable,
+                dosageInformation: DosageInformation(
+                    currentSchedule: [DoseSchedule(frequency: 2, quantity: [24, 26])],
+                    minimumSchedule: [DoseSchedule(frequency: 2, quantity: [24, 26])],
+                    targetSchedule: [DoseSchedule(frequency: 2, quantity: [97, 103])],
+                    unit: "mg"
+                )
+            ),
+            // Single ingredient, below minimum dose
+            MedicationDetails(
+                id: UUID().uuidString,
+                title: "Spironolactone",
+                subtitle: "MRA",
+                description: "More vitals data required for recommendations.",
+                type: .morePatientObservationsRequired,
+                dosageInformation: DosageInformation(
+                    currentSchedule: [DoseSchedule(frequency: 1, quantity: [10])],
+                    minimumSchedule: [DoseSchedule(frequency: 1, quantity: [12.5])],
+                    targetSchedule: [DoseSchedule(frequency: 1, quantity: [25])],
+                    unit: "mg"
+                )
+            ),
+            // Single ingredient, single schedule, no dose information
+            MedicationDetails(
+                id: UUID().uuidString,
+                title: "Bisoprolol",
+                subtitle: "Beta Blocker",
+                description: "Not started yet. No action required.",
+                type: .notStarted,
+                dosageInformation: nil
+            )
+        ]
+    }
+}
+#endif

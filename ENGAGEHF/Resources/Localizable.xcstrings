@@ -4,6 +4,9 @@
     "" : {
 
     },
+    "%@" : {
+
+    },
     "%@ Date: %@" : {
       "localizations" : {
         "en" : {
@@ -108,6 +111,15 @@
 
     },
     "Add Measurement: %@" : {
+
+    },
+    "Add Medications" : {
+
+    },
+    "Add Mock" : {
+
+    },
+    "Add mock notification" : {
 
     },
     "All Data" : {
@@ -415,9 +427,6 @@
 
     },
     "No medication recommendations" : {
-
-    },
-    "No medication recommendations currently available." : {
 
     },
     "No recent %@ measurement available" : {

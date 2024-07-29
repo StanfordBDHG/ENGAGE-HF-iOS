@@ -53,6 +53,12 @@ extension Firestore {
         }
     }
     
+    static var medicationRecsCollectionReference: CollectionReference {
+        get throws {
+            try userDocumentReference.collection("medicationRecommendations")
+        }
+    }
+    
     static var questionnaireResponseCollectionReference: CollectionReference {
         get throws {
             try userDocumentReference.collection("questionnaireResponses")

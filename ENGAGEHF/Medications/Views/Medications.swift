@@ -37,6 +37,17 @@ struct Medications: View {
                         AccountButton(isPresented: $presentingAccount)
                     }
                 }
+#if DEBUG || TEST
+                .toolbar {
+                    if FeatureFlags.setupTestMedications {
+                        ToolbarItem(placement: .secondaryAction) {
+                            Button("Add Medications", systemImage: "heart.text.square") {
+                                medicationsManager.injectTestMedications()
+                            }
+                        }
+                    }
+                }
+#endif
         }
     }
 }
