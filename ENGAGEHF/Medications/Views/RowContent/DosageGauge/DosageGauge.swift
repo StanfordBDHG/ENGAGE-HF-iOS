@@ -37,7 +37,7 @@ struct DosageGauge: View {
             // No overall label
         } currentValueLabel: {
             Text("Current")
-                .foregroundStyle(.secondary)
+                .foregroundStyle(.accent)
                 .font(.caption)
         } minimumValueLabel: {
             // No minimum label
@@ -56,11 +56,17 @@ struct DosageGauge: View {
     DosageGauge(
         dosageInformation: DosageInformation(
             currentSchedule: [
-                DoseSchedule(timesDaily: 2, dose: 25),
-                DoseSchedule(timesDaily: 1, dose: 15)
+                DoseSchedule(frequency: 2, quantity: [25]),
+                DoseSchedule(frequency: 1, quantity: [15])
             ],
-            minimumDailyIntake: 10,
-            targetDailyIntake: 70,
+            minimumSchedule: [
+                DoseSchedule(frequency: 2, quantity: [5]),
+                DoseSchedule(frequency: 1, quantity: [2.5])
+            ],
+            targetSchedule: [
+                DoseSchedule(frequency: 2, quantity: [50]),
+                DoseSchedule(frequency: 1, quantity: [25])
+            ],
             unit: "mg"
         )
     )

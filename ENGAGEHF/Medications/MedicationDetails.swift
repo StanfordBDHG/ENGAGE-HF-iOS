@@ -45,11 +45,11 @@ enum MedicationRecommendationType: String, Codable, Comparable {
 /// A daily medication schedule. Includes current, minimum, and target schedules.
 /// Example: 20.0 mg twice daily would have dose=20.0 and timesDaily=2.
 struct DoseSchedule: Hashable, Codable {
-    let timesDaily: Int
-    let dose: Double
+    let frequency: Double
+    let quantity: [Double]
     
     
-    var dailyTotal: Double { dose * Double(timesDaily) }
+    var totalDailyIntake: Double { quantity.reduce(0, +) * frequency }
 }
 
 
@@ -57,13 +57,21 @@ struct DoseSchedule: Hashable, Codable {
 /// Describes the dosage in terms of total medication across all ingredients.
 struct DosageInformation: Codable {
     let currentSchedule: [DoseSchedule]
-    let minimumDailyIntake: Double
-    let targetDailyIntake: Double
+    let minimumSchedule: [DoseSchedule]
+    let targetSchedule: [DoseSchedule]
     let unit: String
     
     
     var currentDailyIntake: Double {
-        self.currentSchedule.map(\.dailyTotal).reduce(0, +)
+        self.currentSchedule.map(\.totalDailyIntake).reduce(0, +)
+    }
+    
+    var minimumDailyIntake: Double {
+        self.minimumSchedule.map(\.totalDailyIntake).reduce(0, +)
+    }
+    
+    var targetDailyIntake: Double {
+        self.targetSchedule.map(\.totalDailyIntake).reduce(0, +)
     }
 }
 

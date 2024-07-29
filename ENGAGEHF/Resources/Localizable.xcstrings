@@ -43,9 +43,6 @@
         }
       }
     },
-    "%lldx daily" : {
-
-    },
     "About %@" : {
 
     },
@@ -187,9 +184,6 @@
 
     },
     "Current" : {
-
-    },
-    "Current Schedule:" : {
 
     },
     "Date" : {
@@ -596,9 +590,6 @@
       }
     },
     "Target" : {
-
-    },
-    "Target Daily Intake:" : {
 
     },
     "The invitation code is invalid or has already been used." : {

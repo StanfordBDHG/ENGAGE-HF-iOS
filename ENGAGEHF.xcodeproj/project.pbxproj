@@ -98,7 +98,7 @@
 		4D8402D22C532D7100817495 /* DosageSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8402D12C532D7100817495 /* DosageSummary.swift */; };
 		4D8402D72C53391E00817495 /* EmptyMedicationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8402D62C53391E00817495 /* EmptyMedicationsView.swift */; };
 		4D8402DE2C5417F400817495 /* MedicationDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8402DD2C5417F400817495 /* MedicationDescription.swift */; };
-		4D8402E52C545A4B00817495 /* CurrentScheduleSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8402E42C545A4B00817495 /* CurrentScheduleSummary.swift */; };
+		4D8402E52C545A4B00817495 /* ScheduleSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8402E42C545A4B00817495 /* ScheduleSummary.swift */; };
 		4D8AD2C22C49D51E00CB4F3E /* SeriesDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8AD2C12C49D51E00CB4F3E /* SeriesDictionary.swift */; };
 		4D8AD2C52C4A180300CB4F3E /* MeasurementSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8AD2C42C4A180300CB4F3E /* MeasurementSeries.swift */; };
 		4D8AD2C82C4A2BE900CB4F3E /* VitalsGraphOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8AD2C72C4A2BE900CB4F3E /* VitalsGraphOptions.swift */; };
@@ -262,7 +262,7 @@
 		4D8402D12C532D7100817495 /* DosageSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DosageSummary.swift; sourceTree = "<group>"; };
 		4D8402D62C53391E00817495 /* EmptyMedicationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyMedicationsView.swift; sourceTree = "<group>"; };
 		4D8402DD2C5417F400817495 /* MedicationDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationDescription.swift; sourceTree = "<group>"; };
-		4D8402E42C545A4B00817495 /* CurrentScheduleSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentScheduleSummary.swift; sourceTree = "<group>"; };
+		4D8402E42C545A4B00817495 /* ScheduleSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSummary.swift; sourceTree = "<group>"; };
 		4D8AD2C12C49D51E00CB4F3E /* SeriesDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesDictionary.swift; sourceTree = "<group>"; };
 		4D8AD2C42C4A180300CB4F3E /* MeasurementSeries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementSeries.swift; sourceTree = "<group>"; };
 		4D8AD2C72C4A2BE900CB4F3E /* VitalsGraphOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalsGraphOptions.swift; sourceTree = "<group>"; };
@@ -545,7 +545,7 @@
 			isa = PBXGroup;
 			children = (
 				4D8402C82C52F7C100817495 /* TextualDosageSummary.swift */,
-				4D8402E42C545A4B00817495 /* CurrentScheduleSummary.swift */,
+				4D8402E42C545A4B00817495 /* ScheduleSummary.swift */,
 			);
 			path = ScheduleSummary;
 			sourceTree = "<group>";
@@ -1082,7 +1082,7 @@
 				4D8402B52C51D6D200817495 /* MedicationRecommendationSymbol.swift in Sources */,
 				4D84027E2C4EF82D00817495 /* AddMeasurementAsyncButton.swift in Sources */,
 				4D8402AE2C51C66D00817495 /* Medications.swift in Sources */,
-				4D8402E52C545A4B00817495 /* CurrentScheduleSummary.swift in Sources */,
+				4D8402E52C545A4B00817495 /* ScheduleSummary.swift in Sources */,
 				2FC975A82978F11A00BA99FE /* Home.swift in Sources */,
 				A9623C082C18D03F00189BA1 /* AccountSetupSheet.swift in Sources */,
 				4D40727E2C465554007C5621 /* HKSampleGraphError.swift in Sources */,

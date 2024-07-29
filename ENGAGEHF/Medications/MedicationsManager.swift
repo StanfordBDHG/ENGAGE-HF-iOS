@@ -31,37 +31,7 @@ class MedicationsManager: Module, EnvironmentAccessible {
     
     func configure() {
         if ProcessInfo.processInfo.isPreviewSimulator {
-            self.medications = [
-                MedicationDetails(
-                    id: "test1",
-                    title: "Lorem",
-                    subtitle: "Ipsum",
-                    description: "Description ",
-                    type: .targetDoseReached,
-                    dosageInformation: DosageInformation(
-                        currentSchedule: [DoseSchedule(timesDaily: 2, dose: 20.0)],
-                        minimumDailyIntake: 15,
-                        targetDailyIntake: 100,
-                        unit: "mg"
-                    )
-                ),
-                MedicationDetails(
-                    id: "test2",
-                    title: "Lozinopril",
-                    subtitle: "Beta Blocker",
-                    description: "Long description goes here",
-                    type: .improvementAvailable,
-                    dosageInformation: DosageInformation(
-                        currentSchedule: [
-                            DoseSchedule(timesDaily: 2, dose: 25),
-                            DoseSchedule(timesDaily: 1, dose: 15)
-                        ],
-                        minimumDailyIntake: 10,
-                        targetDailyIntake: 70,
-                        unit: "mg"
-                    )
-                )
-            ]
+            setupPreview()
             return
         }
         
@@ -109,5 +79,57 @@ class MedicationsManager: Module, EnvironmentAccessible {
                 
                 self.logger.debug("Medications updated.")
             }
+    }
+}
+
+
+extension MedicationsManager {
+    private func setupPreview() {
+        self.medications = [
+            MedicationDetails(
+                id: "test1",
+                title: "Lorem",
+                subtitle: "Ipsum",
+                description: "Description ",
+                type: .targetDoseReached,
+                dosageInformation: DosageInformation(
+                    currentSchedule: [
+                        DoseSchedule(frequency: 2, quantity: [25]),
+                        DoseSchedule(frequency: 1, quantity: [15])
+                    ],
+                    minimumSchedule: [
+                        DoseSchedule(frequency: 2, quantity: [5]),
+                        DoseSchedule(frequency: 1, quantity: [2.5])
+                    ],
+                    targetSchedule: [
+                        DoseSchedule(frequency: 2, quantity: [50]),
+                        DoseSchedule(frequency: 1, quantity: [25])
+                    ],
+                    unit: "mg"
+                )
+            ),
+            MedicationDetails(
+                id: "test2",
+                title: "Lozinopril",
+                subtitle: "Beta Blocker",
+                description: "Long description goes here",
+                type: .improvementAvailable,
+                dosageInformation: DosageInformation(
+                    currentSchedule: [
+                        DoseSchedule(frequency: 2, quantity: [25]),
+                        DoseSchedule(frequency: 1, quantity: [15])
+                    ],
+                    minimumSchedule: [
+                        DoseSchedule(frequency: 2, quantity: [5]),
+                        DoseSchedule(frequency: 1, quantity: [2.5])
+                    ],
+                    targetSchedule: [
+                        DoseSchedule(frequency: 2, quantity: [50]),
+                        DoseSchedule(frequency: 1, quantity: [25])
+                    ],
+                    unit: "mg"
+                )
+            )
+        ]
     }
 }

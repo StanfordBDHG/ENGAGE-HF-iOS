@@ -15,15 +15,19 @@ struct TextualDosageSummary: View {
     
     var body: some View {
         VStack {
-            CurrentScheduleSummary(currentSchedule: dosageInformation.currentSchedule, unit: dosageInformation.unit)
-                .padding(.bottom, 2)
-            HStack {
-                Text("Target Daily Intake:")
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-                Spacer()
-                Text(dosageInformation.targetDailyIntake.asString() + " " + dosageInformation.unit)
-            }
+            ScheduleSummary(
+                schedule: dosageInformation.currentSchedule,
+                unit: dosageInformation.unit,
+                label: "Current Dose:"
+            )
+                .padding(.bottom, 4)
+            
+            ScheduleSummary(
+                schedule: dosageInformation.targetSchedule,
+                unit: dosageInformation.unit,
+                label: "Target Dose:"
+            )
+                .padding(.bottom, 4)
         }
     }
 }
@@ -33,11 +37,17 @@ struct TextualDosageSummary: View {
     TextualDosageSummary(
         dosageInformation: DosageInformation(
             currentSchedule: [
-                DoseSchedule(timesDaily: 2, dose: 25),
-                DoseSchedule(timesDaily: 1, dose: 15)
+                DoseSchedule(frequency: 2, quantity: [25]),
+                DoseSchedule(frequency: 1, quantity: [15])
             ],
-            minimumDailyIntake: 10,
-            targetDailyIntake: 70,
+            minimumSchedule: [
+                DoseSchedule(frequency: 2, quantity: [5]),
+                DoseSchedule(frequency: 1, quantity: [2.5])
+            ],
+            targetSchedule: [
+                DoseSchedule(frequency: 2, quantity: [50]),
+                DoseSchedule(frequency: 1, quantity: [25])
+            ],
             unit: "mg"
         )
     )
