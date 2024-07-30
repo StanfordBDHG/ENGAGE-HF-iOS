@@ -50,7 +50,7 @@ struct AddMeasurementAsyncButton: View {
             
             let quantityType = HKQuantityType(.bodyMass)
             let unit: HKUnit = Locale.current.measurementSystem == .us ? .pound() : .gramUnit(with: .kilo)
-            let quantity = HKQuantity(unit: unit, doubleValue: Double(bodyWeight))
+            let quantity = HKQuantity(unit: unit, doubleValue: bodyWeight)
             
             return HKQuantitySample(type: quantityType, quantity: quantity, start: date, end: date)
         case .heartRate:
@@ -60,7 +60,7 @@ struct AddMeasurementAsyncButton: View {
             
             let quantityType = HKQuantityType(.heartRate)
             let unit: HKUnit = .count().unitDivided(by: .minute())
-            let quantity = HKQuantity(unit: unit, doubleValue: Double(heartRate))
+            let quantity = HKQuantity(unit: unit, doubleValue: heartRate)
             
             return HKQuantitySample(type: quantityType, quantity: quantity, start: date, end: date)
         case .bloodPressure:
@@ -73,8 +73,8 @@ struct AddMeasurementAsyncButton: View {
             let diastolicType = HKQuantityType(.bloodPressureDiastolic)
             let bloodPressureType = HKCorrelationType(.bloodPressure)
             
-            let systolicQuantity = HKQuantity(unit: .millimeterOfMercury(), doubleValue: Double(systolic))
-            let diastolicQuantity = HKQuantity(unit: .millimeterOfMercury(), doubleValue: Double(diastolic))
+            let systolicQuantity = HKQuantity(unit: .millimeterOfMercury(), doubleValue: systolic)
+            let diastolicQuantity = HKQuantity(unit: .millimeterOfMercury(), doubleValue: diastolic)
             
             let systolicSample = HKQuantitySample(type: systolicType, quantity: systolicQuantity, start: date, end: date)
             let diastolicSample = HKQuantitySample(type: diastolicType, quantity: diastolicQuantity, start: date, end: date)

@@ -294,8 +294,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziStorage.git",
       "state" : {
-        "revision" : "b958df9b31f24800388a7bfc28f457ce7b82556c",
-        "version" : "1.0.2"
+        "revision" : "9d04bc622c65002aee704b4de5735970a6e19f46",
+        "version" : "1.1.0"
       }
     },
     {

@@ -39,7 +39,7 @@ actor ENGAGEHFStandard: Standard,
         }
 
         logger.debug("Saving \(samples.count) samples to firestore ...")
-        
+
         do {
             let batch = Firestore.firestore().batch()
             for sample in samples {

@@ -4,6 +4,9 @@
     "" : {
 
     },
+    "%@" : {
+
+    },
     "%@ Date: %@" : {
       "localizations" : {
         "en" : {
@@ -15,6 +18,9 @@
       }
     },
     "%@ Description" : {
+
+    },
+    "%@ More Information" : {
 
     },
     "%@ Quantity: %@" : {
@@ -107,6 +113,15 @@
     "Add Measurement: %@" : {
 
     },
+    "Add Medications" : {
+
+    },
+    "Add Mock" : {
+
+    },
+    "Add mock notification" : {
+
+    },
     "All Data" : {
 
     },
@@ -168,6 +183,12 @@
         }
       }
     },
+    "Content ..." : {
+
+    },
+    "Current" : {
+
+    },
     "Date" : {
 
     },
@@ -181,6 +202,9 @@
 
     },
     "Empty Symptoms Graph" : {
+
+    },
+    "Expected Progress: %lf" : {
 
     },
     "Failed to fetch HKUnits for the given samples." : {
@@ -353,17 +377,6 @@
         }
       }
     },
-    "invalidHKSample" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sample type not supported."
-          }
-        }
-      }
-    },
     "Invitation Code" : {
 
     },
@@ -386,6 +399,24 @@
           }
         }
       }
+    },
+    "List With Sections" : {
+
+    },
+    "List Without Sections" : {
+
+    },
+    "Medication Expansion Button" : {
+
+    },
+    "Medication Label: %@" : {
+
+    },
+    "Medications" : {
+
+    },
+    "No medication recommendations" : {
+
     },
     "No recent %@ measurement available" : {
 
@@ -547,6 +578,9 @@
           }
         }
       }
+    },
+    "Target" : {
+
     },
     "The invitation code is invalid or has already been used." : {
       "comment" : "Invitation Code Invalid"

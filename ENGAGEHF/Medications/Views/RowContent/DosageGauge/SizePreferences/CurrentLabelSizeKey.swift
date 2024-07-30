@@ -7,11 +7,13 @@
 //
 
 import Foundation
+import SwiftUI
 
 
-struct FieldDetails: Identifiable {
-    let id = UUID()
+struct CurrentLabelSizeKey: PreferenceKey {
+    static let defaultValue: CGSize = .zero
     
-    var title: String
-    var value: Double?
+    static func reduce(value: inout Value, nextValue: () -> Value) {
+        value = nextValue()
+    }
 }

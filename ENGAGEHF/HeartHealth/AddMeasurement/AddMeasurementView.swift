@@ -45,6 +45,7 @@ struct AddMeasurementView: View {
                     .foregroundStyle(.secondary)
                 Spacer()
                 TextField("", value: $fieldDetails.value, format: .number)
+                    .keyboardType(.decimalPad)
                     .multilineTextAlignment(.trailing)
                     .accessibilityLabel("Input: \(fieldDetails.title)")
             }
