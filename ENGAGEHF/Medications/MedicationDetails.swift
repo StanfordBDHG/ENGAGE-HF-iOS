@@ -77,10 +77,10 @@ struct DosageInformation: Codable {
 
 
 /// Wrapper for decoding medication details from firestore.
-struct MedicationDetailsWrapper: Identifiable, Codable {
-    @DocumentID var id: String?
+struct MedicationDetailsWrapper: Codable {
+    @DocumentID private var id: String?
     
-    let displayInformation: MedicationDetails
+    private let displayInformation: MedicationDetails
     
     
     var medicationDetails: MedicationDetails {

@@ -76,7 +76,7 @@ struct DosageGaugeStyle: GaugeStyle {
                 Slider(value: $value, in: (minimum - 5)...(maximum + 5))
                 Spacer()
             }
-            .padding()
+                .padding()
         }
     }
     

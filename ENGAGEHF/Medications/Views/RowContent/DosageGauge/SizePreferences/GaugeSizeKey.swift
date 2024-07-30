@@ -11,7 +11,7 @@ import SwiftUI
 
 
 struct GaugeSizeKey: PreferenceKey {
-    static let defaultValue: CGSize = .init(width: 15, height: 15)
+    static let defaultValue: CGSize = .zero
     
     static func reduce(value: inout Value, nextValue: () -> Value) {
         value = nextValue()

@@ -24,8 +24,8 @@ struct Medications: View {
                             MedicationCard(medication: medication)
                         }
                     }
-                    .listRowSeparator(.hidden)
-                    .listRowSpacing(8)
+                        .listRowSeparator(.hidden)
+                        .listRowSpacing(8)
                 } else {
                     ContentUnavailableView("No medication recommendations", systemImage: "pill.fill")
                         .symbolVariant(.slash)

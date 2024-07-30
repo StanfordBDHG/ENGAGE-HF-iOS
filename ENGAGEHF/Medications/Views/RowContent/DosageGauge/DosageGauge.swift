@@ -12,10 +12,12 @@ import SwiftUI
 struct DosageGauge: View {
     let dosageInformation: DosageInformation
     
+    private let minimumDailyIntake: Double = 0
+    
     
     private var clampedCurrentDailyIntake: Double {
         let current = dosageInformation.currentDailyIntake
-        let minimum = dosageInformation.minimumDailyIntake
+        let minimum = minimumDailyIntake
         let target = dosageInformation.targetDailyIntake
         
         if current < minimum {
@@ -28,7 +30,7 @@ struct DosageGauge: View {
     }
     
     private var dosageRange: ClosedRange<Double> {
-        dosageInformation.minimumDailyIntake...dosageInformation.targetDailyIntake
+        minimumDailyIntake...dosageInformation.targetDailyIntake
     }
     
     
