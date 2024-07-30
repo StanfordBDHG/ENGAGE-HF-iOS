@@ -43,6 +43,16 @@
         }
       }
     },
+    "%@, %lld, %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@, %2$lld, %3$@"
+          }
+        }
+      }
+    },
     "About %@" : {
 
     },
@@ -195,6 +205,9 @@
     "Devices" : {
 
     },
+    "DocId: %@" : {
+
+    },
     "Education" : {
 
     },
@@ -202,6 +215,9 @@
 
     },
     "Empty Symptoms Graph" : {
+
+    },
+    "Expansion Button" : {
 
     },
     "Expected Progress: %lf" : {
@@ -406,9 +422,6 @@
     "List Without Sections" : {
 
     },
-    "Medication Expansion Button" : {
-
-    },
     "Medication Label: %@" : {
 
     },
@@ -466,6 +479,9 @@
       }
     },
     "Notifications" : {
+
+    },
+    "OrderIndex: %lld" : {
 
     },
     "Please enter your invitation code to join the ENGAGE-HF study." : {

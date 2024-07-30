@@ -11,21 +11,18 @@ import SwiftUI
 
 struct MedicationRowLabel: View {
     let medication: MedicationDetails
-    @Binding var isExpanded: Bool
     
     
     var body: some View {
         HStack {
             RecommendationSummary(medication: medication)
             Spacer()
-            Image(systemName: "chevron.right")
-                .accessibilityLabel("Medication Expansion Button")
-                .foregroundStyle(.accent)
-                .rotationEffect(.degrees(isExpanded ? 90 : 0))
-                .animation(nil, value: isExpanded)
+//            Image(systemName: "chevron.right")
+//                .accessibilityLabel("Medication Expansion Button")
+//                .foregroundStyle(.accent)
+//                .rotationEffect(.degrees(isExpanded ? 90 : 0))
+//                .animation(nil, value: isExpanded)
         }
-            .contentShape(Rectangle())
-            .onTapGesture { isExpanded.toggle() }
     }
 }
 
@@ -53,7 +50,6 @@ struct MedicationRowLabel: View {
                 ],
                 unit: "mg"
             )
-        ),
-        isExpanded: .constant(false)
+        )
     )
 }

@@ -63,6 +63,7 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
             NotificationManager()
             VitalsManager()
             MedicationsManager()
+            VideoManager()
             InvitationCodeModule()
 
             ConfigureTipKit()
