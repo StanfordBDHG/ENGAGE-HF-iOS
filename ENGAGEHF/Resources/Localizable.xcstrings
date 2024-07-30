@@ -377,17 +377,6 @@
         }
       }
     },
-    "invalidHKSample" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sample type not supported."
-          }
-        }
-      }
-    },
     "Invitation Code" : {
 
     },
