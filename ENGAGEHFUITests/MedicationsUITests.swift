@@ -44,12 +44,14 @@ final class MedicationsUITests: XCTestCase {
         let medicationDescription = app.staticTexts["You are eligible for a new dosage."]
         XCTAssert(medicationDescription.waitForExistence(timeout: 0.5))
         XCTAssert(medicationDescription.isHittable)
+        XCTAssert(app.otherElements["Dosage Gauge"].waitForExistence(timeout: 0.5))
         
         XCTAssert(app.images["Medication Label: improvementAvailable"].waitForExistence(timeout: 0.5))
         app.images["Medication Label: improvementAvailable"].tap()
         
         XCTAssertFalse(medicationDescription.waitForExistence(timeout: 0.5))
         XCTAssertFalse(medicationDescription.isHittable)
+        XCTAssertFalse(app.otherElements["Dosage Gauge"].waitForExistence(timeout: 0.5))
     }
     
     func testWithNoDosageInformation() throws {
@@ -67,6 +69,7 @@ final class MedicationsUITests: XCTestCase {
         
         XCTAssertFalse(app.staticTexts["Current Dose:"].waitForExistence(timeout: 0.5))
         XCTAssertFalse(app.staticTexts["Target Dose:"].waitForExistence(timeout: 0.5))
+        XCTAssertFalse(app.otherElements["Dosage Gauge"].waitForExistence(timeout: 0.5))
         XCTAssert(app.staticTexts["Not started yet. No action required."].waitForExistence(timeout: 0.5))
     }
     
@@ -110,6 +113,44 @@ final class MedicationsUITests: XCTestCase {
         XCTAssert(app.staticTexts["daily"].firstMatch.waitForExistence(timeout: 0.5), "\"Daily\" quantifier not found.")
     }
     
+    func testFrequencyStyling() throws {
+        let app = XCUIApplication()
+        
+        try app.goTo(tab: "Medications")
+        XCTAssert(app.buttons["More"].waitForExistence(timeout: 0.5), "No \"More\" Button Found.")
+        app.buttons["More"].tap()
+        
+        XCTAssert(app.buttons["Add Medications"].waitForExistence(timeout: 0.5), "No \"Add Medications\" Button Found.")
+        app.buttons["Add Medications"].tap()
+        
+        // Once daily
+        XCTAssert(app.images["Medication Label: targetDoseReached"].waitForExistence(timeout: 0.5))
+        app.images["Medication Label: targetDoseReached"].tap()
+        
+        XCTAssert(app.staticTexts["daily"].firstMatch.waitForExistence(timeout: 0.5), "No \"daily\" quantifier found.")
+        
+        XCTAssert(app.images["Medication Label: targetDoseReached"].waitForExistence(timeout: 0.5))
+        app.images["Medication Label: targetDoseReached"].tap()
+        
+        // Twice daily
+        XCTAssert(app.images["Medication Label: improvementAvailable"].waitForExistence(timeout: 0.5))
+        app.images["Medication Label: improvementAvailable"].tap()
+        
+        XCTAssert(app.staticTexts["twice daily"].firstMatch.waitForExistence(timeout: 0.5), "No \"twice daily\" quantifier found.")
+        
+        XCTAssert(app.images["Medication Label: improvementAvailable"].waitForExistence(timeout: 0.5))
+        app.images["Medication Label: improvementAvailable"].tap()
+        
+        // Non-integer frequency
+        XCTAssert(app.images["Medication Label: morePatientObservationsRequired"].waitForExistence(timeout: 0.5))
+        app.images["Medication Label: morePatientObservationsRequired"].tap()
+        
+        XCTAssert(app.staticTexts["1.5x daily"].firstMatch.waitForExistence(timeout: 0.5), "No \"1.5x daily\" quantifier found.")
+        
+        XCTAssert(app.images["Medication Label: morePatientObservationsRequired"].waitForExistence(timeout: 0.5))
+        app.images["Medication Label: morePatientObservationsRequired"].tap()
+    }
+    
     func testMidRangeGauge() throws {
         let app = XCUIApplication()
         
@@ -123,12 +164,13 @@ final class MedicationsUITests: XCTestCase {
         XCTAssert(app.images["Medication Label: personalTargetDoseReached"].waitForExistence(timeout: 0.5))
         app.images["Medication Label: personalTargetDoseReached"].tap()
         
-        let halfFilledGauge = app.otherElements["Current, Target"]
+        let halfFilledGauge = app.otherElements["Dosage Gauge"]
         XCTAssert(halfFilledGauge.waitForExistence(timeout: 0.5))
-        XCTAssert(try XCTUnwrap(halfFilledGauge.value) as? String == "50%", "Value not correct in half filled gauge.")
+        XCTAssertEqual(halfFilledGauge.label, "Current, Target", "Label not correct in half filled gauge")
+        XCTAssertEqual(try XCTUnwrap(halfFilledGauge.value) as? String, "75%", "Value not correct in half filled gauge.")
     }
     
-    func testLowRangeGauges() throws {
+    func testMinimumScheduleGauge() throws {
         let app = XCUIApplication()
         
         try app.goTo(tab: "Medications")
@@ -141,19 +183,29 @@ final class MedicationsUITests: XCTestCase {
         XCTAssert(app.images["Medication Label: improvementAvailable"].waitForExistence(timeout: 0.5))
         app.images["Medication Label: improvementAvailable"].tap()
         
-        let emptyGauge = app.otherElements["Current, Target"]
-        XCTAssert(emptyGauge.waitForExistence(timeout: 0.5))
-        XCTAssert(try XCTUnwrap(emptyGauge.value) as? String == "0%", "Value not correct in empty gauge.")
+        let minimalGauge = app.otherElements["Dosage Gauge"]
+        XCTAssert(minimalGauge.waitForExistence(timeout: 0.5))
+        XCTAssertEqual(minimalGauge.label, "Current, Target", "Label not correct in minimum schedule gauge.")
+        XCTAssertEqual(try XCTUnwrap(minimalGauge.value) as? String, "25%", "Value not correct in minimum schedule gauge.")
+    }
+    
+    func testLowRangeGauge() throws {
+        let app = XCUIApplication()
         
-        XCTAssert(app.images["Medication Label: improvementAvailable"].waitForExistence(timeout: 0.5))
-        app.images["Medication Label: improvementAvailable"].tap()
+        try app.goTo(tab: "Medications")
+        XCTAssert(app.buttons["More"].waitForExistence(timeout: 0.5), "No \"More\" Button Found.")
+        app.buttons["More"].tap()
+        
+        XCTAssert(app.buttons["Add Medications"].waitForExistence(timeout: 0.5), "No \"Add Medications\" Button Found.")
+        app.buttons["Add Medications"].tap()
         
         XCTAssert(app.images["Medication Label: morePatientObservationsRequired"].waitForExistence(timeout: 0.5))
         app.images["Medication Label: morePatientObservationsRequired"].tap()
         
-        let lessThanEmptyGauge = app.otherElements["Current, Target"]
-        XCTAssert(lessThanEmptyGauge.waitForExistence(timeout: 0.5))
-        XCTAssert(try XCTUnwrap(lessThanEmptyGauge.value) as? String == "0%", "Value not correct in less than empty gauge.")
+        let emptyGauge = app.otherElements["Dosage Gauge"]
+        XCTAssert(emptyGauge.waitForExistence(timeout: 0.5))
+        XCTAssertEqual(emptyGauge.label, "Current, Target", "Label not correct in empty gauge.")
+        XCTAssertEqual(try XCTUnwrap(emptyGauge.value) as? String, "0%", "Value not correct in empty gauge.")
     }
     
     func testHighRangeGauge() throws {
@@ -169,8 +221,9 @@ final class MedicationsUITests: XCTestCase {
         XCTAssert(app.images["Medication Label: targetDoseReached"].waitForExistence(timeout: 0.5))
         app.images["Medication Label: targetDoseReached"].tap()
         
-        let fullGauge = app.otherElements["Current"]
+        let fullGauge = app.otherElements["Dosage Gauge"]
         XCTAssert(fullGauge.waitForExistence(timeout: 0.5), "Full gauge not found.")
-        XCTAssert(try XCTUnwrap(fullGauge.value) as? String == "100%", "Value not correct in full gauge.")
+        XCTAssertEqual(fullGauge.label, "Current", "Label not correct for full gauge.")
+        XCTAssertEqual(try XCTUnwrap(fullGauge.value) as? String, "100%", "Value not correct in full gauge.")
     }
 }

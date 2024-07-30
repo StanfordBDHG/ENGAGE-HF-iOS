@@ -178,7 +178,7 @@ extension MedicationsManager {
                     unit: "mg"
                 )
             ),
-            // Single ingredient, below minimum dose
+            // Single ingredient, below minimum dose, non-integer frequency
             MedicationDetails(
                 id: UUID().uuidString,
                 title: "Spironolactone",
@@ -186,9 +186,9 @@ extension MedicationsManager {
                 description: "More vitals data required for recommendations.",
                 type: .morePatientObservationsRequired,
                 dosageInformation: DosageInformation(
-                    currentSchedule: [DoseSchedule(frequency: 1, quantity: [10])],
-                    minimumSchedule: [DoseSchedule(frequency: 1, quantity: [12.5])],
-                    targetSchedule: [DoseSchedule(frequency: 1, quantity: [25])],
+                    currentSchedule: [DoseSchedule(frequency: 1.5, quantity: [0])],
+                    minimumSchedule: [DoseSchedule(frequency: 1.5, quantity: [12.5])],
+                    targetSchedule: [DoseSchedule(frequency: 1.5, quantity: [25])],
                     unit: "mg"
                 )
             ),
