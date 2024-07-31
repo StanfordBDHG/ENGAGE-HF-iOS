@@ -10,7 +10,7 @@ import FirebaseFirestore
 import Foundation
 
 
-struct Video: Identifiable, Decodable {
+struct Video: Hashable, Identifiable, Decodable {
     private enum CodingKeys: CodingKey {
         case title
         case orderIndex

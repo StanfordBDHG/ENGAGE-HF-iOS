@@ -13,10 +13,14 @@ struct Education: View {
     @Binding var presentingAccount: Bool
     
     @Environment(VideoManager.self) private var videoManager
+    @Environment(NavigationPathWrapper.self) private var navigationPath
     
     
     var body: some View {
-        NavigationStack {
+        @Bindable var navigationPath = navigationPath
+        
+        
+        NavigationStack(path: $navigationPath.path) {
             List {
                 ForEach(videoManager.videoCollections.sorted(by: { $0.orderIndex < $1.orderIndex })) { videoCollection in
                     ExpandableListCard(
@@ -37,6 +41,9 @@ struct Education: View {
                     }
                 }
         }
+            .navigationDestination(for: Video.self) { video in
+                VideoView(video)
+            }
     }
 }
 

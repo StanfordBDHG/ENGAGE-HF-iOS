@@ -202,6 +202,9 @@
     "Date" : {
 
     },
+    "Description of the video" : {
+
+    },
     "Devices" : {
 
     },
@@ -597,6 +600,9 @@
           }
         }
       }
+    },
+    "Tap Here" : {
+
     },
     "Target" : {
 
