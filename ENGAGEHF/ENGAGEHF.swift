@@ -23,6 +23,8 @@ struct ENGAGEHF: App {
 
     @UIApplicationDelegateAdaptor(ENGAGEHFDelegate.self) var appDelegate
     @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
+    
+    @State var navigationPath = NavigationPathWrapper()
 
     
     var body: some Scene {
@@ -39,6 +41,7 @@ struct ENGAGEHF: App {
                 }
                 .testingSetup()
                 .spezi(appDelegate)
+                .environment(navigationPath)
         }
     }
 }

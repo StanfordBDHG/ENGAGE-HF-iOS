@@ -428,6 +428,9 @@
     "Medications" : {
 
     },
+    "Navigate Button %@" : {
+
+    },
     "No medication recommendations" : {
 
     },
@@ -600,6 +603,9 @@
     },
     "The invitation code is invalid or has already been used." : {
       "comment" : "Invitation Code Invalid"
+    },
+    "Thumbnail %@" : {
+
     },
     "Time" : {
 

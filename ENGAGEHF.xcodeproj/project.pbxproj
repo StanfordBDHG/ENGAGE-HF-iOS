@@ -124,6 +124,8 @@
 		4D9D43652C5989B3000062D3 /* VideoCollectionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9D43642C5989B3000062D3 /* VideoCollectionContext.swift */; };
 		4D9D43672C59A88C000062D3 /* ExpandableListCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9D43662C59A88C000062D3 /* ExpandableListCard.swift */; };
 		4D9D436D2C59ACAD000062D3 /* VideoSectionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9D436C2C59ACAD000062D3 /* VideoSectionLabel.swift */; };
+		4D9D436F2C59B4BB000062D3 /* VideoCollectionStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9D436E2C59B4BB000062D3 /* VideoCollectionStack.swift */; };
+		4D9D43742C59BDB2000062D3 /* NavigationHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9D43732C59BDB2000062D3 /* NavigationHelpers.swift */; };
 		4DA20B4B2C249E7E00715AA2 /* VitalsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA20B4A2C249E7E00715AA2 /* VitalsManager.swift */; };
 		4DA20B542C25F8A600715AA2 /* FHIRDateTime+DateComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA20B532C25F8A600715AA2 /* FHIRDateTime+DateComponents.swift */; };
 		4DA20B5A2C25FEDE00715AA2 /* Decimal+IntConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA20B592C25FEDE00715AA2 /* Decimal+IntConversion.swift */; };
@@ -294,6 +296,8 @@
 		4D9D43642C5989B3000062D3 /* VideoCollectionContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionContext.swift; sourceTree = "<group>"; };
 		4D9D43662C59A88C000062D3 /* ExpandableListCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableListCard.swift; sourceTree = "<group>"; };
 		4D9D436C2C59ACAD000062D3 /* VideoSectionLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoSectionLabel.swift; sourceTree = "<group>"; };
+		4D9D436E2C59B4BB000062D3 /* VideoCollectionStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionStack.swift; sourceTree = "<group>"; };
+		4D9D43732C59BDB2000062D3 /* NavigationHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationHelpers.swift; sourceTree = "<group>"; };
 		4DA20B4A2C249E7E00715AA2 /* VitalsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalsManager.swift; sourceTree = "<group>"; };
 		4DA20B532C25F8A600715AA2 /* FHIRDateTime+DateComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FHIRDateTime+DateComponents.swift"; sourceTree = "<group>"; };
 		4DA20B572C25FE4000715AA2 /* FHIRInstant+DateComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FHIRInstant+DateComponents.swift"; sourceTree = "<group>"; };
@@ -731,6 +735,7 @@
 		4D9D436B2C59AC99000062D3 /* RowContent */ = {
 			isa = PBXGroup;
 			children = (
+				4D9D436E2C59B4BB000062D3 /* VideoCollectionStack.swift */,
 			);
 			path = RowContent;
 			sourceTree = "<group>";
@@ -856,6 +861,7 @@
 				2FF53D8C2A8729D600042B76 /* ENGAGEHFStandard.swift */,
 				2F4E23822989D51F0013F3D9 /* ENGAGEHFTestingSetup.swift */,
 				2FC975A72978F11A00BA99FE /* Home.swift */,
+				4D9D43732C59BDB2000062D3 /* NavigationHelpers.swift */,
 				4D9D43542C596CED000062D3 /* SharedExtensions */,
 				4DF5061E2C2E1C10003E7EFB /* NotificationManager */,
 				4DF5061C2C2E1BD0003E7EFB /* VitalsManager */,
@@ -1204,6 +1210,8 @@
 				4D4072762C45FF5B007C5621 /* GestureValue.swift in Sources */,
 				4DA20B5A2C25FEDE00715AA2 /* Decimal+IntConversion.swift in Sources */,
 				4D92B9F42C3C8DF900ABCED7 /* MeasurementListRow.swift in Sources */,
+				4D9D436F2C59B4BB000062D3 /* VideoCollectionStack.swift in Sources */,
+				4D9D43742C59BDB2000062D3 /* NavigationHelpers.swift in Sources */,
 				4D4072892C46FC98007C5621 /* AggregatedMeasurement.swift in Sources */,
 				4D34B3E52C3EECDE006F0D40 /* HKObject+ExternalUUID.swift in Sources */,
 				A9FE7AD02AA39BAB0077B045 /* AccountSheet.swift in Sources */,

@@ -14,8 +14,11 @@ struct VideoSectionLabel: View {
     
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading, spacing: 8) {
             Text(videoCollection.title)
+                .font(.headline)
+            Text(videoCollection.description)
+                .font(.subheadline)
         }
     }
 }

@@ -46,3 +46,12 @@ struct ExpandableListCard<Label: View, Content: View>: View {
         self.content = content
     }
 }
+
+
+extension List {
+    func expandableCardListStyle() -> some View {
+        self
+            .listRowSeparator(.hidden)
+            .listRowSpacing(8)
+    }
+}

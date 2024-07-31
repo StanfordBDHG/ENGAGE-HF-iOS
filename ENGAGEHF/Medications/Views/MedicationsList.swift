@@ -27,8 +27,7 @@ struct MedicationsList: View {
                     )
                 }
             }
-                .listRowSeparator(.hidden)
-                .listRowSpacing(8)
+                .expandableCardListStyle()
         } else {
             ContentUnavailableView("No medication recommendations", systemImage: "pill.fill")
                 .symbolVariant(.slash)

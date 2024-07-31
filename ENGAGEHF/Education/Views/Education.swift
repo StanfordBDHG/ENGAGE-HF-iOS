@@ -24,12 +24,12 @@ struct Education: View {
                             VideoSectionLabel(videoCollection: videoCollection)
                         },
                         content: {
-                            Text("")
+                            VideoCollectionStack(videos: videoCollection.videos)
                         }
                     )
                 }
             }
-                .headerProminence(.increased)
+                .expandableCardListStyle()
                 .navigationTitle("Education")
                 .toolbar {
                     if AccountButton.shouldDisplay {
