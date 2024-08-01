@@ -424,6 +424,9 @@
     "Medications" : {
 
     },
+    "Messages" : {
+
+    },
     "No medication recommendations" : {
 
     },
@@ -474,9 +477,6 @@
         }
       }
     },
-    "Notifications" : {
-
-    },
     "Please enter your invitation code to join the ENGAGE-HF study." : {
 
     },
@@ -501,7 +501,13 @@
     "Series" : {
 
     },
+    "Show less" : {
+
+    },
     "Show Measurements" : {
+
+    },
+    "Show more" : {
 
     },
     "symptomDizziness" : {
@@ -618,16 +624,10 @@
     "Unable to delete measurement, check network connection." : {
 
     },
-    "Unable to get notification timestamp." : {
-      "comment" : "Invalid Timestamp"
-    },
     "Unknown Thumbnail" : {
 
     },
     "User authentication failed. Please try to sign in again." : {
-      "comment" : "User Not Authenticated"
-    },
-    "User not authenticated. Please sign in an try again." : {
       "comment" : "User Not Authenticated"
     },
     "userNotSignedIn" : {

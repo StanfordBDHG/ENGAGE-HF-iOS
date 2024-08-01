@@ -10,22 +10,21 @@ import SwiftUI
 
 
 struct ShowMoreButton: View {
-    private var labelText: String {
-        isExpanded ? "Show less" : "Show more"
-    }
-    
     @Binding var isExpanded: Bool
     
     
     var body: some View {
         Button(
             action: {
-                isExpanded.toggle()
+                withAnimation {
+                    isExpanded.toggle()
+                }
             },
             label: {
-                Text(labelText)
+                Text(isExpanded ? "Show less" : "Show more")
                     .foregroundStyle(.accent)
                     .font(.footnote)
+                    .animation(nil, value: isExpanded)
             }
         )
     }

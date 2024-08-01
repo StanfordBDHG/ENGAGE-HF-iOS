@@ -14,24 +14,26 @@ struct MedicationsList: View {
     
     
     var body: some View {
-        if !medications.isEmpty {
-            List {
-                ForEach(medications.sorted(by: { $0.type > $1.type })) { medication in
-                    ExpandableListCard(
-                        label: {
-                            RecommendationSummary(medication: medication)
-                        },
-                        content: {
-                            MedicationRowContent(medication: medication)
-                        }
-                    )
+        ZStack {
+            if !medications.isEmpty {
+                List {
+                    ForEach(medications.sorted(by: { $0.type > $1.type })) { medication in
+                        ExpandableListCard(
+                            label: {
+                                RecommendationSummary(medication: medication)
+                            },
+                            content: {
+                                MedicationRowContent(medication: medication)
+                            }
+                        )
+                    }
                 }
+                    .expandableCardListStyle()
+            } else {
+                ContentUnavailableView("No medication recommendations", systemImage: "pill.fill")
             }
-                .expandableCardListStyle()
-        } else {
-            ContentUnavailableView("No medication recommendations", systemImage: "pill.fill")
-                .symbolVariant(.slash)
         }
+            .background(Color(.systemGroupedBackground))
     }
 }
 

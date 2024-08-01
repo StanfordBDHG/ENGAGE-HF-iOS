@@ -22,6 +22,7 @@ struct Education: View {
         
         NavigationStack(path: $navigationPath.path) {
             VideoList(videoCollections: videoManager.videoCollections)
+                .background(Color(.systemGroupedBackground))
                 .navigationTitle("Education")
                 .toolbar {
                     if AccountButton.shouldDisplay {

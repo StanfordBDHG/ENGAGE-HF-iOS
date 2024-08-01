@@ -105,7 +105,7 @@ struct HomeView: View {
                 MockUserIdPasswordAccountService()
             }
             HealthMeasurements()
-            NotificationManager()
+            MessageManager()
             PairedDevices()
             ConfigureTipKit()
             Bluetooth {}

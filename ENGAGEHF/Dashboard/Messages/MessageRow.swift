@@ -6,28 +6,22 @@
 // SPDX-License-Identifier: MIT
 //
 
-import OSLog
 import SpeziViews
 import SwiftUI
 
 
-struct NotificationRow: View {
+struct MessageRow: View {
     private struct XButton: View {
-        @Environment(NotificationManager.self) private var notificationManager
+        @Environment(MessageManager.self) private var messageManager
         @ScaledMetric private var labelSize: CGFloat = 9
-        private let logger = Logger(subsystem: "ENGAGEHF", category: "NotificationManager")
         
-        let notification: Notification
+        let messageId: String?
         
         
         var body: some View {
             AsyncButton(
                 action: {
-                    guard let id = notification.id else {
-                        logger.error("Unable to mark notification complete: No notification id")
-                        return
-                    }
-                    await notificationManager.markComplete(id: id)
+                    await messageManager.markComplete(id: messageId)
                 },
                 label: {
                     Image(systemName: "xmark")
@@ -42,7 +36,7 @@ struct NotificationRow: View {
     }
     
     
-    let notification: Notification
+    let message: Message
     
     @ScaledMetric private var spacing: CGFloat = 5
     @ScaledMetric private var typeFontSize: CGFloat = 12
@@ -52,52 +46,57 @@ struct NotificationRow: View {
     var body: some View {
         VStack(alignment: .leading, spacing: spacing) {
             HStack(alignment: .center) {
-                Text(notification.type.localizedUppercase)
+                Text(message.title)
                     .font(.system(size: typeFontSize, weight: .bold))
                     .foregroundStyle(.secondary)
                 Spacer()
-                XButton(notification: notification)
+                XButton(messageId: message.id)
             }
             Divider()
-            Text(notification.title)
-                .font(.system(size: titleFontSize, weight: .bold))
-                .bold()
-                .multilineTextAlignment(.leading)
-                .padding(.bottom, spacing)
-            ExpandableText(text: notification.description, lineLimit: 1)
+            ExpandableText(text: message.description ?? "", lineLimit: 1)
                 .font(.footnote)
         }
     }
 }
 
 
-#Preview {
-    struct NotificationRowPreviewWrapper: View {
-        @Environment(NotificationManager.self) private var notificationManager
+#Preview { // swiftlint:disable:this closure_body_length
+    struct MessageRowPreviewWrapper: View {
+        @Environment(MessageManager.self) private var messageManager
         
         
         var body: some View {
             List {
                 Section(
                     content: {
-                        ForEach(notificationManager.notifications, id: \.id) { notification in
+                        ForEach(messageManager.messages) { message in
                             StudyApplicationListCard {
-                                NotificationRow(notification: notification)
+                                MessageRow(message: message)
                             }
                         }
+                            .buttonStyle(.borderless)
                     },
                     header: {
-                        Text("Notifications")
+                        Text("Messages")
                             .studyApplicationHeaderStyle()
                     }
                 )
-                    .buttonStyle(.borderless)
-                Button(
-                    action: {
-                        notificationManager.addMock()
+                Section(
+                    content: {
+                        StudyApplicationListCard {
+                            Button(
+                                action: {
+                                    messageManager.addMockMessage()
+                                },
+                                label: {
+                                    Text("Add Mock")
+                                }
+                            )
+                                .buttonStyle(.borderless)
+                        }
                     },
-                    label: {
-                        Text("Add Mock")
+                    header: {
+                        Text("")
                     }
                 )
             }
@@ -106,8 +105,8 @@ struct NotificationRow: View {
     }
     
     
-    return NotificationRowPreviewWrapper()
+    return MessageRowPreviewWrapper()
         .previewWith(standard: ENGAGEHFStandard()) {
-            NotificationManager()
+            MessageManager()
         }
 }
