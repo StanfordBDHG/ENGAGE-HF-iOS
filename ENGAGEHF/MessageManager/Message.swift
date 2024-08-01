@@ -22,8 +22,6 @@ struct Message: Identifiable, Equatable {
     let dueDate: Date?
     let completionDate: Date?
     
-    var didPerformAction = false
-    
     
     init(
         title: String,

@@ -76,20 +76,24 @@ class MessageManager: Module, EnvironmentAccessible {
                     return
                 }
                 
-                self.messages = documentRefs.compactMap {
-                    do {
-                        return try $0.data(as: Message.self)
-                    } catch {
-                        self.logger.error("Error decoding message: \(error)")
-                        return nil
+                self.messages = documentRefs
+                    .compactMap {
+                        do {
+                            return try $0.data(as: Message.self)
+                        } catch {
+                            self.logger.error("Error decoding message: \(error)")
+                            return nil
+                        }
                     }
-                }
+                    // Because the completionDate field is absent before the message is dismissed,
+                    // the only way to filter out dismissed messages is to do so on the client
+                    .filter { $0.completionDate == nil }
                 
                 self.logger.debug("Messages updated")
             }
     }
     
-    func dismiss(_ message: Message) async {
+    func dismiss(_ message: Message, didPerformAction: Bool) async {
         logger.debug("Attempting to dismiss message with id: \(message.id ?? "nil")")
         
         guard let messageId = message.id else {
@@ -104,8 +108,13 @@ class MessageManager: Module, EnvironmentAccessible {
         }
 #endif
         
-        guard let userId = Auth.auth().currentUser?.uid else {
+        guard Auth.auth().currentUser != nil else {
             logger.error("Unable to dismiss message: No user signed in.")
+            return
+        }
+        
+        guard message.isDismissible else {
+            logger.error("Unable to dismiss message: Message is not dismissible.")
             return
         }
         
@@ -114,9 +123,8 @@ class MessageManager: Module, EnvironmentAccessible {
         do {
             _ = try await dismissMessage.call(
                 [
-                    "userId": userId,
                     "messageId": messageId,
-                    "didPerformAction": message.didPerformAction
+                    "didPerformAction": didPerformAction
                 ]
             )
         } catch {

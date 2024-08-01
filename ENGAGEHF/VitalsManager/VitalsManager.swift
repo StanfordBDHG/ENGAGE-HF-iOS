@@ -142,9 +142,9 @@ public class VitalsManager: Module, EnvironmentAccessible {
         // Return a listener for the given collection
         collectionReference
             .addSnapshotListener { querySnapshot, error in
-                self.logger.debug("Fetching most recent \(collectionReference) history...")
+                self.logger.debug("Fetching most recent \(collectionReference.collectionID) history...")
                 guard let documentRefs = querySnapshot?.documents else {
-                    self.logger.error("Error fetching \(collectionReference) observations: \(error)")
+                    self.logger.error("Error fetching \(collectionReference.collectionID) observations: \(error)")
                     return
                 }
                 
@@ -152,12 +152,12 @@ public class VitalsManager: Module, EnvironmentAccessible {
                     do {
                         return try mapObservation($0.data(as: V.self))
                     } catch {
-                        self.logger.error("Error saving \(collectionReference) history: \(error)")
+                        self.logger.error("Error saving \(collectionReference.collectionID) history: \(error)")
                         return nil
                     }
                 }
                 
-                self.logger.debug("\(collectionReference) history updated successfully.")
+                self.logger.debug("\(collectionReference.collectionID) history updated successfully.")
             }
     }
     

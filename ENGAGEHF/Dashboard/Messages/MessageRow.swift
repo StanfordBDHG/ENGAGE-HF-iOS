@@ -15,13 +15,13 @@ struct MessageRow: View {
         @Environment(MessageManager.self) private var messageManager
         @ScaledMetric private var labelSize: CGFloat = 9
         
-        let messageId: String?
+        let message: Message
         
         
         var body: some View {
             AsyncButton(
                 action: {
-                    await messageManager.markComplete(id: messageId)
+                    await messageManager.dismiss(message, didPerformAction: false)
                 },
                 label: {
                     Image(systemName: "xmark")
@@ -50,7 +50,7 @@ struct MessageRow: View {
                     .font(.system(size: typeFontSize, weight: .bold))
                     .foregroundStyle(.secondary)
                 Spacer()
-                XButton(messageId: message.id)
+                XButton(message: message)
             }
             Divider()
             ExpandableText(text: message.description ?? "", lineLimit: 1)
