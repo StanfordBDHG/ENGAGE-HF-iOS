@@ -11,6 +11,14 @@ import SwiftUI
 import WebKit
 
 
+// Note: This view prints the following errors to the console:
+//
+// Warning: -[BETextInput attributedMarkedText] is unimplemented
+// Failed to request allowed query parameters from WebPrivacy.
+//
+// However, this seems to be a bug on Apple's end and can be ignored:
+// https://stackoverflow.com/questions/78395514/failed-to-request-allowed-query-parameters-from-webprivacy
+//
 struct WebView: UIViewRepresentable {
     let urlString: String
     @Binding var viewState: ViewState

@@ -33,6 +33,7 @@ struct VideoView: View {
 }
 
 
+#if DEBUG
 #Preview {
     struct VideoViewPreviewWrapper: View {
         @State private var navigationPath = NavigationPath()
@@ -58,3 +59,4 @@ struct VideoView: View {
     
     return VideoViewPreviewWrapper()
 }
+#endif
