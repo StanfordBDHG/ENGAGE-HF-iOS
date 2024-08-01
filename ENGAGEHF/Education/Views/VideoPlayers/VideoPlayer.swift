@@ -13,7 +13,7 @@ import SwiftUI
 struct VideoPlayer: View {
     let youtubeId: String
     
-    @State private var viewState: ViewState = .idle
+    @State private var viewState: ViewState = .processing
     
     
     var body: some View {

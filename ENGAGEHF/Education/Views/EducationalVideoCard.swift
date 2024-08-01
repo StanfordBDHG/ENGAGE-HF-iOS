@@ -49,6 +49,7 @@ struct EducationalVideoCard: View {
 }
 
 
+#if DEBUG
 #Preview {
     List {
         EducationalVideoCard(
@@ -57,3 +58,4 @@ struct EducationalVideoCard: View {
             .listRowInsets(.init())
     }
 }
+#endif

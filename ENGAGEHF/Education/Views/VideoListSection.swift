@@ -71,6 +71,7 @@ struct VideoListSection: View {
 }
 
 
+#if DEBUG
 #Preview("Welcome Video") {
     @State var navigationPath = NavigationPathWrapper()
     
@@ -100,3 +101,4 @@ struct VideoListSection: View {
     }
         .environment(navigationPath)
 }
+#endif

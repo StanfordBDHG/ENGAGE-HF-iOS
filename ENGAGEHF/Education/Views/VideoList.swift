@@ -30,6 +30,7 @@ struct VideoList: View {
 }
 
 
+#if DEBUG
 #Preview {
     VideoList(
         videoCollections: [
@@ -44,3 +45,4 @@ struct VideoList: View {
         ]
     )
 }
+#endif
