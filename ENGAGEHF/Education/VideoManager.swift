@@ -26,9 +26,24 @@ class VideoManager: Module, EnvironmentAccessible {
     
     
     func configure() {
+#if DEBUG
         if ProcessInfo.processInfo.isPreviewSimulator {
+            self.videoCollections = [
+                VideoCollection(
+                    context: VideoCollectionContext(
+                        title: "ENGAGE-HF Application",
+                        description: "Helpful videos on the ENGAGE-HF mobile application.",
+                        orderIndex: 1
+                    ),
+                    videos: [
+                        Video(title: "Welcome Video", youtubeId: "y2ziZVWossE", orderIndex: 1),
+                        Video(title: "How to Install the App and Connect Omron Devices", youtubeId: "VUImvk3CNik", orderIndex: 2)
+                    ]
+                )
+            ]
             return
         }
+#endif
         
         authStateDidChangeListenerHandle = Auth.auth().addStateDidChangeListener { [weak self] _, user in
             if let user {

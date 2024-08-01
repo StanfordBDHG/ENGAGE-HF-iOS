@@ -6,6 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
+import SpeziViews
 import SwiftUI
 
 
@@ -16,9 +17,12 @@ struct VideoView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             VideoPlayer(youtubeId: video.youtubeId)
-            Text("Description of the video")
+                .padding(.top)
+            Text(video.description ?? "Video Description")
+                .padding()
             Spacer()
         }
+            .background(Color(.systemGroupedBackground))
             .navigationTitle(video.title)
             .navigationBarTitleDisplayMode(.inline)
     }
@@ -46,10 +50,10 @@ struct VideoView: View {
                 Button("Tap Here") {
                     navigationPath.append(previewVideo)
                 }
+                    .navigationDestination(for: Video.self) { video in
+                        VideoView(video)
+                    }
             }
-                .navigationDestination(for: Video.self) { video in
-                    VideoView(video)
-                }
         }
     }
     

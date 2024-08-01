@@ -33,22 +33,15 @@
         }
       }
     },
+    "%@ Thumbnail" : {
+
+    },
     "%@ Unit: %@" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "%1$@ Unit: %2$@"
-          }
-        }
-      }
-    },
-    "%@, %lld, %@" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$@, %2$lld, %3$@"
           }
         }
       }
@@ -202,16 +195,16 @@
     "Date" : {
 
     },
-    "Description of the video" : {
+    "defaultLoadingError" : {
 
     },
     "Devices" : {
 
     },
-    "DocId: %@" : {
+    "Education" : {
 
     },
-    "Education" : {
+    "Education Video Inspect Button" : {
 
     },
     "Empty %@ Graph" : {
@@ -431,9 +424,6 @@
     "Medications" : {
 
     },
-    "Navigate Button %@" : {
-
-    },
     "No medication recommendations" : {
 
     },
@@ -487,9 +477,6 @@
     "Notifications" : {
 
     },
-    "OrderIndex: %lld" : {
-
-    },
     "Please enter your invitation code to join the ENGAGE-HF study." : {
 
     },
@@ -506,6 +493,9 @@
 
     },
     "Score" : {
+
+    },
+    "Section Expander" : {
 
     },
     "Series" : {
@@ -610,9 +600,6 @@
     "The invitation code is invalid or has already been used." : {
       "comment" : "Invitation Code Invalid"
     },
-    "Thumbnail %@" : {
-
-    },
     "Time" : {
 
     },
@@ -633,6 +620,9 @@
     },
     "Unable to get notification timestamp." : {
       "comment" : "Invalid Timestamp"
+    },
+    "Unknown Thumbnail" : {
+
     },
     "User authentication failed. Please try to sign in again." : {
       "comment" : "User Not Authenticated"

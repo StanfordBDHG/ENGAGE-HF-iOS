@@ -21,36 +21,35 @@ struct Education: View {
         
         
         NavigationStack(path: $navigationPath.path) {
-            List {
-                ForEach(videoManager.videoCollections.sorted(by: { $0.orderIndex < $1.orderIndex })) { videoCollection in
-                    ExpandableListCard(
-                        label: {
-                            VideoSectionLabel(videoCollection: videoCollection)
-                        },
-                        content: {
-                            VideoCollectionStack(videos: videoCollection.videos)
-                        }
-                    )
-                }
-            }
-                .expandableCardListStyle()
+            VideoList(videoCollections: videoManager.videoCollections)
                 .navigationTitle("Education")
                 .toolbar {
                     if AccountButton.shouldDisplay {
                         AccountButton(isPresented: $presentingAccount)
                     }
                 }
+                .navigationDestination(for: Video.self) { video in
+                    VideoView(video)
+                }
         }
-            .navigationDestination(for: Video.self) { video in
-                VideoView(video)
-            }
     }
 }
 
 
 #if DEBUG
 #Preview {
-    Education(presentingAccount: .constant(false))
+    struct EducationPreviewWrapper: View {
+        @State private var navigationPath = NavigationPathWrapper()
+        
+        
+        var body: some View {
+            Education(presentingAccount: .constant(false))
+                .environment(navigationPath)
+        }
+    }
+    
+    
+    return EducationPreviewWrapper()
         .previewWith(standard: ENGAGEHFStandard()) {
             VideoManager()
         }
