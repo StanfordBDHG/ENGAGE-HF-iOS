@@ -21,7 +21,7 @@ struct Dashboard: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                LazyVStack(alignment: .leading, spacing: 20) {
+                LazyVStack(alignment: .leading, spacing: 12) {
                     // Messages
                     MessagesSection()
                     

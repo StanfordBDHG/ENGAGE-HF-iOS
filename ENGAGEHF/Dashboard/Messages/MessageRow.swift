@@ -45,21 +45,28 @@ struct MessageRow: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: spacing) {
-            HStack(alignment: .center) {
+            HStack {
                 Text(message.title)
                     .font(.system(size: typeFontSize, weight: .bold))
                     .foregroundStyle(.secondary)
                 Spacer()
-                XButton(message: message)
+                if message.isDismissible {
+                    XButton(message: message)
+                }
             }
             Divider()
-            ExpandableText(text: message.description ?? "", lineLimit: 1)
+                .frame(maxWidth: .infinity)
+            ExpandableText(text: message.description ?? "", lineLimit: 3)
                 .font(.footnote)
         }
+            .asButton {
+                print("Perform \(message.action ?? "nothing")")
+            }
     }
 }
 
 
+#if DEBUG
 #Preview { // swiftlint:disable:this closure_body_length
     struct MessageRowPreviewWrapper: View {
         @Environment(MessageManager.self) private var messageManager
@@ -110,3 +117,4 @@ struct MessageRow: View {
             MessageManager()
         }
 }
+#endif

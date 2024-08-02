@@ -32,14 +32,17 @@ class MessageManager: Module, EnvironmentAccessible {
     
     
     func configure() {
+#if DEBUG
         if ProcessInfo.processInfo.isPreviewSimulator {
-            self.addMockMessage()
+            self.setupMessagePreview()
             return
         }
+#endif
         
         authStateDidChangeListenerHandle = Auth.auth().addStateDidChangeListener { [weak self] _, user in
             self?.registerSnapshotListener(user: user)
-            
+
+#if DEBUG || TEST
             // If testing, add 3 notifications to firestore
             // Called when a user's sign in status changes
             if FeatureFlags.setupMockMessages, let user {
@@ -50,6 +53,7 @@ class MessageManager: Module, EnvironmentAccessible {
                     }
                 }
             }
+#endif
         }
         self.registerSnapshotListener(user: Auth.auth().currentUser)
     }
@@ -137,15 +141,16 @@ class MessageManager: Module, EnvironmentAccessible {
 }
 
 
+#if DEBUG || TEST
 extension MessageManager {
-    // Adds a mock message to self.messages
-    // Used to set up the preview
-    func addMockMessage() {
+    /// Adds a mock message to self.messages
+    /// Used for testing in previews
+    func addMockMessage(dismissible: Bool = true, action: String = "medications") {
         let mockMessage = Message(
             title: "Medication Change",
             description: "Your dose of XXX was changed. You can review medication information in the Education Page.",
-            action: "medications",
-            isDismissible: true,
+            action: action,
+            isDismissible: dismissible,
             dueDate: Date().addingTimeInterval(60 * 60 * 24 * 3),  // Due three days from now
             completionDate: nil
         )
@@ -153,8 +158,44 @@ extension MessageManager {
         self.messages.append(mockMessage)
     }
     
+    private func setupMessagePreview() {
+        let medicationChange = Message(
+            title: "Medication Change",
+            description: "Your medication has been changed. Watch the video for more information.",
+            action: "videoSections/1/videos/2",
+            isDismissible: true,
+            dueDate: nil,
+            completionDate: nil
+        )
+        let medicationUptitration = Message(
+            title: "Medication Uptitration",
+            description: "Your medication is eligible to be increased. Please contact your clinician.",
+            action: "medications",
+            isDismissible: true,
+            dueDate: nil,
+            completionDate: nil
+        )
+        let appointmentReminder = Message(
+            title: "Appointment Reminder",
+            description: "Your appointment is coming up.",
+            action: "healthSummary",
+            isDismissible: false,
+            dueDate: nil,
+            completionDate: nil
+        )
+        let symptomQuestionnaire = Message(
+            title: "Symptom Questionnaire",
+            description: "Please complete the symptom questionnaire.",
+            action: "questionnaires/0",
+            isDismissible: false,
+            dueDate: nil,
+            completionDate: nil
+        )
+        self.messages = [medicationChange, medicationUptitration, appointmentReminder, symptomQuestionnaire]
+    }
+    
     /// Adds three mock notifications to the user's notification collection in firestore
-    func setupMessageTests(user: User) async throws {
+    private func setupMessageTests(user: User) async throws {
         // Not recommended to delete collections from the client, so for now just skipping if the collection already exists
         let querySnapshot = try await Firestore.messagesCollectionReference.getDocuments()
         
@@ -184,3 +225,4 @@ extension MessageManager {
         }
     }
 }
+#endif

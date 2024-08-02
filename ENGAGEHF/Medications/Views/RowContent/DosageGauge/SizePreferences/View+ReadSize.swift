@@ -20,6 +20,6 @@ extension View {
                     .preference(key: key, value: geometryProxy.size)
             }
         )
-        .onPreferenceChange(key, perform: onChange)
+            .onPreferenceChange(key, perform: onChange)
     }
 }

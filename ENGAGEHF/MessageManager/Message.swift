@@ -10,6 +10,40 @@ import FirebaseFirestore
 import Foundation
 
 
+enum MessageAction {
+    case playVideo(videoInfo: (sectionId: String, videoId: String))
+    case showMedications
+    case completeQuestionnaire(questionnaireId: String)
+    case showHealthSummary
+    case showHeartHealth(vitalsType: GraphSelection)
+    case unknown
+    
+    
+    init(rawValue: String?) {
+        guard let rawValue else {
+            self = .unknown
+            return
+        }
+        
+        let videoRegex = /^videoSection\/(?<sectionId>\w+)\/(?<videoId>\w+)$/
+        let questionnaireRegex = /^questionnaires\/(?<questionnaireId>\w+)$/
+        
+        // Switch statements do not work for matching rawValue to the various regexes,
+        // so iterate all cases manually
+        if let videoMatch = rawValue.firstMatch(of: videoRegex)?.output {
+            self = .playVideo(videoInfo: (videoMatch.sectionId.base, videoMatch.videoId.base))
+            return
+        }
+        
+        if let questionnaireMatch = rawValue.firstMatch(of: questionnaireRegex)?.output {
+            self = .completeQuestionnaire(questionnaireId: questionnaireMatch.questionnaireId.base)
+            return
+        }
+        
+    }
+}
+
+
 /// A message describing recent changes to the user's data or calls-to-action for the patient to complete
 /// Data structure as defined in: https://github.com/StanfordBDHG/ENGAGE-HF-Firebase
 struct Message: Identifiable, Equatable {
@@ -17,7 +51,7 @@ struct Message: Identifiable, Equatable {
     
     let title: String
     let description: String?
-    let action: String?
+    let action: MessageAction?
     let isDismissible: Bool
     let dueDate: Date?
     let completionDate: Date?

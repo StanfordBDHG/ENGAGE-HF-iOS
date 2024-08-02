@@ -13,7 +13,7 @@ import HealthKit
 
 /// The type of Vitals to be displayed as the main content of the Heart Health view
 /// Chosen by GraphPicker in HeartHealth
-enum GraphSelection: CaseIterable, Identifiable, CustomStringConvertible {
+enum GraphSelection: CaseIterable, Identifiable, CustomStringConvertible, Equatable {
     case symptoms
     case weight
     case heartRate
