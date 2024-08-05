@@ -25,7 +25,8 @@ final class MessageUnitTests: XCTestCase {
             action: .unknown,
             isDismissible: true,
             dueDate: nil,
-            completionDate: nil
+            completionDate: nil,
+            id: nil
         )
         try assertEncodeDecodeWorks(for: dismissibleMessage)
         
@@ -35,7 +36,8 @@ final class MessageUnitTests: XCTestCase {
             action: .unknown,
             isDismissible: false,
             dueDate: nil,
-            completionDate: nil
+            completionDate: nil,
+            id: nil
         )
         try assertEncodeDecodeWorks(for: minimalFieldsMessage)
         
@@ -45,7 +47,8 @@ final class MessageUnitTests: XCTestCase {
             action: .playVideo(sectionId: "1234", videoId: "123"),
             isDismissible: false,
             dueDate: nil,
-            completionDate: nil
+            completionDate: nil,
+            id: nil
         )
         try assertEncodeDecodeWorks(for: messageWithAction)
         
@@ -55,7 +58,8 @@ final class MessageUnitTests: XCTestCase {
             action: .completeQuestionnaire(questionnaireId: "1234"),
             isDismissible: true,
             dueDate: .now,
-            completionDate: nil
+            completionDate: nil,
+            id: nil
         )
         try assertEncodeDecodeWorks(for: messageWithDueDate)
         
@@ -65,7 +69,8 @@ final class MessageUnitTests: XCTestCase {
             action: .showHeartHealth(vitalsType: .weight),
             isDismissible: true,
             dueDate: .now,
-            completionDate: .now
+            completionDate: .now,
+            id: nil
         )
         try assertEncodeDecodeWorks(for: messageWithCompletionDate)
     }
