@@ -145,7 +145,7 @@ class MessageManager: Module, EnvironmentAccessible {
 extension MessageManager {
     /// Adds a mock message to self.messages
     /// Used for testing in previews
-    func addMockMessage(dismissible: Bool = true, action: String = "medications") {
+    func addMockMessage(dismissible: Bool = true, action: MessageAction = .showHealthSummary) {
         let mockMessage = Message(
             title: "Medication Change",
             description: "Your dose of XXX was changed. You can review medication information in the Education Page.",
@@ -162,7 +162,7 @@ extension MessageManager {
         let medicationChange = Message(
             title: "Medication Change",
             description: "Your medication has been changed. Watch the video for more information.",
-            action: "videoSections/1/videos/2",
+            action: .playVideo(sectionId: "0", videoId: "0"),
             isDismissible: true,
             dueDate: nil,
             completionDate: nil
@@ -170,7 +170,7 @@ extension MessageManager {
         let medicationUptitration = Message(
             title: "Medication Uptitration",
             description: "Your medication is eligible to be increased. Please contact your clinician.",
-            action: "medications",
+            action: .showMedications,
             isDismissible: true,
             dueDate: nil,
             completionDate: nil
@@ -178,7 +178,7 @@ extension MessageManager {
         let appointmentReminder = Message(
             title: "Appointment Reminder",
             description: "Your appointment is coming up.",
-            action: "healthSummary",
+            action: .showHealthSummary,
             isDismissible: false,
             dueDate: nil,
             completionDate: nil
@@ -186,7 +186,7 @@ extension MessageManager {
         let symptomQuestionnaire = Message(
             title: "Symptom Questionnaire",
             description: "Please complete the symptom questionnaire.",
-            action: "questionnaires/0",
+            action: .completeQuestionnaire(questionnaireId: "0"),
             isDismissible: false,
             dueDate: nil,
             completionDate: nil
@@ -211,7 +211,7 @@ extension MessageManager {
             let newMessage = Message(
                 title: "Medication Change \(idx)",
                 description: "Your dose of XXX was changed. You can review medication information in the Education Page.",
-                action: "medications",
+                action: .showMedications,
                 isDismissible: true,
                 dueDate: Date().addingTimeInterval(60 * 60 * 24 * 3),  // Due three days from now
                 completionDate: nil

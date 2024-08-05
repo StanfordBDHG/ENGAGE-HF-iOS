@@ -79,6 +79,9 @@
 		4D49AB022BC9D50400C77310 /* SpeziBluetooth in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49AB012BC9D50400C77310 /* SpeziBluetooth */; };
 		4D4AA0A52BC5E43E00676489 /* OnboardingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4AA0A42BC5E43E00676489 /* OnboardingUITests.swift */; };
 		4D734AC02C5C58CA002D6D2F /* View+asButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D734ABF2C5C58C9002D6D2F /* View+asButton.swift */; };
+		4D734AC32C5D7C81002D6D2F /* MessageAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D734AC22C5D7C81002D6D2F /* MessageAction.swift */; };
+		4D734AC52C5D7D00002D6D2F /* MessageUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D734AC42C5D7D00002D6D2F /* MessageUnitTests.swift */; };
+		4D734AC82C5D8AF3002D6D2F /* MessageActionUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D734AC72C5D8AF3002D6D2F /* MessageActionUnitTests.swift */; };
 		4D73A50E2C5807B500CCEC46 /* CapsuleStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D73A50D2C5807B500CCEC46 /* CapsuleStack.swift */; };
 		4D73A5112C58088E00CCEC46 /* PositionedCurrentLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D73A5102C58088E00CCEC46 /* PositionedCurrentLabel.swift */; };
 		4D73A5142C5816AF00CCEC46 /* View+ReadSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D73A5132C5816AF00CCEC46 /* View+ReadSize.swift */; };
@@ -257,6 +260,9 @@
 		4D40A4D12C5B0AB2003DC813 /* VideoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoList.swift; sourceTree = "<group>"; };
 		4D4AA0A42BC5E43E00676489 /* OnboardingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingUITests.swift; sourceTree = "<group>"; };
 		4D734ABF2C5C58C9002D6D2F /* View+asButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+asButton.swift"; sourceTree = "<group>"; };
+		4D734AC22C5D7C81002D6D2F /* MessageAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageAction.swift; sourceTree = "<group>"; };
+		4D734AC42C5D7D00002D6D2F /* MessageUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageUnitTests.swift; sourceTree = "<group>"; };
+		4D734AC72C5D8AF3002D6D2F /* MessageActionUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageActionUnitTests.swift; sourceTree = "<group>"; };
 		4D73A50D2C5807B500CCEC46 /* CapsuleStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleStack.swift; sourceTree = "<group>"; };
 		4D73A5102C58088E00CCEC46 /* PositionedCurrentLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionedCurrentLabel.swift; sourceTree = "<group>"; };
 		4D73A5132C5816AF00CCEC46 /* View+ReadSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+ReadSize.swift"; sourceTree = "<group>"; };
@@ -829,6 +835,7 @@
 		4DF5061E2C2E1C10003E7EFB /* MessageManager */ = {
 			isa = PBXGroup;
 			children = (
+				4D734AC22C5D7C81002D6D2F /* MessageAction.swift */,
 				4DDFC73C2BF2C4FA002B07A1 /* Message.swift */,
 				4DDFC7862BFBFDDD002B07A1 /* MessageManager.swift */,
 			);
@@ -889,6 +896,8 @@
 			children = (
 				653A256128338800005D4D48 /* VitalsGraphAggregationUnitTests.swift */,
 				4D8AD2DC2C4B4B8C00CB4F3E /* HKSampleGraphUnitTests.swift */,
+				4D734AC42C5D7D00002D6D2F /* MessageUnitTests.swift */,
+				4D734AC72C5D8AF3002D6D2F /* MessageActionUnitTests.swift */,
 			);
 			path = ENGAGEHFTests;
 			sourceTree = "<group>";
@@ -1143,6 +1152,7 @@
 				4D92BA1A2C3E13F300ABCED7 /* FHIRSystem.swift in Sources */,
 				2FE5DC3A29EDD7CA004B9AB4 /* Welcome.swift in Sources */,
 				4D734AC02C5C58CA002D6D2F /* View+asButton.swift in Sources */,
+				4D734AC32C5D7C81002D6D2F /* MessageAction.swift in Sources */,
 				4D92BA172C3E108700ABCED7 /* CodeableConcept+Contains.swift in Sources */,
 				4DC0F67A2C34AD620025AB13 /* VitalsList.swift in Sources */,
 				2FE5DC3829EDD7CA004B9AB4 /* InterestingModules.swift in Sources */,
@@ -1254,6 +1264,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				653A256228338800005D4D48 /* VitalsGraphAggregationUnitTests.swift in Sources */,
+				4D734AC82C5D8AF3002D6D2F /* MessageActionUnitTests.swift in Sources */,
+				4D734AC52C5D7D00002D6D2F /* MessageUnitTests.swift in Sources */,
 				4D8AD2DD2C4B4B8C00CB4F3E /* HKSampleGraphUnitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

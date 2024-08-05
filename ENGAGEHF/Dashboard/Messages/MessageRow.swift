@@ -60,7 +60,7 @@ struct MessageRow: View {
                 .font(.footnote)
         }
             .asButton {
-                print("Perform \(message.action ?? "nothing")")
+                print("Perform \(message.action)")
             }
     }
 }
