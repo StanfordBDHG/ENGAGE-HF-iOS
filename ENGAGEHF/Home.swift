@@ -110,6 +110,9 @@ struct HomeView: View {
             ConfigureTipKit()
             Bluetooth {}
             VitalsManager()
+            NavigationManager()
+            VideoManager()
+            MedicationsManager()
         }
 }
 #endif

@@ -13,14 +13,13 @@ struct Education: View {
     @Binding var presentingAccount: Bool
     
     @Environment(VideoManager.self) private var videoManager
-    @Environment(NavigationPathWrapper.self) private var navigationPath
+    @Environment(NavigationManager.self) private var navigationManager
     
     
     var body: some View {
-        @Bindable var navigationPath = navigationPath
+        @Bindable var navigationManager = navigationManager
         
-        
-        NavigationStack(path: $navigationPath.path) {
+        NavigationStack(path: $navigationManager.path) {
             VideoList(videoCollections: videoManager.videoCollections)
                 .navigationTitle("Education")
                 .toolbar {
@@ -38,20 +37,10 @@ struct Education: View {
 
 #if DEBUG
 #Preview {
-    struct EducationPreviewWrapper: View {
-        @State private var navigationPath = NavigationPathWrapper()
-        
-        
-        var body: some View {
-            Education(presentingAccount: .constant(false))
-                .environment(navigationPath)
-        }
-    }
-    
-    
-    return EducationPreviewWrapper()
+    Education(presentingAccount: .constant(false))
         .previewWith(standard: ENGAGEHFStandard()) {
             VideoManager()
+            NavigationManager()
         }
 }
 #endif

@@ -36,7 +36,8 @@ struct VideoView: View {
 #if DEBUG
 #Preview {
     struct VideoViewPreviewWrapper: View {
-        @State private var navigationPath = NavigationPath()
+        @Environment(NavigationManager.self) private var navigationManager
+        
         
         private let previewVideo = Video(
             title: "How to Install the App and Connet Omron Device",
@@ -46,9 +47,11 @@ struct VideoView: View {
         
         
         var body: some View {
-            NavigationStack(path: $navigationPath) {
+            @Bindable var navigationManager = navigationManager
+            
+            NavigationStack(path: $navigationManager.path) {
                 Button("Tap Here") {
-                    navigationPath.append(previewVideo)
+                    navigationManager.path.append(previewVideo)
                 }
                     .navigationDestination(for: Video.self) { video in
                         VideoView(video)
@@ -58,5 +61,8 @@ struct VideoView: View {
     }
     
     return VideoViewPreviewWrapper()
+        .previewWith(standard: ENGAGEHFStandard()) {
+            NavigationManager()
+        }
 }
 #endif
