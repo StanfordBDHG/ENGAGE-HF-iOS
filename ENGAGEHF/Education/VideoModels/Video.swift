@@ -41,7 +41,7 @@ struct Video: Hashable, Identifiable, Decodable {
 }
 
 
-#if DEBUG
+#if DEBUG || TEST
 extension Video {
     init(
         title: String,
