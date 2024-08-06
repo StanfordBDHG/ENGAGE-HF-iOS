@@ -25,21 +25,9 @@ class VideoManager: Module, EnvironmentAccessible {
     
     
     func configure() {
-#if DEBUG
-        if ProcessInfo.processInfo.isPreviewSimulator {
-            self.videoCollections = [
-                VideoCollection(
-                    context: VideoCollectionContext(
-                        title: "ENGAGE-HF Application",
-                        description: "Helpful videos on the ENGAGE-HF mobile application.",
-                        orderIndex: 1
-                    ),
-                    videos: [
-                        Video(title: "Welcome Video", youtubeId: "y2ziZVWossE", orderIndex: 1),
-                        Video(title: "How to Install the App and Connect Omron Devices", youtubeId: "VUImvk3CNik", orderIndex: 2)
-                    ]
-                )
-            ]
+#if DEBUG || TEST
+        if ProcessInfo.processInfo.isPreviewSimulator || FeatureFlags.setupTestVideos {
+            self.injectMockVideoCollection()
             return
         }
 #endif
@@ -103,3 +91,58 @@ class VideoManager: Module, EnvironmentAccessible {
         return videoCollections
     }
 }
+
+
+#if DEBUG || TEST
+extension VideoManager {
+    private func injectMockVideoCollection() {
+        self.videoCollections = [
+            VideoCollection(
+                context: VideoCollectionContext(
+                    title: "ENGAGE-HF Application",
+                    description: "Helpful videos on the ENGAGE-HF mobile application.",
+                    orderIndex: 1
+                ),
+                videos: [
+                    Video(
+                        title: "No Description",
+                        youtubeId: "y2ziZVWossE",
+                        orderIndex: 1
+                    ),
+                    Video(
+                        title: "Short Description",
+                        youtubeId: "y2ziZVWossE",
+                        orderIndex: 2,
+                        description: """
+                        Welcome to our step-by-step guide on getting started with our app and connecting your Omron devices! \
+                        In this video, we’ll walk you through the installation process, from downloading the app to setting \
+                        it up on your device. You'll learn how to seamlessly connect your Omron weight scales and blood \
+                        pressure cuffs, ensuring your health data is accurately tracked and monitored. Whether you’re a \
+                        first-time user or need a refresher, this tutorial will make the process easy and straightforward. \
+                        Watch now to get the most out of your app and start monitoring your health with ease!
+                        """
+                    ),
+                    Video(
+                        title: "Long Description",
+                        youtubeId: "VUImvk3CNik",
+                        orderIndex: 3,
+                        description: """
+                        Welcome to our step-by-step guide on getting started with our app and connecting your Omron devices! \
+                        In this video, we’ll walk you through the installation process, from downloading the app to setting \
+                        it up on your device. You'll learn how to seamlessly connect your Omron weight scales and blood \
+                        pressure cuffs, ensuring your health data is accurately tracked and monitored. Whether you’re a \
+                        first-time user or need a refresher, this tutorial will make the process easy and straightforward. \
+                        Watch now to get the most out of your app and start monitoring your health with ease!
+                        
+                        ENGAGE-HF features seemless bluetooth connectivity that allows you to pair your devices and take \
+                        measurements without ever leaving the app. Simply set your device to pair-mode, and ENGAGE-HF will \
+                        automatically connect with the device and ask if you would like to pair. Then, whenever you take a \
+                        measurement, that measurement will automatically show up on the app!
+                        """
+                    )
+                ]
+            )
+        ]
+    }
+}
+#endif

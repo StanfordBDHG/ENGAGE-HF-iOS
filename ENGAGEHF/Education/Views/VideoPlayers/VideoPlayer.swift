@@ -17,15 +17,20 @@ struct VideoPlayer: View {
     
     
     var body: some View {
-        ZStack {
-            WebView(urlString: "https://youtube.com/embed/\(youtubeId)", viewState: $viewState)
-                .aspectRatio(16 / 9, contentMode: .fit)
-            if viewState == .processing {
-                ProgressView()
-                    .background(.clear)
+        WebView(urlString: "https://youtube.com/embed/\(youtubeId)", viewState: $viewState)
+            .aspectRatio(16 / 9, contentMode: .fit)
+            .overlay {
+                if viewState == .processing {
+                    ZStack {
+                        ThumbnailView(youtubeId: youtubeId, aspectRatio: CGSize(width: 16, height: 9))
+                        ProgressView()
+                            .tint(.gray)
+                    }
+                        .opacity(0.75)
+                        .transition(.opacity)
+                }
             }
-        }
-            .background(.clear)
+            .animation(.default, value: viewState)
             .viewStateAlert(state: $viewState)
     }
 }

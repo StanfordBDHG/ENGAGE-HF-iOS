@@ -31,9 +31,7 @@ struct WebView: UIViewRepresentable {
     func makeUIView(context: Context) -> WKWebView {
         let webView = WKWebView()
         
-        webView.backgroundColor = .clear
-        webView.isOpaque = false
-        webView.scrollView.backgroundColor = .clear
+        webView.allowsLinkPreview = true
         webView.navigationDelegate = context.coordinator
         
         if let url = URL(string: urlString) {
@@ -64,6 +62,11 @@ extension WebView {
         
         func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation) {
             parent.viewState = .processing
+#if DEBUG
+            if ProcessInfo.processInfo.isPreviewSimulator {
+                sleep(4)
+            }
+#endif
         }
         
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation) {

@@ -48,7 +48,7 @@ extension Video {
         youtubeId: String,
         orderIndex: Int,
         id: String? = UUID().uuidString,
-        description: String = "Video Description"
+        description: String? = nil
     ) {
         self.id = id
         self.title = title

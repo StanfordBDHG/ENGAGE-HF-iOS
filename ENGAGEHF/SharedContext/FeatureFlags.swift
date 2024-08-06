@@ -22,6 +22,8 @@ enum FeatureFlags {
     static let setupMockMessages = CommandLine.arguments.contains("--setupMockMessages")
     /// In the medications manager, instead of initializing a snapshot listener for the medication recommendations collection, include a button to directly fill the medications array with mock medications.
     static let setupTestMedications = CommandLine.arguments.contains("--setupTestMedications")
+    /// Fills the VideoManager with a test VideoCollection, skipping on-sign-in configuration. Used for UI Testing and preview simulators.
+    static let setupTestVideos = CommandLine.arguments.contains("--setupTestVideos")
     #if targetEnvironment(simulator)
     /// Defines if the application should connect to the local firebase emulator. Always set to true when using the iOS simulator.
     static let useFirebaseEmulator = true

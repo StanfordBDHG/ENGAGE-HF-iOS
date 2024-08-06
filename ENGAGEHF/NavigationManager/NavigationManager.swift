@@ -10,6 +10,7 @@ import FirebaseAuth
 import Foundation
 import OSLog
 import Spezi
+import SpeziFirebaseConfiguration
 import SwiftUI
 
 
@@ -18,6 +19,8 @@ import SwiftUI
 /// Wraps an environment accessible and observable stack for use in navigating between views
 @Observable
 class NavigationManager: Module, EnvironmentAccessible {
+    @ObservationIgnored @Dependency private var configureFirebaseApp: ConfigureFirebaseApp
+    
     private let logger = Logger(subsystem: "ENGAGEHF", category: "NavigationManager")
     private var authStateDidChangeListenerHandle: AuthStateDidChangeListenerHandle?
     

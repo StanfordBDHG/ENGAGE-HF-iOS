@@ -24,8 +24,9 @@ struct VideoList: View {
                     )
                 }
             }
-            .padding()
+                .padding()
         }
+            .background(Color(.systemGroupedBackground))
     }
 }
 
@@ -44,5 +45,8 @@ struct VideoList: View {
             )
         ]
     )
+        .previewWith(standard: ENGAGEHFStandard()) {
+            NavigationManager()
+        }
 }
 #endif

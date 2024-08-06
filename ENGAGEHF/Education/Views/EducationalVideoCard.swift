@@ -15,7 +15,7 @@ struct EducationalVideoCard: View {
     
     var body: some View {
         ZStack(alignment: .bottom) {
-            ThumbnailView(youtubeId: video.youtubeId)
+            ThumbnailView(youtubeId: video.youtubeId, aspectRatio: CGSize(width: 2558, height: 1330))
             
             HStack {
                 VStack(alignment: .leading) {
@@ -23,10 +23,12 @@ struct EducationalVideoCard: View {
                         .font(.title3.bold())
                         .foregroundStyle(.white)
                         .lineLimit(1)
-                    Text(video.description ?? "Video Description")
-                        .font(.headline.bold())
-                        .foregroundStyle(.white.opacity(0.75))
-                        .lineLimit(1)
+                    if let description = video.description, !description.isEmpty {
+                        Text(description)
+                            .font(.headline.bold())
+                            .foregroundStyle(.white.opacity(0.75))
+                            .lineLimit(1)
+                    }
                 }
                 Spacer()
                 Image(systemName: "chevron.right")
@@ -53,9 +55,21 @@ struct EducationalVideoCard: View {
 #Preview {
     List {
         EducationalVideoCard(
-            video: Video(title: "Welcome Video", youtubeId: "y2ziZVWossE", orderIndex: 1)
+            video: Video(
+                title: "Welcome Video 1",
+                youtubeId: "y2ziZVWossE",
+                orderIndex: 1
+            )
         )
-            .listRowInsets(.init())
+        EducationalVideoCard(
+            video: Video(
+                title: "Welcome Video 2",
+                youtubeId: "y2ziZVWossE",
+                orderIndex: 1,
+                description: "Welcome video description"
+            )
+        )
     }
+        .listRowInsets(.init())
 }
 #endif

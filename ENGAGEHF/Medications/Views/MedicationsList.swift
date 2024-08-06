@@ -30,7 +30,7 @@ struct MedicationsList: View {
                 .expandableCardListStyle()
         } else {
             ContentUnavailableView("No medication recommendations", systemImage: "pill.fill")
-                .symbolVariant(.slash)
+                .background(Color(.systemGroupedBackground))
         }
     }
 }
