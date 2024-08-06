@@ -83,11 +83,11 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--setupTestVideos"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--setupTestMedications"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--setupMockMessages"

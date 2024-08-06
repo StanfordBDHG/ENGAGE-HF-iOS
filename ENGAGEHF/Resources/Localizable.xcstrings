@@ -33,9 +33,6 @@
         }
       }
     },
-    "%@ Thumbnail" : {
-
-    },
     "%@ Unit: %@" : {
       "localizations" : {
         "en" : {
@@ -625,9 +622,6 @@
 
     },
     "Unable to delete measurement, check network connection." : {
-
-    },
-    "Unknown Thumbnail" : {
 
     },
     "Unknown Thumbnail" : {
