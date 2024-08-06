@@ -44,7 +44,7 @@ struct VideoListSection: View {
     let subtitle: String
     let videos: [Video]
     
-    @Environment(NavigationPathWrapper.self) private var navigationPath
+    @Environment(NavigationManager.self) private var navigationManager
     @State private var isExpanded = true
     
     
@@ -58,7 +58,7 @@ struct VideoListSection: View {
                         ForEach(videos.sorted(by: { $0.orderIndex < $1.orderIndex })) { video in
                             EducationalVideoCard(video: video)
                                 .asButton {
-                                    navigationPath.path.append(video)
+                                    navigationManager.path.append(video)
                                 }
                         }
                     }
@@ -72,9 +72,7 @@ struct VideoListSection: View {
 
 #if DEBUG
 #Preview("Welcome Video") {
-    @State var navigationPath = NavigationPathWrapper()
-    
-    return ScrollView {
+    ScrollView {
         LazyVStack(spacing: 12) {
             VideoListSection(
                 title: "ENGAGE-HF Application",
@@ -83,13 +81,13 @@ struct VideoListSection: View {
             )
         }
     }
-        .environment(navigationPath)
+        .previewWith(standard: ENGAGEHFStandard()) {
+            NavigationManager()
+        }
 }
 
 #Preview("Invalid Video") {
-    @State var navigationPath = NavigationPathWrapper()
-    
-    return ScrollView {
+    ScrollView {
         LazyVStack(spacing: 12) {
             VideoListSection(
                 title: "ENGAGE-HF Application",
@@ -98,6 +96,8 @@ struct VideoListSection: View {
             )
         }
     }
-        .environment(navigationPath)
+        .previewWith(standard: ENGAGEHFStandard()) {
+            NavigationManager()
+        }
 }
 #endif

@@ -29,6 +29,7 @@ extension KeyedDecodingContainer {
             return try decode(String.self, forKey: key)
         }
     }
+
     
     /// Decodes a localized string using the most specific locale possible and defaulting to "en" if necessary.
     /// If no localization dicionary is present, attempts to decode the key as a string.

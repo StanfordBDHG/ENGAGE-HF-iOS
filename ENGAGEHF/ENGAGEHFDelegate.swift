@@ -24,7 +24,7 @@ import SwiftUI
 
 class ENGAGEHFDelegate: SpeziAppDelegate {
     override var configuration: Configuration {
-        Configuration(standard: ENGAGEHFStandard()) {
+        Configuration(standard: ENGAGEHFStandard()) { // swiftlint:disable:this closure_body_length
             if !FeatureFlags.disableFirebase {
                 AccountConfiguration(configuration: [
                     .requires(\.userId),
@@ -59,11 +59,13 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
             PairedDevices()
             HealthMeasurements()
             
-            OnboardingDataSource()
+            NavigationManager()
             MessageManager()
             VitalsManager()
             MedicationsManager()
             VideoManager()
+            
+            OnboardingDataSource()
             InvitationCodeModule()
 
             ConfigureTipKit()

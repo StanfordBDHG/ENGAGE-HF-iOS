@@ -11,17 +11,24 @@ import SwiftUI
 
 
 struct VideoView: View {
-    let video: Video
+    private let video: Video
     
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
+        VStack(spacing: 20) {
             VideoPlayer(youtubeId: video.youtubeId)
-                .padding(.top)
-            Text(video.description ?? "Video Description")
-                .padding()
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+            if let description = video.description, !description.isEmpty {
+                ScrollableText(description) {
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(Color(.systemBackground))
+                }
+                    .accessibilityIdentifier("Video Description: \(video.title)")
+            }
             Spacer()
         }
+            .padding(.horizontal)
+            .padding(.top)
             .background(Color(.systemGroupedBackground))
             .navigationTitle(video.title)
             .navigationBarTitleDisplayMode(.inline)
@@ -35,21 +42,32 @@ struct VideoView: View {
 
 
 #if DEBUG
-#Preview {
+#Preview("Small Text") {
     struct VideoViewPreviewWrapper: View {
-        @State private var navigationPath = NavigationPath()
+        @Environment(NavigationManager.self) private var navigationManager
+        
         
         private let previewVideo = Video(
             title: "How to Install the App and Connet Omron Device",
             youtubeId: "y2ziZVWossE",
-            orderIndex: 1
+            orderIndex: 1,
+            description: """
+            Welcome to our step-by-step guide on getting started with our app and connecting your Omron devices! \
+            In this video, we’ll walk you through the installation process, from downloading the app to setting \
+            it up on your device. You'll learn how to seamlessly connect your Omron weight scales and blood \
+            pressure cuffs, ensuring your health data is accurately tracked and monitored. Whether you’re a \
+            first-time user or need a refresher, this tutorial will make the process easy and straightforward. \
+            Watch now to get the most out of your app and start monitoring your health with ease!
+            """
         )
         
         
         var body: some View {
-            NavigationStack(path: $navigationPath) {
+            @Bindable var navigationManager = navigationManager
+            
+            NavigationStack(path: $navigationManager.path) {
                 Button("Tap Here") {
-                    navigationPath.append(previewVideo)
+                    navigationManager.path.append(previewVideo)
                 }
                     .navigationDestination(for: Video.self) { video in
                         VideoView(video)
@@ -59,5 +77,52 @@ struct VideoView: View {
     }
     
     return VideoViewPreviewWrapper()
+        .previewWith(standard: ENGAGEHFStandard()) {
+            NavigationManager()
+        }
+}
+
+#Preview("Massive Text") {
+    struct VideoViewPreviewWrapper: View {
+        @Environment(NavigationManager.self) private var navigationManager
+        
+        
+        private let previewVideo = Video(
+            title: "How to Install the App and Connet Omron Device",
+            youtubeId: "y2ziZVWossE",
+            orderIndex: 1,
+            description: """
+            Welcome to our step-by-step guide on getting started with our app and connecting your Omron devices! \
+            In this video, we’ll walk you through the installation process, from downloading the app to setting \
+            it up on your device. You'll learn how to seamlessly connect your Omron weight scales and blood \
+            pressure cuffs, ensuring your health data is accurately tracked and monitored. Whether you’re a \
+            first-time user or need a refresher, this tutorial will make the process easy and straightforward. \
+            Watch now to get the most out of your app and start monitoring your health with ease!
+                                        
+            ENGAGE-HF features seemless bluetooth connectivity that allows you to pair your devices and take \
+            measurements without ever leaving the app. Simply set your device to pair-mode, and ENGAGE-HF will \
+            automatically connect with the device and ask if you would like to pair.
+            """
+        )
+        
+        
+        var body: some View {
+            @Bindable var navigationManager = navigationManager
+            
+            NavigationStack(path: $navigationManager.path) {
+                Button("Tap Here") {
+                    navigationManager.path.append(previewVideo)
+                }
+                    .navigationDestination(for: Video.self) { video in
+                        VideoView(video)
+                    }
+            }
+        }
+    }
+    
+    return VideoViewPreviewWrapper()
+        .previewWith(standard: ENGAGEHFStandard()) {
+            NavigationManager()
+        }
 }
 #endif

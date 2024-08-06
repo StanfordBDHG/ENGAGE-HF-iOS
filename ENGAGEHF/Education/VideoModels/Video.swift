@@ -41,14 +41,14 @@ struct Video: Hashable, Identifiable, Decodable {
 }
 
 
-#if DEBUG
+#if DEBUG || TEST
 extension Video {
     init(
         title: String,
         youtubeId: String,
         orderIndex: Int,
         id: String? = UUID().uuidString,
-        description: String = "Video Description"
+        description: String? = nil
     ) {
         self.id = id
         self.title = title

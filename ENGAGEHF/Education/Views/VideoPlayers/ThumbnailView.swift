@@ -10,7 +10,8 @@ import SwiftUI
 
 
 struct ThumbnailView: View {
-    let youtubeId: String
+    private let youtubeId: String
+    private let aspectRatio: CGSize
     
     
     private var imageURLString: String {
@@ -32,15 +33,21 @@ struct ThumbnailView: View {
                         image
                             .resizable()
                             .scaledToFill()
-                            .accessibilityLabel("\(youtubeId) Thumbnail")
+                            .accessibilityLabel("Thumbnail Image: \(youtubeId)")
                     default:
                         ProgressView()
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                     }
                 }
             }
-            .aspectRatio(2558 / 1330, contentMode: .fit)
+            .aspectRatio(aspectRatio, contentMode: .fit)
             .clipped()
+    }
+    
+    
+    init(youtubeId: String, aspectRatio: CGSize = CGSize(width: 16, height: 9)) {
+        self.youtubeId = youtubeId
+        self.aspectRatio = aspectRatio
     }
 }
 

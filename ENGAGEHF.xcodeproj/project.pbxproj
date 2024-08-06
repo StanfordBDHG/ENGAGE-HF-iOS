@@ -52,6 +52,7 @@
 		4D2D1D602C2B859C00ABDC19 /* GraphPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2D1D5F2C2B859C00ABDC19 /* GraphPicker.swift */; };
 		4D2D1D682C2C82A200ABDC19 /* FHIRPeriod+GetDates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2D1D672C2C82A200ABDC19 /* FHIRPeriod+GetDates.swift */; };
 		4D2D1D762C2CC8B200ABDC19 /* ValueXProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2D1D752C2CC8B200ABDC19 /* ValueXProtocol.swift */; };
+		4D335C932C628F5600C720B5 /* EducationViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D335C922C628F5600C720B5 /* EducationViewUITests.swift */; };
 		4D34B3E52C3EECDE006F0D40 /* HKObject+ExternalUUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D34B3E42C3EECDE006F0D40 /* HKObject+ExternalUUID.swift */; };
 		4D34B3ED2C404C61006F0D40 /* VitalsUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D34B3EC2C404C61006F0D40 /* VitalsUnit.swift */; };
 		4D34B3F02C40518C006F0D40 /* HKSampleGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D34B3EF2C40518C006F0D40 /* HKSampleGraph.swift */; };
@@ -103,7 +104,6 @@
 		4D8402AE2C51C66D00817495 /* Medications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8402AD2C51C66D00817495 /* Medications.swift */; };
 		4D8402B22C51D62400817495 /* MedicationsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8402B12C51D62400817495 /* MedicationsList.swift */; };
 		4D8402B52C51D6D200817495 /* MedicationRecommendationSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8402B42C51D6D200817495 /* MedicationRecommendationSymbol.swift */; };
-		4D8402BB2C52C2F000817495 /* MedicationRowLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8402BA2C52C2F000817495 /* MedicationRowLabel.swift */; };
 		4D8402C52C52C67100817495 /* RecommendationSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8402C42C52C67100817495 /* RecommendationSummary.swift */; };
 		4D8402C92C52F7C100817495 /* TextualDosageSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8402C82C52F7C100817495 /* TextualDosageSummary.swift */; };
 		4D8402CC2C53019B00817495 /* Double+asString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8402CB2C53019B00817495 /* Double+asString.swift */; };
@@ -156,6 +156,8 @@
 		4DDFC7692BF35113002B07A1 /* HeartHealth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC7682BF35113002B07A1 /* HeartHealth.swift */; };
 		4DDFC7872BFBFDDD002B07A1 /* MessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC7862BFBFDDD002B07A1 /* MessageManager.swift */; };
 		4DDFC78A2BFC1312002B07A1 /* MessageRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC7892BFC1312002B07A1 /* MessageRow.swift */; };
+		4DE8B8D12C614377006E3E63 /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE8B8D02C614377006E3E63 /* NavigationManager.swift */; };
+		4DE8B8DB2C61A329006E3E63 /* ScrollableText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE8B8DA2C61A328006E3E63 /* ScrollableText.swift */; };
 		4DF506192C2E1AAE003E7EFB /* SelectionTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF506182C2E1AAD003E7EFB /* SelectionTypes.swift */; };
 		4DF506212C2E1C89003E7EFB /* SymptomScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF506202C2E1C89003E7EFB /* SymptomScore.swift */; };
 		4DF506282C2F2598003E7EFB /* VitalsContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF506272C2F2598003E7EFB /* VitalsContentView.swift */; };
@@ -234,6 +236,7 @@
 		4D2D1D672C2C82A200ABDC19 /* FHIRPeriod+GetDates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FHIRPeriod+GetDates.swift"; sourceTree = "<group>"; };
 		4D2D1D752C2CC8B200ABDC19 /* ValueXProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueXProtocol.swift; sourceTree = "<group>"; };
 		4D2D1D772C2CD32C00ABDC19 /* ObservationValueProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationValueProtocol.swift; sourceTree = "<group>"; };
+		4D335C922C628F5600C720B5 /* EducationViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationViewUITests.swift; sourceTree = "<group>"; };
 		4D34B3E42C3EECDE006F0D40 /* HKObject+ExternalUUID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HKObject+ExternalUUID.swift"; sourceTree = "<group>"; };
 		4D34B3EC2C404C61006F0D40 /* VitalsUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalsUnit.swift; sourceTree = "<group>"; };
 		4D34B3EF2C40518C006F0D40 /* HKSampleGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKSampleGraph.swift; sourceTree = "<group>"; };
@@ -284,7 +287,6 @@
 		4D8402AD2C51C66D00817495 /* Medications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Medications.swift; sourceTree = "<group>"; };
 		4D8402B12C51D62400817495 /* MedicationsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationsList.swift; sourceTree = "<group>"; };
 		4D8402B42C51D6D200817495 /* MedicationRecommendationSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationRecommendationSymbol.swift; sourceTree = "<group>"; };
-		4D8402BA2C52C2F000817495 /* MedicationRowLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationRowLabel.swift; sourceTree = "<group>"; };
 		4D8402C42C52C67100817495 /* RecommendationSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationSummary.swift; sourceTree = "<group>"; };
 		4D8402C82C52F7C100817495 /* TextualDosageSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextualDosageSummary.swift; sourceTree = "<group>"; };
 		4D8402CB2C53019B00817495 /* Double+asString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+asString.swift"; sourceTree = "<group>"; };
@@ -312,7 +314,6 @@
 		4D9D435F2C597E09000062D3 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		4D9D43642C5989B3000062D3 /* VideoCollectionContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionContext.swift; sourceTree = "<group>"; };
 		4D9D43662C59A88C000062D3 /* ExpandableListCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableListCard.swift; sourceTree = "<group>"; };
-		4D9D43732C59BDB2000062D3 /* NavigationHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationHelpers.swift; sourceTree = "<group>"; };
 		4DA20B4A2C249E7E00715AA2 /* VitalsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalsManager.swift; sourceTree = "<group>"; };
 		4DA20B532C25F8A600715AA2 /* FHIRDateTime+DateComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FHIRDateTime+DateComponents.swift"; sourceTree = "<group>"; };
 		4DA20B572C25FE4000715AA2 /* FHIRInstant+DateComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FHIRInstant+DateComponents.swift"; sourceTree = "<group>"; };
@@ -335,6 +336,8 @@
 		4DDFC7682BF35113002B07A1 /* HeartHealth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartHealth.swift; sourceTree = "<group>"; };
 		4DDFC7862BFBFDDD002B07A1 /* MessageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageManager.swift; sourceTree = "<group>"; };
 		4DDFC7892BFC1312002B07A1 /* MessageRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRow.swift; sourceTree = "<group>"; };
+		4DE8B8D02C614377006E3E63 /* NavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
+		4DE8B8DA2C61A328006E3E63 /* ScrollableText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableText.swift; sourceTree = "<group>"; };
 		4DF506182C2E1AAD003E7EFB /* SelectionTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionTypes.swift; sourceTree = "<group>"; };
 		4DF506202C2E1C89003E7EFB /* SymptomScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomScore.swift; sourceTree = "<group>"; };
 		4DF506272C2F2598003E7EFB /* VitalsContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalsContentView.swift; sourceTree = "<group>"; };
@@ -583,6 +586,7 @@
 				4D40A4B02C5A9CD1003DC813 /* WebView.swift */,
 				4D40A4B52C5AA094003DC813 /* VideoView.swift */,
 				4D40A4BB2C5AB03E003DC813 /* ThumbnailView.swift */,
+				4DE8B8DA2C61A328006E3E63 /* ScrollableText.swift */,
 			);
 			path = VideoPlayers;
 			sourceTree = "<group>";
@@ -653,7 +657,6 @@
 			isa = PBXGroup;
 			children = (
 				4D8402B42C51D6D200817495 /* MedicationRecommendationSymbol.swift */,
-				4D8402BA2C52C2F000817495 /* MedicationRowLabel.swift */,
 				4D8402C42C52C67100817495 /* RecommendationSummary.swift */,
 			);
 			path = RowLabel;
@@ -820,6 +823,14 @@
 			path = Education;
 			sourceTree = "<group>";
 		};
+		4DE8B8CF2C614360006E3E63 /* NavigationManager */ = {
+			isa = PBXGroup;
+			children = (
+				4DE8B8D02C614377006E3E63 /* NavigationManager.swift */,
+			);
+			path = NavigationManager;
+			sourceTree = "<group>";
+		};
 		4DF5061C2C2E1BD0003E7EFB /* VitalsManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -872,9 +883,9 @@
 				2FF53D8C2A8729D600042B76 /* ENGAGEHFStandard.swift */,
 				2F4E23822989D51F0013F3D9 /* ENGAGEHFTestingSetup.swift */,
 				2FC975A72978F11A00BA99FE /* Home.swift */,
-				4D9D43732C59BDB2000062D3 /* NavigationHelpers.swift */,
 				4D9D43542C596CED000062D3 /* SharedExtensions */,
 				4DF5061E2C2E1C10003E7EFB /* MessageManager */,
+				4DE8B8CF2C614360006E3E63 /* NavigationManager */,
 				4DF5061C2C2E1BD0003E7EFB /* VitalsManager */,
 				4D065BDE2C093FF600EBB3AE /* ReusableElements */,
 				4D8402862C5023E100817495 /* Medications */,
@@ -915,6 +926,7 @@
 				4D8AD2E02C4B5D1600CB4F3E /* HeartHealthUITests.swift */,
 				4D8402762C4EE51F00817495 /* AddMeasurementUITests.swift */,
 				4D73A5232C58505100CCEC46 /* MedicationsUITests.swift */,
+				4D335C922C628F5600C720B5 /* EducationViewUITests.swift */,
 			);
 			path = ENGAGEHFUITests;
 			sourceTree = "<group>";
@@ -1225,6 +1237,7 @@
 				4D9D43672C59A88C000062D3 /* ExpandableListCard.swift in Sources */,
 				4D40A4BC2C5AB03E003DC813 /* ThumbnailView.swift in Sources */,
 				4D8AD2CD2C4ACFB700CB4F3E /* DateInterval+asAdjustedRange.swift in Sources */,
+				4DE8B8DB2C61A329006E3E63 /* ScrollableText.swift in Sources */,
 				A96C56BB2C0DFFCE00D6A50B /* InvitationCodeModule.swift in Sources */,
 				4D4072762C45FF5B007C5621 /* GestureValue.swift in Sources */,
 				4DA20B5A2C25FEDE00715AA2 /* Decimal+IntConversion.swift in Sources */,
@@ -1236,6 +1249,7 @@
 				653A2551283387FE005D4D48 /* ENGAGEHF.swift in Sources */,
 				4D92B9F62C3C8FA100ABCED7 /* DescriptionSection.swift in Sources */,
 				4DC0F6842C34B66F0025AB13 /* ResolutionPicker.swift in Sources */,
+				4DE8B8D12C614377006E3E63 /* NavigationManager.swift in Sources */,
 				2F65B44E2A3B8B0600A36932 /* NotificationPermissions.swift in Sources */,
 				4D8AD2C82C4A2BE900CB4F3E /* VitalsGraphOptions.swift in Sources */,
 				4D0F38A22C0A7AD900DA12F7 /* ExpandableText.swift in Sources */,
@@ -1279,6 +1293,7 @@
 				4D73A5242C58505100CCEC46 /* MedicationsUITests.swift in Sources */,
 				4D84027A2C4EE56000817495 /* XCUIApplication+GoTo.swift in Sources */,
 				4D4AA0A52BC5E43E00676489 /* OnboardingUITests.swift in Sources */,
+				4D335C932C628F5600C720B5 /* EducationViewUITests.swift in Sources */,
 				4DD823062C17FF79004DC599 /* NotificationsUITests.swift in Sources */,
 				2F4E237E2989A2FE0013F3D9 /* LaunchTests.swift in Sources */,
 				4DB025CA2BBE3A59002D2545 /* HomeViewUITests.swift in Sources */,
