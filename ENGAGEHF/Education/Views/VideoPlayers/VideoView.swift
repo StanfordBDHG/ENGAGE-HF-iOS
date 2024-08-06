@@ -26,7 +26,8 @@ struct VideoView: View {
             }
             Spacer()
         }
-            .padding()
+            .padding(.horizontal)
+            .padding(.top)
             .background(Color(.systemGroupedBackground))
             .navigationTitle(video.title)
             .navigationBarTitleDisplayMode(.inline)
