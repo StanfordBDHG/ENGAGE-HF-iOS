@@ -33,9 +33,6 @@
         }
       }
     },
-    "%@ Thumbnail" : {
-
-    },
     "%@ Unit: %@" : {
       "localizations" : {
         "en" : {
@@ -599,6 +596,9 @@
     },
     "The invitation code is invalid or has already been used." : {
       "comment" : "Invitation Code Invalid"
+    },
+    "Thumbnail Image: %@" : {
+
     },
     "Time" : {
 

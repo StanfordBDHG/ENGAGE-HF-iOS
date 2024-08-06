@@ -22,6 +22,7 @@ struct VideoList: View {
                         subtitle: videoCollection.description,
                         videos: videoCollection.videos
                     )
+                        .accessibilityIdentifier("Video Section: \(videoCollection.title)")
                 }
             }
                 .padding()

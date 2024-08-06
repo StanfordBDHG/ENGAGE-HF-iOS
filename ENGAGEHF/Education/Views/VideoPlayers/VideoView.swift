@@ -23,6 +23,7 @@ struct VideoView: View {
                     RoundedRectangle(cornerRadius: 8)
                         .fill(Color(.systemBackground))
                 }
+                    .accessibilityIdentifier("Video Description: \(video.title)")
             }
             Spacer()
         }

@@ -16,16 +16,16 @@ enum FeatureFlags {
     static let assumeOnboardingComplete = CommandLine.arguments.contains("--assumeOnboardingComplete") || skipOnboarding
     /// Disables the Firebase interactions, including the login/sign-up step and the Firebase Firestore upload.
     static let disableFirebase = CommandLine.arguments.contains("--disableFirebase")
-    /// On sign in, fills the user's vitals observation collections (body weight, blood pressure, heart rate, and symptom scores) with random data if none already present
+    /// On sign in, fills the user's vitals observation collections (body weight, blood pressure, heart rate, and symptom scores) with random data if none already present.
     static let setupMockVitals = CommandLine.arguments.contains("--setupMockVitals")
-    /// On sign in, fills the user's messages collection with three mock notifications if none already present
+    /// On sign in, fills the user's messages collection with three mock notifications if none already present.
     static let setupMockMessages = CommandLine.arguments.contains("--setupMockMessages")
     /// In the medications manager, instead of initializing a snapshot listener for the medication recommendations collection, include a button to directly fill the medications array with mock medications.
     static let setupTestMedications = CommandLine.arguments.contains("--setupTestMedications")
     /// Fills the VideoManager with a test VideoCollection, skipping on-sign-in configuration. Used for UI Testing and preview simulators.
     static let setupTestVideos = CommandLine.arguments.contains("--setupTestVideos")
     #if targetEnvironment(simulator)
-    /// Defines if the application should connect to the local firebase emulator. Always set to true when using the iOS simulator.
+    /// Defines if the application should connect to the local firebase emulator. Always set to true when using the iOS simulator. disableFirebase still has priority over useFirebaseEmulator.
     static let useFirebaseEmulator = true
     #else
     /// Defines if the application should connect to the local firebase emulator. Always set to true when using the iOS simulator.

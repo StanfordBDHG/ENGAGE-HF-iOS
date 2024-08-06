@@ -31,12 +31,12 @@ struct VideoListSection: View {
                     .rotationEffect(.degrees(isExpanded ? 90 : 0))
                     .accessibilityLabel("Section Expander")
             }
-            .contentShape(Rectangle())
-            .onTapGesture {
-                withAnimation {
-                    isExpanded.toggle()
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    withAnimation {
+                        isExpanded.toggle()
+                    }
                 }
-            }
         }
     }
     

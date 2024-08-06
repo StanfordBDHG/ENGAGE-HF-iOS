@@ -33,7 +33,7 @@ struct ThumbnailView: View {
                         image
                             .resizable()
                             .scaledToFill()
-                            .accessibilityLabel("\(youtubeId) Thumbnail")
+                            .accessibilityLabel("Thumbnail Image: \(youtubeId)")
                     default:
                         ProgressView()
                             .frame(maxWidth: .infinity, maxHeight: .infinity)

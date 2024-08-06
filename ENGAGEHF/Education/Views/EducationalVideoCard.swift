@@ -23,11 +23,13 @@ struct EducationalVideoCard: View {
                         .font(.title3.bold())
                         .foregroundStyle(.white)
                         .lineLimit(1)
+                        .accessibilityIdentifier("Thumbnail Overlay Title: \(video.title)")
                     if let description = video.description, !description.isEmpty {
                         Text(description)
                             .font(.headline.bold())
                             .foregroundStyle(.white.opacity(0.75))
                             .lineLimit(1)
+                            .accessibilityIdentifier("Thumbnail Overlay Description: \(video.title)")
                     }
                 }
                 Spacer()

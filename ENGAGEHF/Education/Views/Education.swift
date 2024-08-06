@@ -21,6 +21,7 @@ struct Education: View {
         
         NavigationStack(path: $navigationManager.path) {
             VideoList(videoCollections: videoManager.videoCollections)
+                .accessibilityIdentifier("Video List")
                 .navigationTitle("Education")
                 .toolbar {
                     if AccountButton.shouldDisplay {

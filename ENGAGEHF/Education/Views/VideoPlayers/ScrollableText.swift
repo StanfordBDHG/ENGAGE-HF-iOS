@@ -41,6 +41,7 @@ struct ScrollableText<Background: View>: View {
                         textHeight = $0.height
                     }
                     .frame(width: geometry.size.width, alignment: .leading)
+                    .accessibilityIdentifier("Scrollable Text")
             }
                 .background(background)
                 .scrollBounceBehavior(.basedOnSize)

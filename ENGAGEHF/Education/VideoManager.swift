@@ -111,7 +111,7 @@ extension VideoManager {
                     ),
                     Video(
                         title: "Short Description",
-                        youtubeId: "y2ziZVWossE",
+                        youtubeId: "XfgcXkq61k0",
                         orderIndex: 2,
                         description: """
                         Welcome to our step-by-step guide on getting started with our app and connecting your Omron devices! \
