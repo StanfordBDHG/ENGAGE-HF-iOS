@@ -19,6 +19,12 @@ private struct TextSizePreference: PreferenceKey {
 }
 
 
+/// Text field that expands to the minimum size that fits the text, until there is no room to expand.
+/// Then, the field becomes scrollable, and the text extends beyond the visible portion.
+///
+/// Note: Modifiers applied to a ScrollableText instance are applied to the GeometryReader, which
+/// greedily expands to fill all the available space. This can cause undesired behavior if, for example,
+/// an overlay or border is applied to the ScrollableText as these will extend beyond the text field.
 struct ScrollableText<Background: View>: View {
     private let text: String
     private let background: Background
@@ -37,6 +43,7 @@ struct ScrollableText<Background: View>: View {
                     .frame(width: geometry.size.width, alignment: .leading)
             }
                 .background(background)
+                .scrollBounceBehavior(.basedOnSize)
                 .frame(height: min(textHeight, geometry.size.height))
         }
     }
