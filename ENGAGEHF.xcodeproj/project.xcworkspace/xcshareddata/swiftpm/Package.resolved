@@ -15,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/antlr/antlr4",
       "state" : {
-        "revision" : "7ed420ff2c78d62883875c442d75f32e73bc86c8",
-        "version" : "4.13.1"
+        "revision" : "cc82115a4e7f53d71d9d905caa2c2dfa4da58899",
+        "version" : "4.13.2"
       }
     },
     {
@@ -42,8 +42,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/krzyzanowskim/CryptoSwift.git",
       "state" : {
-        "revision" : "c9c3df6ab812de32bae61fc0cd1bf6d45170ebf0",
-        "version" : "1.8.2"
+        "revision" : "678d442c6f7828def400a70ae15968aef67ef52d",
+        "version" : "1.8.3"
       }
     },
     {
@@ -294,8 +294,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziStorage.git",
       "state" : {
-        "revision" : "9d04bc622c65002aee704b4de5735970a6e19f46",
-        "version" : "1.1.0"
+        "revision" : "52bd5cbeef2a51e132ee2184e9fe88043274e411",
+        "version" : "1.1.1"
       }
     },
     {
@@ -303,8 +303,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziViews.git",
       "state" : {
-        "revision" : "ff61e6594677572df051b96905cc2a7a12cffd10",
-        "version" : "1.5.0"
+        "revision" : "4a8245e77307949f845adedcc9bc1b5faf05e4bb",
+        "version" : "1.5.1"
       }
     },
     {
@@ -339,8 +339,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-nio.git",
       "state" : {
-        "revision" : "e4abde8be0e49dc7d66e6eed651254accdcd9533",
-        "version" : "2.69.0"
+        "revision" : "4c4453b489cf76e6b3b0f300aba663eb78182fad",
+        "version" : "2.70.0"
       }
     },
     {
@@ -366,8 +366,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-syntax.git",
       "state" : {
-        "revision" : "303e5c5c36d6a558407d364878df131c3546fad8",
-        "version" : "510.0.2"
+        "revision" : "2bc86522d115234d1f588efe2bcb4ce4be8f8b82",
+        "version" : "510.0.3"
       }
     },
     {
@@ -411,8 +411,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordBDHG/XCTestExtensions.git",
       "state" : {
-        "revision" : "cc2705fde81978eacd5496e14c9caf58909e2322",
-        "version" : "0.4.12"
+        "revision" : "f54334604408ed3fe52887e46d6be85e83ec2da0",
+        "version" : "0.4.13"
       }
     },
     {

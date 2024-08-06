@@ -82,8 +82,12 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "--setupTestMedications"
+            argument = "--setupTestVideos"
             isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--setupTestMedications"
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--setupMockMessages"
@@ -95,7 +99,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--assumeOnboardingComplete"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--setupTestEnvironment"
@@ -107,7 +111,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--skipOnboarding"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--testSchedule"

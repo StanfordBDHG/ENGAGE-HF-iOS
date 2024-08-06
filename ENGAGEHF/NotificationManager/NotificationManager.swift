@@ -21,7 +21,6 @@ import SpeziFirebaseConfiguration
 @Observable
 class NotificationManager: Module, EnvironmentAccessible {
     @ObservationIgnored @Dependency private var configureFirebaseApp: ConfigureFirebaseApp
-    @ObservationIgnored @StandardActor var standard: ENGAGEHFStandard
     
     private var authStateDidChangeListenerHandle: AuthStateDidChangeListenerHandle?
     private var snapshotListener: ListenerRegistration?

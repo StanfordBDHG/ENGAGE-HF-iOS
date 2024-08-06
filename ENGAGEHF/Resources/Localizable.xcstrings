@@ -192,16 +192,25 @@
     "Date" : {
 
     },
+    "defaultLoadingError" : {
+
+    },
     "Devices" : {
 
     },
     "Education" : {
 
     },
+    "Education Video Inspect Button" : {
+
+    },
     "Empty %@ Graph" : {
 
     },
     "Empty Symptoms Graph" : {
+
+    },
+    "Expansion Button" : {
 
     },
     "Expected Progress: %lf" : {
@@ -406,9 +415,6 @@
     "List Without Sections" : {
 
     },
-    "Medication Expansion Button" : {
-
-    },
     "Medication Label: %@" : {
 
     },
@@ -484,6 +490,9 @@
 
     },
     "Score" : {
+
+    },
+    "Section Expander" : {
 
     },
     "Series" : {
@@ -579,11 +588,17 @@
         }
       }
     },
+    "Tap Here" : {
+
+    },
     "Target" : {
 
     },
     "The invitation code is invalid or has already been used." : {
       "comment" : "Invitation Code Invalid"
+    },
+    "Thumbnail Image: %@" : {
+
     },
     "Time" : {
 
@@ -605,6 +620,9 @@
     },
     "Unable to get notification timestamp." : {
       "comment" : "Invalid Timestamp"
+    },
+    "Unknown Thumbnail" : {
+
     },
     "User authentication failed. Please try to sign in again." : {
       "comment" : "User Not Authenticated"
