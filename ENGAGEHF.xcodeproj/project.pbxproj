@@ -52,6 +52,7 @@
 		4D2D1D602C2B859C00ABDC19 /* GraphPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2D1D5F2C2B859C00ABDC19 /* GraphPicker.swift */; };
 		4D2D1D682C2C82A200ABDC19 /* FHIRPeriod+GetDates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2D1D672C2C82A200ABDC19 /* FHIRPeriod+GetDates.swift */; };
 		4D2D1D762C2CC8B200ABDC19 /* ValueXProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2D1D752C2CC8B200ABDC19 /* ValueXProtocol.swift */; };
+		4D335C932C628F5600C720B5 /* EducationViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D335C922C628F5600C720B5 /* EducationViewUITests.swift */; };
 		4D34B3E52C3EECDE006F0D40 /* HKObject+ExternalUUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D34B3E42C3EECDE006F0D40 /* HKObject+ExternalUUID.swift */; };
 		4D34B3ED2C404C61006F0D40 /* VitalsUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D34B3EC2C404C61006F0D40 /* VitalsUnit.swift */; };
 		4D34B3F02C40518C006F0D40 /* HKSampleGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D34B3EF2C40518C006F0D40 /* HKSampleGraph.swift */; };
@@ -231,6 +232,7 @@
 		4D2D1D672C2C82A200ABDC19 /* FHIRPeriod+GetDates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FHIRPeriod+GetDates.swift"; sourceTree = "<group>"; };
 		4D2D1D752C2CC8B200ABDC19 /* ValueXProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueXProtocol.swift; sourceTree = "<group>"; };
 		4D2D1D772C2CD32C00ABDC19 /* ObservationValueProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationValueProtocol.swift; sourceTree = "<group>"; };
+		4D335C922C628F5600C720B5 /* EducationViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationViewUITests.swift; sourceTree = "<group>"; };
 		4D34B3E42C3EECDE006F0D40 /* HKObject+ExternalUUID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HKObject+ExternalUUID.swift"; sourceTree = "<group>"; };
 		4D34B3EC2C404C61006F0D40 /* VitalsUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalsUnit.swift; sourceTree = "<group>"; };
 		4D34B3EF2C40518C006F0D40 /* HKSampleGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKSampleGraph.swift; sourceTree = "<group>"; };
@@ -914,6 +916,7 @@
 				4D8AD2E02C4B5D1600CB4F3E /* HeartHealthUITests.swift */,
 				4D8402762C4EE51F00817495 /* AddMeasurementUITests.swift */,
 				4D73A5232C58505100CCEC46 /* MedicationsUITests.swift */,
+				4D335C922C628F5600C720B5 /* EducationViewUITests.swift */,
 			);
 			path = ENGAGEHFUITests;
 			sourceTree = "<group>";
@@ -1275,6 +1278,7 @@
 				4D73A5242C58505100CCEC46 /* MedicationsUITests.swift in Sources */,
 				4D84027A2C4EE56000817495 /* XCUIApplication+GoTo.swift in Sources */,
 				4D4AA0A52BC5E43E00676489 /* OnboardingUITests.swift in Sources */,
+				4D335C932C628F5600C720B5 /* EducationViewUITests.swift in Sources */,
 				4DD823062C17FF79004DC599 /* NotificationsUITests.swift in Sources */,
 				2F4E237E2989A2FE0013F3D9 /* LaunchTests.swift in Sources */,
 				4DB025CA2BBE3A59002D2545 /* HomeViewUITests.swift in Sources */,
