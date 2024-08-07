@@ -33,18 +33,6 @@ enum MessageAction: Equatable, CustomStringConvertible {
 
 
 extension MessageAction {
-    var encodingString: String? {
-        switch self {
-        case .playVideo(let sectionId, let videoId): "videoSections/\(sectionId)/\(videoId)"
-        case .showMedications: "medications"
-        case .completeQuestionnaire(let questionnaireId): "questionnaires/\(questionnaireId)"
-        case .showHealthSummary: "healthSummary"
-        case .showHeartHealth(let vitalsType): vitalsType.collectionReference?.collectionID
-        case .unknown: nil
-        }
-    }
-    
-    
     init(from actionString: String?) throws {
         guard let actionString else {
             self = .unknown

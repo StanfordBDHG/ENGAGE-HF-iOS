@@ -60,38 +60,41 @@ struct RecentVitalsSection: View {
     
     
     var body: some View {
-        Section {
-            VStack {
-                HStack {
+        Section(
+            content: {
+                VStack {
+                    HStack {
+                        VitalsCard(
+                            type: "Weight",
+                            units: massUnits.unitString,
+                            measurement: weightMeasurement
+                        )
+                        VitalsCard(
+                            type: "Heart Rate",
+                            units: "BPM",
+                            measurement: heartRateMeasurement
+                        )
+                    }
                     VitalsCard(
-                        type: "Weight",
-                        units: massUnits.unitString,
-                        measurement: weightMeasurement
-                    )
-                    VitalsCard(
-                        type: "Heart Rate",
-                        units: "BPM",
-                        measurement: heartRateMeasurement
+                        type: "Blood Pressure",
+                        units: "mmHg",
+                        measurement: bloodPressureMeasurement
                     )
                 }
-                VitalsCard(
-                    type: "Blood Pressure",
-                    units: "mmHg",
-                    measurement: bloodPressureMeasurement
-                )
-            }
-        } header: {
-            HStack {
-                Text("Recent Vitals")
-                    .studyApplicationHeaderStyle()
-                Spacer()
-                if !measurements.pendingMeasurements.isEmpty {
-                    Button("Review", systemImage: "heart.text.square") {
-                        measurements.shouldPresentMeasurements = true
+            },
+            header: {
+                HStack {
+                    Text("Recent Vitals")
+                        .studyApplicationHeaderStyle()
+                    Spacer()
+                    if !measurements.pendingMeasurements.isEmpty {
+                        Button("Review", systemImage: "heart.text.square") {
+                            measurements.shouldPresentMeasurements = true
+                        }
                     }
                 }
             }
-        }
+        )
     }
     
     

@@ -28,7 +28,7 @@ struct Dashboard: View {
                     // Most recent vitals
                     RecentVitalsSection()
                 }
-                .padding()
+                    .padding()
             }
                 .background(Color(.systemGroupedBackground))
                 .navigationTitle("Home")

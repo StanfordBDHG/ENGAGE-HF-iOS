@@ -81,7 +81,6 @@
 		4D4AA0A52BC5E43E00676489 /* OnboardingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4AA0A42BC5E43E00676489 /* OnboardingUITests.swift */; };
 		4D734AC02C5C58CA002D6D2F /* View+asButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D734ABF2C5C58C9002D6D2F /* View+asButton.swift */; };
 		4D734AC32C5D7C81002D6D2F /* MessageAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D734AC22C5D7C81002D6D2F /* MessageAction.swift */; };
-		4D734AC52C5D7D00002D6D2F /* MessageUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D734AC42C5D7D00002D6D2F /* MessageUnitTests.swift */; };
 		4D734AC82C5D8AF3002D6D2F /* MessageActionUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D734AC72C5D8AF3002D6D2F /* MessageActionUnitTests.swift */; };
 		4D73A50E2C5807B500CCEC46 /* CapsuleStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D73A50D2C5807B500CCEC46 /* CapsuleStack.swift */; };
 		4D73A5112C58088E00CCEC46 /* PositionedCurrentLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D73A5102C58088E00CCEC46 /* PositionedCurrentLabel.swift */; };
@@ -133,7 +132,7 @@
 		4D9D43602C597E09000062D3 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9D435F2C597E09000062D3 /* Video.swift */; };
 		4D9D43652C5989B3000062D3 /* VideoCollectionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9D43642C5989B3000062D3 /* VideoCollectionContext.swift */; };
 		4D9D43672C59A88C000062D3 /* ExpandableListCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9D43662C59A88C000062D3 /* ExpandableListCard.swift */; };
-		4D9D43742C59BDB2000062D3 /* NavigationHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9D43732C59BDB2000062D3 /* NavigationHelpers.swift */; };
+		4D9D43742C59BDB2000062D3 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		4DA20B4B2C249E7E00715AA2 /* VitalsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA20B4A2C249E7E00715AA2 /* VitalsManager.swift */; };
 		4DA20B542C25F8A600715AA2 /* FHIRDateTime+DateComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA20B532C25F8A600715AA2 /* FHIRDateTime+DateComponents.swift */; };
 		4DA20B5A2C25FEDE00715AA2 /* Decimal+IntConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA20B592C25FEDE00715AA2 /* Decimal+IntConversion.swift */; };
@@ -264,7 +263,6 @@
 		4D4AA0A42BC5E43E00676489 /* OnboardingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingUITests.swift; sourceTree = "<group>"; };
 		4D734ABF2C5C58C9002D6D2F /* View+asButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+asButton.swift"; sourceTree = "<group>"; };
 		4D734AC22C5D7C81002D6D2F /* MessageAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageAction.swift; sourceTree = "<group>"; };
-		4D734AC42C5D7D00002D6D2F /* MessageUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageUnitTests.swift; sourceTree = "<group>"; };
 		4D734AC72C5D8AF3002D6D2F /* MessageActionUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageActionUnitTests.swift; sourceTree = "<group>"; };
 		4D73A50D2C5807B500CCEC46 /* CapsuleStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleStack.swift; sourceTree = "<group>"; };
 		4D73A5102C58088E00CCEC46 /* PositionedCurrentLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionedCurrentLabel.swift; sourceTree = "<group>"; };
@@ -907,7 +905,6 @@
 			children = (
 				653A256128338800005D4D48 /* VitalsGraphAggregationUnitTests.swift */,
 				4D8AD2DC2C4B4B8C00CB4F3E /* HKSampleGraphUnitTests.swift */,
-				4D734AC42C5D7D00002D6D2F /* MessageUnitTests.swift */,
 				4D734AC72C5D8AF3002D6D2F /* MessageActionUnitTests.swift */,
 			);
 			path = ENGAGEHFTests;
@@ -1204,7 +1201,6 @@
 				4D92B9F82C3C901500ABCED7 /* SymptomsGraphSection.swift in Sources */,
 				2FF53D8D2A8729D600042B76 /* ENGAGEHFStandard.swift in Sources */,
 				4DDFC78A2BFC1312002B07A1 /* MessageRow.swift in Sources */,
-				4D8402BB2C52C2F000817495 /* MedicationRowLabel.swift in Sources */,
 				4D8402722C4EC0D400817495 /* MeasurementListHeader.swift in Sources */,
 				4D92B9F22C3C8D1E00ABCED7 /* MeasurementListSection.swift in Sources */,
 				4D34B3ED2C404C61006F0D40 /* VitalsUnit.swift in Sources */,
@@ -1242,7 +1238,7 @@
 				4D4072762C45FF5B007C5621 /* GestureValue.swift in Sources */,
 				4DA20B5A2C25FEDE00715AA2 /* Decimal+IntConversion.swift in Sources */,
 				4D92B9F42C3C8DF900ABCED7 /* MeasurementListRow.swift in Sources */,
-				4D9D43742C59BDB2000062D3 /* NavigationHelpers.swift in Sources */,
+				4D9D43742C59BDB2000062D3 /* (null) in Sources */,
 				4D4072892C46FC98007C5621 /* AggregatedMeasurement.swift in Sources */,
 				4D34B3E52C3EECDE006F0D40 /* HKObject+ExternalUUID.swift in Sources */,
 				A9FE7AD02AA39BAB0077B045 /* AccountSheet.swift in Sources */,
@@ -1279,7 +1275,6 @@
 			files = (
 				653A256228338800005D4D48 /* VitalsGraphAggregationUnitTests.swift in Sources */,
 				4D734AC82C5D8AF3002D6D2F /* MessageActionUnitTests.swift in Sources */,
-				4D734AC52C5D7D00002D6D2F /* MessageUnitTests.swift in Sources */,
 				4D8AD2DD2C4B4B8C00CB4F3E /* HKSampleGraphUnitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
