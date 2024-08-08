@@ -45,20 +45,32 @@ struct MessageRow: View {
     @Environment(MessageManager.self) private var messageManager
     
     
-    private var actionImage: Image {
+    private var actionImage: some View {
         switch message.action {
         case .playVideo:
             Image(systemName: "play.circle")
+                .cardSymbolStyle()
+                .accessibilityLabel("Play Button Symbol")
         case .showMedications:
             Image(systemName: "pills")
+                .cardSymbolStyle()
+                .accessibilityLabel("Medications Symbol")
         case .completeQuestionnaire:
             Image(systemName: "pencil.and.list.clipboard")
+                .cardSymbolStyle()
+                .accessibilityLabel("Questionnaire Symbol")
         case .showHealthSummary:
             Image(systemName: "doc.on.clipboard")
+                .cardSymbolStyle()
+                .accessibilityLabel("Health Summary Symbol")
         case .showHeartHealth:
             Image(systemName: "heart.text.square")
+                .cardSymbolStyle()
+                .accessibilityLabel("Heart Health Symbol")
         case .unknown:
             Image(systemName: "envelope")
+                .cardSymbolStyle()
+                .accessibilityLabel("Unknown Action Symbol")
         }
     }
     
@@ -66,7 +78,6 @@ struct MessageRow: View {
     var body: some View {
         HStack(alignment: .top, spacing: 16) {
             actionImage
-                .cardSymbolStyle(accessibilityIdentifier: "Message Symbol")
                 .foregroundStyle(.accent)
                 .frame(width: 38)
             VStack(alignment: .leading, spacing: spacing) {

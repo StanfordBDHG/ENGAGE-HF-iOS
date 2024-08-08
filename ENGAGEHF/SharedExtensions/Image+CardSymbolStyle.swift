@@ -11,11 +11,11 @@ import SwiftUI
 
 
 extension Image {
-    @ViewBuilder func cardSymbolStyle(accessibilityIdentifier: String) -> some View {
+    @ViewBuilder
+    func cardSymbolStyle() -> some View {
         self
             .symbolRenderingMode(.hierarchical)
             .resizable()
             .scaledToFit()
-            .accessibilityIdentifier(accessibilityIdentifier)
     }
 }

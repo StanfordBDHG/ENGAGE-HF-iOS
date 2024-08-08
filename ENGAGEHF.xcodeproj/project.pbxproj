@@ -80,6 +80,8 @@
 		4D49AB022BC9D50400C77310 /* SpeziBluetooth in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49AB012BC9D50400C77310 /* SpeziBluetooth */; };
 		4D4AA0A52BC5E43E00676489 /* OnboardingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4AA0A42BC5E43E00676489 /* OnboardingUITests.swift */; };
 		4D70CF652C653BE100EB4CC6 /* Image+CardSymbolStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D70CF642C653BE100EB4CC6 /* Image+CardSymbolStyle.swift */; };
+		4D70CF6A2C65423D00EB4CC6 /* GraphSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D70CF692C65423D00EB4CC6 /* GraphSelection.swift */; };
+		4D70CF6C2C65425F00EB4CC6 /* VitalsType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D70CF6B2C65425F00EB4CC6 /* VitalsType.swift */; };
 		4D734AC02C5C58CA002D6D2F /* View+asButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D734ABF2C5C58C9002D6D2F /* View+asButton.swift */; };
 		4D734AC32C5D7C81002D6D2F /* MessageAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D734AC22C5D7C81002D6D2F /* MessageAction.swift */; };
 		4D734AC82C5D8AF3002D6D2F /* MessageActionUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D734AC72C5D8AF3002D6D2F /* MessageActionUnitTests.swift */; };
@@ -158,7 +160,7 @@
 		4DDFC78A2BFC1312002B07A1 /* MessageRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC7892BFC1312002B07A1 /* MessageRow.swift */; };
 		4DE8B8D12C614377006E3E63 /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE8B8D02C614377006E3E63 /* NavigationManager.swift */; };
 		4DE8B8DB2C61A329006E3E63 /* ScrollableText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE8B8DA2C61A328006E3E63 /* ScrollableText.swift */; };
-		4DF506192C2E1AAE003E7EFB /* SelectionTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF506182C2E1AAD003E7EFB /* SelectionTypes.swift */; };
+		4DF506192C2E1AAE003E7EFB /* SymptomsType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF506182C2E1AAD003E7EFB /* SymptomsType.swift */; };
 		4DF506212C2E1C89003E7EFB /* SymptomScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF506202C2E1C89003E7EFB /* SymptomScore.swift */; };
 		4DF506282C2F2598003E7EFB /* VitalsContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF506272C2F2598003E7EFB /* VitalsContentView.swift */; };
 		4DF5062A2C2F260E003E7EFB /* SymptomsContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF506292C2F260E003E7EFB /* SymptomsContentView.swift */; };
@@ -263,6 +265,8 @@
 		4D40A4D12C5B0AB2003DC813 /* VideoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoList.swift; sourceTree = "<group>"; };
 		4D4AA0A42BC5E43E00676489 /* OnboardingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingUITests.swift; sourceTree = "<group>"; };
 		4D70CF642C653BE100EB4CC6 /* Image+CardSymbolStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+CardSymbolStyle.swift"; sourceTree = "<group>"; };
+		4D70CF692C65423D00EB4CC6 /* GraphSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphSelection.swift; sourceTree = "<group>"; };
+		4D70CF6B2C65425F00EB4CC6 /* VitalsType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalsType.swift; sourceTree = "<group>"; };
 		4D734ABF2C5C58C9002D6D2F /* View+asButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+asButton.swift"; sourceTree = "<group>"; };
 		4D734AC22C5D7C81002D6D2F /* MessageAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageAction.swift; sourceTree = "<group>"; };
 		4D734AC72C5D8AF3002D6D2F /* MessageActionUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageActionUnitTests.swift; sourceTree = "<group>"; };
@@ -338,7 +342,7 @@
 		4DDFC7892BFC1312002B07A1 /* MessageRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRow.swift; sourceTree = "<group>"; };
 		4DE8B8D02C614377006E3E63 /* NavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
 		4DE8B8DA2C61A328006E3E63 /* ScrollableText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableText.swift; sourceTree = "<group>"; };
-		4DF506182C2E1AAD003E7EFB /* SelectionTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionTypes.swift; sourceTree = "<group>"; };
+		4DF506182C2E1AAD003E7EFB /* SymptomsType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomsType.swift; sourceTree = "<group>"; };
 		4DF506202C2E1C89003E7EFB /* SymptomScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomScore.swift; sourceTree = "<group>"; };
 		4DF506272C2F2598003E7EFB /* VitalsContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalsContentView.swift; sourceTree = "<group>"; };
 		4DF506292C2F260E003E7EFB /* SymptomsContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomsContentView.swift; sourceTree = "<group>"; };
@@ -591,6 +595,16 @@
 			path = VideoPlayers;
 			sourceTree = "<group>";
 		};
+		4D70CF672C65422D00EB4CC6 /* SelectionTypes */ = {
+			isa = PBXGroup;
+			children = (
+				4DF506182C2E1AAD003E7EFB /* SymptomsType.swift */,
+				4D70CF692C65423D00EB4CC6 /* GraphSelection.swift */,
+				4D70CF6B2C65425F00EB4CC6 /* VitalsType.swift */,
+			);
+			path = SelectionTypes;
+			sourceTree = "<group>";
+		};
 		4D73A50A2C58074E00CCEC46 /* ScheduleSummary */ = {
 			isa = PBXGroup;
 			children = (
@@ -801,6 +815,7 @@
 		4DDFC7612BF34FAC002B07A1 /* HeartHealth */ = {
 			isa = PBXGroup;
 			children = (
+				4D70CF672C65422D00EB4CC6 /* SelectionTypes */,
 				4D84026E2C4EBE6600817495 /* AddMeasurement */,
 				4D34B4032C41C8D4006F0D40 /* Shared */,
 				4D92B9FC2C3C91CB00ABCED7 /* Vitals */,
@@ -808,7 +823,6 @@
 				4DDFC7682BF35113002B07A1 /* HeartHealth.swift */,
 				4DC0F6792C34AD620025AB13 /* VitalsList.swift */,
 				4D2D1D5F2C2B859C00ABDC19 /* GraphPicker.swift */,
-				4DF506182C2E1AAD003E7EFB /* SelectionTypes.swift */,
 				4D34B3F52C4065A4006F0D40 /* HeartHealthError.swift */,
 			);
 			path = HeartHealth;
@@ -1150,6 +1164,7 @@
 				4D73A51B2C581C8F00CCEC46 /* TargetLabelSizeKey.swift in Sources */,
 				4D0F389E2C09779100DA12F7 /* ShowMoreButton.swift in Sources */,
 				4DDFC7652BF350C2002B07A1 /* Education.swift in Sources */,
+				4D70CF6A2C65423D00EB4CC6 /* GraphSelection.swift in Sources */,
 				4DDFC7692BF35113002B07A1 /* HeartHealth.swift in Sources */,
 				4D92BA072C3CAE5300ABCED7 /* VitalListMeasurement.swift in Sources */,
 				4D40A4B12C5A9CD1003DC813 /* WebView.swift in Sources */,
@@ -1157,7 +1172,7 @@
 				4D4072932C4841D4007C5621 /* VitalsGraph+DefaultStyling.swift in Sources */,
 				4D8402932C5067F000817495 /* MedicationDetails.swift in Sources */,
 				2FE5DCB129EE6107004B9AB4 /* AccountOnboarding.swift in Sources */,
-				4DF506192C2E1AAE003E7EFB /* SelectionTypes.swift in Sources */,
+				4DF506192C2E1AAE003E7EFB /* SymptomsType.swift in Sources */,
 				4DF5062F2C2F2B00003E7EFB /* SymptomsPicker.swift in Sources */,
 				4D8AD2C52C4A180300CB4F3E /* MeasurementSeries.swift in Sources */,
 				4D8402C52C52C67100817495 /* RecommendationSummary.swift in Sources */,
@@ -1237,6 +1252,7 @@
 				4D9D43672C59A88C000062D3 /* ExpandableListCard.swift in Sources */,
 				4D40A4BC2C5AB03E003DC813 /* ThumbnailView.swift in Sources */,
 				4D8AD2CD2C4ACFB700CB4F3E /* DateInterval+asAdjustedRange.swift in Sources */,
+				4D70CF6C2C65425F00EB4CC6 /* VitalsType.swift in Sources */,
 				4DE8B8DB2C61A329006E3E63 /* ScrollableText.swift in Sources */,
 				A96C56BB2C0DFFCE00D6A50B /* InvitationCodeModule.swift in Sources */,
 				4D4072762C45FF5B007C5621 /* GestureValue.swift in Sources */,
