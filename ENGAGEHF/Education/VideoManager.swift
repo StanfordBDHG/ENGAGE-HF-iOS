@@ -15,13 +15,16 @@ import SpeziFirebaseConfiguration
 
 
 @Observable
-class VideoManager: Module, EnvironmentAccessible {
+final class VideoManager: Module, EnvironmentAccessible, DefaultInitializable {
     @ObservationIgnored @Dependency private var configureFirebaseApp: ConfigureFirebaseApp
     
     private var authStateDidChangeListenerHandle: AuthStateDidChangeListenerHandle?
     private let logger = Logger(subsystem: "ENGAGEHF", category: "VideosManager")
     
     var videoCollections: [VideoCollection] = []
+    
+    
+    init() {}
     
     
     func configure() {

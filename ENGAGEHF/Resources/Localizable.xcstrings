@@ -163,6 +163,9 @@
         }
       }
     },
+    "Complete Quesionnaire Button" : {
+
+    },
     "CONSENT_LOADING_ERROR" : {
       "localizations" : {
         "en" : {
@@ -474,6 +477,9 @@
         }
       }
     },
+    "Play Video Button" : {
+
+    },
     "Please enter your invitation code to join the ENGAGE-HF study." : {
 
     },
@@ -495,13 +501,22 @@
     "Section Expander" : {
 
     },
+    "See Health Summary Button" : {
+
+    },
     "Series" : {
+
+    },
+    "Show Heart Health Button" : {
 
     },
     "Show less" : {
 
     },
     "Show Measurements" : {
+
+    },
+    "Show Medications Button" : {
 
     },
     "Show more" : {
@@ -622,6 +637,9 @@
 
     },
     "Unable to delete measurement, check network connection." : {
+
+    },
+    "Unknown Action Button" : {
 
     },
     "Unknown Thumbnail" : {

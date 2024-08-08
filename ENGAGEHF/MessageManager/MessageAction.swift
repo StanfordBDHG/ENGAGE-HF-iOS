@@ -10,29 +10,43 @@ import FirebaseFirestore
 import Foundation
 
 
-enum MessageAction: Equatable, CustomStringConvertible {
+enum MessageAction: Equatable {
     case playVideo(sectionId: String, videoId: String)
     case showMedications
     case completeQuestionnaire(questionnaireId: String)
     case showHealthSummary
-    case showHeartHealth(vitalsType: GraphSelection)
+    case showHeartHealth
     case unknown
-    
-    
+}
+
+
+extension MessageAction: CustomStringConvertible {
     var description: String {
         switch self {
-        case .playVideo: "Play video"
-        case .showMedications: "See medications"
-        case .completeQuestionnaire: "See questionnaire"
-        case .showHealthSummary: "See health summary"
-        case .showHeartHealth: "See heart health"
-        case .unknown: "No action"
+        case .playVideo: "Play Video"
+        case .showMedications: "See Medications"
+        case .completeQuestionnaire: "Start Questionnaire"
+        case .showHealthSummary: "See Health Summary"
+        case .showHeartHealth: "See Heart Health"
+        case .unknown: ""
         }
     }
 }
 
 
 extension MessageAction {
+    var encodingString: String? {
+        switch self {
+        case let .playVideo(sectionId, videoId): "videoSections/\(sectionId)/\(videoId)"
+        case .showMedications: "medications"
+        case .completeQuestionnaire(let questionnaireId): "questionnaires/\(questionnaireId)"
+        case .showHealthSummary: "healthSummary"
+        case .showHeartHealth: "observations"
+        case .unknown: nil
+        }
+    }
+    
+    
     init(from actionString: String?) throws {
         guard let actionString else {
             self = .unknown
@@ -41,7 +55,6 @@ extension MessageAction {
         
         let videoRegex = /^videoSections\/(?<sectionId>\w+)\/videos\/(?<videoId>\w+)$/
         let questionnaireRegex = /^questionnaires\/(?<questionnaireId>\w+)$/
-        let heartHealthCollectionRefs = (try? Firestore.heartHealthCollectionReferences) ?? []
         
         switch actionString {
         case let videoInfoString where videoInfoString.contains(videoRegex):
@@ -60,14 +73,8 @@ extension MessageAction {
             self = .showMedications
         case "healthSummary":
             self = .showHealthSummary
-        case let heartHealthCollectionID where heartHealthCollectionRefs.map(\.collectionID).contains(heartHealthCollectionID):
-            let matchingReference = heartHealthCollectionRefs.first(where: { $0.collectionID == heartHealthCollectionID })
-            
-            guard let vitalsType = try? GraphSelection(collectionRef: matchingReference) else {
-                self = .unknown
-                return
-            }
-            self = .showHeartHealth(vitalsType: vitalsType)
+        case "observations":
+            self = .showHeartHealth
         default:
             self = .unknown
         }

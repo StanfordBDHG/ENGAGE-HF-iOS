@@ -13,9 +13,9 @@ import SwiftUI
 struct MessageRow: View {
     private struct XButton: View {
         @Environment(MessageManager.self) private var messageManager
-        @ScaledMetric private var labelSize: CGFloat = 9
         
         let message: Message
+        let labelSize: CGFloat
         
         
         var body: some View {
@@ -28,7 +28,7 @@ struct MessageRow: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: labelSize, height: labelSize)
-                        .foregroundStyle(.accent)
+                        .foregroundStyle(.secondary)
                         .accessibilityLabel("XButton")
                 }
             )
@@ -38,29 +38,97 @@ struct MessageRow: View {
     
     let message: Message
     
-    @ScaledMetric private var spacing: CGFloat = 5
-    @ScaledMetric private var typeFontSize: CGFloat = 12
-    @ScaledMetric private var titleFontSize: CGFloat = 15
+    @ScaledMetric private var spacing: CGFloat = 8
+    @ScaledMetric private var dismissLabelSize: CGFloat = 10
+    
+    @Environment(NavigationManager.self) private var navigationManager
+    @Environment(MessageManager.self) private var messageManager
+    
+    
+    private var actionImage: some View {
+        switch message.action {
+        case .playVideo:
+            Image(systemName: "play.circle")
+                .symbolRenderingMode(.hierarchical)
+                .resizable()
+                .scaledToFit()
+                .accessibilityLabel("Play Video Button")
+        case .showMedications:
+            Image(systemName: "pills")
+                .symbolRenderingMode(.hierarchical)
+                .resizable()
+                .scaledToFit()
+                .accessibilityLabel("Show Medications Button")
+        case .completeQuestionnaire:
+            Image(systemName: "pencil.and.list.clipboard")
+                .symbolRenderingMode(.hierarchical)
+                .resizable()
+                .scaledToFit()
+                .accessibilityLabel("Complete Quesionnaire Button")
+        case .showHealthSummary:
+            Image(systemName: "doc.on.clipboard")
+                .symbolRenderingMode(.hierarchical)
+                .resizable()
+                .scaledToFit()
+                .accessibilityLabel("See Health Summary Button")
+        case .showHeartHealth:
+            Image(systemName: "heart.text.square")
+                .symbolRenderingMode(.hierarchical)
+                .resizable()
+                .scaledToFit()
+                .accessibilityLabel("Show Heart Health Button")
+        case .unknown:
+            Image(systemName: "envelope")
+                .symbolRenderingMode(.hierarchical)
+                .resizable()
+                .scaledToFit()
+                .accessibilityLabel("Unknown Action Button")
+        }
+    }
     
     
     var body: some View {
-        VStack(alignment: .leading, spacing: spacing) {
-            HStack {
-                Text(message.title)
-                    .font(.system(size: typeFontSize, weight: .bold))
-                    .foregroundStyle(.secondary)
-                Spacer()
-                if message.isDismissible {
-                    XButton(message: message)
+        HStack(alignment: .top, spacing: 16) {
+            actionImage
+                .foregroundStyle(.accent)
+                .frame(width: 38)
+            VStack(alignment: .leading, spacing: spacing) {
+                HStack(alignment: .top) {
+                    HStack(alignment: .center, spacing: 8) {
+                        Text(message.title)
+                            .bold()
+                    }
+                        .font(.subheadline)
+                    Spacer()
+                    if message.isDismissible {
+                        XButton(message: message, labelSize: dismissLabelSize)
+                    }
+                }
+                if let description = message.description {
+                    ExpandableText(text: description, lineLimit: 3)
+                        .font(.footnote)
+                }
+                if message.action != .unknown {
+                    Text(message.action.description)
+                        .padding(.vertical, 4)
+                        .padding(.horizontal, 8)
+                        .background {
+                            Capsule()
+                                .fill(.accent.opacity(0.7))
+                        }
+                        .font(.caption.weight(.heavy))
+                        .foregroundStyle(.white)
                 }
             }
-            Divider()
-                .frame(maxWidth: .infinity)
-            ExpandableText(text: message.description ?? "", lineLimit: 3)
-                .font(.footnote)
         }
+            .padding(2)
             .asButton {
-                print("Perform \(message.action)")
+                if message.action != .unknown {
+                    Task {
+                        let didPerformAction = await navigationManager.execute(message.action)
+                        await messageManager.dismiss(message, didPerformAction: didPerformAction)
+                    }
+                }
             }
     }
 }
@@ -115,6 +183,7 @@ struct MessageRow: View {
     return MessageRowPreviewWrapper()
         .previewWith(standard: ENGAGEHFStandard()) {
             MessageManager()
+            NavigationManager()
         }
 }
 #endif

@@ -17,10 +17,10 @@ import SpeziFirebaseConfiguration
 
 /// Message manager
 ///
-/// Maintains a list of Notifications associated with the current user in firebase
-/// On configuration of the app, adds a snapshot listener to the user's notification collection
+/// Maintains a list of Messages assigned to the current user in firebase
+/// On sign-in, adds a snapshot listener to the user's messages collection
 @Observable
-class MessageManager: Module, EnvironmentAccessible {
+final class MessageManager: Module, EnvironmentAccessible, DefaultInitializable {
     @ObservationIgnored @Dependency private var configureFirebaseApp: ConfigureFirebaseApp
     @ObservationIgnored @StandardActor var standard: ENGAGEHFStandard
     
@@ -29,6 +29,9 @@ class MessageManager: Module, EnvironmentAccessible {
     private let logger = Logger(subsystem: "ENGAGEHF", category: "MessageManager")
     
     var messages: [Message] = []
+    
+    
+    init() {}
     
     
     func configure() {
@@ -75,6 +78,8 @@ class MessageManager: Module, EnvironmentAccessible {
         // Set a snapshot listener on the query for valid notifications
         self.snapshotListener = messagesCollectionReference
             .addSnapshotListener { querySnapshot, error in
+                self.logger.debug("Fetching most recent messages...")
+                
                 guard let documentRefs = querySnapshot?.documents else {
                     self.logger.error("Error fetching documents: \(error)")
                     return
@@ -93,7 +98,7 @@ class MessageManager: Module, EnvironmentAccessible {
                     // the only way to filter out dismissed messages is to do so on the client
                     .filter { $0.completionDate == nil }
                 
-                self.logger.debug("Messages updated")
+                self.logger.debug("Messages updated.")
             }
     }
     
@@ -147,7 +152,7 @@ extension MessageManager {
     /// Used for testing in previews
     func addMockMessage(dismissible: Bool = true, action: MessageAction = .showHealthSummary) {
         let mockMessage = Message(
-            title: "Medication Change",
+            title: "Medication Change With Long, Multi-line Title",
             description: "Your dose of XXX was changed. You can review medication information in the Education Page.",
             action: action,
             isDismissible: dismissible,
@@ -213,12 +218,13 @@ extension MessageManager {
                 description: "Your dose of XXX was changed. You can review medication information in the Education Page.",
                 action: .showMedications,
                 isDismissible: true,
-                dueDate: Date().addingTimeInterval(60 * 60 * 24 * 3),  // Due three days from now
-                completionDate: nil
+                dueDate: Date().addingTimeInterval(60 * 60 * 24 * Double(idx)),  // Due 1, 2, or 3 days from now
+                completionDate: nil,
+                id: nil
             )
             
             do {
-                try Firestore.messagesCollectionReference.addDocument(from: newMessage)
+                try await standard.add(message: newMessage)
             } catch {
                 self.logger.error("Unable to load notifications to firestore: \(error)")
             }

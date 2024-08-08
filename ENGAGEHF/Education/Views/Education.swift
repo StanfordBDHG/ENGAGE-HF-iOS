@@ -19,7 +19,7 @@ struct Education: View {
     var body: some View {
         @Bindable var navigationManager = navigationManager
         
-        NavigationStack(path: $navigationManager.path) {
+        NavigationStack(path: $navigationManager.educationPath) {
             VideoList(videoCollections: videoManager.videoCollections)
                 .accessibilityIdentifier("Video List")
                 .navigationTitle("Education")
