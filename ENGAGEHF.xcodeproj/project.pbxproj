@@ -79,6 +79,7 @@
 		4D40A4D22C5B0AB2003DC813 /* VideoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D40A4D12C5B0AB2003DC813 /* VideoList.swift */; };
 		4D49AB022BC9D50400C77310 /* SpeziBluetooth in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49AB012BC9D50400C77310 /* SpeziBluetooth */; };
 		4D4AA0A52BC5E43E00676489 /* OnboardingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4AA0A42BC5E43E00676489 /* OnboardingUITests.swift */; };
+		4D70CF652C653BE100EB4CC6 /* Image+CardSymbolStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D70CF642C653BE100EB4CC6 /* Image+CardSymbolStyle.swift */; };
 		4D734AC02C5C58CA002D6D2F /* View+asButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D734ABF2C5C58C9002D6D2F /* View+asButton.swift */; };
 		4D734AC32C5D7C81002D6D2F /* MessageAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D734AC22C5D7C81002D6D2F /* MessageAction.swift */; };
 		4D734AC82C5D8AF3002D6D2F /* MessageActionUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D734AC72C5D8AF3002D6D2F /* MessageActionUnitTests.swift */; };
@@ -261,6 +262,7 @@
 		4D40A4C92C5AF34C003DC813 /* EducationalVideoCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationalVideoCard.swift; sourceTree = "<group>"; };
 		4D40A4D12C5B0AB2003DC813 /* VideoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoList.swift; sourceTree = "<group>"; };
 		4D4AA0A42BC5E43E00676489 /* OnboardingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingUITests.swift; sourceTree = "<group>"; };
+		4D70CF642C653BE100EB4CC6 /* Image+CardSymbolStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+CardSymbolStyle.swift"; sourceTree = "<group>"; };
 		4D734ABF2C5C58C9002D6D2F /* View+asButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+asButton.swift"; sourceTree = "<group>"; };
 		4D734AC22C5D7C81002D6D2F /* MessageAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageAction.swift; sourceTree = "<group>"; };
 		4D734AC72C5D8AF3002D6D2F /* MessageActionUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageActionUnitTests.swift; sourceTree = "<group>"; };
@@ -726,6 +728,7 @@
 			children = (
 				4D9D43552C596D09000062D3 /* KeyedDecodingContainer+DecodeLocalizedString.swift */,
 				4D734ABF2C5C58C9002D6D2F /* View+asButton.swift */,
+				4D70CF642C653BE100EB4CC6 /* Image+CardSymbolStyle.swift */,
 			);
 			path = SharedExtensions;
 			sourceTree = "<group>";
@@ -1194,6 +1197,7 @@
 				4D8402C92C52F7C100817495 /* TextualDosageSummary.swift in Sources */,
 				4D8402812C4F067D00817495 /* FieldDetails.swift in Sources */,
 				4DDFC7872BFBFDDD002B07A1 /* MessageManager.swift in Sources */,
+				4D70CF652C653BE100EB4CC6 /* Image+CardSymbolStyle.swift in Sources */,
 				2FE5DC3729EDD7CA004B9AB4 /* OnboardingFlow.swift in Sources */,
 				4D4072972C484716007C5621 /* VitalsGraph+ChartContent.swift in Sources */,
 				4DF506282C2F2598003E7EFB /* VitalsContentView.swift in Sources */,

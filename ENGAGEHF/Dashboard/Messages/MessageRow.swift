@@ -45,44 +45,20 @@ struct MessageRow: View {
     @Environment(MessageManager.self) private var messageManager
     
     
-    private var actionImage: some View {
+    private var actionImage: Image {
         switch message.action {
         case .playVideo:
             Image(systemName: "play.circle")
-                .symbolRenderingMode(.hierarchical)
-                .resizable()
-                .scaledToFit()
-                .accessibilityLabel("Play Video Button")
         case .showMedications:
             Image(systemName: "pills")
-                .symbolRenderingMode(.hierarchical)
-                .resizable()
-                .scaledToFit()
-                .accessibilityLabel("Show Medications Button")
         case .completeQuestionnaire:
             Image(systemName: "pencil.and.list.clipboard")
-                .symbolRenderingMode(.hierarchical)
-                .resizable()
-                .scaledToFit()
-                .accessibilityLabel("Complete Quesionnaire Button")
         case .showHealthSummary:
             Image(systemName: "doc.on.clipboard")
-                .symbolRenderingMode(.hierarchical)
-                .resizable()
-                .scaledToFit()
-                .accessibilityLabel("See Health Summary Button")
         case .showHeartHealth:
             Image(systemName: "heart.text.square")
-                .symbolRenderingMode(.hierarchical)
-                .resizable()
-                .scaledToFit()
-                .accessibilityLabel("Show Heart Health Button")
         case .unknown:
             Image(systemName: "envelope")
-                .symbolRenderingMode(.hierarchical)
-                .resizable()
-                .scaledToFit()
-                .accessibilityLabel("Unknown Action Button")
         }
     }
     
@@ -90,6 +66,7 @@ struct MessageRow: View {
     var body: some View {
         HStack(alignment: .top, spacing: 16) {
             actionImage
+                .cardSymbolStyle(accessibilityIdentifier: "Message Symbol")
                 .foregroundStyle(.accent)
                 .frame(width: 38)
             VStack(alignment: .leading, spacing: spacing) {
