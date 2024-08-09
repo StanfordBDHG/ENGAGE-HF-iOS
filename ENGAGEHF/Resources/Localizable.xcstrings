@@ -234,6 +234,9 @@
     "Graph Selection" : {
 
     },
+    "Health Summary" : {
+
+    },
     "Heart Health" : {
 
     },
@@ -419,6 +422,9 @@
 
     },
     "List Without Sections" : {
+
+    },
+    "Loading Health Summary" : {
 
     },
     "Medication Label: %@" : {
