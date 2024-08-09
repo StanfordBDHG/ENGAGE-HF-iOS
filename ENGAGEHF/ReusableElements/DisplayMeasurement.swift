@@ -15,12 +15,21 @@ struct DisplayMeasurement: View {
     let type: String
     @ScaledMetric var quantityTextSize: CGFloat
     
+    private let emptyQuantity = "N/A"
+    
     
     var body: some View {
         HStack(alignment: .firstTextBaseline, spacing: 4) {
-            Text(quantity ?? "N/A")
-                .font(.system(size: quantityTextSize, weight: .semibold, design: .rounded))
-                .accessibilityLabel("\(type) Quantity: \(quantity ?? "N/A")")
+            if let quantity {
+                Text(quantity)
+                    .font(.system(size: quantityTextSize, weight: .semibold, design: .rounded))
+                    .accessibilityLabel("\(type) Quantity: \(quantity)")
+            } else {
+                Text(emptyQuantity)
+                    .font(.system(size: quantityTextSize * 0.8, weight: .regular, design: .rounded))
+                    .foregroundStyle(.secondary)
+                    .accessibilityLabel("\(type) Quantity: \(emptyQuantity)")
+            }
             if quantity != nil, let units {
                 Text(units)
                     .font(.title3)
