@@ -19,9 +19,9 @@ struct SymptomsContentView: View {
             .map { score in
                 VitalListMeasurement(
                     id: score.id,
-                    // TODO: If this is dizziness, format it as an integer and have no "%" unit in list or graph
-                    // TODO: Otherwise, keep the percentage and double formatting
-                    value: score[keyPath: symptomsType.symptomScoreKeyMap].map { String(format: "%.1f", $0) },
+                    value: score[keyPath: symptomsType.symptomScoreKeyMap].map {
+                        $0.asString(minimumFractionDigits: 0, maximumFractionDigits: 1)
+                    },
                     date: score.date
                 )
             }
@@ -39,7 +39,7 @@ struct SymptomsContentView: View {
         )
         MeasurementListSection(
             data: listDisplayData,
-            units: nil,
+            units: symptomsType == .dizziness ? nil : "%",
             type: .symptoms
         )
             .deleteDisabled(true)

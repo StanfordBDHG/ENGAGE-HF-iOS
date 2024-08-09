@@ -64,6 +64,7 @@ final class MessageManager: Module, EnvironmentAccessible, DefaultInitializable 
         
         // Set a snapshot listener on the query for valid notifications
         self.snapshotListener = messagesCollectionReference
+            .whereField("completionDate", isEqualTo: NSNull())
             .addSnapshotListener { querySnapshot, error in
                 self.logger.debug("Fetching most recent messages...")
                 

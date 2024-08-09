@@ -43,9 +43,10 @@ struct SymptomsGraphSection: View {
         VitalsGraphOptions(
             dateRange: resolution.getDateRange(endDate: .now),
             granularity: .day,
-            localizedUnitString: "%",
+            localizedUnitString: symptomsType == .dizziness ? "" : "%",
             selectionFormatter: { selected in
-                String(format: "%.1f", selected.first(where: { $0.0 == KnownVitalsSeries.symptomScore.rawValue })?.1 ?? "---")
+                let matchingSeriesValue = selected.first(where: { $0.0 == KnownVitalsSeries.symptomScore.rawValue })?.1
+                return matchingSeriesValue?.asString(minimumFractionDigits: 0, maximumFractionDigits: 1) ?? "---"
             }
         )
     }

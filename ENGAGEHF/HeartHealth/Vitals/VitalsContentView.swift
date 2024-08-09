@@ -49,7 +49,7 @@ struct VitalsContentView: View {
         return data
             .map { sample in
                 VitalListMeasurement(
-                    id: sample.externalUUID?.uuidString,
+                    id: sample.externalID,
                     value: getDisplayQuantity(sample: sample, type: vital),
                     date: sample.startDate
                 )
