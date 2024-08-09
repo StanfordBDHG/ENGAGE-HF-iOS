@@ -244,7 +244,7 @@ final class MedicationsUITests: XCTestCase {
         
         let fullGauge = app.otherElements["Dosage Gauge"]
         XCTAssert(fullGauge.waitForExistence(timeout: 0.5), "Full gauge not found.")
-        XCTAssertEqual(fullGauge.label, "Current", "Label not correct for full gauge.")
+        XCTAssertEqual(fullGauge.label, "Current, Target", "Label not correct for full gauge.")
         XCTAssertEqual(try XCTUnwrap(fullGauge.value) as? String, "100%", "Value not correct in full gauge.")
     }
 }

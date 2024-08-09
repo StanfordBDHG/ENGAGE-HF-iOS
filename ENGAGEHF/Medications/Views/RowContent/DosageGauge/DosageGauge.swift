@@ -49,7 +49,7 @@ struct DosageGauge: View {
                 .foregroundStyle(.secondary)
                 .font(.caption)
         }
-            .gaugeStyle(DosageGaugeStyle())
+            .gaugeStyle(DosageGaugeStyle(currentLabelAlignment: .leading))
     }
 }
 

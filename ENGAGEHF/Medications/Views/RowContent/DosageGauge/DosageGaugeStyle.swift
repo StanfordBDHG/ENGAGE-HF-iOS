@@ -9,12 +9,24 @@
 import SwiftUI
 
 
+enum CurrentLabelAlignment {
+    case leading
+    case dynamic
+}
+
+
 struct DosageGaugeStyle: GaugeStyle {
-    @ScaledMetric var gaugeHeight: CGFloat = 15
+    private let currentLabelAlignment: CurrentLabelAlignment
+    @ScaledMetric private var gaugeHeight: CGFloat = 15
     
     @State private var gaugeWidth: CGFloat = 0.0
     @State private var currentLabelSize: CGSize = .zero
     @State private var targetLabelSize: CGSize = .zero
+    
+    
+    init(currentLabelAlignment: CurrentLabelAlignment = .dynamic) {
+        self.currentLabelAlignment = currentLabelAlignment
+    }
     
     
     func makeBody(configuration: Configuration) -> some View {
@@ -29,22 +41,30 @@ struct DosageGaugeStyle: GaugeStyle {
                     gaugeWidth = $0.width
                 }
             
-            ZStack {
-                PositionedCurrentLabel(
-                    configuration: configuration,
-                    progressWidth: progressWidth,
-                    gaugeWidth: gaugeWidth,
-                    currentLabelSize: $currentLabelSize
-                )
-                
-                if progressWidth + currentLabelSize.width / 2 < gaugeWidth - targetLabelSize.width {
-                    HStack {
-                        Spacer()
-                        configuration.maximumValueLabel
-                            .readSize(TargetLabelSizeKey.self) {
-                                targetLabelSize = $0
-                            }
+            if currentLabelAlignment == .dynamic {
+                ZStack {
+                    PositionedCurrentLabel(
+                        configuration: configuration,
+                        progressWidth: progressWidth,
+                        gaugeWidth: gaugeWidth,
+                        currentLabelSize: $currentLabelSize
+                    )
+                    
+                    if progressWidth + currentLabelSize.width / 2 < gaugeWidth - targetLabelSize.width {
+                        HStack {
+                            Spacer()
+                            configuration.maximumValueLabel
+                                .readSize(TargetLabelSizeKey.self) {
+                                    targetLabelSize = $0
+                                }
+                        }
                     }
+                }
+            } else {
+                HStack(alignment: .firstTextBaseline) {
+                    configuration.currentValueLabel
+                    Spacer()
+                    configuration.maximumValueLabel
                 }
             }
         }
