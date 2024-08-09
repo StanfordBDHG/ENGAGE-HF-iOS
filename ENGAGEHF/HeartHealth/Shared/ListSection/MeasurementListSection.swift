@@ -12,7 +12,7 @@ import SwiftUI
 
 struct MeasurementListSection: View {
     var data: [VitalListMeasurement]
-    var units: String
+    var units: String?
     var type: GraphSelection
     
     @Environment(VitalsManager.self) private var vitalsManager

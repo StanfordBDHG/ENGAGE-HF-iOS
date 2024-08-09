@@ -39,7 +39,7 @@ final class MedicationsUITests: XCTestCase {
         
         sleep(1)
         
-        XCTAssert(app.staticTexts["Education"].waitForExistence(timeout: 0.5))
+        XCTAssert(app.buttons["Education"].exists)
     }
     
     func testEmptyMedications() throws {

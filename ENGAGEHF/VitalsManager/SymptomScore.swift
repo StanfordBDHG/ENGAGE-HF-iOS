@@ -16,10 +16,10 @@ import Foundation
 public struct SymptomScore: Identifiable, Equatable, Codable {
     @DocumentID public var id: String?
     public let date: Date
-    public let overallScore: Double
-    public let physicalLimitsScore: Double
-    public let socialLimitsScore: Double
-    public let qualityOfLifeScore: Double
-    public let specificSymptomsScore: Double
-    public let dizzinessScore: Double
+    public let overallScore: Double?
+    public let physicalLimitsScore: Double?
+    public let socialLimitsScore: Double?
+    public let qualityOfLifeScore: Double?
+    public let symptomFrequencyScore: Double?
+    public let dizzinessScore: Double?
 }

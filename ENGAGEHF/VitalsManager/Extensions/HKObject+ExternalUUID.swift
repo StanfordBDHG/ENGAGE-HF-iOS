@@ -11,11 +11,7 @@ import HealthKit
 
 
 extension HKObject {
-    var externalUUID: UUID? {
-        guard let string = metadata?[HKMetadataKeyExternalUUID] as? String else {
-            return nil
-        }
-        
-        return UUID(uuidString: string)
+    var externalID: String? {
+        metadata?[HKMetadataKeyExternalUUID] as? String
     }
 }

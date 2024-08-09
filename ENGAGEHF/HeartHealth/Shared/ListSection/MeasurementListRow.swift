@@ -10,8 +10,8 @@ import SwiftUI
 
 
 struct MeasurementListRow: View {
-    let displayQuantity: String
-    let displayUnit: String
+    let displayQuantity: String?
+    let displayUnit: String?
     let displayDate: String
     let type: String
     

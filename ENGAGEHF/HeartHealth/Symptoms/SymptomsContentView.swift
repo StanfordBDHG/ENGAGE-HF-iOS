@@ -19,7 +19,9 @@ struct SymptomsContentView: View {
             .map { score in
                 VitalListMeasurement(
                     id: score.id,
-                    value: String(format: "%.1f", score[keyPath: symptomsType.symptomScoreKeyMap]),
+                    value: score[keyPath: symptomsType.symptomScoreKeyMap].map {
+                        $0.asString(minimumFractionDigits: 0, maximumFractionDigits: 1)
+                    },
                     date: score.date
                 )
             }
@@ -37,7 +39,7 @@ struct SymptomsContentView: View {
         )
         MeasurementListSection(
             data: listDisplayData,
-            units: "%",
+            units: symptomsType == .dizziness ? nil : "%",
             type: .symptoms
         )
             .deleteDisabled(true)

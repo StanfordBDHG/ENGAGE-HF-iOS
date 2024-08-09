@@ -64,6 +64,7 @@ final class MessageManager: Module, EnvironmentAccessible, DefaultInitializable 
         
         // Set a snapshot listener on the query for valid notifications
         self.snapshotListener = messagesCollectionReference
+            .whereField("completionDate", isEqualTo: NSNull())
             .addSnapshotListener { querySnapshot, error in
                 self.logger.debug("Fetching most recent messages...")
                 
@@ -81,9 +82,6 @@ final class MessageManager: Module, EnvironmentAccessible, DefaultInitializable 
                             return nil
                         }
                     }
-                    // Because the completionDate field is absent before the message is dismissed,
-                    // the only way to filter out dismissed messages is to do so on the client
-                    .filter { $0.completionDate == nil }
                 
                 self.logger.debug("Messages updated.")
             }

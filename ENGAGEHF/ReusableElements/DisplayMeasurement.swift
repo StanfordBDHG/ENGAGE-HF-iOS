@@ -10,21 +10,23 @@ import SwiftUI
 
 
 struct DisplayMeasurement: View {
-    let quantity: String
-    let units: String
+    let quantity: String?
+    let units: String?
     let type: String
     @ScaledMetric var quantityTextSize: CGFloat
     
     
     var body: some View {
         HStack(alignment: .firstTextBaseline, spacing: 4) {
-            Text(quantity)
+            Text(quantity ?? "N/A")
                 .font(.system(size: quantityTextSize, weight: .semibold, design: .rounded))
-                .accessibilityLabel("\(type) Quantity: \(quantity)")
-            Text(units)
-                .font(.title3)
-                .foregroundStyle(Color.secondary)
-                .accessibilityLabel("\(type) Unit: \(units)")
+                .accessibilityLabel("\(type) Quantity: \(quantity ?? "N/A")")
+            if quantity != nil, let units {
+                Text(units)
+                    .font(.title3)
+                    .foregroundStyle(Color.secondary)
+                    .accessibilityLabel("\(type) Unit: \(units)")
+            }
         }
     }
 }

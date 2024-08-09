@@ -52,6 +52,7 @@ struct MessagesSection: View {
 }
 
 
+#if DEBUG
 #Preview {
     struct MessagesSectionPreviewWrapper: View {
         @Environment(MessageManager.self) private var messageManager
@@ -80,3 +81,4 @@ struct MessagesSection: View {
             MessageManager()
         }
 }
+#endif

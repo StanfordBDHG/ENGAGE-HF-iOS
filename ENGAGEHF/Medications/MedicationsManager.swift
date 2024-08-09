@@ -89,6 +89,7 @@ extension MedicationsManager {
                 title: "Lorem",
                 subtitle: "Ipsum",
                 description: "Description ",
+                videoPath: "videoSections/1/videos/2",
                 type: .targetDoseReached,
                 dosageInformation: DosageInformation(
                     currentSchedule: [
@@ -111,6 +112,7 @@ extension MedicationsManager {
                 title: "Lozinopril",
                 subtitle: "Beta Blocker",
                 description: "Long description goes here",
+                videoPath: "videoSections/1/videos/2",
                 type: .improvementAvailable,
                 dosageInformation: DosageInformation(
                     currentSchedule: [
@@ -142,6 +144,7 @@ extension MedicationsManager {
                 title: "Carvedilol",
                 subtitle: "Beta Blocker",
                 description: "Your target does has been reached.",
+                videoPath: "videoSections/1/videos/2",
                 type: .targetDoseReached,
                 dosageInformation: DosageInformation(
                     currentSchedule: [DoseSchedule(frequency: 1, quantity: [200])],
@@ -156,6 +159,7 @@ extension MedicationsManager {
                 title: "Empagliflozin",
                 subtitle: "SGLT2i",
                 description: "You have reached your personal target dose.",
+                videoPath: "videoSections/1/videos/2",
                 type: .personalTargetDoseReached,
                 dosageInformation: DosageInformation(
                     currentSchedule: [DoseSchedule(frequency: 1, quantity: [2.5]), DoseSchedule(frequency: 1, quantity: [5])],
@@ -170,6 +174,7 @@ extension MedicationsManager {
                 title: "Sacubitril-Valsartan",
                 subtitle: "ARNI",
                 description: "You are eligible for a new dosage.",
+                videoPath: "videoSections/1/videos/2",
                 type: .improvementAvailable,
                 dosageInformation: DosageInformation(
                     currentSchedule: [DoseSchedule(frequency: 2, quantity: [24, 26])],
@@ -184,6 +189,7 @@ extension MedicationsManager {
                 title: "Spironolactone",
                 subtitle: "MRA",
                 description: "More vitals data required for recommendations.",
+                videoPath: nil,
                 type: .morePatientObservationsRequired,
                 dosageInformation: DosageInformation(
                     currentSchedule: [DoseSchedule(frequency: 1.5, quantity: [0])],
@@ -198,6 +204,7 @@ extension MedicationsManager {
                 title: "Bisoprolol",
                 subtitle: "Beta Blocker",
                 description: "Not started yet. No action required.",
+                videoPath: "videoSections/1/videos/2",
                 type: .notStarted,
                 dosageInformation: DosageInformation(
                     currentSchedule: [],

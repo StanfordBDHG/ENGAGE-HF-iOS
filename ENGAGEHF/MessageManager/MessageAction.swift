@@ -47,7 +47,7 @@ extension MessageAction {
     }
     
     
-    init(from actionString: String?) throws {
+    init(from actionString: String?) {
         guard let actionString else {
             self = .unknown
             return
