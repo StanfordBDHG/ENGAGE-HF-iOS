@@ -111,6 +111,7 @@ extension XCUIApplication {
         addButton.tap()
         
         swipeUp()
+        swipeUp()
         
         let currentDate = Date().formatted(date: .abbreviated, time: .omitted)
         XCTAssert(staticTexts["\(id.short) Date: \(currentDate)"].firstMatch.waitForExistence(timeout: 0.5))
