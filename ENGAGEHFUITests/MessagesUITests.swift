@@ -94,8 +94,6 @@ final class MessagesUITests: XCTestCase {
         
         XCTAssert(app.buttons["Cancel"].exists)
         XCTAssert(app.staticTexts["Form Example"].exists)
-        
-        XCTAssert(true)
     }
     
     func testSeeMedicationsAction() throws {
