@@ -83,14 +83,14 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--setupTestVideos"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--setupTestMedications"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "--setupMockMessages"
+            argument = "--setupTestMessages"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
@@ -99,11 +99,11 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--assumeOnboardingComplete"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--setupTestEnvironment"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--testMockDevices"

@@ -27,8 +27,7 @@ struct ExpandableListCard<Label: View, Content: View>: View {
                     .rotationEffect(.degrees(isExpanded ? 90 : 0))
                     .animation(nil, value: isExpanded)
             }
-                .contentShape(Rectangle())
-                .onTapGesture { isExpanded.toggle() }
+                .asButton { isExpanded.toggle() }
             
             if isExpanded {
                 Divider()

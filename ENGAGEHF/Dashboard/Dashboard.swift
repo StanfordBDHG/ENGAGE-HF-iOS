@@ -21,14 +21,14 @@ struct Dashboard: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                LazyVStack(alignment: .leading, spacing: 20) {
-                    // Notifications
-                    NotificationSection()
+                LazyVStack(alignment: .leading, spacing: 12) {
+                    // Messages
+                    MessagesSection()
                     
                     // Most recent vitals
                     RecentVitalsSection()
                 }
-                .padding()
+                    .padding()
             }
                 .background(Color(.systemGroupedBackground))
                 .navigationTitle("Home")
@@ -63,7 +63,7 @@ struct Dashboard: View {
 #Preview {
     Dashboard(presentingAccount: .constant(false))
         .previewWith(standard: ENGAGEHFStandard()) {
-            NotificationManager()
+            MessageManager()
             HealthMeasurements(mock: [.weight(.mockWeighSample)])
             VitalsManager()
         }

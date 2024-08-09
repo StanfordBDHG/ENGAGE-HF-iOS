@@ -31,8 +31,7 @@ struct VideoListSection: View {
                     .rotationEffect(.degrees(isExpanded ? 90 : 0))
                     .accessibilityLabel("Section Expander")
             }
-                .contentShape(Rectangle())
-                .onTapGesture {
+                .asButton {
                     withAnimation {
                         isExpanded.toggle()
                     }
@@ -58,8 +57,8 @@ struct VideoListSection: View {
                     LazyVStack(spacing: 12) {
                         ForEach(videos.sorted(by: { $0.orderIndex < $1.orderIndex })) { video in
                             EducationalVideoCard(video: video)
-                                .onTapGesture {
-                                    navigationManager.path.append(video)
+                                .asButton {
+                                    navigationManager.pushEducation(video)
                                 }
                         }
                     }

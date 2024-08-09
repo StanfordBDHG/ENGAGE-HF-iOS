@@ -15,42 +15,54 @@ import SpeziViews
 import SwiftUI
 
 
-struct NotificationSection: View {
-    @Environment(NotificationManager.self) private var notificationManager
+struct MessagesSection: View {
+    @Environment(MessageManager.self) private var messageManager
     
     
     var body: some View {
-        if !notificationManager.notifications.isEmpty {
+        if !messageManager.messages.isEmpty {
             Section(
                 content: {
-                    ForEach(notificationManager.notifications) { notification in
+                    ForEach(messageManager.messages) { message in
                         StudyApplicationListCard {
-                            NotificationRow(notification: notification)
+                            MessageRow(message: message)
+                                .accessibilityElement(children: .contain)
+                                .accessibilityLabel(self.constructAccessibilityLabel(from: message))
+                                .accessibilityIdentifier("Message Card - \(message.title)")
                         }
                     }
-                    .buttonStyle(.borderless)
+                        .buttonStyle(.borderless)
                 },
                 header: {
-                    Text("Notifications")
+                    Text("Messages")
                         .studyApplicationHeaderStyle()
                 }
             )
         }
     }
+    
+    
+    private func constructAccessibilityLabel(from message: Message) -> String {
+        """
+        Message: \(message.title), \
+        description: \(message.description ?? "none"), \
+        action: \(message.action).
+        """
+    }
 }
 
 
 #Preview {
-    struct NotificationSectionPreviewWrapper: View {
-        @Environment(NotificationManager.self) private var notificationManager
+    struct MessagesSectionPreviewWrapper: View {
+        @Environment(MessageManager.self) private var messageManager
         
         var body: some View {
             List {
-                NotificationSection()
+                MessagesSection()
                 StudyApplicationListCard {
                     Button(
                         action: {
-                            notificationManager.addMock()
+                            messageManager.addMockMessage()
                         },
                         label: {
                             Text("Add mock notification")
@@ -63,8 +75,8 @@ struct NotificationSection: View {
     }
     
     
-    return NotificationSectionPreviewWrapper()
+    return MessagesSectionPreviewWrapper()
         .previewWith(standard: ENGAGEHFStandard()) {
-            NotificationManager()
+            MessageManager()
         }
 }

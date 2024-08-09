@@ -70,9 +70,9 @@ actor ENGAGEHFStandard: Standard,
     }
     
     
-    func add(notification: Notification) async throws {
+    func add(message: Message) async throws {
         do {
-            try Firestore.messagesCollectionReference.addDocument(from: notification)
+            try Firestore.messagesCollectionReference.addDocument(from: message)
         } catch {
             throw FirestoreError(error)
         }

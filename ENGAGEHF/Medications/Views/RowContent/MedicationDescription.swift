@@ -13,6 +13,8 @@ struct MedicationDescription: View {
     let title: String
     let description: String
     
+    @Environment(NavigationManager.self) private var navigationManager
+    
     
     var body: some View {
         HStack {
@@ -25,8 +27,10 @@ struct MedicationDescription: View {
             Image(systemName: "questionmark.circle")
                 .foregroundStyle(.accent)
                 .accessibilityLabel("\(title) More Information")
+                .asButton {
+                    navigationManager.switchHomeTab(to: .education)
+                }
         }
-            .contentShape(Rectangle())
     }
 }
 

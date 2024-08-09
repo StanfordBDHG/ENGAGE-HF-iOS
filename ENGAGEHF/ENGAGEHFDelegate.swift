@@ -60,7 +60,7 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
             HealthMeasurements()
             
             NavigationManager()
-            NotificationManager()
+            MessageManager()
             VitalsManager()
             MedicationsManager()
             VideoManager()

@@ -18,8 +18,8 @@ enum FeatureFlags {
     static let disableFirebase = CommandLine.arguments.contains("--disableFirebase")
     /// On sign in, fills the user's vitals observation collections (body weight, blood pressure, heart rate, and symptom scores) with random data if none already present.
     static let setupMockVitals = CommandLine.arguments.contains("--setupMockVitals")
-    /// On sign in, fills the user's messages collection with three mock notifications if none already present.
-    static let setupMockMessages = CommandLine.arguments.contains("--setupMockMessages")
+    /// Fills the MessageManager's message array with mock messages, skipping on-sign-in configuration such as snapshot listeners. Used for UI Testing.
+    static let setupTestMessages = CommandLine.arguments.contains("--setupTestMessages")
     /// In the medications manager, instead of initializing a snapshot listener for the medication recommendations collection, include a button to directly fill the medications array with mock medications.
     static let setupTestMedications = CommandLine.arguments.contains("--setupTestMedications")
     /// Fills the VideoManager with a test VideoCollection, skipping on-sign-in configuration. Used for UI Testing and preview simulators.

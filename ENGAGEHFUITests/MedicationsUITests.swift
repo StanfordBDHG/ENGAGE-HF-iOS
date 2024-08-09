@@ -21,6 +21,27 @@ final class MedicationsUITests: XCTestCase {
     }
     
     
+    func testMoreInformationButton() throws {
+        let app = XCUIApplication()
+        try app.goTo(tab: "Medications")
+        
+        XCTAssert(app.buttons["More"].waitForExistence(timeout: 0.5), "No \"More\" Button Found.")
+        app.buttons["More"].tap()
+        
+        XCTAssert(app.buttons["Add Medications"].waitForExistence(timeout: 0.5), "No \"Add Medications\" Button Found.")
+        app.buttons["Add Medications"].tap()
+        
+        XCTAssert(app.images["Medication Label: improvementAvailable"].waitForExistence(timeout: 0.5))
+        app.images["Medication Label: improvementAvailable"].tap()
+        
+        XCTAssert(app.images["Sacubitril-Valsartan More Information"].waitForExistence(timeout: 0.5))
+        app.images["Sacubitril-Valsartan More Information"].tap()
+        
+        sleep(1)
+        
+        XCTAssert(app.staticTexts["Education"].waitForExistence(timeout: 0.5))
+    }
+    
     func testEmptyMedications() throws {
         let app = XCUIApplication()
         
@@ -54,7 +75,7 @@ final class MedicationsUITests: XCTestCase {
         XCTAssertFalse(app.otherElements["Dosage Gauge"].waitForExistence(timeout: 0.5))
     }
     
-    func testWithNoDosageInformation() throws {
+    func testWithEmptyCurrentSchedule() throws {
         let app = XCUIApplication()
         
         try app.goTo(tab: "Medications")
@@ -67,10 +88,7 @@ final class MedicationsUITests: XCTestCase {
         XCTAssert(app.images["Medication Label: notStarted"].waitForExistence(timeout: 0.5))
         app.images["Medication Label: notStarted"].tap()
         
-        XCTAssertFalse(app.staticTexts["Current Dose:"].waitForExistence(timeout: 0.5))
-        XCTAssertFalse(app.staticTexts["Target Dose:"].waitForExistence(timeout: 0.5))
-        XCTAssertFalse(app.otherElements["Dosage Gauge"].waitForExistence(timeout: 0.5))
-        XCTAssert(app.staticTexts["Not started yet. No action required."].waitForExistence(timeout: 0.5))
+        XCTAssert(app.staticTexts["Not Started"].waitForExistence(timeout: 0.5))
     }
     
     func testMultiIngredientDoseSummary() throws {
@@ -189,7 +207,7 @@ final class MedicationsUITests: XCTestCase {
         XCTAssertEqual(try XCTUnwrap(minimalGauge.value) as? String, "25%", "Value not correct in minimum schedule gauge.")
     }
     
-    func testLowRangeGauge() throws {
+    func testEmptyGauge() throws {
         let app = XCUIApplication()
         
         try app.goTo(tab: "Medications")
@@ -206,6 +224,9 @@ final class MedicationsUITests: XCTestCase {
         XCTAssert(emptyGauge.waitForExistence(timeout: 0.5))
         XCTAssertEqual(emptyGauge.label, "Current, Target", "Label not correct in empty gauge.")
         XCTAssertEqual(try XCTUnwrap(emptyGauge.value) as? String, "0%", "Value not correct in empty gauge.")
+        
+        // Make sure the app shows that the patient has not started the medication
+        XCTAssert(app.staticTexts["Not Started"].exists)
     }
     
     func testHighRangeGauge() throws {
@@ -223,7 +244,7 @@ final class MedicationsUITests: XCTestCase {
         
         let fullGauge = app.otherElements["Dosage Gauge"]
         XCTAssert(fullGauge.waitForExistence(timeout: 0.5), "Full gauge not found.")
-        XCTAssertEqual(fullGauge.label, "Current", "Label not correct for full gauge.")
+        XCTAssertEqual(fullGauge.label, "Current, Target", "Label not correct for full gauge.")
         XCTAssertEqual(try XCTUnwrap(fullGauge.value) as? String, "100%", "Value not correct in full gauge.")
     }
 }

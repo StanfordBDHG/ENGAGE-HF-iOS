@@ -214,10 +214,16 @@ extension XCUIApplication {
         // Make sure the vitals are correctly displayed
         try goTo(tab: id.short, header: id.full)
         
+        swipeUp()
+        swipeUp()
+        
         // Make sure the measurement is displayed in "All Data" section
         XCTAssert(staticTexts["\(id.short) Quantity: \(expectedQuantity.value)"].waitForExistence(timeout: 0.5))
         XCTAssert(staticTexts["\(id.short) Unit: \(expectedQuantity.unit)"].waitForExistence(timeout: 0.5))
         XCTAssert(staticTexts["\(id.short) Date: Jun 5, 2024"].waitForExistence(timeout: 0.5))
+        
+        swipeDown()
+        swipeDown()
         
         // Navigate to weekly data
         XCTAssert(buttons["Resolution Picker, \(pickerID)"].waitForExistence(timeout: 0.5))

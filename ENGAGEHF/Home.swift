@@ -17,7 +17,7 @@ import SwiftUI
 
 
 struct HomeView: View {
-    enum Tabs: String {
+    enum Tabs: String, CaseIterable, Hashable {
         case home
         case heart
         case medications
@@ -38,17 +38,18 @@ struct HomeView: View {
     @Environment(HealthMeasurements.self) private var measurements
     @Environment(Bluetooth.self) private var bluetooth
     @Environment(ENGAGEHFStandard.self) private var standard
+    @Environment(NavigationManager.self) private var navigationManager
 
     @Environment(\.dismiss) private var dismiss
     
-    @AppStorage(StorageKeys.homeTabSelection) private var selectedTab = Tabs.home
     @State private var presentingAccount = false
     
 
     var body: some View {
         @Bindable var measurements = measurements
+        @Bindable var navigationManager = navigationManager
 
-        TabView(selection: $selectedTab) {
+        TabView(selection: $navigationManager.selectedTab) {
             Dashboard(presentingAccount: $presentingAccount)
                 .tag(Tabs.home)
                 .tabItem {
@@ -105,7 +106,7 @@ struct HomeView: View {
                 MockUserIdPasswordAccountService()
             }
             HealthMeasurements()
-            NotificationManager()
+            MessageManager()
             PairedDevices()
             ConfigureTipKit()
             Bluetooth {}

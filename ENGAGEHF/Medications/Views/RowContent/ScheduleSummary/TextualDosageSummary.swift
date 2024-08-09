@@ -15,11 +15,23 @@ struct TextualDosageSummary: View {
     
     var body: some View {
         VStack {
-            ScheduleSummary(
-                schedule: dosageInformation.currentSchedule,
-                unit: dosageInformation.unit,
-                label: "Current Dose:"
-            )
+            Group {
+                if !dosageInformation.currentSchedule.isEmpty && !dosageInformation.currentDailyIntake.isZero {
+                    ScheduleSummary(
+                        schedule: dosageInformation.currentSchedule,
+                        unit: dosageInformation.unit,
+                        label: "Current Dose:"
+                    )
+                } else {
+                    HStack(alignment: .firstTextBaseline) {
+                        Text("Current Dose:")
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                        Spacer()
+                        Text("Not Started")
+                    }
+                }
+            }
                 .padding(.bottom, 4)
             
             ScheduleSummary(

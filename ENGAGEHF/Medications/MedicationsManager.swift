@@ -192,14 +192,19 @@ extension MedicationsManager {
                     unit: "mg"
                 )
             ),
-            // Single ingredient, single schedule, no dose information
+            // Single ingredient, single schedule, not started yet
             MedicationDetails(
                 id: UUID().uuidString,
                 title: "Bisoprolol",
                 subtitle: "Beta Blocker",
                 description: "Not started yet. No action required.",
                 type: .notStarted,
-                dosageInformation: nil
+                dosageInformation: DosageInformation(
+                    currentSchedule: [],
+                    minimumSchedule: [DoseSchedule(frequency: 1, quantity: [10])],
+                    targetSchedule: [DoseSchedule(frequency: 1, quantity: [80])],
+                    unit: "mg"
+                )
             )
         ]
     }
