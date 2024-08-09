@@ -13,6 +13,6 @@ import Foundation
 /// Contains all the necessary information for display in the VitalsList in the All Data section
 struct VitalListMeasurement: Identifiable, Hashable {
     var id: String?
-    var value: String
+    var value: String?
     var date: Date
 }

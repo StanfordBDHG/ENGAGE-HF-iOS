@@ -365,8 +365,8 @@ extension VitalsManager {
             physicalLimitsScore: Double.random(in: 0...100),
             socialLimitsScore: Double.random(in: 0...100),
             qualityOfLifeScore: Double.random(in: 0...100),
-            specificSymptomsScore: Double.random(in: 0...100),
-            dizzinessScore: Double.random(in: 0...100)
+            symptomFrequencyScore: Double.random(in: 0...100),
+            dizzinessScore: Double.random(in: 0...5)
         )
         
         return dummySymptoms

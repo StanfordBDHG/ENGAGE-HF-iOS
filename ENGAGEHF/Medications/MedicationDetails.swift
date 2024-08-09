@@ -92,7 +92,7 @@ struct MedicationDetailsWrapper: Codable {
 
 
 /// A medication that the patient is either currently taking or which is recommended for the patient to start.
-struct MedicationDetails: Identifiable, Codable {
+struct MedicationDetails: Identifiable {
     var id: String?
     
     let title: String
@@ -100,4 +100,36 @@ struct MedicationDetails: Identifiable, Codable {
     let description: String
     let type: MedicationRecommendationType
     let dosageInformation: DosageInformation
+}
+
+
+extension MedicationDetails: Codable {
+    private enum CodingKeys: CodingKey {
+        case title
+        case subtitle
+        case description
+        case type
+        case dosageInformation
+    }
+    
+    
+    init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        self.title = try container.decodeLocalizedString(forKey: .title)
+        self.subtitle = try container.decodeLocalizedString(forKey: .subtitle)
+        self.description = try container.decodeLocalizedString(forKey: .description)
+        self.type = try container.decode(MedicationRecommendationType.self, forKey: .type)
+        self.dosageInformation = try container.decode(DosageInformation.self, forKey: .dosageInformation)
+    }
+    
+    func encode(to encoder: any Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try container.encode(self.title, forKey: .title)
+        try container.encode(self.subtitle, forKey: .subtitle)
+        try container.encode(self.description, forKey: .description)
+        try container.encode(self.type, forKey: .type)
+        try container.encode(self.dosageInformation, forKey: .dosageInformation)
+    }
 }

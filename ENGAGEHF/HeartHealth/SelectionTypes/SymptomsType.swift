@@ -66,13 +66,13 @@ enum SymptomsType: String, CaseIterable, Identifiable, CustomStringConvertible, 
     }
     
     /// The path to access the parameter in SymptomScore that corresponds to the Type described by an instance of this enum
-    var symptomScoreKeyMap: KeyPath<SymptomScore, Double> {
+    var symptomScoreKeyMap: KeyPath<SymptomScore, Double?> {
         switch self {
         case .overall: \.overallScore
         case .physical: \.physicalLimitsScore
         case .social: \.socialLimitsScore
         case .quality: \.qualityOfLifeScore
-        case .specific: \.specificSymptomsScore
+        case .specific: \.symptomFrequencyScore
         case .dizziness: \.dizzinessScore
         }
     }

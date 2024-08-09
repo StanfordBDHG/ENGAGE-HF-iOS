@@ -11,27 +11,6 @@ import SwiftUI
 
 
 struct SymptomsGraphSection: View {
-    private struct YAxisModifier: ViewModifier {
-        func body(content: Content) -> some View {
-            content
-                .chartYScale(domain: 0...100)
-                .chartYAxis {
-                    AxisMarks(
-                        values: [0, 50, 100]
-                    ) {
-                        AxisValueLabel(format: Decimal.FormatStyle.Percent.percent.scale(1))
-                    }
-                    
-                    AxisMarks(
-                        values: [0, 25, 50, 75, 100]
-                    ) {
-                        AxisGridLine()
-                    }
-                }
-        }
-    }
-    
-    
     @Binding var symptomsType: SymptomsType
     
     @Environment(VitalsManager.self) private var vitalsManager
@@ -44,10 +23,14 @@ struct SymptomsGraphSection: View {
     
     private var data: [String: [VitalMeasurement]] {
         let ungroupedData = vitalsManager.symptomHistory
-            .map { score in
-                VitalMeasurement(
+            .compactMap { score -> VitalMeasurement? in
+                guard let value = score[keyPath: symptomsType.symptomScoreKeyMap] else {
+                    return nil
+                }
+                
+                return VitalMeasurement(
                     date: score.date,
-                    value: score[keyPath: symptomsType.symptomScoreKeyMap],
+                    value: value,
                     type: KnownVitalsSeries.symptomScore.rawValue
                 )
             }
@@ -73,8 +56,12 @@ struct SymptomsGraphSection: View {
             content: {
                 let graphData = data
                 if !graphData.isEmpty {
-                    VitalsGraph(data: graphData, options: options)
-                      .modifier(YAxisModifier())
+                    let graph = VitalsGraph(data: graphData, options: options)
+                    if symptomsType == .dizziness {
+                        graph.modifier(DizzinessYAxisModifier())
+                    } else {
+                        graph.modifier(PercentageYAxisModifier())
+                    }
                 } else {
                     Text(symptomsType.localizedEmptyHistoryWarning)
                         .font(.caption)
