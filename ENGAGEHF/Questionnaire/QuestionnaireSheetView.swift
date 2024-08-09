@@ -48,7 +48,7 @@ struct QuestionnaireSheetView: View {
             .task {
                 do {
 #if DEBUG || TEST
-                    if FeatureFlags.setupTestMessages {
+                    if ProcessInfo.processInfo.isPreviewSimulator || FeatureFlags.setupTestMessages {
                         questionnaire = .formExample
                         return
                     }
@@ -71,5 +71,21 @@ struct QuestionnaireSheetView: View {
 
 
 #Preview {
-    QuestionnaireSheetView(questionnaireId: "0")
+    struct QuestionnaireSheetViewPreviewWrapper: View {
+        @State private var questionnaireId: String?
+        
+        
+        var body: some View {
+            Button("Tap Here") {
+                questionnaireId = "0"
+            }
+                .buttonStyle(.borderedProminent)
+                .sheet(item: $questionnaireId) { questionnaireId in
+                    QuestionnaireSheetView(questionnaireId: questionnaireId)
+                }
+        }
+    }
+    
+    return QuestionnaireSheetViewPreviewWrapper()
+        .previewWith(standard: ENGAGEHFStandard()) {}
 }
