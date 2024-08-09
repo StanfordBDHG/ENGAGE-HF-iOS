@@ -104,13 +104,15 @@ extension VideoManager {
                 context: VideoCollectionContext(
                     title: "ENGAGE-HF Application",
                     description: "Helpful videos on the ENGAGE-HF mobile application.",
-                    orderIndex: 1
+                    orderIndex: 1,
+                    id: "1"
                 ),
                 videos: [
                     Video(
                         title: "No Description",
                         youtubeId: "y2ziZVWossE",
-                        orderIndex: 1
+                        orderIndex: 1,
+                        id: "2"
                     ),
                     Video(
                         title: "Short Description",

@@ -34,21 +34,9 @@ final class MessageActionUnitTests: XCTestCase {
         let healthSummaryAction = try MessageAction(from: wellFormedHealthSummaryString)
         XCTAssertEqual(healthSummaryAction, .showHealthSummary)
         
-        let wellFormedSymptomScoresString = try Firestore.symptomScoresCollectionReference.collectionID
-        let symptomScoresAction = try MessageAction(from: wellFormedSymptomScoresString)
-        XCTAssertEqual(symptomScoresAction, .showHeartHealth(vitalsType: .symptoms))
-        
-        let wellFormedBodyWeightString = try Firestore.collectionReference(for: HKQuantityType(.bodyMass))?.collectionID
-        let bodyWeightAction = try MessageAction(from: wellFormedBodyWeightString)
-        XCTAssertEqual(bodyWeightAction, .showHeartHealth(vitalsType: .weight))
-        
-        let wellFormedHeartRateString = try Firestore.collectionReference(for: HKQuantityType(.heartRate))?.collectionID
-        let heartRateAction = try MessageAction(from: wellFormedHeartRateString)
-        XCTAssertEqual(heartRateAction, .showHeartHealth(vitalsType: .heartRate))
-        
-        let wellFormedBloodPressureString = try Firestore.collectionReference(for: HKCorrelationType(.bloodPressure))?.collectionID
-        let bloodPressureAction = try MessageAction(from: wellFormedBloodPressureString)
-        XCTAssertEqual(bloodPressureAction, .showHeartHealth(vitalsType: .bloodPressure))
+        let wellFormedHeartHealthString = "observations"
+        let heartHealthAction = try MessageAction(from: wellFormedHeartHealthString)
+        XCTAssertEqual(heartHealthAction, .showHeartHealth)
     }
     
     

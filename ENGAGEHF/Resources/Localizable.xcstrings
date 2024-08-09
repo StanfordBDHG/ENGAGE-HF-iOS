@@ -198,6 +198,9 @@
     "Devices" : {
 
     },
+    "Dismiss Button" : {
+
+    },
     "Education" : {
 
     },
@@ -228,13 +231,7 @@
     "Graph Selection" : {
 
     },
-    "Health Summary Symbol" : {
-
-    },
     "Heart Health" : {
-
-    },
-    "Heart Health Symbol" : {
 
     },
     "heartRateMissing" : {
@@ -427,9 +424,6 @@
     "Medications" : {
 
     },
-    "Medications Symbol" : {
-
-    },
     "Messages" : {
 
     },
@@ -483,13 +477,7 @@
         }
       }
     },
-    "Play Button Symbol" : {
-
-    },
     "Please enter your invitation code to join the ENGAGE-HF study." : {
-
-    },
-    "Questionnaire Symbol" : {
 
     },
     "Recent Vitals" : {
@@ -639,9 +627,6 @@
     "Unable to delete measurement, check network connection." : {
 
     },
-    "Unknown Action Symbol" : {
-
-    },
     "Unknown Thumbnail" : {
 
     },
@@ -665,7 +650,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Blood Pressure description. This is blood pressure. This will describe all about blood pressure, and how it pertains to the heart. Lots of words, the real description will probably be shorter than this."
+            "value" : "Blood pressure is a vital metric for heart failure patients because it reflects the force of blood against the artery walls, indicating how well the heart is pumping. Regular monitoring helps in managing the condition, adjusting treatments, and preventing worsening of heart failure symptoms."
           }
         }
       }
@@ -677,7 +662,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Heart Rate description. This is a description about heart rate. The rate at which the heart hearts. Long text that has many works makes the view look more like what it might actually look like."
+            "value" : "Tracking heart rate is crucial for heart failure patients because it provides insights into how well the heart is functioning and responding to treatment. Abnormal heart rates, whether too high or too low, can indicate worsening heart function or the need to adjust medications."
           }
         }
       }
@@ -689,7 +674,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Weight description goes here. This is a long text that includes many words about many things. The weight and the meaning of weight is described here."
+            "value" : "Body weight is an important metric for heart failure patients because sudden changes can indicate fluid retention, a common sign of worsening heart failure. Regular monitoring of body weight allows for early detection of potential issues."
           }
         }
       }
@@ -796,9 +781,6 @@
           }
         }
       }
-    },
-    "XButton" : {
-
     }
   },
   "version" : "1.0"

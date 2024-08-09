@@ -35,28 +35,15 @@ final class MessageManager: Module, EnvironmentAccessible, DefaultInitializable 
     
     
     func configure() {
-#if DEBUG
-        if ProcessInfo.processInfo.isPreviewSimulator {
-            self.setupMessagePreview()
+#if DEBUG || TEST
+        if ProcessInfo.processInfo.isPreviewSimulator || FeatureFlags.setupTestMessages {
+            self.injectTestMessages()
             return
         }
 #endif
         
         authStateDidChangeListenerHandle = Auth.auth().addStateDidChangeListener { [weak self] _, user in
             self?.registerSnapshotListener(user: user)
-
-#if DEBUG || TEST
-            // If testing, add 3 notifications to firestore
-            // Called when a user's sign in status changes
-            if FeatureFlags.setupMockMessages, let user {
-                // Make sure to not load the mock notifications multiple times
-                if let messages = self?.messages, messages.isEmpty {
-                    Task { [weak self] in
-                        try await self?.setupMessageTests(user: user)
-                    }
-                }
-            }
-#endif
         }
         self.registerSnapshotListener(user: Auth.auth().currentUser)
     }
@@ -103,15 +90,20 @@ final class MessageManager: Module, EnvironmentAccessible, DefaultInitializable 
     }
     
     func dismiss(_ message: Message, didPerformAction: Bool) async {
-        logger.debug("Attempting to dismiss message with id: \(message.id ?? "nil")")
+        logger.debug("Dismissing message with id: \(message.id ?? "nil")")
+        
+        guard message.isDismissible else {
+            logger.warning("Attempted to delete non-dismissible message (\(message.id ?? "nil")). Returning.")
+            return
+        }
         
         guard let messageId = message.id else {
             logger.error("Unable to dismiss message: id is nil.")
             return
         }
         
-#if DEBUG
-        if ProcessInfo.processInfo.isPreviewSimulator {
+#if DEBUG || TEST
+        if ProcessInfo.processInfo.isPreviewSimulator || FeatureFlags.setupTestMessages {
             messages.removeAll { $0.id == messageId }
             return
         }
@@ -119,11 +111,6 @@ final class MessageManager: Module, EnvironmentAccessible, DefaultInitializable 
         
         guard Auth.auth().currentUser != nil else {
             logger.error("Unable to dismiss message: No user signed in.")
-            return
-        }
-        
-        guard message.isDismissible else {
-            logger.error("Unable to dismiss message: Message is not dismissible.")
             return
         }
         
@@ -152,7 +139,7 @@ extension MessageManager {
     /// Used for testing in previews
     func addMockMessage(dismissible: Bool = true, action: MessageAction = .showHealthSummary) {
         let mockMessage = Message(
-            title: "Medication Change With Long, Multi-line Title",
+            title: "Medication Change",
             description: "Your dose of XXX was changed. You can review medication information in the Education Page.",
             action: action,
             isDismissible: dismissible,
@@ -163,72 +150,46 @@ extension MessageManager {
         self.messages.append(mockMessage)
     }
     
-    private func setupMessagePreview() {
-        let medicationChange = Message(
-            title: "Medication Change",
-            description: "Your medication has been changed. Watch the video for more information.",
-            action: .playVideo(sectionId: "0", videoId: "0"),
-            isDismissible: true,
-            dueDate: nil,
-            completionDate: nil
-        )
-        let medicationUptitration = Message(
-            title: "Medication Uptitration",
-            description: "Your medication is eligible to be increased. Please contact your clinician.",
-            action: .showMedications,
-            isDismissible: true,
-            dueDate: nil,
-            completionDate: nil
-        )
-        let appointmentReminder = Message(
-            title: "Appointment Reminder",
-            description: "Your appointment is coming up.",
-            action: .showHealthSummary,
-            isDismissible: false,
-            dueDate: nil,
-            completionDate: nil
-        )
-        let symptomQuestionnaire = Message(
-            title: "Symptom Questionnaire",
-            description: "Please complete the symptom questionnaire.",
-            action: .completeQuestionnaire(questionnaireId: "0"),
-            isDismissible: false,
-            dueDate: nil,
-            completionDate: nil
-        )
-        self.messages = [medicationChange, medicationUptitration, appointmentReminder, symptomQuestionnaire]
-    }
     
-    /// Adds three mock notifications to the user's notification collection in firestore
-    private func setupMessageTests(user: User) async throws {
-        // Not recommended to delete collections from the client, so for now just skipping if the collection already exists
-        let querySnapshot = try await Firestore.messagesCollectionReference.getDocuments()
-        
-        guard querySnapshot.documents.isEmpty else {
-            // Notifications collections exists and is not empty, so skip
-            self.logger.debug("Messages already exist, skipping user.")
-            return
-        }
-        
-        self.logger.debug("Adding test message for user \(user.uid)")
-        
-        for idx in 1...3 {
-            let newMessage = Message(
-                title: "Medication Change \(idx)",
-                description: "Your dose of XXX was changed. You can review medication information in the Education Page.",
+    private func injectTestMessages() {
+        self.messages = [
+            // With play video action, with description, is dismissible
+            Message(
+                title: "Medication Change",
+                description: "Your medication has been changed. Watch the video for more information.",
+                action: .playVideo(sectionId: "1", videoId: "2"),
+                isDismissible: true,
+                dueDate: nil,
+                completionDate: nil
+            ),
+            // With tab navigation action, no description, is dismissible
+            Message(
+                title: "Medication Uptitration",
+                description: nil,
                 action: .showMedications,
                 isDismissible: true,
-                dueDate: Date().addingTimeInterval(60 * 60 * 24 * Double(idx)),  // Due 1, 2, or 3 days from now
-                completionDate: nil,
-                id: nil
+                dueDate: nil,
+                completionDate: nil
+            ),
+            // With tab navigation, with description, is not dismissible
+            Message(
+                title: "Vitals",
+                description: "Please take blood pressure and weight measurements.",
+                action: .showHeartHealth,
+                isDismissible: false,
+                dueDate: Date(),
+                completionDate: nil
+            ),
+            // With unknown action
+            Message(
+                title: "Unknown",
+                description: nil,
+                action: .unknown,
+                isDismissible: false,
+                dueDate: nil,
+                completionDate: nil
             )
-            
-            do {
-                try await standard.add(message: newMessage)
-            } catch {
-                self.logger.error("Unable to load notifications to firestore: \(error)")
-            }
-        }
+        ]
     }
 }
 #endif

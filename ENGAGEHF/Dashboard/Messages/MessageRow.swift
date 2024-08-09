@@ -29,7 +29,7 @@ struct MessageRow: View {
                         .scaledToFit()
                         .frame(width: labelSize, height: labelSize)
                         .foregroundStyle(.secondary)
-                        .accessibilityLabel("XButton")
+                        .accessibilityLabel("Dismiss Button")
                 }
             )
         }
@@ -46,32 +46,18 @@ struct MessageRow: View {
     
     
     private var actionImage: some View {
-        switch message.action {
-        case .playVideo:
-            Image(systemName: "play.circle")
-                .cardSymbolStyle()
-                .accessibilityLabel("Play Button Symbol")
-        case .showMedications:
-            Image(systemName: "pills")
-                .cardSymbolStyle()
-                .accessibilityLabel("Medications Symbol")
-        case .completeQuestionnaire:
-            Image(systemName: "pencil.and.list.clipboard")
-                .cardSymbolStyle()
-                .accessibilityLabel("Questionnaire Symbol")
-        case .showHealthSummary:
-            Image(systemName: "doc.on.clipboard")
-                .cardSymbolStyle()
-                .accessibilityLabel("Health Summary Symbol")
-        case .showHeartHealth:
-            Image(systemName: "heart.text.square")
-                .cardSymbolStyle()
-                .accessibilityLabel("Heart Health Symbol")
-        case .unknown:
-            Image(systemName: "envelope")
-                .cardSymbolStyle()
-                .accessibilityLabel("Unknown Action Symbol")
+        let imageName = switch message.action {
+        case .playVideo: "play.circle"
+        case .showMedications: "pills"
+        case .completeQuestionnaire: "pencil.and.list.clipboard"
+        case .showHealthSummary: "doc.on.clipboard"
+        case .showHeartHealth: "heart.text.square"
+        case .unknown: "envelope"
         }
+        
+        return Image(systemName: imageName)
+            .cardSymbolStyle()
+            .accessibilityLabel(message.action.description + " Symbol")
     }
     
     
@@ -95,6 +81,7 @@ struct MessageRow: View {
                 if let description = message.description {
                     ExpandableText(text: description, lineLimit: 3)
                         .font(.footnote)
+                        .accessibilityIdentifier("Message Description")
                 }
                 if message.action != .unknown {
                     Text(message.action.description)
@@ -106,6 +93,7 @@ struct MessageRow: View {
                         }
                         .font(.caption.weight(.heavy))
                         .foregroundStyle(.white)
+                        .accessibilityIdentifier("Message Action")
                 }
             }
         }
@@ -114,7 +102,9 @@ struct MessageRow: View {
                 if message.action != .unknown {
                     Task {
                         let didPerformAction = await navigationManager.execute(message.action)
-                        await messageManager.dismiss(message, didPerformAction: didPerformAction)
+                        if message.isDismissible, didPerformAction {
+                            await messageManager.dismiss(message, didPerformAction: didPerformAction)
+                        }
                     }
                 }
             }

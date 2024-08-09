@@ -26,6 +26,9 @@ struct MessagesSection: View {
                     ForEach(messageManager.messages) { message in
                         StudyApplicationListCard {
                             MessageRow(message: message)
+                                .accessibilityElement(children: .contain)
+                                .accessibilityLabel(self.constructAccessibilityLabel(from: message))
+                                .accessibilityIdentifier("Message Card - \(message.title)")
                         }
                     }
                         .buttonStyle(.borderless)
@@ -36,6 +39,15 @@ struct MessagesSection: View {
                 }
             )
         }
+    }
+    
+    
+    private func constructAccessibilityLabel(from message: Message) -> String {
+        """
+        Message: \(message.title), \
+        description: \(message.description ?? "none"), \
+        action: \(message.action).
+        """
     }
 }
 
