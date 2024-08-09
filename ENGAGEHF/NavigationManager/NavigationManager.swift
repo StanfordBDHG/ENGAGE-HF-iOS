@@ -65,12 +65,9 @@ class NavigationManager: Module, EnvironmentAccessible {
                 self.logger.debug("No matching video found. sectionId: \(sectionId), videoId: \(videoId)")
                 return false
             }
+        
+            await self.playVideo(matchingVideo)
             
-            self.switchHomeTab(to: .education)
-            
-            try? await Task.sleep(for: .seconds(0.1))
-            
-            self.push(matchingVideo, onto: \.educationPath)
         case .showMedications:
             self.switchHomeTab(to: .medications)
         case .showHeartHealth:
@@ -82,11 +79,17 @@ class NavigationManager: Module, EnvironmentAccessible {
         return true
     }
     
-    func push<V: Hashable>(_ view: V, onto path: ReferenceWritableKeyPath<NavigationManager, NavigationPath>) {
-        self[keyPath: path].append(view)
+    func playVideo(_ video: Video) async {
+        self.switchHomeTab(to: .education)
+        try? await Task.sleep(for: .seconds(0.1))
+        self.pushEducation(video)
     }
     
-    private func switchHomeTab(to newTab: HomeView.Tabs) {
+    func pushEducation(_ video: Video) {
+        self.educationPath.append(video)
+    }
+    
+    func switchHomeTab(to newTab: HomeView.Tabs) {
         self.selectedTab = newTab
     }
 }

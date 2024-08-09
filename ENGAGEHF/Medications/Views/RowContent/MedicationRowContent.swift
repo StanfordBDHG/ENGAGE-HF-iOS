@@ -18,10 +18,8 @@ struct MedicationRowContent: View {
             MedicationDescription(title: medication.title, description: medication.description)
                 .padding(.vertical, 2)
             
-            if let dosageInformation = medication.dosageInformation {
-                Divider()
-                DosageSummary(dosageInformation: dosageInformation)
-            }
+            Divider()
+            DosageSummary(dosageInformation: medication.dosageInformation)
         }
     }
 }

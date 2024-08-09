@@ -99,5 +99,5 @@ struct MedicationDetails: Identifiable, Codable {
     let subtitle: String
     let description: String
     let type: MedicationRecommendationType
-    let dosageInformation: DosageInformation?
+    let dosageInformation: DosageInformation
 }

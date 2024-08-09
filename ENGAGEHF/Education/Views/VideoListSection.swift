@@ -58,7 +58,7 @@ struct VideoListSection: View {
                         ForEach(videos.sorted(by: { $0.orderIndex < $1.orderIndex })) { video in
                             EducationalVideoCard(video: video)
                                 .asButton {
-                                    navigationManager.push(video, onto: \.educationPath)
+                                    navigationManager.pushEducation(video)
                                 }
                         }
                     }

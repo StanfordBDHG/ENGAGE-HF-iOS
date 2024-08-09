@@ -67,7 +67,7 @@ struct VideoView: View {
             
             NavigationStack(path: $navigationManager.educationPath) {
                 Button("Tap Here") {
-                    navigationManager.push(previewVideo, onto: \.educationPath)
+                    navigationManager.pushEducation(previewVideo)
                 }
                     .navigationDestination(for: Video.self) { video in
                         VideoView(video)
@@ -111,7 +111,7 @@ struct VideoView: View {
             
             NavigationStack(path: $navigationManager.educationPath) {
                 Button("Tap Here") {
-                    navigationManager.push(previewVideo, onto: \.educationPath)
+                    navigationManager.pushEducation(previewVideo)
                 }
                     .navigationDestination(for: Video.self) { video in
                         VideoView(video)

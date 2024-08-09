@@ -189,6 +189,9 @@
     "Current" : {
 
     },
+    "Current Dose:" : {
+
+    },
     "Date" : {
 
     },
@@ -434,6 +437,9 @@
 
     },
     "No vitals" : {
+
+    },
+    "Not Started" : {
 
     },
     "NOTIFICATION_PERMISSIONS_BUTTON" : {
