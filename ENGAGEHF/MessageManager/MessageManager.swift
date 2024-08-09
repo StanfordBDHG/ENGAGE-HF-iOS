@@ -160,7 +160,7 @@ extension MessageManager {
                 dueDate: nil,
                 completionDate: nil
             ),
-            // With tab navigation action, no description, is dismissible
+            // With see medications action, no description, is dismissible
             Message(
                 title: "Medication Uptitration",
                 description: nil,
@@ -169,11 +169,20 @@ extension MessageManager {
                 dueDate: nil,
                 completionDate: nil
             ),
-            // With tab navigation, with description, is not dismissible
+            // With see heart heatlh action, with description, is not dismissible
             Message(
                 title: "Vitals",
                 description: "Please take blood pressure and weight measurements.",
                 action: .showHeartHealth,
+                isDismissible: false,
+                dueDate: Date(),
+                completionDate: nil
+            ),
+            // With symptom questionnaire action
+            Message(
+                title: "Symptom Questionnaire",
+                description: "Please complete the symptom questionnaire.",
+                action: .completeQuestionnaire(questionnaireId: "0"),
                 isDismissible: false,
                 dueDate: Date(),
                 completionDate: nil

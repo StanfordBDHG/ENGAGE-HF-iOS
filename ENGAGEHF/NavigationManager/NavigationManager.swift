@@ -32,6 +32,7 @@ class NavigationManager: Module, EnvironmentAccessible {
     var homePath = NavigationPath()
     
     var selectedTab: HomeView.Tabs = .home
+    var questionnaireId: String?
     
     
     // On sign in, reinitialize to an empty navigation path
@@ -72,6 +73,8 @@ class NavigationManager: Module, EnvironmentAccessible {
             self.switchHomeTab(to: .medications)
         case .showHeartHealth:
             self.switchHomeTab(to: .heart)
+        case let .completeQuestionnaire(questionnaireId):
+            self.questionnaireId = questionnaireId
         default:
             return false
         }

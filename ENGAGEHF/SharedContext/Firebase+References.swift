@@ -35,6 +35,10 @@ extension Firestore {
         Firestore.firestore().collection("videoSections")
     }
     
+    static var questionnairesCollectionReference: CollectionReference {
+        Firestore.firestore().collection("questionnaires")
+    }
+    
     
     static var userDocumentReference: DocumentReference {
         get throws {
