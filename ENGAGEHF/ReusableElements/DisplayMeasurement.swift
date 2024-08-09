@@ -20,7 +20,7 @@ struct DisplayMeasurement: View {
         HStack(alignment: .firstTextBaseline, spacing: 4) {
             Text(quantity ?? "n/a")
                 .font(.system(size: quantityTextSize, weight: .semibold, design: .rounded))
-                .accessibilityLabel("\(type) Quantity: \(quantity ?? "n/a")")
+                .accessibilityLabel("\(type) Quantity: \(quantity ?? "N/A")")
             if quantity != nil, let units {
                 Text(units)
                     .font(.title3)
