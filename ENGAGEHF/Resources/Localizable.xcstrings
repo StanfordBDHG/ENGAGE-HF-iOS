@@ -4,6 +4,9 @@
     "" : {
 
     },
+    "%@" : {
+
+    },
     "%@ Date: %@" : {
       "localizations" : {
         "en" : {
@@ -110,6 +113,15 @@
     "Add Measurement: %@" : {
 
     },
+    "Add Medications" : {
+
+    },
+    "Add Mock" : {
+
+    },
+    "Add mock notification" : {
+
+    },
     "All Data" : {
 
     },
@@ -170,6 +182,9 @@
           }
         }
       }
+    },
+    "Content ..." : {
+
     },
     "Current" : {
 
@@ -400,6 +415,12 @@
         }
       }
     },
+    "List With Sections" : {
+
+    },
+    "List Without Sections" : {
+
+    },
     "Medication Label: %@" : {
 
     },
@@ -465,6 +486,9 @@
     "Please enter your invitation code to join the ENGAGE-HF study." : {
 
     },
+    "Questionnaire Loading" : {
+
+    },
     "Recent Vitals" : {
 
     },
@@ -487,6 +511,9 @@
 
     },
     "Show less" : {
+
+    },
+    "Show Measurements" : {
 
     },
     "Show more" : {
@@ -579,6 +606,9 @@
         }
       }
     },
+    "Tap Here" : {
+
+    },
     "Target" : {
 
     },
@@ -591,13 +621,22 @@
     "Time" : {
 
     },
+    "Trigger Blood Pressure Measurement" : {
+
+    },
     "Trigger Sheet" : {
+
+    },
+    "Trigger Weight Measurement" : {
 
     },
     "Unable to create time interval for date: %@" : {
 
     },
     "Unable to delete measurement, check network connection." : {
+
+    },
+    "Unable to load questionnaire." : {
 
     },
     "Unknown Thumbnail" : {

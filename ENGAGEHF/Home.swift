@@ -81,6 +81,9 @@ struct HomeView: View {
                     Label("Devices", systemImage: "sensor.fill")
                 }
         }
+            .sheet(item: $navigationManager.questionnaireId) { questionnaireId in
+                QuestionnaireSheetView(questionnaireId: questionnaireId)
+            }
             .sheet(isPresented: $presentingAccount) {
                 AccountSheet()
             }

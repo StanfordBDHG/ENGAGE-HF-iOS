@@ -19,6 +19,7 @@ enum FeatureFlags {
     /// On sign in, fills the user's vitals observation collections (body weight, blood pressure, heart rate, and symptom scores) with random data if none already present.
     static let setupMockVitals = CommandLine.arguments.contains("--setupMockVitals")
     /// Fills the MessageManager's message array with mock messages, skipping on-sign-in configuration such as snapshot listeners. Used for UI Testing.
+    /// Also causes QuestionnaireSheetView to skip Firestore query and use a default questionnaire as a test example.
     static let setupTestMessages = CommandLine.arguments.contains("--setupTestMessages")
     /// In the medications manager, instead of initializing a snapshot listener for the medication recommendations collection, include a button to directly fill the medications array with mock medications.
     static let setupTestMedications = CommandLine.arguments.contains("--setupTestMedications")

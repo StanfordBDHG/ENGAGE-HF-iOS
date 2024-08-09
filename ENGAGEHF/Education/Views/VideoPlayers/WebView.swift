@@ -46,16 +46,6 @@ struct WebView: UIViewRepresentable {
 
 
 extension WebView {
-    private enum LoadingError: LocalizedError {
-        case defaultLoadingError
-        
-        var errorDescription: String? {
-            switch self {
-            case .defaultLoadingError: String(localized: "defaultLoadingError")
-            }
-        }
-    }
-    
     class ProgressCoordinator: NSObject, WKNavigationDelegate {
         let parent: WebView
         
@@ -74,11 +64,11 @@ extension WebView {
         }
         
         func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation, withError error: any Error) {
-            parent.viewState = .error(error as? LocalizedError ?? LoadingError.defaultLoadingError)
+            parent.viewState = .error(AnyLocalizedError(error: error, defaultErrorDescription: String(localized: "defaultLoadingError")))
         }
         
         func webView(_ webView: WKWebView, didFail navigation: WKNavigation, withError error: any Error) {
-            parent.viewState = .error(error as? LocalizedError ?? LoadingError.defaultLoadingError)
+            parent.viewState = .error(AnyLocalizedError(error: error, defaultErrorDescription: String(localized: "defaultLoadingError")))
         }
         
         

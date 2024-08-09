@@ -81,6 +81,23 @@ final class MessagesUITests: XCTestCase {
         XCTAssert(app.staticTexts["Education"].waitForExistence(timeout: 1))
     }
     
+    func testCompleteQuestionnaireAction() throws {
+        let app = XCUIApplication()
+        try app.goTo(tab: "Home")
+        
+        let questionnaireMessage = app.otherElements["Message Card - Symptom Questionnaire"]
+        XCTAssert(questionnaireMessage.exists)
+        XCTAssert(questionnaireMessage.isHittable)
+        
+        questionnaireMessage.tap()
+        sleep(1)
+        
+        XCTAssert(app.buttons["Cancel"].exists)
+        XCTAssert(app.staticTexts["Form Example"].exists)
+        
+        XCTAssert(true)
+    }
+    
     func testSeeMedicationsAction() throws {
         let app = XCUIApplication()
         try app.goTo(tab: "Home")
