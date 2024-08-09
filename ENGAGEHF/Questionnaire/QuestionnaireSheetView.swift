@@ -33,6 +33,13 @@ struct QuestionnaireSheetView: View {
                         return
                     }
                     
+#if DEBUG
+                    if ProcessInfo.processInfo.isPreviewSimulator {
+                        dismiss()
+                        return
+                    }
+#endif
+                    
                     do {
                         try await standard.add(response: questionnaireResponse)
                         dismiss()
