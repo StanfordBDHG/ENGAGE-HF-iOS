@@ -82,9 +82,6 @@ final class MessageManager: Module, EnvironmentAccessible, DefaultInitializable 
                             return nil
                         }
                     }
-                    // Because the completionDate field is absent before the message is dismissed,
-                    // the only way to filter out dismissed messages is to do so on the client
-                    .filter { $0.completionDate == nil }
                 
                 self.logger.debug("Messages updated.")
             }

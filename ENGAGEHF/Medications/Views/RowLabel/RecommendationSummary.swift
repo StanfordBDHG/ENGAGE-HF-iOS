@@ -35,6 +35,7 @@ struct RecommendationSummary: View {
             title: "Lisinopril",
             subtitle: "Beta Blockers",
             description: "Description of the recommendation",
+            videoPath: "videoSections/1/videos/2",
             type: .targetDoseReached,
             dosageInformation: DosageInformation(
                 currentSchedule: [

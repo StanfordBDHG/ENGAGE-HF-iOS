@@ -12,6 +12,7 @@ import SwiftUI
 struct MedicationDescription: View {
     let title: String
     let description: String
+    let videoPath: String?
     
     @Environment(NavigationManager.self) private var navigationManager
     
@@ -24,12 +25,17 @@ struct MedicationDescription: View {
             
             Spacer()
             
-            Image(systemName: "questionmark.circle")
-                .foregroundStyle(.accent)
-                .accessibilityLabel("\(title) More Information")
-                .asButton {
-                    navigationManager.switchHomeTab(to: .education)
-                }
+            let action = MessageAction(from: videoPath)
+            if action != .unknown {
+                Image(systemName: "questionmark.circle")
+                    .foregroundStyle(.accent)
+                    .accessibilityLabel("\(title) More Information")
+                    .asButton {
+                        Task {
+                            await navigationManager.execute(action)
+                        }
+                    }
+            }
         }
     }
 }
@@ -38,6 +44,7 @@ struct MedicationDescription: View {
 #Preview {
     MedicationDescription(
         title: "Carvedilol",
-        description: "Target dose reached. No action Required."
+        description: "Target dose reached. No action Required.",
+        videoPath: "videoSections/1/videos/2"
     )
 }

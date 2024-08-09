@@ -10,7 +10,7 @@ import FirebaseFirestore
 import Foundation
 
 
-enum MedicationRecommendationType: String, Codable, Comparable {
+enum MedicationRecommendationType: String, Decodable, Comparable {
     case targetDoseReached
     case personalTargetDoseReached
     case improvementAvailable
@@ -44,7 +44,7 @@ enum MedicationRecommendationType: String, Codable, Comparable {
 
 /// A daily medication schedule. Includes current, minimum, and target schedules.
 /// Example: 20.0 mg twice daily would have dose=20.0 and timesDaily=2.
-struct DoseSchedule: Hashable, Codable {
+struct DoseSchedule: Hashable, Decodable {
     let frequency: Double
     let quantity: [Double]
     
@@ -55,7 +55,7 @@ struct DoseSchedule: Hashable, Codable {
 
 /// A collection containing details of a patients dose for a single medication.
 /// Describes the dosage in terms of total medication across all ingredients.
-struct DosageInformation: Codable {
+struct DosageInformation: Decodable {
     let currentSchedule: [DoseSchedule]
     let minimumSchedule: [DoseSchedule]
     let targetSchedule: [DoseSchedule]
@@ -77,7 +77,7 @@ struct DosageInformation: Codable {
 
 
 /// Wrapper for decoding medication details from firestore.
-struct MedicationDetailsWrapper: Codable {
+struct MedicationDetailsWrapper: Decodable {
     @DocumentID private var id: String?
     
     private let displayInformation: MedicationDetails
@@ -98,18 +98,20 @@ struct MedicationDetails: Identifiable {
     let title: String
     let subtitle: String
     let description: String
+    let videoPath: String?
     let type: MedicationRecommendationType
     let dosageInformation: DosageInformation
 }
 
 
-extension MedicationDetails: Codable {
+extension MedicationDetails: Decodable {
     private enum CodingKeys: CodingKey {
         case title
         case subtitle
         case description
         case type
         case dosageInformation
+        case videoPath
     }
     
     
@@ -119,17 +121,8 @@ extension MedicationDetails: Codable {
         self.title = try container.decodeLocalizedString(forKey: .title)
         self.subtitle = try container.decodeLocalizedString(forKey: .subtitle)
         self.description = try container.decodeLocalizedString(forKey: .description)
+        self.videoPath = try container.decodeIfPresent(String.self, forKey: .videoPath)
         self.type = try container.decode(MedicationRecommendationType.self, forKey: .type)
         self.dosageInformation = try container.decode(DosageInformation.self, forKey: .dosageInformation)
-    }
-    
-    func encode(to encoder: any Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        
-        try container.encode(self.title, forKey: .title)
-        try container.encode(self.subtitle, forKey: .subtitle)
-        try container.encode(self.description, forKey: .description)
-        try container.encode(self.type, forKey: .type)
-        try container.encode(self.dosageInformation, forKey: .dosageInformation)
     }
 }

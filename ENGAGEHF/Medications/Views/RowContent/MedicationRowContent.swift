@@ -15,7 +15,11 @@ struct MedicationRowContent: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            MedicationDescription(title: medication.title, description: medication.description)
+            MedicationDescription(
+                title: medication.title,
+                description: medication.description,
+                videoPath: medication.videoPath
+            )
                 .padding(.vertical, 2)
             
             Divider()
@@ -32,6 +36,7 @@ struct MedicationRowContent: View {
             title: "Lisinopril",
             subtitle: "Beta Blockers",
             description: "Description of the recommendation",
+            videoPath: "videoSections/1/videos/2",
             type: .targetDoseReached,
             dosageInformation: DosageInformation(
                 currentSchedule: [

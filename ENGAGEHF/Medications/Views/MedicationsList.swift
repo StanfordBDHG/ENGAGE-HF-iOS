@@ -44,6 +44,7 @@ struct MedicationsList: View {
                 title: "Lozinopril",
                 subtitle: "Beta Blocker",
                 description: "Long description goes here",
+                videoPath: "videoSections/1/videos/2",
                 type: .improvementAvailable,
                 dosageInformation: DosageInformation(
                     currentSchedule: [
