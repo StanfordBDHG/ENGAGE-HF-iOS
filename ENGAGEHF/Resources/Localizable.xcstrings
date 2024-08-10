@@ -231,6 +231,9 @@
     "Failed to save new %@ measurement." : {
 
     },
+    "Generating Health Summary" : {
+
+    },
     "Graph Selection" : {
 
     },
@@ -424,9 +427,6 @@
     "List Without Sections" : {
 
     },
-    "Loading Health Summary" : {
-
-    },
     "Medication Label: %@" : {
 
     },
@@ -488,6 +488,9 @@
           }
         }
       }
+    },
+    "PDF" : {
+
     },
     "Please enter your invitation code to join the ENGAGE-HF study." : {
 

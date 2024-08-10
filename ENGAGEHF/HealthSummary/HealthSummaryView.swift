@@ -8,40 +8,62 @@
 
 import FirebaseAuth
 import FirebaseFunctions
+import PDFKit
 import SpeziViews
 import SwiftUI
 
 
 struct HealthSummaryView: View {
-    @State private var healthSummaryData: Data?
+    @State private var healthSummaryDocument: PDFDocument?
     @State private var viewState: ViewState = .idle
     
     
     var body: some View {
-        ZStack {
-            if let healthSummaryData {
-                PDFViewer(pdfData: healthSummaryData)
-            } else {
-                ProgressView("Loading Health Summary")
-            }
-        }
-            .task {
-                do {
-                    guard let userId = Auth.auth().currentUser?.uid else {
-                        return
-                    }
-                    
-                    let exportHealthSummary = Functions.functions().httpsCallable("exportHealthSummary")
-                    
-                    let result = try await exportHealthSummary.call([ "userId": userId ])
-                    
-                    print(type(of: result.data), result.data)
-                    
-                    self.healthSummaryData = result.data as? Data
-                } catch {
-                    viewState = .error(AnyLocalizedError(error: error))
+        NavigationStack {
+            ZStack {
+                if let healthSummaryDocument {
+                    PDFViewer(document: healthSummaryDocument)
+                } else {
+                    ProgressView("Generating Health Summary")
                 }
             }
+                .task {
+                    do {
+                        guard let userId = Auth.auth().currentUser?.uid else {
+                            return
+                        }
+
+                        let exportHealthSummary = Functions.functions().httpsCallable("exportHealthSummary")
+                        let result = try await exportHealthSummary.call(
+                            [
+                                "userId": userId
+                            ]
+                        )
+                        
+                        let dataDictionary = result.data as? [String: Any]
+                        let content = dataDictionary?["content"] as? String
+                        
+                        if let contentData = content.flatMap({ Data(base64Encoded: $0) }) {
+                            self.healthSummaryDocument = PDFDocument(data: contentData)
+                        }
+                    } catch {
+                        viewState = .error(
+                            AnyLocalizedError(
+                                error: error, 
+                                defaultErrorDescription: String(localized: "Process timed out.")
+                            )
+                        )
+                    }
+                }
+                .toolbar {
+                    if let healthSummaryDocument {
+                        ToolbarItem(placement: .confirmationAction) {
+                            ShareLink(item: healthSummaryDocument, preview: SharePreview("PDF"))
+                        }
+                    }
+                }
+                .viewStateAlert(state: $viewState)
+        }
     }
 }
 

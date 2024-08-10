@@ -11,12 +11,13 @@ import SwiftUI
 
 
 struct PDFViewer: UIViewRepresentable {
-    let pdfData: Data
+    let document: PDFDocument
     
     
     func makeUIView(context: Context) -> PDFView {
         let pdfView = PDFView()
-        pdfView.document = PDFDocument(data: pdfData)
+        pdfView.document = document
+        pdfView.autoScales = true
         return pdfView
     }
     
