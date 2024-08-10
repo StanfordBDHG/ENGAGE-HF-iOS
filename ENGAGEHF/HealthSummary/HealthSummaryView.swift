@@ -17,7 +17,8 @@ struct HealthSummaryView: View {
     @State private var healthSummaryDocument: PDFDocument?
     @State private var viewState: ViewState = .idle
     
-    private let sharePreviewImage = Image(systemName: "heart.text.square")
+    // swiftlint:disable:next accessibility_label_for_image
+    private let sharePreviewImage = Image("HealthSummary")
     
     
     var body: some View {
@@ -64,7 +65,6 @@ struct HealthSummaryView: View {
             }
             
             self.healthSummaryDocument = PDFDocument(data: contentData)
-            
         } catch {
             self.viewState = .error(
                 AnyLocalizedError(
