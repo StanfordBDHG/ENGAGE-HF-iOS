@@ -17,6 +17,8 @@ struct HealthSummaryView: View {
     @State private var healthSummaryDocument: PDFDocument?
     @State private var viewState: ViewState = .idle
     
+    private let sharePreviewImage = Image(systemName: "heart.text.square")
+    
     
     var body: some View {
         NavigationStack {
@@ -28,41 +30,48 @@ struct HealthSummaryView: View {
                 }
             }
                 .task {
-                    do {
-                        guard let userId = Auth.auth().currentUser?.uid else {
-                            return
-                        }
-
-                        let exportHealthSummary = Functions.functions().httpsCallable("exportHealthSummary")
-                        let result = try await exportHealthSummary.call(
-                            [
-                                "userId": userId
-                            ]
-                        )
-                        
-                        let dataDictionary = result.data as? [String: Any]
-                        let content = dataDictionary?["content"] as? String
-                        
-                        if let contentData = content.flatMap({ Data(base64Encoded: $0) }) {
-                            self.healthSummaryDocument = PDFDocument(data: contentData)
-                        }
-                    } catch {
-                        viewState = .error(
-                            AnyLocalizedError(
-                                error: error, 
-                                defaultErrorDescription: String(localized: "Process timed out.")
-                            )
-                        )
-                    }
+                    await self.generateHealthSummary()
                 }
                 .toolbar {
                     if let healthSummaryDocument {
                         ToolbarItem(placement: .confirmationAction) {
-                            ShareLink(item: healthSummaryDocument, preview: SharePreview("PDF"))
+                            ShareLink(
+                                item: healthSummaryDocument,
+                                preview: SharePreview("Health Summary", image: sharePreviewImage)
+                            )
                         }
                     }
                 }
                 .viewStateAlert(state: $viewState)
+        }
+    }
+    
+    
+    private func generateHealthSummary() async {
+        do {
+            guard let userId = Auth.auth().currentUser?.uid else {
+                return
+            }
+
+            let exportHealthSummary = Functions.functions().httpsCallable("exportHealthSummary")
+            let result = try await exportHealthSummary.call([ "userId": userId ] )
+            
+            let dataDictionary = result.data as? [String: Any]
+            let content = dataDictionary?["content"] as? String
+            
+            guard let contentData = content.flatMap({ Data(base64Encoded: $0) }) else {
+                return
+            }
+            
+            self.healthSummaryDocument = PDFDocument(data: contentData)
+            
+        } catch {
+            self.viewState = .error(
+                AnyLocalizedError(
+                    error: error,
+                    defaultErrorDescription: String(localized: "Process timed out.")
+                )
+            )
         }
     }
 }
