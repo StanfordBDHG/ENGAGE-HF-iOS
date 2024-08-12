@@ -17,9 +17,6 @@ struct HealthSummaryView: View {
     @State private var healthSummaryDocument: PDFDocument?
     @State private var viewState: ViewState = .idle
     
-    // swiftlint:disable:next accessibility_label_for_image
-    private let sharePreviewImage = Image("HealthSummary")
-    
     
     var body: some View {
         NavigationStack {
@@ -38,8 +35,9 @@ struct HealthSummaryView: View {
                         ToolbarItem(placement: .confirmationAction) {
                             ShareLink(
                                 item: healthSummaryDocument,
-                                preview: SharePreview("Health Summary", image: sharePreviewImage)
+                                preview: SharePreview("Health Summary", image: Image(.healthSummary))
                             )
+                                .accessibilityLabel("Share Link")
                         }
                     }
                 }
