@@ -35,18 +35,18 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
                 if FeatureFlags.useFirebaseEmulator {
                     FirebaseAccountConfiguration(
                         authenticationMethods: [.emailAndPassword, .signInWithApple],
-                        emulatorSettings: (host: "localhost", port: 9099)
+                        emulatorSettings: (host: firestoreHost, port: 9099)
                     )
                 } else {
                     FirebaseAccountConfiguration(authenticationMethods: [.emailAndPassword, .signInWithApple])
                 }
                 FirestoreAccountStorage(storeIn: Firestore.userCollection)
                 
-                Firestore(settings: FeatureFlags.useFirebaseEmulator ? .emulator : FirestoreSettings())
-                
                 if FeatureFlags.useFirebaseEmulator {
-                    FirebaseStorageConfiguration(emulatorSettings: (host: "localhost", port: 9199))
+                    Firestore(settings: FeatureFlags.useCustomFirestoreHost ? .withCustomHost(firestoreHost) : .emulator)
+                    FirebaseStorageConfiguration(emulatorSettings: (host: firestoreHost, port: 9199))
                 } else {
+                    Firestore(settings: FirestoreSettings())
                     FirebaseStorageConfiguration()
                 }
             }

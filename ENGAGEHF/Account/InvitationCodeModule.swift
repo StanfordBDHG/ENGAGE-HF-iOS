@@ -21,7 +21,7 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
 
     func configure() {
         if FeatureFlags.useFirebaseEmulator {
-            Functions.functions().useEmulator(withHost: "localhost", port: 5001)
+            Functions.functions().useEmulator(withHost: firestoreHost, port: 5001)
         }
     }
 
