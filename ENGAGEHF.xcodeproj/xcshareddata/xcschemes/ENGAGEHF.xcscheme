@@ -103,7 +103,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--assumeOnboardingComplete"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--setupTestEnvironment"

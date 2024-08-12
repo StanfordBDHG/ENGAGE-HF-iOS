@@ -79,9 +79,9 @@
 		4D40A4D22C5B0AB2003DC813 /* VideoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D40A4D12C5B0AB2003DC813 /* VideoList.swift */; };
 		4D49AB022BC9D50400C77310 /* SpeziBluetooth in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49AB012BC9D50400C77310 /* SpeziBluetooth */; };
 		4D4AA0A52BC5E43E00676489 /* OnboardingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4AA0A42BC5E43E00676489 /* OnboardingUITests.swift */; };
+		4D62BF2A2C6A71500088C414 /* FirestoreSettings+EmulatorWithHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D62BF292C6A71500088C414 /* FirestoreSettings+EmulatorWithHost.swift */; };
 		4D62BF392C6A978C0088C414 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D62BF382C6A978C0088C414 /* NotificationManager.swift */; };
 		4D62BF3B2C6A9F330088C414 /* NotificationRegistrationSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D62BF3A2C6A9F330088C414 /* NotificationRegistrationSchema.swift */; };
-		4D62BF2A2C6A71500088C414 /* FirestoreSettings+EmulatorWithHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D62BF292C6A71500088C414 /* FirestoreSettings+EmulatorWithHost.swift */; };
 		4D70CF652C653BE100EB4CC6 /* Image+CardSymbolStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D70CF642C653BE100EB4CC6 /* Image+CardSymbolStyle.swift */; };
 		4D70CF6A2C65423D00EB4CC6 /* GraphSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D70CF692C65423D00EB4CC6 /* GraphSelection.swift */; };
 		4D70CF6C2C65425F00EB4CC6 /* VitalsType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D70CF6B2C65425F00EB4CC6 /* VitalsType.swift */; };
@@ -274,9 +274,9 @@
 		4D40A4C92C5AF34C003DC813 /* EducationalVideoCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationalVideoCard.swift; sourceTree = "<group>"; };
 		4D40A4D12C5B0AB2003DC813 /* VideoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoList.swift; sourceTree = "<group>"; };
 		4D4AA0A42BC5E43E00676489 /* OnboardingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingUITests.swift; sourceTree = "<group>"; };
+		4D62BF292C6A71500088C414 /* FirestoreSettings+EmulatorWithHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FirestoreSettings+EmulatorWithHost.swift"; sourceTree = "<group>"; };
 		4D62BF382C6A978C0088C414 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		4D62BF3A2C6A9F330088C414 /* NotificationRegistrationSchema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationRegistrationSchema.swift; sourceTree = "<group>"; };
-		4D62BF292C6A71500088C414 /* FirestoreSettings+EmulatorWithHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FirestoreSettings+EmulatorWithHost.swift"; sourceTree = "<group>"; };
 		4D70CF642C653BE100EB4CC6 /* Image+CardSymbolStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+CardSymbolStyle.swift"; sourceTree = "<group>"; };
 		4D70CF692C65423D00EB4CC6 /* GraphSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphSelection.swift; sourceTree = "<group>"; };
 		4D70CF6B2C65425F00EB4CC6 /* VitalsType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalsType.swift; sourceTree = "<group>"; };
