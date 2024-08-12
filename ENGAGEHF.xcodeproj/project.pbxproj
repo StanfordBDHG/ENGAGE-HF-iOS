@@ -79,6 +79,8 @@
 		4D40A4D22C5B0AB2003DC813 /* VideoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D40A4D12C5B0AB2003DC813 /* VideoList.swift */; };
 		4D49AB022BC9D50400C77310 /* SpeziBluetooth in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49AB012BC9D50400C77310 /* SpeziBluetooth */; };
 		4D4AA0A52BC5E43E00676489 /* OnboardingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4AA0A42BC5E43E00676489 /* OnboardingUITests.swift */; };
+		4D62BF392C6A978C0088C414 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D62BF382C6A978C0088C414 /* NotificationManager.swift */; };
+		4D62BF3B2C6A9F330088C414 /* NotificationRegistrationSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D62BF3A2C6A9F330088C414 /* NotificationRegistrationSchema.swift */; };
 		4D70CF652C653BE100EB4CC6 /* Image+CardSymbolStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D70CF642C653BE100EB4CC6 /* Image+CardSymbolStyle.swift */; };
 		4D70CF6A2C65423D00EB4CC6 /* GraphSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D70CF692C65423D00EB4CC6 /* GraphSelection.swift */; };
 		4D70CF6C2C65425F00EB4CC6 /* VitalsType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D70CF6B2C65425F00EB4CC6 /* VitalsType.swift */; };
@@ -267,6 +269,8 @@
 		4D40A4C92C5AF34C003DC813 /* EducationalVideoCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationalVideoCard.swift; sourceTree = "<group>"; };
 		4D40A4D12C5B0AB2003DC813 /* VideoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoList.swift; sourceTree = "<group>"; };
 		4D4AA0A42BC5E43E00676489 /* OnboardingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingUITests.swift; sourceTree = "<group>"; };
+		4D62BF382C6A978C0088C414 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		4D62BF3A2C6A9F330088C414 /* NotificationRegistrationSchema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationRegistrationSchema.swift; sourceTree = "<group>"; };
 		4D70CF642C653BE100EB4CC6 /* Image+CardSymbolStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+CardSymbolStyle.swift"; sourceTree = "<group>"; };
 		4D70CF692C65423D00EB4CC6 /* GraphSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphSelection.swift; sourceTree = "<group>"; };
 		4D70CF6B2C65425F00EB4CC6 /* VitalsType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalsType.swift; sourceTree = "<group>"; };
@@ -601,6 +605,15 @@
 			path = VideoPlayers;
 			sourceTree = "<group>";
 		};
+		4D62BF372C6A97490088C414 /* NotificationManager */ = {
+			isa = PBXGroup;
+			children = (
+				4D62BF382C6A978C0088C414 /* NotificationManager.swift */,
+				4D62BF3A2C6A9F330088C414 /* NotificationRegistrationSchema.swift */,
+			);
+			path = NotificationManager;
+			sourceTree = "<group>";
+		};
 		4D70CF672C65422D00EB4CC6 /* SelectionTypes */ = {
 			isa = PBXGroup;
 			children = (
@@ -914,6 +927,7 @@
 				2FF53D8C2A8729D600042B76 /* ENGAGEHFStandard.swift */,
 				2F4E23822989D51F0013F3D9 /* ENGAGEHFTestingSetup.swift */,
 				2FC975A72978F11A00BA99FE /* Home.swift */,
+				4D62BF372C6A97490088C414 /* NotificationManager */,
 				4DF36FFB2C66A8ED004D737A /* Questionnaire */,
 				4D9D43542C596CED000062D3 /* SharedExtensions */,
 				4DF5061E2C2E1C10003E7EFB /* MessageManager */,
@@ -1227,6 +1241,7 @@
 				4DF36FFD2C66A904004D737A /* QuestionnaireSheetView.swift in Sources */,
 				2FF350E42C4F3F0B0095F08F /* Firebase+References.swift in Sources */,
 				4DC0F6712C34818B0025AB13 /* HKSample+GetDoubleValues.swift in Sources */,
+				4D62BF392C6A978C0088C414 /* NotificationManager.swift in Sources */,
 				4D34B3F62C4065A5006F0D40 /* HeartHealthError.swift in Sources */,
 				4D8402C92C52F7C100817495 /* TextualDosageSummary.swift in Sources */,
 				4D8402812C4F067D00817495 /* FieldDetails.swift in Sources */,
@@ -1239,6 +1254,7 @@
 				4D92B9F82C3C901500ABCED7 /* SymptomsGraphSection.swift in Sources */,
 				4DF36FF52C667D39004D737A /* AxisModifiers.swift in Sources */,
 				2FF53D8D2A8729D600042B76 /* ENGAGEHFStandard.swift in Sources */,
+				4D62BF3B2C6A9F330088C414 /* NotificationRegistrationSchema.swift in Sources */,
 				4DDFC78A2BFC1312002B07A1 /* MessageRow.swift in Sources */,
 				4D8402722C4EC0D400817495 /* MeasurementListHeader.swift in Sources */,
 				4D92B9F22C3C8D1E00ABCED7 /* MeasurementListSection.swift in Sources */,

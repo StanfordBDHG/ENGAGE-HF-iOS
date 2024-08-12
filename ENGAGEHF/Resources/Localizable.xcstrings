@@ -387,7 +387,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Interesting Modules"
+            "value" : "Key Features"
           }
         }
       }
@@ -457,7 +457,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The Spezi Scheduler module enables to send out local notifications when a new event of a task is scheduled."
+            "value" : "We will send notifications to your device to alert you of changes to your medication recommendations and remind you of upcoming appointments."
           }
         }
       }
@@ -467,7 +467,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Spezi Scheduler Notifications."
+            "value" : "Allow push notifications?"
           }
         }
       }
