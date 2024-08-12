@@ -16,7 +16,7 @@ extension KeyedDecodingContainer {
         if let localizedMap = try? decodeIfPresent([String: String].self, forKey: key) {
             if let localizedVersion = localizedMap[Locale.current.identifier] {
                 return localizedVersion
-            } else if let localizedVersion = localizedMap[Locale.current.identifier.components(separatedBy: "-").first ?? ""] {
+            } else if let localizedVersion = localizedMap[Locale.current.identifier.components(separatedBy: "_").first ?? ""] {
                 return localizedVersion
             } else if let localizedVersion = localizedMap["en"] {
                 return localizedVersion

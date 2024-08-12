@@ -82,6 +82,10 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
+            argument = "--useCustomFirestoreHost"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
             argument = "--setupTestVideos"
             isEnabled = "NO">
          </CommandLineArgument>
