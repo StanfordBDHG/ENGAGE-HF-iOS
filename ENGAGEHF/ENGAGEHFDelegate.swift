@@ -26,6 +26,8 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
     override var configuration: Configuration {
         Configuration(standard: ENGAGEHFStandard()) { // swiftlint:disable:this closure_body_length
             if !FeatureFlags.disableFirebase {
+                let firestoreHost = FeatureFlags.useCustomFirestoreHost ? FirestoreSettings.customHost : FirestoreSettings.defaultHost
+                
                 AccountConfiguration(configuration: [
                     .requires(\.userId),
                     .supports(\.name),
@@ -42,11 +44,11 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
                 }
                 FirestoreAccountStorage(storeIn: Firestore.userCollection)
                 
+                Firestore(settings: FeatureFlags.useFirebaseEmulator ? .emulatorWithHost(firestoreHost) : FirestoreSettings())
+                
                 if FeatureFlags.useFirebaseEmulator {
-                    Firestore(settings: FeatureFlags.useCustomFirestoreHost ? .withCustomHost(firestoreHost) : .emulator)
                     FirebaseStorageConfiguration(emulatorSettings: (host: firestoreHost, port: 9199))
                 } else {
-                    Firestore(settings: FirestoreSettings())
                     FirebaseStorageConfiguration()
                 }
             }

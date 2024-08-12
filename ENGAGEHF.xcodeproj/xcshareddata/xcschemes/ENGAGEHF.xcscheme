@@ -83,7 +83,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--useCustomFirestoreHost"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--setupTestVideos"
