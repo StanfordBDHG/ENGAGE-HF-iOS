@@ -231,7 +231,13 @@
     "Failed to save new %@ measurement." : {
 
     },
+    "Generating Health Summary" : {
+
+    },
     "Graph Selection" : {
+
+    },
+    "Health Summary" : {
 
     },
     "Heart Health" : {
@@ -486,6 +492,9 @@
     "Please enter your invitation code to join the ENGAGE-HF study." : {
 
     },
+    "Process timed out." : {
+
+    },
     "Questionnaire Loading" : {
 
     },
@@ -508,6 +517,9 @@
 
     },
     "Series" : {
+
+    },
+    "Share Link" : {
 
     },
     "Show less" : {

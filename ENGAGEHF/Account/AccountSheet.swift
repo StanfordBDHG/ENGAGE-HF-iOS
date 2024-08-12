@@ -26,11 +26,7 @@ struct AccountSheet: View {
             ZStack {
                 if account.signedIn && !isInSetup {
                     AccountOverview(isEditing: $overviewIsEditing) {
-                        NavigationLink {
-                            ContributionsList(appName: "ENGAGE-HF", projectLicense: .mit)
-                        } label: {
-                            Text("LICENSE_INFO_TITLE")
-                        }
+                        AccountNavigationLinks()
                     }
                         .onDisappear {
                             overviewIsEditing = false
