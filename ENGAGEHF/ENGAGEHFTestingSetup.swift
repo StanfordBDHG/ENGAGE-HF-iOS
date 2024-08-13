@@ -14,7 +14,7 @@ import SwiftUI
 private struct ENGAGEHFAppTestingSetup: ViewModifier {
     @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
 
-    @Environment(Account.self) private var account
+    @Environment(Account.self) private var account: Account?
     @Environment(InvitationCodeModule.self) private var invitationCodeModule
 
     @State private var viewState: ViewState = .idle
@@ -29,6 +29,9 @@ private struct ENGAGEHFAppTestingSetup: ViewModifier {
                     completedOnboardingFlow = false
                 }
                 if FeatureFlags.setupTestEnvironment {
+                    guard let account else {
+                        preconditionFailure("Account feature must be enabled to support `setupTestEnvironment` flag!")
+                    }
                     do {
                         try await invitationCodeModule.setupTestEnvironment(account: account, invitationCode: "ENGAGETEST1")
                     } catch {

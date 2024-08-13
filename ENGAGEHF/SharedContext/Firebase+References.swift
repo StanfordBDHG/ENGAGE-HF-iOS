@@ -42,6 +42,7 @@ extension Firestore {
     
     static var userDocumentReference: DocumentReference {
         get throws {
+            // TODO: this builds around SpeziAccount :(
             guard let userId = Auth.auth().currentUser?.uid else {
                 throw FirebaseError.userNotAuthenticatedYet
             }

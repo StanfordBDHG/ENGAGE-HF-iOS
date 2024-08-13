@@ -25,8 +25,6 @@ import SwiftUI
 actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint {
     @Application(\.logger) private var logger
 
-    @Dependency(Account.self) var account: Account
-    
 
     func addMeasurement(samples: [HKSample]) async throws {
         guard !samples.isEmpty else {

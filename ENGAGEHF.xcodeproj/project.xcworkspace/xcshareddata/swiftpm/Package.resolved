@@ -196,7 +196,7 @@
       "location" : "https://github.com/StanfordSpezi/SpeziAccount.git",
       "state" : {
         "branch" : "feature/account-service-singleton",
-        "revision" : "f1a10fb1d93b1f60eef65cf64e6a080ea4b7d10f"
+        "revision" : "1e4fcd5fb8ad9ebc4baf93a6677a8ff7a416aab9"
       }
     },
     {
@@ -205,7 +205,7 @@
       "location" : "https://github.com/StanfordSpezi/SpeziBluetooth.git",
       "state" : {
         "branch" : "feature/concurrency-improvements",
-        "revision" : "a6a03a03539e01598678bccfb519e3fd55b043ba"
+        "revision" : "e961077cd14beea7d7f9e94b6b00a124f3b8fab5"
       }
     },
     {
@@ -223,7 +223,7 @@
       "location" : "https://github.com/StanfordSpezi/SpeziDevices.git",
       "state" : {
         "branch" : "fix/omron-measurement-delivery",
-        "revision" : "6e100ded5a5ac6d005ad4324ce52798c29e5eb7a"
+        "revision" : "a0898f6d4a1b5a46ea82658de715e58b9597a8b0"
       }
     },
     {
