@@ -11,13 +11,15 @@ import FirebaseAuth
 import FirebaseFunctions
 import Spezi
 import SpeziAccount
+import SpeziFirebaseAccount
 import SpeziFirebaseConfiguration
 
 
 class InvitationCodeModule: Module, EnvironmentAccessible {
-    @Dependency private var firebase: ConfigureFirebaseApp
-
     @Application(\.logger) private var logger
+
+    @Dependency(ConfigureFirebaseApp.self) private var firebase
+    @Dependency(FirebaseAccountService.self) private var accountService: FirebaseAccountService?
 
     func configure() {
         if FeatureFlags.useFirebaseEmulator {
@@ -90,30 +92,30 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
             return
         }
 
-        guard let service = account.registeredAccountServices.compactMap({ $0 as? any UserIdPasswordAccountService }).first else {
-            preconditionFailure("Failed to retrieve a user-id-password based account service for test account setup!")
+        guard let accountService else {
+            preconditionFailure("The Firebase Account Service is required to be configured when setting up the test environment!")
         }
 
         do {
-            try await service.login(userId: email, password: password)
+            try await accountService.login(userId: email, password: password)
             return // account was already established previously
         } catch {
+            // TODO: Check for the specific error!
             logger.debug("We failed to login with test account. This might be expected if it is a fresh installation: \(error)")
             // probably doesn't exists. We try to create a new one below
         }
 
         try await verifyOnboardingCode(invitationCode)
-        try await setupTestAccount(service: service, email: email, password: password)
+        try await setupTestAccount(service: accountService, email: email, password: password)
     }
 
-    private func setupTestAccount(service: any UserIdPasswordAccountService, email: String, password: String) async throws {
+    private func setupTestAccount(service: FirebaseAccountService, email: String, password: String) async throws {
         do {
-            let details = SignupDetails.Builder()
-                .set(\.userId, value: email)
-                .set(\.name, value: PersonNameComponents(givenName: "Leland", familyName: "Stanford"))
-                .set(\.password, value: password)
-                .build()
-            try await service.signUp(signupDetails: details)
+            var details = AccountDetails()
+            details.userId = email
+            details.password = password
+            details.name = PersonNameComponents(givenName: "Leland", familyName: "Stanford")
+            try await service.signUp(with: details)
         } catch {
             logger.error("Failed setting up test account : \(error)")
             throw error

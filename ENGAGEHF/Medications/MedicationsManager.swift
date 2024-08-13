@@ -19,7 +19,7 @@ import SpeziFirebaseConfiguration
 /// Decodes the current user's medication recommendations from Firestore to an easily displayed internal representation
 @Observable
 class MedicationsManager: Module, EnvironmentAccessible {
-    @ObservationIgnored @Dependency private var configureFirebaseApp: ConfigureFirebaseApp
+    @ObservationIgnored @Dependency(ConfigureFirebaseApp.self) private var configureFirebaseApp
     @ObservationIgnored @StandardActor private var standard: ENGAGEHFStandard
     
     private var authStateDidChangeListenerHandle: AuthStateDidChangeListenerHandle?

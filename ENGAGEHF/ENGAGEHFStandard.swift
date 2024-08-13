@@ -22,15 +22,10 @@ import SpeziQuestionnaire
 import SwiftUI
 
 
-actor ENGAGEHFStandard: Standard,
-                        EnvironmentAccessible,
-                        OnboardingConstraint,
-                        AccountStorageConstraint,
-                        AccountNotifyConstraint {
-    @Dependency var accountStorage: FirestoreAccountStorage?
-    @AccountReference var account: Account
+actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint, AccountNotifyConstraint {
+    @Application(\.logger) private var logger
 
-    private let logger = Logger(subsystem: "ENGAGEHF", category: "Standard")
+    @Dependency(Account.self) var account: Account
     
 
     func addMeasurement(samples: [HKSample]) async throws {
@@ -88,9 +83,12 @@ actor ENGAGEHFStandard: Standard,
         }
     }
 
-    func deletedAccount() async throws {
-        // account deletion prohibited
-        throw FirebaseError.accountDeletionNotAllowed
+    func respondToEvent(_ event: AccountNotifications.Event) async {
+        // TODO: not allowed to throw anymore, disable account deletion via other ways?
+        if case .deletingAccount = event {
+            // account deletion prohibited
+            // TOOD: throw FirebaseError.accountDeletionNotAllowed
+        }
     }
     
     /// Stores the given consent form in the user's document directory with a unique timestamped filename.
@@ -121,41 +119,5 @@ actor ENGAGEHFStandard: Standard,
         } catch {
             logger.error("Could not store consent form: \(error)")
         }
-    }
-
-
-    func create(_ identifier: AdditionalRecordId, _ details: SignupDetails) async throws {
-        guard let accountStorage else {
-            preconditionFailure("Account Storage was requested although not enabled in current configuration.")
-        }
-        try await accountStorage.create(identifier, details)
-    }
-
-    func load(_ identifier: AdditionalRecordId, _ keys: [any AccountKey.Type]) async throws -> PartialAccountDetails {
-        guard let accountStorage else {
-            preconditionFailure("Account Storage was requested although not enabled in current configuration.")
-        }
-        return try await accountStorage.load(identifier, keys)
-    }
-
-    func modify(_ identifier: AdditionalRecordId, _ modifications: AccountModifications) async throws {
-        guard let accountStorage else {
-            preconditionFailure("Account Storage was requested although not enabled in current configuration.")
-        }
-        try await accountStorage.modify(identifier, modifications)
-    }
-
-    func clear(_ identifier: AdditionalRecordId) async {
-        guard let accountStorage else {
-            preconditionFailure("Account Storage was requested although not enabled in current configuration.")
-        }
-        await accountStorage.clear(identifier)
-    }
-
-    func delete(_ identifier: AdditionalRecordId) async throws {
-        guard let accountStorage else {
-            preconditionFailure("Account Storage was requested although not enabled in current configuration.")
-        }
-        try await accountStorage.delete(identifier)
     }
 }

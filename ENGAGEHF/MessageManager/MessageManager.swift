@@ -21,7 +21,7 @@ import SpeziFirebaseConfiguration
 /// On sign-in, adds a snapshot listener to the user's messages collection
 @Observable
 final class MessageManager: Module, EnvironmentAccessible, DefaultInitializable {
-    @ObservationIgnored @Dependency private var configureFirebaseApp: ConfigureFirebaseApp
+    @ObservationIgnored @Dependency(ConfigureFirebaseApp.self) private var configureFirebaseApp
     @ObservationIgnored @StandardActor var standard: ENGAGEHFStandard
     
     private var authStateDidChangeListenerHandle: AuthStateDidChangeListenerHandle?

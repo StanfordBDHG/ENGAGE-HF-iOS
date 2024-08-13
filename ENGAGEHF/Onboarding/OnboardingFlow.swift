@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
-import SpeziAccount
+@_spi(TestingSupport) import SpeziAccount
 import SpeziFirebaseAccount
 import SpeziOnboarding
 import SwiftUI
@@ -48,9 +48,7 @@ struct OnboardingFlow: View {
         .previewWith(standard: ENGAGEHFStandard()) {
             OnboardingDataSource()
             InvitationCodeModule()
-            AccountConfiguration {
-                MockUserIdPasswordAccountService()
-            }
+            AccountConfiguration(service: InMemoryAccountService())
         }
 }
 #endif
