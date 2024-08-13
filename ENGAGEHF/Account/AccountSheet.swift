@@ -26,7 +26,7 @@ struct AccountSheet: View {
             ZStack {
                 if account.signedIn && !isInSetup {
                     AccountOverview(isEditing: $overviewIsEditing) {
-                        AccountNavigationLinks()
+                        AdditionalAccountSections()
                     }
                         .onDisappear {
                             overviewIsEditing = false

@@ -14,13 +14,23 @@ import UserNotifications
 
 
 class NotificationManager: Module, NotificationHandler, NotificationTokenHandler, EnvironmentAccessible {
-    @Application(\.registerRemoteNotifications) var registerRemoteNotifications
+    @Application(\.registerRemoteNotifications) private var registerRemoteNotifications
+    @Dependency private var navigationManager: NavigationManager
     
     private let logger = Logger(subsystem: "ENGAGEHF", category: "NotificationManager")
     
     
     func configure() {}
     
+    
+    func handleNotificationAction(_ response: UNNotificationResponse) async {
+//        print(#function)
+//        let payload = response.notification.request.content.userInfo["action"] as? String
+//        print(payload)
+//        let action = MessageAction(from: "medications")
+//        print(action)
+//        await _ = navigationManager.execute(action)
+    }
     
     func handleNotificationsAllowed() async throws {
         print(#function)
@@ -34,8 +44,7 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
         self.configureRemoteNotifications(using: deviceToken)
     }
     
-    
-    func configureRemoteNotifications(using deviceToken: Data) {
+    private func configureRemoteNotifications(using deviceToken: Data) {
         print(#function)
         self.logger.debug("Registering device for remote notifications.")
         let registerDevice = Functions.functions().httpsCallable("registerDevice")

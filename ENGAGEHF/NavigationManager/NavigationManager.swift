@@ -19,7 +19,7 @@ import SwiftUI
 /// Wraps an environment accessible and observable stack for use in navigating between views
 @MainActor
 @Observable
-class NavigationManager: Module, EnvironmentAccessible {
+final class NavigationManager: Module, EnvironmentAccessible, DefaultInitializable {
     @ObservationIgnored @Dependency private var configureFirebaseApp: ConfigureFirebaseApp
     @ObservationIgnored @Dependency private var videoManager: VideoManager
     
@@ -34,6 +34,9 @@ class NavigationManager: Module, EnvironmentAccessible {
     var selectedTab: HomeView.Tabs = .home
     var questionnaireId: String?
     var showHealthSummary = false
+    
+    
+    nonisolated init() {}
     
     
     // On sign in, reinitialize to an empty navigation path

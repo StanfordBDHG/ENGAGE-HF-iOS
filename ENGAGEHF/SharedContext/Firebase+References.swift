@@ -39,6 +39,10 @@ extension Firestore {
         Firestore.firestore().collection("questionnaires")
     }
     
+    static var organizationCollectionReference: CollectionReference {
+        Firestore.firestore().collection("organizations")
+    }
+    
     
     static var userDocumentReference: DocumentReference {
         get throws {

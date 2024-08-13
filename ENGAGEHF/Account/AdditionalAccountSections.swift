@@ -9,14 +9,21 @@
 import SpeziLicense
 import SwiftUI
 
-struct AccountNavigationLinks: View {
+struct AdditionalAccountSections: View {
     var body: some View {
-        Group {
+        Section {
+            NavigationLink {
+                Contacts()
+            } label: {
+                Text("Contacts")
+            }
             NavigationLink {
                 ContributionsList(appName: "ENGAGE-HF", projectLicense: .mit)
             } label: {
                 Text("LICENSE_INFO_TITLE")
             }
+        }
+        Section {
             NavigationLink {
                 HealthSummaryView()
             } label: {

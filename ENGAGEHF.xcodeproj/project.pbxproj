@@ -47,6 +47,7 @@
 		4D05F26A2C5466B700201581 /* DosageGauge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D05F2692C5466B700201581 /* DosageGauge.swift */; };
 		4D05F26D2C54696100201581 /* DosageGaugeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D05F26C2C54696100201581 /* DosageGaugeStyle.swift */; };
 		4D065BE02C09401700EBB3AE /* StudyApplicationListCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D065BDF2C09401700EBB3AE /* StudyApplicationListCard.swift */; };
+		4D081A1F2C6C1A3400E13BC8 /* OrganizationContactInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D081A1E2C6C1A3400E13BC8 /* OrganizationContactInformation.swift */; };
 		4D0F389E2C09779100DA12F7 /* ShowMoreButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0F389D2C09779000DA12F7 /* ShowMoreButton.swift */; };
 		4D0F38A22C0A7AD900DA12F7 /* ExpandableText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0F38A12C0A7AD900DA12F7 /* ExpandableText.swift */; };
 		4D2D1D602C2B859C00ABDC19 /* GraphPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2D1D5F2C2B859C00ABDC19 /* GraphPicker.swift */; };
@@ -169,7 +170,7 @@
 		4DF36FFD2C66A904004D737A /* QuestionnaireSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF36FFC2C66A904004D737A /* QuestionnaireSheetView.swift */; };
 		4DF370042C66C9F9004D737A /* HealthSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF370032C66C9F9004D737A /* HealthSummaryView.swift */; };
 		4DF370082C66CAC9004D737A /* PDFViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF370072C66CAC9004D737A /* PDFViewer.swift */; };
-		4DF3700A2C66D27B004D737A /* AccountNavigationLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF370092C66D27B004D737A /* AccountNavigationLinks.swift */; };
+		4DF3700A2C66D27B004D737A /* AdditionalAccountSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF370092C66D27B004D737A /* AdditionalAccountSections.swift */; };
 		4DF3700D2C66E479004D737A /* PDFDocument+Transferable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF3700C2C66E479004D737A /* PDFDocument+Transferable.swift */; };
 		4DF506192C2E1AAE003E7EFB /* SymptomsType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF506182C2E1AAD003E7EFB /* SymptomsType.swift */; };
 		4DF506212C2E1C89003E7EFB /* SymptomScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF506202C2E1C89003E7EFB /* SymptomScore.swift */; };
@@ -243,6 +244,7 @@
 		4D05F2692C5466B700201581 /* DosageGauge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DosageGauge.swift; sourceTree = "<group>"; };
 		4D05F26C2C54696100201581 /* DosageGaugeStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DosageGaugeStyle.swift; sourceTree = "<group>"; };
 		4D065BDF2C09401700EBB3AE /* StudyApplicationListCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyApplicationListCard.swift; sourceTree = "<group>"; };
+		4D081A1E2C6C1A3400E13BC8 /* OrganizationContactInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationContactInformation.swift; sourceTree = "<group>"; };
 		4D0F389D2C09779000DA12F7 /* ShowMoreButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMoreButton.swift; sourceTree = "<group>"; };
 		4D0F38A12C0A7AD900DA12F7 /* ExpandableText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableText.swift; sourceTree = "<group>"; };
 		4D2D1D5F2C2B859C00ABDC19 /* GraphPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphPicker.swift; sourceTree = "<group>"; };
@@ -362,7 +364,7 @@
 		4DF36FFC2C66A904004D737A /* QuestionnaireSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnaireSheetView.swift; sourceTree = "<group>"; };
 		4DF370032C66C9F9004D737A /* HealthSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthSummaryView.swift; sourceTree = "<group>"; };
 		4DF370072C66CAC9004D737A /* PDFViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFViewer.swift; sourceTree = "<group>"; };
-		4DF370092C66D27B004D737A /* AccountNavigationLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNavigationLinks.swift; sourceTree = "<group>"; };
+		4DF370092C66D27B004D737A /* AdditionalAccountSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalAccountSections.swift; sourceTree = "<group>"; };
 		4DF3700C2C66E479004D737A /* PDFDocument+Transferable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PDFDocument+Transferable.swift"; sourceTree = "<group>"; };
 		4DF506182C2E1AAD003E7EFB /* SymptomsType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomsType.swift; sourceTree = "<group>"; };
 		4DF506202C2E1C89003E7EFB /* SymptomScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomScore.swift; sourceTree = "<group>"; };
@@ -455,6 +457,7 @@
 			isa = PBXGroup;
 			children = (
 				2FE5DC2529EDD38A004B9AB4 /* Contacts.swift */,
+				4D081A1E2C6C1A3400E13BC8 /* OrganizationContactInformation.swift */,
 			);
 			path = Contacts;
 			sourceTree = "<group>";
@@ -1016,7 +1019,7 @@
 				A9623C072C18D03F00189BA1 /* AccountSetupSheet.swift */,
 				A9FE7ACF2AA39BAB0077B045 /* AccountSheet.swift */,
 				A96C56BA2C0DFFCE00D6A50B /* InvitationCodeModule.swift */,
-				4DF370092C66D27B004D737A /* AccountNavigationLinks.swift */,
+				4DF370092C66D27B004D737A /* AdditionalAccountSections.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -1220,6 +1223,7 @@
 				2FE5DC4129EDD7EE004B9AB4 /* StorageKeys.swift in Sources */,
 				4D73A51B2C581C8F00CCEC46 /* TargetLabelSizeKey.swift in Sources */,
 				4D0F389E2C09779100DA12F7 /* ShowMoreButton.swift in Sources */,
+				4D081A1F2C6C1A3400E13BC8 /* OrganizationContactInformation.swift in Sources */,
 				4DDFC7652BF350C2002B07A1 /* Education.swift in Sources */,
 				4D70CF6A2C65423D00EB4CC6 /* GraphSelection.swift in Sources */,
 				4DDFC7692BF35113002B07A1 /* HeartHealth.swift in Sources */,
@@ -1297,7 +1301,7 @@
 				4D4072842C46DDB2007C5621 /* VitalsGraph+ViewModel.swift in Sources */,
 				A9720E432ABB68CC00872D23 /* AccountSetupHeader.swift in Sources */,
 				2FE5DC4029EDD7EE004B9AB4 /* FeatureFlags.swift in Sources */,
-				4DF3700A2C66D27B004D737A /* AccountNavigationLinks.swift in Sources */,
+				4DF3700A2C66D27B004D737A /* AdditionalAccountSections.swift in Sources */,
 				4D8402752C4EC64D00817495 /* TriggerNewMeasurementButton.swift in Sources */,
 				4D8402CC2C53019B00817495 /* Double+asString.swift in Sources */,
 				4D9D435A2C5973AD000062D3 /* VideoManager.swift in Sources */,
