@@ -22,7 +22,7 @@ import SpeziQuestionnaire
 import SwiftUI
 
 
-actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint, AccountNotifyConstraint {
+actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint {
     @Application(\.logger) private var logger
 
     @Dependency(Account.self) var account: Account
@@ -80,14 +80,6 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint, A
             try await Firestore.questionnaireResponseCollectionReference.document(id).setData(from: response)
         } catch {
             throw FirestoreError(error)
-        }
-    }
-
-    func respondToEvent(_ event: AccountNotifications.Event) async {
-        // TODO: not allowed to throw anymore, disable account deletion via other ways?
-        if case .deletingAccount = event {
-            // account deletion prohibited
-            // TOOD: throw FirebaseError.accountDeletionNotAllowed
         }
     }
     

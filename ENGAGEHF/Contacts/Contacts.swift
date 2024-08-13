@@ -6,8 +6,8 @@
 // SPDX-License-Identifier: MIT
 //
 
-import Foundation
 import Contacts
+import Foundation
 import SpeziContact
 import SwiftUI
 

@@ -24,7 +24,7 @@ struct AccountSheet: View {
         NavigationStack {
             ZStack {
                 if account.signedIn && !isInSetup {
-                    AccountOverview(close: .showCloseButton) {
+                    AccountOverview(close: .showCloseButton, deletion: .disabled) {
                         NavigationLink {
                             ContributionsList(appName: "ENGAGE-HF", projectLicense: .mit)
                         } label: {
