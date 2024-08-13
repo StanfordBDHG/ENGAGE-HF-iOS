@@ -13,9 +13,8 @@ import Spezi
 import UserNotifications
 
 
-@Observable
 class NotificationManager: Module, NotificationHandler, NotificationTokenHandler, EnvironmentAccessible {
-    @ObservationIgnored @Application(\.registerRemoteNotifications) var registerRemoteNotifications
+    @Application(\.registerRemoteNotifications) var registerRemoteNotifications
     
     private let logger = Logger(subsystem: "ENGAGEHF", category: "NotificationManager")
     
@@ -24,17 +23,20 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
     
     
     func handleNotificationsAllowed() async throws {
+        print(#function)
         let deviceToken = try await registerRemoteNotifications()
         
         self.configureRemoteNotifications(using: deviceToken)
     }
     
     func receiveUpdatedDeviceToken(_ deviceToken: Data) {
+        print(#function)
         self.configureRemoteNotifications(using: deviceToken)
     }
     
     
     private func configureRemoteNotifications(using deviceToken: Data) {
+        print(#function)
         self.logger.debug("Registering device for remote notifications.")
         let registerDevice = Functions.functions().httpsCallable("registerDevice")
         

@@ -117,7 +117,7 @@ actor ENGAGEHFStandard: Standard,
             
             let metadata = StorageMetadata()
             metadata.contentType = "application/pdf"
-            _ = try await Storage.patientBucketReference.child("consent.pdf").putDataAsync(consentData, metadata: metadata)
+            _ = try await Storage.userBucketReference.child("consent").child("consent.pdf").putDataAsync(consentData, metadata: metadata)
         } catch {
             logger.error("Could not store consent form: \(error)")
         }

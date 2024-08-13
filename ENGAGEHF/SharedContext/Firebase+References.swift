@@ -105,12 +105,12 @@ extension Firestore {
 }
 
 extension Storage {
-    static var patientBucketReference: StorageReference {
+    static var userBucketReference: StorageReference {
         get throws {
             guard let userId = Auth.auth().currentUser?.uid else {
                 throw FirebaseError.userNotAuthenticatedYet
             }
-            return Storage.storage().reference().child("patients/\(userId)")
+            return Storage.storage().reference().child("users/\(userId)")
         }
     }
 }
