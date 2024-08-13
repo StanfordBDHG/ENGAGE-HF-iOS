@@ -35,7 +35,7 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
     }
     
     
-    private func configureRemoteNotifications(using deviceToken: Data) {
+    func configureRemoteNotifications(using deviceToken: Data) {
         print(#function)
         self.logger.debug("Registering device for remote notifications.")
         let registerDevice = Functions.functions().httpsCallable("registerDevice")
@@ -45,7 +45,7 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
                 _ = try await registerDevice.call(NotificationRegistrationSchema(deviceToken))
                 self.logger.debug("Successfully registered device for remote notifications.")
             } catch {
-                self.logger.error("Faild to register device for remote notifications: \(error)")
+                self.logger.error("Failed to register device for remote notifications: \(error)")
             }
         }
     }
