@@ -15,7 +15,7 @@ import UserNotifications
 
 class NotificationManager: Module, NotificationHandler, NotificationTokenHandler, EnvironmentAccessible {
     @Application(\.registerRemoteNotifications) private var registerRemoteNotifications
-    @Dependency private var navigationManager: NavigationManager
+    @Dependency(NavigationManager.self) private var navigationManager
     
     private let logger = Logger(subsystem: "ENGAGEHF", category: "NotificationManager")
     
@@ -24,12 +24,9 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
     
     
     func handleNotificationAction(_ response: UNNotificationResponse) async {
-//        print(#function)
-//        let payload = response.notification.request.content.userInfo["action"] as? String
-//        print(payload)
-//        let action = MessageAction(from: "medications")
-//        print(action)
-//        await _ = navigationManager.execute(action)
+        print(#function)
+        let payload = response.notification.request.content.userInfo["action"] as? String
+        await _ = navigationManager.execute(MessageAction(from: payload))
     }
     
     func handleNotificationsAllowed() async throws {

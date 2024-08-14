@@ -48,6 +48,8 @@
 		4D05F26D2C54696100201581 /* DosageGaugeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D05F26C2C54696100201581 /* DosageGaugeStyle.swift */; };
 		4D065BE02C09401700EBB3AE /* StudyApplicationListCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D065BDF2C09401700EBB3AE /* StudyApplicationListCard.swift */; };
 		4D081A1F2C6C1A3400E13BC8 /* OrganizationContactInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D081A1E2C6C1A3400E13BC8 /* OrganizationContactInformation.swift */; };
+		4D081A262C6C2C6B00E13BC8 /* MessageSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D081A252C6C2C6B00E13BC8 /* MessageSettings.swift */; };
+		4D081A282C6C2C8400E13BC8 /* UserMetaDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D081A272C6C2C8400E13BC8 /* UserMetaDataManager.swift */; };
 		4D0F389E2C09779100DA12F7 /* ShowMoreButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0F389D2C09779000DA12F7 /* ShowMoreButton.swift */; };
 		4D0F38A22C0A7AD900DA12F7 /* ExpandableText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0F38A12C0A7AD900DA12F7 /* ExpandableText.swift */; };
 		4D2D1D602C2B859C00ABDC19 /* GraphPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2D1D5F2C2B859C00ABDC19 /* GraphPicker.swift */; };
@@ -245,6 +247,8 @@
 		4D05F26C2C54696100201581 /* DosageGaugeStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DosageGaugeStyle.swift; sourceTree = "<group>"; };
 		4D065BDF2C09401700EBB3AE /* StudyApplicationListCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyApplicationListCard.swift; sourceTree = "<group>"; };
 		4D081A1E2C6C1A3400E13BC8 /* OrganizationContactInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationContactInformation.swift; sourceTree = "<group>"; };
+		4D081A252C6C2C6B00E13BC8 /* MessageSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSettings.swift; sourceTree = "<group>"; };
+		4D081A272C6C2C8400E13BC8 /* UserMetaDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMetaDataManager.swift; sourceTree = "<group>"; };
 		4D0F389D2C09779000DA12F7 /* ShowMoreButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMoreButton.swift; sourceTree = "<group>"; };
 		4D0F38A12C0A7AD900DA12F7 /* ExpandableText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableText.swift; sourceTree = "<group>"; };
 		4D2D1D5F2C2B859C00ABDC19 /* GraphPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphPicker.swift; sourceTree = "<group>"; };
@@ -514,6 +518,37 @@
 			path = ReusableElements;
 			sourceTree = "<group>";
 		};
+		4D081A212C6C2BCB00E13BC8 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				4D081A242C6C2C4500E13BC8 /* UserMetaDataManager */,
+				4D081A232C6C2BF200E13BC8 /* MedicationsManager */,
+				4D62BF372C6A97490088C414 /* NotificationManager */,
+				4DF5061E2C2E1C10003E7EFB /* MessageManager */,
+				4DE8B8CF2C614360006E3E63 /* NavigationManager */,
+				4DF5061C2C2E1BD0003E7EFB /* VitalsManager */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		4D081A232C6C2BF200E13BC8 /* MedicationsManager */ = {
+			isa = PBXGroup;
+			children = (
+				4D8402922C5067F000817495 /* MedicationDetails.swift */,
+				4D8402872C50241A00817495 /* MedicationsManager.swift */,
+			);
+			path = MedicationsManager;
+			sourceTree = "<group>";
+		};
+		4D081A242C6C2C4500E13BC8 /* UserMetaDataManager */ = {
+			isa = PBXGroup;
+			children = (
+				4D081A252C6C2C6B00E13BC8 /* MessageSettings.swift */,
+				4D081A272C6C2C8400E13BC8 /* UserMetaDataManager.swift */,
+			);
+			path = UserMetaDataManager;
+			sourceTree = "<group>";
+		};
 		4D2D1D732C2CC89600ABDC19 /* Protocols+Aliases */ = {
 			isa = PBXGroup;
 			children = (
@@ -684,22 +719,12 @@
 			isa = PBXGroup;
 			children = (
 				4D8402D92C54143500817495 /* Extensions */,
-				4D8402AC2C51C65A00817495 /* Views */,
-				4D8402922C5067F000817495 /* MedicationDetails.swift */,
-				4D8402872C50241A00817495 /* MedicationsManager.swift */,
-			);
-			path = Medications;
-			sourceTree = "<group>";
-		};
-		4D8402AC2C51C65A00817495 /* Views */ = {
-			isa = PBXGroup;
-			children = (
 				4D8402C32C52C57500817495 /* RowContent */,
 				4D8402C22C52C56400817495 /* RowLabel */,
 				4D8402AD2C51C66D00817495 /* Medications.swift */,
 				4D8402B12C51D62400817495 /* MedicationsList.swift */,
 			);
-			path = Views;
+			path = Medications;
 			sourceTree = "<group>";
 		};
 		4D8402C22C52C56400817495 /* RowLabel */ = {
@@ -954,14 +979,11 @@
 				2FF53D8C2A8729D600042B76 /* ENGAGEHFStandard.swift */,
 				2F4E23822989D51F0013F3D9 /* ENGAGEHFTestingSetup.swift */,
 				2FC975A72978F11A00BA99FE /* Home.swift */,
-				4D62BF372C6A97490088C414 /* NotificationManager */,
+				4D9D43542C596CED000062D3 /* SharedExtensions */,
+				4D065BDE2C093FF600EBB3AE /* ReusableElements */,
+				4D081A212C6C2BCB00E13BC8 /* Managers */,
 				4DF370062C66C9FF004D737A /* HealthSummary */,
 				4DF36FFB2C66A8ED004D737A /* Questionnaire */,
-				4D9D43542C596CED000062D3 /* SharedExtensions */,
-				4DF5061E2C2E1C10003E7EFB /* MessageManager */,
-				4DE8B8CF2C614360006E3E63 /* NavigationManager */,
-				4DF5061C2C2E1BD0003E7EFB /* VitalsManager */,
-				4D065BDE2C093FF600EBB3AE /* ReusableElements */,
 				4D8402862C5023E100817495 /* Medications */,
 				4DDFC7632BF34FC1002B07A1 /* Education */,
 				4DDFC7612BF34FAC002B07A1 /* HeartHealth */,
@@ -1294,6 +1316,7 @@
 				4D34B3ED2C404C61006F0D40 /* VitalsUnit.swift in Sources */,
 				4D40A4CA2C5AF34D003DC813 /* EducationalVideoCard.swift in Sources */,
 				4D05F26D2C54696100201581 /* DosageGaugeStyle.swift in Sources */,
+				4D081A262C6C2C6B00E13BC8 /* MessageSettings.swift in Sources */,
 				4D73A5142C5816AF00CCEC46 /* View+ReadSize.swift in Sources */,
 				4D40A4D22C5B0AB2003DC813 /* VideoList.swift in Sources */,
 				4DF5063A2C2F5104003E7EFB /* DisplayMeasurement.swift in Sources */,
@@ -1311,6 +1334,7 @@
 				4D2D1D762C2CC8B200ABDC19 /* ValueXProtocol.swift in Sources */,
 				4D9D43652C5989B3000062D3 /* VideoCollectionContext.swift in Sources */,
 				4DA20B542C25F8A600715AA2 /* FHIRDateTime+DateComponents.swift in Sources */,
+				4D081A282C6C2C8400E13BC8 /* UserMetaDataManager.swift in Sources */,
 				4D8402AA2C51B6A000817495 /* FHIRAliases.swift in Sources */,
 				4DDFC7542BF3408F002B07A1 /* RecentVitalsSection.swift in Sources */,
 				4D4072662C4586AB007C5621 /* VitalMeasurement.swift in Sources */,
