@@ -51,9 +51,11 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint {
             let batch = Firestore.firestore().batch()
             for sample in samples {
                 do {
-                    guard let document = Firestore.collectionReference(for: accountId, type: sample.sampleType)?.document(sample.id.uuidString) else {
+                    guard let collection = Firestore.collectionReference(for: accountId, type: sample.sampleType) else {
                         continue
                     }
+
+                    let document = collection.document(sample.id.uuidString)
                     try batch.setData(from: sample.resource, forDocument: document)
                 } catch {
                     // either document retrieval or encoding failed, this should not stop other samples from getting saved

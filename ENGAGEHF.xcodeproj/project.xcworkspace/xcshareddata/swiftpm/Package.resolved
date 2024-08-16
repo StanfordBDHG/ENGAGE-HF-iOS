@@ -195,8 +195,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziAccount.git",
       "state" : {
-        "branch" : "fix/account-setup-closure",
-        "revision" : "88354101d8cc41c42fabc11497e12612cf8da5c9"
+        "revision" : "24a4b844d326e085d1fd9d229bde50dfac917eca",
+        "version" : "2.0.0-beta.3"
       }
     },
     {
@@ -204,8 +204,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziBluetooth.git",
       "state" : {
-        "branch" : "feature/concurrency-improvements",
-        "revision" : "408344d7446b8a3ac85e61ff63f22d20d78f6cf5"
+        "revision" : "361acec2f100da36f7912e413300b4e921fbec54",
+        "version" : "3.0.0"
       }
     },
     {
@@ -222,8 +222,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziDevices.git",
       "state" : {
-        "branch" : "fix/omron-measurement-delivery",
-        "revision" : "8122133369e17866df4e12582117ec34af4a30b9"
+        "revision" : "16075cb93b0594c57536d60eb771c7338031d636",
+        "version" : "1.2.0"
       }
     },
     {

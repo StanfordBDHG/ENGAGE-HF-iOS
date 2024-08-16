@@ -17,6 +17,7 @@ import SpeziFirestore
 class InvitationCodeModule: Module, EnvironmentAccessible {
     @Application(\.logger) private var logger
 
+    @Dependency(Account.self) private var account: Account?
     @Dependency(FirebaseAccountService.self) private var accountService: FirebaseAccountService?
 
     func configure() {
@@ -92,21 +93,25 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
     }
 
     @MainActor
-    func setupTestEnvironment(account: Account, invitationCode: String) async throws {
-        let email = "test@engage.stanford.edu"
-        let password = "123456789"
-
-        // let the initial stateChangeDelegate of FirebaseAuth get called. Otherwise, we will interfere with that.
-        try await Task.sleep(for: .milliseconds(500))
-
-        if let details = account.details,
-           details.email == email {
-            logger.debug("Test account was already set up")
-            return
+    func setupTestEnvironment(invitationCode: String) async throws {
+        guard let account else {
+            preconditionFailure("Account feature must be enabled to support `setupTestEnvironment` flag!")
         }
 
         guard let accountService else {
             preconditionFailure("The Firebase Account Service is required to be configured when setting up the test environment!")
+        }
+
+        let email = "test@engage.stanford.edu"
+        let password = "123456789"
+
+        if let details = account.details {
+            if details.email == email {
+                logger.debug("Test account was already set up")
+                return
+            }
+
+            try await accountService.logout()
         }
 
         do {
@@ -120,16 +125,13 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
         }
 
         try await verifyOnboardingCode(invitationCode)
-        try await setupTestAccount(service: accountService, email: email, password: password)
-    }
 
-    private func setupTestAccount(service: FirebaseAccountService, email: String, password: String) async throws {
         do {
             var details = AccountDetails()
             details.userId = email
             details.password = password
             details.name = PersonNameComponents(givenName: "Leland", familyName: "Stanford")
-            try await service.signUp(with: details)
+            try await accountService.signUp(with: details)
         } catch {
             logger.error("Failed setting up test account : \(error)")
             throw error

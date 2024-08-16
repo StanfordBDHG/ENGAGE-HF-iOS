@@ -14,8 +14,17 @@ import SwiftUI
 struct AccountOnboarding: View {
     @Environment(Account.self) private var account
     @Environment(OnboardingNavigationPath.self) private var onboardingNavigationPath
-    
-    
+
+    private var setupStyle: PreferredSetupStyle {
+        if let details = account.details,
+           details.isAnonymous {
+            .signup
+        } else {
+            // when we navigate here from the InvitationCodeView we remove the anonymous account for sign in.
+            .login
+        }
+    }
+
     var body: some View {
         AccountSetup { _ in
             Task {
@@ -33,6 +42,7 @@ struct AccountOnboarding: View {
                 }
             )
         }
+            .preferredAccountSetupStyle(setupStyle)
     }
 }
 
