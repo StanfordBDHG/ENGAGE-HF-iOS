@@ -15,7 +15,7 @@ struct AccountOnboarding: View {
     @Environment(Account.self) private var account
     @Environment(OnboardingNavigationPath.self) private var onboardingNavigationPath
 
-    private var setupStyle: PreferredSetupStyle {
+    @MainActor private var setupStyle: PreferredSetupStyle {
         if let details = account.details,
            details.isAnonymous {
             .signup
