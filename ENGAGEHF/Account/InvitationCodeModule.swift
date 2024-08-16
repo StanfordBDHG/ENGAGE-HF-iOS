@@ -11,6 +11,7 @@ import FirebaseFunctions
 import Spezi
 import SpeziAccount
 import SpeziFirebaseAccount
+import SpeziFirestore
 
 
 class InvitationCodeModule: Module, EnvironmentAccessible {
@@ -20,7 +21,8 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
 
     func configure() {
         if FeatureFlags.useFirebaseEmulator {
-            Functions.functions().useEmulator(withHost: "localhost", port: 5001)
+            let firestoreHost = FeatureFlags.useCustomFirestoreHost ? FirestoreSettings.customHost : FirestoreSettings.defaultHost
+            Functions.functions().useEmulator(withHost: firestoreHost, port: 5001)
         }
     }
 

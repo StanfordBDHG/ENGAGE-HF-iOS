@@ -25,11 +25,7 @@ struct AccountSheet: View {
             ZStack {
                 if account.signedIn && !isInSetup {
                     AccountOverview(close: .showCloseButton, deletion: .disabled) {
-                        NavigationLink {
-                            ContributionsList(appName: "ENGAGE-HF", projectLicense: .mit)
-                        } label: {
-                            Text("LICENSE_INFO_TITLE")
-                        }
+                        AccountNavigationLinks()
                     }
                 } else {
                     AccountSetup { _ in

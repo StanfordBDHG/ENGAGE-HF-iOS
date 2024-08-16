@@ -25,6 +25,8 @@ enum FeatureFlags {
     static let setupTestMedications = CommandLine.arguments.contains("--setupTestMedications")
     /// Fills the VideoManager with a test VideoCollection, skipping on-sign-in configuration. Used for UI Testing and preview simulators.
     static let setupTestVideos = CommandLine.arguments.contains("--setupTestVideos")
+    /// Configures Firestore with settings that use a custom host
+    static let useCustomFirestoreHost = CommandLine.arguments.contains("--useCustomFirestoreHost")
     #if targetEnvironment(simulator)
     /// Defines if the application should connect to the local firebase emulator. Always set to true when using the iOS simulator. disableFirebase still has priority over useFirebaseEmulator.
     static let useFirebaseEmulator = true

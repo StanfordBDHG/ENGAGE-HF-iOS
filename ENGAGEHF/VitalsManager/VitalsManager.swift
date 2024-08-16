@@ -12,8 +12,8 @@ import HealthKit
 import OSLog
 import Spezi
 import SpeziAccount
-import SpeziFirestore
 import SpeziFirebaseAccount
+import SpeziFirestore
 
 
 /// Vitals History Manager

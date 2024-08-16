@@ -31,9 +31,9 @@ class NavigationManager: Module, EnvironmentAccessible {
     
     var selectedTab: HomeView.Tabs = .home
     var questionnaireId: String?
+    var showHealthSummary = false
 
     private var notificationTask: Task<Void, Never>?
-
     
     // On sign in, reinitialize to an empty navigation path
     func configure() {
@@ -84,6 +84,8 @@ class NavigationManager: Module, EnvironmentAccessible {
             self.switchHomeTab(to: .heart)
         case let .completeQuestionnaire(questionnaireId):
             self.questionnaireId = questionnaireId
+        case .showHealthSummary:
+            self.showHealthSummary = true
         default:
             return false
         }

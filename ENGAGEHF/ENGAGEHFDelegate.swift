@@ -40,10 +40,10 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
                     ]
                 )
                 
-                Firestore(settings: FeatureFlags.useFirebaseEmulator ? .emulator : FirestoreSettings())
+                Firestore(settings: FeatureFlags.useFirebaseEmulator ? .emulatorWithHost(firestoreHost) : FirestoreSettings())
                 
                 if FeatureFlags.useFirebaseEmulator {
-                    FirebaseStorageConfiguration(emulatorSettings: (host: "localhost", port: 9199))
+                    FirebaseStorageConfiguration(emulatorSettings: (host: firestoreHost, port: 9199))
                 } else {
                     FirebaseStorageConfiguration()
                 }
@@ -70,9 +70,13 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
         }
     }
 
+    private var firestoreHost: String {
+        FeatureFlags.useCustomFirestoreHost ? FirestoreSettings.customHost : FirestoreSettings.defaultHost
+    }
+
     private var accountEmulator: (host: String, port: Int)? {
         if FeatureFlags.useFirebaseEmulator {
-            (host: "localhost", port: 9099)
+            (host: firestoreHost, port: 9099)
         } else {
             nil
         }

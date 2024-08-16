@@ -78,6 +78,9 @@ struct HomeView: View {
                     Label("Devices", systemImage: "sensor.fill")
                 }
         }
+            .sheet(isPresented: $navigationManager.showHealthSummary) {
+                HealthSummaryView()
+            }
             .sheet(item: $navigationManager.questionnaireId) { questionnaireId in
                 QuestionnaireSheetView(questionnaireId: questionnaireId)
             }
