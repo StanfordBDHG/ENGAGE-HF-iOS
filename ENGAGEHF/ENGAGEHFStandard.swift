@@ -14,7 +14,7 @@ import PDFKit
 import Spezi
 import SpeziAccount
 import SpeziDevices
-import SpeziFirebaseAccountStorage
+import SpeziFirebaseAccount
 import SpeziFirestore
 import SpeziHealthKit
 import SpeziOnboarding
@@ -26,6 +26,7 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint {
     @Application(\.logger) private var logger
 
     @Dependency(Account.self) private var account: Account?
+    @Dependency(FirebaseAccountService.self) private var accountService: FirebaseAccountService?
 
 
     private var accountId: String {

@@ -11,6 +11,7 @@ import Foundation
 import OSLog
 import Spezi
 import SpeziAccount
+import SpeziFirebaseAccount
 
 
 /// Medications Manager
@@ -19,9 +20,11 @@ import SpeziAccount
 @Observable
 @MainActor
 class MedicationsManager: Module, EnvironmentAccessible {
+    @ObservationIgnored @StandardActor private var standard: ENGAGEHFStandard
+
     @ObservationIgnored @Dependency(Account.self) private var account: Account?
     @ObservationIgnored @Dependency(AccountNotifications.self) private var accountNotifications: AccountNotifications?
-    @ObservationIgnored @StandardActor private var standard: ENGAGEHFStandard
+    @ObservationIgnored @Dependency(FirebaseAccountService.self) private var accountService: FirebaseAccountService?
 
     @Application(\.logger) @ObservationIgnored private var logger
     
