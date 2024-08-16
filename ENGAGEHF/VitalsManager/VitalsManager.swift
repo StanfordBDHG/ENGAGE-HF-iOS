@@ -6,13 +6,12 @@
 // SPDX-License-Identifier: MIT
 //
 
-import FirebaseAuth
 import FirebaseFirestore
 import Foundation
 import HealthKit
 import OSLog
 import Spezi
-import SpeziFirebaseConfiguration
+import SpeziAccount
 import SpeziFirestore
 
 
@@ -22,6 +21,7 @@ import SpeziFirestore
 /// - Maintain local, up-to-date arrays of the patients health data via Firestore SnapshotListeners
 /// - Convert FHIR observations to HKQuantitySamples and HKCorrelations
 @Observable
+@MainActor
 public class VitalsManager: Module, EnvironmentAccessible {
     enum VitalsError: Error {
         case invalidConversion
@@ -30,14 +30,16 @@ public class VitalsManager: Module, EnvironmentAccessible {
         case missingField
     }
     
-    
-    @ObservationIgnored @Dependency(ConfigureFirebaseApp.self) private var configureFirebaseApp
     @ObservationIgnored @StandardActor private var standard: ENGAGEHFStandard
-    private let logger = Logger(subsystem: "ENGAGEHF", category: "VitalsManager")
-    
-    private var authStateDidChangeListenerHandle: AuthStateDidChangeListenerHandle?
+
+    @ObservationIgnored @Dependency(Account.self) private var account: Account?
+    @ObservationIgnored @Dependency(AccountNotifications.self) private var accountNotifications: AccountNotifications?
+
+    @Application(\.logger) @ObservationIgnored private var logger
+
     private var snapshotListeners: [ListenerRegistration] = []
-    
+    private var notificationsTask: Task<Void, Never>?
+
     public var heartRateHistory: [HKQuantitySample] = []
     public var bloodPressureHistory: [HKCorrelation] = []
     public var weightHistory: [HKQuantitySample] = []
@@ -63,23 +65,42 @@ public class VitalsManager: Module, EnvironmentAccessible {
             self.setupPreview()
             return
         }
-        
-        authStateDidChangeListenerHandle = Auth.auth().addStateDidChangeListener { [weak self] _, user in
-            self?.registerSnapshotListeners(user: user)
-            
-            /// If testing, add mock measurements to the user's heart rate, blood pressure, weight, and symptoms histories
-            /// Called each time a new user signs in
-            if FeatureFlags.setupMockVitals, let user {
-                Task {
-                    try await self?.setupHeartHealthTesting(user: user)
+
+        if let accountNotifications {
+            notificationsTask = Task.detached { @MainActor [weak self] in
+                for await event in accountNotifications.events {
+                    guard let self else {
+                        return
+                    }
+
+                    switch event {
+                    case let .associatedAccount(details):
+                        updateSnapshotListener(for: details)
+
+                        /// If testing, add mock measurements to the user's heart rate, blood pressure, weight, and symptoms histories
+                        /// Called each time a new user signs in
+                        if FeatureFlags.setupMockVitals {
+                            do {
+                                try await self.setupHeartHealthTesting(for: details)
+                            } catch {
+                                logger.error("Failed to setup Heart Health testing: \(error)")
+                            }
+                        }
+                    case .disassociatingAccount:
+                        updateSnapshotListener(for: nil)
+                    default:
+                        break
+                    }
                 }
             }
         }
-        
-        self.registerSnapshotListeners(user: Auth.auth().currentUser)
+
+        if let account {
+            updateSnapshotListener(for: account.details)
+        }
     }
     
-    private func registerSnapshotListeners(user: User?) {
+    private func updateSnapshotListener(for details: AccountDetails?) {
         self.logger.debug("Initializing vitals snapshot listener...")
         
         // Remove previous snapshot listeners for the user before creating new ones
@@ -87,43 +108,51 @@ public class VitalsManager: Module, EnvironmentAccessible {
             prevListener.remove()
         }
         self.snapshotListeners = []
-        
+
         // Only register snapshot listeners when a user is signed in
-        guard let bodyMassCollectionReference = try? Firestore.collectionReference(for: HKQuantityType(.bodyMass)),
-              let heartRateCollectionReference = try? Firestore.collectionReference(for: HKQuantityType(.heartRate)),
-              let bloodPressureCollectionReference = try? Firestore.collectionReference(for: HKCorrelationType(.bloodPressure)),
-              let symptomsCollectionReference = try? Firestore.symptomScoresCollectionReference else {
+        guard let details else {
             self.logger.debug("No user signed in, skipping snapshot listener.")
             return
         }
-        
+
+        let bodyMassCollectionReference = Firestore.collectionReference(for: details.accountId, type: HKQuantityType(.bodyMass))
+        let heartRateCollectionReference = Firestore.collectionReference(for: details.accountId, type: HKQuantityType(.heartRate))
+        let bloodPressureCollectionReference = Firestore.collectionReference(for: details.accountId, type: HKCorrelationType(.bloodPressure))
+        let symptomsCollectionReference = Firestore.symptomScoresCollectionReference(for: details.accountId)
+
         // Weight snapshot listener
-        self.snapshotListeners.append(
-            self.registerSnapshot(
-                collectionReference: bodyMassCollectionReference,
-                storage: \.weightHistory,
-                mapObservation: convertToHKQuantitySample
+        if let bodyMassCollectionReference {
+            self.snapshotListeners.append(
+                self.registerSnapshot(
+                    collectionReference: bodyMassCollectionReference,
+                    storage: \.weightHistory,
+                    mapObservation: convertToHKQuantitySample
+                )
             )
-        )
-        
+        }
+
         // Heart Rate snapshot listener
-        self.snapshotListeners.append(
-            self.registerSnapshot(
-                collectionReference: heartRateCollectionReference,
-                storage: \.heartRateHistory,
-                mapObservation: convertToHKQuantitySample
+        if let heartRateCollectionReference {
+            self.snapshotListeners.append(
+                self.registerSnapshot(
+                    collectionReference: heartRateCollectionReference,
+                    storage: \.heartRateHistory,
+                    mapObservation: convertToHKQuantitySample
+                )
             )
-        )
-        
+        }
+
         // Blood Pressure snapshot listener
-        self.snapshotListeners.append(
-            self.registerSnapshot(
-                collectionReference: bloodPressureCollectionReference,
-                storage: \.bloodPressureHistory,
-                mapObservation: convertToHKCorrelation
+        if let bloodPressureCollectionReference {
+            self.snapshotListeners.append(
+                self.registerSnapshot(
+                    collectionReference: bloodPressureCollectionReference,
+                    storage: \.bloodPressureHistory,
+                    mapObservation: convertToHKCorrelation
+                )
             )
-        )
-        
+        }
+
         // Symptom Survey Scores snapshot listener
         self.snapshotListeners.append(
             self.registerSnapshot(
@@ -286,6 +315,10 @@ public class VitalsManager: Module, EnvironmentAccessible {
         
         return HKQuantity(unit: units, doubleValue: quantity)
     }
+
+    deinit {
+        _notificationsTask?.cancel()
+    }
 }
 
 
@@ -375,9 +408,9 @@ extension VitalsManager {
 
 
 extension VitalsManager {
-    private func setupHeartHealthTesting(user: User) async throws {
+    private func setupHeartHealthTesting(for details: AccountDetails) async throws {
         // Make sure the user has not already had mock data initialized
-        for collectionReference in GraphSelection.allCases.compactMap({ $0.collectionReference }) {
+        for collectionReference in GraphSelection.allCases.compactMap({ $0.collectionReference(for: details.accountId) }) {
             // Not recommended to delete collections from the client, so for now just skipping if the collection already exists
             guard try await collectionReference.getDocuments().documents.isEmpty else {
                 // Collection exists and is not empty, so skip
@@ -411,9 +444,9 @@ extension VitalsManager {
 extension VitalsManager {
     /// Call on deletion of a measurement -- removes the measurement with the given document id from the user's collection 
     func deleteMeasurement(id: String?, graphSelection: GraphSelection) async throws {
-        guard let collectionReference = graphSelection.collectionReference,
-              let id else {
-            self.logger.warning("Attempting to delete \(graphSelection) measurement.")
+        guard let id, let account, let details = account.details,
+              let collectionReference = graphSelection.collectionReference(for: details.accountId) else {
+            self.logger.warning("Attempting to delete \(graphSelection) measurement. Failed!")
             return
         }
         

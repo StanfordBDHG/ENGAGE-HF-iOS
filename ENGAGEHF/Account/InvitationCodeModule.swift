@@ -7,18 +7,15 @@
 //
 
 import Firebase
-import FirebaseAuth
 import FirebaseFunctions
 import Spezi
 import SpeziAccount
 import SpeziFirebaseAccount
-import SpeziFirebaseConfiguration
 
 
 class InvitationCodeModule: Module, EnvironmentAccessible {
     @Application(\.logger) private var logger
 
-    @Dependency(ConfigureFirebaseApp.self) private var firebase
     @Dependency(FirebaseAccountService.self) private var accountService: FirebaseAccountService?
 
     func configure() {
@@ -27,11 +24,21 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
         }
     }
 
-    func signOutAccount() {
+    func signOutAccount() async {
         do {
-            try Auth.auth().signOut()
+            try await _signOutAccount()
         } catch {
             logger.debug("Failed to sing out firebase account: \(error)")
+        }
+    }
+
+    private func _signOutAccount() async throws {
+        do {
+            try await accountService?.logout()
+        } catch FirebaseAccountError.notSignedIn {
+            // do nothing
+        } catch {
+            throw error
         }
     }
 
@@ -44,9 +51,13 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
 
                 try? await Task.sleep(for: .seconds(0.25))
             } else {
-                try Auth.auth().signOut()
+                guard let accountService else {
+                    preconditionFailure("The Firebase Account Service was not present even though `disableFirebase` was turned off!")
+                }
 
-                try await Auth.auth().signInAnonymously()
+                try await _signOutAccount()
+                try await accountService.signUpAnonymously()
+
                 let checkInvitationCode = Functions.functions().httpsCallable("checkInvitationCode")
 
                 do {
@@ -99,10 +110,11 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
         do {
             try await accountService.login(userId: email, password: password)
             return // account was already established previously
-        } catch {
-            // TODO: Check for the specific error!
-            logger.debug("We failed to login with test account. This might be expected if it is a fresh installation: \(error)")
+        } catch FirebaseAccountError.invalidCredentials {
             // probably doesn't exists. We try to create a new one below
+        } catch {
+            logger.error("Failed logging into test account: \(error)")
+            return
         }
 
         try await verifyOnboardingCode(invitationCode)

@@ -186,8 +186,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/Spezi",
       "state" : {
-        "branch" : "feature/upgrade-spezi",
-        "revision" : "8e771fb760b0eb213e268f1ac5ecf2de0281eb1e"
+        "revision" : "77550134ea4cf7cd05314bc44ccb13f7495503fc",
+        "version" : "1.7.2"
       }
     },
     {
@@ -195,8 +195,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziAccount.git",
       "state" : {
-        "branch" : "feature/account-service-singleton",
-        "revision" : "1e4fcd5fb8ad9ebc4baf93a6677a8ff7a416aab9"
+        "revision" : "6b38140b2404146412f3a761491f29ec4acf66cb",
+        "version" : "2.0.0-beta.2"
       }
     },
     {
@@ -205,7 +205,7 @@
       "location" : "https://github.com/StanfordSpezi/SpeziBluetooth.git",
       "state" : {
         "branch" : "feature/concurrency-improvements",
-        "revision" : "e961077cd14beea7d7f9e94b6b00a124f3b8fab5"
+        "revision" : "408344d7446b8a3ac85e61ff63f22d20d78f6cf5"
       }
     },
     {
@@ -213,8 +213,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziContact.git",
       "state" : {
-        "revision" : "9a7aa7e4ca0930b61046b8e8ee5b9df863b8d00e",
-        "version" : "1.0.1"
+        "revision" : "8dd7cb426e79f30ced23f37e438c0ca38bfe9a47",
+        "version" : "1.0.2"
       }
     },
     {
@@ -223,7 +223,7 @@
       "location" : "https://github.com/StanfordSpezi/SpeziDevices.git",
       "state" : {
         "branch" : "fix/omron-measurement-delivery",
-        "revision" : "a0898f6d4a1b5a46ea82658de715e58b9597a8b0"
+        "revision" : "8122133369e17866df4e12582117ec34af4a30b9"
       }
     },
     {
@@ -232,7 +232,7 @@
       "location" : "https://github.com/StanfordSpezi/SpeziFirebase.git",
       "state" : {
         "branch" : "feature/spezi-account-2.0",
-        "revision" : "c834dafc20982c45ed55cde30d445dfb5ad4a9c9"
+        "revision" : "ddfe2bc9d86498b2422ce5618c02d233eb183012"
       }
     },
     {
@@ -328,7 +328,7 @@
     {
       "identity" : "swift-collections",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-collections.git",
+      "location" : "https://github.com/apple/swift-collections",
       "state" : {
         "revision" : "3d2dc41a01f9e49d84f0a3925fb858bed64f702d",
         "version" : "1.1.2"
@@ -429,8 +429,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordBDHG/XCTRuntimeAssertions",
       "state" : {
-        "revision" : "7ce28015c0bee62b523a860e343e3d6b7ec40fda",
-        "version" : "1.1.1"
+        "revision" : "f560ec8410af032dd485ca9386e8c2b5d3e1a1f8",
+        "version" : "1.1.3"
       }
     },
     {

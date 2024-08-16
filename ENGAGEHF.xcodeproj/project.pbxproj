@@ -1853,8 +1853,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/StanfordSpezi/SpeziAccount.git";
 			requirement = {
-				branch = "feature/account-service-singleton";
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = "2.0.0-beta.2";
 			};
 		};
 		2FE5DC6529EDD894004B9AB4 /* XCRemoteSwiftPackageReference "SpeziContact" */ = {

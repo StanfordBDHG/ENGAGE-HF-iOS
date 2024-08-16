@@ -58,7 +58,7 @@ struct InvitationCodeView: View {
                     },
                     secondaryText: "I Already Have an Account",
                     secondaryAction: {
-                        invitationCodeModule.signOutAccount()
+                        await invitationCodeModule.signOutAccount()
                         onboardingNavigationPath.nextStep()
                     }
                 )

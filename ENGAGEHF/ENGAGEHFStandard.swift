@@ -25,6 +25,18 @@ import SwiftUI
 actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint {
     @Application(\.logger) private var logger
 
+    @Dependency(Account.self) private var account: Account?
+
+
+    private var accountId: String {
+        get async throws {
+            guard let details = await account?.details else {
+                throw FirebaseError.userNotAuthenticatedYet
+            }
+            return details.accountId
+        }
+    }
+
 
     func addMeasurement(samples: [HKSample]) async throws {
         guard !samples.isEmpty else {
@@ -32,12 +44,13 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint {
         }
 
         logger.debug("Saving \(samples.count) samples to firestore ...")
+        let accountId = try await accountId
 
         do {
             let batch = Firestore.firestore().batch()
             for sample in samples {
                 do {
-                    guard let document = try Firestore.collectionReference(for: sample.sampleType)?.document(sample.id.uuidString) else {
+                    guard let document = Firestore.collectionReference(for: accountId, type: sample.sampleType)?.document(sample.id.uuidString) else {
                         continue
                     }
                     try batch.setData(from: sample.resource, forDocument: document)
@@ -55,8 +68,9 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint {
     
     
     func add(symptomScore: SymptomScore) async throws {
+        let accountId = try await accountId
         do {
-            try Firestore.symptomScoresCollectionReference.addDocument(from: symptomScore)
+            try Firestore.symptomScoresCollectionReference(for: accountId).addDocument(from: symptomScore)
         } catch {
             throw FirestoreError(error)
         }
@@ -64,8 +78,9 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint {
     
     
     func add(message: Message) async throws {
+        let accountId = try await accountId
         do {
-            try Firestore.messagesCollectionReference.addDocument(from: message)
+            try Firestore.messagesCollectionReference(for: accountId).addDocument(from: message)
         } catch {
             throw FirestoreError(error)
         }
@@ -73,9 +88,10 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint {
     
     
     func add(response: ModelsR4.QuestionnaireResponse) async throws {
+        let accountId = try await accountId
         do {
             let id = response.identifier?.value?.value?.string ?? UUID().uuidString
-            try await Firestore.questionnaireResponseCollectionReference.document(id).setData(from: response)
+            try await Firestore.questionnaireResponseCollectionReference(for: accountId).document(id).setData(from: response)
         } catch {
             throw FirestoreError(error)
         }
@@ -105,7 +121,9 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint {
             
             let metadata = StorageMetadata()
             metadata.contentType = "application/pdf"
-            _ = try await Storage.patientBucketReference.child("consent.pdf").putDataAsync(consentData, metadata: metadata)
+
+            let accountId = try await accountId
+            _ = try await Storage.patientBucketReference(for: accountId).child("consent.pdf").putDataAsync(consentData, metadata: metadata)
         } catch {
             logger.error("Could not store consent form: \(error)")
         }
