@@ -15,7 +15,7 @@ struct VitalsContentView: View {
     var vitalsType: VitalsType
     
     
-    private var listDisplayData: [VitalListMeasurement] {
+    @MainActor private var listDisplayData: [VitalListMeasurement] {
         getDisplayInfo(for: vitalsType)
     }
     

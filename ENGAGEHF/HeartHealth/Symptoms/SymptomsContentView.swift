@@ -14,7 +14,7 @@ struct SymptomsContentView: View {
     @State private var symptomsType: SymptomsType = .overall
     
     
-    private var listDisplayData: [VitalListMeasurement] {
+    @MainActor private var listDisplayData: [VitalListMeasurement] {
         vitalsManager.symptomHistory
             .map { score in
                 VitalListMeasurement(
