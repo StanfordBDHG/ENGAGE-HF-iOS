@@ -195,8 +195,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziAccount.git",
       "state" : {
-        "revision" : "6b38140b2404146412f3a761491f29ec4acf66cb",
-        "version" : "2.0.0-beta.2"
+        "branch" : "fix/account-setup-closure",
+        "revision" : "88354101d8cc41c42fabc11497e12612cf8da5c9"
       }
     },
     {
