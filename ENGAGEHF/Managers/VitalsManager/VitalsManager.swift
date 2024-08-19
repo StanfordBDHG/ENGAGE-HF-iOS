@@ -31,7 +31,7 @@ public class VitalsManager: Module, EnvironmentAccessible {
     }
     
     
-    @ObservationIgnored @Dependency private var configureFirebaseApp: ConfigureFirebaseApp
+    @ObservationIgnored @Dependency(ConfigureFirebaseApp.self) private var configureFirebaseApp
     @ObservationIgnored @StandardActor private var standard: ENGAGEHFStandard
     private let logger = Logger(subsystem: "ENGAGEHF", category: "VitalsManager")
     

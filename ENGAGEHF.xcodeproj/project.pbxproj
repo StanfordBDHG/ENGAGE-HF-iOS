@@ -47,7 +47,7 @@
 		4D05F26A2C5466B700201581 /* DosageGauge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D05F2692C5466B700201581 /* DosageGauge.swift */; };
 		4D05F26D2C54696100201581 /* DosageGaugeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D05F26C2C54696100201581 /* DosageGaugeStyle.swift */; };
 		4D065BE02C09401700EBB3AE /* StudyApplicationListCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D065BDF2C09401700EBB3AE /* StudyApplicationListCard.swift */; };
-		4D081A1F2C6C1A3400E13BC8 /* OrganizationContactInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D081A1E2C6C1A3400E13BC8 /* OrganizationContactInformation.swift */; };
+		4D081A1F2C6C1A3400E13BC8 /* OrganizationInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D081A1E2C6C1A3400E13BC8 /* OrganizationInformation.swift */; };
 		4D081A262C6C2C6B00E13BC8 /* MessageSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D081A252C6C2C6B00E13BC8 /* MessageSettings.swift */; };
 		4D081A282C6C2C8400E13BC8 /* UserMetaDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D081A272C6C2C8400E13BC8 /* UserMetaDataManager.swift */; };
 		4D0F389E2C09779100DA12F7 /* ShowMoreButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0F389D2C09779000DA12F7 /* ShowMoreButton.swift */; };
@@ -151,6 +151,7 @@
 		4DA20B692C2B299700715AA2 /* RecentVitalsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA20B682C2B299700715AA2 /* RecentVitalsUITests.swift */; };
 		4DB025CA2BBE3A59002D2545 /* HomeViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB025C92BBE3A59002D2545 /* HomeViewUITests.swift */; };
 		4DB025D52BBF2E08002D2545 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB025D42BBF2E08002D2545 /* Dashboard.swift */; };
+		4DB624832C73DEC500573807 /* UserInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB624822C73DEC500573807 /* UserInformation.swift */; };
 		4DBDD3442BBFAD64001FB0CA /* InvitationCodeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDD3432BBFAD64001FB0CA /* InvitationCodeError.swift */; };
 		4DBDD3462BBFAE2D001FB0CA /* InvitationCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDD3452BBFAE2D001FB0CA /* InvitationCodeView.swift */; };
 		4DBDD3482BC073EF001FB0CA /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 4DBDD3472BC073EF001FB0CA /* FirebaseFunctions */; };
@@ -246,7 +247,7 @@
 		4D05F2692C5466B700201581 /* DosageGauge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DosageGauge.swift; sourceTree = "<group>"; };
 		4D05F26C2C54696100201581 /* DosageGaugeStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DosageGaugeStyle.swift; sourceTree = "<group>"; };
 		4D065BDF2C09401700EBB3AE /* StudyApplicationListCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyApplicationListCard.swift; sourceTree = "<group>"; };
-		4D081A1E2C6C1A3400E13BC8 /* OrganizationContactInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationContactInformation.swift; sourceTree = "<group>"; };
+		4D081A1E2C6C1A3400E13BC8 /* OrganizationInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationInformation.swift; sourceTree = "<group>"; };
 		4D081A252C6C2C6B00E13BC8 /* MessageSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSettings.swift; sourceTree = "<group>"; };
 		4D081A272C6C2C8400E13BC8 /* UserMetaDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMetaDataManager.swift; sourceTree = "<group>"; };
 		4D0F389D2C09779000DA12F7 /* ShowMoreButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMoreButton.swift; sourceTree = "<group>"; };
@@ -348,6 +349,7 @@
 		4DA20B682C2B299700715AA2 /* RecentVitalsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentVitalsUITests.swift; sourceTree = "<group>"; };
 		4DB025C92BBE3A59002D2545 /* HomeViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewUITests.swift; sourceTree = "<group>"; };
 		4DB025D42BBF2E08002D2545 /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
+		4DB624822C73DEC500573807 /* UserInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformation.swift; sourceTree = "<group>"; };
 		4DBDD3432BBFAD64001FB0CA /* InvitationCodeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationCodeError.swift; sourceTree = "<group>"; };
 		4DBDD3452BBFAE2D001FB0CA /* InvitationCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationCodeView.swift; sourceTree = "<group>"; };
 		4DC0F6702C34818B0025AB13 /* HKSample+GetDoubleValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HKSample+GetDoubleValues.swift"; sourceTree = "<group>"; };
@@ -542,9 +544,10 @@
 		4D081A242C6C2C4500E13BC8 /* UserMetaDataManager */ = {
 			isa = PBXGroup;
 			children = (
-				4D081A1E2C6C1A3400E13BC8 /* OrganizationContactInformation.swift */,
+				4D081A1E2C6C1A3400E13BC8 /* OrganizationInformation.swift */,
 				4D081A252C6C2C6B00E13BC8 /* MessageSettings.swift */,
 				4D081A272C6C2C8400E13BC8 /* UserMetaDataManager.swift */,
+				4DB624822C73DEC500573807 /* UserInformation.swift */,
 			);
 			path = UserMetaDataManager;
 			sourceTree = "<group>";
@@ -1245,7 +1248,7 @@
 				2FE5DC4129EDD7EE004B9AB4 /* StorageKeys.swift in Sources */,
 				4D73A51B2C581C8F00CCEC46 /* TargetLabelSizeKey.swift in Sources */,
 				4D0F389E2C09779100DA12F7 /* ShowMoreButton.swift in Sources */,
-				4D081A1F2C6C1A3400E13BC8 /* OrganizationContactInformation.swift in Sources */,
+				4D081A1F2C6C1A3400E13BC8 /* OrganizationInformation.swift in Sources */,
 				4DDFC7652BF350C2002B07A1 /* Education.swift in Sources */,
 				4D70CF6A2C65423D00EB4CC6 /* GraphSelection.swift in Sources */,
 				4DDFC7692BF35113002B07A1 /* HeartHealth.swift in Sources */,
@@ -1324,6 +1327,7 @@
 				4D4072842C46DDB2007C5621 /* VitalsGraph+ViewModel.swift in Sources */,
 				A9720E432ABB68CC00872D23 /* AccountSetupHeader.swift in Sources */,
 				2FE5DC4029EDD7EE004B9AB4 /* FeatureFlags.swift in Sources */,
+				4DB624832C73DEC500573807 /* UserInformation.swift in Sources */,
 				4DF3700A2C66D27B004D737A /* AdditionalAccountSections.swift in Sources */,
 				4D8402752C4EC64D00817495 /* TriggerNewMeasurementButton.swift in Sources */,
 				4D8402CC2C53019B00817495 /* Double+asString.swift in Sources */,

@@ -20,8 +20,8 @@ import SwiftUI
 @MainActor
 @Observable
 final class NavigationManager: Module, EnvironmentAccessible, DefaultInitializable {
-    @ObservationIgnored @Dependency private var configureFirebaseApp: ConfigureFirebaseApp
-    @ObservationIgnored @Dependency private var videoManager: VideoManager
+    @ObservationIgnored @Dependency(ConfigureFirebaseApp.self) private var configureFirebaseApp
+    @ObservationIgnored @Dependency(VideoManager.self) private var videoManager
     
     private let logger = Logger(subsystem: "ENGAGEHF", category: "NavigationManager")
     private var authStateDidChangeListenerHandle: AuthStateDidChangeListenerHandle?

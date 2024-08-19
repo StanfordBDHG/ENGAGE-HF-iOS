@@ -16,7 +16,7 @@ import SpeziFirestore
 
 
 class InvitationCodeModule: Module, EnvironmentAccessible {
-    @Dependency private var firebase: ConfigureFirebaseApp
+    @Dependency(ConfigureFirebaseApp.self) private var firebase
 
     @Application(\.logger) private var logger
 

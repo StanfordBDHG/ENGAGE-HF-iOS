@@ -19,7 +19,7 @@ import SpeziFirebaseConfiguration
 /// Decodes the current user's medication recommendations from Firestore to an easily displayed internal representation
 @Observable
 class MedicationsManager: Module, EnvironmentAccessible {
-    @ObservationIgnored @Dependency private var configureFirebaseApp: ConfigureFirebaseApp
+    @ObservationIgnored @Dependency(ConfigureFirebaseApp.self) private var configureFirebaseApp
     @ObservationIgnored @StandardActor private var standard: ENGAGEHFStandard
     
     private var authStateDidChangeListenerHandle: AuthStateDidChangeListenerHandle?
@@ -39,16 +39,16 @@ class MedicationsManager: Module, EnvironmentAccessible {
             return
         }
         
-        authStateDidChangeListenerHandle = Auth.auth().addStateDidChangeListener { [weak self] _, user in
-            self?.registerSnapshotListener(user: user)
+        authStateDidChangeListenerHandle = Auth.auth().addStateDidChangeListener { [weak self] _, _ in
+            self?.registerSnapshotListener()
         }
         
-        self.registerSnapshotListener(user: Auth.auth().currentUser)
+        self.registerSnapshotListener()
     }
     
     
     /// Call on sign-in. Registers a snapshot listener to the current user's medicationRecommendations collection and decodes the medications found there.
-    private func registerSnapshotListener(user: User?) {
+    private func registerSnapshotListener() {
         logger.info("Initializing medications snapshot listener...")
         
         self.snapshotListener?.remove()
