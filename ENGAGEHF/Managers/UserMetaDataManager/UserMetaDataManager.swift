@@ -51,6 +51,8 @@ class UserMetaDataManager: Module, EnvironmentAccessible {
     }
     
     
+    /// Called on sign-in. Registers a snapshot listener to the user's meta-data document in Firestore.
+    /// Collects information such as notification preferences and organization contact information.
     private func registerSnapshotListener() {
         self.logger.debug("Initializing user information snapshot listener...")
         
@@ -75,10 +77,13 @@ class UserMetaDataManager: Module, EnvironmentAccessible {
                     return
                 }
                 
+                // Fetch organization contact information
                 Task {
                     await self.getOrganizationInfo(from: userDoc)
                 }
                 
+                // Decode message settings
+                // Defaults to true if field not present in firestore, and ignores unknown fields
                 do {
                     self.messageSettings = try userDoc.data(as: MessageSettings.self)
                     self.logger.debug("Successfully fetched message settings.")
