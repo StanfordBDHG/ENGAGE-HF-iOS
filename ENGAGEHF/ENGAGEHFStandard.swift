@@ -27,7 +27,7 @@ actor ENGAGEHFStandard: Standard,
                         OnboardingConstraint,
                         AccountStorageConstraint,
                         AccountNotifyConstraint {
-    @Dependency var accountStorage: FirestoreAccountStorage?
+    @Dependency(FirestoreAccountStorage.self) var accountStorage: FirestoreAccountStorage?
     @AccountReference var account: Account
 
     private let logger = Logger(subsystem: "ENGAGEHF", category: "Standard")
@@ -64,15 +64,6 @@ actor ENGAGEHFStandard: Standard,
     func add(symptomScore: SymptomScore) async throws {
         do {
             try Firestore.symptomScoresCollectionReference.addDocument(from: symptomScore)
-        } catch {
-            throw FirestoreError(error)
-        }
-    }
-    
-    
-    func add(message: Message) async throws {
-        do {
-            try Firestore.messagesCollectionReference.addDocument(from: message)
         } catch {
             throw FirestoreError(error)
         }

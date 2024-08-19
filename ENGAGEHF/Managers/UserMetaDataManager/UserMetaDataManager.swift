@@ -28,12 +28,20 @@ class UserMetaDataManager: Module, EnvironmentAccessible {
     func configure() {
         // On sign in, store the user's organization and message settings
         authStateDidChangeListenerHandle = Auth.auth().addStateDidChangeListener { [weak self] _, user in
-            if user != nil {
+            if let user {
                 Task {
                     await self?.getOrganization()
+                    await self?.getMessageSettings(user)
                 }
             }
         }
+    }
+    
+    
+    private func getMessageSettings(_ user: User) async {
+        self.logger.debug("Fetching message preferences for user \(user.uid).")
+        
+        
     }
     
     private func getOrganization() async {

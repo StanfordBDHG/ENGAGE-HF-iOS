@@ -43,7 +43,7 @@ struct Message: Identifiable, Equatable {
 }
 
 
-extension Message: Codable {
+extension Message: Decodable {
     private enum CodingKeys: CodingKey {
         case title
         case description
@@ -63,19 +63,7 @@ extension Message: Codable {
         self.description = try container.decodeLocalizedStringIfPresent(forKey: .description)
         self.action = try MessageAction(from: container.decodeIfPresent(String.self, forKey: .action))
         self.isDismissible = try container.decode(Bool.self, forKey: .isDismissible)
-        self.dueDate = try container.decodeIfPresent(Date.self, forKey: .dueDate)
-        self.completionDate = try container.decodeIfPresent(Date.self, forKey: .completionDate)
-    }
-    
-    func encode(to encoder: any Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        
-        try container.encode(_id, forKey: .docId)
-        try container.encode(title, forKey: .title)
-        try container.encodeIfPresent(description, forKey: .description)
-        try container.encodeIfPresent(action.encodingString, forKey: .action)
-        try container.encode(isDismissible, forKey: .isDismissible)
-        try container.encodeIfPresent(dueDate, forKey: .dueDate)
-        try container.encodeIfPresent(completionDate, forKey: .completionDate)
+        self.dueDate = try container.decodeISO8601DateIfPresent(forKey: .dueDate)
+        self.completionDate = try container.decodeISO8601DateIfPresent(forKey: .completionDate)
     }
 }

@@ -461,7 +461,6 @@
 			isa = PBXGroup;
 			children = (
 				2FE5DC2529EDD38A004B9AB4 /* Contacts.swift */,
-				4D081A1E2C6C1A3400E13BC8 /* OrganizationContactInformation.swift */,
 			);
 			path = Contacts;
 			sourceTree = "<group>";
@@ -543,6 +542,7 @@
 		4D081A242C6C2C4500E13BC8 /* UserMetaDataManager */ = {
 			isa = PBXGroup;
 			children = (
+				4D081A1E2C6C1A3400E13BC8 /* OrganizationContactInformation.swift */,
 				4D081A252C6C2C6B00E13BC8 /* MessageSettings.swift */,
 				4D081A272C6C2C8400E13BC8 /* UserMetaDataManager.swift */,
 			);
@@ -2012,7 +2012,7 @@
 			repositoryURL = "https://github.com/StanfordSpezi/SpeziBluetooth.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = "3.0.0-beta.2";
+				minimumVersion = "3.0.0-beta.1";
 			};
 		};
 		5661551B2AB8384200209B80 /* XCRemoteSwiftPackageReference "swift-package-list" */ = {

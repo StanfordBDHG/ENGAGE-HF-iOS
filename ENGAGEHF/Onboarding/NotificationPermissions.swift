@@ -46,11 +46,7 @@ struct NotificationPermissions: View {
                             if ProcessInfo.processInfo.isPreviewSimulator {
                                 try await _Concurrency.Task.sleep(for: .seconds(5))
                             } else {
-                                let granted = try await UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound])
-                                
-                                if granted {
-                                    try await notificationManager.handleNotificationsAllowed()
-                                }
+                                try await notificationManager.handleNotificationsAllowed()
                             }
                         } catch {
                             print("Could not request notification permissions.")
