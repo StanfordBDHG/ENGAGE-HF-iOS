@@ -23,7 +23,7 @@ struct AdditionalAccountSections: View {
                 Text("Contacts")
             }
             NavigationLink {
-                NotificationSettings()
+                NotificationSettingsView()
             } label: {
                 Text("Notifications")
             }

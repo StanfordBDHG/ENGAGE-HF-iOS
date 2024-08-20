@@ -6,24 +6,28 @@
 // SPDX-License-Identifier: MIT
 //
 
-import FirebaseAuth
 import FirebaseFirestore
 import Foundation
-import OSLog
 import Spezi
-import SpeziFirebaseConfiguration
+import SpeziAccount
+import SpeziFirebaseAccount
 
 
 @Observable
+@MainActor
 class UserMetaDataManager: Module, EnvironmentAccessible {
-    @ObservationIgnored @Dependency(ConfigureFirebaseApp.self) private var configureFirebaseApp
+    @ObservationIgnored @Dependency(Account.self) private var account: Account?
+    @ObservationIgnored @Dependency(AccountNotifications.self) private var accountNotifications: AccountNotifications?
+    @ObservationIgnored @Dependency(FirebaseAccountService.self) private var accountService: FirebaseAccountService?
+
+    @Application(\.logger) @ObservationIgnored private var logger
     
-    private var authStateDidChangeListenerHandle: AuthStateDidChangeListenerHandle?
     private var snapshotListener: ListenerRegistration?
-    private let logger = Logger(subsystem: "ENGAGEHF", category: "UserDataManager")
+    private var notificationsTask: Task<Void, Never>?
     
     private(set) var organization: OrganizationInformation?
-    var messageSettings = MessageSettings()
+    
+    var notificationSettings = NotificationSettings()
     
     
     func configure() {
@@ -31,25 +35,53 @@ class UserMetaDataManager: Module, EnvironmentAccessible {
             return
         }
         
+        // Clear away any previous user's organization so that we do not skip fetching the organization info
+        // for the newly-signed in user.
+        self.organization = nil
+        
         // On sign in, store the user's organization and message settings
-        authStateDidChangeListenerHandle = Auth.auth().addStateDidChangeListener { [weak self] _, _ in
-            self?.registerSnapshotListener()
+        if let accountNotifications {
+            notificationsTask = Task.detached { @MainActor [weak self] in
+                for await event in accountNotifications.events {
+                    guard let self else {
+                        return
+                    }
+
+                    switch event {
+                    case let .associatedAccount(details):
+                        updateSnapshotListener(for: details)
+                    case .disassociatingAccount:
+                        updateSnapshotListener(for: nil)
+                    default:
+                        break
+                    }
+                }
+            }
+        }
+        
+        if let account {
+            updateSnapshotListener(for: account.details)
         }
     }
     
     
-    func updateMessageSettings() async {
-        self.logger.debug("Updating message preferences.")
+    /// Call on change of notification settings in Account Sheet.
+    /// Updates the user's notification settings in Firestore to the current values stored in the manager.
+    func pushUpdatedNotificationSettings() async {
+        self.logger.debug("Updating notification settings.")
         
-        guard let userDocRef = try? Firestore.userDocumentReference else {
-            self.logger.error("Failed to update message settings: User not signed in.")
+        guard let details = account?.details else {
             return
         }
         
+        print(self.notificationSettings.codingRepresentation)
+        
+        let userDocRef = Firestore.userDocumentReference(for: details.accountId)
+        
         do {
-            try await userDocRef.updateData(self.messageSettings.codingRepresentation)
+            try await userDocRef.updateData(self.notificationSettings.codingRepresentation)
         } catch {
-            self.logger.error("Failed to update message settings: \(error)")
+            self.logger.error("Failed to update notification settings: \(error)")
             return
         }
     }
@@ -57,15 +89,16 @@ class UserMetaDataManager: Module, EnvironmentAccessible {
     
     /// Called on sign-in. Registers a snapshot listener to the user's meta-data document in Firestore.
     /// Collects information such as notification preferences and organization contact information.
-    private func registerSnapshotListener() {
+    private func updateSnapshotListener(for details: AccountDetails?) {
         self.logger.debug("Initializing user information snapshot listener...")
         
         self.snapshotListener?.remove()
         
-        guard let userDocRef = try? Firestore.userDocumentReference else {
-            self.logger.error("Failed to initialize user information snapshot: User not signed in.")
+        guard let details else {
             return
         }
+        
+        let userDocRef = Firestore.userDocumentReference(for: details.accountId)
         
         self.snapshotListener = userDocRef
             .addSnapshotListener { docSnapshot, error in
@@ -81,15 +114,18 @@ class UserMetaDataManager: Module, EnvironmentAccessible {
                     return
                 }
                 
-                // Fetch organization contact information
-                Task {
-                    await self.getOrganizationInfo(from: userDoc)
+                // Only fetch organization information from Firestore if we haven't already fetched it
+                // for the current user.
+                if self.organization == nil {
+                    Task { @MainActor in
+                        await self.getOrganizationInfo(from: userDoc)
+                    }
                 }
                 
                 // Decode message settings
                 // Defaults to true if field not present in firestore, and ignores unknown fields
                 do {
-                    self.messageSettings = try userDoc.data(as: MessageSettings.self)
+                    self.notificationSettings = try userDoc.data(as: NotificationSettings.self)
                     self.logger.debug("Successfully fetched message settings.")
                 } catch {
                     self.logger.error("Failed to decode message settings: \(error)")
@@ -122,5 +158,10 @@ class UserMetaDataManager: Module, EnvironmentAccessible {
         } catch {
             self.logger.error("Failed to fetch contact information for organization \(organizationId): \(error)")
         }
+    }
+    
+    
+    deinit {
+        _notificationsTask?.cancel()
     }
 }

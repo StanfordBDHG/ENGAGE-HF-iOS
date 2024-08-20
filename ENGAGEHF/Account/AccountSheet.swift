@@ -25,7 +25,7 @@ struct AccountSheet: View {
             ZStack {
                 if account.signedIn && !isInSetup {
                     AccountOverview(close: .showCloseButton, deletion: .disabled) {
-                        AccountNavigationLinks()
+                        AdditionalAccountSections()
                     }
                 } else {
                     AccountSetup { _ in
