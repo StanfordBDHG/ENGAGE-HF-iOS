@@ -131,6 +131,9 @@
     "An invitation code is at least 8 characters long." : {
 
     },
+    "Appointments" : {
+
+    },
     "Attempted to add a symptom score without first taking survey." : {
 
     },
@@ -497,10 +500,25 @@
     "Questionnaire Loading" : {
 
     },
+    "Receive notifications of changes in vital trends." : {
+
+    },
+    "Receive reminders for appointments (one day before), symptom surveys, and vital measurements." : {
+
+    },
+    "Receive updates when current medications and medication recommendations change." : {
+
+    },
     "Recent Vitals" : {
 
     },
+    "Recommendations" : {
+
+    },
     "Redeem Invitation Code" : {
+
+    },
+    "Reminders" : {
 
     },
     "Resolution Picker" : {
@@ -530,7 +548,7 @@
     "Show more" : {
 
     },
-    "Study Information" : {
+    "Survey" : {
 
     },
     "symptomDizziness" : {
@@ -635,6 +653,9 @@
     "Time" : {
 
     },
+    "Trends" : {
+
+    },
     "Trigger Blood Pressure Measurement" : {
 
     },
@@ -656,6 +677,9 @@
     "Unknown Thumbnail" : {
 
     },
+    "Updates" : {
+
+    },
     "User authentication failed. Please try to sign in again." : {
       "comment" : "User Not Authenticated"
     },
@@ -668,6 +692,9 @@
           }
         }
       }
+    },
+    "Vitals" : {
+
     },
     "vitalsBloodPressure" : {
       "comment" : "For Heart Health view",
@@ -704,6 +731,9 @@
           }
         }
       }
+    },
+    "Weight Trends" : {
+
     },
     "weightMissing" : {
       "comment" : "Displayed in the MeasurementListSection of the Heart Health view when no weight history was found.",

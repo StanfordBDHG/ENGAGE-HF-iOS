@@ -152,7 +152,7 @@
 		4DB025CA2BBE3A59002D2545 /* HomeViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB025C92BBE3A59002D2545 /* HomeViewUITests.swift */; };
 		4DB025D52BBF2E08002D2545 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB025D42BBF2E08002D2545 /* Dashboard.swift */; };
 		4DB624832C73DEC500573807 /* UserInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB624822C73DEC500573807 /* UserInformation.swift */; };
-		4DB624862C73F1BF00573807 /* MessageSettingsForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB624852C73F1BF00573807 /* MessageSettingsForm.swift */; };
+		4DB624862C73F1BF00573807 /* NotificationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB624852C73F1BF00573807 /* NotificationSettings.swift */; };
 		4DBDD3442BBFAD64001FB0CA /* InvitationCodeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDD3432BBFAD64001FB0CA /* InvitationCodeError.swift */; };
 		4DBDD3462BBFAE2D001FB0CA /* InvitationCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDD3452BBFAE2D001FB0CA /* InvitationCodeView.swift */; };
 		4DBDD3482BC073EF001FB0CA /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 4DBDD3472BC073EF001FB0CA /* FirebaseFunctions */; };
@@ -351,7 +351,7 @@
 		4DB025C92BBE3A59002D2545 /* HomeViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewUITests.swift; sourceTree = "<group>"; };
 		4DB025D42BBF2E08002D2545 /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		4DB624822C73DEC500573807 /* UserInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformation.swift; sourceTree = "<group>"; };
-		4DB624852C73F1BF00573807 /* MessageSettingsForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSettingsForm.swift; sourceTree = "<group>"; };
+		4DB624852C73F1BF00573807 /* NotificationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettings.swift; sourceTree = "<group>"; };
 		4DBDD3432BBFAD64001FB0CA /* InvitationCodeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationCodeError.swift; sourceTree = "<group>"; };
 		4DBDD3452BBFAE2D001FB0CA /* InvitationCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationCodeView.swift; sourceTree = "<group>"; };
 		4DC0F6702C34818B0025AB13 /* HKSample+GetDoubleValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HKSample+GetDoubleValues.swift"; sourceTree = "<group>"; };
@@ -1047,7 +1047,7 @@
 				A9FE7ACF2AA39BAB0077B045 /* AccountSheet.swift */,
 				A96C56BA2C0DFFCE00D6A50B /* InvitationCodeModule.swift */,
 				4DF370092C66D27B004D737A /* AdditionalAccountSections.swift */,
-				4DB624852C73F1BF00573807 /* MessageSettingsForm.swift */,
+				4DB624852C73F1BF00573807 /* NotificationSettings.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -1379,7 +1379,7 @@
 				4DBDD3462BBFAE2D001FB0CA /* InvitationCodeView.swift in Sources */,
 				4D40A4B62C5AA094003DC813 /* VideoView.swift in Sources */,
 				4D9D43602C597E09000062D3 /* Video.swift in Sources */,
-				4DB624862C73F1BF00573807 /* MessageSettingsForm.swift in Sources */,
+				4DB624862C73F1BF00573807 /* NotificationSettings.swift in Sources */,
 				4D8402882C50241A00817495 /* MedicationsManager.swift in Sources */,
 				4D8402CF2C530BEB00817495 /* MedicationRowContent.swift in Sources */,
 				4D92BA012C3C932300ABCED7 /* VitalsGraphSection.swift in Sources */,

@@ -11,24 +11,28 @@ import SwiftUI
 
 struct AdditionalAccountSections: View {
     var body: some View {
-        Section(header: Text("Study Information")) {
+        Section {
+            NavigationLink {
+                HealthSummaryView()
+            } label: {
+                Text("Health Summary")
+            }
             NavigationLink {
                 Contacts()
             } label: {
                 Text("Contacts")
             }
             NavigationLink {
+                NotificationSettings()
+            } label: {
+                Text("Notifications")
+            }
+        }
+        Section {
+            NavigationLink {
                 ContributionsList(appName: "ENGAGE-HF", projectLicense: .mit)
             } label: {
                 Text("LICENSE_INFO_TITLE")
-            }
-        }
-        MessageSettingsSection()
-        Section {
-            NavigationLink {
-                HealthSummaryView()
-            } label: {
-                Text("Health Summary")
             }
         }
     }
