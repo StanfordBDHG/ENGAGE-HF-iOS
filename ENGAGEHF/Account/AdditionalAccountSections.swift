@@ -11,7 +11,7 @@ import SwiftUI
 
 struct AdditionalAccountSections: View {
     var body: some View {
-        Section {
+        Section(header: Text("Study Information")) {
             NavigationLink {
                 Contacts()
             } label: {
@@ -23,6 +23,7 @@ struct AdditionalAccountSections: View {
                 Text("LICENSE_INFO_TITLE")
             }
         }
+        MessageSettingsSection()
         Section {
             NavigationLink {
                 HealthSummaryView()

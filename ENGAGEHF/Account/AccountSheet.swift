@@ -74,6 +74,7 @@ struct AccountSheet: View {
     return AccountSheet()
         .previewWith {
             AccountConfiguration(building: details, active: MockUserIdPasswordAccountService())
+            UserMetaDataManager()
         }
 }
 
@@ -83,6 +84,7 @@ struct AccountSheet: View {
             AccountConfiguration {
                 MockUserIdPasswordAccountService()
             }
+            UserMetaDataManager()
         }
 }
 #endif

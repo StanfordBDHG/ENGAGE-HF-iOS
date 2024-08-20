@@ -23,10 +23,14 @@ class UserMetaDataManager: Module, EnvironmentAccessible {
     private let logger = Logger(subsystem: "ENGAGEHF", category: "UserDataManager")
     
     private(set) var organization: OrganizationInformation?
-    private(set) var messageSettings = MessageSettings()
+    var messageSettings = MessageSettings()
     
     
     func configure() {
+        if ProcessInfo.processInfo.isPreviewSimulator {
+            return
+        }
+        
         // On sign in, store the user's organization and message settings
         authStateDidChangeListenerHandle = Auth.auth().addStateDidChangeListener { [weak self] _, _ in
             self?.registerSnapshotListener()
