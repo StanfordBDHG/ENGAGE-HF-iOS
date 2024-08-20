@@ -195,8 +195,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziAccount.git",
       "state" : {
-        "revision" : "24a4b844d326e085d1fd9d229bde50dfac917eca",
-        "version" : "2.0.0-beta.3"
+        "revision" : "40fa3f5e84d22c700ad152e1a29f459cc5e41447",
+        "version" : "2.0.0-beta.4"
       }
     },
     {
@@ -231,8 +231,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziFirebase.git",
       "state" : {
-        "branch" : "feature/spezi-account-2.0",
-        "revision" : "ddfe2bc9d86498b2422ce5618c02d233eb183012"
+        "revision" : "7855a911c7309bf34d3cb693f76989ede15737fc",
+        "version" : "2.0.0-beta.1"
       }
     },
     {

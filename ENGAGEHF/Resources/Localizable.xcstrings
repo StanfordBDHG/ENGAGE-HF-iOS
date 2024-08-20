@@ -110,9 +110,6 @@
     "Add Measurement: %@" : {
 
     },
-    "Add Medications" : {
-
-    },
     "All Data" : {
 
     },
@@ -504,9 +501,6 @@
     "Show less" : {
 
     },
-    "Show Measurements" : {
-
-    },
     "Show more" : {
 
     },
@@ -609,13 +603,7 @@
     "Time" : {
 
     },
-    "Trigger Blood Pressure Measurement" : {
-
-    },
     "Trigger Sheet" : {
-
-    },
-    "Trigger Weight Measurement" : {
 
     },
     "Unable to create time interval for date: %@" : {
