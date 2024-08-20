@@ -1,5 +1,5 @@
 {
-  "originHash" : "1b17ed07122d1613d9aa5eae78cf34e6d814777a25e2a9429ea55de1a016ae8b",
+  "originHash" : "bf5084f3a1640b549abaeb7502f3d1650efe31a71ce63ae49ff0fb7732a037e2",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -222,8 +222,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziDevices.git",
       "state" : {
-        "branch" : "fix/bump-xctest-extensions",
-        "revision" : "15af3c6839e8afa81ef9cb8c636ddc398eef7254"
+        "revision" : "32b379270afe5e121161ea644fa0a8c1a974068a",
+        "version" : "1.2.1"
       }
     },
     {

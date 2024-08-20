@@ -1150,7 +1150,6 @@
 				4D49AAFC2BC9D50400C77310 /* XCRemoteSwiftPackageReference "SpeziBluetooth" */,
 				A9A0BF012C13121D00B8F3F3 /* XCRemoteSwiftPackageReference "SpeziNetworking" */,
 				A9623C022C17A3F500189BA1 /* XCRemoteSwiftPackageReference "SpeziDevices" */,
-				A92D6E3D2C6B6D2A000582B1 /* XCRemoteSwiftPackageReference "SpeziFoundation" */,
 			);
 			productRefGroup = 653A254E283387FE005D4D48 /* Products */;
 			projectDirPath = "";
@@ -1993,20 +1992,12 @@
 				minimumVersion = 1.0.0;
 			};
 		};
-		A92D6E3D2C6B6D2A000582B1 /* XCRemoteSwiftPackageReference "SpeziFoundation" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/StanfordSpezi/SpeziFoundation.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = "2.0.0-beta.1";
-			};
-		};
 		A9623C022C17A3F500189BA1 /* XCRemoteSwiftPackageReference "SpeziDevices" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/StanfordSpezi/SpeziDevices.git";
 			requirement = {
-				branch = "fix/bump-xctest-extensions";
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.1;
 			};
 		};
 		A9A0BF012C13121D00B8F3F3 /* XCRemoteSwiftPackageReference "SpeziNetworking" */ = {
