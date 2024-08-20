@@ -82,8 +82,8 @@
 		4D49AB022BC9D50400C77310 /* SpeziBluetooth in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49AB012BC9D50400C77310 /* SpeziBluetooth */; };
 		4D4AA0A52BC5E43E00676489 /* OnboardingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4AA0A42BC5E43E00676489 /* OnboardingUITests.swift */; };
 		4D62BF2A2C6A71500088C414 /* FirestoreSettings+EmulatorWithHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D62BF292C6A71500088C414 /* FirestoreSettings+EmulatorWithHost.swift */; };
-		4D62BF392C6A978C0088C414 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D62BF382C6A978C0088C414 /* NotificationManager.swift */; };
-		4D62BF3B2C6A9F330088C414 /* NotificationRegistrationSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D62BF3A2C6A9F330088C414 /* NotificationRegistrationSchema.swift */; };
+		4D62BF392C6A978C0088C414 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		4D62BF3B2C6A9F330088C414 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		4D62BF402C6AB8520088C414 /* KeyedDecodingContainer+DecodeISO8601Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D62BF3F2C6AB8520088C414 /* KeyedDecodingContainer+DecodeISO8601Date.swift */; };
 		4D70CF652C653BE100EB4CC6 /* Image+CardSymbolStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D70CF642C653BE100EB4CC6 /* Image+CardSymbolStyle.swift */; };
 		4D70CF6A2C65423D00EB4CC6 /* GraphSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D70CF692C65423D00EB4CC6 /* GraphSelection.swift */; };
@@ -127,6 +127,10 @@
 		4D8AD2D62C4B252000CB4F3E /* FHIRInstant+DateComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA20B572C25FE4000715AA2 /* FHIRInstant+DateComponents.swift */; };
 		4D8AD2DD2C4B4B8C00CB4F3E /* HKSampleGraphUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8AD2DC2C4B4B8C00CB4F3E /* HKSampleGraphUnitTests.swift */; };
 		4D8AD2E12C4B5D1600CB4F3E /* HeartHealthUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8AD2E02C4B5D1600CB4F3E /* HeartHealthUITests.swift */; };
+		4D8CE0F52C752D1C00560327 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8CE0EF2C752D1C00560327 /* Video.swift */; };
+		4D8CE0F62C752D1C00560327 /* VideoCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8CE0F02C752D1C00560327 /* VideoCollection.swift */; };
+		4D8CE0F72C752D1C00560327 /* VideoCollectionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8CE0F12C752D1C00560327 /* VideoCollectionContext.swift */; };
+		4D8CE0F82C752D1C00560327 /* VideoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8CE0F32C752D1C00560327 /* VideoManager.swift */; };
 		4D92B9F22C3C8D1E00ABCED7 /* MeasurementListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D92B9F12C3C8D1E00ABCED7 /* MeasurementListSection.swift */; };
 		4D92B9F42C3C8DF900ABCED7 /* MeasurementListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D92B9F32C3C8DF900ABCED7 /* MeasurementListRow.swift */; };
 		4D92B9F62C3C8FA100ABCED7 /* DescriptionSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D92B9F52C3C8FA100ABCED7 /* DescriptionSection.swift */; };
@@ -172,7 +176,7 @@
 		4DF36FFD2C66A904004D737A /* QuestionnaireSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF36FFC2C66A904004D737A /* QuestionnaireSheetView.swift */; };
 		4DF370042C66C9F9004D737A /* HealthSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF370032C66C9F9004D737A /* HealthSummaryView.swift */; };
 		4DF370082C66CAC9004D737A /* PDFViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF370072C66CAC9004D737A /* PDFViewer.swift */; };
-		4DF3700A2C66D27B004D737A /* AdditionalAccountSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF370092C66D27B004D737A /* AdditionalAccountSections.swift */; };
+		4DF3700A2C66D27B004D737A /* AccountNavigationLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF370092C66D27B004D737A /* AccountNavigationLinks.swift */; };
 		4DF3700D2C66E479004D737A /* PDFDocument+Transferable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF3700C2C66E479004D737A /* PDFDocument+Transferable.swift */; };
 		4DF506192C2E1AAE003E7EFB /* SymptomsType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF506182C2E1AAD003E7EFB /* SymptomsType.swift */; };
 		4DF506212C2E1C89003E7EFB /* SymptomScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF506202C2E1C89003E7EFB /* SymptomScore.swift */; };
@@ -323,6 +327,10 @@
 		4D8AD2CC2C4ACFB700CB4F3E /* DateInterval+asAdjustedRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateInterval+asAdjustedRange.swift"; sourceTree = "<group>"; };
 		4D8AD2DC2C4B4B8C00CB4F3E /* HKSampleGraphUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKSampleGraphUnitTests.swift; sourceTree = "<group>"; };
 		4D8AD2E02C4B5D1600CB4F3E /* HeartHealthUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartHealthUITests.swift; sourceTree = "<group>"; };
+		4D8CE0EF2C752D1C00560327 /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
+		4D8CE0F02C752D1C00560327 /* VideoCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCollection.swift; sourceTree = "<group>"; };
+		4D8CE0F12C752D1C00560327 /* VideoCollectionContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCollectionContext.swift; sourceTree = "<group>"; };
+		4D8CE0F32C752D1C00560327 /* VideoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoManager.swift; sourceTree = "<group>"; };
 		4D92B9F12C3C8D1E00ABCED7 /* MeasurementListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementListSection.swift; sourceTree = "<group>"; };
 		4D92B9F32C3C8DF900ABCED7 /* MeasurementListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementListRow.swift; sourceTree = "<group>"; };
 		4D92B9F52C3C8FA100ABCED7 /* DescriptionSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionSection.swift; sourceTree = "<group>"; };
@@ -518,6 +526,7 @@
 		4D081A212C6C2BCB00E13BC8 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				4D8CE0F42C752D1C00560327 /* VideoManager */,
 				4D081A242C6C2C4500E13BC8 /* UserMetaDataManager */,
 				4D081A232C6C2BF200E13BC8 /* MedicationsManager */,
 				4D62BF372C6A97490088C414 /* NotificationManager */,
@@ -657,8 +666,6 @@
 		4D62BF372C6A97490088C414 /* NotificationManager */ = {
 			isa = PBXGroup;
 			children = (
-				4D62BF382C6A978C0088C414 /* NotificationManager.swift */,
-				4D62BF3A2C6A9F330088C414 /* NotificationRegistrationSchema.swift */,
 			);
 			path = NotificationManager;
 			sourceTree = "<group>";
@@ -772,6 +779,25 @@
 				4D8AD2CC2C4ACFB700CB4F3E /* DateInterval+asAdjustedRange.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		4D8CE0F22C752D1C00560327 /* VideoModels */ = {
+			isa = PBXGroup;
+			children = (
+				4D8CE0EF2C752D1C00560327 /* Video.swift */,
+				4D8CE0F02C752D1C00560327 /* VideoCollection.swift */,
+				4D8CE0F12C752D1C00560327 /* VideoCollectionContext.swift */,
+			);
+			path = VideoModels;
+			sourceTree = "<group>";
+		};
+		4D8CE0F42C752D1C00560327 /* VideoManager */ = {
+			isa = PBXGroup;
+			children = (
+				4D8CE0F22C752D1C00560327 /* VideoModels */,
+				4D8CE0F32C752D1C00560327 /* VideoManager.swift */,
+			);
+			path = VideoManager;
 			sourceTree = "<group>";
 		};
 		4D92B9F92C3C91AC00ABCED7 /* Symptoms */ = {
@@ -1039,7 +1065,7 @@
 				A9623C072C18D03F00189BA1 /* AccountSetupSheet.swift */,
 				A9FE7ACF2AA39BAB0077B045 /* AccountSheet.swift */,
 				A96C56BA2C0DFFCE00D6A50B /* InvitationCodeModule.swift */,
-				4DF370092C66D27B004D737A /* AdditionalAccountSections.swift */,
+				4DF370092C66D27B004D737A /* AccountNavigationLinks.swift */,
 				4DB624852C73F1BF00573807 /* NotificationSettings.swift */,
 			);
 			path = Account;
@@ -1252,6 +1278,7 @@
 				4D73A51E2C581CB200CCEC46 /* GaugeSizeKey.swift in Sources */,
 				4D4072932C4841D4007C5621 /* VitalsGraph+DefaultStyling.swift in Sources */,
 				4D8402932C5067F000817495 /* MedicationDetails.swift in Sources */,
+				4D8CE0F82C752D1C00560327 /* VideoManager.swift in Sources */,
 				2FE5DCB129EE6107004B9AB4 /* AccountOnboarding.swift in Sources */,
 				4DF506192C2E1AAE003E7EFB /* SymptomsType.swift in Sources */,
 				4DF5062F2C2F2B00003E7EFB /* SymptomsPicker.swift in Sources */,
@@ -1282,6 +1309,7 @@
 				4D40A4C62C5AE486003DC813 /* VideoListSection.swift in Sources */,
 				4D9D43582C596D8A000062D3 /* VideoCollection.swift in Sources */,
 				A9623C082C18D03F00189BA1 /* AccountSetupSheet.swift in Sources */,
+				4D8CE0F62C752D1C00560327 /* VideoCollection.swift in Sources */,
 				4D40727E2C465554007C5621 /* HKSampleGraphError.swift in Sources */,
 				4D4072782C460014007C5621 /* TapDrag+GestureValue.swift in Sources */,
 				4DB025D52BBF2E08002D2545 /* Dashboard.swift in Sources */,
@@ -1291,10 +1319,11 @@
 				4DDFC7392BF2C3C9002B07A1 /* MessagesSection.swift in Sources */,
 				4D34B3F42C406340006F0D40 /* DateGranularity.swift in Sources */,
 				4D40729F2C488172007C5621 /* KnownVitalsSeries.swift in Sources */,
+				4D8CE0F52C752D1C00560327 /* Video.swift in Sources */,
 				4DF36FFD2C66A904004D737A /* QuestionnaireSheetView.swift in Sources */,
 				2FF350E42C4F3F0B0095F08F /* Firebase+References.swift in Sources */,
 				4DC0F6712C34818B0025AB13 /* HKSample+GetDoubleValues.swift in Sources */,
-				4D62BF392C6A978C0088C414 /* NotificationManager.swift in Sources */,
+				4D62BF392C6A978C0088C414 /* (null) in Sources */,
 				4D34B3F62C4065A5006F0D40 /* HeartHealthError.swift in Sources */,
 				4D8402C92C52F7C100817495 /* TextualDosageSummary.swift in Sources */,
 				4D8402812C4F067D00817495 /* FieldDetails.swift in Sources */,
@@ -1307,7 +1336,7 @@
 				4D92B9F82C3C901500ABCED7 /* SymptomsGraphSection.swift in Sources */,
 				4DF36FF52C667D39004D737A /* AxisModifiers.swift in Sources */,
 				2FF53D8D2A8729D600042B76 /* ENGAGEHFStandard.swift in Sources */,
-				4D62BF3B2C6A9F330088C414 /* NotificationRegistrationSchema.swift in Sources */,
+				4D62BF3B2C6A9F330088C414 /* (null) in Sources */,
 				4DDFC78A2BFC1312002B07A1 /* MessageRow.swift in Sources */,
 				4D8402722C4EC0D400817495 /* MeasurementListHeader.swift in Sources */,
 				4D92B9F22C3C8D1E00ABCED7 /* MeasurementListSection.swift in Sources */,
@@ -1322,7 +1351,7 @@
 				4D4072842C46DDB2007C5621 /* VitalsGraph+ViewModel.swift in Sources */,
 				A9720E432ABB68CC00872D23 /* AccountSetupHeader.swift in Sources */,
 				2FE5DC4029EDD7EE004B9AB4 /* FeatureFlags.swift in Sources */,
-				4DF3700A2C66D27B004D737A /* AdditionalAccountSections.swift in Sources */,
+				4DF3700A2C66D27B004D737A /* AccountNavigationLinks.swift in Sources */,
 				4D8402752C4EC64D00817495 /* TriggerNewMeasurementButton.swift in Sources */,
 				4D8402CC2C53019B00817495 /* Double+asString.swift in Sources */,
 				4D9D435A2C5973AD000062D3 /* VideoManager.swift in Sources */,
@@ -1334,6 +1363,7 @@
 				4DA20B542C25F8A600715AA2 /* FHIRDateTime+DateComponents.swift in Sources */,
 				4D081A282C6C2C8400E13BC8 /* UserMetaDataManager.swift in Sources */,
 				4D8402AA2C51B6A000817495 /* FHIRAliases.swift in Sources */,
+				4D8CE0F72C752D1C00560327 /* VideoCollectionContext.swift in Sources */,
 				4DDFC7542BF3408F002B07A1 /* RecentVitalsSection.swift in Sources */,
 				4D4072662C4586AB007C5621 /* VitalMeasurement.swift in Sources */,
 				4D34B3F02C40518C006F0D40 /* HKSampleGraph.swift in Sources */,
