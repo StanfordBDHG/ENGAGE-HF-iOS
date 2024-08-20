@@ -27,7 +27,7 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
         }
     }
 
-    func clearAccount() {
+    func clearAccount() async {
         do {
             try await signOutAccount()
         } catch {
