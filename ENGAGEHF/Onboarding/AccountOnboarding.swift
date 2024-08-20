@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
-import SpeziAccount
+@_spi(TestingSupport) import SpeziAccount
 import SpeziOnboarding
 import SwiftUI
 
@@ -14,8 +14,17 @@ import SwiftUI
 struct AccountOnboarding: View {
     @Environment(Account.self) private var account
     @Environment(OnboardingNavigationPath.self) private var onboardingNavigationPath
-    
-    
+
+    @MainActor private var setupStyle: PreferredSetupStyle {
+        if let details = account.details,
+           details.isAnonymous {
+            .signup
+        } else {
+            // when we navigate here from the InvitationCodeView we remove the anonymous account for sign in.
+            .login
+        }
+    }
+
     var body: some View {
         AccountSetup { _ in
             Task {
@@ -33,6 +42,7 @@ struct AccountOnboarding: View {
                 }
             )
         }
+            .preferredAccountSetupStyle(setupStyle)
     }
 }
 
@@ -43,22 +53,20 @@ struct AccountOnboarding: View {
         AccountOnboarding()
     }
         .previewWith {
-            AccountConfiguration {
-                MockUserIdPasswordAccountService()
-            }
+            AccountConfiguration(service: InMemoryAccountService())
         }
 }
 
 #Preview("Account Onboarding") {
-    let details = AccountDetails.Builder()
-        .set(\.userId, value: "lelandstanford@stanford.edu")
-        .set(\.name, value: PersonNameComponents(givenName: "Leland", familyName: "Stanford"))
-    
+    var details = AccountDetails()
+    details.userId = "lelandstanford@stanford.edu"
+    details.name = PersonNameComponents(givenName: "Leland", familyName: "Stanford")
+
     return OnboardingStack {
         AccountOnboarding()
     }
         .previewWith {
-            AccountConfiguration(building: details, active: MockUserIdPasswordAccountService())
+            AccountConfiguration(service: InMemoryAccountService(), activeDetails: details)
         }
 }
 #endif

@@ -6,26 +6,31 @@
 // SPDX-License-Identifier: MIT
 //
 
-import FirebaseAuth
 import FirebaseFirestore
 import Foundation
 import OSLog
 import Spezi
-import SpeziFirebaseConfiguration
+import SpeziAccount
+import SpeziFirebaseAccount
 
 
 /// Medications Manager
 ///
 /// Decodes the current user's medication recommendations from Firestore to an easily displayed internal representation
 @Observable
+@MainActor
 class MedicationsManager: Module, EnvironmentAccessible {
-    @ObservationIgnored @Dependency(ConfigureFirebaseApp.self) private var configureFirebaseApp
     @ObservationIgnored @StandardActor private var standard: ENGAGEHFStandard
+
+    @ObservationIgnored @Dependency(Account.self) private var account: Account?
+    @ObservationIgnored @Dependency(AccountNotifications.self) private var accountNotifications: AccountNotifications?
+    @ObservationIgnored @Dependency(FirebaseAccountService.self) private var accountService: FirebaseAccountService?
+
+    @Application(\.logger) @ObservationIgnored private var logger
     
-    private var authStateDidChangeListenerHandle: AuthStateDidChangeListenerHandle?
     private var snapshotListener: ListenerRegistration?
-    private let logger = Logger(subsystem: "ENGAGEHF", category: "MedicationsManager")
-    
+    private var notificationsTask: Task<Void, Never>?
+
     var medications: [MedicationDetails] = []
     
     
@@ -38,25 +43,44 @@ class MedicationsManager: Module, EnvironmentAccessible {
         if FeatureFlags.setupTestMedications {
             return
         }
-        
-        authStateDidChangeListenerHandle = Auth.auth().addStateDidChangeListener { [weak self] _, _ in
-            self?.registerSnapshotListener()
+
+        if let accountNotifications {
+            notificationsTask = Task.detached { @MainActor [weak self] in
+                for await event in accountNotifications.events {
+                    guard let self else {
+                        return
+                    }
+
+                    switch event {
+                    case let .associatedAccount(details):
+                        updateSnapshotListener(for: details)
+                    case .disassociatingAccount:
+                        updateSnapshotListener(for: nil)
+                    default:
+                        break
+                    }
+                }
+            }
         }
-        
-        self.registerSnapshotListener()
+
+        if let account {
+            updateSnapshotListener(for: account.details)
+        }
     }
     
     
     /// Call on sign-in. Registers a snapshot listener to the current user's medicationRecommendations collection and decodes the medications found there.
-    private func registerSnapshotListener() {
+    private func updateSnapshotListener(for details: AccountDetails?) {
         logger.info("Initializing medications snapshot listener...")
         
         self.snapshotListener?.remove()
-        
-        guard let medicationRecsCollectionReference = try? Firestore.medicationRecsCollectionReference else {
+
+        guard let details else {
             return
         }
-        
+
+        let medicationRecsCollectionReference = Firestore.medicationRecsCollectionReference(for: details.accountId)
+
         self.snapshotListener = medicationRecsCollectionReference
             .addSnapshotListener { querySnapshot, error in
                 self.logger.debug("Fetching medications.")
@@ -77,6 +101,10 @@ class MedicationsManager: Module, EnvironmentAccessible {
                 
                 self.logger.debug("Medications updated.")
             }
+    }
+
+    deinit {
+        _notificationsTask?.cancel()
     }
 }
 

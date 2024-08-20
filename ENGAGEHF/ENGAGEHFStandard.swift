@@ -14,7 +14,7 @@ import PDFKit
 import Spezi
 import SpeziAccount
 import SpeziDevices
-import SpeziFirebaseAccountStorage
+import SpeziFirebaseAccount
 import SpeziFirestore
 import SpeziHealthKit
 import SpeziOnboarding
@@ -22,16 +22,22 @@ import SpeziQuestionnaire
 import SwiftUI
 
 
-actor ENGAGEHFStandard: Standard,
-                        EnvironmentAccessible,
-                        OnboardingConstraint,
-                        AccountStorageConstraint,
-                        AccountNotifyConstraint {
-    @Dependency(FirestoreAccountStorage.self) var accountStorage: FirestoreAccountStorage?
-    @AccountReference var account: Account
+actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint {
+    @Application(\.logger) private var logger
 
-    private let logger = Logger(subsystem: "ENGAGEHF", category: "Standard")
-    
+    @Dependency(Account.self) private var account: Account?
+    @Dependency(FirebaseAccountService.self) private var accountService: FirebaseAccountService?
+
+
+    private var accountId: String {
+        get async throws {
+            guard let details = await account?.details else {
+                throw FirebaseError.userNotAuthenticatedYet
+            }
+            return details.accountId
+        }
+    }
+
 
     func addMeasurement(samples: [HKSample]) async throws {
         guard !samples.isEmpty else {
@@ -39,14 +45,17 @@ actor ENGAGEHFStandard: Standard,
         }
 
         logger.debug("Saving \(samples.count) samples to firestore ...")
+        let accountId = try await accountId
 
         do {
             let batch = Firestore.firestore().batch()
             for sample in samples {
                 do {
-                    guard let document = try Firestore.collectionReference(for: sample.sampleType)?.document(sample.id.uuidString) else {
+                    guard let collection = Firestore.collectionReference(for: accountId, type: sample.sampleType) else {
                         continue
                     }
+
+                    let document = collection.document(sample.id.uuidString)
                     try batch.setData(from: sample.resource, forDocument: document)
                 } catch {
                     // either document retrieval or encoding failed, this should not stop other samples from getting saved
@@ -62,8 +71,9 @@ actor ENGAGEHFStandard: Standard,
     
     
     func add(symptomScore: SymptomScore) async throws {
+        let accountId = try await accountId
         do {
-            try Firestore.symptomScoresCollectionReference.addDocument(from: symptomScore)
+            try Firestore.symptomScoresCollectionReference(for: accountId).addDocument(from: symptomScore)
         } catch {
             throw FirestoreError(error)
         }
@@ -71,17 +81,13 @@ actor ENGAGEHFStandard: Standard,
     
     
     func add(response: ModelsR4.QuestionnaireResponse) async throws {
+        let accountId = try await accountId
         do {
             let id = response.identifier?.value?.value?.string ?? UUID().uuidString
-            try await Firestore.questionnaireResponseCollectionReference.document(id).setData(from: response)
+            try await Firestore.questionnaireResponseCollectionReference(for: accountId).document(id).setData(from: response)
         } catch {
             throw FirestoreError(error)
         }
-    }
-
-    func deletedAccount() async throws {
-        // account deletion prohibited
-        throw FirebaseError.accountDeletionNotAllowed
     }
     
     /// Stores the given consent form in the user's document directory with a unique timestamped filename.
@@ -108,45 +114,12 @@ actor ENGAGEHFStandard: Standard,
             
             let metadata = StorageMetadata()
             metadata.contentType = "application/pdf"
-            _ = try await Storage.userBucketReference.child("consent").child("consent.pdf").putDataAsync(consentData, metadata: metadata)
+            _ = try await Storage.userBucketReference(for: accountId)
+                .child("consent")
+                .child("consent.pdf")
+                .putDataAsync(consentData, metadata: metadata)
         } catch {
             logger.error("Could not store consent form: \(error)")
         }
-    }
-
-
-    func create(_ identifier: AdditionalRecordId, _ details: SignupDetails) async throws {
-        guard let accountStorage else {
-            preconditionFailure("Account Storage was requested although not enabled in current configuration.")
-        }
-        try await accountStorage.create(identifier, details)
-    }
-
-    func load(_ identifier: AdditionalRecordId, _ keys: [any AccountKey.Type]) async throws -> PartialAccountDetails {
-        guard let accountStorage else {
-            preconditionFailure("Account Storage was requested although not enabled in current configuration.")
-        }
-        return try await accountStorage.load(identifier, keys)
-    }
-
-    func modify(_ identifier: AdditionalRecordId, _ modifications: AccountModifications) async throws {
-        guard let accountStorage else {
-            preconditionFailure("Account Storage was requested although not enabled in current configuration.")
-        }
-        try await accountStorage.modify(identifier, modifications)
-    }
-
-    func clear(_ identifier: AdditionalRecordId) async {
-        guard let accountStorage else {
-            preconditionFailure("Account Storage was requested although not enabled in current configuration.")
-        }
-        await accountStorage.clear(identifier)
-    }
-
-    func delete(_ identifier: AdditionalRecordId) async throws {
-        guard let accountStorage else {
-            preconditionFailure("Account Storage was requested although not enabled in current configuration.")
-        }
-        try await accountStorage.delete(identifier)
     }
 }

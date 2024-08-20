@@ -79,6 +79,10 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "--disableFirebase"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--useCustomFirestoreHost"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument

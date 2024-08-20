@@ -7,18 +7,18 @@
 //
 
 import Firebase
-import FirebaseAuth
 import FirebaseFunctions
 import Spezi
 import SpeziAccount
-import SpeziFirebaseConfiguration
+import SpeziFirebaseAccount
 import SpeziFirestore
 
 
 class InvitationCodeModule: Module, EnvironmentAccessible {
-    @Dependency(ConfigureFirebaseApp.self) private var firebase
-
     @Application(\.logger) private var logger
+
+    @Dependency(Account.self) private var account: Account?
+    @Dependency(FirebaseAccountService.self) private var accountService: FirebaseAccountService?
 
     func configure() {
         if FeatureFlags.useFirebaseEmulator {
@@ -27,11 +27,21 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
         }
     }
 
-    func signOutAccount() {
+    func clearAccount() async {
         do {
-            try Auth.auth().signOut()
+            try await signOutAccount()
         } catch {
             logger.debug("Failed to sing out firebase account: \(error)")
+        }
+    }
+
+    func signOutAccount() async throws {
+        do {
+            try await accountService?.logout()
+        } catch FirebaseAccountError.notSignedIn {
+            // do nothing
+        } catch {
+            throw error
         }
     }
 
@@ -44,9 +54,13 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
 
                 try? await Task.sleep(for: .seconds(0.25))
             } else {
-                try Auth.auth().signOut()
+                guard let accountService else {
+                    preconditionFailure("The Firebase Account Service was not present even though `disableFirebase` was turned off!")
+                }
 
-                try await Auth.auth().signInAnonymously()
+                try await signOutAccount()
+                try await accountService.signUpAnonymously()
+
                 let checkInvitationCode = Functions.functions().httpsCallable("checkInvitationCode")
 
                 do {
@@ -79,43 +93,45 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
     }
 
     @MainActor
-    func setupTestEnvironment(account: Account, invitationCode: String) async throws {
+    func setupTestEnvironment(invitationCode: String) async throws {
+        guard let account else {
+            preconditionFailure("Account feature must be enabled to support `setupTestEnvironment` flag!")
+        }
+
+        guard let accountService else {
+            preconditionFailure("The Firebase Account Service is required to be configured when setting up the test environment!")
+        }
+
         let email = "test@engage.stanford.edu"
         let password = "123456789"
 
-        // let the initial stateChangeDelegate of FirebaseAuth get called. Otherwise, we will interfere with that.
-        try await Task.sleep(for: .milliseconds(500))
+        if let details = account.details {
+            if details.email == email {
+                logger.debug("Test account was already set up")
+                return
+            }
 
-        if let details = account.details,
-           details.email == email {
-            logger.debug("Test account was already set up")
+            try await accountService.logout()
+        }
+
+        do {
+            try await accountService.login(userId: email, password: password)
+            return // account was already established previously
+        } catch FirebaseAccountError.invalidCredentials {
+            // probably doesn't exists. We try to create a new one below
+        } catch {
+            logger.error("Failed logging into test account: \(error)")
             return
         }
 
-        guard let service = account.registeredAccountServices.compactMap({ $0 as? any UserIdPasswordAccountService }).first else {
-            preconditionFailure("Failed to retrieve a user-id-password based account service for test account setup!")
-        }
-
-        do {
-            try await service.login(userId: email, password: password)
-            return // account was already established previously
-        } catch {
-            logger.debug("We failed to login with test account. This might be expected if it is a fresh installation: \(error)")
-            // probably doesn't exists. We try to create a new one below
-        }
-
         try await verifyOnboardingCode(invitationCode)
-        try await setupTestAccount(service: service, email: email, password: password)
-    }
 
-    private func setupTestAccount(service: any UserIdPasswordAccountService, email: String, password: String) async throws {
         do {
-            let details = SignupDetails.Builder()
-                .set(\.userId, value: email)
-                .set(\.name, value: PersonNameComponents(givenName: "Leland", familyName: "Stanford"))
-                .set(\.password, value: password)
-                .build()
-            try await service.signUp(signupDetails: details)
+            var details = AccountDetails()
+            details.userId = email
+            details.password = password
+            details.name = PersonNameComponents(givenName: "Leland", familyName: "Stanford")
+            try await accountService.signUp(with: details)
         } catch {
             logger.error("Failed setting up test account : \(error)")
             throw error

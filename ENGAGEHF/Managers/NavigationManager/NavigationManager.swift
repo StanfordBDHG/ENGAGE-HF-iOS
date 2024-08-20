@@ -6,11 +6,10 @@
 // SPDX-License-Identifier: MIT
 //
 
-import FirebaseAuth
 import Foundation
 import OSLog
 import Spezi
-import SpeziFirebaseConfiguration
+import SpeziAccount
 import SwiftUI
 
 
@@ -19,12 +18,11 @@ import SwiftUI
 /// Wraps an environment accessible and observable stack for use in navigating between views
 @MainActor
 @Observable
-final class NavigationManager: Module, EnvironmentAccessible, DefaultInitializable {
-    @ObservationIgnored @Dependency(ConfigureFirebaseApp.self) private var configureFirebaseApp
+class NavigationManager: Module, EnvironmentAccessible {
+    @ObservationIgnored @Dependency(AccountNotifications.self) private var accountNotifications: AccountNotifications?
     @ObservationIgnored @Dependency(VideoManager.self) private var videoManager
-    
-    private let logger = Logger(subsystem: "ENGAGEHF", category: "NavigationManager")
-    private var authStateDidChangeListenerHandle: AuthStateDidChangeListenerHandle?
+
+    @Application(\.logger) @ObservationIgnored private var logger
     
     var educationPath = NavigationPath()
     var medicationsPath = NavigationPath()
@@ -34,23 +32,30 @@ final class NavigationManager: Module, EnvironmentAccessible, DefaultInitializab
     var selectedTab: HomeView.Tabs = .home
     var questionnaireId: String?
     var showHealthSummary = false
-    
-    
-    nonisolated init() {}
-    
+
+    private var notificationTask: Task<Void, Never>?
     
     // On sign in, reinitialize to an empty navigation path
     func configure() {
-        authStateDidChangeListenerHandle = Auth.auth().addStateDidChangeListener { [weak self] _, user in
-            if user != nil {
-                self?.logger.debug("Reinitializing navigation path.")
-                
-                self?.educationPath = NavigationPath()
-                self?.medicationsPath = NavigationPath()
-                self?.heartHealthPath = NavigationPath()
-                self?.homePath = NavigationPath()
-                
-                self?.selectedTab = .home
+        if let accountNotifications {
+            notificationTask = Task.detached { @MainActor [weak self] in
+                for await event in accountNotifications.events {
+                    guard let self else {
+                        return
+                    }
+                    guard case .associatedAccount = event else {
+                        continue
+                    }
+
+                    logger.debug("Reinitializing navigation path.")
+
+                    educationPath = NavigationPath()
+                    medicationsPath = NavigationPath()
+                    heartHealthPath = NavigationPath()
+                    homePath = NavigationPath()
+
+                    selectedTab = .home
+                }
             }
         }
     }
@@ -100,5 +105,9 @@ final class NavigationManager: Module, EnvironmentAccessible, DefaultInitializab
     
     func switchHomeTab(to newTab: HomeView.Tabs) {
         self.selectedTab = newTab
+    }
+
+    deinit {
+        _notificationTask?.cancel()
     }
 }

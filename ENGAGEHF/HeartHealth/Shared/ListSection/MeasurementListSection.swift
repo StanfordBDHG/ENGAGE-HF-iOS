@@ -11,10 +11,10 @@ import SwiftUI
 
 
 struct MeasurementListSection: View {
-    var data: [VitalListMeasurement]
-    var units: String?
-    var type: GraphSelection
-    
+    private let data: [VitalListMeasurement]
+    private let units: String?
+    private let type: GraphSelection
+
     @Environment(VitalsManager.self) private var vitalsManager
     @State private var viewState: ViewState = .idle
     
@@ -50,8 +50,16 @@ struct MeasurementListSection: View {
         )
             .viewStateAlert(state: $viewState)
     }
-    
-    
+
+
+    init(data: [VitalListMeasurement], units: String?, type: GraphSelection) {
+        self.data = data
+        self.units = units
+        self.type = type
+    }
+
+
+    @MainActor
     private func deleteIndices(indexSet: IndexSet) throws {
         guard !ProcessInfo.processInfo.isPreviewSimulator && !FeatureFlags.disableFirebase else {
             for idx in indexSet {

@@ -6,7 +6,6 @@
 // SPDX-License-Identifier: MIT
 //
 
-import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
 import HealthKit
@@ -38,70 +37,54 @@ extension Firestore {
     static var questionnairesCollectionReference: CollectionReference {
         Firestore.firestore().collection("questionnaires")
     }
-    
+
     static var organizationCollectionReference: CollectionReference {
         Firestore.firestore().collection("organizations")
     }
-    
-    
-    static var userDocumentReference: DocumentReference {
-        get throws {
-            guard let userId = Auth.auth().currentUser?.uid else {
-                throw FirebaseError.userNotAuthenticatedYet
-            }
-            return Self.userCollection.document(userId)
-        }
+
+    static func userDocumentReference(for accountId: String) -> DocumentReference {
+        Self.userCollection.document(accountId)
     }
-    
-    static var messagesCollectionReference: CollectionReference {
-        get throws {
-            try userDocumentReference.collection("messages")
-        }
+
+    static func messagesCollectionReference(for accountId: String) -> CollectionReference {
+        userDocumentReference(for: accountId).collection("messages")
     }
-    
-    static var symptomScoresCollectionReference: CollectionReference {
-        get throws {
-            try userDocumentReference.collection("symptomScores")
-        }
+
+    static func symptomScoresCollectionReference(for accountId: String) -> CollectionReference {
+        userDocumentReference(for: accountId).collection("symptomScores")
     }
-    
-    static var medicationRecsCollectionReference: CollectionReference {
-        get throws {
-            try userDocumentReference.collection("medicationRecommendations")
-        }
+
+    static func medicationRecsCollectionReference(for accountId: String) -> CollectionReference {
+        userDocumentReference(for: accountId).collection("medicationRecommendations")
     }
-    
-    static var questionnaireResponseCollectionReference: CollectionReference {
-        get throws {
-            try userDocumentReference.collection("questionnaireResponses")
-        }
+
+    static func questionnaireResponseCollectionReference(for accountId: String) -> CollectionReference {
+        userDocumentReference(for: accountId).collection("questionnaireResponses")
     }
-    
-    static var heartHealthCollectionReferences: [CollectionReference] {
-        get throws {
-            try [
-                symptomScoresCollectionReference,
-                collectionReference(for: HKQuantityType(.bodyMass)),
-                collectionReference(for: HKQuantityType(.heartRate)),
-                collectionReference(for: HKCorrelationType(.bloodPressure))
-            ]
-                .compactMap { $0 }
-        }
+
+    static func heartHealthCollectionReferences(for accountId: String) -> [CollectionReference] {
+        [
+            symptomScoresCollectionReference(for: accountId),
+            collectionReference(for: accountId, type: HKQuantityType(.bodyMass)),
+            collectionReference(for: accountId, type: HKQuantityType(.heartRate)),
+            collectionReference(for: accountId, type: HKCorrelationType(.bloodPressure))
+        ]
+            .compactMap { $0 }
     }
     
     
-    static func collectionReference(for type: HKSampleType) throws -> CollectionReference? {
+    static func collectionReference(for accountId: String, type: HKSampleType) -> CollectionReference? {
         switch type {
         case HKQuantityType(.bodyMass):
-            try userDocumentReference.collection("bodyWeightObservations")
+            userDocumentReference(for: accountId).collection("bodyWeightObservations")
         case HKQuantityType(.bodyMassIndex):
             nil
         case HKQuantityType(.height):
             nil
         case HKQuantityType(.heartRate):
-            try userDocumentReference.collection("heartRateObservations")
+            userDocumentReference(for: accountId).collection("heartRateObservations")
         case HKCorrelationType(.bloodPressure):
-            try userDocumentReference.collection("bloodPressureObservations")
+            userDocumentReference(for: accountId).collection("bloodPressureObservations")
         default:
             nil
         }
@@ -109,12 +92,7 @@ extension Firestore {
 }
 
 extension Storage {
-    static var userBucketReference: StorageReference {
-        get throws {
-            guard let userId = Auth.auth().currentUser?.uid else {
-                throw FirebaseError.userNotAuthenticatedYet
-            }
-            return Storage.storage().reference().child("users/\(userId)")
-        }
+    static func userBucketReference(for accountId: String) -> StorageReference {
+        Storage.storage().reference().child("users/\(accountId)")
     }
 }

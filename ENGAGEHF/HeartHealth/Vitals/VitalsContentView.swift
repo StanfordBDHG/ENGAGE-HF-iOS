@@ -15,7 +15,7 @@ struct VitalsContentView: View {
     var vitalsType: VitalsType
     
     
-    private var listDisplayData: [VitalListMeasurement] {
+    @MainActor private var listDisplayData: [VitalListMeasurement] {
         getDisplayInfo(for: vitalsType)
     }
     
@@ -38,7 +38,8 @@ struct VitalsContentView: View {
         self.vitalsType = vitals
     }
     
-    
+
+    @MainActor
     private func getDisplayInfo(for vital: VitalsType) -> [VitalListMeasurement] {
         let data: [HKSample] = switch vital {
         case .weight: vitalsManager.weightHistory

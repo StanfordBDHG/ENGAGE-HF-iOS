@@ -14,7 +14,6 @@ import SwiftUI
 
 @main
 struct ENGAGEHF: App {
-    static let logger = Logger(subsystem: "edu.stanford.bdh.engagehf", category: "App")
     static var appName: String? {
         Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String
             ?? Bundle.main.object(forInfoDictionaryKey: kCFBundleNameKey as String) as? String

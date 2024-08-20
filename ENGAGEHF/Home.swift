@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
-import SpeziAccount
+@_spi(TestingSupport) import SpeziAccount
 import SpeziBluetooth
 import SpeziBluetoothServices
 import SpeziDevices
@@ -24,10 +24,7 @@ struct HomeView: View {
         case education
         case devices
     }
-    
-    static var accountEnabled: Bool {
-        !FeatureFlags.disableFirebase && !FeatureFlags.skipOnboarding
-    }
+
     
     // Disable bluetooth in preview to prevent preview from crashing
     private var bluetoothEnabled: Bool {
@@ -90,10 +87,9 @@ struct HomeView: View {
             .sheet(isPresented: $presentingAccount) {
                 AccountSheet()
             }
-            .accountRequired(Self.accountEnabled) {
+            .accountRequired(!FeatureFlags.disableFirebase && !FeatureFlags.skipOnboarding) {
                 AccountSetupSheet()
             }
-            .verifyRequiredAccountDetails(Self.accountEnabled)
             .sheet(isPresented: $measurements.shouldPresentMeasurements) {
                 MeasurementsRecordedSheet { samples in
                     try await standard.addMeasurement(samples: samples)
@@ -105,12 +101,13 @@ struct HomeView: View {
 
 #if DEBUG
 #Preview {
-    CommandLine.arguments.append("--disableFirebase")
+    var details = AccountDetails()
+    details.userId = "lelandstanford@stanford.edu"
+    details.name = PersonNameComponents(givenName: "Leland", familyName: "Stanford")
+
     return HomeView()
         .previewWith(standard: ENGAGEHFStandard()) {
-            AccountConfiguration {
-                MockUserIdPasswordAccountService()
-            }
+            AccountConfiguration(service: InMemoryAccountService())
             HealthMeasurements()
             MessageManager()
             PairedDevices()

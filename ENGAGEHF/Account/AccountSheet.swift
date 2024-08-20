@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
-import SpeziAccount
+@_spi(TestingSupport) import SpeziAccount
 import SpeziLicense
 import SwiftUI
 
@@ -18,24 +18,15 @@ struct AccountSheet: View {
     @Environment(\.accountRequired) var accountRequired
     
     @State var isInSetup = false
-    @State var overviewIsEditing = false
     
     
     var body: some View {
         NavigationStack {
             ZStack {
                 if account.signedIn && !isInSetup {
-                    AccountOverview(isEditing: $overviewIsEditing) {
-                        AdditionalAccountSections()
+                    AccountOverview(close: .showCloseButton, deletion: .disabled) {
+                        AccountNavigationLinks()
                     }
-                        .onDisappear {
-                            overviewIsEditing = false
-                        }
-                        .toolbar {
-                            if !overviewIsEditing {
-                                closeButton
-                            }
-                        }
                 } else {
                     AccountSetup { _ in
                         dismiss() // we just signed in, dismiss the account setup sheet
@@ -67,24 +58,20 @@ struct AccountSheet: View {
 
 #if DEBUG
 #Preview("AccountSheet") {
-    let details = AccountDetails.Builder()
-        .set(\.userId, value: "lelandstanford@stanford.edu")
-        .set(\.name, value: PersonNameComponents(givenName: "Leland", familyName: "Stanford"))
-    
+    var details = AccountDetails()
+    details.userId = "lelandstanford@stanford.edu"
+    details.name = PersonNameComponents(givenName: "Leland", familyName: "Stanford")
+
     return AccountSheet()
         .previewWith {
-            AccountConfiguration(building: details, active: MockUserIdPasswordAccountService())
-            UserMetaDataManager()
+            AccountConfiguration(service: InMemoryAccountService(), activeDetails: details)
         }
 }
 
 #Preview("AccountSheet SignIn") {
     AccountSheet()
         .previewWith {
-            AccountConfiguration {
-                MockUserIdPasswordAccountService()
-            }
-            UserMetaDataManager()
+            AccountConfiguration(service: InMemoryAccountService())
         }
 }
 #endif
