@@ -131,6 +131,8 @@
 		4D8CE0F62C752D1C00560327 /* VideoCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8CE0F02C752D1C00560327 /* VideoCollection.swift */; };
 		4D8CE0F72C752D1C00560327 /* VideoCollectionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8CE0F12C752D1C00560327 /* VideoCollectionContext.swift */; };
 		4D8CE0F82C752D1C00560327 /* VideoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8CE0F32C752D1C00560327 /* VideoManager.swift */; };
+		4D8CE0FC2C753A4700560327 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8CE0FA2C753A4600560327 /* NotificationManager.swift */; };
+		4D8CE0FD2C753A4700560327 /* NotificationRegistrationSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8CE0FB2C753A4600560327 /* NotificationRegistrationSchema.swift */; };
 		4D92B9F22C3C8D1E00ABCED7 /* MeasurementListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D92B9F12C3C8D1E00ABCED7 /* MeasurementListSection.swift */; };
 		4D92B9F42C3C8DF900ABCED7 /* MeasurementListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D92B9F32C3C8DF900ABCED7 /* MeasurementListRow.swift */; };
 		4D92B9F62C3C8FA100ABCED7 /* DescriptionSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D92B9F52C3C8FA100ABCED7 /* DescriptionSection.swift */; };
@@ -327,6 +329,8 @@
 		4D8CE0F02C752D1C00560327 /* VideoCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCollection.swift; sourceTree = "<group>"; };
 		4D8CE0F12C752D1C00560327 /* VideoCollectionContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCollectionContext.swift; sourceTree = "<group>"; };
 		4D8CE0F32C752D1C00560327 /* VideoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoManager.swift; sourceTree = "<group>"; };
+		4D8CE0FA2C753A4600560327 /* NotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		4D8CE0FB2C753A4600560327 /* NotificationRegistrationSchema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationRegistrationSchema.swift; sourceTree = "<group>"; };
 		4D92B9F12C3C8D1E00ABCED7 /* MeasurementListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementListSection.swift; sourceTree = "<group>"; };
 		4D92B9F32C3C8DF900ABCED7 /* MeasurementListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementListRow.swift; sourceTree = "<group>"; };
 		4D92B9F52C3C8FA100ABCED7 /* DescriptionSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionSection.swift; sourceTree = "<group>"; };
@@ -658,6 +662,8 @@
 		4D62BF372C6A97490088C414 /* NotificationManager */ = {
 			isa = PBXGroup;
 			children = (
+				4D8CE0FA2C753A4600560327 /* NotificationManager.swift */,
+				4D8CE0FB2C753A4600560327 /* NotificationRegistrationSchema.swift */,
 			);
 			path = NotificationManager;
 			sourceTree = "<group>";
@@ -1262,6 +1268,7 @@
 				4D734AC32C5D7C81002D6D2F /* MessageAction.swift in Sources */,
 				4D92BA172C3E108700ABCED7 /* CodeableConcept+Contains.swift in Sources */,
 				4D62BF2A2C6A71500088C414 /* FirestoreSettings+EmulatorWithHost.swift in Sources */,
+				4D8CE0FC2C753A4700560327 /* NotificationManager.swift in Sources */,
 				4DC0F67A2C34AD620025AB13 /* VitalsList.swift in Sources */,
 				2FE5DC3829EDD7CA004B9AB4 /* InterestingModules.swift in Sources */,
 				4D8402B22C51D62400817495 /* MedicationsList.swift in Sources */,
@@ -1362,6 +1369,7 @@
 				2F65B44E2A3B8B0600A36932 /* NotificationPermissions.swift in Sources */,
 				4D8AD2C82C4A2BE900CB4F3E /* VitalsGraphOptions.swift in Sources */,
 				4D0F38A22C0A7AD900DA12F7 /* ExpandableText.swift in Sources */,
+				4D8CE0FD2C753A4700560327 /* NotificationRegistrationSchema.swift in Sources */,
 				2FE5DC2629EDD38A004B9AB4 /* Contacts.swift in Sources */,
 				4D8402702C4EBE7D00817495 /* AddMeasurementView.swift in Sources */,
 				4D2D1D602C2B859C00ABDC19 /* GraphPicker.swift in Sources */,

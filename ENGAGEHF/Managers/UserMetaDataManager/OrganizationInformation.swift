@@ -28,7 +28,6 @@ struct OrganizationInformation: Decodable {
                 do {
                     return try PersonNameComponents(contactName)
                 } catch {
-                    ENGAGEHF.logger.error("Failed to create PersonNameComponents: \(error)")
                     return PersonNameComponents()
                 }
             }(),
