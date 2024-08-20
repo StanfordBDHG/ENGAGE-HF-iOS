@@ -27,15 +27,15 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
         }
     }
 
-    func signOutAccount() async {
+    func clearAccount() {
         do {
-            try await _signOutAccount()
+            try await InvitationCodeModule.signOutAccount()
         } catch {
             logger.debug("Failed to sing out firebase account: \(error)")
         }
     }
 
-    private func _signOutAccount() async throws {
+    func signOutAccount() async throws {
         do {
             try await accountService?.logout()
         } catch FirebaseAccountError.notSignedIn {
@@ -58,7 +58,7 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
                     preconditionFailure("The Firebase Account Service was not present even though `disableFirebase` was turned off!")
                 }
 
-                try await _signOutAccount()
+                try await signOutAccount()
                 try await accountService.signUpAnonymously()
 
                 let checkInvitationCode = Functions.functions().httpsCallable("checkInvitationCode")
