@@ -29,7 +29,7 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
 
     func clearAccount() {
         do {
-            try await InvitationCodeModule.signOutAccount()
+            try await signOutAccount()
         } catch {
             logger.debug("Failed to sing out firebase account: \(error)")
         }
