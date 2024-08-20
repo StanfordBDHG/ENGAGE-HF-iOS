@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
-import SpeziAccount
+@_spi(TestingSupport) import SpeziAccount
 import SpeziOnboarding
 import SwiftUI
 
@@ -51,9 +51,7 @@ struct AccountSetupSheet: View {
             AccountSetupSheet()
         }
         .previewWith {
-            AccountConfiguration {
-                MockUserIdPasswordAccountService()
-            }
+            AccountConfiguration(service: InMemoryAccountService())
             InvitationCodeModule()
         }
 }

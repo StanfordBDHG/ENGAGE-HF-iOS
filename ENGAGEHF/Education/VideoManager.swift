@@ -6,26 +6,27 @@
 // SPDX-License-Identifier: MIT
 //
 
-import FirebaseAuth
 import FirebaseFirestore
 import Foundation
 import OSLog
 import Spezi
-import SpeziFirebaseConfiguration
+import SpeziAccount
 
 
 @Observable
+@MainActor
 final class VideoManager: Module, EnvironmentAccessible, DefaultInitializable {
-    @ObservationIgnored @Dependency private var configureFirebaseApp: ConfigureFirebaseApp
-    
-    private var authStateDidChangeListenerHandle: AuthStateDidChangeListenerHandle?
-    private let logger = Logger(subsystem: "ENGAGEHF", category: "VideosManager")
+    @ObservationIgnored @Dependency(AccountNotifications.self) private var accountNotifications: AccountNotifications?
+
+    @Application(\.logger) @ObservationIgnored private var logger
     
     var videoCollections: [VideoCollection] = []
+
+    private var notificationTask: Task<Void, Never>?
+
     
-    
-    init() {}
-    
+    nonisolated init() {}
+
     
     func configure() {
 #if DEBUG || TEST
@@ -34,24 +35,27 @@ final class VideoManager: Module, EnvironmentAccessible, DefaultInitializable {
             return
         }
 #endif
-        
-        authStateDidChangeListenerHandle = Auth.auth().addStateDidChangeListener { [weak self] _, user in
-            if let user {
-                Task {
-                    guard let collections = await self?.getVideoSections(user: user) else {
+
+        if let accountNotifications {
+            notificationTask = Task.detached { @MainActor [weak self] in
+                for await event in accountNotifications.events {
+                    guard let self else {
                         return
                     }
-                    self?.videoCollections = collections
+
+                    if case .associatedAccount = event {
+                        videoCollections = await getVideoSections()
+                    }
                 }
             }
         }
     }
     
     
-    private func getVideoSections(user: User) async -> [VideoCollection] {
+    private func getVideoSections() async -> [VideoCollection] {
         self.logger.debug("Fetching educational videos.")
         var videoCollections: [VideoCollection] = []
-        
+
         guard let videoSectionDocuments = try? await Firestore.videoSectionsCollectionReference.getDocuments().documents else {
             self.logger.error("Failed to fetch documents from video sections collection.")
             return []
@@ -92,6 +96,10 @@ final class VideoManager: Module, EnvironmentAccessible, DefaultInitializable {
         
         self.logger.debug("Finished fetching educational videos.")
         return videoCollections
+    }
+
+    deinit {
+        _notificationTask?.cancel()
     }
 }
 

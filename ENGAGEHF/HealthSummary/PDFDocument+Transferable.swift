@@ -12,9 +12,16 @@ import Foundation
 import PDFKit
 import SwiftUI
 
+#if compiler(>=6)
+extension PDFDocument: @retroactive Transferable {}
+#else
+extension PDFKit.PDFDocument: SwiftUI.Transferable {}
+#endif
 
-extension PDFDocument: Transferable {
-    public static var transferRepresentation: some TransferRepresentation {
+
+extension PDFDocument {
+    /// Transfer representation.
+    @TransferRepresentationBuilder<PDFDocument> public static var transferRepresentation: some TransferRepresentation {
         DataRepresentation(contentType: .pdf) { pdf in
             if let data = pdf.dataRepresentation() {
                 return data

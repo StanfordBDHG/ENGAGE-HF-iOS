@@ -4,9 +4,6 @@
     "" : {
 
     },
-    "%@" : {
-
-    },
     "%@ Date: %@" : {
       "localizations" : {
         "en" : {
@@ -113,15 +110,6 @@
     "Add Measurement: %@" : {
 
     },
-    "Add Medications" : {
-
-    },
-    "Add Mock" : {
-
-    },
-    "Add mock notification" : {
-
-    },
     "All Data" : {
 
     },
@@ -183,9 +171,6 @@
         }
       }
     },
-    "Content ..." : {
-
-    },
     "Current" : {
 
     },
@@ -217,9 +202,6 @@
 
     },
     "Expansion Button" : {
-
-    },
-    "Expected Progress: %lf" : {
 
     },
     "Failed to fetch HKUnits for the given samples." : {
@@ -421,12 +403,6 @@
         }
       }
     },
-    "List With Sections" : {
-
-    },
-    "List Without Sections" : {
-
-    },
     "Medication Label: %@" : {
 
     },
@@ -525,9 +501,6 @@
     "Show less" : {
 
     },
-    "Show Measurements" : {
-
-    },
     "Show more" : {
 
     },
@@ -618,9 +591,6 @@
         }
       }
     },
-    "Tap Here" : {
-
-    },
     "Target" : {
 
     },
@@ -633,13 +603,7 @@
     "Time" : {
 
     },
-    "Trigger Blood Pressure Measurement" : {
-
-    },
     "Trigger Sheet" : {
-
-    },
-    "Trigger Weight Measurement" : {
 
     },
     "Unable to create time interval for date: %@" : {

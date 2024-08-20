@@ -24,25 +24,21 @@ import SwiftUI
 
 class ENGAGEHFDelegate: SpeziAppDelegate {
     override var configuration: Configuration {
-        Configuration(standard: ENGAGEHFStandard()) { // swiftlint:disable:this closure_body_length
+        Configuration(standard: ENGAGEHFStandard()) {
             if !FeatureFlags.disableFirebase {
-                let firestoreHost = FeatureFlags.useCustomFirestoreHost ? FirestoreSettings.customHost : FirestoreSettings.defaultHost
-                
-                AccountConfiguration(configuration: [
-                    .requires(\.userId),
-                    .supports(\.name),
-                    .supports(\.dateOfBirth)
-                ])
-
-                if FeatureFlags.useFirebaseEmulator {
-                    FirebaseAccountConfiguration(
-                        authenticationMethods: [.emailAndPassword, .signInWithApple],
-                        emulatorSettings: (host: firestoreHost, port: 9099)
-                    )
-                } else {
-                    FirebaseAccountConfiguration(authenticationMethods: [.emailAndPassword, .signInWithApple])
-                }
-                FirestoreAccountStorage(storeIn: Firestore.userCollection)
+                AccountConfiguration(
+                    service: FirebaseAccountService(providers: [.emailAndPassword, .signInWithApple], emulatorSettings: accountEmulator),
+                    storageProvider: FirestoreAccountStorage(storeIn: Firestore.userCollection, mapping: [
+                        // ENGAGE was originally deployed with SpeziAccount 1.0 and key identifiers change with SpeziAccount 2.0.
+                        // Therefore, we need to provide a backwards compatibility mapping.
+                        "DateOfBirthKey": AccountKeys.dateOfBirth
+                    ]),
+                    configuration: [
+                        .requires(\.userId),
+                        .supports(\.name),
+                        .supports(\.dateOfBirth)
+                    ]
+                )
                 
                 Firestore(settings: FeatureFlags.useFirebaseEmulator ? .emulatorWithHost(firestoreHost) : FirestoreSettings())
                 
@@ -71,6 +67,18 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
             InvitationCodeModule()
 
             ConfigureTipKit()
+        }
+    }
+
+    private var firestoreHost: String {
+        FeatureFlags.useCustomFirestoreHost ? FirestoreSettings.customHost : FirestoreSettings.defaultHost
+    }
+
+    private var accountEmulator: (host: String, port: Int)? {
+        if FeatureFlags.useFirebaseEmulator {
+            (host: firestoreHost, port: 9099)
+        } else {
+            nil
         }
     }
 }

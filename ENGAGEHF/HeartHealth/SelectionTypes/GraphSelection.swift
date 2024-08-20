@@ -51,29 +51,16 @@ enum GraphSelection: CaseIterable, Identifiable, CustomStringConvertible, Equata
         }
     }
     
-    var collectionReference: CollectionReference? {
-        switch self {
-        case .symptoms:
-            try? Firestore.symptomScoresCollectionReference
-        case .weight:
-            try? Firestore.collectionReference(for: HKQuantityType(.bodyMass))
-        case .heartRate:
-            try? Firestore.collectionReference(for: HKQuantityType(.heartRate))
-        case .bloodPressure:
-            try? Firestore.collectionReference(for: HKCorrelationType(.bloodPressure))
-        }
-    }
     
-    
-    init(collectionRef: CollectionReference?) throws {
+    init(collectionRef: CollectionReference?, for accountId: String) throws {
         switch collectionRef {
-        case try Firestore.symptomScoresCollectionReference:
+        case Firestore.symptomScoresCollectionReference(for: accountId):
             self = .symptoms
-        case try Firestore.collectionReference(for: HKQuantityType(.bodyMass)):
+        case Firestore.collectionReference(for: accountId, type: HKQuantityType(.bodyMass)):
             self = .weight
-        case try Firestore.collectionReference(for: HKQuantityType(.heartRate)):
+        case Firestore.collectionReference(for: accountId, type: HKQuantityType(.heartRate)):
             self = .heartRate
-        case try Firestore.collectionReference(for: HKCorrelationType(.bloodPressure)):
+        case Firestore.collectionReference(for: accountId, type: HKCorrelationType(.bloodPressure)):
             self = .bloodPressure
         default:
             throw DecodingError.valueNotFound(
@@ -83,6 +70,19 @@ enum GraphSelection: CaseIterable, Identifiable, CustomStringConvertible, Equata
                     debugDescription: "No collection matches given reference."
                 )
             )
+        }
+    }
+
+    func collectionReference(for accountId: String) -> CollectionReference? {
+        switch self {
+        case .symptoms:
+            Firestore.symptomScoresCollectionReference(for: accountId)
+        case .weight:
+            Firestore.collectionReference(for: accountId, type: HKQuantityType(.bodyMass))
+        case .heartRate:
+            Firestore.collectionReference(for: accountId, type: HKQuantityType(.heartRate))
+        case .bloodPressure:
+            Firestore.collectionReference(for: accountId, type: HKCorrelationType(.bloodPressure))
         }
     }
 }

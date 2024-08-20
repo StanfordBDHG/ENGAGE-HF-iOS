@@ -177,16 +177,10 @@ extension XCUIApplication {
         XCTAssertTrue(navigationBars.buttons["Edit"].waitForExistence(timeout: 2))
         navigationBars.buttons["Edit"].tap()
 
-        usleep(500_00)
+        XCTAssertTrue(navigationBars.buttons["Cancel"].waitForExistence(timeout: 2.0))
         XCTAssertFalse(navigationBars.buttons["Close"].exists)
 
-        XCTAssert(buttons["Delete Account"].waitForExistence(timeout: 2))
-        buttons["Delete Account"].tap()
-
-        let alert = "Are you sure you want to delete your account?"
-        XCTAssert(alerts[alert].waitForExistence(timeout: 6.0))
-        alerts[alert].buttons["Delete"].tap()
-        
-        XCTAssert(alerts["Error"].waitForExistence(timeout: 2))
+        XCTAssertFalse(buttons["Delete Account"].exists)
+        XCTAssertTrue(buttons["Logout"].exists)
     }
 }

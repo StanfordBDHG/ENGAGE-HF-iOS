@@ -14,7 +14,6 @@ import SwiftUI
 private struct ENGAGEHFAppTestingSetup: ViewModifier {
     @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
 
-    @Environment(Account.self) private var account
     @Environment(InvitationCodeModule.self) private var invitationCodeModule
 
     @State private var viewState: ViewState = .idle
@@ -30,7 +29,7 @@ private struct ENGAGEHFAppTestingSetup: ViewModifier {
                 }
                 if FeatureFlags.setupTestEnvironment {
                     do {
-                        try await invitationCodeModule.setupTestEnvironment(account: account, invitationCode: "ENGAGETEST1")
+                        try await invitationCodeModule.setupTestEnvironment(invitationCode: "ENGAGETEST1")
                     } catch {
                         viewState = .error(AnyLocalizedError(error: error, defaultErrorDescription: "Testing setup couldn't be set up."))
                     }

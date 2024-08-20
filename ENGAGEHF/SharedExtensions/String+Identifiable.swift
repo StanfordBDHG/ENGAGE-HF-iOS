@@ -6,10 +6,15 @@
 // SPDX-License-Identifier: MIT
 //
 
-import Foundation
+
+#if compiler(>=6)
+extension String: @retroactive Identifiable {}
+#else
+extension Swift.String: Swift.Identifiable {}
+#endif
 
 
-/// Make String conform to Identifiable for use in SwiftUI `.sheet(item:content:)` modifier
-extension String: Identifiable {
+extension String {
+    /// Make String conform to Identifiable for use in SwiftUI `.sheet(item:content:)` modifier
     public var id: String { self }
 }
