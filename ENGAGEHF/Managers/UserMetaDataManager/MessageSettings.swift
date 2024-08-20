@@ -37,11 +37,11 @@ extension MessageSettings {
     init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        self.receivesAppointmentReminders = try container.decodeIfPresent(Bool.self, forKey: .receivesAppointmentReminders) ?? true
-        self.receivesMedicationUpdates = try container.decodeIfPresent(Bool.self, forKey: .receivesMedicationUpdates) ?? true
-        self.receivesQuestionnaireReminders = try container.decodeIfPresent(Bool.self, forKey: .receivesQuestionnaireReminders) ?? true
-        self.receivesRecommendationUpdates = try container.decodeIfPresent(Bool.self, forKey: .receivesRecommendationUpdates) ?? true
-        self.receivesVitalsReminders = try container.decodeIfPresent(Bool.self, forKey: .receivesVitalsReminders) ?? true
-        self.receivesWeightAlerts = try container.decodeIfPresent(Bool.self, forKey: .receivesWeightAlerts) ?? true
+        self.receivesAppointmentReminders = try container.decodeIfPresent(Bool.self, forKey: .receivesAppointmentReminders) ?? false
+        self.receivesAppointmentReminders = try container.decodeIfPresent(Bool.self, forKey: .receivesMedicationUpdates) ?? false
+        self.receivesAppointmentReminders = try container.decodeIfPresent(Bool.self, forKey: .receivesQuestionnaireReminders) ?? false
+        self.receivesAppointmentReminders = try container.decodeIfPresent(Bool.self, forKey: .receivesRecommendationUpdates) ?? false
+        self.receivesAppointmentReminders = try container.decodeIfPresent(Bool.self, forKey: .receivesVitalsReminders) ?? false
+        self.receivesAppointmentReminders = try container.decodeIfPresent(Bool.self, forKey: .receivesWeightAlerts) ?? false
     }
 }
