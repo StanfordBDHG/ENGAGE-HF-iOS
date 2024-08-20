@@ -140,10 +140,6 @@
 		4D92BA172C3E108700ABCED7 /* CodeableConcept+Contains.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D92BA162C3E108700ABCED7 /* CodeableConcept+Contains.swift */; };
 		4D92BA1A2C3E13F300ABCED7 /* FHIRSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D92BA192C3E13F300ABCED7 /* FHIRSystem.swift */; };
 		4D9D43562C596D09000062D3 /* KeyedDecodingContainer+DecodeLocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9D43552C596D09000062D3 /* KeyedDecodingContainer+DecodeLocalizedString.swift */; };
-		4D9D43582C596D8A000062D3 /* VideoCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9D43572C596D89000062D3 /* VideoCollection.swift */; };
-		4D9D435A2C5973AD000062D3 /* VideoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9D43592C5973AD000062D3 /* VideoManager.swift */; };
-		4D9D43602C597E09000062D3 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9D435F2C597E09000062D3 /* Video.swift */; };
-		4D9D43652C5989B3000062D3 /* VideoCollectionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9D43642C5989B3000062D3 /* VideoCollectionContext.swift */; };
 		4D9D43672C59A88C000062D3 /* ExpandableListCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9D43662C59A88C000062D3 /* ExpandableListCard.swift */; };
 		4D9D43742C59BDB2000062D3 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		4DA20B4B2C249E7E00715AA2 /* VitalsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA20B4A2C249E7E00715AA2 /* VitalsManager.swift */; };
@@ -340,10 +336,6 @@
 		4D92BA162C3E108700ABCED7 /* CodeableConcept+Contains.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CodeableConcept+Contains.swift"; sourceTree = "<group>"; };
 		4D92BA192C3E13F300ABCED7 /* FHIRSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FHIRSystem.swift; sourceTree = "<group>"; };
 		4D9D43552C596D09000062D3 /* KeyedDecodingContainer+DecodeLocalizedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyedDecodingContainer+DecodeLocalizedString.swift"; sourceTree = "<group>"; };
-		4D9D43572C596D89000062D3 /* VideoCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollection.swift; sourceTree = "<group>"; };
-		4D9D43592C5973AD000062D3 /* VideoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoManager.swift; sourceTree = "<group>"; };
-		4D9D435F2C597E09000062D3 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
-		4D9D43642C5989B3000062D3 /* VideoCollectionContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionContext.swift; sourceTree = "<group>"; };
 		4D9D43662C59A88C000062D3 /* ExpandableListCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableListCard.swift; sourceTree = "<group>"; };
 		4DA20B4A2C249E7E00715AA2 /* VitalsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalsManager.swift; sourceTree = "<group>"; };
 		4DA20B532C25F8A600715AA2 /* FHIRDateTime+DateComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FHIRDateTime+DateComponents.swift"; sourceTree = "<group>"; };
@@ -834,28 +826,6 @@
 			path = SharedExtensions;
 			sourceTree = "<group>";
 		};
-		4D9D435C2C597CAE000062D3 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				4D40A4B32C5AA00A003DC813 /* VideoPlayers */,
-				4DDFC7642BF350C2002B07A1 /* Education.swift */,
-				4D40A4D12C5B0AB2003DC813 /* VideoList.swift */,
-				4D40A4C52C5AE486003DC813 /* VideoListSection.swift */,
-				4D40A4C92C5AF34C003DC813 /* EducationalVideoCard.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		4D9D43622C5989A0000062D3 /* VideoModels */ = {
-			isa = PBXGroup;
-			children = (
-				4D9D43572C596D89000062D3 /* VideoCollection.swift */,
-				4D9D435F2C597E09000062D3 /* Video.swift */,
-				4D9D43642C5989B3000062D3 /* VideoCollectionContext.swift */,
-			);
-			path = VideoModels;
-			sourceTree = "<group>";
-		};
 		4DA20B562C25FE2B00715AA2 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -918,9 +888,11 @@
 		4DDFC7632BF34FC1002B07A1 /* Education */ = {
 			isa = PBXGroup;
 			children = (
-				4D9D43622C5989A0000062D3 /* VideoModels */,
-				4D9D435C2C597CAE000062D3 /* Views */,
-				4D9D43592C5973AD000062D3 /* VideoManager.swift */,
+				4D40A4B32C5AA00A003DC813 /* VideoPlayers */,
+				4DDFC7642BF350C2002B07A1 /* Education.swift */,
+				4D40A4D12C5B0AB2003DC813 /* VideoList.swift */,
+				4D40A4C52C5AE486003DC813 /* VideoListSection.swift */,
+				4D40A4C92C5AF34C003DC813 /* EducationalVideoCard.swift */,
 			);
 			path = Education;
 			sourceTree = "<group>";
@@ -1307,7 +1279,6 @@
 				4DF3700D2C66E479004D737A /* PDFDocument+Transferable.swift in Sources */,
 				2FC975A82978F11A00BA99FE /* Home.swift in Sources */,
 				4D40A4C62C5AE486003DC813 /* VideoListSection.swift in Sources */,
-				4D9D43582C596D8A000062D3 /* VideoCollection.swift in Sources */,
 				A9623C082C18D03F00189BA1 /* AccountSetupSheet.swift in Sources */,
 				4D8CE0F62C752D1C00560327 /* VideoCollection.swift in Sources */,
 				4D40727E2C465554007C5621 /* HKSampleGraphError.swift in Sources */,
@@ -1354,12 +1325,10 @@
 				4DF3700A2C66D27B004D737A /* AccountNavigationLinks.swift in Sources */,
 				4D8402752C4EC64D00817495 /* TriggerNewMeasurementButton.swift in Sources */,
 				4D8402CC2C53019B00817495 /* Double+asString.swift in Sources */,
-				4D9D435A2C5973AD000062D3 /* VideoManager.swift in Sources */,
 				4D9D43562C596D09000062D3 /* KeyedDecodingContainer+DecodeLocalizedString.swift in Sources */,
 				4D73A50E2C5807B500CCEC46 /* CapsuleStack.swift in Sources */,
 				4D2D1D682C2C82A200ABDC19 /* FHIRPeriod+GetDates.swift in Sources */,
 				4D2D1D762C2CC8B200ABDC19 /* ValueXProtocol.swift in Sources */,
-				4D9D43652C5989B3000062D3 /* VideoCollectionContext.swift in Sources */,
 				4DA20B542C25F8A600715AA2 /* FHIRDateTime+DateComponents.swift in Sources */,
 				4D081A282C6C2C8400E13BC8 /* UserMetaDataManager.swift in Sources */,
 				4D8402AA2C51B6A000817495 /* FHIRAliases.swift in Sources */,
@@ -1399,7 +1368,6 @@
 				4D8402DE2C5417F400817495 /* MedicationDescription.swift in Sources */,
 				4DBDD3462BBFAE2D001FB0CA /* InvitationCodeView.swift in Sources */,
 				4D40A4B62C5AA094003DC813 /* VideoView.swift in Sources */,
-				4D9D43602C597E09000062D3 /* Video.swift in Sources */,
 				4DB624862C73F1BF00573807 /* NotificationSettings.swift in Sources */,
 				4D8402882C50241A00817495 /* MedicationsManager.swift in Sources */,
 				4D8402CF2C530BEB00817495 /* MedicationRowContent.swift in Sources */,
