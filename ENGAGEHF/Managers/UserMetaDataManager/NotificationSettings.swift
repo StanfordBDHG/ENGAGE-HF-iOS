@@ -54,6 +54,7 @@ extension NotificationSettings {
     init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
+        // NOTE: If no setting is found, defaults to false, but the user can still toggle the setting on from the client.
         self.receivesAppointmentReminders = try container.decodeIfPresent(Bool.self, forKey: .receivesAppointmentReminders) ?? false
         self.receivesMedicationUpdates = try container.decodeIfPresent(Bool.self, forKey: .receivesMedicationUpdates) ?? false
         self.receivesQuestionnaireReminders = try container.decodeIfPresent(Bool.self, forKey: .receivesQuestionnaireReminders) ?? false

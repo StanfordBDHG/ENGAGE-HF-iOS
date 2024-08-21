@@ -25,6 +25,17 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
     
     
     func handleNotificationAction(_ response: UNNotificationResponse) async {
+        /// The server should store the action payload to be accessed here. For example:
+        /// {
+        ///     "Simulator Target Bundle": "edu.stanford.bdh.engagehf",
+        ///     "aps": {
+        ///         "alert": {
+        ///             "title": "Medication Uptitration",
+        ///             "body": "There has been a change in your medications."
+        ///        }
+        ///     },
+        ///     "action": "medications"
+        /// }
         let payload = response.notification.request.content.userInfo["action"] as? String
         await _ = navigationManager.execute(MessageAction(from: payload))
     }
