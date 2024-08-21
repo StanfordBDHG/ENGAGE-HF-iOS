@@ -16,9 +16,8 @@ import UserNotifications
 
 class NotificationManager: Module, NotificationHandler, NotificationTokenHandler, EnvironmentAccessible {
     @Application(\.registerRemoteNotifications) private var registerRemoteNotifications
+    @Application(\.logger) private var logger
     @Dependency(NavigationManager.self) private var navigationManager
-    
-    private let logger = Logger(subsystem: "ENGAGEHF", category: "NotificationManager")
     
     
     func configure() {}
@@ -27,7 +26,6 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
     func handleNotificationAction(_ response: UNNotificationResponse) async {
         /// The server should store the action payload to be accessed here. For example:
         /// {
-        ///     "Simulator Target Bundle": "edu.stanford.bdh.engagehf",
         ///     "aps": {
         ///         "alert": {
         ///             "title": "Medication Uptitration",
@@ -52,25 +50,26 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
 #else
         let deviceToken = Data()
 #endif
-        self.configureRemoteNotifications(using: deviceToken)
+        try await self.configureRemoteNotifications(using: deviceToken)
     }
     
     func receiveUpdatedDeviceToken(_ deviceToken: Data) {
-        self.configureRemoteNotifications(using: deviceToken)
+        Task {
+            do {
+                try await self.configureRemoteNotifications(using: deviceToken)
+            } catch {
+                self.logger.error("Failed to configured remote notifications for updated device token: \(error)")
+            }
+        }
     }
     
     
-    private func configureRemoteNotifications(using deviceToken: Data) {
+    private func configureRemoteNotifications(using deviceToken: Data) async throws {
         self.logger.debug("Registering device for remote notifications.")
-        let registerDevice = Functions.functions().httpsCallable("registerDevice")
         
-        Task {
-            do {
-                _ = try await registerDevice.call(NotificationRegistrationSchema(deviceToken).codingRepresentation)
-                self.logger.debug("Successfully registered device for remote notifications.")
-            } catch {
-                self.logger.error("Failed to register device for remote notifications: \(error)")
-            }
-        }
+        let registerDevice = Functions.functions().httpsCallable("registerDevice")
+        _ = try await registerDevice.call(NotificationRegistrationSchema(deviceToken).codingRepresentation)
+        
+        self.logger.debug("Successfully registered device for remote notifications.")
     }
 }
