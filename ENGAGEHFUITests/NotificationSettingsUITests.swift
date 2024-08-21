@@ -52,29 +52,44 @@ final class NotificationSettingsUITests: XCTestCase {
 
 
 extension XCUIApplication {
-    fileprivate func validateSwitch(labels: [String], testedIndex: Int, initialValue: String = "0", toggledValue: String = "1") throws {
+    fileprivate func validateSwitch(
+        labels: [String],
+        testedIndex: Int,
+        expectedInitialValue: String = "0",
+        expectedToggledValue: String = "1"
+    ) throws {
         let testedToggle = switches[labels[testedIndex]]
         
         // Make sure the toggle starts at the correct value
         XCTAssertTrue(testedToggle.exists)
-        XCTAssertEqual(try XCTUnwrap(testedToggle.value as? String, "Failed to unwrap toggle value."), initialValue)
+        
+        let discoveredInitialValue = try XCTUnwrap(testedToggle.value as? String, "Failed to unwrap toggle value.")
+        XCTAssertEqual(
+            discoveredInitialValue,
+            expectedInitialValue,
+            "\(labels[testedIndex]) toggle initialized to \(discoveredInitialValue) when it should be \(expectedInitialValue)."
+        )
         
         // Make sure that tapping the toggle flips its value, but doesn't change any of the other toggles
-        testedToggle.tap()
+        testedToggle.descendants(matching: .switch).firstMatch.tap()
+        
         
         for idx in labels.indices {
             if idx == testedIndex {
-                XCTAssertEqual(try XCTUnwrap(testedToggle.value as? String, "Failed to unwrap toggle value."), toggledValue)
+                XCTAssertEqual(try XCTUnwrap(testedToggle.value as? String, "Failed to unwrap toggle value."), expectedToggledValue)
             } else {
                 let auxilliaryToggle = switches[labels[idx]]
                 XCTAssert(auxilliaryToggle.exists)
-                XCTAssertEqual(try XCTUnwrap(auxilliaryToggle.value as? String, "Failed to unwrap toggle value."), initialValue)
+                XCTAssertEqual(try XCTUnwrap(auxilliaryToggle.value as? String, "Failed to unwrap toggle value."), expectedInitialValue)
             }
         }
         
         // Return the tested toggle to the initial state
-        while try XCTUnwrap(testedToggle.value as? String, "Failed to unwrap toggle value.") != initialValue {
-            testedToggle.tap()
+        var count = 0
+        let countLimit = 3
+        while try XCTUnwrap(testedToggle.value as? String, "Failed to unwrap toggle value.") != expectedInitialValue {
+            testedToggle.descendants(matching: .switch).firstMatch.tap()
+            XCTAssertLessThan(count, countLimit, "Failed to reset toggle to initial value \(expectedInitialValue)")
         }
     }
 }
