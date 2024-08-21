@@ -27,6 +27,9 @@ enum FeatureFlags {
     static let setupTestVideos = CommandLine.arguments.contains("--setupTestVideos")
     /// Configures Firestore with settings that use a custom host
     static let useCustomFirestoreHost = CommandLine.arguments.contains("--useCustomFirestoreHost")
+    /// In the UserMetaDataManager, skips fetching user organization information and instead injects a test instance.
+    /// No changes are made to the way notification settings are handled.
+    static let setupTestUserMetaData = CommandLine.arguments.contains("--setupTestUserMetaData")
     #if targetEnvironment(simulator)
     /// Defines if the application should connect to the local firebase emulator. Always set to true when using the iOS simulator. disableFirebase still has priority over useFirebaseEmulator.
     static let useFirebaseEmulator = true

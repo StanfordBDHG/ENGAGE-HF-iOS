@@ -74,8 +74,6 @@ class UserMetaDataManager: Module, EnvironmentAccessible {
             return
         }
         
-        print(self.notificationSettings.codingRepresentation)
-        
         let userDocRef = Firestore.userDocumentReference(for: details.accountId)
         
         do {
@@ -135,6 +133,13 @@ class UserMetaDataManager: Module, EnvironmentAccessible {
     
     private func getOrganizationInfo(from userDoc: DocumentSnapshot) async {
         self.logger.debug("Fetching organization from \(userDoc.documentID).")
+        
+#if TEST || DEBUG
+        if FeatureFlags.setupTestUserMetaData {
+            self.organization = .testOrganization
+            return
+        }
+#endif
         
         
         let organizationIdWrapper: OrganizationIdentifier

@@ -40,3 +40,15 @@ struct OrganizationInformation: Decodable {
         )
     }
 }
+
+
+#if TEST || DEBUG
+extension OrganizationInformation {
+    static let testOrganization = OrganizationInformation(
+        name: "Stanford University",
+        contactName: "Leland Stanford Jr.",
+        phoneNumber: "(111) 111-1111",
+        emailAddress: "leland@stanford.edu"
+    )
+}
+#endif
