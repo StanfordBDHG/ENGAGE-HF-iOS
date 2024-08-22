@@ -153,8 +153,8 @@ extension XCUIApplication {
         XCTAssert(buttons["Allow Notifications"].waitForExistence(timeout: 2))
         buttons["Allow Notifications"].tap()
         
-        let app2 = XCUIApplication(bundleIdentifier: "com.apple.springboard")
-        app2.alerts.firstMatch.buttons["Allow"].tap()
+        let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
+        springboard.alerts.firstMatch.buttons["Allow"].tap()
     }
     
     fileprivate func assertOnboardingComplete() {
