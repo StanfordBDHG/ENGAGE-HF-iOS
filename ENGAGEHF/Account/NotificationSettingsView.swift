@@ -7,11 +7,14 @@
 //
 
 import SpeziAccount
+import SpeziViews
 import SwiftUI
 
 
 struct NotificationSettingsView: View {
+    @Environment(NotificationManager.self) private var notificationManager
     @Environment(UserMetaDataManager.self) private var userMetaDataManager
+    @State private var settingsDisabled: Bool = false
     
     
     var body: some View {
@@ -19,37 +22,71 @@ struct NotificationSettingsView: View {
         let notificationSettings = $userMetaDataManager.notificationSettings
         
         List {
-            Section {
-                Toggle("Appointments", isOn: notificationSettings.receivesAppointmentReminders)
-                Toggle("Survey", isOn: notificationSettings.receivesQuestionnaireReminders)
-                Toggle("Vitals", isOn: notificationSettings.receivesVitalsReminders)
-            } header: {
-                Text("Reminders")
-            } footer: {
-                Text("Receive reminders for appointments (one day before), symptom surveys, and vital measurements.")
+            Group {
+                Section {
+                    Toggle("Appointments", isOn: notificationSettings.receivesAppointmentReminders)
+                    Toggle("Survey", isOn: notificationSettings.receivesQuestionnaireReminders)
+                    Toggle("Vitals", isOn: notificationSettings.receivesVitalsReminders)
+                } header: {
+                    Text("Reminders")
+                } footer: {
+                    Text("Receive reminders for appointments (one day before), symptom surveys, and vital measurements.")
+                }
+                Section {
+                    Toggle("Medications", isOn: notificationSettings.receivesMedicationUpdates)
+                    Toggle("Recommendations", isOn: notificationSettings.receivesRecommendationUpdates)
+                } header: {
+                    Text("Updates")
+                } footer: {
+                    Text("Receive updates when current medications and medication recommendations change.")
+                }
+                Section {
+                    Toggle("Weight Trends", isOn: notificationSettings.receivesWeightAlerts)
+                } header: {
+                    Text("Trends")
+                } footer: {
+                    Text("Receive notifications of changes in vital trends.")
+                }
             }
-            Section {
-                Toggle("Medications", isOn: notificationSettings.receivesMedicationUpdates)
-                Toggle("Recommendations", isOn: notificationSettings.receivesRecommendationUpdates)
-            } header: {
-                Text("Updates")
-            } footer: {
-                Text("Receive updates when current medications and medication recommendations change.")
-            }
-            Section {
-                Toggle("Weight Trends", isOn: notificationSettings.receivesWeightAlerts)
-            } header: {
-                Text("Trends")
-            } footer: {
-                Text("Receive notifications of changes in vital trends.")
+                .disabled(self.settingsDisabled)
+            if self.settingsDisabled {
+                AsyncButton("Enable Notifications in Settings") {
+                    // Create the URL that deep links to notification settings.
+                    if let url = URL(string: UIApplication.openNotificationSettingsURLString) {
+                        // Ask the system to open that URL.
+                        await UIApplication.shared.open(url)
+                    }
+                }
             }
         }
+            .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
+                self.checkSettingsDisabled()
+            }
+            .onAppear {
+                self.checkSettingsDisabled()
+            }
             .onChange(of: userMetaDataManager.notificationSettings) {
                 Task {
                     await userMetaDataManager.pushUpdatedNotificationSettings()
                 }
             }
             .navigationTitle("Notifications")
+    }
+    
+    
+    private func checkSettingsDisabled() {
+        Task { @MainActor in
+            let systemNotificationSettings = await UNUserNotificationCenter.current().notificationSettings()
+            
+            switch systemNotificationSettings.authorizationStatus {
+            case .denied:
+                self.settingsDisabled = true
+            case .notDetermined:
+                self.settingsDisabled = !(try await self.notificationManager.requestNotificationPermissions())
+            default:
+                self.settingsDisabled = false
+            }
+        }
     }
 }
 
@@ -58,5 +95,6 @@ struct NotificationSettingsView: View {
     NotificationSettingsView()
         .previewWith(standard: ENGAGEHFStandard()) {
             UserMetaDataManager()
+            NotificationManager()
         }
 }

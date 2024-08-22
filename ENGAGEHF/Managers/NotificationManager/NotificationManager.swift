@@ -38,13 +38,20 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
         await _ = navigationManager.execute(MessageAction(from: payload))
     }
     
-    func handleNotificationsAllowed() async throws {
+    
+    /// Requests authorization for remote notifications, displaying an alert if necessary. Returns true if permission was granted, and false otherwise.
+    func requestNotificationPermissions() async throws -> Bool {
         let granted = try await UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound])
         
         guard granted else {
-            return
+            return false
         }
         
+        try await self.handleNotificationsAllowed()
+        return true
+    }
+    
+    func handleNotificationsAllowed() async throws {
         let deviceToken = FeatureFlags.skipRemoteNotificationRegistration ? Data() : try await registerRemoteNotifications()
         
 #if !TEST
