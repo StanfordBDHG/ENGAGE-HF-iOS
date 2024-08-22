@@ -38,6 +38,10 @@ extension Firestore {
         Firestore.firestore().collection("questionnaires")
     }
 
+    static var organizationCollectionReference: CollectionReference {
+        Firestore.firestore().collection("organizations")
+    }
+
     static func userDocumentReference(for accountId: String) -> DocumentReference {
         Self.userCollection.document(accountId)
     }
@@ -88,7 +92,7 @@ extension Firestore {
 }
 
 extension Storage {
-    static func patientBucketReference(for accountId: String) -> StorageReference {
-        Storage.storage().reference().child("patients/\(accountId)")
+    static func userBucketReference(for accountId: String) -> StorageReference {
+        Storage.storage().reference().child("users/\(accountId)")
     }
 }

@@ -8,10 +8,12 @@
 
 import SpeziOnboarding
 import SwiftUI
+import UserNotifications
 
 
 struct NotificationPermissions: View {
     @Environment(OnboardingNavigationPath.self) private var onboardingNavigationPath
+    @Environment(NotificationManager.self) private var notificationManager
     
     @State private var notificationProcessing = false
     
@@ -43,6 +45,8 @@ struct NotificationPermissions: View {
                             // Notification Authorization is not available in the preview simulator.
                             if ProcessInfo.processInfo.isPreviewSimulator {
                                 try await _Concurrency.Task.sleep(for: .seconds(5))
+                            } else {
+                                _ = try await notificationManager.requestNotificationPermissions()
                             }
                         } catch {
                             print("Could not request notification permissions.")

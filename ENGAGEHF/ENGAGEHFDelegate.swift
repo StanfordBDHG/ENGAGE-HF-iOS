@@ -57,6 +57,8 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
             PairedDevices()
             HealthMeasurements()
             
+            UserMetaDataManager()
+            NotificationManager()
             NavigationManager()
             MessageManager()
             VitalsManager()

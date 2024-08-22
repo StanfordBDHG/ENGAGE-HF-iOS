@@ -23,7 +23,7 @@ struct MedicationRowContent: View {
                 .padding(.vertical, 2)
             
             Divider()
-            DosageSummary(dosageInformation: medication.dosageInformation)
+            DosageSummary(dosageInformation: medication.dosageInformation, accessibilityTag: medication.title)
         }
     }
 }
@@ -42,10 +42,6 @@ struct MedicationRowContent: View {
                 currentSchedule: [
                     DoseSchedule(frequency: 2, quantity: [25]),
                     DoseSchedule(frequency: 1, quantity: [15])
-                ],
-                minimumSchedule: [
-                    DoseSchedule(frequency: 2, quantity: [5]),
-                    DoseSchedule(frequency: 1, quantity: [2.5])
                 ],
                 targetSchedule: [
                     DoseSchedule(frequency: 2, quantity: [50]),

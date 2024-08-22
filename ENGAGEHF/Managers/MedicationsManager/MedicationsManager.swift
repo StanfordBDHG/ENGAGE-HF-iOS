@@ -8,7 +8,6 @@
 
 import FirebaseFirestore
 import Foundation
-import OSLog
 import Spezi
 import SpeziAccount
 import SpeziFirebaseAccount
@@ -124,10 +123,6 @@ extension MedicationsManager {
                         DoseSchedule(frequency: 2, quantity: [25]),
                         DoseSchedule(frequency: 1, quantity: [15])
                     ],
-                    minimumSchedule: [
-                        DoseSchedule(frequency: 2, quantity: [5]),
-                        DoseSchedule(frequency: 1, quantity: [2.5])
-                    ],
                     targetSchedule: [
                         DoseSchedule(frequency: 2, quantity: [50]),
                         DoseSchedule(frequency: 1, quantity: [25])
@@ -146,10 +141,6 @@ extension MedicationsManager {
                     currentSchedule: [
                         DoseSchedule(frequency: 2, quantity: [25]),
                         DoseSchedule(frequency: 1, quantity: [15])
-                    ],
-                    minimumSchedule: [
-                        DoseSchedule(frequency: 2, quantity: [5]),
-                        DoseSchedule(frequency: 1, quantity: [2.5])
                     ],
                     targetSchedule: [
                         DoseSchedule(frequency: 2, quantity: [50]),
@@ -176,7 +167,6 @@ extension MedicationsManager {
                 type: .targetDoseReached,
                 dosageInformation: DosageInformation(
                     currentSchedule: [DoseSchedule(frequency: 1, quantity: [200])],
-                    minimumSchedule: [DoseSchedule(frequency: 1, quantity: [6.25])],
                     targetSchedule: [DoseSchedule(frequency: 1, quantity: [200])],
                     unit: "mg"
                 )
@@ -191,7 +181,6 @@ extension MedicationsManager {
                 type: .personalTargetDoseReached,
                 dosageInformation: DosageInformation(
                     currentSchedule: [DoseSchedule(frequency: 1, quantity: [2.5]), DoseSchedule(frequency: 1, quantity: [5])],
-                    minimumSchedule: [DoseSchedule(frequency: 1, quantity: [5])],
                     targetSchedule: [DoseSchedule(frequency: 1, quantity: [10])],
                     unit: "mg"
                 )
@@ -206,7 +195,6 @@ extension MedicationsManager {
                 type: .improvementAvailable,
                 dosageInformation: DosageInformation(
                     currentSchedule: [DoseSchedule(frequency: 2, quantity: [24, 26])],
-                    minimumSchedule: [DoseSchedule(frequency: 2, quantity: [24, 26])],
                     targetSchedule: [DoseSchedule(frequency: 2, quantity: [97, 103])],
                     unit: "mg"
                 )
@@ -221,7 +209,6 @@ extension MedicationsManager {
                 type: .morePatientObservationsRequired,
                 dosageInformation: DosageInformation(
                     currentSchedule: [DoseSchedule(frequency: 1.5, quantity: [0])],
-                    minimumSchedule: [DoseSchedule(frequency: 1.5, quantity: [12.5])],
                     targetSchedule: [DoseSchedule(frequency: 1.5, quantity: [25])],
                     unit: "mg"
                 )
@@ -236,7 +223,6 @@ extension MedicationsManager {
                 type: .notStarted,
                 dosageInformation: DosageInformation(
                     currentSchedule: [],
-                    minimumSchedule: [DoseSchedule(frequency: 1, quantity: [10])],
                     targetSchedule: [DoseSchedule(frequency: 1, quantity: [80])],
                     unit: "mg"
                 )

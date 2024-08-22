@@ -11,6 +11,7 @@ import SwiftUI
 
 struct TextualDosageSummary: View {
     let dosageInformation: DosageInformation
+    let accessibilityTag: String
     
     
     var body: some View {
@@ -22,6 +23,7 @@ struct TextualDosageSummary: View {
                         unit: dosageInformation.unit,
                         label: "Current Dose:"
                     )
+                        .accessibilityIdentifier("\(accessibilityTag) Schedule Summary")
                 } else {
                     HStack(alignment: .firstTextBaseline) {
                         Text("Current Dose:")
@@ -30,6 +32,7 @@ struct TextualDosageSummary: View {
                         Spacer()
                         Text("Not Started")
                     }
+                        .accessibilityIdentifier("\(accessibilityTag) No Current Schedule Summary")
                 }
             }
                 .padding(.bottom, 4)
@@ -52,15 +55,12 @@ struct TextualDosageSummary: View {
                 DoseSchedule(frequency: 2, quantity: [25]),
                 DoseSchedule(frequency: 1, quantity: [15])
             ],
-            minimumSchedule: [
-                DoseSchedule(frequency: 2, quantity: [5]),
-                DoseSchedule(frequency: 1, quantity: [2.5])
-            ],
             targetSchedule: [
                 DoseSchedule(frequency: 2, quantity: [50]),
                 DoseSchedule(frequency: 1, quantity: [25])
             ],
             unit: "mg"
-        )
+        ),
+        accessibilityTag: "Carvedilol"
     )
 }

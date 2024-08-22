@@ -4,6 +4,9 @@
     "" : {
 
     },
+    "%@" : {
+
+    },
     "%@ Date: %@" : {
       "localizations" : {
         "en" : {
@@ -110,6 +113,15 @@
     "Add Measurement: %@" : {
 
     },
+    "Add Medications" : {
+
+    },
+    "Add Mock" : {
+
+    },
+    "Add mock notification" : {
+
+    },
     "All Data" : {
 
     },
@@ -117,6 +129,9 @@
       "comment" : "General Error"
     },
     "An invitation code is at least 8 characters long." : {
+
+    },
+    "Appointments" : {
 
     },
     "Attempted to add a symptom score without first taking survey." : {
@@ -161,6 +176,9 @@
         }
       }
     },
+    "Contacts" : {
+
+    },
     "CONTACTS_NAVIGATION_TITLE" : {
       "localizations" : {
         "en" : {
@@ -170,6 +188,9 @@
           }
         }
       }
+    },
+    "Content ..." : {
+
     },
     "Current" : {
 
@@ -201,7 +222,13 @@
     "Empty Symptoms Graph" : {
 
     },
+    "Enable Notifications in Settings" : {
+
+    },
     "Expansion Button" : {
+
+    },
+    "Expected Progress: %lf" : {
 
     },
     "Failed to fetch HKUnits for the given samples." : {
@@ -375,23 +402,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Interesting Modules"
+            "value" : "Key Features"
           }
         }
       }
     },
     "Invitation Code" : {
 
-    },
-    "LELAND_STANFORD_BIO" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Amasa Leland Stanford (March 9, 1824 – June 21, 1893) was an American industrialist and politician. [...] He and his wife Jane were also the founders of Stanford University, which they named after their late son.\n[https://en.wikipedia.org/wiki/Leland_Stanford]"
-          }
-        }
-      }
     },
     "LICENSE_INFO_TITLE" : {
       "localizations" : {
@@ -403,6 +420,12 @@
         }
       }
     },
+    "List With Sections" : {
+
+    },
+    "List Without Sections" : {
+
+    },
     "Medication Label: %@" : {
 
     },
@@ -410,6 +433,9 @@
 
     },
     "Messages" : {
+
+    },
+    "No Contacts Available" : {
 
     },
     "No medication recommendations" : {
@@ -439,7 +465,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The Spezi Scheduler module enables to send out local notifications when a new event of a task is scheduled."
+            "value" : "We will send notifications to your device to alert you of changes to your medication recommendations and remind you of upcoming appointments."
           }
         }
       }
@@ -449,7 +475,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Spezi Scheduler Notifications."
+            "value" : "Allow push notifications?"
           }
         }
       }
@@ -465,6 +491,9 @@
         }
       }
     },
+    "Notifications" : {
+
+    },
     "Please enter your invitation code to join the ENGAGE-HF study." : {
 
     },
@@ -474,10 +503,25 @@
     "Questionnaire Loading" : {
 
     },
+    "Receive notifications of changes in vital trends." : {
+
+    },
+    "Receive reminders for appointments (one day before), symptom surveys, and vital measurements." : {
+
+    },
+    "Receive updates when current medications and medication recommendations change." : {
+
+    },
     "Recent Vitals" : {
 
     },
+    "Recommendations" : {
+
+    },
     "Redeem Invitation Code" : {
+
+    },
+    "Reminders" : {
 
     },
     "Resolution Picker" : {
@@ -501,7 +545,13 @@
     "Show less" : {
 
     },
+    "Show Measurements" : {
+
+    },
     "Show more" : {
+
+    },
+    "Survey" : {
 
     },
     "symptomDizziness" : {
@@ -591,6 +641,9 @@
         }
       }
     },
+    "Tap Here" : {
+
+    },
     "Target" : {
 
     },
@@ -603,7 +656,16 @@
     "Time" : {
 
     },
+    "Trends" : {
+
+    },
+    "Trigger Blood Pressure Measurement" : {
+
+    },
     "Trigger Sheet" : {
+
+    },
+    "Trigger Weight Measurement" : {
 
     },
     "Unable to create time interval for date: %@" : {
@@ -618,6 +680,9 @@
     "Unknown Thumbnail" : {
 
     },
+    "Updates" : {
+
+    },
     "User authentication failed. Please try to sign in again." : {
       "comment" : "User Not Authenticated"
     },
@@ -630,6 +695,9 @@
           }
         }
       }
+    },
+    "Vitals" : {
+
     },
     "vitalsBloodPressure" : {
       "comment" : "For Heart Health view",
@@ -666,6 +734,9 @@
           }
         }
       }
+    },
+    "Weight Trends" : {
+
     },
     "weightMissing" : {
       "comment" : "Displayed in the MeasurementListSection of the Heart Health view when no weight history was found.",

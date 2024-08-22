@@ -79,7 +79,19 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "--disableFirebase"
-            isEnabled = "YES">
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--skipRemoteNotificationRegistration"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--setupTestUserMetaData"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--useCustomFirestoreHost"
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--useCustomFirestoreHost"

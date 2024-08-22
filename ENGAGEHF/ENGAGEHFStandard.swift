@@ -80,16 +80,6 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint {
     }
     
     
-    func add(message: Message) async throws {
-        let accountId = try await accountId
-        do {
-            try Firestore.messagesCollectionReference(for: accountId).addDocument(from: message)
-        } catch {
-            throw FirestoreError(error)
-        }
-    }
-    
-    
     func add(response: ModelsR4.QuestionnaireResponse) async throws {
         let accountId = try await accountId
         do {
@@ -124,9 +114,10 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint {
             
             let metadata = StorageMetadata()
             metadata.contentType = "application/pdf"
-
-            let accountId = try await accountId
-            _ = try await Storage.patientBucketReference(for: accountId).child("consent.pdf").putDataAsync(consentData, metadata: metadata)
+            _ = try await Storage.userBucketReference(for: accountId)
+                .child("consent")
+                .child("consent.pdf")
+                .putDataAsync(consentData, metadata: metadata)
         } catch {
             logger.error("Could not store consent form: \(error)")
         }
