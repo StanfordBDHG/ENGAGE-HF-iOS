@@ -154,6 +154,7 @@ extension XCUIApplication {
         buttons["Allow Notifications"].tap()
         
         let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
+        XCTAssert(springboard.alerts.firstMatch.buttons["Allow"].waitForExistence(timeout: 2.0), "No notification alert appeared.")
         springboard.alerts.firstMatch.buttons["Allow"].tap()
     }
     
