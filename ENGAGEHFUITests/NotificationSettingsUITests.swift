@@ -73,7 +73,6 @@ extension XCUIApplication {
         // Make sure that tapping the toggle flips its value, but doesn't change any of the other toggles
         testedToggle.descendants(matching: .switch).firstMatch.tap()
         
-        
         for idx in labels.indices {
             if idx == testedIndex {
                 XCTAssertEqual(try XCTUnwrap(testedToggle.value as? String, "Failed to unwrap toggle value."), expectedToggledValue)
