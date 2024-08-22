@@ -22,7 +22,7 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
     @ObservationIgnored @Application(\.logger) private var logger
     @ObservationIgnored @Dependency(NavigationManager.self) private var navigationManager
     
-    @ObservationIgnored @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
+    @ObservationIgnored @AppStorage(StorageKeys.onboardingFlowComplete) private var completedOnboardingFlow = false
     
     
     private var cancellable: AnyCancellable?
@@ -31,6 +31,7 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
     
     func configure() {
         guard completedOnboardingFlow else {
+            print("Onboarding false")
             return
         }
         
@@ -47,11 +48,11 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
             
             switch systemNotificationSettings.authorizationStatus {
             case .denied:
-                self.notificationsAuthorized = true
+                self.notificationsAuthorized = false
             case .notDetermined:
                 self.notificationsAuthorized = try await self.requestNotificationPermissions()
             default:
-                self.notificationsAuthorized = false
+                self.notificationsAuthorized = true
             }
         }
     }
