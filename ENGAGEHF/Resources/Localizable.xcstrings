@@ -4,6 +4,9 @@
     "" : {
 
     },
+    "%@" : {
+
+    },
     "%@ Date: %@" : {
       "localizations" : {
         "en" : {
@@ -110,6 +113,15 @@
     "Add Measurement: %@" : {
 
     },
+    "Add Medications" : {
+
+    },
+    "Add Mock" : {
+
+    },
+    "Add mock notification" : {
+
+    },
     "All Data" : {
 
     },
@@ -176,6 +188,9 @@
           }
         }
       }
+    },
+    "Content ..." : {
+
     },
     "Current" : {
 
@@ -405,6 +420,12 @@
         }
       }
     },
+    "List With Sections" : {
+
+    },
+    "List Without Sections" : {
+
+    },
     "Medication Label: %@" : {
 
     },
@@ -524,6 +545,9 @@
     "Show less" : {
 
     },
+    "Show Measurements" : {
+
+    },
     "Show more" : {
 
     },
@@ -635,7 +659,13 @@
     "Trends" : {
 
     },
+    "Trigger Blood Pressure Measurement" : {
+
+    },
     "Trigger Sheet" : {
+
+    },
+    "Trigger Weight Measurement" : {
 
     },
     "Unable to create time interval for date: %@" : {

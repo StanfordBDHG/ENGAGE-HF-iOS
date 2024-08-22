@@ -14,7 +14,6 @@ import SwiftUI
 struct NotificationSettingsView: View {
     @Environment(NotificationManager.self) private var notificationManager
     @Environment(UserMetaDataManager.self) private var userMetaDataManager
-    @State private var settingsDisabled: Bool = false
     
     
     var body: some View {
@@ -48,8 +47,8 @@ struct NotificationSettingsView: View {
                     Text("Receive notifications of changes in vital trends.")
                 }
             }
-                .disabled(self.settingsDisabled)
-            if self.settingsDisabled {
+                .disabled(!self.notificationManager.notificationsAuthorized)
+            if !self.notificationManager.notificationsAuthorized {
                 AsyncButton("Enable Notifications in Settings") {
                     // Create the URL that deep links to notification settings.
                     if let url = URL(string: UIApplication.openNotificationSettingsURLString) {
@@ -59,34 +58,12 @@ struct NotificationSettingsView: View {
                 }
             }
         }
-            .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
-                self.checkSettingsDisabled()
-            }
-            .onAppear {
-                self.checkSettingsDisabled()
-            }
             .onChange(of: userMetaDataManager.notificationSettings) {
                 Task {
                     await userMetaDataManager.pushUpdatedNotificationSettings()
                 }
             }
             .navigationTitle("Notifications")
-    }
-    
-    
-    private func checkSettingsDisabled() {
-        Task { @MainActor in
-            let systemNotificationSettings = await UNUserNotificationCenter.current().notificationSettings()
-            
-            switch systemNotificationSettings.authorizationStatus {
-            case .denied:
-                self.settingsDisabled = true
-            case .notDetermined:
-                self.settingsDisabled = !(try await self.notificationManager.requestNotificationPermissions())
-            default:
-                self.settingsDisabled = false
-            }
-        }
     }
 }
 

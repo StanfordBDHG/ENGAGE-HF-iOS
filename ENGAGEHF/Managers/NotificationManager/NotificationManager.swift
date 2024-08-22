@@ -6,6 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
+import Combine
 import FirebaseFunctions
 import Foundation
 import OSLog
@@ -14,13 +15,46 @@ import SwiftUI
 import UserNotifications
 
 
+@Observable
+@MainActor
 class NotificationManager: Module, NotificationHandler, NotificationTokenHandler, EnvironmentAccessible {
-    @Application(\.registerRemoteNotifications) private var registerRemoteNotifications
-    @Application(\.logger) private var logger
-    @Dependency(NavigationManager.self) private var navigationManager
+    @ObservationIgnored @Application(\.registerRemoteNotifications) private var registerRemoteNotifications
+    @ObservationIgnored @Application(\.logger) private var logger
+    @ObservationIgnored @Dependency(NavigationManager.self) private var navigationManager
+    
+    @ObservationIgnored @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
     
     
-    func configure() {}
+    private var cancellable: AnyCancellable?
+    var notificationsAuthorized: Bool = false
+    
+    
+    func configure() {
+        guard completedOnboardingFlow else {
+            return
+        }
+        
+        self.cancellable = NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification).sink { _ in
+            self.checkNotificationsAuthorized()
+        }
+        self.checkNotificationsAuthorized()
+    }
+    
+    
+    private func checkNotificationsAuthorized() {
+        Task { @MainActor in
+            let systemNotificationSettings = await UNUserNotificationCenter.current().notificationSettings()
+            
+            switch systemNotificationSettings.authorizationStatus {
+            case .denied:
+                self.notificationsAuthorized = true
+            case .notDetermined:
+                self.notificationsAuthorized = try await self.requestNotificationPermissions()
+            default:
+                self.notificationsAuthorized = false
+            }
+        }
+    }
     
     
     func handleNotificationAction(_ response: UNNotificationResponse) async {

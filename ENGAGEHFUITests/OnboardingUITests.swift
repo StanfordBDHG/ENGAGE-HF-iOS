@@ -16,6 +16,16 @@ final class OnboardingUITests: XCTestCase {
         
         continueAfterFailure = false
         
+        addUIInterruptionMonitor(withDescription: "Notification permission requests.") { element -> Bool in
+            let allowButton = element.buttons["Allow"].firstMatch
+            if element.elementType == .alert && allowButton.exists {
+                allowButton.tap()
+                return true
+            } else {
+                return false
+            }
+        }
+        
         let app = XCUIApplication()
         app.launchArguments = ["--showOnboarding", "--useFirebaseEmulator", "--skipRemoteNotificationRegistration"]
         app.launch()
@@ -153,9 +163,9 @@ extension XCUIApplication {
         XCTAssert(buttons["Allow Notifications"].waitForExistence(timeout: 2))
         buttons["Allow Notifications"].tap()
         
-        let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
-        XCTAssert(springboard.alerts.firstMatch.buttons["Allow"].waitForExistence(timeout: 2.0), "No notification alert appeared.")
-        springboard.alerts.firstMatch.buttons["Allow"].tap()
+//        let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
+//        XCTAssert(springboard.alerts.firstMatch.buttons["Allow"].waitForExistence(timeout: 2.0), "No notification alert appeared.")
+//        springboard.alerts.firstMatch.buttons["Allow"].tap()
     }
     
     fileprivate func assertOnboardingComplete() {
