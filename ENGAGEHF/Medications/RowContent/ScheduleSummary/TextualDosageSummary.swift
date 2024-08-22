@@ -55,10 +55,6 @@ struct TextualDosageSummary: View {
                 DoseSchedule(frequency: 2, quantity: [25]),
                 DoseSchedule(frequency: 1, quantity: [15])
             ],
-            minimumSchedule: [
-                DoseSchedule(frequency: 2, quantity: [5]),
-                DoseSchedule(frequency: 1, quantity: [2.5])
-            ],
             targetSchedule: [
                 DoseSchedule(frequency: 2, quantity: [50]),
                 DoseSchedule(frequency: 1, quantity: [25])

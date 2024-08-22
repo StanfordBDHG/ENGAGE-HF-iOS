@@ -57,17 +57,12 @@ struct DoseSchedule: Hashable, Decodable {
 /// Describes the dosage in terms of total medication across all ingredients.
 struct DosageInformation: Decodable {
     let currentSchedule: [DoseSchedule]
-    let minimumSchedule: [DoseSchedule]
     let targetSchedule: [DoseSchedule]
     let unit: String
     
     
     var currentDailyIntake: Double {
         self.currentSchedule.map(\.totalDailyIntake).reduce(0, +)
-    }
-    
-    var minimumDailyIntake: Double {
-        self.minimumSchedule.map(\.totalDailyIntake).reduce(0, +)
     }
     
     var targetDailyIntake: Double {
