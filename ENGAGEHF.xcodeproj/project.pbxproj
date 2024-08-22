@@ -81,6 +81,7 @@
 		4D40A4D22C5B0AB2003DC813 /* VideoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D40A4D12C5B0AB2003DC813 /* VideoList.swift */; };
 		4D49AB022BC9D50400C77310 /* SpeziBluetooth in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49AB012BC9D50400C77310 /* SpeziBluetooth */; };
 		4D4AA0A52BC5E43E00676489 /* OnboardingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4AA0A42BC5E43E00676489 /* OnboardingUITests.swift */; };
+		4D4E09262C77AC5E0038F892 /* DecodeISO8601DateUnitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4E09252C77AC5E0038F892 /* DecodeISO8601DateUnitTest.swift */; };
 		4D62BF2A2C6A71500088C414 /* FirestoreSettings+EmulatorWithHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D62BF292C6A71500088C414 /* FirestoreSettings+EmulatorWithHost.swift */; };
 		4D62BF392C6A978C0088C414 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		4D62BF3B2C6A9F330088C414 /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -285,6 +286,7 @@
 		4D40A4C92C5AF34C003DC813 /* EducationalVideoCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationalVideoCard.swift; sourceTree = "<group>"; };
 		4D40A4D12C5B0AB2003DC813 /* VideoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoList.swift; sourceTree = "<group>"; };
 		4D4AA0A42BC5E43E00676489 /* OnboardingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingUITests.swift; sourceTree = "<group>"; };
+		4D4E09252C77AC5E0038F892 /* DecodeISO8601DateUnitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodeISO8601DateUnitTest.swift; sourceTree = "<group>"; };
 		4D62BF292C6A71500088C414 /* FirestoreSettings+EmulatorWithHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FirestoreSettings+EmulatorWithHost.swift"; sourceTree = "<group>"; };
 		4D62BF3F2C6AB8520088C414 /* KeyedDecodingContainer+DecodeISO8601Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyedDecodingContainer+DecodeISO8601Date.swift"; sourceTree = "<group>"; };
 		4D70CF642C653BE100EB4CC6 /* Image+CardSymbolStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+CardSymbolStyle.swift"; sourceTree = "<group>"; };
@@ -1010,6 +1012,7 @@
 				653A256128338800005D4D48 /* VitalsGraphAggregationUnitTests.swift */,
 				4D8AD2DC2C4B4B8C00CB4F3E /* HKSampleGraphUnitTests.swift */,
 				4D734AC72C5D8AF3002D6D2F /* MessageActionUnitTests.swift */,
+				4D4E09252C77AC5E0038F892 /* DecodeISO8601DateUnitTest.swift */,
 			);
 			path = ENGAGEHFTests;
 			sourceTree = "<group>";
@@ -1402,6 +1405,7 @@
 			files = (
 				653A256228338800005D4D48 /* VitalsGraphAggregationUnitTests.swift in Sources */,
 				4D734AC82C5D8AF3002D6D2F /* MessageActionUnitTests.swift in Sources */,
+				4D4E09262C77AC5E0038F892 /* DecodeISO8601DateUnitTest.swift in Sources */,
 				4D8AD2DD2C4B4B8C00CB4F3E /* HKSampleGraphUnitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
