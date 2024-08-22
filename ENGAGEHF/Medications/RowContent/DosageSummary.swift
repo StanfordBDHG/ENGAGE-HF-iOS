@@ -11,15 +11,16 @@ import SwiftUI
 
 struct DosageSummary: View {
     let dosageInformation: DosageInformation
+    let accessibilityTag: String
     
     
     var body: some View {
         VStack {
-            TextualDosageSummary(dosageInformation: dosageInformation)
+            TextualDosageSummary(dosageInformation: dosageInformation, accessibilityTag: accessibilityTag)
                 .padding(.vertical, 2)
             DosageGauge(dosageInformation: dosageInformation)
                 .padding(.vertical, 2)
-                .accessibilityIdentifier("Dosage Gauge")
+                .accessibilityIdentifier("\(accessibilityTag) Dosage Gauge")
         }
     }
 }
@@ -41,6 +42,7 @@ struct DosageSummary: View {
                 DoseSchedule(frequency: 1, quantity: [25])
             ],
             unit: "mg"
-        )
+        ),
+        accessibilityTag: "Carvedilol"
     )
 }

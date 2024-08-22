@@ -17,7 +17,7 @@ final class OnboardingUITests: XCTestCase {
         continueAfterFailure = false
         
         let app = XCUIApplication()
-        app.launchArguments = ["--showOnboarding", "--useFirebaseEmulator"]
+        app.launchArguments = ["--showOnboarding", "--useFirebaseEmulator", "--skipRemoteNotificationRegistration"]
         app.launch()
     }
     
@@ -71,7 +71,7 @@ extension XCUIApplication {
     }
     
     private func navigateInterestingModules() throws {
-        XCTAssert(staticTexts["Interesting Modules"].waitForExistence(timeout: 5))
+        XCTAssert(staticTexts["Key Features"].waitForExistence(timeout: 5))
         
         for _ in 0..<5 {
             XCTAssert(buttons["Next"].waitForExistence(timeout: 2) && buttons["Next"].isHittable)
@@ -152,6 +152,9 @@ extension XCUIApplication {
         
         XCTAssert(buttons["Allow Notifications"].waitForExistence(timeout: 2))
         buttons["Allow Notifications"].tap()
+        
+        let app2 = XCUIApplication(bundleIdentifier: "com.apple.springboard")
+        app2.alerts.firstMatch.buttons["Allow"].tap()
     }
     
     fileprivate func assertOnboardingComplete() {

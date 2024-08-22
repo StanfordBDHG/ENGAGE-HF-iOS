@@ -24,9 +24,9 @@ class UserMetaDataManager: Module, EnvironmentAccessible {
     
     private var snapshotListener: ListenerRegistration?
     private var notificationsTask: Task<Void, Never>?
+    private var previousOrganizationId: String = ""
     
     private(set) var organization: OrganizationInformation?
-    
     var notificationSettings = NotificationSettings()
     
     
@@ -112,13 +112,8 @@ class UserMetaDataManager: Module, EnvironmentAccessible {
                     return
                 }
                 
-                // Only fetch organization information from Firestore if we haven't already fetched it
-                // for the current user.
-                if self.organization == nil {
-                    Task { @MainActor in
-                        await self.getOrganizationInfo(from: userDoc)
-                    }
-                }
+                // Fetch the organization info if the organization identifier has changed
+                self.getOrganizationInfo(from: userDoc)
                 
                 // Decode message settings
                 // Defaults to true if field not present in firestore, and ignores unknown fields
@@ -131,7 +126,7 @@ class UserMetaDataManager: Module, EnvironmentAccessible {
             }
     }
     
-    private func getOrganizationInfo(from userDoc: DocumentSnapshot) async {
+    private func getOrganizationInfo(from userDoc: DocumentSnapshot) {
         self.logger.debug("Fetching organization from \(userDoc.documentID).")
         
 #if TEST || DEBUG
@@ -140,7 +135,6 @@ class UserMetaDataManager: Module, EnvironmentAccessible {
             return
         }
 #endif
-        
         
         let organizationIdWrapper: OrganizationIdentifier
         do {
@@ -155,13 +149,21 @@ class UserMetaDataManager: Module, EnvironmentAccessible {
             return
         }
         
+        guard organizationId != self.previousOrganizationId else {
+            return
+        }
+        
         let organizationDocRef = Firestore.organizationCollectionReference.document(organizationId)
         
-        do {
-            self.organization = try await organizationDocRef.getDocument(as: OrganizationInformation.self)
-            self.logger.debug("Successfully fetched organization information.")
-        } catch {
-            self.logger.error("Failed to fetch contact information for organization \(organizationId): \(error)")
+        Task { @MainActor in
+            do {
+                self.organization = try await organizationDocRef.getDocument(as: OrganizationInformation.self)
+                self.previousOrganizationId = organizationId
+                
+                self.logger.debug("Successfully fetched organization information.")
+            } catch {
+                self.logger.error("Failed to fetch contact information for organization \(organizationId): \(error)")
+            }
         }
     }
     

@@ -23,7 +23,7 @@ struct MedicationRowContent: View {
                 .padding(.vertical, 2)
             
             Divider()
-            DosageSummary(dosageInformation: medication.dosageInformation)
+            DosageSummary(dosageInformation: medication.dosageInformation, accessibilityTag: medication.title)
         }
     }
 }

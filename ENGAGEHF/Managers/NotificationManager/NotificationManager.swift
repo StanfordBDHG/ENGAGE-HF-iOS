@@ -45,11 +45,7 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
             return
         }
         
-#if !targetEnvironment(simulator)
-        let deviceToken = try await registerRemoteNotifications()
-#else
-        let deviceToken = Data()
-#endif
+        let deviceToken = FeatureFlags.skipRemoteNotificationRegistration ? Data() : try await registerRemoteNotifications()
         try await self.configureRemoteNotifications(using: deviceToken)
     }
     
