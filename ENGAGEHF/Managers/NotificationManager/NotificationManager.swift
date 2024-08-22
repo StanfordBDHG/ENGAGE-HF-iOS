@@ -46,7 +46,10 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
         }
         
         let deviceToken = FeatureFlags.skipRemoteNotificationRegistration ? Data() : try await registerRemoteNotifications()
+        
+#if !TEST
         try await self.configureRemoteNotifications(using: deviceToken)
+#endif
     }
     
     func receiveUpdatedDeviceToken(_ deviceToken: Data) {
