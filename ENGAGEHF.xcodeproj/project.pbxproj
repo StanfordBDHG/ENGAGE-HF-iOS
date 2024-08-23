@@ -79,6 +79,7 @@
 		4D40A4C62C5AE486003DC813 /* VideoListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D40A4C52C5AE486003DC813 /* VideoListSection.swift */; };
 		4D40A4CA2C5AF34D003DC813 /* EducationalVideoCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D40A4C92C5AF34C003DC813 /* EducationalVideoCard.swift */; };
 		4D40A4D22C5B0AB2003DC813 /* VideoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D40A4D12C5B0AB2003DC813 /* VideoList.swift */; };
+		4D4670C42C792429004DEAC4 /* FHIRObservationToHKSampleConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4670C32C792429004DEAC4 /* FHIRObservationToHKSampleConverter.swift */; };
 		4D49AB022BC9D50400C77310 /* SpeziBluetooth in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49AB012BC9D50400C77310 /* SpeziBluetooth */; };
 		4D4AA0A52BC5E43E00676489 /* OnboardingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4AA0A42BC5E43E00676489 /* OnboardingUITests.swift */; };
 		4D4E09262C77AC5E0038F892 /* DecodeISO8601DateUnitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4E09252C77AC5E0038F892 /* DecodeISO8601DateUnitTest.swift */; };
@@ -285,6 +286,7 @@
 		4D40A4C52C5AE486003DC813 /* VideoListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoListSection.swift; sourceTree = "<group>"; };
 		4D40A4C92C5AF34C003DC813 /* EducationalVideoCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationalVideoCard.swift; sourceTree = "<group>"; };
 		4D40A4D12C5B0AB2003DC813 /* VideoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoList.swift; sourceTree = "<group>"; };
+		4D4670C32C792429004DEAC4 /* FHIRObservationToHKSampleConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FHIRObservationToHKSampleConverter.swift; sourceTree = "<group>"; };
 		4D4AA0A42BC5E43E00676489 /* OnboardingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingUITests.swift; sourceTree = "<group>"; };
 		4D4E09252C77AC5E0038F892 /* DecodeISO8601DateUnitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodeISO8601DateUnitTest.swift; sourceTree = "<group>"; };
 		4D62BF292C6A71500088C414 /* FirestoreSettings+EmulatorWithHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FirestoreSettings+EmulatorWithHost.swift"; sourceTree = "<group>"; };
@@ -943,6 +945,7 @@
 				4DA20B4A2C249E7E00715AA2 /* VitalsManager.swift */,
 				4DF506202C2E1C89003E7EFB /* SymptomScore.swift */,
 				4D34B3EC2C404C61006F0D40 /* VitalsUnit.swift */,
+				4D4670C32C792429004DEAC4 /* FHIRObservationToHKSampleConverter.swift */,
 			);
 			path = VitalsManager;
 			sourceTree = "<group>";
@@ -1303,6 +1306,7 @@
 				A9DFE8A92ABE551400428242 /* AccountButton.swift in Sources */,
 				4DF36FF92C66A884004D737A /* String+Identifiable.swift in Sources */,
 				4DF370042C66C9F9004D737A /* HealthSummaryView.swift in Sources */,
+				4D4670C42C792429004DEAC4 /* FHIRObservationToHKSampleConverter.swift in Sources */,
 				4DDFC7392BF2C3C9002B07A1 /* MessagesSection.swift in Sources */,
 				4D34B3F42C406340006F0D40 /* DateGranularity.swift in Sources */,
 				4D40729F2C488172007C5621 /* KnownVitalsSeries.swift in Sources */,
