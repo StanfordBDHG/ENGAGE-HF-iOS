@@ -30,18 +30,17 @@ struct DosageGaugeStyle: GaugeStyle {
     
     
     func makeBody(configuration: Configuration) -> some View {
-        let progressWidth: CGFloat = gaugeWidth * configuration.value
-        
-        
         VStack {
             configuration.label
             
-            CapsuleStack(gaugeWidth: gaugeWidth, gaugeHeight: gaugeHeight, progressWidth: progressWidth)
+            CapsuleStack(gaugeHeight: gaugeHeight, progress: configuration.value)
                 .readSize(GaugeSizeKey.self) {
                     gaugeWidth = $0.width
                 }
             
             if currentLabelAlignment == .dynamic {
+                let progressWidth: CGFloat = gaugeWidth * configuration.value
+                
                 ZStack {
                     PositionedCurrentLabel(
                         configuration: configuration,
