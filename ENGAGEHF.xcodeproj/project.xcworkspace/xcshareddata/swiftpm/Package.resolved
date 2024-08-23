@@ -238,7 +238,7 @@
     {
       "identity" : "spezifoundation",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/StanfordSpezi/SpeziFoundation.git",
+      "location" : "https://github.com/StanfordSpezi/SpeziFoundation",
       "state" : {
         "revision" : "d3a675735c734001e29e51689217d160bde51ce2",
         "version" : "2.0.0-beta.1"
