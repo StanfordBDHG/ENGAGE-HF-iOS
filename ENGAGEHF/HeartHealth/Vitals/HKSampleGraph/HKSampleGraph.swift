@@ -15,6 +15,7 @@ struct HKSampleGraph: View {
     var data: [HKSample]
     var dateRange: ClosedRange<Date>
     var dateResolution: Calendar.Component
+    var targetValue: HKSample?
     
     @State private var viewModel = ViewModel()
     
@@ -22,6 +23,7 @@ struct HKSampleGraph: View {
     var body: some View {
         VitalsGraph(
             data: viewModel.seriesData,
+            target: viewModel.targetValue,
             options: VitalsGraphOptions(
                 dateRange: dateRange,
                 granularity: dateResolution,
@@ -30,7 +32,11 @@ struct HKSampleGraph: View {
             )
         )
             .onChange(of: data) { viewModel.processData(data: data) }
-            .task { viewModel.processData(data: data) }
+            .onChange(of: targetValue) { viewModel.processTargetValue(targetValue) }
+            .task {
+                viewModel.processData(data: data)
+                viewModel.processTargetValue(targetValue)
+            }
             .viewStateAlert(state: $viewModel.viewState)
     }
 }

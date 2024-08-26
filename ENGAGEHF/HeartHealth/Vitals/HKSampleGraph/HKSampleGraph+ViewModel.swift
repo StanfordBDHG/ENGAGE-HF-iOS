@@ -19,6 +19,33 @@ extension HKSampleGraph {
         private(set) var seriesData: SeriesDictionary = [:]
         private(set) var displayUnit = ""
         private(set) var formatter: ([(String, Double)]) -> String = { _ in "---" }
+        private(set) var targetValue: SeriesTarget?
+        
+        
+        func processTargetValue(_ target: HKSample?) {
+            guard let target else {
+                self.targetValue = nil
+                return
+            }
+            
+            let (hkUnits, unitString) = getUnits(data: [target])
+            
+            switch target {
+            case let quantitySample as HKQuantitySample:
+                switch quantitySample.quantityType.identifier {
+                case HKQuantityTypeIdentifier.bodyMass.rawValue:
+                    self.targetValue = SeriesTarget(
+                        value: quantitySample.quantity.doubleValue(for: hkUnits),
+                        unit: unitString,
+                        date: quantitySample.startDate
+                    )
+                default:
+                    self.targetValue = nil
+                }
+            default:
+                self.targetValue = nil
+            }
+        }
         
         
         func processData(data: [HKSample]) {

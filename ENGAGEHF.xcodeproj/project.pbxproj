@@ -69,7 +69,7 @@
 		4D4072892C46FC98007C5621 /* AggregatedMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4072882C46FC98007C5621 /* AggregatedMeasurement.swift */; };
 		4D40728F2C483A5C007C5621 /* VitalsGraph+GestureOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D40728E2C483A5C007C5621 /* VitalsGraph+GestureOverlay.swift */; };
 		4D4072932C4841D4007C5621 /* VitalsGraph+DefaultStyling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4072922C4841D4007C5621 /* VitalsGraph+DefaultStyling.swift */; };
-		4D4072972C484716007C5621 /* VitalsGraph+ChartContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4072962C484716007C5621 /* VitalsGraph+ChartContent.swift */; };
+		4D4072972C484716007C5621 /* VitalsGraph+VitalsGraphContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4072962C484716007C5621 /* VitalsGraph+VitalsGraphContent.swift */; };
 		4D40729F2C488172007C5621 /* KnownVitalsSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D40729E2C488172007C5621 /* KnownVitalsSeries.swift */; };
 		4D4072A42C49A07C007C5621 /* HKSampleGraph+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4072A32C49A07C007C5621 /* HKSampleGraph+ViewModel.swift */; };
 		4D40A4AF2C5A9B4F003DC813 /* VideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D40A4AE2C5A9B4F003DC813 /* VideoPlayer.swift */; };
@@ -80,6 +80,8 @@
 		4D40A4CA2C5AF34D003DC813 /* EducationalVideoCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D40A4C92C5AF34C003DC813 /* EducationalVideoCard.swift */; };
 		4D40A4D22C5B0AB2003DC813 /* VideoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D40A4D12C5B0AB2003DC813 /* VideoList.swift */; };
 		4D4670C42C792429004DEAC4 /* FHIRObservationToHKSampleConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4670C32C792429004DEAC4 /* FHIRObservationToHKSampleConverter.swift */; };
+		4D4670C72C793327004DEAC4 /* SeriesTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4670C62C793327004DEAC4 /* SeriesTarget.swift */; };
+		4D4670CC2C79408C004DEAC4 /* VitalsGraph+GraphHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4670CB2C79408C004DEAC4 /* VitalsGraph+GraphHeader.swift */; };
 		4D49AB022BC9D50400C77310 /* SpeziBluetooth in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49AB012BC9D50400C77310 /* SpeziBluetooth */; };
 		4D4AA0A52BC5E43E00676489 /* OnboardingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4AA0A42BC5E43E00676489 /* OnboardingUITests.swift */; };
 		4D4E09262C77AC5E0038F892 /* DecodeISO8601DateUnitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4E09252C77AC5E0038F892 /* DecodeISO8601DateUnitTest.swift */; };
@@ -276,7 +278,7 @@
 		4D4072882C46FC98007C5621 /* AggregatedMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AggregatedMeasurement.swift; sourceTree = "<group>"; };
 		4D40728E2C483A5C007C5621 /* VitalsGraph+GestureOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VitalsGraph+GestureOverlay.swift"; sourceTree = "<group>"; };
 		4D4072922C4841D4007C5621 /* VitalsGraph+DefaultStyling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VitalsGraph+DefaultStyling.swift"; sourceTree = "<group>"; };
-		4D4072962C484716007C5621 /* VitalsGraph+ChartContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VitalsGraph+ChartContent.swift"; sourceTree = "<group>"; };
+		4D4072962C484716007C5621 /* VitalsGraph+VitalsGraphContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VitalsGraph+VitalsGraphContent.swift"; sourceTree = "<group>"; };
 		4D40729E2C488172007C5621 /* KnownVitalsSeries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnownVitalsSeries.swift; sourceTree = "<group>"; };
 		4D4072A32C49A07C007C5621 /* HKSampleGraph+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HKSampleGraph+ViewModel.swift"; sourceTree = "<group>"; };
 		4D40A4AE2C5A9B4F003DC813 /* VideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayer.swift; sourceTree = "<group>"; };
@@ -287,6 +289,8 @@
 		4D40A4C92C5AF34C003DC813 /* EducationalVideoCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationalVideoCard.swift; sourceTree = "<group>"; };
 		4D40A4D12C5B0AB2003DC813 /* VideoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoList.swift; sourceTree = "<group>"; };
 		4D4670C32C792429004DEAC4 /* FHIRObservationToHKSampleConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FHIRObservationToHKSampleConverter.swift; sourceTree = "<group>"; };
+		4D4670C62C793327004DEAC4 /* SeriesTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesTarget.swift; sourceTree = "<group>"; };
+		4D4670CB2C79408C004DEAC4 /* VitalsGraph+GraphHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VitalsGraph+GraphHeader.swift"; sourceTree = "<group>"; };
 		4D4AA0A42BC5E43E00676489 /* OnboardingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingUITests.swift; sourceTree = "<group>"; };
 		4D4E09252C77AC5E0038F892 /* DecodeISO8601DateUnitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodeISO8601DateUnitTest.swift; sourceTree = "<group>"; };
 		4D62BF292C6A71500088C414 /* FirestoreSettings+EmulatorWithHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FirestoreSettings+EmulatorWithHost.swift"; sourceTree = "<group>"; };
@@ -632,6 +636,7 @@
 				4D4072882C46FC98007C5621 /* AggregatedMeasurement.swift */,
 				4D8AD2C42C4A180300CB4F3E /* MeasurementSeries.swift */,
 				4D8AD2C12C49D51E00CB4F3E /* SeriesDictionary.swift */,
+				4D4670C62C793327004DEAC4 /* SeriesTarget.swift */,
 			);
 			path = DataTypes;
 			sourceTree = "<group>";
@@ -640,8 +645,9 @@
 			isa = PBXGroup;
 			children = (
 				4D4072942C4846BE007C5621 /* Modifiers */,
-				4D4072962C484716007C5621 /* VitalsGraph+ChartContent.swift */,
+				4D4072962C484716007C5621 /* VitalsGraph+VitalsGraphContent.swift */,
 				4D4072672C458F1F007C5621 /* IntervalSummary.swift */,
+				4D4670CB2C79408C004DEAC4 /* VitalsGraph+GraphHeader.swift */,
 			);
 			path = VitalsGraphSubViews;
 			sourceTree = "<group>";
@@ -1321,7 +1327,7 @@
 				4DDFC7872BFBFDDD002B07A1 /* MessageManager.swift in Sources */,
 				4D70CF652C653BE100EB4CC6 /* Image+CardSymbolStyle.swift in Sources */,
 				2FE5DC3729EDD7CA004B9AB4 /* OnboardingFlow.swift in Sources */,
-				4D4072972C484716007C5621 /* VitalsGraph+ChartContent.swift in Sources */,
+				4D4072972C484716007C5621 /* VitalsGraph+VitalsGraphContent.swift in Sources */,
 				4DF506282C2F2598003E7EFB /* VitalsContentView.swift in Sources */,
 				4D40728F2C483A5C007C5621 /* VitalsGraph+GestureOverlay.swift in Sources */,
 				4D92B9F82C3C901500ABCED7 /* SymptomsGraphSection.swift in Sources */,
@@ -1337,6 +1343,7 @@
 				4D081A262C6C2C6B00E13BC8 /* NotificationSettings.swift in Sources */,
 				4D73A5142C5816AF00CCEC46 /* View+ReadSize.swift in Sources */,
 				4D40A4D22C5B0AB2003DC813 /* VideoList.swift in Sources */,
+				4D4670CC2C79408C004DEAC4 /* VitalsGraph+GraphHeader.swift in Sources */,
 				4DF5063A2C2F5104003E7EFB /* DisplayMeasurement.swift in Sources */,
 				4D73A5192C581C2300CCEC46 /* CurrentLabelSizeKey.swift in Sources */,
 				4D4072842C46DDB2007C5621 /* VitalsGraph+ViewModel.swift in Sources */,
@@ -1348,6 +1355,7 @@
 				4D73A50E2C5807B500CCEC46 /* CapsuleStack.swift in Sources */,
 				4D2D1D682C2C82A200ABDC19 /* FHIRPeriod+GetDates.swift in Sources */,
 				4D2D1D762C2CC8B200ABDC19 /* ValueXProtocol.swift in Sources */,
+				4D4670C72C793327004DEAC4 /* SeriesTarget.swift in Sources */,
 				4DA20B542C25F8A600715AA2 /* FHIRDateTime+DateComponents.swift in Sources */,
 				4D081A282C6C2C8400E13BC8 /* UserMetaDataManager.swift in Sources */,
 				4D8402AA2C51B6A000817495 /* FHIRAliases.swift in Sources */,
