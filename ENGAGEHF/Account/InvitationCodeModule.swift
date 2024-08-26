@@ -105,7 +105,7 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
         let email = "test@engage.stanford.edu"
         let password = "123456789"
 
-        if let details = account.details {
+        if account.details != nil {
             // always start logged out, even if testing account had already been set up
             try await accountService.logout()
         }

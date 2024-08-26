@@ -40,20 +40,19 @@ struct NotificationPermissions: View {
                 OnboardingActionsView(
                     "NOTIFICATION_PERMISSIONS_BUTTON",
                     action: {
-                        do {
-                            notificationProcessing = true
-                            // Notification Authorization is not available in the preview simulator.
-                            if ProcessInfo.processInfo.isPreviewSimulator {
-                                try await _Concurrency.Task.sleep(for: .seconds(5))
-                            } else {
-                                _ = try await notificationManager.requestNotificationPermissions()
-                            }
-                        } catch {
-                            print("Could not request notification permissions.")
+                        defer {
+                            notificationProcessing = false
+                            onboardingNavigationPath.nextStep()
                         }
-                        notificationProcessing = false
                         
-                        onboardingNavigationPath.nextStep()
+                        notificationProcessing = true
+                        
+                        // Notification Authorization is not available in the preview simulator.
+                        if ProcessInfo.processInfo.isPreviewSimulator {
+                            try await _Concurrency.Task.sleep(for: .seconds(5))
+                        } else {
+                            _ = try await notificationManager.requestNotificationPermissions()
+                        }
                     }
                 )
             }
