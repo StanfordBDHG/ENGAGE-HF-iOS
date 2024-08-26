@@ -106,11 +106,7 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
         let password = "123456789"
 
         if let details = account.details {
-            if details.email == email {
-                logger.debug("Test account was already set up")
-                return
-            }
-
+            // always start logged out, even if testing account had already been set up
             try await accountService.logout()
         }
 
