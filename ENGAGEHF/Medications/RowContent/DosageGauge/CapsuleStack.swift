@@ -18,7 +18,7 @@ struct CapsuleStack: View {
         GeometryReader { geometry in
             ZStack(alignment: .leading) {
                 Capsule()
-                    .foregroundStyle(Color(.systemGray6))
+                    .foregroundStyle(.quaternary)
                 Capsule()
                     .frame(width: progress * geometry.size.width)
                     .foregroundStyle(.accent)
