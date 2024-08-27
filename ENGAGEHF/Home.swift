@@ -67,16 +67,6 @@ struct HomeView: View {
                 .tabItem {
                     Label("Education", systemImage: "brain")
                 }
-            NavigationStack {
-                DevicesView(appName: ENGAGEHF.appName ?? "ENGAGE") {
-                    Text("Hold down the Bluetooth button for 3 seconds to put the device into pairing mode.")
-                }
-                    .bluetoothScanningOptions(advertisementStaleInterval: 15)
-            }
-                .tag(Tabs.devices)
-                .tabItem {
-                    Label("Devices", systemImage: "sensor.fill")
-                }
         }
             .sheet(isPresented: $navigationManager.showHealthSummary) {
                 HealthSummaryView()

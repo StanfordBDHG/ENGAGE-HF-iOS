@@ -86,9 +86,11 @@ extension XCUIApplication {
         // Return the tested toggle to the initial state
         var count = 0
         let countLimit = 3
-        while try XCTUnwrap(testedToggle.value as? String, "Failed to unwrap toggle value.") != expectedInitialValue {
+        while try XCTUnwrap(testedToggle.value as? String, "Failed to unwrap toggle value.") != expectedInitialValue, count < countLimit {
             testedToggle.descendants(matching: .switch).firstMatch.tap()
             XCTAssertLessThan(count, countLimit, "Failed to reset toggle to initial value \(expectedInitialValue)")
+            
+            count += 1
         }
     }
 }

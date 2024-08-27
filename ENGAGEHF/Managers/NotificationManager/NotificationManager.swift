@@ -11,6 +11,7 @@ import FirebaseFunctions
 import Foundation
 import OSLog
 import Spezi
+import SpeziFoundation
 import SwiftUI
 import UserNotifications
 
@@ -87,11 +88,16 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
     }
     
     func handleNotificationsAllowed() async throws {
-        let deviceToken = FeatureFlags.skipRemoteNotificationRegistration ? Data() : try await registerRemoteNotifications()
-        
-#if !TEST
-        try await self.configureRemoteNotifications(using: deviceToken)
+        do {
+            let deviceToken = FeatureFlags.skipRemoteNotificationRegistration ? Data() : try await registerRemoteNotifications()
+            try await self.configureRemoteNotifications(using: deviceToken)
+        } catch let error as TimeoutError {
+#if targetEnvironment(simulator)
+            return
+#else
+            throw error
 #endif
+        }
     }
     
     func receiveUpdatedDeviceToken(_ deviceToken: Data) {

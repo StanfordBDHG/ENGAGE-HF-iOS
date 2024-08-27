@@ -4,6 +4,9 @@
     "" : {
 
     },
+    "%@" : {
+
+    },
     "%@ Date: %@" : {
       "localizations" : {
         "en" : {
@@ -110,6 +113,15 @@
     "Add Measurement: %@" : {
 
     },
+    "Add Medications" : {
+
+    },
+    "Add Mock" : {
+
+    },
+    "Add mock notification" : {
+
+    },
     "All Data" : {
 
     },
@@ -139,6 +151,9 @@
           }
         }
       }
+    },
+    "Bluetooth Devices" : {
+
     },
     "Cancel" : {
 
@@ -177,6 +192,9 @@
         }
       }
     },
+    "Content ..." : {
+
+    },
     "Current" : {
 
     },
@@ -187,9 +205,6 @@
 
     },
     "defaultLoadingError" : {
-
-    },
-    "Devices" : {
 
     },
     "Dismiss Button" : {
@@ -211,6 +226,9 @@
 
     },
     "Expansion Button" : {
+
+    },
+    "Expected Progress: %lf" : {
 
     },
     "Failed to fetch HKUnits for the given samples." : {
@@ -402,6 +420,12 @@
         }
       }
     },
+    "List With Sections" : {
+
+    },
+    "List Without Sections" : {
+
+    },
     "Medication Label: %@" : {
 
     },
@@ -521,6 +545,9 @@
     "Show less" : {
 
     },
+    "Show Measurements" : {
+
+    },
     "Show more" : {
 
     },
@@ -614,6 +641,9 @@
         }
       }
     },
+    "Tap Here" : {
+
+    },
     "Target" : {
 
     },
@@ -629,7 +659,13 @@
     "Trends" : {
 
     },
+    "Trigger Blood Pressure Measurement" : {
+
+    },
     "Trigger Sheet" : {
+
+    },
+    "Trigger Weight Measurement" : {
 
     },
     "Unable to create time interval for date: %@" : {
