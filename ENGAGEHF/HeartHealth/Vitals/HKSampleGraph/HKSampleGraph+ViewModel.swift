@@ -59,7 +59,7 @@ extension HKSampleGraph {
                         VitalMeasurement(
                             date: quantitySample.startDate,
                             value: quantitySample.quantity.doubleValue(for: hkUnits),
-                            type: quantitySample.quantityType.identifier
+                            type: KnownVitalsSeries(matching: quantitySample.quantityType.identifier)?.rawValue ?? "Unknown"
                         )
                     ]
                 case let correlation as HKCorrelation:
@@ -120,14 +120,18 @@ extension HKSampleGraph {
         }
         
         private func getUnitsFor(identifier: String) -> (HKUnit, String)? {
-            switch identifier {
-            case HKQuantityTypeIdentifier.bodyMass.rawValue:
-                self.formatter = { String(format: "%.1f", $0.first(where: { $0.0 == identifier })?.1 ?? 0) }
-                return Locale.current.measurementSystem == .us ? (HKUnit.pound(), "lb") : (HKUnit.gramUnit(with: .kilo), "kg")
-            case HKQuantityTypeIdentifier.heartRate.rawValue:
-                self.formatter = { "\(Int($0.first(where: { $0.0 == identifier })?.1 ?? 0))" }
+            guard let series = KnownVitalsSeries(matching: identifier) else {
+                return nil
+            }
+            
+            switch series {
+            case .heartRate:
+                self.formatter = { "\(Int($0.first(where: { $0.0 == series.rawValue })?.1 ?? 0))" }
                 return (HKUnit.count().unitDivided(by: .minute()), "BPM")
-            case HKCorrelationTypeIdentifier.bloodPressure.rawValue:
+            case .bodyWeight:
+                self.formatter = { String(format: "%.1f", $0.first(where: { $0.0 == series.rawValue })?.1 ?? 0) }
+                return Locale.current.measurementSystem == .us ? (HKUnit.pound(), "lb") : (HKUnit.gramUnit(with: .kilo), "kg")
+            case .bloodPressureSystolic, .bloodPressureDiastolic:
                 self.formatter = {
                     let systolic = $0.first(where: { $0.0 == KnownVitalsSeries.bloodPressureSystolic.rawValue })?.1
                     let diastolic = $0.first(where: { $0.0 == KnownVitalsSeries.bloodPressureDiastolic.rawValue })?.1

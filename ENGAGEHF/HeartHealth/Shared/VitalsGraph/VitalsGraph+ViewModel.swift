@@ -31,6 +31,11 @@ extension VitalsGraph {
         let calendar = Calendar.current
         
         
+        var numSeries: Int {
+            aggregatedData.count + (targetValue == nil ? 0 : 1)
+        }
+        
+        
         /// Prepares the given data for display.
         /// Aggregates the data by calculating the average across the intervals determined by the granularity of dateUnit.
         /// Saves the dateRange, dateUnit, and aggregatedData for later use.

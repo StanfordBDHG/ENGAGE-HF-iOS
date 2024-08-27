@@ -42,7 +42,9 @@ extension VitalsGraph {
                 }
                 
                 if let targetValue {
-                    targetRuleMark(target: targetValue)
+                    RuleMark(y: .value("Score", targetValue.value))
+                        .foregroundStyle(by: .value("Series", targetValue.label))
+                        .lineStyle(.init(lineWidth: 2, dash: [4, 4]))
                 }
             }
                 .accessibilityIdentifier("Vitals Graph")
@@ -77,17 +79,6 @@ extension VitalsGraph {
                     )
                 }
                 .accessibilityIdentifier("Interval Selected: \(selection.interval.formatted())")
-        }
-        
-        private func targetRuleMark(target: SeriesTarget) -> some ChartContent {
-            RuleMark(y: .value("Target", target.value))
-                .foregroundStyle(.red)
-                .annotation(
-                    position: .bottomLeading,
-                    overflowResolution: .init(x: .fit, y: .disabled)
-                ) {
-                    TargetAnnotationView(target)
-                }
         }
     }
 }

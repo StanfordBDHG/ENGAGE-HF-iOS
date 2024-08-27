@@ -171,7 +171,6 @@
 		4DC9905D2C7D1C98001E86C5 /* Double+Rounding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC9905C2C7D1C98001E86C5 /* Double+Rounding.swift */; };
 		4DC990612C7D3A13001E86C5 /* ClosedRange+InitFromSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC990602C7D3A13001E86C5 /* ClosedRange+InitFromSequence.swift */; };
 		4DD823062C17FF79004DC599 /* MessagesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD823052C17FF79004DC599 /* MessagesUITests.swift */; };
-		4DDAF2482C7E446900822723 /* TargetAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDAF2472C7E446900822723 /* TargetAnnotationView.swift */; };
 		4DDFC7392BF2C3C9002B07A1 /* MessagesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC7382BF2C3C9002B07A1 /* MessagesSection.swift */; };
 		4DDFC73D2BF2C4FA002B07A1 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC73C2BF2C4FA002B07A1 /* Message.swift */; };
 		4DDFC7542BF3408F002B07A1 /* RecentVitalsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC7532BF3408F002B07A1 /* RecentVitalsSection.swift */; };
@@ -379,7 +378,6 @@
 		4DC9905C2C7D1C98001E86C5 /* Double+Rounding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Rounding.swift"; sourceTree = "<group>"; };
 		4DC990602C7D3A13001E86C5 /* ClosedRange+InitFromSequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClosedRange+InitFromSequence.swift"; sourceTree = "<group>"; };
 		4DD823052C17FF79004DC599 /* MessagesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesUITests.swift; sourceTree = "<group>"; };
-		4DDAF2472C7E446900822723 /* TargetAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetAnnotationView.swift; sourceTree = "<group>"; };
 		4DDFC7382BF2C3C9002B07A1 /* MessagesSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesSection.swift; sourceTree = "<group>"; };
 		4DDFC73C2BF2C4FA002B07A1 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		4DDFC7532BF3408F002B07A1 /* RecentVitalsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentVitalsSection.swift; sourceTree = "<group>"; };
@@ -658,7 +656,6 @@
 				4D4072962C484716007C5621 /* VitalsGraph+VitalsGraphContent.swift */,
 				4D4072672C458F1F007C5621 /* IntervalSummary.swift */,
 				4D4670CB2C79408C004DEAC4 /* VitalsGraph+GraphHeader.swift */,
-				4DDAF2472C7E446900822723 /* TargetAnnotationView.swift */,
 			);
 			path = VitalsGraphSubViews;
 			sourceTree = "<group>";
@@ -1305,7 +1302,6 @@
 				4DC0F67A2C34AD620025AB13 /* VitalsList.swift in Sources */,
 				2FE5DC3829EDD7CA004B9AB4 /* InterestingModules.swift in Sources */,
 				4D8402B22C51D62400817495 /* MedicationsList.swift in Sources */,
-				4DDAF2482C7E446900822723 /* TargetAnnotationView.swift in Sources */,
 				2FE5DC3529EDD7CA004B9AB4 /* Consent.swift in Sources */,
 				4DC990612C7D3A13001E86C5 /* ClosedRange+InitFromSequence.swift in Sources */,
 				4D73A5112C58088E00CCEC46 /* PositionedCurrentLabel.swift in Sources */,

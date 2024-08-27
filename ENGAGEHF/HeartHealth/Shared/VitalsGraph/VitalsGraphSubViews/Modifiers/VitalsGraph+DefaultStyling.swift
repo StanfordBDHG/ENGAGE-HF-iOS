@@ -47,7 +47,8 @@ extension VitalsGraph {
                     }
                 }
                 .chartForegroundStyleScale(range: [Color.accentColor, Color.complement])
-                .chartLegend(viewModel.aggregatedData.count > 1 ? .visible : .hidden)
+                .chartSymbolScale(range: [BasicChartSymbolShape.circle, BasicChartSymbolShape.square])
+                .chartLegend(viewModel.numSeries > 1 ? .visible : .hidden)
         }
     }
 }
