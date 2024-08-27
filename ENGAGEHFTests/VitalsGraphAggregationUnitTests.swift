@@ -70,12 +70,12 @@ class VitalsGraphAggregationUnitTests: XCTestCase {
         
         let expectedAggregatedData = [
             MeasurementSeries(
-                seriesName: HKQuantityTypeIdentifier.bodyMass.rawValue,
+                seriesName: KnownVitalsSeries.bodyWeight.rawValue,
                 data: expectedBWSeries,
                 average: bwAvg
             ),
             MeasurementSeries(
-                seriesName: HKQuantityTypeIdentifier.heartRate.rawValue,
+                seriesName: KnownVitalsSeries.heartRate.rawValue,
                 data: expectedHRSeries,
                 average: hrAvg
             )
@@ -181,16 +181,16 @@ class VitalsGraphAggregationUnitTests: XCTestCase {
                 let bodyMassSample = VitalMeasurement(
                     date: date,
                     value: 70 + Double(dayOffset) + Double(pointOffset),
-                    type: HKQuantityTypeIdentifier.bodyMass.rawValue
+                    type: KnownVitalsSeries.bodyWeight.rawValue
                 )
                 let heartRateSample = VitalMeasurement(
                     date: date,
                     value: 60 + Double(dayOffset) + Double(pointOffset),
-                    type: HKQuantityTypeIdentifier.heartRate.rawValue
+                    type: KnownVitalsSeries.heartRate.rawValue
                 )
                 
-                sampleData[HKQuantityTypeIdentifier.bodyMass.rawValue, default: []].append(bodyMassSample)
-                sampleData[HKQuantityTypeIdentifier.heartRate.rawValue, default: []].append(heartRateSample)
+                sampleData[KnownVitalsSeries.bodyWeight.rawValue, default: []].append(bodyMassSample)
+                sampleData[KnownVitalsSeries.heartRate.rawValue, default: []].append(heartRateSample)
             }
         }
         
