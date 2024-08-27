@@ -26,10 +26,6 @@ extension VitalsGraph {
                     summaryRuleMark(selection: selection)
                 }
                 
-                if let targetValue {
-                    targetRuleMark(target: targetValue)
-                }
-                
                 ForEach(viewModel.aggregatedData) { series in
                     ForEach(series.data) { point in
                         LineMark(
@@ -43,6 +39,10 @@ extension VitalsGraph {
                         )
                             .foregroundStyle(by: .value("Series", series.seriesName))
                     }
+                }
+                
+                if let targetValue {
+                    targetRuleMark(target: targetValue)
                 }
             }
                 .accessibilityIdentifier("Vitals Graph")
@@ -86,9 +86,7 @@ extension VitalsGraph {
                     position: .bottomLeading,
                     overflowResolution: .init(x: .fit, y: .disabled)
                 ) {
-                    Text(target.label)
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
+                    TargetAnnotationView(target)
                 }
         }
     }
