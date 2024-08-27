@@ -11,6 +11,7 @@ import Foundation
 import Spezi
 import SpeziAccount
 import SpeziFirebaseAccount
+import SwiftUI
 
 
 @Observable
@@ -20,7 +21,9 @@ class UserMetaDataManager: Module, EnvironmentAccessible {
     @ObservationIgnored @Dependency(AccountNotifications.self) private var accountNotifications: AccountNotifications?
     @ObservationIgnored @Dependency(FirebaseAccountService.self) private var accountService: FirebaseAccountService?
 
-    @Application(\.logger) @ObservationIgnored private var logger
+    @ObservationIgnored @Application(\.logger) private var logger
+    @ObservationIgnored @AppStorage(StorageKeys.onboardingFlowComplete) private var onboardingComplete = false
+    
     
     private var snapshotListener: ListenerRegistration?
     private var notificationsTask: Task<Void, Never>?
@@ -52,6 +55,7 @@ class UserMetaDataManager: Module, EnvironmentAccessible {
                         updateSnapshotListener(for: details)
                     case .disassociatingAccount:
                         updateSnapshotListener(for: nil)
+                        onboardingComplete = false
                     default:
                         break
                     }

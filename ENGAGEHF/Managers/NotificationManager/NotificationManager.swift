@@ -92,11 +92,9 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
             let deviceToken = FeatureFlags.skipRemoteNotificationRegistration ? Data() : try await registerRemoteNotifications()
             try await self.configureRemoteNotifications(using: deviceToken)
         } catch let error as TimeoutError {
-#if targetEnvironment(simulator)
-            return
-#else
             throw error
-#endif
+        } catch {
+            throw error
         }
     }
     
