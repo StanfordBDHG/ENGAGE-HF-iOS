@@ -23,9 +23,9 @@ struct HKSampleGraph: View {
     var body: some View {
         VitalsGraph(
             data: viewModel.seriesData,
-            target: viewModel.targetValue,
             options: VitalsGraphOptions(
                 dateRange: dateRange,
+                targetValue: viewModel.targetValue,
                 granularity: dateResolution,
                 localizedUnitString: viewModel.displayUnit,
                 selectionFormatter: viewModel.formatter

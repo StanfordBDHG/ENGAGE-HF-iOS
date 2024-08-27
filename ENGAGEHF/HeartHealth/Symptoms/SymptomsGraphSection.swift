@@ -42,6 +42,7 @@ struct SymptomsGraphSection: View {
     private var options: VitalsGraphOptions {
         VitalsGraphOptions(
             dateRange: resolution.getDateRange(endDate: .now),
+            valueRange: 0...100,
             granularity: .day,
             localizedUnitString: symptomsType == .dizziness ? "" : "%",
             selectionFormatter: { selected in

@@ -10,7 +10,7 @@
 import XCTest
 
 
-final class DecodeISO8601DateUnitTest: XCTestCase {
+final class DecodeISO8601DateUnitTests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
         continueAfterFailure = false

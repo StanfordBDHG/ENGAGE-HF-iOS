@@ -25,6 +25,9 @@ extension VitalsGraph {
         private(set) var localizedUnitString: String = "---"
         private(set) var dateRange: ClosedRange<Date> = Date()...Date()
         private(set) var dateUnit: Calendar.Component = .day
+        private(set) var dataValueRange: ClosedRange<Double>?
+        private(set) var targetValue: SeriesTarget?
+        
         let calendar = Calendar.current
         
         
@@ -41,7 +44,7 @@ extension VitalsGraph {
             let seriesAverages: [String: Double] = data.mapValues { average(series: $0) ?? 0 }
             
             // Organize series data into a list of MeasurementSeries, in order of seriesName
-            self.aggregatedData = {
+            let seriesData = {
                 aggregatedSeries
                     .map { seriesName, data in
                         MeasurementSeries(
@@ -53,16 +56,7 @@ extension VitalsGraph {
                     .sorted { $0.seriesName > $1.seriesName }
             }()
 
-            // Save the options for later use
-            if let dateRange = options.dateRange {
-                self.dateRange = dateRange
-            } else {
-                self.dateRange = getDateRange(from: aggregatedData, using: options.granularity)
-            }
-            self.dateUnit = options.granularity
-            self.selectionFormatter = options.selectionFormatter
-            self.localizedUnitString = options.localizedUnitString
-            self.selection = nil
+            self.saveProcessingResults(seriesData: seriesData, options: options)
         }
         
         func selectPoint(value: GestureValue, proxy: ChartProxy, geometry: GeometryProxy, clearOnGap: Bool) {
@@ -99,6 +93,40 @@ extension VitalsGraph {
             }
             
             self.selection = (interval, selectedPoints)
+        }
+        
+        
+        private func saveProcessingResults(seriesData: [MeasurementSeries], options: VitalsGraphOptions) {
+            // Save the options for later use
+            if let dateRange = options.dateRange {
+                self.dateRange = dateRange
+            } else {
+                self.dateRange = getDateRange(from: aggregatedData, using: options.granularity)
+            }
+            self.dateUnit = options.granularity
+            self.selectionFormatter = options.selectionFormatter
+            self.localizedUnitString = options.localizedUnitString
+            self.selection = nil
+            
+            self.aggregatedData = seriesData
+            
+            if let targetValue = options.targetValue {
+                self.targetValue = targetValue
+            }
+            
+            if let valueRange = options.valueRange {
+                self.dataValueRange = valueRange
+            } else {
+                var seriesValues = seriesData
+                    .flatMap { $0.data }
+                    .map { $0.value }
+                
+                if let targetValue = options.targetValue { seriesValues.append(targetValue.value) }
+                
+                self.dataValueRange = ClosedRange(spanning: seriesValues)?
+                    .extendBy(percent: 0.1)
+                    .extendToMultipleOf(10.0)
+            }
         }
         
         

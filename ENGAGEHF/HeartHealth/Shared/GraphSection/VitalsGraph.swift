@@ -24,7 +24,7 @@ struct VitalsGraph: View {
             viewModel: viewModel,
             dateUnit: viewModel.dateUnit,
             quantityUnit: viewModel.localizedUnitString,
-            targetValue: targetValue
+            targetValue: viewModel.targetValue
         )
             // Default styling
             .modifier(DefaultChartStyle(viewModel: viewModel, dateRange: viewModel.dateRange))

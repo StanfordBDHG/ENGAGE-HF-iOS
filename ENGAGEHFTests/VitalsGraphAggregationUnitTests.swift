@@ -12,6 +12,12 @@ import XCTest
 
 
 class VitalsGraphAggregationUnitTests: XCTestCase {
+    override func setUpWithError() throws {
+        try super.setUpWithError()
+        continueAfterFailure = false
+    }
+    
+    
     func testAggregationEmptySeries() {
         let viewModel = VitalsGraph.ViewModel()
         

@@ -37,7 +37,8 @@ extension HKSampleGraph {
                     self.targetValue = SeriesTarget(
                         value: quantitySample.quantity.doubleValue(for: hkUnits),
                         unit: unitString,
-                        date: quantitySample.startDate
+                        date: quantitySample.startDate,
+                        label: "Dry Weight"
                     )
                 default:
                     self.targetValue = nil

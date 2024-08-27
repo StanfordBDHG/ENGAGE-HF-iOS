@@ -53,8 +53,7 @@ extension VitalsGraph {
                         GraphHeader(
                             viewModel: viewModel,
                             quantityUnit: quantityUnit,
-                            intervalSummaryHeight: intervalSummaryHeight,
-                            target: targetValue
+                            intervalSummaryHeight: intervalSummaryHeight
                         )
                     }
                 }
@@ -81,14 +80,15 @@ extension VitalsGraph {
         }
         
         private func targetRuleMark(target: SeriesTarget) -> some ChartContent {
-            RuleMark(y: .value("Score", target.value))
+            RuleMark(y: .value("Target", target.value))
                 .foregroundStyle(.red)
-                .annotation(position: .bottomLeading, overflowResolution: .init(x: .fit, y: .disabled)) {
-                    HStack {
-                        Text(target.value.asString(maximumFractionDigits: 1))
-                        Text(target.unit)
-                        Text(target.date.formatted(date: .abbreviated, time: .omitted))
-                    }
+                .annotation(
+                    position: .bottomLeading,
+                    overflowResolution: .init(x: .fit, y: .disabled)
+                ) {
+                    Text(target.label)
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
                 }
         }
     }
