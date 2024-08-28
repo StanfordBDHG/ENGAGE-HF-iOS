@@ -26,6 +26,7 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
     @ObservationIgnored @Dependency(NavigationManager.self) private var navigationManager
     
     @ObservationIgnored @AppStorage(StorageKeys.onboardingFlowComplete) private var completedOnboardingFlow = false
+    @ObservationIgnored @Environment(Account.self) private var account: Account?
     
     
     private var cancellable: AnyCancellable?
@@ -34,6 +35,12 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
     
     
     func configure() {
+        if account != nil {
+            self.cancellable = NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification).sink { _ in
+                self.checkNotificationsAuthorized()
+            }
+        }
+        
         guard completedOnboardingFlow else {
             print("Onboarding false")
             return
@@ -59,9 +66,6 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
             }
         }
         
-        self.cancellable = NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification).sink { _ in
-            self.checkNotificationsAuthorized()
-        }
         self.checkNotificationsAuthorized()
     }
     
