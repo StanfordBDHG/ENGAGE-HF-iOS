@@ -159,6 +159,7 @@
 		4DBDD3462BBFAE2D001FB0CA /* InvitationCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDD3452BBFAE2D001FB0CA /* InvitationCodeView.swift */; };
 		4DBDD3482BC073EF001FB0CA /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 4DBDD3472BC073EF001FB0CA /* FirebaseFunctions */; };
 		4DBE86DD2C7F9BBF0003390B /* MobilePlatform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBE86DC2C7F9BBF0003390B /* MobilePlatform.swift */; };
+		4DBE86E02C7FAF6E0003390B /* Data+HexString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBE86DF2C7FAF6E0003390B /* Data+HexString.swift */; };
 		4DC0F6712C34818B0025AB13 /* HKSample+GetDoubleValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC0F6702C34818B0025AB13 /* HKSample+GetDoubleValues.swift */; };
 		4DC0F67A2C34AD620025AB13 /* VitalsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC0F6792C34AD620025AB13 /* VitalsList.swift */; };
 		4DC0F6842C34B66F0025AB13 /* ResolutionPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC0F6832C34B66F0025AB13 /* ResolutionPicker.swift */; };
@@ -358,6 +359,7 @@
 		4DBDD3432BBFAD64001FB0CA /* InvitationCodeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationCodeError.swift; sourceTree = "<group>"; };
 		4DBDD3452BBFAE2D001FB0CA /* InvitationCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationCodeView.swift; sourceTree = "<group>"; };
 		4DBE86DC2C7F9BBF0003390B /* MobilePlatform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobilePlatform.swift; sourceTree = "<group>"; };
+		4DBE86DF2C7FAF6E0003390B /* Data+HexString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+HexString.swift"; sourceTree = "<group>"; };
 		4DC0F6702C34818B0025AB13 /* HKSample+GetDoubleValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HKSample+GetDoubleValues.swift"; sourceTree = "<group>"; };
 		4DC0F6792C34AD620025AB13 /* VitalsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalsList.swift; sourceTree = "<group>"; };
 		4DC0F6832C34B66F0025AB13 /* ResolutionPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolutionPicker.swift; sourceTree = "<group>"; };
@@ -667,6 +669,7 @@
 			children = (
 				4D8CE0FA2C753A4600560327 /* NotificationManager.swift */,
 				4D8CE0FB2C753A4600560327 /* NotificationRegistrationSchema.swift */,
+				4DBE86DF2C7FAF6E0003390B /* Data+HexString.swift */,
 			);
 			path = NotificationManager;
 			sourceTree = "<group>";
@@ -1273,6 +1276,7 @@
 				4D734AC02C5C58CA002D6D2F /* View+asButton.swift in Sources */,
 				4D734AC32C5D7C81002D6D2F /* MessageAction.swift in Sources */,
 				4D92BA172C3E108700ABCED7 /* CodeableConcept+Contains.swift in Sources */,
+				4DBE86E02C7FAF6E0003390B /* Data+HexString.swift in Sources */,
 				4D62BF2A2C6A71500088C414 /* FirestoreSettings+EmulatorWithHost.swift in Sources */,
 				4D8CE0FC2C753A4700560327 /* NotificationManager.swift in Sources */,
 				4DC0F67A2C34AD620025AB13 /* VitalsList.swift in Sources */,

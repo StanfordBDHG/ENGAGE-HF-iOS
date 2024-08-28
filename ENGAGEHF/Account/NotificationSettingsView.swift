@@ -15,8 +15,6 @@ struct NotificationSettingsView: View {
     @Environment(NotificationManager.self) private var notificationManager
     @Environment(UserMetaDataManager.self) private var userMetaDataManager
     
-    @State private var viewState: ViewState = .idle
-    
     
     var body: some View {
         @Bindable var userMetaDataManager = userMetaDataManager
@@ -61,16 +59,7 @@ struct NotificationSettingsView: View {
             }
         }
             .task {
-                do {
-                    try await notificationManager.checkNotificationsAuthorized()
-                } catch {
-                    self.viewState = .error(
-                        AnyLocalizedError(
-                            error: error,
-                            defaultErrorDescription: "Unable to check if notifications have been authorized."
-                        )
-                    )
-                }
+                await notificationManager.checkNotificationsAuthorized()
             }
             .onChange(of: userMetaDataManager.notificationSettings) {
                 Task {
@@ -78,7 +67,6 @@ struct NotificationSettingsView: View {
                 }
             }
             .navigationTitle("Notifications")
-            .viewStateAlert(state: $viewState)
     }
 }
 
