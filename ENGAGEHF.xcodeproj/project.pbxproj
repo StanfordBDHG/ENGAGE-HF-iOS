@@ -19,10 +19,8 @@
 		2FB099B62A875E2B00B20952 /* HealthKitOnFHIR in Frameworks */ = {isa = PBXBuildFile; productRef = 2FB099B52A875E2B00B20952 /* HealthKitOnFHIR */; };
 		2FC3439029EE6346002D773C /* SocialSupportQuestionnaire.json in Resources */ = {isa = PBXBuildFile; fileRef = 2FE5DC5529EDD811004B9AB4 /* SocialSupportQuestionnaire.json */; };
 		2FC3439129EE6349002D773C /* AppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FE5DC2A29EDD78D004B9AB4 /* AppIcon.png */; };
-		2FC3439229EE634B002D773C /* ConsentDocument.md in Resources */ = {isa = PBXBuildFile; fileRef = 2FE5DC2C29EDD78E004B9AB4 /* ConsentDocument.md */; };
 		2FC975A82978F11A00BA99FE /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC975A72978F11A00BA99FE /* Home.swift */; };
 		2FE5DC2629EDD38A004B9AB4 /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE5DC2529EDD38A004B9AB4 /* Contacts.swift */; };
-		2FE5DC3529EDD7CA004B9AB4 /* Consent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE5DC2F29EDD7CA004B9AB4 /* Consent.swift */; };
 		2FE5DC3729EDD7CA004B9AB4 /* OnboardingFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE5DC3129EDD7CA004B9AB4 /* OnboardingFlow.swift */; };
 		2FE5DC3829EDD7CA004B9AB4 /* InterestingModules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE5DC3229EDD7CA004B9AB4 /* InterestingModules.swift */; };
 		2FE5DC3A29EDD7CA004B9AB4 /* Welcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE5DC3429EDD7CA004B9AB4 /* Welcome.swift */; };
@@ -237,8 +235,6 @@
 		2FC975A72978F11A00BA99FE /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		2FE5DC2529EDD38A004B9AB4 /* Contacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
 		2FE5DC2A29EDD78D004B9AB4 /* AppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon.png; sourceTree = "<group>"; };
-		2FE5DC2C29EDD78E004B9AB4 /* ConsentDocument.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ConsentDocument.md; sourceTree = "<group>"; };
-		2FE5DC2F29EDD7CA004B9AB4 /* Consent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Consent.swift; sourceTree = "<group>"; };
 		2FE5DC3129EDD7CA004B9AB4 /* OnboardingFlow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingFlow.swift; sourceTree = "<group>"; };
 		2FE5DC3229EDD7CA004B9AB4 /* InterestingModules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterestingModules.swift; sourceTree = "<group>"; };
 		2FE5DC3429EDD7CA004B9AB4 /* Welcome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Welcome.swift; sourceTree = "<group>"; };
@@ -480,7 +476,6 @@
 				2FE5DC3429EDD7CA004B9AB4 /* Welcome.swift */,
 				2FE5DC3229EDD7CA004B9AB4 /* InterestingModules.swift */,
 				2FE5DCAC29EE6107004B9AB4 /* AccountOnboarding.swift */,
-				2FE5DC2F29EDD7CA004B9AB4 /* Consent.swift */,
 				2F65B44D2A3B8B0600A36932 /* NotificationPermissions.swift */,
 				4DBDD3432BBFAD64001FB0CA /* InvitationCodeError.swift */,
 				4DBDD3452BBFAE2D001FB0CA /* InvitationCodeView.swift */,
@@ -493,7 +488,6 @@
 			children = (
 				2FE5DC2A29EDD78D004B9AB4 /* AppIcon.png */,
 				653A255428338800005D4D48 /* Assets.xcassets */,
-				2FE5DC2C29EDD78E004B9AB4 /* ConsentDocument.md */,
 				2FA0BFEC2ACC977500E0EF83 /* Localizable.xcstrings */,
 				2FE5DC5529EDD811004B9AB4 /* SocialSupportQuestionnaire.json */,
 			);
@@ -1220,7 +1214,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2FC3439229EE634B002D773C /* ConsentDocument.md in Resources */,
 				2FC3439129EE6349002D773C /* AppIcon.png in Resources */,
 				653A255528338800005D4D48 /* Assets.xcassets in Resources */,
 				2FC3439029EE6346002D773C /* SocialSupportQuestionnaire.json in Resources */,
@@ -1281,7 +1274,6 @@
 				4DC0F67A2C34AD620025AB13 /* VitalsList.swift in Sources */,
 				2FE5DC3829EDD7CA004B9AB4 /* InterestingModules.swift in Sources */,
 				4D8402B22C51D62400817495 /* MedicationsList.swift in Sources */,
-				2FE5DC3529EDD7CA004B9AB4 /* Consent.swift in Sources */,
 				4D73A5112C58088E00CCEC46 /* PositionedCurrentLabel.swift in Sources */,
 				4D8AD2C22C49D51E00CB4F3E /* SeriesDictionary.swift in Sources */,
 				4D4072A42C49A07C007C5621 /* HKSampleGraph+ViewModel.swift in Sources */,

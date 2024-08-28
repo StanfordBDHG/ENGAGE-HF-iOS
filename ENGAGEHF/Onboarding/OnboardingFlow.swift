@@ -27,10 +27,6 @@ struct OnboardingFlow: View {
                 AccountOnboarding()
             }
             
-            #if !(targetEnvironment(simulator) && (arch(i386) || arch(x86_64)))
-                Consent()
-            #endif
-            
             NotificationPermissions()
         }
             .interactiveDismissDisabled(!completedOnboardingFlow)

@@ -11,6 +11,7 @@ import FirebaseFunctions
 import Foundation
 import OSLog
 import Spezi
+import SpeziAccount
 import SpeziFoundation
 import SwiftUI
 import UserNotifications
@@ -20,6 +21,7 @@ import UserNotifications
 @MainActor
 class NotificationManager: Module, NotificationHandler, NotificationTokenHandler, EnvironmentAccessible {
     @ObservationIgnored @Application(\.registerRemoteNotifications) private var registerRemoteNotifications
+    @ObservationIgnored @Dependency(AccountNotifications.self) private var accountNotifications: AccountNotifications?
     @ObservationIgnored @Application(\.logger) private var logger
     @ObservationIgnored @Dependency(NavigationManager.self) private var navigationManager
     
@@ -27,6 +29,7 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
     
     
     private var cancellable: AnyCancellable?
+    private var notificationsTask: Task<Void, Never>?
     var notificationsAuthorized: Bool = false
     
     
@@ -34,6 +37,26 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
         guard completedOnboardingFlow else {
             print("Onboarding false")
             return
+        }
+        
+        if let accountNotifications {
+            notificationsTask = Task.detached { @MainActor [weak self] in
+                for await event in accountNotifications.events {
+                    guard let self else {
+                        return
+                    }
+
+                    switch event {
+                    case let .associatedAccount(details):
+                        Task {
+                            try await self.requestNotificationPermissions()
+                        }
+                    // TODO: If user signs out, call an `unregisterRemoteNotifications` cloud function
+                    default:
+                        break
+                    }
+                }
+            }
         }
         
         self.cancellable = NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification).sink { _ in
@@ -88,14 +111,9 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
     }
     
     func handleNotificationsAllowed() async throws {
-        do {
-            let deviceToken = FeatureFlags.skipRemoteNotificationRegistration ? Data() : try await registerRemoteNotifications()
-            try await self.configureRemoteNotifications(using: deviceToken)
-        } catch let error as TimeoutError {
-            throw error
-        } catch {
-            throw error
-        }
+        let deviceToken = FeatureFlags.skipRemoteNotificationRegistration ? Data() : try await registerRemoteNotifications()
+        
+        try await self.configureRemoteNotifications(using: deviceToken)
     }
     
     func receiveUpdatedDeviceToken(_ deviceToken: Data) {

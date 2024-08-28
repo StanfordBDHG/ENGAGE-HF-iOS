@@ -42,7 +42,7 @@ class UserMetaDataManager: Module, EnvironmentAccessible {
         // for the newly-signed in user.
         self.organization = nil
         
-        // On sign in, store the user's organization and message settings
+        // On sign in, store the user's organization and message settings, and on sign-out mark onboarding complete as false
         if let accountNotifications {
             notificationsTask = Task.detached { @MainActor [weak self] in
                 for await event in accountNotifications.events {
@@ -55,7 +55,6 @@ class UserMetaDataManager: Module, EnvironmentAccessible {
                         updateSnapshotListener(for: details)
                     case .disassociatingAccount:
                         updateSnapshotListener(for: nil)
-                        onboardingComplete = false
                     default:
                         break
                     }
