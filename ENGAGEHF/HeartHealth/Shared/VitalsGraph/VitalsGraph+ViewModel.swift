@@ -106,7 +106,7 @@ extension VitalsGraph {
             if let dateRange = options.dateRange {
                 self.dateRange = dateRange
             } else {
-                self.dateRange = getDateRange(from: aggregatedData, using: options.granularity)
+                self.dateRange = getDateRange(from: seriesData, using: options.granularity)
             }
             self.dateUnit = options.granularity
             self.selectionFormatter = options.selectionFormatter
