@@ -78,7 +78,7 @@ struct HomeView: View {
                 AccountSheet()
             }
             .accountRequired(!FeatureFlags.disableFirebase && !FeatureFlags.skipOnboarding) {
-                AccountSetup()
+                AccountSetupSheet()
             }
             .sheet(isPresented: $measurements.shouldPresentMeasurements) {
                 MeasurementsRecordedSheet { samples in

@@ -10,11 +10,6 @@ import Foundation
 import class UIKit.UIDevice
 
 
-enum MobilePlatforms: String {
-    case iOS
-}
-
-
 /// The parameters used to register the device for remote notifications from the server.
 struct NotificationRegistrationSchema: Codable {
     private let notificationToken: String
@@ -41,7 +36,7 @@ struct NotificationRegistrationSchema: Codable {
     
     init(_ deviceToken: Data, locale: Locale = Locale.current, timeZone: TimeZone = .current) {
         self.notificationToken = deviceToken.reduce(into: "") { $0 += String(format: "%02.2hhx", $1) }
-        self.platform = MobilePlatforms.iOS.rawValue
+        self.platform = MobilePlatform.iOS.rawValue
         self.osVersion = UIDevice.current.systemVersion
         self.appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
         self.appBuild = Bundle.main.infoDictionary?["CFBundleVersion"] as? String

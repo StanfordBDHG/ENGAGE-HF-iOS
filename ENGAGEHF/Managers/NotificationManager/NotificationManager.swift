@@ -13,6 +13,7 @@ import OSLog
 import Spezi
 import SpeziAccount
 import SpeziFoundation
+import SpeziViews
 import SwiftUI
 import UserNotifications
 
@@ -21,6 +22,7 @@ import UserNotifications
 @MainActor
 class NotificationManager: Module, NotificationHandler, NotificationTokenHandler, EnvironmentAccessible {
     @ObservationIgnored @Application(\.registerRemoteNotifications) private var registerRemoteNotifications
+    @ObservationIgnored @Application(\.unregisterRemoteNotifications) private var unregisterRemoteNotifications
     @ObservationIgnored @Dependency(AccountNotifications.self) private var accountNotifications: AccountNotifications?
     @ObservationIgnored @Application(\.logger) private var logger
     @ObservationIgnored @Dependency(NavigationManager.self) private var navigationManager
@@ -31,18 +33,23 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
     
     private var cancellable: AnyCancellable?
     private var notificationsTask: Task<Void, Never>?
+    
+    private var apnsDeviceToken: Data?
+    
     var notificationsAuthorized: Bool = false
+    var error: LocalizedError?
     
     
     func configure() {
-        if account != nil {
-            self.cancellable = NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification).sink { _ in
-                self.checkNotificationsAuthorized()
+        self.cancellable = NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification).sink { _ in
+            if self.completedOnboardingFlow {
+                Task {
+                    try await self.checkNotificationsAuthorized()
+                }
             }
         }
         
         guard completedOnboardingFlow else {
-            print("Onboarding false")
             return
         }
         
@@ -55,10 +62,24 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
 
                     switch event {
                     case let .associatedAccount(details):
-                        Task {
-                            try await self.requestNotificationPermissions()
+                        do {
+                            _ = try await self.requestNotificationPermissions()
+                        } catch {
+                            self.error = AnyLocalizedError(
+                                error: error,
+                                defaultErrorDescription: "Unable to register for remote notifications."
+                            )
                         }
-                    // TODO: If user signs out, call an `unregisterRemoteNotifications` cloud function
+                    case let .disassociatingAccount(details):
+                        do {
+                            _ = try await self.unregisterRemoteNotifications()
+                            self.apnsDeviceToken = nil
+                        } catch {
+                            self.error = AnyLocalizedError(
+                                error: error,
+                                defaultErrorDescription: "Unable to unregister for remote notifications."
+                            )
+                        }
                     default:
                         break
                     }
@@ -66,22 +87,23 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
             }
         }
         
-        self.checkNotificationsAuthorized()
+        Task {
+            try await self.checkNotificationsAuthorized()
+        }
     }
     
     
-    private func checkNotificationsAuthorized() {
-        Task { @MainActor in
-            let systemNotificationSettings = await UNUserNotificationCenter.current().notificationSettings()
-            
-            switch systemNotificationSettings.authorizationStatus {
-            case .denied:
-                self.notificationsAuthorized = false
-            case .notDetermined:
-                self.notificationsAuthorized = try await self.requestNotificationPermissions()
-            default:
-                self.notificationsAuthorized = true
-            }
+    @MainActor
+    func checkNotificationsAuthorized() async throws {
+        let systemNotificationSettings = await UNUserNotificationCenter.current().notificationSettings()
+        
+        switch systemNotificationSettings.authorizationStatus {
+        case .denied:
+            self.notificationsAuthorized = false
+        case .notDetermined:
+            self.notificationsAuthorized = try await self.requestNotificationPermissions()
+        default:
+            self.notificationsAuthorized = true
         }
     }
     
@@ -104,6 +126,8 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
     
     /// Requests authorization for remote notifications, displaying an alert if necessary. Returns true if permission was granted, and false otherwise.
     func requestNotificationPermissions() async throws -> Bool {
+        logger.debug("Requesting notification permissions.")
+        
         let granted = try await UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound])
         
         guard granted else {
@@ -114,11 +138,16 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
         return true
     }
     
+    
     func handleNotificationsAllowed() async throws {
+        logger.debug("Notification permissions granted, registering device token.")
+        
         let deviceToken = FeatureFlags.skipRemoteNotificationRegistration ? Data() : try await registerRemoteNotifications()
         
         try await self.configureRemoteNotifications(using: deviceToken)
+        self.apnsDeviceToken = deviceToken
     }
+    
     
     func receiveUpdatedDeviceToken(_ deviceToken: Data) {
         Task {
@@ -126,6 +155,10 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
                 try await self.configureRemoteNotifications(using: deviceToken)
             } catch {
                 self.logger.error("Failed to configured remote notifications for updated device token: \(error)")
+                self.error = AnyLocalizedError(
+                    error: error,
+                    defaultErrorDescription: "Unable to unregister for remote notifications."
+                )
             }
         }
     }
@@ -138,5 +171,25 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
         _ = try await registerDevice.call(NotificationRegistrationSchema(deviceToken).codingRepresentation)
         
         self.logger.debug("Successfully registered device for remote notifications.")
+    }
+    
+    private func unregisterRemoteNotifications() async throws {
+        self.logger.debug("Unregistering device for remote notifications.")
+        
+        guard let apnsDeviceToken else {
+            return
+        }
+        
+        let unregisterDevice = Functions.functions().httpsCallable("unregisterDevice")
+        _ = try await unregisterDevice.call(
+            [
+                "notificationToken": apnsDeviceToken,
+                "platform": MobilePlatform.iOS.rawValue
+            ]
+        )
+        
+        try await self.unregisterRemoteNotifications()
+        
+        self.logger.debug("Successfully unregistered device for remote notifications.")
     }
 }

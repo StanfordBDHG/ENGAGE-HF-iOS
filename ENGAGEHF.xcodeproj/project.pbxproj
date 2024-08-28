@@ -158,6 +158,7 @@
 		4DBDD3442BBFAD64001FB0CA /* InvitationCodeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDD3432BBFAD64001FB0CA /* InvitationCodeError.swift */; };
 		4DBDD3462BBFAE2D001FB0CA /* InvitationCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDD3452BBFAE2D001FB0CA /* InvitationCodeView.swift */; };
 		4DBDD3482BC073EF001FB0CA /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 4DBDD3472BC073EF001FB0CA /* FirebaseFunctions */; };
+		4DBE86DD2C7F9BBF0003390B /* MobilePlatform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBE86DC2C7F9BBF0003390B /* MobilePlatform.swift */; };
 		4DC0F6712C34818B0025AB13 /* HKSample+GetDoubleValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC0F6702C34818B0025AB13 /* HKSample+GetDoubleValues.swift */; };
 		4DC0F67A2C34AD620025AB13 /* VitalsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC0F6792C34AD620025AB13 /* VitalsList.swift */; };
 		4DC0F6842C34B66F0025AB13 /* ResolutionPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC0F6832C34B66F0025AB13 /* ResolutionPicker.swift */; };
@@ -356,6 +357,7 @@
 		4DB624852C73F1BF00573807 /* NotificationSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsView.swift; sourceTree = "<group>"; };
 		4DBDD3432BBFAD64001FB0CA /* InvitationCodeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationCodeError.swift; sourceTree = "<group>"; };
 		4DBDD3452BBFAE2D001FB0CA /* InvitationCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationCodeView.swift; sourceTree = "<group>"; };
+		4DBE86DC2C7F9BBF0003390B /* MobilePlatform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobilePlatform.swift; sourceTree = "<group>"; };
 		4DC0F6702C34818B0025AB13 /* HKSample+GetDoubleValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HKSample+GetDoubleValues.swift"; sourceTree = "<group>"; };
 		4DC0F6792C34AD620025AB13 /* VitalsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalsList.swift; sourceTree = "<group>"; };
 		4DC0F6832C34B66F0025AB13 /* ResolutionPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolutionPicker.swift; sourceTree = "<group>"; };
@@ -503,6 +505,7 @@
 				4D8402A92C51B6A000817495 /* FHIRAliases.swift */,
 				2FF350E32C4F3F0B0095F08F /* Firebase+References.swift */,
 				4D62BF292C6A71500088C414 /* FirestoreSettings+EmulatorWithHost.swift */,
+				4DBE86DC2C7F9BBF0003390B /* MobilePlatform.swift */,
 			);
 			path = SharedContext;
 			sourceTree = "<group>";
@@ -1251,6 +1254,7 @@
 				4D0F389E2C09779100DA12F7 /* ShowMoreButton.swift in Sources */,
 				4D081A1F2C6C1A3400E13BC8 /* OrganizationInformation.swift in Sources */,
 				4DDFC7652BF350C2002B07A1 /* Education.swift in Sources */,
+				4DBE86DD2C7F9BBF0003390B /* MobilePlatform.swift in Sources */,
 				4D70CF6A2C65423D00EB4CC6 /* GraphSelection.swift in Sources */,
 				4DDFC7692BF35113002B07A1 /* HeartHealth.swift in Sources */,
 				4D92BA072C3CAE5300ABCED7 /* VitalListMeasurement.swift in Sources */,
