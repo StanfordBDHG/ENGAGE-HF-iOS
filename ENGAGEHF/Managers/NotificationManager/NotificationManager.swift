@@ -72,7 +72,7 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
                         }
                     case let .disassociatingAccount(details):
                         do {
-                            _ = try await self.unregisterRemoteNotifications()
+                            _ = try await self.unregisterDeviceToken(self.apnsDeviceToken)
                             self.apnsDeviceToken = nil
                         } catch {
                             self.error = AnyLocalizedError(
@@ -173,22 +173,18 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
         self.logger.debug("Successfully registered device for remote notifications.")
     }
     
-    private func unregisterRemoteNotifications() async throws {
+    
+    private func unregisterDeviceToken(_ token: Data?) async throws {
         self.logger.debug("Unregistering device for remote notifications.")
         
-        guard let apnsDeviceToken else {
+        guard let token else {
             return
         }
         
         let unregisterDevice = Functions.functions().httpsCallable("unregisterDevice")
-        _ = try await unregisterDevice.call(
-            [
-                "notificationToken": apnsDeviceToken,
-                "platform": MobilePlatform.iOS.rawValue
-            ]
-        )
+        _ = try await unregisterDevice.call(NotificationRegistrationSchema(token).codingRepresentation)
         
-        try await self.unregisterRemoteNotifications()
+        unregisterRemoteNotifications()
         
         self.logger.debug("Successfully unregistered device for remote notifications.")
     }
