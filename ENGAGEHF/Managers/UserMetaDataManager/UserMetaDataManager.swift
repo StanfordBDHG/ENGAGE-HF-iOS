@@ -11,7 +11,6 @@ import Foundation
 import Spezi
 import SpeziAccount
 import SpeziFirebaseAccount
-import SwiftUI
 
 
 @Observable
@@ -39,7 +38,7 @@ class UserMetaDataManager: Module, EnvironmentAccessible {
         // for the newly-signed in user.
         self.organization = nil
         
-        // On sign in, store the user's organization and message settings, and on sign-out mark onboarding complete as false
+        // On sign in, store the user's organization and message settings
         if let accountNotifications {
             notificationsTask = Task.detached { @MainActor [weak self] in
                 for await event in accountNotifications.events {
