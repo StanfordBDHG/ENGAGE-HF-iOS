@@ -169,16 +169,6 @@
         }
       }
     },
-    "CONSENT_LOADING_ERROR" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Please include a markdown based document named \"ConsentDocument\" in your module Bundle."
-          }
-        }
-      }
-    },
     "Contacts" : {
 
     },
@@ -549,6 +539,9 @@
 
     },
     "Show more" : {
+
+    },
+    "Skip" : {
 
     },
     "Survey" : {

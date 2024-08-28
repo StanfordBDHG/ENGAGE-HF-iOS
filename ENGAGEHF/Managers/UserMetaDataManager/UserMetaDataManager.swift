@@ -19,8 +19,7 @@ class UserMetaDataManager: Module, EnvironmentAccessible {
     @ObservationIgnored @Dependency(Account.self) private var account: Account?
     @ObservationIgnored @Dependency(AccountNotifications.self) private var accountNotifications: AccountNotifications?
     @ObservationIgnored @Dependency(FirebaseAccountService.self) private var accountService: FirebaseAccountService?
-
-    @Application(\.logger) @ObservationIgnored private var logger
+    @ObservationIgnored @Application(\.logger) private var logger
     
     private var snapshotListener: ListenerRegistration?
     private var notificationsTask: Task<Void, Never>?

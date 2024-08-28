@@ -36,6 +36,7 @@ struct HomeView: View {
     @Environment(Bluetooth.self) private var bluetooth
     @Environment(ENGAGEHFStandard.self) private var standard
     @Environment(NavigationManager.self) private var navigationManager
+    @Environment(NotificationManager.self) private var notificationManager
 
     @Environment(\.dismiss) private var dismiss
     
@@ -45,6 +46,7 @@ struct HomeView: View {
     var body: some View {
         @Bindable var measurements = measurements
         @Bindable var navigationManager = navigationManager
+        @Bindable var notificationManager = notificationManager
 
         TabView(selection: $navigationManager.selectedTab) {
             Dashboard(presentingAccount: $presentingAccount)
@@ -85,6 +87,7 @@ struct HomeView: View {
                     try await standard.addMeasurement(samples: samples)
                 }
             }
+            .viewStateAlert(state: $notificationManager.state)
     }
 }
 

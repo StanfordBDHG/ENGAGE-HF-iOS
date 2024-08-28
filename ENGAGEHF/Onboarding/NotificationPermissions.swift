@@ -38,13 +38,8 @@ struct NotificationPermissions: View {
                 }
             }, actionView: {
                 OnboardingActionsView(
-                    "NOTIFICATION_PERMISSIONS_BUTTON",
-                    action: {
-                        defer {
-                            notificationProcessing = false
-                            onboardingNavigationPath.nextStep()
-                        }
-                        
+                    primaryText: "NOTIFICATION_PERMISSIONS_BUTTON",
+                    primaryAction: {
                         notificationProcessing = true
                         
                         // Notification Authorization is not available in the preview simulator.
@@ -53,6 +48,13 @@ struct NotificationPermissions: View {
                         } else {
                             _ = try await notificationManager.requestNotificationPermissions()
                         }
+                        
+                        notificationProcessing = false
+                        onboardingNavigationPath.nextStep()
+                    },
+                    secondaryText: "Skip",
+                    secondaryAction: {
+                        onboardingNavigationPath.nextStep()
                     }
                 )
             }

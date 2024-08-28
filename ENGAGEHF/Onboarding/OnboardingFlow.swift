@@ -16,8 +16,6 @@ import SwiftUI
 struct OnboardingFlow: View {
     @AppStorage(StorageKeys.onboardingFlowComplete) private var completedOnboardingFlow = false
     
-    @State private var localNotificationAuthorization = false
-    
     
     var body: some View {
         OnboardingStack(onboardingFlowComplete: $completedOnboardingFlow) {
@@ -29,13 +27,7 @@ struct OnboardingFlow: View {
                 AccountOnboarding()
             }
             
-            #if !(targetEnvironment(simulator) && (arch(i386) || arch(x86_64)))
-                Consent()
-            #endif
-            
-            if !localNotificationAuthorization {
-                NotificationPermissions()
-            }
+            NotificationPermissions()
         }
             .interactiveDismissDisabled(!completedOnboardingFlow)
     }

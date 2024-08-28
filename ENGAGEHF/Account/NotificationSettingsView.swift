@@ -58,6 +58,9 @@ struct NotificationSettingsView: View {
                 }
             }
         }
+            .task {
+                await notificationManager.checkNotificationsAuthorized()
+            }
             .onChange(of: userMetaDataManager.notificationSettings) {
                 Task {
                     await userMetaDataManager.pushUpdatedNotificationSettings()
