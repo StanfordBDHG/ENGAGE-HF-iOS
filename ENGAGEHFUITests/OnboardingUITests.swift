@@ -27,7 +27,7 @@ final class OnboardingUITests: XCTestCase {
         }
         
         let app = XCUIApplication()
-        app.launchArguments = ["--showOnboarding", "--useFirebaseEmulator", "--skipRemoteNotificationRegistration"]
+        app.launchArguments = ["--showOnboarding", "--useFirebaseEmulator"]
         app.launch()
     }
     
