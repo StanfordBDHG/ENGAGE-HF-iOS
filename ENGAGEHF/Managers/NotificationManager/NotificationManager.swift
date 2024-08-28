@@ -37,7 +37,7 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
     private var apnsDeviceToken: Data?
     
     var notificationsAuthorized: Bool = false
-    var error: LocalizedError?
+    var state: ViewState = .idle
     
     
     func configure() {
@@ -65,9 +65,11 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
                         do {
                             _ = try await self.requestNotificationPermissions()
                         } catch {
-                            self.error = AnyLocalizedError(
-                                error: error,
-                                defaultErrorDescription: "Unable to register for remote notifications."
+                            self.state = .error(
+                                AnyLocalizedError(
+                                    error: error,
+                                    defaultErrorDescription: "Unable to register for remote notifications."
+                                )
                             )
                         }
                     case let .disassociatingAccount(details):
@@ -75,9 +77,11 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
                             _ = try await self.unregisterDeviceToken(self.apnsDeviceToken)
                             self.apnsDeviceToken = nil
                         } catch {
-                            self.error = AnyLocalizedError(
-                                error: error,
-                                defaultErrorDescription: "Unable to unregister for remote notifications."
+                            self.state = .error(
+                                AnyLocalizedError(
+                                    error: error,
+                                    defaultErrorDescription: "Unable to unregister for remote notifications."
+                                )
                             )
                         }
                     default:
@@ -155,9 +159,11 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
                 try await self.configureRemoteNotifications(using: deviceToken)
             } catch {
                 self.logger.error("Failed to configured remote notifications for updated device token: \(error)")
-                self.error = AnyLocalizedError(
-                    error: error,
-                    defaultErrorDescription: "Unable to unregister for remote notifications."
+                self.state = .error(
+                    AnyLocalizedError(
+                        error: error,
+                        defaultErrorDescription: "Unable to unregister for remote notifications."
+                    )
                 )
             }
         }
