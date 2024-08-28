@@ -149,7 +149,9 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
     func requestNotificationPermissions() async throws -> Bool {
         logger.debug("Requesting notification permissions.")
         
-        guard let deviceToken = try await self.getDeviceToken(askPermissionIfNeeded: true) else {
+        let deviceToken = try await self.getDeviceToken(askPermissionIfNeeded: true)
+        
+        guard let deviceToken else {
             return false
         }
         
@@ -211,16 +213,22 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
                     return nil
                 }
                 
-                return try await registerRemoteNotifications()
+                break
             } else {
                 return nil
             }
         case .authorized, .ephemeral, .provisional:
-            return try await registerRemoteNotifications()
+            break
         case .denied:
             return nil
         default:
             return nil
         }
+        
+#if TEST
+        return Data()
+#else
+        return FeatureFlags.skipRemoteNotificationRegistration ? Data() : try await registerRemoteNotifications()
+#endif
     }
 }
