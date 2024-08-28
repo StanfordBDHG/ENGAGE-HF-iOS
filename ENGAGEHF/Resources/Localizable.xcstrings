@@ -152,6 +152,9 @@
         }
       }
     },
+    "Bluetooth Devices" : {
+
+    },
     "Cancel" : {
 
     },
@@ -202,9 +205,6 @@
 
     },
     "defaultLoadingError" : {
-
-    },
-    "Devices" : {
 
     },
     "Dismiss Button" : {

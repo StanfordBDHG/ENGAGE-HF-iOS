@@ -60,4 +60,8 @@ struct MedicationsList: View {
             )
         ]
     )
+        .previewWith(standard: ENGAGEHFStandard()) {
+            MedicationsManager()
+            NavigationManager()
+        }
 }

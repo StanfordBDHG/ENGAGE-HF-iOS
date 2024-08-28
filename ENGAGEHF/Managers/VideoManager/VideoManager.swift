@@ -49,6 +49,10 @@ final class VideoManager: Module, EnvironmentAccessible, DefaultInitializable {
                 }
             }
         }
+        
+        Task { @MainActor in
+            videoCollections = await getVideoSections()
+        }
     }
     
     

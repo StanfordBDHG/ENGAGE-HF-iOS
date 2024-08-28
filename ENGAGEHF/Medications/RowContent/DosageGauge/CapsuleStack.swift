@@ -10,24 +10,25 @@ import SwiftUI
 
 
 struct CapsuleStack: View {
-    let gaugeWidth: CGFloat
     let gaugeHeight: CGFloat
-    let progressWidth: CGFloat
+    let progress: CGFloat
     
     
     var body: some View {
-        ZStack(alignment: .leading) {
-            Capsule()
-                .frame(height: gaugeHeight)
-                .foregroundStyle(Color(.systemGray6))
-            Capsule()
-                .frame(width: progressWidth, height: gaugeHeight)
-                .foregroundStyle(.accent)
+        GeometryReader { geometry in
+            ZStack(alignment: .leading) {
+                Capsule()
+                    .foregroundStyle(.quaternary)
+                Capsule()
+                    .frame(width: progress * geometry.size.width)
+                    .foregroundStyle(.accent)
+            }
         }
+            .frame(height: gaugeHeight)
     }
 }
 
 
 #Preview {
-    CapsuleStack(gaugeWidth: 50.0, gaugeHeight: 15, progressWidth: 40)
+    CapsuleStack(gaugeHeight: 15, progress: 0.5)
 }

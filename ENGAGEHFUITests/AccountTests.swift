@@ -17,7 +17,7 @@ final class AccountTests: XCTestCase {
         continueAfterFailure = false
 
         let app = XCUIApplication()
-        app.launchArguments = ["--assumeOnboardingComplete", "--setupTestEnvironment"]
+        app.launchArguments = ["--assumeOnboardingComplete", "--setupTestEnvironment", "--useFirebaseEmulator"]
         app.launch()
     }
 
@@ -57,7 +57,8 @@ final class AccountTests: XCTestCase {
         app.buttons["Login"].tap()
 
         // ensure home view is in focus
-        XCTAssert(app.buttons["Home"].waitForExistence(timeout: 2.0))
-        app.buttons["Home"].tap()
+        let tabBar = app.tabBars["Tab Bar"]
+        XCTAssert(tabBar.buttons["Home"].waitForExistence(timeout: 2))
+        tabBar.buttons["Home"].tap()
     }
 }
