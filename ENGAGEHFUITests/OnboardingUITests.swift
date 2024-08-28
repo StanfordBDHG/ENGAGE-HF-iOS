@@ -62,11 +62,6 @@ extension XCUIApplication {
             try navigateAccount(email: email)
         }
         
-        // Consent
-        if staticTexts["Consent"].waitForExistence(timeout: 5) {
-            try navigateConsent()
-        }
-        
         if !skipOnRepeat {
             // Notifications
             try navigateNotifications()
@@ -135,33 +130,16 @@ extension XCUIApplication {
         sleep(3)
     }
     
-    private func navigateConsent() throws {
-        XCTAssert(staticTexts["Consent"].waitForExistence(timeout: 5))
-        
-        // Enter first name
-        XCTAssert(textFields["Enter your first name ..."].exists)
-        textFields["Enter your first name ..."].tap()
-        textFields["Enter your first name ..."].typeText("Leland")
-        
-        // Enter last name
-        XCTAssert(textFields["Enter your last name ..."].exists)
-        textFields["Enter your last name ..."].tap()
-        textFields["Enter your last name ..."].typeText("Stanford")
-        
-        XCTAssertTrue(scrollViews["Signature Field"].waitForExistence(timeout: 2))
-        scrollViews["Signature Field"].tap()
-        scrollViews["Signature Field"].swipeRight()
-        
-        XCTAssert(buttons["I Consent"].waitForExistence(timeout: 2)
-                  && buttons["I Consent"].isEnabled)
-        buttons["I Consent"].tap()
-    }
-    
     private func navigateNotifications() throws {
         XCTAssert(staticTexts["Notifications"].waitForExistence(timeout: 5))
         
         XCTAssert(buttons["Allow Notifications"].waitForExistence(timeout: 2))
         buttons["Allow Notifications"].tap()
+        
+        if !staticTexts["Home"].waitForExistence(timeout: 10) {
+            XCTAssert(buttons["Skip"].waitForExistence(timeout: 0.5), "No skip notifications button.")
+            buttons["Skip"].tap()
+        }
     }
     
     fileprivate func assertOnboardingComplete() {
