@@ -4,9 +4,6 @@
     "" : {
 
     },
-    "%@" : {
-
-    },
     "%@ Date: %@" : {
       "localizations" : {
         "en" : {
@@ -116,12 +113,6 @@
     "Add Medications" : {
 
     },
-    "Add Mock" : {
-
-    },
-    "Add mock notification" : {
-
-    },
     "All Data" : {
 
     },
@@ -182,9 +173,6 @@
         }
       }
     },
-    "Content ..." : {
-
-    },
     "Current" : {
 
     },
@@ -216,9 +204,6 @@
 
     },
     "Expansion Button" : {
-
-    },
-    "Expected Progress: %lf" : {
 
     },
     "Failed to fetch HKUnits for the given samples." : {
@@ -409,12 +394,6 @@
           }
         }
       }
-    },
-    "List With Sections" : {
-
-    },
-    "List Without Sections" : {
-
     },
     "Medication Label: %@" : {
 
@@ -633,9 +612,6 @@
           }
         }
       }
-    },
-    "Tap Here" : {
-
     },
     "Target" : {
 
