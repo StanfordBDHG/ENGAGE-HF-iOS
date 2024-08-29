@@ -12,8 +12,7 @@ import Foundation
 extension ClosedRange {
     /// Initialize a closed range over a sequence spanning from the minimum to the maximum values of the sequence.
     init?(spanning collection: some Sequence<Bound>) {
-        guard let min = collection.min(),
-              let max = collection.max() else {
+        guard let min = collection.min(), let max = collection.max(), min <= max else {
             return nil
         }
         

@@ -22,8 +22,6 @@ struct VitalsGraph: View {
     var body: some View {
         VitalsGraphContent(
             viewModel: viewModel,
-            dateUnit: viewModel.dateUnit,
-            quantityUnit: viewModel.localizedUnitString,
             targetValue: viewModel.targetValue
         )
             // Default styling

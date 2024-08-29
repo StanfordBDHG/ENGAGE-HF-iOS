@@ -21,7 +21,7 @@ struct SymptomsGraphSection: View {
         resolution.getDateRange(endDate: .now)
     }
     
-    @MainActor private var data: [String: [VitalMeasurement]] {
+    @MainActor private var graphData: [String: [VitalMeasurement]] {
         let ungroupedData = vitalsManager.symptomHistory
             .compactMap { score -> VitalMeasurement? in
                 guard let value = score[keyPath: symptomsType.symptomScoreKeyMap] else {
@@ -56,18 +56,11 @@ struct SymptomsGraphSection: View {
     var body: some View {
         Section(
             content: {
-                let graphData = data
-                if !graphData.isEmpty {
-                    let graph = VitalsGraph(data: graphData, options: options)
-                    if symptomsType == .dizziness {
-                        graph.modifier(DizzinessYAxisModifier())
-                    } else {
-                        graph.modifier(PercentageYAxisModifier())
-                    }
+                let graph = VitalsGraph(data: graphData, options: options)
+                if symptomsType == .dizziness {
+                    graph.modifier(DizzinessYAxisModifier())
                 } else {
-                    Text(symptomsType.localizedEmptyHistoryWarning)
-                        .font(.caption)
-                        .accessibilityLabel("Empty Symptoms Graph")
+                    graph.modifier(PercentageYAxisModifier())
                 }
             },
             header: {

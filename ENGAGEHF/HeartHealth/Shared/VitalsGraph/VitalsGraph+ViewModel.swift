@@ -21,9 +21,9 @@ extension VitalsGraph {
         
         private(set) var aggregatedData: [MeasurementSeries] = []
         private(set) var selection: SelectedInterval?
-        private(set) var selectionFormatter: ([(String, Double)]) -> String = { _ in "---" }
-        private(set) var localizedUnitString: String = "---"
-        private(set) var dateRange: ClosedRange<Date> = Date()...Date()
+        private(set) var selectionFormatter: ([(String, Double)]) -> String = { _ in "No Data" }
+        private(set) var localizedUnitString: String?
+        private(set) var dateRange: ClosedRange<Date> = Date().addingTimeInterval(-60 * 60 * 24 * 30)...Date()
         private(set) var dateUnit: Calendar.Component = .day
         private(set) var dataValueRange: ClosedRange<Double>?
         private(set) var targetValue: SeriesTarget?
@@ -44,10 +44,6 @@ extension VitalsGraph {
         /// Aggregates the data by calculating the average across the intervals determined by the granularity of dateUnit.
         /// Saves the dateRange, dateUnit, and aggregatedData for later use.
         func processData(_ data: SeriesDictionary, options: VitalsGraphOptions) {
-            guard !data.isEmpty else {
-                return
-            }
-            
             // Aggregate the data across time and group by series type
             let aggregatedSeries: [String: [AggregatedMeasurement]] = aggregateData(data: data, dateUnit: options.granularity)
             let seriesAverages: [String: Double] = data.mapValues { average(series: $0) ?? 0 }
@@ -131,11 +127,13 @@ extension VitalsGraph {
             if let dateRange = options.dateRange {
                 self.dateRange = dateRange
             } else {
-                self.dateRange = getDateRange(from: seriesData, using: options.granularity)
+                if let range = getDateRange(from: seriesData, using: options.granularity) {
+                    self.dateRange = range
+                }
             }
             self.dateUnit = options.granularity
-            self.selectionFormatter = options.selectionFormatter
-            self.localizedUnitString = options.localizedUnitString
+            self.selectionFormatter = seriesData.isEmpty ? { _ in "No Data" } : options.selectionFormatter
+            self.localizedUnitString = seriesData.isEmpty ? nil : options.localizedUnitString
             self.selection = nil
             
             self.aggregatedData = seriesData
@@ -155,6 +153,7 @@ extension VitalsGraph {
                 
                 self.dataValueRange = ClosedRange(spanning: seriesValues)?
                     .extendBy(percent: 0.1)
+                    .withMinimumRange(30.0)
                     .extendToMultipleOf(10.0)
             }
         }
@@ -186,16 +185,20 @@ extension VitalsGraph {
             return series.map(\.value).reduce(0, +) / Double(series.count)
         }
         
-        private func getDateRange(from data: [MeasurementSeries], using dateUnit: Calendar.Component) -> ClosedRange<Date> {
+        private func getDateRange(from data: [MeasurementSeries], using dateUnit: Calendar.Component) -> ClosedRange<Date>? {
+            guard !data.isEmpty else {
+                return nil
+            }
+            
             let allDates = data.flatMap { $0.data.map(\.date) }
             
             guard let minDate = allDates.min(), let maxDate = allDates.max() else {
-                return Date()...Date()
+                return nil
             }
             
             guard let domainStart = calendar.dateInterval(of: dateUnit, for: minDate)?.start,
                   let domainEnd = calendar.dateInterval(of: dateUnit, for: maxDate)?.end else {
-                return Date()...Date()
+                return nil
             }
             
             return domainStart ... domainEnd

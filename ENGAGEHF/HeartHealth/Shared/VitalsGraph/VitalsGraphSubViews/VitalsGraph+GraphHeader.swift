@@ -12,7 +12,6 @@ import SwiftUI
 extension VitalsGraph {
     struct GraphHeader: View {
         let viewModel: ViewModel
-        let quantityUnit: String
         let intervalSummaryHeight: CGFloat
         
         
@@ -23,7 +22,7 @@ extension VitalsGraph {
                     start: viewModel.dateRange.lowerBound,
                     end: viewModel.dateRange.upperBound
                 ).asAdjustedRange(using: viewModel.calendar) ?? Date()..<Date(),
-                unit: quantityUnit,
+                unit: viewModel.localizedUnitString,
                 averaged: viewModel.totalDataPoints > 1,
                 idealHeight: intervalSummaryHeight,
                 accessibilityLabel: "Overall Summary"

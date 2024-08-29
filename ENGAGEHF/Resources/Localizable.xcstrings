@@ -206,12 +206,6 @@
     "Education Video Inspect Button" : {
 
     },
-    "Empty %@ Graph" : {
-
-    },
-    "Empty Symptoms Graph" : {
-
-    },
     "Enable Notifications in Settings" : {
 
     },
@@ -426,6 +420,9 @@
 
     },
     "No Contacts Available" : {
+
+    },
+    "No Data" : {
 
     },
     "No medication recommendations" : {

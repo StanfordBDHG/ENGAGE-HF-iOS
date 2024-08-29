@@ -17,7 +17,7 @@ extension HKSampleGraph {
         var viewState: ViewState = .idle
         
         private(set) var seriesData: SeriesDictionary = [:]
-        private(set) var displayUnit = ""
+        private(set) var displayUnit: String?
         private(set) var formatter: ([(String, Double)]) -> String = { _ in "No Data" }
         private(set) var targetValue: SeriesTarget?
         
@@ -28,7 +28,10 @@ extension HKSampleGraph {
                 return
             }
             
-            let (hkUnits, unitString) = getUnits(data: [target])
+            guard let (hkUnits, unitString) = getUnits(data: [target]) else {
+                self.targetValue = nil
+                return
+            }
             
             switch target {
             case let quantitySample as HKQuantitySample:
@@ -50,7 +53,11 @@ extension HKSampleGraph {
         
         
         func processData(data: [HKSample]) {
-            let (hkUnits, unitString) = getUnits(data: data)
+            guard let (hkUnits, unitString) = getUnits(data: data) else {
+                self.seriesData = [:]
+                self.displayUnit = nil
+                return
+            }
             
             let allData: [VitalMeasurement] = data.flatMap { measurement in
                 switch measurement {
@@ -94,10 +101,9 @@ extension HKSampleGraph {
             self.displayUnit = unitString
         }
         
-        private func getUnits(data: [HKSample]) -> (HKUnit, String) {
+        private func getUnits(data: [HKSample]) -> (HKUnit, String)? {
             guard let sample = data.first else {
-                viewState = .error(HKSampleGraphError.failedToFetchUnits)
-                return (HKUnit.pound(), "lb")   // Dummy value
+                return nil
             }
             
             // For now, only allow for HKQuantitySample and HKCorrelation
@@ -112,8 +118,7 @@ extension HKSampleGraph {
             }
             
             guard let identifiedUnits else {
-                viewState = .error(HKSampleGraphError.failedToFetchUnits)
-                return (HKUnit.pound(), "lb")   // Dummy value
+                return nil
             }
             
             return identifiedUnits
