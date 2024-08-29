@@ -74,31 +74,31 @@ final class HKSampleGraphUnitTests: XCTestCase {
         
         // Define expected output
         let expectedOutput: SeriesDictionary = [
-            HKQuantityTypeIdentifier.bodyMass.rawValue: [
+            KnownVitalsSeries.bodyWeight.rawValue: [
                 VitalMeasurement(
                     date: Date().addingTimeInterval(-5 * 60 * 60),
                     value: bodyMassSamples[0].quantity.doubleValue(for: unit),
-                    type: HKQuantityTypeIdentifier.bodyMass.rawValue
+                    type: KnownVitalsSeries.bodyWeight.rawValue
                 ),
                 VitalMeasurement(
                     date: Date().addingTimeInterval(-4 * 60 * 60),
                     value: bodyMassSamples[1].quantity.doubleValue(for: unit),
-                    type: HKQuantityTypeIdentifier.bodyMass.rawValue
+                    type: KnownVitalsSeries.bodyWeight.rawValue
                 ),
                 VitalMeasurement(
                     date: Date().addingTimeInterval(-3 * 60 * 60),
                     value: bodyMassSamples[2].quantity.doubleValue(for: unit),
-                    type: HKQuantityTypeIdentifier.bodyMass.rawValue
+                    type: KnownVitalsSeries.bodyWeight.rawValue
                 ),
                 VitalMeasurement(
                     date: Date().addingTimeInterval(-2 * 60 * 60),
                     value: bodyMassSamples[3].quantity.doubleValue(for: unit),
-                    type: HKQuantityTypeIdentifier.bodyMass.rawValue
+                    type: KnownVitalsSeries.bodyWeight.rawValue
                 ),
                 VitalMeasurement(
                     date: Date().addingTimeInterval(-1 * 60 * 60),
                     value: bodyMassSamples[4].quantity.doubleValue(for: unit),
-                    type: HKQuantityTypeIdentifier.bodyMass.rawValue
+                    type: KnownVitalsSeries.bodyWeight.rawValue
                 )
             ]
         ]
@@ -113,7 +113,7 @@ final class HKSampleGraphUnitTests: XCTestCase {
         XCTAssertEqual(viewModel.displayUnit, "lb")
         
         // Make sure the correct formatter was chosen
-        XCTAssertEqual(viewModel.formatter([(HKQuantityTypeIdentifier.bodyMass.rawValue, 120.0), ("Diastolic", 60.0)]), "120.0")
+        XCTAssertEqual(viewModel.formatter([(KnownVitalsSeries.bodyWeight.rawValue, 120.0), ("Diastolic", 60.0)]), "120.0")
     }
     
     func testHKSampleGraphViewModelWithHeartRate() throws {
@@ -130,12 +130,12 @@ final class HKSampleGraphUnitTests: XCTestCase {
         
         // Define expected output
         let expectedOutput: SeriesDictionary = [
-            HKQuantityTypeIdentifier.heartRate.rawValue: [
-                VitalMeasurement(date: Date().addingTimeInterval(-5 * 60 * 60), value: 60, type: HKQuantityTypeIdentifier.heartRate.rawValue),
-                VitalMeasurement(date: Date().addingTimeInterval(-4 * 60 * 60), value: 62, type: HKQuantityTypeIdentifier.heartRate.rawValue),
-                VitalMeasurement(date: Date().addingTimeInterval(-3 * 60 * 60), value: 64, type: HKQuantityTypeIdentifier.heartRate.rawValue),
-                VitalMeasurement(date: Date().addingTimeInterval(-2 * 60 * 60), value: 66, type: HKQuantityTypeIdentifier.heartRate.rawValue),
-                VitalMeasurement(date: Date().addingTimeInterval(-1 * 60 * 60), value: 68, type: HKQuantityTypeIdentifier.heartRate.rawValue)
+            KnownVitalsSeries.heartRate.rawValue: [
+                VitalMeasurement(date: Date().addingTimeInterval(-5 * 60 * 60), value: 60, type: KnownVitalsSeries.heartRate.rawValue),
+                VitalMeasurement(date: Date().addingTimeInterval(-4 * 60 * 60), value: 62, type: KnownVitalsSeries.heartRate.rawValue),
+                VitalMeasurement(date: Date().addingTimeInterval(-3 * 60 * 60), value: 64, type: KnownVitalsSeries.heartRate.rawValue),
+                VitalMeasurement(date: Date().addingTimeInterval(-2 * 60 * 60), value: 66, type: KnownVitalsSeries.heartRate.rawValue),
+                VitalMeasurement(date: Date().addingTimeInterval(-1 * 60 * 60), value: 68, type: KnownVitalsSeries.heartRate.rawValue)
             ]
         ]
         
@@ -148,7 +148,7 @@ final class HKSampleGraphUnitTests: XCTestCase {
         XCTAssertEqual(viewModel.displayUnit, "BPM")
         
         // Make sure the correct formatter was chosen
-        XCTAssertEqual(viewModel.formatter([(HKQuantityTypeIdentifier.heartRate.rawValue, 120.0), ("Diastolic", 60.0)]), "120")
+        XCTAssertEqual(viewModel.formatter([(KnownVitalsSeries.heartRate.rawValue, 120.0), ("Diastolic", 60.0)]), "120")
     }
     
     

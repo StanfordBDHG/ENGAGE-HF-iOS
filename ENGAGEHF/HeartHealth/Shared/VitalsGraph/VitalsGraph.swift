@@ -13,16 +13,18 @@ import SwiftUI
 
 struct VitalsGraph: View {
     let data: SeriesDictionary
+    let targetValue: SeriesTarget?
     let options: VitalsGraphOptions
     
     @State private var viewModel = ViewModel()
     
     
     var body: some View {
-        ChartContent(
+        VitalsGraphContent(
             viewModel: viewModel,
             dateUnit: viewModel.dateUnit,
-            quantityUnit: viewModel.localizedUnitString
+            quantityUnit: viewModel.localizedUnitString,
+            targetValue: viewModel.targetValue
         )
             // Default styling
             .modifier(DefaultChartStyle(viewModel: viewModel, dateRange: viewModel.dateRange))
@@ -35,8 +37,9 @@ struct VitalsGraph: View {
     }
     
      
-    init(data: SeriesDictionary, options: VitalsGraphOptions = .defaultOptions) {
+    init(data: SeriesDictionary, target: SeriesTarget? = nil, options: VitalsGraphOptions = .defaultOptions) {
         self.data = data
+        self.targetValue = target
         self.options = options
     }
 }

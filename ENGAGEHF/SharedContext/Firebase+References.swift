@@ -49,6 +49,10 @@ extension Firestore {
     static func messagesCollectionReference(for accountId: String) -> CollectionReference {
         userDocumentReference(for: accountId).collection("messages")
     }
+    
+    static func dryWeightCollectionReference(for accountId: String) -> CollectionReference {
+        userDocumentReference(for: accountId).collection("dryWeightObservations")
+    }
 
     static func symptomScoresCollectionReference(for accountId: String) -> CollectionReference {
         userDocumentReference(for: accountId).collection("symptomScores")

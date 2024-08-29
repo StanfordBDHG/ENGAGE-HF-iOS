@@ -41,7 +41,8 @@ struct VitalsGraphSection: View {
                     HKSampleGraph(
                         data: data,
                         dateRange: dateRange,
-                        dateResolution: granularity.defaultDateUnit
+                        dateResolution: granularity.defaultDateUnit,
+                        targetValue: vitalsType == .weight ? vitalsManager.latestDryWeight : nil
                     )
                 } else {
                     Text(vitalsType.localizedEmptyHistoryWarning)

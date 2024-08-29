@@ -24,29 +24,24 @@ import SpeziFirestore
 @Observable
 @MainActor
 public class VitalsManager: Module, EnvironmentAccessible {
-    enum VitalsError: Error {
-        case invalidConversion
-        case unknownUnit
-        case invalidObservationType
-        case missingField
-    }
-    
     @ObservationIgnored @StandardActor private var standard: ENGAGEHFStandard
-
+    
     @ObservationIgnored @Dependency(Account.self) private var account: Account?
     @ObservationIgnored @Dependency(AccountNotifications.self) private var accountNotifications: AccountNotifications?
     @ObservationIgnored @Dependency(FirebaseAccountService.self) private var accountService: FirebaseAccountService?
-
+    
     @Application(\.logger) @ObservationIgnored private var logger
-
+    
     private var snapshotListeners: [ListenerRegistration] = []
     private var notificationsTask: Task<Void, Never>?
-
+    
     public var heartRateHistory: [HKQuantitySample] = []
     public var bloodPressureHistory: [HKCorrelation] = []
     public var weightHistory: [HKQuantitySample] = []
     
     public var symptomHistory: [SymptomScore] = []
+    
+    private(set) var latestDryWeight: HKQuantitySample?
     
     
     public var latestHeartRate: HKQuantitySample? {
@@ -67,18 +62,18 @@ public class VitalsManager: Module, EnvironmentAccessible {
             self.setupPreview()
             return
         }
-
+        
         if let accountNotifications {
             notificationsTask = Task.detached { @MainActor [weak self] in
                 for await event in accountNotifications.events {
                     guard let self else {
                         return
                     }
-
+                    
                     switch event {
                     case let .associatedAccount(details):
                         updateSnapshotListener(for: details)
-
+                        
                         /// If testing, add mock measurements to the user's heart rate, blood pressure, weight, and symptoms histories
                         /// Called each time a new user signs in
                         if FeatureFlags.setupMockVitals {
@@ -96,7 +91,7 @@ public class VitalsManager: Module, EnvironmentAccessible {
                 }
             }
         }
-
+        
         if let account {
             updateSnapshotListener(for: account.details)
         }
@@ -110,17 +105,22 @@ public class VitalsManager: Module, EnvironmentAccessible {
             prevListener.remove()
         }
         self.snapshotListeners = []
-
+        
         // Only register snapshot listeners when a user is signed in
         guard let details else {
             self.logger.debug("No user signed in, skipping snapshot listener.")
             return
         }
-
-        let bodyMassCollectionReference = Firestore.collectionReference(for: details.accountId, type: HKQuantityType(.bodyMass))
-        let heartRateCollectionReference = Firestore.collectionReference(for: details.accountId, type: HKQuantityType(.heartRate))
-        let bloodPressureCollectionReference = Firestore.collectionReference(for: details.accountId, type: HKCorrelationType(.bloodPressure))
-        let symptomsCollectionReference = Firestore.symptomScoresCollectionReference(for: details.accountId)
+        
+        self.registerAllSnapshots(for: details.accountId)
+    }
+    
+    private func registerAllSnapshots(for accountId: String) {
+        let bodyMassCollectionReference = Firestore.collectionReference(for: accountId, type: HKQuantityType(.bodyMass))
+        let heartRateCollectionReference = Firestore.collectionReference(for: accountId, type: HKQuantityType(.heartRate))
+        let bloodPressureCollectionReference = Firestore.collectionReference(for: accountId, type: HKCorrelationType(.bloodPressure))
+        let symptomsCollectionReference = Firestore.symptomScoresCollectionReference(for: accountId)
+        let dryWeightCollectionReference = Firestore.dryWeightCollectionReference(for: accountId)
 
         // Weight snapshot listener
         if let bodyMassCollectionReference {
@@ -128,7 +128,7 @@ public class VitalsManager: Module, EnvironmentAccessible {
                 self.registerSnapshot(
                     collectionReference: bodyMassCollectionReference,
                     storage: \.weightHistory,
-                    mapObservation: convertToHKQuantitySample
+                    mapObservation: FHIRObservationToHKSampleConverter.convertToHKQuantitySample
                 )
             )
         }
@@ -139,7 +139,7 @@ public class VitalsManager: Module, EnvironmentAccessible {
                 self.registerSnapshot(
                     collectionReference: heartRateCollectionReference,
                     storage: \.heartRateHistory,
-                    mapObservation: convertToHKQuantitySample
+                    mapObservation: FHIRObservationToHKSampleConverter.convertToHKQuantitySample
                 )
             )
         }
@@ -150,7 +150,7 @@ public class VitalsManager: Module, EnvironmentAccessible {
                 self.registerSnapshot(
                     collectionReference: bloodPressureCollectionReference,
                     storage: \.bloodPressureHistory,
-                    mapObservation: convertToHKCorrelation
+                    mapObservation: FHIRObservationToHKSampleConverter.convertToHKCorrelation
                 )
             )
         }
@@ -161,6 +161,15 @@ public class VitalsManager: Module, EnvironmentAccessible {
                 collectionReference: symptomsCollectionReference,
                 storage: \.symptomHistory,
                 mapObservation: { $0 }
+            )
+        )
+        
+        // Dry Weight snapshot listener
+        self.snapshotListeners.append(
+            self.registerLatestEntrySnapshot(
+                collectionReference: dryWeightCollectionReference,
+                storage: \.latestDryWeight,
+                mapObservation: FHIRObservationToHKSampleConverter.convertToHKQuantitySample
             )
         )
     }
@@ -192,130 +201,34 @@ public class VitalsManager: Module, EnvironmentAccessible {
             }
     }
     
-    
-    private func convertToHKQuantitySample(_ observation: FHIRObservation) throws -> HKQuantitySample {
-        let hkQuantity: HKQuantity
-        let quantityType: HKQuantityType
-        
-        if observation.code.containsCoding(code: "29463-7", system: FHIRSystem.loinc) {
-            // Weight
-            hkQuantity = try self.getQuantity(observation: observation)
-            quantityType = HKQuantityType(.bodyMass)
-        } else if observation.code.containsCoding(code: "8867-4", system: FHIRSystem.loinc) {
-            // Heart Rate
-            hkQuantity = try self.getQuantity(observation: observation)
-            quantityType = HKQuantityType(.heartRate)
-        } else {
-            throw VitalsError.invalidObservationType
-        }
-        
-        let effectiveDate = observation.getEffectiveDate()
-        
-        guard let effectiveDate else {
-            throw VitalsError.invalidConversion
-        }
-        
-        guard let identifier = observation.id?.value?.string else {
-            throw VitalsError.missingField
-        }
-        
-        return HKQuantitySample(
-            type: quantityType,
-            quantity: hkQuantity,
-            start: effectiveDate.start,
-            end: effectiveDate.end,
-            metadata: [HKMetadataKeyExternalUUID: identifier]
-        )
-    }
-    
-    private func convertToHKCorrelation(_ observation: FHIRObservation) throws -> HKCorrelation {
-        // For now, only handle Blood Pressure
-        guard observation.code.containsCoding(code: "85354-9", system: FHIRSystem.loinc) else {
-            throw VitalsError.invalidObservationType
-        }
-        
-        let effectiveDate = observation.getEffectiveDate()
-        
-        guard let effectiveDate else {
-            throw VitalsError.invalidConversion
-        }
-        
-        // Index into the components of the observation for systolic and diastolic measurements
-        guard let components = observation.component else {
-            throw VitalsError.missingField
-        }
-        
-        let systolicComponent = try self.getComponent(components, code: "8480-6", system: FHIRSystem.loinc)
-        let diastolicComponent = try self.getComponent(components, code: "8462-4", system: FHIRSystem.loinc)
-        
-        let systolicQuantity = try self.getQuantity(observation: systolicComponent)
-        let diastolicQuantity = try self.getQuantity(observation: diastolicComponent)
-        
-        let systolicSample = HKQuantitySample(
-            type: HKQuantityType(.bloodPressureSystolic),
-            quantity: systolicQuantity,
-            start: effectiveDate.start,
-            end: effectiveDate.end
-        )
-        let diastolicSample = HKQuantitySample(
-            type: HKQuantityType(.bloodPressureDiastolic),
-            quantity: diastolicQuantity,
-            start: effectiveDate.start,
-            end: effectiveDate.end
-        )
-        
-        guard let identifier = observation.id?.value?.string else {
-            throw VitalsError.missingField
-        }
-        
-        return HKCorrelation(
-            type: HKCorrelationType(.bloodPressure),
-            start: effectiveDate.start,
-            end: effectiveDate.end,
-            objects: [systolicSample, diastolicSample],
-            metadata: [HKMetadataKeyExternalUUID: identifier]
-        )
-    }
-    
-    
-    private func getComponent(_ components: [FHIRObservationComponent], code: String, system: URL) throws -> FHIRObservationComponent {
-        guard let component = components.first(
-            where: {
-                $0.code.containsCoding(code: code, system: system)
+    private func registerLatestEntrySnapshot<T, V: Decodable>(
+        collectionReference: CollectionReference,
+        storage: ReferenceWritableKeyPath<VitalsManager, T?>,
+        mapObservation: @escaping (V) throws -> T
+    ) -> ListenerRegistration {
+        // Return a listener for the given collection
+        collectionReference
+            .order(by: "effectiveDateTime")
+            .limit(to: 1)
+            .addSnapshotListener { querySnapshot, error in
+                self.logger.debug("Fetching most recent \(collectionReference.collectionID) history...")
+                guard let documentRefs = querySnapshot?.documents else {
+                    self.logger.error("Error fetching \(collectionReference.collectionID) observations: \(error)")
+                    return
+                }
+                
+                self[keyPath: storage] = documentRefs.compactMap {
+                    do {
+                        return try mapObservation($0.data(as: V.self))
+                    } catch {
+                        self.logger.error("Error saving \(collectionReference.collectionID) history: \(error)")
+                        return nil
+                    }
+                }.first
+                
+                
+                self.logger.debug("\(collectionReference.collectionID) history updated successfully.")
             }
-        ) else {
-            throw VitalsError.missingField
-        }
-        
-        return component
-    }
-    
-    private func getQuantity(observation: ObservationValueProtocol) throws -> HKQuantity {
-        guard case let .quantity(fhirQuantity) = observation.observationValue?.type else {
-            throw VitalsError.invalidConversion
-        }
-        
-        guard let sampleQuantity = fhirQuantity.value?.value?.decimal else {
-            throw VitalsError.invalidConversion
-        }
-        
-        let quantity = sampleQuantity.doubleValue
-        
-        let units: HKUnit
-        switch fhirQuantity.unit?.value?.string {
-        case "lbs":
-            units = HKUnit.pound()
-        case "kg":
-            units = HKUnit.gramUnit(with: .kilo)
-        case "beats/minute":
-            units = .count().unitDivided(by: .minute())
-        case "mmHg":
-            units = HKUnit.millimeterOfMercury()
-        default:
-            throw VitalsError.unknownUnit
-        }
-        
-        return HKQuantity(unit: units, doubleValue: quantity)
     }
 
     deinit {

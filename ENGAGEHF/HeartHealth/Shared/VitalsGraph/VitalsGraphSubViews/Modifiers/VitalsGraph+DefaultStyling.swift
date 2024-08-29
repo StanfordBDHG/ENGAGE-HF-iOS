@@ -15,10 +15,13 @@ extension VitalsGraph {
         let viewModel: ViewModel
         let dateRange: ClosedRange<Date>
         
+        private let defaultValueRange = 0.0...100.0
+        
         
         func body(content: Content) -> some View {
             content
                 .chartXScale(domain: dateRange)
+                .chartYScale(domain: viewModel.dataValueRange ?? defaultValueRange)
                 .chartXAxis {
                     AxisMarks(values: .automatic()) {
                         AxisGridLine()
@@ -29,8 +32,23 @@ extension VitalsGraph {
                         AxisGridLine(stroke: StrokeStyle(lineWidth: 0.5, dash: [0]))
                     }
                 }
+                .chartYAxis {
+                    AxisMarks(values: .automatic()) {
+                        AxisGridLine()
+                        AxisValueLabel()
+                    }
+                    
+                    // Add a solid horizontal boundary line on the top and bottom of the chart
+                    AxisMarks(values: [
+                        viewModel.dataValueRange?.lowerBound ?? defaultValueRange.lowerBound,
+                        viewModel.dataValueRange?.upperBound ?? defaultValueRange.upperBound
+                    ]) {
+                        AxisGridLine(stroke: StrokeStyle(lineWidth: 0.5, dash: [0]))
+                    }
+                }
                 .chartForegroundStyleScale(range: [Color.accentColor, Color.complement])
-                .chartLegend(viewModel.aggregatedData.count > 1 ? .visible : .hidden)
+                .chartSymbolScale(range: [BasicChartSymbolShape.circle, BasicChartSymbolShape.square])
+                .chartLegend(viewModel.numSeries > 1 ? .visible : .hidden)
         }
     }
 }

@@ -168,8 +168,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordBDHG/ResearchKitOnFHIR",
       "state" : {
-        "revision" : "dcd5f95522ed02a873b03c9638dbf397b99c74e0",
-        "version" : "2.0.0"
+        "revision" : "23dda93dc652b5c2753b5cbf989faf8185fd17f1",
+        "version" : "2.0.1"
       }
     },
     {
@@ -222,8 +222,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziDevices.git",
       "state" : {
-        "revision" : "32b379270afe5e121161ea644fa0a8c1a974068a",
-        "version" : "1.2.1"
+        "revision" : "cfba7691b6211bb2f566a8c263ff973921ee555b",
+        "version" : "1.2.2"
       }
     },
     {
@@ -240,8 +240,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziFoundation",
       "state" : {
-        "revision" : "d3a675735c734001e29e51689217d160bde51ce2",
-        "version" : "2.0.0-beta.1"
+        "revision" : "17bd0e03e69e0cc722d4cd28148d04443f4e2aba",
+        "version" : "2.0.0-beta.2"
       }
     },
     {
@@ -294,8 +294,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziStorage.git",
       "state" : {
-        "revision" : "099e05983eaf5315d3e5ddc67c9c44c96387e403",
-        "version" : "1.1.2"
+        "revision" : "60962375bbce7cc0599bc3da4ebda08231922371",
+        "version" : "1.2.0"
       }
     },
     {
