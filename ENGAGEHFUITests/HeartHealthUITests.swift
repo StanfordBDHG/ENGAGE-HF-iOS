@@ -274,7 +274,7 @@ extension XCUIApplication {
         buttons[pickerLabel].tap()
         
         XCTAssert(staticTexts[vitalType].waitForExistence(timeout: 0.5))
-        XCTAssert(staticTexts["Empty \(vitalType) Graph"].waitForExistence(timeout: 0.5))
+        XCTAssert(staticTexts["No Data"].waitForExistence(timeout: 0.5))
         XCTAssert(staticTexts["About \(vitalType)"].waitForExistence(timeout: 0.5))
         XCTAssert(staticTexts["\(vitalType) Description"].waitForExistence(timeout: 0.5))
         XCTAssert(staticTexts["Empty \(pickerLabel) List"].waitForExistence(timeout: 0.5))
@@ -318,7 +318,7 @@ extension XCUIApplication {
     }
     
     private func testEmptyForSpecificType(scoreType: String) throws {
-        XCTAssert(staticTexts["Empty Symptoms Graph"].waitForExistence(timeout: 0.5))
+        XCTAssert(staticTexts["No Data"].waitForExistence(timeout: 0.5))
         XCTAssert(staticTexts["\(scoreType) Score Description"].waitForExistence(timeout: 0.5))
         XCTAssert(staticTexts["About \(scoreType) Score"].waitForExistence(timeout: 0.5))
         XCTAssert(staticTexts["Empty Symptoms List"].waitForExistence(timeout: 0.5))
