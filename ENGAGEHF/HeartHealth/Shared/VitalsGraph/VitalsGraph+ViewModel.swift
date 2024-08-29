@@ -35,6 +35,10 @@ extension VitalsGraph {
             aggregatedData.count + (targetValue == nil ? 0 : 1)
         }
         
+        var totalDataPoints: Int {
+            aggregatedData.reduce(0) { $0 + $1.data.reduce(0) { $0 + $1.count } }
+        }
+        
         
         /// Prepares the given data for display.
         /// Aggregates the data by calculating the average across the intervals determined by the granularity of dateUnit.
@@ -86,11 +90,32 @@ extension VitalsGraph {
                 return
             }
             
-            let selectedPoints = aggregatedData.flatMap { getPoints(from: $0, onDate: date, granularity: dateUnit) }
+            // Find the point across all series with the closest date to the tapped date.
+            guard let tappedIntervalStartDate = getInterval(date: date, unit: dateUnit)?.start,
+                  let dateOfClosestPoint = findDateOfClosestPoint(to: tappedIntervalStartDate, in: aggregatedData) else {
+                if clearOnGap {
+                    self.selection = nil
+                }
+                return
+            }
+            
+            // Select that point if it is within tapMargin from the tap location.
+            // For consistency across date units/granularities, the tap margin is 4% of the width of the chart.
+            let tapMargin = dateRange.lowerBound.distance(to: dateRange.upperBound) * 0.04
+            
+            guard dateOfClosestPoint.distance(to: tappedIntervalStartDate).magnitude < tapMargin.magnitude else {
+                if clearOnGap {
+                    self.selection = nil
+                }
+                return
+            }
+            
+            // Find the points in each series that lie on the date of the closest point, if any.
+            let selectedPoints = aggregatedData.flatMap { getPoints(from: $0, onDate: dateOfClosestPoint, granularity: dateUnit) }
 
             // Optionally, if no point was selected, just use the previously selected point
             guard !selectedPoints.isEmpty,
-                  let interval = getInterval(date: date, unit: dateUnit)?.asAdjustedRange(using: calendar) else {
+                  let interval = getInterval(date: dateOfClosestPoint, unit: dateUnit)?.asAdjustedRange(using: calendar) else {
                 if clearOnGap {
                     self.selection = nil
                 }
@@ -174,6 +199,12 @@ extension VitalsGraph {
             }
             
             return domainStart ... domainEnd
+        }
+        
+        private func findDateOfClosestPoint(to targetDate: Date, in allSeries: [MeasurementSeries]) -> Date? {
+            allSeries
+                .flatMap { $0.data.map(\.date) }
+                .min { $0.distance(to: targetDate).magnitude < $1.distance(to: targetDate).magnitude }
         }
         
         private func getPoints(from series: MeasurementSeries, onDate date: Date, granularity: Calendar.Component) -> [AggregatedMeasurement] {

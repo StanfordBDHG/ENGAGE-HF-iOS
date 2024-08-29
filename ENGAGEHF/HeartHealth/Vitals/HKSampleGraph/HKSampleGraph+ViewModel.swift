@@ -18,7 +18,7 @@ extension HKSampleGraph {
         
         private(set) var seriesData: SeriesDictionary = [:]
         private(set) var displayUnit = ""
-        private(set) var formatter: ([(String, Double)]) -> String = { _ in "---" }
+        private(set) var formatter: ([(String, Double)]) -> String = { _ in "No Data" }
         private(set) var targetValue: SeriesTarget?
         
         
@@ -126,21 +126,31 @@ extension HKSampleGraph {
             
             switch series {
             case .heartRate:
-                self.formatter = { "\(Int($0.first(where: { $0.0 == series.rawValue })?.1 ?? 0))" }
+                self.formatter = {
+                    guard let matchingData = $0.first(where: { $0.0 == series.rawValue })?.1 else {
+                        return "No Data"
+                    }
+                    return "\(Int(matchingData))"
+                }
                 return (HKUnit.count().unitDivided(by: .minute()), "BPM")
             case .bodyWeight:
-                self.formatter = { String(format: "%.1f", $0.first(where: { $0.0 == series.rawValue })?.1 ?? 0) }
+                self.formatter = {
+                    guard let matchingData = $0.first(where: { $0.0 == series.rawValue })?.1 else {
+                        return "No Data"
+                    }
+                    return String(format: "%.1f", matchingData)
+                }
                 return Locale.current.measurementSystem == .us ? (HKUnit.pound(), "lb") : (HKUnit.gramUnit(with: .kilo), "kg")
             case .bloodPressureSystolic, .bloodPressureDiastolic:
                 self.formatter = {
                     let systolic = $0.first(where: { $0.0 == KnownVitalsSeries.bloodPressureSystolic.rawValue })?.1
                     let diastolic = $0.first(where: { $0.0 == KnownVitalsSeries.bloodPressureDiastolic.rawValue })?.1
                     
-                    var systolicString = "---"
+                    var systolicString = "No Data"
                     if let systolic {
                         systolicString = "\(Int(systolic))"
                     }
-                    var diastolicString = "---"
+                    var diastolicString = "No Data"
                     if let diastolic {
                         diastolicString = "\(Int(diastolic))"
                     }

@@ -20,15 +20,15 @@ enum MessageAction: Equatable {
 }
 
 
-extension MessageAction: CustomStringConvertible {
-    var description: String {
+extension MessageAction {
+    var localizedDescription: LocalizedStringResource {
         switch self {
-        case .playVideo: "Play Video"
-        case .showMedications: "See Medications"
-        case .completeQuestionnaire: "Start Questionnaire"
-        case .showHealthSummary: "See Health Summary"
-        case .showHeartHealth: "See Heart Health"
-        case .unknown: ""
+        case .playVideo: LocalizedStringResource("Play Video")
+        case .showMedications: LocalizedStringResource("See Medications")
+        case .completeQuestionnaire: LocalizedStringResource("Start Questionnaire")
+        case .showHealthSummary: LocalizedStringResource("See Health Summary")
+        case .showHeartHealth: LocalizedStringResource("See Heart Health")
+        case .unknown: LocalizedStringResource("")
         }
     }
 }

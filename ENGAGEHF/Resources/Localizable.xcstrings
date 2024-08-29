@@ -4,6 +4,9 @@
     "" : {
 
     },
+    "%@" : {
+
+    },
     "%@ Date: %@" : {
       "localizations" : {
         "en" : {
@@ -113,6 +116,12 @@
     "Add Medications" : {
 
     },
+    "Add Mock" : {
+
+    },
+    "Add mock notification" : {
+
+    },
     "All Data" : {
 
     },
@@ -173,6 +182,9 @@
         }
       }
     },
+    "Content ..." : {
+
+    },
     "Current" : {
 
     },
@@ -204,6 +216,9 @@
 
     },
     "Expansion Button" : {
+
+    },
+    "Expected Progress: %lf" : {
 
     },
     "Failed to fetch HKUnits for the given samples." : {
@@ -395,6 +410,12 @@
         }
       }
     },
+    "List With Sections" : {
+
+    },
+    "List Without Sections" : {
+
+    },
     "Medication Label: %@" : {
 
     },
@@ -463,6 +484,9 @@
     "Notifications" : {
 
     },
+    "Play Video" : {
+
+    },
     "Please enter your invitation code to join the ENGAGE-HF study." : {
 
     },
@@ -505,6 +529,15 @@
     "Section Expander" : {
 
     },
+    "See Health Summary" : {
+
+    },
+    "See Heart Health" : {
+
+    },
+    "See Medications" : {
+
+    },
     "Series" : {
 
     },
@@ -521,6 +554,9 @@
 
     },
     "Skip" : {
+
+    },
+    "Start Questionnaire" : {
 
     },
     "Survey" : {
@@ -612,6 +648,9 @@
           }
         }
       }
+    },
+    "Tap Here" : {
+
     },
     "Target" : {
 
