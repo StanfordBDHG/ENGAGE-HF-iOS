@@ -53,9 +53,14 @@ extension HKSampleGraph {
         
         
         func processData(data: [HKSample]) {
-            guard let (hkUnits, unitString) = getUnits(data: data) else {
+            guard !data.isEmpty else {
                 self.seriesData = [:]
                 self.displayUnit = nil
+                return
+            }
+            
+            
+            guard let (hkUnits, unitString) = getUnits(data: data) else {
                 return
             }
             
