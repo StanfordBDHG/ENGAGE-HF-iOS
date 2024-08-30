@@ -37,18 +37,12 @@ struct VitalsGraphSection: View {
         Section(
             content: {
                 let data = graphData
-                if !data.isEmpty {
-                    HKSampleGraph(
-                        data: data,
-                        dateRange: dateRange,
-                        dateResolution: granularity.defaultDateUnit,
-                        targetValue: vitalsType == .weight ? vitalsManager.latestDryWeight : nil
-                    )
-                } else {
-                    Text(vitalsType.localizedEmptyHistoryWarning)
-                        .font(.caption)
-                        .accessibilityLabel("Empty \(vitalsType.description) Graph")
-                }
+                HKSampleGraph(
+                    data: data,
+                    dateRange: dateRange,
+                    dateResolution: granularity.defaultDateUnit,
+                    targetValue: vitalsType == .weight ? vitalsManager.latestDryWeight : nil
+                )
             },
             header: {
                 HStack {

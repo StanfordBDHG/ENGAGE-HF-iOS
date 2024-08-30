@@ -39,8 +39,12 @@ struct MeasurementListSection: View {
                             }
                         }
                 } else {
-                    Text(type.localizedEmptyHistoryWarning)
-                        .font(.caption)
+                    ContentUnavailableView(
+                        "No Data",
+                        systemImage: "server.rack",
+                        description: Text(type.localizedEmptyHistoryWarning)
+                    )
+                        .symbolVariant(.slash)
                         .accessibilityLabel("Empty \(type) List")
                 }
             },

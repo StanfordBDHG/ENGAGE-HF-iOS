@@ -128,6 +128,11 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
     }
     
     
+    func receiveIncomingNotification(_ notification: UNNotification) async -> UNNotificationPresentationOptions? {
+        [.banner, .list, .sound]
+    }
+    
+    
     func handleNotificationAction(_ response: UNNotificationResponse) async {
         /// The server should store the action payload to be accessed here. For example:
         /// {

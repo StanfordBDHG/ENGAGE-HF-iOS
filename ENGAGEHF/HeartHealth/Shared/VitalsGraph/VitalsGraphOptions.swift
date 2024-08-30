@@ -19,7 +19,7 @@ struct VitalsGraphOptions: Identifiable, Equatable {
     let valueRange: ClosedRange<Double>?
     let targetValue: SeriesTarget?
     let granularity: Calendar.Component
-    let localizedUnitString: String
+    let localizedUnitString: String?
     let selectionFormatter: ([(String, Double)]) -> String
     
     
@@ -35,7 +35,7 @@ struct VitalsGraphOptions: Identifiable, Equatable {
         self.valueRange = valueRange
         self.targetValue = targetValue
         self.granularity = granularity ?? .day
-        self.localizedUnitString = localizedUnitString ?? "Units"
+        self.localizedUnitString = localizedUnitString
         self.selectionFormatter = selectionFormatter ?? { selectedPoints in
             selectedPoints
                 .map { _, value in

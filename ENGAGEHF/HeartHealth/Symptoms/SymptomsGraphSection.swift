@@ -21,7 +21,7 @@ struct SymptomsGraphSection: View {
         resolution.getDateRange(endDate: .now)
     }
     
-    @MainActor private var data: [String: [VitalMeasurement]] {
+    @MainActor private var graphData: [String: [VitalMeasurement]] {
         let ungroupedData = vitalsManager.symptomHistory
             .compactMap { score -> VitalMeasurement? in
                 guard let value = score[keyPath: symptomsType.symptomScoreKeyMap] else {
@@ -42,12 +42,12 @@ struct SymptomsGraphSection: View {
     private var options: VitalsGraphOptions {
         VitalsGraphOptions(
             dateRange: resolution.getDateRange(endDate: .now),
-            valueRange: 0...100,
+            valueRange: symptomsType == .dizziness ? 0...5 : 0...100,
             granularity: .day,
             localizedUnitString: symptomsType == .dizziness ? "" : "%",
             selectionFormatter: { selected in
                 let matchingSeriesValue = selected.first(where: { $0.0 == KnownVitalsSeries.symptomScore.rawValue })?.1
-                return matchingSeriesValue?.asString(minimumFractionDigits: 0, maximumFractionDigits: 1) ?? "---"
+                return matchingSeriesValue?.asString(minimumFractionDigits: 0, maximumFractionDigits: 1) ?? "No Data"
             }
         )
     }
@@ -56,19 +56,8 @@ struct SymptomsGraphSection: View {
     var body: some View {
         Section(
             content: {
-                let graphData = data
-                if !graphData.isEmpty {
-                    let graph = VitalsGraph(data: graphData, options: options)
-                    if symptomsType == .dizziness {
-                        graph.modifier(DizzinessYAxisModifier())
-                    } else {
-                        graph.modifier(PercentageYAxisModifier())
-                    }
-                } else {
-                    Text(symptomsType.localizedEmptyHistoryWarning)
-                        .font(.caption)
-                        .accessibilityLabel("Empty Symptoms Graph")
-                }
+                VitalsGraph(data: graphData, options: options)
+                    .environment(\.customChartYAxis, symptomsType == .dizziness ? .dizzinessYAxisModifier : .percentageYAxisModifier )
             },
             header: {
                 SymptomsPicker(symptomsType: $symptomsType)

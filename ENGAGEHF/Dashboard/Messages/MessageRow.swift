@@ -57,7 +57,7 @@ struct MessageRow: View {
         
         return Image(systemName: imageName)
             .cardSymbolStyle()
-            .accessibilityLabel(message.action.description + " Symbol")
+            .accessibilityLabel(message.action.localizedDescription.localizedString() + " Symbol")
     }
     
     
@@ -84,7 +84,7 @@ struct MessageRow: View {
                         .accessibilityIdentifier("Message Description")
                 }
                 if message.action != .unknown {
-                    Text(message.action.description)
+                    Text(message.action.localizedDescription)
                         .padding(.vertical, 4)
                         .padding(.horizontal, 8)
                         .background {
