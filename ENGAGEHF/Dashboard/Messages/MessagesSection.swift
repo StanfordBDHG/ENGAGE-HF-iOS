@@ -46,7 +46,7 @@ struct MessagesSection: View {
         """
         Message: \(message.title), \
         description: \(message.description ?? "none"), \
-        action: \(message.action.localizedDescription).
+        action: \(message.action.localizedDescription.localizedString()).
         """
     }
 }

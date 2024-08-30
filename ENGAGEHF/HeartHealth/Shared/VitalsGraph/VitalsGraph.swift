@@ -25,7 +25,7 @@ struct VitalsGraph: View {
             targetValue: viewModel.targetValue
         )
             // Default styling
-            .modifier(DefaultChartStyle(viewModel: viewModel, dateRange: viewModel.dateRange))
+            .modifier(DefaultChartStyle(viewModel: viewModel))
             // Overlay for tracking gestures
             .modifier(GestureOverlay(viewModel: viewModel))
             // State change modifiers to listen for updates to the environment and handle errors

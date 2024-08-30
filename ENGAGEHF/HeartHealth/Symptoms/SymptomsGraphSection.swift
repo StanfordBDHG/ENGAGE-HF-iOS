@@ -42,7 +42,7 @@ struct SymptomsGraphSection: View {
     private var options: VitalsGraphOptions {
         VitalsGraphOptions(
             dateRange: resolution.getDateRange(endDate: .now),
-            valueRange: 0...100,
+            valueRange: symptomsType == .dizziness ? 0...5 : 0...100,
             granularity: .day,
             localizedUnitString: symptomsType == .dizziness ? "" : "%",
             selectionFormatter: { selected in
@@ -56,12 +56,8 @@ struct SymptomsGraphSection: View {
     var body: some View {
         Section(
             content: {
-                let graph = VitalsGraph(data: graphData, options: options)
-                if symptomsType == .dizziness {
-                    graph.modifier(DizzinessYAxisModifier())
-                } else {
-                    graph.modifier(PercentageYAxisModifier())
-                }
+                VitalsGraph(data: graphData, options: options)
+                    .environment(\.customChartYAxis, symptomsType == .dizziness ? .dizzinessYAxisModifier : .percentageYAxisModifier )
             },
             header: {
                 SymptomsPicker(symptomsType: $symptomsType)
