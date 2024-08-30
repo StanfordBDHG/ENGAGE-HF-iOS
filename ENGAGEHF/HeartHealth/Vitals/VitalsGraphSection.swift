@@ -57,6 +57,7 @@ struct VitalsGraphSection: View {
                     Spacer()
                     ResolutionPicker(selection: $granularity)
                 }
+                    .padding(.horizontal, -16)
             }
         )
     }

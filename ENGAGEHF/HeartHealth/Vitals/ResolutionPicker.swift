@@ -19,6 +19,7 @@ struct ResolutionPicker: View {
                 Text(resolution.description)
             }
         }
+            .padding(.horizontal, -12)
     }
 }
 

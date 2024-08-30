@@ -46,6 +46,7 @@ struct MeasurementListSection: View {
             },
             header: {
                 MeasurementListHeader(for: type)
+                    .padding(.horizontal, -16)
             }
         )
             .viewStateAlert(state: $viewState)
