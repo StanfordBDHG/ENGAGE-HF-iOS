@@ -23,6 +23,7 @@ struct DescriptionSection: View {
             header: {
                 Text("About \(quantityName)")
                     .font(.title3.bold())
+                    .padding(.leading, -16)
             }
         )
     }

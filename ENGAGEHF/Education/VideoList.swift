@@ -17,11 +17,13 @@ struct VideoList: View {
         ScrollView {
             LazyVStack(spacing: 12) {
                 ForEach(videoCollections.sorted(by: { $0.orderIndex < $1.orderIndex })) { videoCollection in
-                    VideoListSection(
-                        title: videoCollection.title,
-                        subtitle: videoCollection.description,
-                        videos: videoCollection.videos
-                    )
+                    StudyApplicationListCard {
+                        VideoListSection(
+                            title: videoCollection.title,
+                            subtitle: videoCollection.description,
+                            videos: videoCollection.videos
+                        )
+                    }
                         .accessibilityIdentifier("Video Section: \(videoCollection.title)")
                 }
             }
