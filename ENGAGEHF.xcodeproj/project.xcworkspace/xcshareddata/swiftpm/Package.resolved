@@ -49,7 +49,7 @@
     {
       "identity" : "fhirmodels",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/FHIRModels",
+      "location" : "https://github.com/apple/FHIRModels.git",
       "state" : {
         "revision" : "861afd5816a98d38f86220eab2f812d76cad84a0",
         "version" : "0.5.0"
@@ -186,8 +186,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/Spezi",
       "state" : {
-        "revision" : "f1f6fb4d275d5685b612ef84bf847f9740fed47f",
-        "version" : "1.7.3"
+        "revision" : "d5c8eec55255fd753367422c49db1ec16610c48b",
+        "version" : "1.7.4"
       }
     },
     {
@@ -195,8 +195,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziAccount.git",
       "state" : {
-        "revision" : "40fa3f5e84d22c700ad152e1a29f459cc5e41447",
-        "version" : "2.0.0-beta.4"
+        "revision" : "6b1603d2dd95b1787cfb0cbdce32a4b4bebb79ae",
+        "version" : "2.0.0-beta.5"
       }
     },
     {
@@ -231,8 +231,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziFirebase.git",
       "state" : {
-        "revision" : "7855a911c7309bf34d3cb693f76989ede15737fc",
-        "version" : "2.0.0-beta.1"
+        "revision" : "12e7b779a3339737ea100b4eb7491072d4e83cd5",
+        "version" : "2.0.0-beta.2"
       }
     },
     {
@@ -267,8 +267,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziNetworking",
       "state" : {
-        "revision" : "b01333fbe46bc02445cc06a1d721bc490d77d95e",
-        "version" : "2.1.2"
+        "revision" : "26f1ed49e1916ae4fdc1bd033127a873a9e6dd0a",
+        "version" : "2.1.3"
       }
     },
     {
@@ -276,8 +276,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziOnboarding",
       "state" : {
-        "revision" : "ec570fe5b26bd80a0ee7bc047ae680767621aaa4",
-        "version" : "1.2.1"
+        "revision" : "a3d7bc15e6803b2205eb8dca010a48b1a40215be",
+        "version" : "1.2.2"
       }
     },
     {
@@ -285,8 +285,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziQuestionnaire.git",
       "state" : {
-        "revision" : "853585fbdd5d2d0af440c805d629a025ef5545d9",
-        "version" : "1.2.2"
+        "revision" : "d0bd55f8a0bd3eeb806a673261e9d6b9fd43f3cd",
+        "version" : "1.2.3"
       }
     },
     {
@@ -357,8 +357,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-protobuf.git",
       "state" : {
-        "revision" : "564597ad2fe2513a94dd8f3ba27ea2ff4be3cb37",
-        "version" : "1.28.0"
+        "revision" : "edb6ed4919f7756157fe02f2552b7e3850a538e5",
+        "version" : "1.28.1"
       }
     },
     {

@@ -23,6 +23,7 @@ struct CapsuleStack: View {
                     .frame(width: progress * geometry.size.width)
                     .foregroundStyle(.accent)
             }
+                .opacity(0.8)
         }
             .frame(height: gaugeHeight)
     }
