@@ -367,9 +367,9 @@ extension VitalsManager {
         
         do {
             try await collectionReference.document(id).delete()
-            self.logger.debug("Successfully deleted measurement (\(id)) from \(collectionReference)")
+            self.logger.debug("Successfully deleted measurement (\(id)) from \(collectionReference.collectionID)")
         } catch {
-            self.logger.error("Error deleting measurement (\(id)) from \(collectionReference): \(error)")
+            self.logger.error("Error deleting measurement (\(id)) from \(collectionReference.collectionID): \(error)")
             throw FirestoreError(error)
         }
     }

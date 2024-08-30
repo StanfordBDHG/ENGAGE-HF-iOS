@@ -13,8 +13,6 @@ import SwiftUI
 extension VitalsGraph {
     struct VitalsGraphContent: View {
         let viewModel: ViewModel
-        let dateUnit: Calendar.Component
-        let quantityUnit: String
         let targetValue: SeriesTarget?
 
         private let intervalSummaryHeight: CGFloat = 70
@@ -29,12 +27,12 @@ extension VitalsGraph {
                 ForEach(viewModel.aggregatedData) { series in
                     ForEach(series.data) { point in
                         LineMark(
-                            x: .value("Date", point.date, unit: dateUnit),
+                            x: .value("Date", point.date, unit: viewModel.dateUnit),
                             y: .value("Score", point.value)
                         )
                             .foregroundStyle(by: .value("Series", series.seriesName))
                         PointMark(
-                            x: .value("Date", point.date, unit: dateUnit),
+                            x: .value("Date", point.date, unit: viewModel.dateUnit),
                             y: .value("Score", point.value)
                         )
                             .foregroundStyle(by: .value("Series", series.seriesName))
@@ -54,7 +52,6 @@ extension VitalsGraph {
                     if viewModel.selection == nil {
                         GraphHeader(
                             viewModel: viewModel,
-                            quantityUnit: quantityUnit,
                             intervalSummaryHeight: intervalSummaryHeight
                         )
                     }
@@ -63,7 +60,7 @@ extension VitalsGraph {
         
         
         private func summaryRuleMark(selection: SelectedInterval) -> some ChartContent {
-            RuleMark(x: .value("Date", selection.interval.lowerBound, unit: dateUnit))
+            RuleMark(x: .value("Date", selection.interval.lowerBound, unit: viewModel.dateUnit))
                 .foregroundStyle(Color(.lightGray).opacity(0.5))
                 .annotation(
                     position: .top,
@@ -72,7 +69,7 @@ extension VitalsGraph {
                     IntervalSummary(
                         quantity: viewModel.selectionFormatter(selection.points.map { ($0.series, $0.value) }),
                         interval: selection.interval,
-                        unit: quantityUnit,
+                        unit: viewModel.localizedUnitString,
                         averaged: selection.points.contains(where: { $0.count > 1 }),
                         idealHeight: intervalSummaryHeight,
                         accessibilityLabel: "Interval Summary"

@@ -21,9 +21,9 @@ extension VitalsGraph {
         
         private(set) var aggregatedData: [MeasurementSeries] = []
         private(set) var selection: SelectedInterval?
-        private(set) var selectionFormatter: ([(String, Double)]) -> String = { _ in "---" }
-        private(set) var localizedUnitString: String = "---"
-        private(set) var dateRange: ClosedRange<Date> = Date()...Date()
+        private(set) var selectionFormatter: ([(String, Double)]) -> String = { _ in "No Data" }
+        private(set) var localizedUnitString: String?
+        private(set) var dateRange: ClosedRange<Date> = Date().addingTimeInterval(-60 * 60 * 24 * 30)...Date()
         private(set) var dateUnit: Calendar.Component = .day
         private(set) var dataValueRange: ClosedRange<Double>?
         private(set) var targetValue: SeriesTarget?
@@ -35,15 +35,15 @@ extension VitalsGraph {
             aggregatedData.count + (targetValue == nil ? 0 : 1)
         }
         
+        var totalDataPoints: Int {
+            aggregatedData.reduce(0) { $0 + $1.data.reduce(0) { $0 + $1.count } }
+        }
+        
         
         /// Prepares the given data for display.
         /// Aggregates the data by calculating the average across the intervals determined by the granularity of dateUnit.
         /// Saves the dateRange, dateUnit, and aggregatedData for later use.
         func processData(_ data: SeriesDictionary, options: VitalsGraphOptions) {
-            guard !data.isEmpty else {
-                return
-            }
-            
             // Aggregate the data across time and group by series type
             let aggregatedSeries: [String: [AggregatedMeasurement]] = aggregateData(data: data, dateUnit: options.granularity)
             let seriesAverages: [String: Double] = data.mapValues { average(series: $0) ?? 0 }
@@ -86,11 +86,32 @@ extension VitalsGraph {
                 return
             }
             
-            let selectedPoints = aggregatedData.flatMap { getPoints(from: $0, onDate: date, granularity: dateUnit) }
+            // Find the point across all series with the closest date to the tapped date.
+            guard let tappedIntervalStartDate = getInterval(date: date, unit: dateUnit)?.start,
+                  let dateOfClosestPoint = findDateOfClosestPoint(to: tappedIntervalStartDate, in: aggregatedData) else {
+                if clearOnGap {
+                    self.selection = nil
+                }
+                return
+            }
+            
+            // Select that point if it is within tapMargin from the tap location.
+            // For consistency across date units/granularities, the tap margin is 4% of the width of the chart.
+            let tapMargin = dateRange.lowerBound.distance(to: dateRange.upperBound) * 0.04
+            
+            guard dateOfClosestPoint.distance(to: tappedIntervalStartDate).magnitude < tapMargin.magnitude else {
+                if clearOnGap {
+                    self.selection = nil
+                }
+                return
+            }
+            
+            // Find the points in each series that lie on the date of the closest point, if any.
+            let selectedPoints = aggregatedData.flatMap { getPoints(from: $0, onDate: dateOfClosestPoint, granularity: dateUnit) }
 
             // Optionally, if no point was selected, just use the previously selected point
             guard !selectedPoints.isEmpty,
-                  let interval = getInterval(date: date, unit: dateUnit)?.asAdjustedRange(using: calendar) else {
+                  let interval = getInterval(date: dateOfClosestPoint, unit: dateUnit)?.asAdjustedRange(using: calendar) else {
                 if clearOnGap {
                     self.selection = nil
                 }
@@ -106,11 +127,13 @@ extension VitalsGraph {
             if let dateRange = options.dateRange {
                 self.dateRange = dateRange
             } else {
-                self.dateRange = getDateRange(from: seriesData, using: options.granularity)
+                if let range = getDateRange(from: seriesData, using: options.granularity) {
+                    self.dateRange = range
+                }
             }
             self.dateUnit = options.granularity
-            self.selectionFormatter = options.selectionFormatter
-            self.localizedUnitString = options.localizedUnitString
+            self.selectionFormatter = seriesData.isEmpty ? { _ in "No Data" } : options.selectionFormatter
+            self.localizedUnitString = seriesData.isEmpty ? nil : options.localizedUnitString
             self.selection = nil
             
             self.aggregatedData = seriesData
@@ -130,6 +153,7 @@ extension VitalsGraph {
                 
                 self.dataValueRange = ClosedRange(spanning: seriesValues)?
                     .extendBy(percent: 0.1)
+                    .withMinimumRange(30.0)
                     .extendToMultipleOf(10.0)
             }
         }
@@ -161,19 +185,29 @@ extension VitalsGraph {
             return series.map(\.value).reduce(0, +) / Double(series.count)
         }
         
-        private func getDateRange(from data: [MeasurementSeries], using dateUnit: Calendar.Component) -> ClosedRange<Date> {
+        private func getDateRange(from data: [MeasurementSeries], using dateUnit: Calendar.Component) -> ClosedRange<Date>? {
+            guard !data.isEmpty else {
+                return nil
+            }
+            
             let allDates = data.flatMap { $0.data.map(\.date) }
             
             guard let minDate = allDates.min(), let maxDate = allDates.max() else {
-                return Date()...Date()
+                return nil
             }
             
             guard let domainStart = calendar.dateInterval(of: dateUnit, for: minDate)?.start,
                   let domainEnd = calendar.dateInterval(of: dateUnit, for: maxDate)?.end else {
-                return Date()...Date()
+                return nil
             }
             
             return domainStart ... domainEnd
+        }
+        
+        private func findDateOfClosestPoint(to targetDate: Date, in allSeries: [MeasurementSeries]) -> Date? {
+            allSeries
+                .flatMap { $0.data.map(\.date) }
+                .min { $0.distance(to: targetDate).magnitude < $1.distance(to: targetDate).magnitude }
         }
         
         private func getPoints(from series: MeasurementSeries, onDate date: Date, granularity: Calendar.Component) -> [AggregatedMeasurement] {

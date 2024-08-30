@@ -13,7 +13,7 @@ import SwiftUI
 struct IntervalSummary: View {
     let quantity: String
     let interval: Range<Date>
-    let unit: String
+    let unit: String?
     let averaged: Bool
     let idealHeight: CGFloat
     let accessibilityLabel: String
@@ -36,8 +36,6 @@ struct IntervalSummary: View {
                 Text("Average")
                     .font(.subheadline.bold())
                     .foregroundStyle(.secondary)
-            } else {
-                Spacer()
             }
             DisplayMeasurement(
                 quantity: quantity,

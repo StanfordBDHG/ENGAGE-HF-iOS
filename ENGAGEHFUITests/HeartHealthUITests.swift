@@ -236,7 +236,6 @@ extension XCUIApplication {
         XCTAssert(otherElements["Vitals Graph"].waitForExistence(timeout: 2.0))
         
         // Make sure the data appears in the list section
-        XCTAssert(staticTexts["Average"].waitForExistence(timeout: 0.5))
         XCTAssert(staticTexts["Overall Summary Quantity: \(expectedQuantity.value)"].waitForExistence(timeout: 0.5))
         XCTAssert(staticTexts["Overall Summary Unit: \(expectedQuantity.unit)"].waitForExistence(timeout: 0.5))
         
@@ -274,10 +273,12 @@ extension XCUIApplication {
         buttons[pickerLabel].tap()
         
         XCTAssert(staticTexts[vitalType].waitForExistence(timeout: 0.5))
-        XCTAssert(staticTexts["Empty \(vitalType) Graph"].waitForExistence(timeout: 0.5))
+        XCTAssert(staticTexts["Overall Summary Quantity: No Data"].waitForExistence(timeout: 0.5))
         XCTAssert(staticTexts["About \(vitalType)"].waitForExistence(timeout: 0.5))
         XCTAssert(staticTexts["\(vitalType) Description"].waitForExistence(timeout: 0.5))
+        swipeUp()
         XCTAssert(staticTexts["Empty \(pickerLabel) List"].waitForExistence(timeout: 0.5))
+        swipeDown()
     }
     
     fileprivate func testEmptySymptomScores() throws {
@@ -318,9 +319,11 @@ extension XCUIApplication {
     }
     
     private func testEmptyForSpecificType(scoreType: String) throws {
-        XCTAssert(staticTexts["Empty Symptoms Graph"].waitForExistence(timeout: 0.5))
+        XCTAssert(staticTexts["Overall Summary Quantity: No Data"].waitForExistence(timeout: 0.5))
         XCTAssert(staticTexts["\(scoreType) Score Description"].waitForExistence(timeout: 0.5))
         XCTAssert(staticTexts["About \(scoreType) Score"].waitForExistence(timeout: 0.5))
+        swipeUp()
         XCTAssert(staticTexts["Empty Symptoms List"].waitForExistence(timeout: 0.5))
+        swipeDown()
     }
 }

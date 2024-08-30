@@ -17,8 +17,8 @@ extension HKSampleGraph {
         var viewState: ViewState = .idle
         
         private(set) var seriesData: SeriesDictionary = [:]
-        private(set) var displayUnit = ""
-        private(set) var formatter: ([(String, Double)]) -> String = { _ in "---" }
+        private(set) var displayUnit: String?
+        private(set) var formatter: ([(String, Double)]) -> String = { _ in "No Data" }
         private(set) var targetValue: SeriesTarget?
         
         
@@ -28,7 +28,10 @@ extension HKSampleGraph {
                 return
             }
             
-            let (hkUnits, unitString) = getUnits(data: [target])
+            guard let (hkUnits, unitString) = getUnits(data: [target]) else {
+                self.targetValue = nil
+                return
+            }
             
             switch target {
             case let quantitySample as HKQuantitySample:
@@ -50,7 +53,16 @@ extension HKSampleGraph {
         
         
         func processData(data: [HKSample]) {
-            let (hkUnits, unitString) = getUnits(data: data)
+            guard !data.isEmpty else {
+                self.seriesData = [:]
+                self.displayUnit = nil
+                return
+            }
+            
+            
+            guard let (hkUnits, unitString) = getUnits(data: data) else {
+                return
+            }
             
             let allData: [VitalMeasurement] = data.flatMap { measurement in
                 switch measurement {
@@ -94,10 +106,9 @@ extension HKSampleGraph {
             self.displayUnit = unitString
         }
         
-        private func getUnits(data: [HKSample]) -> (HKUnit, String) {
+        private func getUnits(data: [HKSample]) -> (HKUnit, String)? {
             guard let sample = data.first else {
-                viewState = .error(HKSampleGraphError.failedToFetchUnits)
-                return (HKUnit.pound(), "lb")   // Dummy value
+                return nil
             }
             
             // For now, only allow for HKQuantitySample and HKCorrelation
@@ -112,8 +123,7 @@ extension HKSampleGraph {
             }
             
             guard let identifiedUnits else {
-                viewState = .error(HKSampleGraphError.failedToFetchUnits)
-                return (HKUnit.pound(), "lb")   // Dummy value
+                return nil
             }
             
             return identifiedUnits
@@ -126,21 +136,31 @@ extension HKSampleGraph {
             
             switch series {
             case .heartRate:
-                self.formatter = { "\(Int($0.first(where: { $0.0 == series.rawValue })?.1 ?? 0))" }
+                self.formatter = {
+                    guard let matchingData = $0.first(where: { $0.0 == series.rawValue })?.1 else {
+                        return "No Data"
+                    }
+                    return "\(Int(matchingData))"
+                }
                 return (HKUnit.count().unitDivided(by: .minute()), "BPM")
             case .bodyWeight:
-                self.formatter = { String(format: "%.1f", $0.first(where: { $0.0 == series.rawValue })?.1 ?? 0) }
+                self.formatter = {
+                    guard let matchingData = $0.first(where: { $0.0 == series.rawValue })?.1 else {
+                        return "No Data"
+                    }
+                    return String(format: "%.1f", matchingData)
+                }
                 return Locale.current.measurementSystem == .us ? (HKUnit.pound(), "lb") : (HKUnit.gramUnit(with: .kilo), "kg")
             case .bloodPressureSystolic, .bloodPressureDiastolic:
                 self.formatter = {
                     let systolic = $0.first(where: { $0.0 == KnownVitalsSeries.bloodPressureSystolic.rawValue })?.1
                     let diastolic = $0.first(where: { $0.0 == KnownVitalsSeries.bloodPressureDiastolic.rawValue })?.1
                     
-                    var systolicString = "---"
+                    var systolicString = "No Data"
                     if let systolic {
                         systolicString = "\(Int(systolic))"
                     }
-                    var diastolicString = "---"
+                    var diastolicString = "No Data"
                     if let diastolic {
                         diastolicString = "\(Int(diastolic))"
                     }

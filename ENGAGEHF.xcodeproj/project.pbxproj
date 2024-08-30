@@ -158,6 +158,7 @@
 		4DB025CA2BBE3A59002D2545 /* HomeViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB025C92BBE3A59002D2545 /* HomeViewUITests.swift */; };
 		4DB025D52BBF2E08002D2545 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB025D42BBF2E08002D2545 /* Dashboard.swift */; };
 		4DB624862C73F1BF00573807 /* NotificationSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB624852C73F1BF00573807 /* NotificationSettingsView.swift */; };
+		4DBCB15A2C82626B0042180E /* Environment+CustomYAxis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBCB1592C82626B0042180E /* Environment+CustomYAxis.swift */; };
 		4DBDD3442BBFAD64001FB0CA /* InvitationCodeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDD3432BBFAD64001FB0CA /* InvitationCodeError.swift */; };
 		4DBDD3462BBFAE2D001FB0CA /* InvitationCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDD3452BBFAE2D001FB0CA /* InvitationCodeView.swift */; };
 		4DBDD3482BC073EF001FB0CA /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 4DBDD3472BC073EF001FB0CA /* FirebaseFunctions */; };
@@ -180,7 +181,7 @@
 		4DDFC78A2BFC1312002B07A1 /* MessageRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC7892BFC1312002B07A1 /* MessageRow.swift */; };
 		4DE8B8D12C614377006E3E63 /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE8B8D02C614377006E3E63 /* NavigationManager.swift */; };
 		4DE8B8DB2C61A329006E3E63 /* ScrollableText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE8B8DA2C61A328006E3E63 /* ScrollableText.swift */; };
-		4DF36FF52C667D39004D737A /* AxisModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF36FF42C667D39004D737A /* AxisModifiers.swift */; };
+		4DF36FF52C667D39004D737A /* AnyAxisContent+CustomAxes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF36FF42C667D39004D737A /* AnyAxisContent+CustomAxes.swift */; };
 		4DF36FF92C66A884004D737A /* String+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF36FF82C66A884004D737A /* String+Identifiable.swift */; };
 		4DF36FFD2C66A904004D737A /* QuestionnaireSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF36FFC2C66A904004D737A /* QuestionnaireSheetView.swift */; };
 		4DF370042C66C9F9004D737A /* HealthSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF370032C66C9F9004D737A /* HealthSummaryView.swift */; };
@@ -366,6 +367,7 @@
 		4DB025C92BBE3A59002D2545 /* HomeViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewUITests.swift; sourceTree = "<group>"; };
 		4DB025D42BBF2E08002D2545 /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		4DB624852C73F1BF00573807 /* NotificationSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsView.swift; sourceTree = "<group>"; };
+		4DBCB1592C82626B0042180E /* Environment+CustomYAxis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Environment+CustomYAxis.swift"; sourceTree = "<group>"; };
 		4DBDD3432BBFAD64001FB0CA /* InvitationCodeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationCodeError.swift; sourceTree = "<group>"; };
 		4DBDD3452BBFAE2D001FB0CA /* InvitationCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationCodeView.swift; sourceTree = "<group>"; };
 		4DBE86DC2C7F9BBF0003390B /* MobilePlatform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobilePlatform.swift; sourceTree = "<group>"; };
@@ -387,7 +389,7 @@
 		4DDFC7892BFC1312002B07A1 /* MessageRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRow.swift; sourceTree = "<group>"; };
 		4DE8B8D02C614377006E3E63 /* NavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
 		4DE8B8DA2C61A328006E3E63 /* ScrollableText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableText.swift; sourceTree = "<group>"; };
-		4DF36FF42C667D39004D737A /* AxisModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AxisModifiers.swift; sourceTree = "<group>"; };
+		4DF36FF42C667D39004D737A /* AnyAxisContent+CustomAxes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnyAxisContent+CustomAxes.swift"; sourceTree = "<group>"; };
 		4DF36FF82C66A884004D737A /* String+Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Identifiable.swift"; sourceTree = "<group>"; };
 		4DF36FFC2C66A904004D737A /* QuestionnaireSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnaireSheetView.swift; sourceTree = "<group>"; };
 		4DF370032C66C9F9004D737A /* HealthSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthSummaryView.swift; sourceTree = "<group>"; };
@@ -800,6 +802,7 @@
 				4DC990572C7D148B001E86C5 /* ClosedRange+Extend.swift */,
 				4DC9905C2C7D1C98001E86C5 /* Double+Rounding.swift */,
 				4DC990602C7D3A13001E86C5 /* ClosedRange+InitFromSequence.swift */,
+				4DBCB1592C82626B0042180E /* Environment+CustomYAxis.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -829,7 +832,7 @@
 				4DF506292C2F260E003E7EFB /* SymptomsContentView.swift */,
 				4D92B9F72C3C901500ABCED7 /* SymptomsGraphSection.swift */,
 				4DF5062E2C2F2B00003E7EFB /* SymptomsPicker.swift */,
-				4DF36FF42C667D39004D737A /* AxisModifiers.swift */,
+				4DF36FF42C667D39004D737A /* AnyAxisContent+CustomAxes.swift */,
 			);
 			path = Symptoms;
 			sourceTree = "<group>";
@@ -1345,7 +1348,7 @@
 				4D40728F2C483A5C007C5621 /* VitalsGraph+GestureOverlay.swift in Sources */,
 				4D92B9F82C3C901500ABCED7 /* SymptomsGraphSection.swift in Sources */,
 				4DC9905D2C7D1C98001E86C5 /* Double+Rounding.swift in Sources */,
-				4DF36FF52C667D39004D737A /* AxisModifiers.swift in Sources */,
+				4DF36FF52C667D39004D737A /* AnyAxisContent+CustomAxes.swift in Sources */,
 				2FF53D8D2A8729D600042B76 /* ENGAGEHFStandard.swift in Sources */,
 				4D62BF3B2C6A9F330088C414 /* (null) in Sources */,
 				4DDFC78A2BFC1312002B07A1 /* MessageRow.swift in Sources */,
@@ -1415,6 +1418,7 @@
 				4D8402882C50241A00817495 /* MedicationsManager.swift in Sources */,
 				4D8402CF2C530BEB00817495 /* MedicationRowContent.swift in Sources */,
 				4D92BA012C3C932300ABCED7 /* VitalsGraphSection.swift in Sources */,
+				4DBCB15A2C82626B0042180E /* Environment+CustomYAxis.swift in Sources */,
 				4D8CE0FF2C7540C000560327 /* AdditionalAccountSections.swift in Sources */,
 				4DF506312C2F3421003E7EFB /* VitalsGraph.swift in Sources */,
 				4DF506212C2E1C89003E7EFB /* SymptomScore.swift in Sources */,

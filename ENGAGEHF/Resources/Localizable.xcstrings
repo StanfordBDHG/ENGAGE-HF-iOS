@@ -206,12 +206,6 @@
     "Education Video Inspect Button" : {
 
     },
-    "Empty %@ Graph" : {
-
-    },
-    "Empty Symptoms Graph" : {
-
-    },
     "Enable Notifications in Settings" : {
 
     },
@@ -428,6 +422,9 @@
     "No Contacts Available" : {
 
     },
+    "No Data" : {
+
+    },
     "No medication recommendations" : {
 
     },
@@ -484,6 +481,9 @@
     "Notifications" : {
 
     },
+    "Play Video" : {
+
+    },
     "Please enter your invitation code to join the ENGAGE-HF study." : {
 
     },
@@ -526,6 +526,15 @@
     "Section Expander" : {
 
     },
+    "See Health Summary" : {
+
+    },
+    "See Heart Health" : {
+
+    },
+    "See Medications" : {
+
+    },
     "Series" : {
 
     },
@@ -542,6 +551,9 @@
 
     },
     "Skip" : {
+
+    },
+    "Start Questionnaire" : {
 
     },
     "Survey" : {
