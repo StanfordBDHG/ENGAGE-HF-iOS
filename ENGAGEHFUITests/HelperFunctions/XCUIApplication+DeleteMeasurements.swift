@@ -31,5 +31,7 @@ extension XCUIApplication {
             XCTAssert(totalRows < 10)
             totalRows += 1
         }
+        
+        swipeDown()
     }
 }
