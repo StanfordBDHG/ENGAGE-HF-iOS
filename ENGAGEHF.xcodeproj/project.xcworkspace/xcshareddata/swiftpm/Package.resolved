@@ -114,8 +114,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordBDHG/HealthKitOnFHIR.git",
       "state" : {
-        "revision" : "c24e316311ff9813cb1fe32cd8820bcca6e5e7f2",
-        "version" : "0.2.10"
+        "branch" : "fix/swiftlint-dependency",
+        "revision" : "4c4c4d7020016e01904e07763a39088e5a4e132c"
       }
     },
     {
@@ -195,8 +195,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziAccount.git",
       "state" : {
-        "revision" : "6b1603d2dd95b1787cfb0cbdce32a4b4bebb79ae",
-        "version" : "2.0.0-beta.5"
+        "revision" : "7e78ee9e7e4df2071a18ac0fc722671ac1dcfac4",
+        "version" : "2.0.0-beta.7"
       }
     },
     {
@@ -222,8 +222,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziDevices.git",
       "state" : {
-        "revision" : "cfba7691b6211bb2f566a8c263ff973921ee555b",
-        "version" : "1.2.2"
+        "revision" : "dc8dcd53773b9bb4041870b0f65cec32f7ed5108",
+        "version" : "1.3.0"
       }
     },
     {
@@ -231,8 +231,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziFirebase.git",
       "state" : {
-        "revision" : "12e7b779a3339737ea100b4eb7491072d4e83cd5",
-        "version" : "2.0.0-beta.2"
+        "revision" : "d0cb58fc43c99e632446b43c5cb56943f8339bf2",
+        "version" : "2.0.0-beta.3"
       }
     },
     {
@@ -310,7 +310,7 @@
     {
       "identity" : "swift-argument-parser",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-argument-parser",
+      "location" : "https://github.com/apple/swift-argument-parser.git",
       "state" : {
         "revision" : "41982a3656a71c768319979febd796c6fd111d5c",
         "version" : "1.5.0"

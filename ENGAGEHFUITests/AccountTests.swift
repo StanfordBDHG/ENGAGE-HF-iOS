@@ -39,11 +39,9 @@ final class AccountTests: XCTestCase {
         XCTAssert(app.alerts[alert].waitForExistence(timeout: 6.0))
         app.alerts[alert].buttons["Logout"].tap()
 
-        sleep(2)
-
 
         // Login
-        if app.buttons["I Already Have an Account"].waitForExistence(timeout: 2.0) {
+        if app.buttons["I Already Have an Account"].waitForExistence(timeout: 6.0) {
             app.buttons["I Already Have an Account"].tap()
         }
 
