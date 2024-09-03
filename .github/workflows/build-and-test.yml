@@ -38,9 +38,9 @@ jobs:
         with:
           submodules: 'true'
       - name: Install Dependencies
-        run: npm --prefix ENGAGE-HF-Firebase/functions install
+        run: npm --prefix ENGAGE-HF-Firebase run install
       - name: Build
-        run: npm --prefix ENGAGE-HF-Firebase build
+        run: npm --prefix ENGAGE-HF-Firebase run build
   buildandtest:
     name: Build and Test
     uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@input/customfirebaseemulatorcommand
@@ -51,7 +51,7 @@ jobs:
       runsonlabels: '["macOS", "self-hosted"]'
       setupfirebaseemulator: true
       checkout_submodules: true
-      customfirebaseemulatorcommand: npm run --prefix ENGAGE-HF-Firebase/functions serve:seed
+      customfirebaseemulatorcommand: npm --prefix ENGAGE-HF-Firebase/functions run serve:seed
     secrets:
       GOOGLE_APPLICATION_CREDENTIALS_BASE64: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_BASE64 }}
   uploadcoveragereport:
