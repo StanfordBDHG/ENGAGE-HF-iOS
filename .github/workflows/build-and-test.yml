@@ -38,7 +38,7 @@ jobs:
         with:
           submodules: 'true'
       - name: Install Dependencies
-        run: npm run --prefix ENGAGE-HF-Firebase/functions install
+        run: npm --prefix ENGAGE-HF-Firebase/functions install
       - name: Build
         run: npm --prefix ENGAGE-HF-Firebase build
   buildandtest:
