@@ -25,6 +25,8 @@ final class MessagesUITestsWithEmulator: XCTestCase {
     }
 
     func testMessagesFromEmulator() throws {
+        let app = XCUIApplication()
         
+        XCTAssert(app.otherElements["Message Card - Welcome"].waitForExistence(timeout: 2.0))
     }
 }
