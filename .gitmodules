@@ -1,0 +1,3 @@
+[submodule "ENGAGE-HF-Firebase"]
+	path = ENGAGE-HF-Firebase
+	url = https://github.com/StanfordBDHG/ENGAGE-HF-Firebase.git
