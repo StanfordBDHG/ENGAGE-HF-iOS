@@ -6,8 +6,10 @@
 // SPDX-License-Identifier: MIT
 //
 
+import FirebaseFunctions
 @_spi(TestingSupport) import SpeziAccount
 import SpeziOnboarding
+import SpeziViews
 import SwiftUI
 
 
@@ -24,14 +26,15 @@ struct AccountOnboarding: View {
             .login
         }
     }
+    
+    @State private var viewState = ViewState.idle
 
     var body: some View {
         AccountSetup { _ in
-            Task {
-                // Placing the nextStep() call inside this task will ensure that the sheet dismiss animation is
-                // played till the end before we navigate to the next step.
-                onboardingNavigationPath.nextStep()
-            }
+            try await account.setup()
+            // Placing the nextStep() call inside this task will ensure that the sheet dismiss animation is
+            // played till the end before we navigate to the next step.
+            onboardingNavigationPath.nextStep()
         } header: {
             AccountSetupHeader()
         } continue: {
@@ -43,6 +46,7 @@ struct AccountOnboarding: View {
             )
         }
             .preferredAccountSetupStyle(setupStyle)
+            .viewStateAlert(state: $viewState)
     }
 }
 

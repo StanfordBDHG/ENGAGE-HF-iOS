@@ -160,6 +160,7 @@
     },
     "CLOSE" : {
       "comment" : "MARK: General",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {

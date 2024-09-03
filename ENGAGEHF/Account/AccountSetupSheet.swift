@@ -6,21 +6,21 @@
 // SPDX-License-Identifier: MIT
 //
 
+import FirebaseFunctions
 @_spi(TestingSupport) import SpeziAccount
 import SpeziOnboarding
+import SpeziViews
 import SwiftUI
 
 
 private struct AccountInvitationCodeView: View {
-    @Environment(\.dismiss) private var dismiss
-
     @Environment(Account.self) private var account
-
+    @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         InvitationCodeView()
             .onChange(of: account.signedIn, initial: true) {
-                if account.signedIn {
+                if account.signedIn && account.details?.isAnonymous == false {
                     dismiss()
                 }
             }
@@ -29,17 +29,21 @@ private struct AccountInvitationCodeView: View {
 
 
 struct AccountSetupSheet: View {
+    @Environment(Account.self) private var account
     @Environment(\.dismiss) private var dismiss
+    
+    @State private var viewState = ViewState.idle
 
     var body: some View {
         OnboardingStack {
             AccountInvitationCodeView() // we need this indirection, otherwise the onChange doesn't trigger
             AccountSetup { _ in
-                dismiss()
+                try await account.setup()
             } header: {
                 AccountSetupHeader()
             }
         }
+        .viewStateAlert(state: $viewState)
     }
 }
 
