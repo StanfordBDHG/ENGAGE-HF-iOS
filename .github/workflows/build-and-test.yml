@@ -49,6 +49,7 @@ jobs:
     with:
       artifactname: ENGAGEHF.xcresult
       runsonlabels: '["macOS", "self-hosted"]'
+      fastlanelane: test
       setupfirebaseemulator: true
       checkout_submodules: true
       customfirebaseemulatorcommand: npm --prefix ENGAGE-HF-Firebase/functions run serve:seed
