@@ -171,6 +171,7 @@
 		4DC9905B2C7D15D6001E86C5 /* ClosedRangeExtendUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC9905A2C7D15D6001E86C5 /* ClosedRangeExtendUnitTests.swift */; };
 		4DC9905D2C7D1C98001E86C5 /* Double+Rounding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC9905C2C7D1C98001E86C5 /* Double+Rounding.swift */; };
 		4DC990612C7D3A13001E86C5 /* ClosedRange+InitFromSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC990602C7D3A13001E86C5 /* ClosedRange+InitFromSequence.swift */; };
+		4DD5FC532C87B3670051E6F5 /* MessagesUITestsWithEmulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD5FC522C87B3670051E6F5 /* MessagesUITestsWithEmulator.swift */; };
 		4DD823062C17FF79004DC599 /* MessagesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD823052C17FF79004DC599 /* MessagesUITests.swift */; };
 		4DDFC7392BF2C3C9002B07A1 /* MessagesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC7382BF2C3C9002B07A1 /* MessagesSection.swift */; };
 		4DDFC73D2BF2C4FA002B07A1 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFC73C2BF2C4FA002B07A1 /* Message.swift */; };
@@ -379,6 +380,7 @@
 		4DC9905A2C7D15D6001E86C5 /* ClosedRangeExtendUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedRangeExtendUnitTests.swift; sourceTree = "<group>"; };
 		4DC9905C2C7D1C98001E86C5 /* Double+Rounding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Rounding.swift"; sourceTree = "<group>"; };
 		4DC990602C7D3A13001E86C5 /* ClosedRange+InitFromSequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClosedRange+InitFromSequence.swift"; sourceTree = "<group>"; };
+		4DD5FC522C87B3670051E6F5 /* MessagesUITestsWithEmulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesUITestsWithEmulator.swift; sourceTree = "<group>"; };
 		4DD823052C17FF79004DC599 /* MessagesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesUITests.swift; sourceTree = "<group>"; };
 		4DDFC7382BF2C3C9002B07A1 /* MessagesSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesSection.swift; sourceTree = "<group>"; };
 		4DDFC73C2BF2C4FA002B07A1 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -885,6 +887,53 @@
 			path = Dashboard;
 			sourceTree = "<group>";
 		};
+		4DD5FC542C87B45A0051E6F5 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				4DD5FC522C87B3670051E6F5 /* MessagesUITestsWithEmulator.swift */,
+				4DD823052C17FF79004DC599 /* MessagesUITests.swift */,
+				4DB025C92BBE3A59002D2545 /* HomeViewUITests.swift */,
+				4DA20B682C2B299700715AA2 /* RecentVitalsUITests.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		4DD5FC552C87B4790051E6F5 /* HeartHealth */ = {
+			isa = PBXGroup;
+			children = (
+				4D8AD2E02C4B5D1600CB4F3E /* HeartHealthUITests.swift */,
+				4D8402762C4EE51F00817495 /* AddMeasurementUITests.swift */,
+			);
+			path = HeartHealth;
+			sourceTree = "<group>";
+		};
+		4DD5FC562C87B4880051E6F5 /* Education */ = {
+			isa = PBXGroup;
+			children = (
+				4D335C922C628F5600C720B5 /* EducationViewUITests.swift */,
+			);
+			path = Education;
+			sourceTree = "<group>";
+		};
+		4DD5FC572C87B4980051E6F5 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				4D4AA0A42BC5E43E00676489 /* OnboardingUITests.swift */,
+				A9F2138D2C18EBAB00A7578F /* AccountTests.swift */,
+				4D8CE1022C7568C700560327 /* ContactsUITests.swift */,
+				4D8CE1062C7576EB00560327 /* NotificationSettingsUITests.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		4DD5FC582C87B4A90051E6F5 /* Medications */ = {
+			isa = PBXGroup;
+			children = (
+				4D73A5232C58505100CCEC46 /* MedicationsUITests.swift */,
+			);
+			path = Medications;
+			sourceTree = "<group>";
+		};
 		4DDFC73B2BF2C46E002B07A1 /* Messages */ = {
 			isa = PBXGroup;
 			children = (
@@ -1044,19 +1093,13 @@
 		653A256A28338800005D4D48 /* ENGAGEHFUITests */ = {
 			isa = PBXGroup;
 			children = (
+				4DD5FC582C87B4A90051E6F5 /* Medications */,
+				4DD5FC572C87B4980051E6F5 /* Account */,
+				4DD5FC562C87B4880051E6F5 /* Education */,
+				4DD5FC552C87B4790051E6F5 /* HeartHealth */,
+				4DD5FC542C87B45A0051E6F5 /* Dashboard */,
 				4D84027B2C4EE61C00817495 /* HelperFunctions */,
 				2F4E237D2989A2FE0013F3D9 /* LaunchTests.swift */,
-				4DB025C92BBE3A59002D2545 /* HomeViewUITests.swift */,
-				4D4AA0A42BC5E43E00676489 /* OnboardingUITests.swift */,
-				4DD823052C17FF79004DC599 /* MessagesUITests.swift */,
-				A9F2138D2C18EBAB00A7578F /* AccountTests.swift */,
-				4DA20B682C2B299700715AA2 /* RecentVitalsUITests.swift */,
-				4D8AD2E02C4B5D1600CB4F3E /* HeartHealthUITests.swift */,
-				4D8402762C4EE51F00817495 /* AddMeasurementUITests.swift */,
-				4D73A5232C58505100CCEC46 /* MedicationsUITests.swift */,
-				4D335C922C628F5600C720B5 /* EducationViewUITests.swift */,
-				4D8CE1022C7568C700560327 /* ContactsUITests.swift */,
-				4D8CE1062C7576EB00560327 /* NotificationSettingsUITests.swift */,
 			);
 			path = ENGAGEHFUITests;
 			sourceTree = "<group>";
@@ -1459,6 +1502,7 @@
 				4DB025CA2BBE3A59002D2545 /* HomeViewUITests.swift in Sources */,
 				4D8402842C4F11CB00817495 /* XCUIApplication+DeleteMeasurements.swift in Sources */,
 				4D8402772C4EE52000817495 /* AddMeasurementUITests.swift in Sources */,
+				4DD5FC532C87B3670051E6F5 /* MessagesUITestsWithEmulator.swift in Sources */,
 				4D8AD2E12C4B5D1600CB4F3E /* HeartHealthUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
