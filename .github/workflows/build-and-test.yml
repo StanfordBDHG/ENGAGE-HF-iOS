@@ -29,18 +29,6 @@ jobs:
     uses: StanfordBDHG/.github/.github/workflows/markdown-link-check.yml@v2
     permissions:
       contents: read
-  build_firebase_submodule:
-    name: Build Firebase Submodule
-    runs-on: ["macOS", "self-hosted"]
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          submodules: 'true'
-      - name: Install Dependencies
-        run: npm --prefix ENGAGE-HF-Firebase run install
-      - name: Build
-        run: npm --prefix ENGAGE-HF-Firebase run build
   buildandtest:
     name: Build and Test
     uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@input/customfirebaseemulatorcommand
@@ -52,6 +40,7 @@ jobs:
       fastlanelane: test
       setupfirebaseemulator: true
       checkout_submodules: true
+      customcommand: npm --prefix ENGAGE-HF-Firebase run install && npm --prefix ENGAGE-HF-Firebase run build
       customfirebaseemulatorcommand: npm --prefix ENGAGE-HF-Firebase/functions run serve:seed
     secrets:
       GOOGLE_APPLICATION_CREDENTIALS_BASE64: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_BASE64 }}
