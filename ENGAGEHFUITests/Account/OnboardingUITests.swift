@@ -55,7 +55,7 @@ extension XCUIApplication {
         try navigateInterestingModules()
         
         // Invitation Code
-        try navigateInvitationCode(code: "ENGAGETEST2")
+        try navigateInvitationCode(code: "PATIENT0")
         
         // Account
         if staticTexts["Your Account"].waitForExistence(timeout: 5) {
