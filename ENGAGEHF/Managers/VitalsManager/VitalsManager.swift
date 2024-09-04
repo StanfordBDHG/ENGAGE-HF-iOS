@@ -84,6 +84,11 @@ public class VitalsManager: Module, EnvironmentAccessible {
                             }
                         }
                     case .disassociatingAccount:
+                        self.heartRateHistory = []
+                        self.bloodPressureHistory = []
+                        self.weightHistory = []
+                        self.symptomHistory = []
+                        self.latestDryWeight = nil
                         updateSnapshotListener(for: nil)
                     default:
                         break

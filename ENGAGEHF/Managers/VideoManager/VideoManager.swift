@@ -43,8 +43,13 @@ final class VideoManager: Module, EnvironmentAccessible, DefaultInitializable {
                         return
                     }
 
-                    if case .associatedAccount = event {
+                    switch event {
+                    case .associatedAccount:
                         videoCollections = await getVideoSections()
+                    case .disassociatingAccount:
+                        videoCollections = []
+                    default:
+                        break
                     }
                 }
             }

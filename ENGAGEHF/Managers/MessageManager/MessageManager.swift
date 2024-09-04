@@ -58,6 +58,7 @@ final class MessageManager: Module, EnvironmentAccessible, DefaultInitializable 
                     case let .associatedAccount(details):
                         updateSnapshotListener(for: details)
                     case .disassociatingAccount:
+                        self.messages = []
                         updateSnapshotListener(for: nil)
                     default:
                         break

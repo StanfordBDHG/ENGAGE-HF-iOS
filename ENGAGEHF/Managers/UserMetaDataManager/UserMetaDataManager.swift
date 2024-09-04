@@ -50,6 +50,8 @@ class UserMetaDataManager: Module, EnvironmentAccessible {
                     case let .associatedAccount(details):
                         updateSnapshotListener(for: details)
                     case .disassociatingAccount:
+                        self.organization = nil
+                        self.notificationSettings = NotificationSettings()
                         updateSnapshotListener(for: nil)
                     default:
                         break

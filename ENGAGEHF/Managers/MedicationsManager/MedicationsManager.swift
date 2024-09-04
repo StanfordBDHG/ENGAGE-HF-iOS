@@ -54,6 +54,7 @@ class MedicationsManager: Module, EnvironmentAccessible {
                     case let .associatedAccount(details):
                         updateSnapshotListener(for: details)
                     case .disassociatingAccount:
+                        self.medications = []
                         updateSnapshotListener(for: nil)
                     default:
                         break
