@@ -71,7 +71,7 @@ final class AddMeasurementUITests: XCTestCase {
         let app = XCUIApplication()
         
         try app.goTo(tab: "Heart Health")
-        try app.goTo(tab: "Symptoms")
+        try app.goTo(tab: "Symptoms", header: "Overall Score")
         
         XCTAssertFalse(app.buttons["Add Measurement: Symptom Score"].exists)
     }
@@ -84,7 +84,7 @@ extension XCUIApplication {
         inputs: [(label: String, value: String)],
         expectedQuantity: (value: String, unit: String)
     ) throws {
-        try goTo(tab: id.short)
+        try goTo(tab: id.short, header: id.full)
         
         buttons["Add Measurement: \(id.short)"].tap()
         XCTAssert(staticTexts[id.full].waitForExistence(timeout: 0.5))

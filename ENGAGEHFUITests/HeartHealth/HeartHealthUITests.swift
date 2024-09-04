@@ -212,7 +212,7 @@ extension XCUIApplication {
         pickerID: String
     ) throws {
         // Make sure the vitals are correctly displayed
-        try goTo(tab: id.short)
+        try goTo(tab: id.short, header: id.full)
         
         swipeUp()
         swipeUp()
