@@ -38,7 +38,6 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
     @ObservationIgnored @AppStorage(StorageKeys.onboardingFlowComplete) private var completedOnboardingFlow = false
     
     
-    
     private var cancellable: AnyCancellable?
     private var notificationsTask: Task<Void, Never>?
     
@@ -60,45 +59,50 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
         }
         
         if let accountNotifications {
-            notificationsTask = Task.detached { @MainActor [weak self] in
-                for await event in accountNotifications.events {
-                    guard let self else {
-                        return
-                    }
-
-                    switch event {
-                    case .associatedAccount:
-                        do {
-                            _ = try await self.requestNotificationPermissions()
-                        } catch {
-                            self.state = .error(
-                                AnyLocalizedError(
-                                    error: error,
-                                    defaultErrorDescription: "Unable to register for remote notifications."
-                                )
-                            )
-                        }
-                    case .disassociatingAccount:
-                        do {
-                            _ = try await self.unregisterDeviceToken()
-                        } catch {
-                            self.state = .error(
-                                AnyLocalizedError(
-                                    error: error,
-                                    defaultErrorDescription: "Unable to unregister for remote notifications."
-                                )
-                            )
-                        }
-                    default:
-                        break
-                    }
-                }
-            }
+            notificationsTask = handleAccountNotifications(accountNotifications)
         }
         
         Task { @MainActor in
             if self.account != nil {
                 await self.checkNotificationsAuthorized()
+            }
+        }
+    }
+    
+    
+    func handleAccountNotifications(_ accountNotifications: AccountNotifications) -> Task<Void, Never> {
+        Task.detached { @MainActor [weak self] in
+            for await event in accountNotifications.events {
+                guard let self else {
+                    return
+                }
+
+                switch event {
+                case .associatedAccount:
+                    do {
+                        _ = try await self.requestNotificationPermissions()
+                    } catch {
+                        self.state = .error(
+                            AnyLocalizedError(
+                                error: error,
+                                defaultErrorDescription: "Unable to register for remote notifications."
+                            )
+                        )
+                    }
+//                case .disassociatingAccount:
+//                    do {
+//                        _ = try await self.unregisterDeviceToken()
+//                    } catch {
+//                        self.state = .error(
+//                            AnyLocalizedError(
+//                                error: error,
+//                                defaultErrorDescription: "Unable to unregister for remote notifications."
+//                            )
+//                        )
+//                    }
+                default:
+                    break
+                }
             }
         }
     }

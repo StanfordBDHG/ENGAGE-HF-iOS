@@ -57,11 +57,11 @@ extension XCUIApplication {
         testedIndex: Int
     ) throws {
         // Get the initial values from each toggle
-        var initialValues: [Int] = []
+        var initialValues: [String] = []
         for idx in labels.indices {
             let toggle = switches[labels[idx]]
             XCTAssert(toggle.exists, "\(labels[idx]) toggle not found.")
-            initialValues.append(try XCTUnwrap(toggle.value as? Int, "Failed to unwrap initial \(labels[idx]) toggle value."))
+            initialValues.append(try XCTUnwrap(toggle.value as? String, "Failed to unwrap initial \(labels[idx]) toggle value."))
         }
         
         let testedToggle = switches[labels[testedIndex]]
@@ -73,7 +73,7 @@ extension XCUIApplication {
         for idx in labels.indices {
             if idx == testedIndex {
                 // Make sure the tapped toggle changed it's value
-                let toggledValue = try XCTUnwrap(testedToggle.value as? Int, "Failed to unwrap initial \(labels[idx]) toggle value.")
+                let toggledValue = try XCTUnwrap(testedToggle.value as? String, "Failed to unwrap initial \(labels[idx]) toggle value.")
                 let initialValue = initialValues[idx]
                 XCTAssertNotEqual(
                     initialValue,
@@ -85,7 +85,7 @@ extension XCUIApplication {
                 let auxilliaryToggle = switches[labels[idx]]
                 XCTAssert(auxilliaryToggle.exists)
                 
-                let toggledValue = try XCTUnwrap(auxilliaryToggle.value as? Int, "Failed to unwrap value for \(labels[idx])")
+                let toggledValue = try XCTUnwrap(auxilliaryToggle.value as? String, "Failed to unwrap value for \(labels[idx])")
                 let initialValue = initialValues[idx]
                 XCTAssertEqual(
                     toggledValue,
@@ -99,10 +99,10 @@ extension XCUIApplication {
         var count = 0
         let countLimit = 3
         let initialValue = initialValues[testedIndex]
-        while try XCTUnwrap(testedToggle.value as? Int, "Failed to unwrap toggle value for resetting.") != initialValue {
+        while try XCTUnwrap(testedToggle.value as? String, "Failed to unwrap toggle value for resetting.") != initialValue {
             testedToggle.descendants(matching: .switch).firstMatch.tap()
-            XCTAssertLessThan(count, countLimit, "Failed to reset \(labels[testedIndex]) toggle to initial value \(initialValue)")
             
+            XCTAssertLessThan(count, countLimit, "Failed to reset \(labels[testedIndex]) toggle to initial value \(initialValue)")
             count += 1
         }
     }
