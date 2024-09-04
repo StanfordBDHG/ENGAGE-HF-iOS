@@ -37,8 +37,9 @@ final class OnboardingUITests: XCTestCase {
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
         
         let email = "leland@stanford.edu"
+        let password = "12345678"
         
-        try app.navigateOnboardingFlow(email: email)
+        try app.navigateOnboardingFlow(email: email, password: password)
         app.assertOnboardingComplete()
         
         try app.assertAccountInformation(email: email)
@@ -49,6 +50,7 @@ final class OnboardingUITests: XCTestCase {
 extension XCUIApplication {
     fileprivate func navigateOnboardingFlow(
         email: String = "leland@stanford.edu",
+        password: String = "12345678",
         repeated skipOnRepeat: Bool = false
     ) throws {
         // Welcome
@@ -62,7 +64,7 @@ extension XCUIApplication {
         
         // Account
         if staticTexts["Your Account"].waitForExistence(timeout: 5) {
-            try navigateAccount(email: email)
+            try navigateAccount(email: email, password: password)
         }
         
         if !skipOnRepeat {
@@ -99,7 +101,7 @@ extension XCUIApplication {
         buttons["Redeem Invitation Code"].tap()
     }
     
-    private func navigateAccount(email: String) throws {
+    private func navigateAccount(email: String, password: String) throws {
         XCTAssert(staticTexts["Your Account"].waitForExistence(timeout: 5))
         
         if buttons["Logout"].waitForExistence(timeout: 2.0) {
@@ -109,10 +111,10 @@ extension XCUIApplication {
         XCTAssert(buttons["Signup"].waitForExistence(timeout: 2) && buttons["Signup"].isHittable)
         buttons["Signup"].tap()
         
-        try createAccount(email: email)
+        try createAccount(email: email, password: password)
     }
     
-    private func createAccount(email: String) throws {
+    private func createAccount(email: String, password: String) throws {
         XCTAssert(staticTexts["Create a new Account"].waitForExistence(timeout: 5))
         
         // Add email
@@ -123,7 +125,7 @@ extension XCUIApplication {
         // Add password
         XCTAssert(collectionViews.secureTextFields["Password"].exists)
         collectionViews.secureTextFields["Password"].tap()
-        collectionViews.secureTextFields["Password"].typeText("12345678")
+        collectionViews.secureTextFields["Password"].typeText(password)
         
         // Sign up
         XCTAssert(collectionViews.buttons["Signup"].waitForExistence(timeout: 2)
