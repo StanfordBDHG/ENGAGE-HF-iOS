@@ -16,7 +16,7 @@ final class AddMeasurementUITests: XCTestCase {
         continueAfterFailure = false
 
         let app = XCUIApplication()
-        app.launchArguments = ["--skipOnboarding", "--setupTestEnvironment", "--useFirebaseEmulator"]
+        app.launchArguments = ["--assumeOnboardingComplete", "--setupTestEnvironment", "--useFirebaseEmulator"]
         app.launch()
     }
 
