@@ -31,7 +31,7 @@ jobs:
       contents: read
   buildandtest:
     name: Build and Test
-    uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@input/customfirebaseemulatorcommand
+    uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
     permissions:
       contents: read
     with:
@@ -40,9 +40,7 @@ jobs:
       fastlanelane: test
       setupfirebaseemulator: true
       checkout_submodules: true
-      firebasejsonpath: ./ENGAGE-HF-Firebase/firebase.json
       customcommand: npm --prefix ENGAGE-HF-Firebase run install && npm --prefix ENGAGE-HF-Firebase run build
-      customfirebaseemulatorcommand: npm --prefix ENGAGE-HF-Firebase/functions run serve:seed
     secrets:
       GOOGLE_APPLICATION_CREDENTIALS_BASE64: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_BASE64 }}
   uploadcoveragereport:
