@@ -37,10 +37,9 @@ jobs:
     with:
       artifactname: ENGAGEHF.xcresult
       runsonlabels: '["macOS", "self-hosted"]'
-      fastlanelane: test
       setupfirebaseemulator: true
       checkout_submodules: true
-      customcommand: npm --prefix ENGAGE-HF-Firebase run install && npm --prefix ENGAGE-HF-Firebase run build
+      customcommand: npm --prefix ENGAGE-HF-Firebase run install && npm --prefix ENGAGE-HF-Firebase run build && firebase emulators:exec -c ./ENGAGE-HF-Firebase/firebase.json 'npm --prefix ./ENGAGE-HF-Firebase/functions run serve:seed && fastlane test'
     secrets:
       GOOGLE_APPLICATION_CREDENTIALS_BASE64: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_BASE64 }}
   uploadcoveragereport:
