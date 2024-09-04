@@ -23,6 +23,7 @@ final class AddMeasurementUITests: XCTestCase {
     func testAddingBodyWeight() throws {
         let app = XCUIApplication()
         
+        _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
         try app.goTo(tab: "Heart Health")
         
         let expectedUnit = Locale.current.measurementSystem == .us ? "lb" : "kg"
@@ -39,6 +40,7 @@ final class AddMeasurementUITests: XCTestCase {
     func testAddingHeartRate() throws {
         let app = XCUIApplication()
         
+        _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
         try app.goTo(tab: "Heart Health")
         
         let expectedUnit = "BPM"
@@ -55,6 +57,7 @@ final class AddMeasurementUITests: XCTestCase {
     func testAddingBloodPressure() throws {
         let app = XCUIApplication()
         
+        _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
         try app.goTo(tab: "Heart Health")
         
         let inputs = [("Systolic", "120"), ("Diastolic", "60")]
@@ -70,6 +73,7 @@ final class AddMeasurementUITests: XCTestCase {
     func testSymptomsAddingDisabled() throws {
         let app = XCUIApplication()
         
+        _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
         try app.goTo(tab: "Heart Health")
         try app.goTo(tab: "Symptoms", header: "Overall Score")
         

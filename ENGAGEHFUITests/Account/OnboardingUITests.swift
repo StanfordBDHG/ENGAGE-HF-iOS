@@ -33,6 +33,9 @@ final class OnboardingUITests: XCTestCase {
     
     func testOnboardingFlow() throws {
         let app = XCUIApplication()
+        
+        _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
+        
         let email = "leland@stanford.edu"
         
         try app.navigateOnboardingFlow(email: email)

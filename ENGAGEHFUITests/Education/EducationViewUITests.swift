@@ -22,6 +22,8 @@ final class EducationViewUITests: XCTestCase {
     
     func testLongDescriptionVideoView() throws {
         let app = XCUIApplication()
+        
+        _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
         try app.goTo(tab: "Education")
         
         let thumbnailOverlay = app.staticTexts["Thumbnail Overlay Title: Long Description"]
@@ -69,6 +71,8 @@ final class EducationViewUITests: XCTestCase {
     
     func testShortDescrtiptionVideoView() throws {
         let app = XCUIApplication()
+        
+        _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
         try app.goTo(tab: "Education")
         
         let thumbnailOverlay = app.staticTexts["Thumbnail Overlay Title: Short Description"]
@@ -111,6 +115,8 @@ final class EducationViewUITests: XCTestCase {
     
     func testNoDescriptionVideoView() throws {
         let app = XCUIApplication()
+        
+        _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
         try app.goTo(tab: "Education")
         
         let thumbnailOverlay = app.staticTexts["Thumbnail Overlay Title: No Description"]
@@ -139,6 +145,8 @@ final class EducationViewUITests: XCTestCase {
     
     func testSectionExtension() throws {
         let app = XCUIApplication()
+        
+        _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
         try app.goTo(tab: "Education")
         
         let sectionHeader = app.staticTexts["ENGAGE-HF Application"]
@@ -160,6 +168,8 @@ final class EducationViewUITests: XCTestCase {
 
     func testThumbnailsAppear() throws {
         let app = XCUIApplication()
+        
+        _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
         try app.goTo(tab: "Education")
         
         let videoSection = app.otherElements["Video Section: ENGAGE-HF Application"]

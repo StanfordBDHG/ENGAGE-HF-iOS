@@ -26,6 +26,8 @@ final class NotificationSettingsUITests: XCTestCase {
     func testNotificationSettings() throws {
         let app = XCUIApplication()
         
+        _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
+        
         try app.goTo(tab: "Home")
         
         XCTAssertTrue(app.navigationBars.buttons["Your Account"].waitForExistence(timeout: 2))

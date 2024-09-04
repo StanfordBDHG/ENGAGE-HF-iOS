@@ -22,6 +22,8 @@ final class RecentVitalsUITests: XCTestCase {
     func testWeight() throws {
         let app = XCUIApplication()
         
+        _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
+        
         let expectedWeight = Locale.current.measurementSystem == .us ? "92.6" : "42"
         let weightUnit = Locale.current.measurementSystem == .us ? "lb" : "kg"
         
@@ -61,6 +63,8 @@ final class RecentVitalsUITests: XCTestCase {
     
     func testHeartRateAndBloodPressure() throws {
         let app = XCUIApplication()
+        
+        _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
         
         // Delete previous measurements
         try app.deleteAllMeasurements("HR", header: "Heart Rate")

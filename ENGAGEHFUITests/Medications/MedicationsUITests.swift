@@ -23,6 +23,8 @@ final class MedicationsUITests: XCTestCase {
     
     func testMoreInformationButton() throws {
         let app = XCUIApplication()
+        
+        _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
         try app.goTo(tab: "Medications")
         
         XCTAssert(app.buttons["More"].waitForExistence(timeout: 0.5), "No \"More\" Button Found.")
@@ -43,14 +45,18 @@ final class MedicationsUITests: XCTestCase {
     func testEmptyMedications() throws {
         let app = XCUIApplication()
         
+        _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
         try app.goTo(tab: "Medications")
+        
         XCTAssert(app.staticTexts["No medication recommendations"].waitForExistence(timeout: 0.5))
     }
     
     func testMedicationCardExtension() throws {
         let app = XCUIApplication()
         
+        _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
         try app.goTo(tab: "Medications")
+        
         XCTAssert(app.buttons["More"].waitForExistence(timeout: 0.5), "No \"More\" Button Found.")
         app.buttons["More"].tap()
         
@@ -75,7 +81,9 @@ final class MedicationsUITests: XCTestCase {
     func testWithEmptyCurrentSchedule() throws {
         let app = XCUIApplication()
         
+        _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
         try app.goTo(tab: "Medications")
+        
         XCTAssert(app.buttons["More"].waitForExistence(timeout: 0.5), "No \"More\" Button Found.")
         app.buttons["More"].tap()
         
@@ -91,7 +99,9 @@ final class MedicationsUITests: XCTestCase {
     func testMultiIngredientDoseSummary() throws {
         let app = XCUIApplication()
         
+        _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
         try app.goTo(tab: "Medications")
+        
         XCTAssert(app.buttons["More"].waitForExistence(timeout: 0.5), "No \"More\" Button Found.")
         app.buttons["More"].tap()
         
@@ -110,7 +120,9 @@ final class MedicationsUITests: XCTestCase {
     func testMultiScheduleDoseSummary() throws {
         let app = XCUIApplication()
         
+        _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
         try app.goTo(tab: "Medications")
+        
         XCTAssert(app.buttons["More"].waitForExistence(timeout: 0.5), "No \"More\" Button Found.")
         app.buttons["More"].tap()
         
@@ -129,7 +141,9 @@ final class MedicationsUITests: XCTestCase {
     func testFrequencyStyling() throws {
         let app = XCUIApplication()
         
+        _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
         try app.goTo(tab: "Medications")
+        
         XCTAssert(app.buttons["More"].waitForExistence(timeout: 0.5), "No \"More\" Button Found.")
         app.buttons["More"].tap()
         
@@ -154,7 +168,9 @@ final class MedicationsUITests: XCTestCase {
     func testMidRangeGauge() throws {
         let app = XCUIApplication()
         
+        _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
         try app.goTo(tab: "Medications")
+        
         XCTAssert(app.buttons["More"].waitForExistence(timeout: 0.5), "No \"More\" Button Found.")
         app.buttons["More"].tap()
         
@@ -172,7 +188,9 @@ final class MedicationsUITests: XCTestCase {
     func testMinimumScheduleGauge() throws {
         let app = XCUIApplication()
         
+        _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
         try app.goTo(tab: "Medications")
+        
         XCTAssert(app.buttons["More"].waitForExistence(timeout: 0.5), "No \"More\" Button Found.")
         app.buttons["More"].tap()
         
@@ -188,7 +206,9 @@ final class MedicationsUITests: XCTestCase {
     func testEmptyGauge() throws {
         let app = XCUIApplication()
         
+        _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
         try app.goTo(tab: "Medications")
+        
         XCTAssert(app.buttons["More"].waitForExistence(timeout: 0.5), "No \"More\" Button Found.")
         app.buttons["More"].tap()
         
@@ -207,7 +227,9 @@ final class MedicationsUITests: XCTestCase {
     func testHighRangeGauge() throws {
         let app = XCUIApplication()
         
+        _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
         try app.goTo(tab: "Medications")
+        
         XCTAssert(app.buttons["More"].waitForExistence(timeout: 0.5), "No \"More\" Button Found.")
         app.buttons["More"].tap()
         
