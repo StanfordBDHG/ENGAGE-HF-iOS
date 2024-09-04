@@ -89,17 +89,18 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
                             )
                         )
                     }
-//                case .disassociatingAccount:
-//                    do {
-//                        _ = try await self.unregisterDeviceToken()
-//                    } catch {
-//                        self.state = .error(
-//                            AnyLocalizedError(
-//                                error: error,
-//                                defaultErrorDescription: "Unable to unregister for remote notifications."
-//                            )
-//                        )
-//                    }
+                case .disassociatingAccount:
+                    do {
+                        _ = try await self.unregisterDeviceToken()
+                    } catch {
+                        self.logger.error("\(error.localizedDescription)")
+                        self.state = .error(
+                            AnyLocalizedError(
+                                error: error,
+                                defaultErrorDescription: "Unable to unregister for remote notifications."
+                            )
+                        )
+                    }
                 default:
                     break
                 }
