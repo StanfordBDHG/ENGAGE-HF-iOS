@@ -9,13 +9,9 @@ import FirebaseFunctions
 import SpeziAccount
 
 extension Account {
-    func setup() async throws {
+    func finishSetupIfNeeded() async throws {
         do {
-            print("Calling setupUser")
             _ = try await Functions.functions().httpsCallable("setupUser").call()
-            print("Called setupUser")
-            try await Task.sleep(for: .seconds(20))
-            throw CancellationError()
         } catch {
             print("Failed setupUser", error)
             await removeUserDetails()

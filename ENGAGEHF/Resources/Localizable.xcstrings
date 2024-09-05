@@ -46,6 +46,9 @@
     "About %@" : {
 
     },
+    "Account Creation Finished!" : {
+
+    },
     "ACCOUNT_NEXT" : {
       "localizations" : {
         "en" : {
@@ -186,6 +189,9 @@
     "Content ..." : {
 
     },
+    "Continue" : {
+
+    },
     "Current" : {
 
     },
@@ -210,6 +216,9 @@
     "Enable Notifications in Settings" : {
 
     },
+    "Error occured: %@" : {
+
+    },
     "Expansion Button" : {
 
     },
@@ -223,6 +232,9 @@
 
     },
     "Failed to save new %@ measurement." : {
+
+    },
+    "Finishing Account Setup" : {
 
     },
     "Generating Health Summary" : {
@@ -674,6 +686,9 @@
     "Trigger Weight Measurement" : {
 
     },
+    "Try again" : {
+
+    },
     "Unable to create time interval for date: %@" : {
 
     },
@@ -846,6 +861,9 @@
           }
         }
       }
+    },
+    "Your account has successfully been created. You may now proceed." : {
+
     }
   },
   "version" : "1.0"

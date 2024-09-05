@@ -25,6 +25,7 @@ struct OnboardingFlow: View {
             if !FeatureFlags.disableFirebase {
                 InvitationCodeView()
                 AccountOnboarding()
+                AccountFinish()
             }
             
             NotificationPermissions()

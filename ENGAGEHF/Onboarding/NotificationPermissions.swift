@@ -15,9 +15,6 @@ struct NotificationPermissions: View {
     @Environment(OnboardingNavigationPath.self) private var onboardingNavigationPath
     @Environment(NotificationManager.self) private var notificationManager
     
-    @State private var notificationProcessing = false
-    
-    
     var body: some View {
         OnboardingView(
             contentView: {
@@ -40,16 +37,12 @@ struct NotificationPermissions: View {
                 OnboardingActionsView(
                     primaryText: "NOTIFICATION_PERMISSIONS_BUTTON",
                     primaryAction: {
-                        notificationProcessing = true
-                        
                         // Notification Authorization is not available in the preview simulator.
                         if ProcessInfo.processInfo.isPreviewSimulator {
                             try await _Concurrency.Task.sleep(for: .seconds(5))
                         } else {
                             _ = try await notificationManager.requestNotificationPermissions()
                         }
-                        
-                        notificationProcessing = false
                         onboardingNavigationPath.nextStep()
                     },
                     secondaryText: "Skip",
@@ -59,7 +52,7 @@ struct NotificationPermissions: View {
                 )
             }
         )
-            .navigationBarBackButtonHidden(notificationProcessing)
+            .navigationBarBackButtonHidden(true)
             // Small fix as otherwise "Login" or "Sign up" is still shown in the nav bar
             .navigationTitle(Text(verbatim: ""))
     }

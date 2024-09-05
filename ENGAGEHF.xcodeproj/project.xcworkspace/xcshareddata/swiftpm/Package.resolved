@@ -49,7 +49,7 @@
     {
       "identity" : "fhirmodels",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/FHIRModels",
+      "location" : "https://github.com/apple/FHIRModels.git",
       "state" : {
         "revision" : "861afd5816a98d38f86220eab2f812d76cad84a0",
         "version" : "0.5.0"
@@ -114,8 +114,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordBDHG/HealthKitOnFHIR.git",
       "state" : {
-        "revision" : "87a9257e6fa37407f3437e4a0bf21dd09a4ea7c5",
-        "version" : "0.2.11"
+        "branch" : "fix/swiftlint-dependency",
+        "revision" : "4c4c4d7020016e01904e07763a39088e5a4e132c"
       }
     },
     {
@@ -195,8 +195,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziAccount.git",
       "state" : {
-        "branch" : "feature/async-throwing-setup",
-        "revision" : "75465b62d9db8f733354997239069cf0b5061926"
+        "revision" : "7e78ee9e7e4df2071a18ac0fc722671ac1dcfac4",
+        "version" : "2.0.0-beta.7"
       }
     },
     {

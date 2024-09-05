@@ -15,35 +15,41 @@ import SwiftUI
 
 private struct AccountInvitationCodeView: View {
     @Environment(Account.self) private var account
-    @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         InvitationCodeView()
-            .onChange(of: account.signedIn, initial: true) {
-                if account.signedIn && account.details?.isAnonymous == false {
-                    dismiss()
-                }
-            }
     }
 }
 
 
 struct AccountSetupSheet: View {
-    @Environment(Account.self) private var account
-    @Environment(\.dismiss) private var dismiss
-    
-    @State private var viewState = ViewState.idle
-
-    var body: some View {
-        OnboardingStack {
-            AccountInvitationCodeView() // we need this indirection, otherwise the onChange doesn't trigger
+    struct AccountOnboarding: View {
+        @Environment(OnboardingNavigationPath.self) private var onboardingNavigationPath
+        
+        var body: some View {
             AccountSetup { _ in
-                try await account.setup()
+                onboardingNavigationPath.nextStep()
             } header: {
                 AccountSetupHeader()
             }
         }
-        .viewStateAlert(state: $viewState)
+    }
+    
+    @Binding private var isLoginActive: Bool
+    
+    var body: some View {
+        OnboardingStack(onboardingFlowComplete: !$isLoginActive) {
+            AccountInvitationCodeView() // we need this indirection, otherwise the onChange doesn't trigger
+            AccountOnboarding()
+                .onAppear { isLoginActive = true }
+            AccountFinish()
+        }
+        .onAppear { isLoginActive = false }
+        .interactiveDismissDisabled(isLoginActive)
+    }
+    
+    init(isLoginActive: Binding<Bool>) {
+        self._isLoginActive = isLoginActive
     }
 }
 
@@ -52,7 +58,7 @@ struct AccountSetupSheet: View {
 #Preview {
     Text(verbatim: "Base View")
         .sheet(isPresented: .constant(true)) {
-            AccountSetupSheet()
+            AccountSetupSheet(isLoginActive: .constant(true))
         }
         .previewWith {
             AccountConfiguration(service: InMemoryAccountService())

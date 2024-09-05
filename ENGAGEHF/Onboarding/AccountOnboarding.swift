@@ -31,10 +31,11 @@ struct AccountOnboarding: View {
 
     var body: some View {
         AccountSetup { _ in
-            try await account.setup()
-            // Placing the nextStep() call inside this task will ensure that the sheet dismiss animation is
-            // played till the end before we navigate to the next step.
-            onboardingNavigationPath.nextStep()
+            Task {
+                // Placing the nextStep() call inside this task will ensure that the sheet dismiss animation is
+                // played till the end before we navigate to the next step.
+                onboardingNavigationPath.nextStep()
+            }
         } header: {
             AccountSetupHeader()
         } continue: {
