@@ -26,6 +26,10 @@ There are 6 main features of the app: a Home page with a dashboard that displays
 |:--:|:--:|:--:|
 |Home Page|Heart Health|Medications|
 
+|![education-expanded](https://github.com/user-attachments/assets/72def7c7-4f6f-4dfe-bde1-a92f194f5598)|![symptom-survey](https://github.com/user-attachments/assets/42b457a3-7943-4ffd-a5cb-afff16e58df1)|![bluetooth-measurement](https://github.com/user-attachments/assets/50b5f1d9-383d-44b6-9350-7bd135259890)|
+|:--:|:--:|:--:|
+|Education|Symptom Survey|Bluetooth|
+
 
 ## Contributing
 
