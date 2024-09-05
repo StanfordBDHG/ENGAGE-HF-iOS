@@ -79,7 +79,7 @@ struct HomeView: View {
             .sheet(isPresented: $presentingAccount) {
                 AccountSheet()
             }
-            .accountRequired(!FeatureFlags.disableFirebase && !FeatureFlags.skipOnboarding) {
+            .accountRequired(!FeatureFlags.disableFirebase && !FeatureFlags.skipOnboarding && !FeatureFlags.setupTestEnvironment) {
                 AccountSetupSheet()
             }
             .sheet(isPresented: $measurements.shouldPresentMeasurements) {
