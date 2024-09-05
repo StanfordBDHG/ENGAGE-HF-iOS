@@ -90,7 +90,8 @@ extension XCUIApplication {
     ) throws {
         try goTo(tab: id.short, header: id.full)
         
-        collectionViews.element.buttons["Add Measurement: \(id.short)"].tap()
+        swipeUp()
+        buttons["Add Measurement: \(id.short)"].tap()
         
         XCTAssert(staticTexts[id.full].waitForExistence(timeout: 0.5))
         XCTAssert(buttons["Cancel"].exists)
