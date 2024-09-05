@@ -31,6 +31,12 @@ There are 6 main features of the app: a Home page with a dashboard that displays
 |Education|Symptom Survey|Bluetooth|
 
 
+The home page demonstrates that the application is server-driven, as the application displays messages that are generated on the backend. For ENGAGE-HF, this is a [Firebase](https://firebase.google.com/docs) based backend. To help integrate the application with Firebase, we use [Spezi]
+
+[!NOTE]
+> To see
+
+
 ## Contributing
 
 Contributions to this project are welcome. Please make sure to read the [contribution guidelines](https://github.com/StanfordSpezi/.github/blob/main/CONTRIBUTING.md) and the [contributor covenant code of conduct](https://github.com/StanfordSpezi/.github/blob/main/CODE_OF_CONDUCT.md) first.
