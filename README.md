@@ -9,6 +9,8 @@ SPDX-License-Identifier: MIT
 -->
 
 # ENGAGE-HF
+[![Build and Test](https://github.com/StanfordBDHG/ENGAGE-HF-iOS/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/StanfordBDHG/ENGAGE-HF-iOS/actions/workflows/build-and-test.yml)
+[![codecov](https://codecov.io/gh/StanfordBDHG/ENGAGE-HF-iOS/graph/badge.svg?token=sFNNo3AoNd)](https://codecov.io/gh/StanfordBDHG/ENGAGE-HF-iOS)
 
 This repository contains the ENGAGE-HF.
 The ENGAGE-HF is using the [Spezi](https://github.com/StanfordSpezi/Spezi) ecosystem and builds on top of the [Stanford Spezi Template Application](https://github.com/StanfordSpezi/SpeziTemplateApplication).
