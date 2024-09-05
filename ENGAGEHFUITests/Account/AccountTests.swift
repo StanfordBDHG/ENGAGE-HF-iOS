@@ -21,45 +21,45 @@ final class AccountTests: XCTestCase {
         app.launch()
     }
 
-//    func testInAppLogon() throws {
-//        let app = XCUIApplication()
-//
-//        _ = app.staticTexts["Home"].waitForExistence(timeout: 10)
-//
-//        XCTAssert(app.buttons["Home"].waitForExistence(timeout: 2.0))
-//        app.buttons["Home"].tap()
-//
-//
-//        XCTAssertTrue(app.navigationBars.buttons["Your Account"].waitForExistence(timeout: 2))
-//        app.navigationBars.buttons["Your Account"].tap()
-//
-//        XCTAssert(app.buttons["Logout"].waitForExistence(timeout: 2))
-//        app.buttons["Logout"].tap()
-//
-//        let alert = "Are you sure you want to logout?"
-//        XCTAssert(app.alerts[alert].waitForExistence(timeout: 6.0))
-//        app.alerts[alert].buttons["Logout"].tap()
-//
-//        sleep(2)
-//
-//
-//        // Login
-//        if app.buttons["I Already Have an Account"].waitForExistence(timeout: 2.0) {
-//            app.buttons["I Already Have an Account"].tap()
-//        }
-//
-//        XCTAssert(app.textFields["E-Mail Address"].waitForExistence(timeout: 2))
-//        try app.textFields["E-Mail Address"].enter(value: "test@engage.stanford.edu")
-//
-//        XCTAssert(app.secureTextFields["Password"].waitForExistence(timeout: 2))
-//        try app.secureTextFields["Password"].enter(value: "123456789")
-//
-//        XCTAssertTrue(app.buttons["Login"].waitForExistence(timeout: 0.5))
-//        app.buttons["Login"].tap()
-//
-//        // ensure home view is in focus
-//        let tabBar = app.tabBars["Tab Bar"]
-//        XCTAssert(tabBar.buttons["Home"].waitForExistence(timeout: 2))
-//        tabBar.buttons["Home"].tap()
-//    }
+    func testInAppLogon() throws {
+        let app = XCUIApplication()
+
+        _ = app.staticTexts["Home"].waitForExistence(timeout: 10)
+
+        XCTAssert(app.buttons["Home"].waitForExistence(timeout: 2.0))
+        app.buttons["Home"].tap()
+
+
+        XCTAssertTrue(app.navigationBars.buttons["Your Account"].waitForExistence(timeout: 2))
+        app.navigationBars.buttons["Your Account"].tap()
+
+        XCTAssert(app.buttons["Logout"].waitForExistence(timeout: 2))
+        app.buttons["Logout"].tap()
+
+        let alert = "Are you sure you want to logout?"
+        XCTAssert(app.alerts[alert].waitForExistence(timeout: 6.0))
+        app.alerts[alert].buttons["Logout"].tap()
+
+        sleep(2)
+
+
+        // Login
+        if app.buttons["I Already Have an Account"].waitForExistence(timeout: 2.0) {
+            app.buttons["I Already Have an Account"].tap()
+        }
+
+        XCTAssert(app.textFields["E-Mail Address"].waitForExistence(timeout: 2))
+        try app.textFields["E-Mail Address"].enter(value: "test@engage.stanford.edu")
+
+        XCTAssert(app.secureTextFields["Password"].waitForExistence(timeout: 2))
+        try app.secureTextFields["Password"].enter(value: "123456789")
+
+        XCTAssertTrue(app.buttons["Login"].waitForExistence(timeout: 0.5))
+        app.buttons["Login"].tap()
+
+        // ensure home view is in focus
+        let tabBar = app.tabBars["Tab Bar"]
+        XCTAssert(tabBar.buttons["Home"].waitForExistence(timeout: 2))
+        tabBar.buttons["Home"].tap()
+    }
 }
