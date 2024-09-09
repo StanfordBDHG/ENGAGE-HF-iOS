@@ -425,10 +425,16 @@
     "No Data" : {
 
     },
+    "No Educational Videos" : {
+
+    },
     "No medication recommendations" : {
 
     },
     "No recent %@ measurement available" : {
+
+    },
+    "No Videos" : {
 
     },
     "No vitals" : {
@@ -654,6 +660,12 @@
     },
     "The invitation code is invalid or has already been used." : {
       "comment" : "Invitation Code Invalid"
+    },
+    "There are currently no educational videos available." : {
+
+    },
+    "There are currently no videos in any collection." : {
+
     },
     "Thumbnail Image: %@" : {
 

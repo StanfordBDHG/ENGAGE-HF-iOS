@@ -8,31 +8,36 @@
 
 import SwiftUI
 
-
 struct VideoList: View {
     let videoCollections: [VideoCollection]
     
-    
     var body: some View {
-        ScrollView {
-            LazyVStack(spacing: 12) {
-                ForEach(videoCollections.sorted(by: { $0.orderIndex < $1.orderIndex })) { videoCollection in
-                    StudyApplicationListCard {
-                        VideoListSection(
-                            title: videoCollection.title,
-                            subtitle: videoCollection.description,
-                            videos: videoCollection.videos
-                        )
-                    }
+        if videoCollections.isEmpty {
+            ContentUnavailableView(
+                "No Videos",
+                systemImage: "video.slash",
+                description: Text("There are currently no videos in any collection.")
+            )
+        } else {
+            ScrollView {
+                LazyVStack(spacing: 12) {
+                    ForEach(videoCollections.sorted(by: { $0.orderIndex < $1.orderIndex })) { videoCollection in
+                        StudyApplicationListCard {
+                            VideoListSection(
+                                title: videoCollection.title,
+                                subtitle: videoCollection.description,
+                                videos: videoCollection.videos
+                            )
+                        }
                         .accessibilityIdentifier("Video Section: \(videoCollection.title)")
+                    }
                 }
-            }
                 .padding()
-        }
+            }
             .background(Color(.systemGroupedBackground))
+        }
     }
 }
-
 
 #if DEBUG
 #Preview {
@@ -48,8 +53,8 @@ struct VideoList: View {
             )
         ]
     )
-        .previewWith(standard: ENGAGEHFStandard()) {
-            NavigationManager()
-        }
+    .previewWith(standard: ENGAGEHFStandard()) {
+        NavigationManager()
+    }
 }
 #endif
