@@ -8,8 +8,10 @@
 
 import SwiftUI
 
+
 struct VideoList: View {
     let videoCollections: [VideoCollection]
+    
     
     var body: some View {
         if videoCollections.isEmpty {
@@ -38,6 +40,7 @@ struct VideoList: View {
         }
     }
 }
+
 
 #if DEBUG
 #Preview {

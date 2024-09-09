@@ -8,11 +8,13 @@
 
 import SwiftUI
 
+
 struct Education: View {
     @Binding var presentingAccount: Bool
     
     @Environment(VideoManager.self) private var videoManager
     @Environment(NavigationManager.self) private var navigationManager
+    
     
     var body: some View {
         @Bindable var navigationManager = navigationManager
@@ -42,6 +44,7 @@ struct Education: View {
         }
     }
 }
+
 
 #if DEBUG
 #Preview {
