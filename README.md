@@ -13,7 +13,7 @@ SPDX-License-Identifier: MIT
 This repository contains the ENGAGE-HF.
 The ENGAGE-HF is using the [Spezi](https://github.com/StanfordSpezi/Spezi) ecosystem and builds on top of the [Stanford Spezi Template Application](https://github.com/StanfordSpezi/SpeziTemplateApplication).
 
-> [!NOTE]  
+> [!NOTE]
 > Do you want to learn more about the Stanford Spezi Template Application and how to use, extend, and modify this application? Check out the [Stanford Spezi Template Application documentation](https://stanfordspezi.github.io/SpeziTemplateApplication)
 
 
