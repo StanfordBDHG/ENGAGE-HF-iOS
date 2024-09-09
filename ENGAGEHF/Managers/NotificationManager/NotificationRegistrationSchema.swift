@@ -34,8 +34,8 @@ struct NotificationRegistrationSchema: Codable {
     }
     
     
-    init(_ deviceToken: Data, locale: Locale = Locale.current, timeZone: TimeZone = .current) {
-        self.notificationToken = deviceToken.hexString
+    init(_ notificationToken: String, locale: Locale = Locale.current, timeZone: TimeZone = .current) {
+        self.notificationToken = notificationToken
         self.platform = MobilePlatform.iOS.rawValue
         self.osVersion = UIDevice.current.systemVersion
         self.appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String

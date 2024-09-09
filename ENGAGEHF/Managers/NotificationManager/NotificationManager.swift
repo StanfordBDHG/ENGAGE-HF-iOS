@@ -8,6 +8,7 @@
 
 import Combine
 import FirebaseFunctions
+import FirebaseMessaging
 import Foundation
 import OSLog
 import Spezi
@@ -63,7 +64,7 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
                     guard let self else {
                         return
                     }
-
+                    
                     switch event {
                     case .associatedAccount:
                         do {
@@ -110,7 +111,7 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
         case .notDetermined:
             do {
                 self.notificationsAuthorized = try await self.requestNotificationPermissions()
-            } catch let error as TimeoutError {
+            } catch _ as TimeoutError {
                 self.state = .error(NotificationTokenTimeoutError())
             } catch {
                 self.state = .error(
@@ -165,10 +166,11 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
     }
     
     
-    func receiveUpdatedDeviceToken(_ deviceToken: Data) {
+    func receiveUpdatedDeviceToken(_ apnsToken: Data) {
         Task {
             do {
-                try await self.configureRemoteNotifications(using: deviceToken)
+                let fcmToken = try await convertToFCM(apnsToken: apnsToken)
+                try await self.configureRemoteNotifications(using: fcmToken)
             } catch {
                 self.logger.error("Failed to configured remote notifications for updated device token: \(error)")
                 self.state = .error(
@@ -182,7 +184,7 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
     }
     
     
-    private func configureRemoteNotifications(using deviceToken: Data) async throws {
+    private func configureRemoteNotifications(using deviceToken: String) async throws {
         self.logger.debug("Registering device for remote notifications.")
         
         let registerDevice = Functions.functions().httpsCallable("registerDevice")
@@ -206,7 +208,7 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
     }
     
     
-    private func getDeviceToken(askPermissionIfNeeded: Bool = true) async throws -> Data? {
+    private func getDeviceToken(askPermissionIfNeeded: Bool = true) async throws -> String? {
         let settings = await UNUserNotificationCenter.current().notificationSettings()
         
         switch settings.authorizationStatus {
@@ -231,9 +233,16 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
         }
         
 #if TEST
-        return Data()
+        return ""
 #else
-        return FeatureFlags.skipRemoteNotificationRegistration ? Data() : try await registerRemoteNotifications()
+        let apnsToken = FeatureFlags.skipRemoteNotificationRegistration ? Data() : try await registerRemoteNotifications()
+        return try await convertToFCM(apnsToken: apnsToken)
 #endif
+    }
+
+    private func convertToFCM(apnsToken: Data) async throws -> String {
+        let messaging = Messaging.messaging()
+        messaging.apnsToken = apnsToken
+        return try await messaging.token()
     }
 }
