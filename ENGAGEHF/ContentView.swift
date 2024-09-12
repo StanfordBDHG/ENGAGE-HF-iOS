@@ -63,7 +63,7 @@ struct ContentView: View {
             Task { @MainActor in
                 // Delaying this update by 0.5 seconds to ensure that animations are done
                 // and the AccountSheet is actually dismissed already, before continuing.
-                try? await Task.sleep(for: .seconds(0.5))
+                try? await Task.sleep(for: .seconds(1))
                 updateSheetContent()
             }
         }

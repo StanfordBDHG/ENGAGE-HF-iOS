@@ -49,8 +49,8 @@ final class OnboardingUITests: XCTestCase {
 
 extension XCUIApplication {
     fileprivate func navigateOnboardingFlow(
-        email: String = "leland@stanford.edu",
-        password: String = "12345678",
+        email: String,
+        password: String,
         repeated skipOnRepeat: Bool = false
     ) throws {
         // Welcome
@@ -59,13 +59,11 @@ extension XCUIApplication {
         // Interesting Modules
         try navigateInterestingModules()
         
+        // Account
+        try navigateAccount(email: email, password: password)
+        
         // Invitation Code
         try navigateInvitationCode(code: "PATIENT1")
-        
-        // Account
-        if staticTexts["Your Account"].waitForExistence(timeout: 5) {
-            try navigateAccount(email: email, password: password)
-        }
         
         if !skipOnRepeat {
             // Notifications
@@ -87,18 +85,6 @@ extension XCUIApplication {
             XCTAssert(buttons["Next"].waitForExistence(timeout: 2) && buttons["Next"].isHittable)
             buttons["Next"].tap()
         }
-    }
-    
-    private func navigateInvitationCode(code: String) throws {
-        XCTAssert(staticTexts["Invitation Code"].waitForExistence(timeout: 5))
-        
-        XCTAssert(textFields["Invitation Code"].exists)
-        textFields["Invitation Code"].tap()
-        textFields["Invitation Code"].typeText(code)
-        
-        XCTAssert(buttons["Redeem Invitation Code"].waitForExistence(timeout: 2)
-                  && buttons["Redeem Invitation Code"].isEnabled)
-        buttons["Redeem Invitation Code"].tap()
     }
     
     private func navigateAccount(email: String, password: String) throws {
@@ -133,6 +119,18 @@ extension XCUIApplication {
         collectionViews.buttons["Signup"].tap()
         
         sleep(3)
+    }
+    
+    private func navigateInvitationCode(code: String) throws {
+        XCTAssert(staticTexts["Invitation Code"].waitForExistence(timeout: 5))
+        
+        XCTAssert(textFields["Invitation Code"].exists)
+        textFields["Invitation Code"].tap()
+        textFields["Invitation Code"].typeText(code)
+        
+        XCTAssert(buttons["Redeem Invitation Code"].waitForExistence(timeout: 2)
+                  && buttons["Redeem Invitation Code"].isEnabled)
+        buttons["Redeem Invitation Code"].tap()
     }
     
     private func navigateNotifications() throws {

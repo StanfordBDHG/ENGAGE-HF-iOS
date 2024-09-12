@@ -27,24 +27,6 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
         }
     }
 
-    func clearAccount() async {
-        do {
-            try await signOutAccount()
-        } catch {
-            logger.debug("Failed to sing out firebase account: \(error)")
-        }
-    }
-
-    func signOutAccount() async throws {
-        do {
-            try await accountService?.logout()
-        } catch FirebaseAccountError.notSignedIn {
-            // do nothing
-        } catch {
-            throw error
-        }
-    }
-
     func verifyOnboardingCode(_ invitationCode: String) async throws {
         do {
             if FeatureFlags.disableFirebase {
@@ -90,8 +72,8 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
             preconditionFailure("The Firebase Account Service is required to be configured when setting up the test environment!")
         }
 
-        let email = "test@engage.stanford.edu"
-        let password = "123456789"
+        let email = "engagehf-patient0@stanford.edu"
+        let password = "password"
 
         if account.details != nil {
             // always start logged out, even if testing account had already been set up
@@ -102,20 +84,19 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
             try await accountService.login(userId: email, password: password)
             return // account was already established previously
         } catch FirebaseAccountError.invalidCredentials {
-            // probably doesn't exists. We try to create a new one below
+            // probably doesn't exist. We try to create a new one below
         } catch {
             logger.error("Failed logging into test account: \(error)")
-            return
+            // throw error
         }
-
-        try await verifyOnboardingCode(invitationCode)
-
+        
         do {
             var details = AccountDetails()
             details.userId = email
             details.password = password
             details.name = PersonNameComponents(givenName: "Leland", familyName: "Stanford")
             try await accountService.signUp(with: details)
+            try await verifyOnboardingCode(invitationCode)
         } catch {
             logger.error("Failed setting up test account : \(error)")
             throw error
