@@ -29,10 +29,7 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
             if !FeatureFlags.disableFirebase {
                 AccountConfiguration(
                     service: FirebaseAccountService(providers: [.emailAndPassword, .signInWithApple], emulatorSettings: accountEmulator),
-                    storageProvider: FirestoreAccountStorage(storeIn: Firestore.userCollection, mapping: [
-                        "dateOfBirth": AccountKeys.dateOfBirth,
-                        "invitationCode": AccountKeys.invitationCode
-                    ]),
+                    storageProvider: FirestoreAccountStorage(storeIn: Firestore.userCollection),
                     configuration: [
                         .requires(\.userId),
                         .supports(\.name),
