@@ -76,16 +76,7 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
                             )
                         }
                     } else if event.accountDetails == nil {
-                        do {
-                            _ = try? await self.unregisterDeviceToken()
-                        } catch {
-                            self.state = .error(
-                                AnyLocalizedError(
-                                    error: error,
-                                    defaultErrorDescription: "Unable to unregister for remote notifications."
-                                )
-                            )
-                        }
+                        _ = try? await self.unregisterDeviceToken()
                     }
                 }
             }
@@ -107,7 +98,7 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
         case .notDetermined:
             do {
                 self.notificationsAuthorized = try await self.requestNotificationPermissions()
-            } catch let error as TimeoutError {
+            } catch _ as TimeoutError {
                 self.state = .error(NotificationTokenTimeoutError())
             } catch {
                 self.state = .error(

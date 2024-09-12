@@ -1992,7 +1992,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/StanfordSpezi/SpeziAccount.git";
 			requirement = {
-				branch = "feature/async-throwing-setup";
+				branch = "add-hidden-requirement";
 				kind = branch;
 			};
 		};

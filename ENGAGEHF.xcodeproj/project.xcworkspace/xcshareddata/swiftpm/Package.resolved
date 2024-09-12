@@ -195,8 +195,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziAccount.git",
       "state" : {
-        "branch" : "feature/async-throwing-setup",
-        "revision" : "63cf7b601020942bdce4c601f9b01d835863b65a"
+        "branch" : "add-hidden-requirement",
+        "revision" : "a3fe2bf688b06a8ef7e117e7e091c250b10e28f4"
       }
     },
     {
