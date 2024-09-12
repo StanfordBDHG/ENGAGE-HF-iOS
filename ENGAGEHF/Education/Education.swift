@@ -21,7 +21,7 @@ struct Education: View {
         
         NavigationStack(path: $navigationManager.educationPath) {
             Group {
-                if videoManager.videoCollections.isEmpty {
+                if videoManager.videoCollections.isEmpty || videoManager.videoCollections.allSatisfy({ $0.videos.isEmpty }) {
                     ContentUnavailableView(
                         "No Educational Videos",
                         systemImage: "video.slash",

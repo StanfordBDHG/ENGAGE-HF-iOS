@@ -434,9 +434,6 @@
     "No recent %@ measurement available" : {
 
     },
-    "No Videos" : {
-
-    },
     "No vitals" : {
 
     },
@@ -662,9 +659,6 @@
       "comment" : "Invitation Code Invalid"
     },
     "There are currently no educational videos available." : {
-
-    },
-    "There are currently no videos in any collection." : {
 
     },
     "Thumbnail Image: %@" : {
