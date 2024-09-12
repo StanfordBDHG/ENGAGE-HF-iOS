@@ -46,9 +46,6 @@
     "About %@" : {
 
     },
-    "Account Creation Finished!" : {
-
-    },
     "ACCOUNT_NEXT" : {
       "localizations" : {
         "en" : {
@@ -189,7 +186,7 @@
     "Content ..." : {
 
     },
-    "Continue" : {
+    "Content Unavailable" : {
 
     },
     "Current" : {
@@ -216,9 +213,6 @@
     "Enable Notifications in Settings" : {
 
     },
-    "Error occured: %@" : {
-
-    },
     "Expansion Button" : {
 
     },
@@ -232,9 +226,6 @@
 
     },
     "Failed to save new %@ measurement." : {
-
-    },
-    "Finishing Account Setup" : {
 
     },
     "Generating Health Summary" : {
@@ -267,7 +258,7 @@
     "Home" : {
 
     },
-    "I Already Have an Account" : {
+    "Inactivity" : {
 
     },
     "Input: %@" : {
@@ -423,6 +414,9 @@
     "List Without Sections" : {
 
     },
+    "Logout" : {
+
+    },
     "Medication Label: %@" : {
 
     },
@@ -494,6 +488,9 @@
     "Notifications" : {
 
     },
+    "Organization" : {
+
+    },
     "Play Video" : {
 
     },
@@ -528,6 +525,9 @@
 
     },
     "Resolution Picker" : {
+
+    },
+    "Retry" : {
 
     },
     "Review" : {
@@ -668,6 +668,9 @@
     "The invitation code is invalid or has already been used." : {
       "comment" : "Invitation Code Invalid"
     },
+    "The user isn't currently set up correctly. Please try closing the app and opening it back up." : {
+
+    },
     "Thumbnail Image: %@" : {
 
     },
@@ -684,9 +687,6 @@
 
     },
     "Trigger Weight Measurement" : {
-
-    },
-    "Try again" : {
 
     },
     "Unable to create time interval for date: %@" : {
@@ -861,9 +861,6 @@
           }
         }
       }
-    },
-    "Your account has successfully been created. You may now proceed." : {
-
     }
   },
   "version" : "1.0"

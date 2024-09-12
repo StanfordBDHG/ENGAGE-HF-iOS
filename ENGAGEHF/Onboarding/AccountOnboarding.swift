@@ -16,25 +16,15 @@ import SwiftUI
 struct AccountOnboarding: View {
     @Environment(Account.self) private var account
     @Environment(OnboardingNavigationPath.self) private var onboardingNavigationPath
-
-    @MainActor private var setupStyle: PreferredSetupStyle {
-        if let details = account.details,
-           details.isAnonymous {
-            .signup
-        } else {
-            // when we navigate here from the InvitationCodeView we remove the anonymous account for sign in.
-            .login
-        }
-    }
     
     @State private var viewState = ViewState.idle
 
     var body: some View {
-        AccountSetup { _ in
-            Task {
-                // Placing the nextStep() call inside this task will ensure that the sheet dismiss animation is
-                // played till the end before we navigate to the next step.
+        AccountSetup { details in
+            if details.invitationCode != nil {
                 onboardingNavigationPath.nextStep()
+            } else {
+                onboardingNavigationPath.append(customView: InvitationCodeView())
             }
         } header: {
             AccountSetupHeader()
@@ -42,11 +32,15 @@ struct AccountOnboarding: View {
             OnboardingActionsView(
                 "ACCOUNT_NEXT",
                 action: {
-                    onboardingNavigationPath.nextStep()
+                    if account.details?.invitationCode != nil {
+                        onboardingNavigationPath.nextStep()
+                    } else {
+                        onboardingNavigationPath.append(customView: InvitationCodeView())
+                    }
                 }
             )
         }
-            .preferredAccountSetupStyle(setupStyle)
+            .preferredAccountSetupStyle(.login)
             .viewStateAlert(state: $viewState)
     }
 }

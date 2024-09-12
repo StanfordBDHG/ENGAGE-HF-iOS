@@ -12,7 +12,6 @@ import OSLog
 import Spezi
 import SpeziAccount
 
-
 @Observable
 @MainActor
 final class VideoManager: Module, EnvironmentAccessible, DefaultInitializable {
@@ -43,7 +42,7 @@ final class VideoManager: Module, EnvironmentAccessible, DefaultInitializable {
                         return
                     }
 
-                    if case .associatedAccount = event {
+                    if event.newEnrolledAccountDetails != nil {
                         videoCollections = await getVideoSections()
                     }
                 }

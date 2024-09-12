@@ -44,8 +44,7 @@
 		4D05F26A2C5466B700201581 /* DosageGauge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D05F2692C5466B700201581 /* DosageGauge.swift */; };
 		4D05F26D2C54696100201581 /* DosageGaugeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D05F26C2C54696100201581 /* DosageGaugeStyle.swift */; };
 		4D065BE02C09401700EBB3AE /* StudyApplicationListCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D065BDF2C09401700EBB3AE /* StudyApplicationListCard.swift */; };
-		4D081A1F2C6C1A3400E13BC8 /* OrganizationInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D081A1E2C6C1A3400E13BC8 /* OrganizationInformation.swift */; };
-		4D081A262C6C2C6B00E13BC8 /* NotificationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D081A252C6C2C6B00E13BC8 /* NotificationSettings.swift */; };
+		4D081A1F2C6C1A3400E13BC8 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D081A1E2C6C1A3400E13BC8 /* Organization.swift */; };
 		4D081A282C6C2C8400E13BC8 /* UserMetaDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D081A272C6C2C8400E13BC8 /* UserMetaDataManager.swift */; };
 		4D0F389E2C09779100DA12F7 /* ShowMoreButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0F389D2C09779000DA12F7 /* ShowMoreButton.swift */; };
 		4D0F38A22C0A7AD900DA12F7 /* ExpandableText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0F38A12C0A7AD900DA12F7 /* ExpandableText.swift */; };
@@ -202,11 +201,12 @@
 		9733CFC62A8066DE001B7ABC /* SpeziOnboarding in Frameworks */ = {isa = PBXBuildFile; productRef = 2FE5DC8029EDD91D004B9AB4 /* SpeziOnboarding */; };
 		9739A0C62AD7B5730084BEA5 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 9739A0C52AD7B5730084BEA5 /* FirebaseStorage */; };
 		97D73D6A2AD860AD00B47FA0 /* SpeziFirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 97D73D692AD860AD00B47FA0 /* SpeziFirebaseStorage */; };
-		9B2401932C88FC1D003584BE /* AccountFinish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2401922C88FC1D003584BE /* AccountFinish.swift */; };
-		9B2401962C88FDC6003584BE /* Account+FinishSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2401952C88FDC6003584BE /* Account+FinishSetup.swift */; };
+		9B1864882C9226E90042AC81 /* AccountDetails+Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1864872C9226E90042AC81 /* AccountDetails+Key.swift */; };
+		9B18648B2C9227040042AC81 /* AccountNotifications+Extras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B18648A2C9227040042AC81 /* AccountNotifications+Extras.swift */; };
+		9B1864942C9276C40042AC81 /* AuthFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1864932C9276C40042AC81 /* AuthFlow.swift */; };
+		9B1864982C9350D30042AC81 /* Account+Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1864972C9350D30042AC81 /* Account+Binding.swift */; };
 		9B9C21E02C89389900FE1430 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C21DF2C89389900FE1430 /* ContentView.swift */; };
 		A9623C042C17A3F500189BA1 /* SpeziOmron in Frameworks */ = {isa = PBXBuildFile; productRef = A9623C032C17A3F500189BA1 /* SpeziOmron */; };
-		A9623C082C18D03F00189BA1 /* AccountSetupSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9623C072C18D03F00189BA1 /* AccountSetupSheet.swift */; };
 		A96C56BB2C0DFFCE00D6A50B /* InvitationCodeModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96C56BA2C0DFFCE00D6A50B /* InvitationCodeModule.swift */; };
 		A9720E432ABB68CC00872D23 /* AccountSetupHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9720E422ABB68CC00872D23 /* AccountSetupHeader.swift */; };
 		A977DD542C25E2DA00A2A8E5 /* SpeziDevices in Frameworks */ = {isa = PBXBuildFile; productRef = A977DD532C25E2DA00A2A8E5 /* SpeziDevices */; };
@@ -260,8 +260,7 @@
 		4D05F2692C5466B700201581 /* DosageGauge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DosageGauge.swift; sourceTree = "<group>"; };
 		4D05F26C2C54696100201581 /* DosageGaugeStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DosageGaugeStyle.swift; sourceTree = "<group>"; };
 		4D065BDF2C09401700EBB3AE /* StudyApplicationListCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyApplicationListCard.swift; sourceTree = "<group>"; };
-		4D081A1E2C6C1A3400E13BC8 /* OrganizationInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationInformation.swift; sourceTree = "<group>"; };
-		4D081A252C6C2C6B00E13BC8 /* NotificationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettings.swift; sourceTree = "<group>"; };
+		4D081A1E2C6C1A3400E13BC8 /* Organization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
 		4D081A272C6C2C8400E13BC8 /* UserMetaDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMetaDataManager.swift; sourceTree = "<group>"; };
 		4D0F389D2C09779000DA12F7 /* ShowMoreButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMoreButton.swift; sourceTree = "<group>"; };
 		4D0F38A12C0A7AD900DA12F7 /* ExpandableText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableText.swift; sourceTree = "<group>"; };
@@ -412,10 +411,11 @@
 		653A256128338800005D4D48 /* VitalsGraphAggregationUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalsGraphAggregationUnitTests.swift; sourceTree = "<group>"; };
 		653A256728338800005D4D48 /* ENGAGEHFUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ENGAGEHFUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		653A258928339462005D4D48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9B2401922C88FC1D003584BE /* AccountFinish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountFinish.swift; sourceTree = "<group>"; };
-		9B2401952C88FDC6003584BE /* Account+FinishSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Account+FinishSetup.swift"; sourceTree = "<group>"; };
+		9B1864872C9226E90042AC81 /* AccountDetails+Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccountDetails+Key.swift"; sourceTree = "<group>"; };
+		9B18648A2C9227040042AC81 /* AccountNotifications+Extras.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccountNotifications+Extras.swift"; sourceTree = "<group>"; };
+		9B1864932C9276C40042AC81 /* AuthFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFlow.swift; sourceTree = "<group>"; };
+		9B1864972C9350D30042AC81 /* Account+Binding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Account+Binding.swift"; sourceTree = "<group>"; };
 		9B9C21DF2C89389900FE1430 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		A9623C072C18D03F00189BA1 /* AccountSetupSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSetupSheet.swift; sourceTree = "<group>"; };
 		A96C56BA2C0DFFCE00D6A50B /* InvitationCodeModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationCodeModule.swift; sourceTree = "<group>"; };
 		A9720E422ABB68CC00872D23 /* AccountSetupHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSetupHeader.swift; sourceTree = "<group>"; };
 		A9DFE8A82ABE551400428242 /* AccountButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountButton.swift; sourceTree = "<group>"; };
@@ -499,10 +499,10 @@
 			isa = PBXGroup;
 			children = (
 				2FE5DC3129EDD7CA004B9AB4 /* OnboardingFlow.swift */,
+				9B1864932C9276C40042AC81 /* AuthFlow.swift */,
 				2FE5DC3429EDD7CA004B9AB4 /* Welcome.swift */,
 				2FE5DC3229EDD7CA004B9AB4 /* InterestingModules.swift */,
 				2FE5DCAC29EE6107004B9AB4 /* AccountOnboarding.swift */,
-				9B2401922C88FC1D003584BE /* AccountFinish.swift */,
 				2F65B44D2A3B8B0600A36932 /* NotificationPermissions.swift */,
 				4DBDD3432BBFAD64001FB0CA /* InvitationCodeError.swift */,
 				4DBDD3452BBFAE2D001FB0CA /* InvitationCodeView.swift */,
@@ -573,8 +573,7 @@
 		4D081A242C6C2C4500E13BC8 /* UserMetaDataManager */ = {
 			isa = PBXGroup;
 			children = (
-				4D081A1E2C6C1A3400E13BC8 /* OrganizationInformation.swift */,
-				4D081A252C6C2C6B00E13BC8 /* NotificationSettings.swift */,
+				4D081A1E2C6C1A3400E13BC8 /* Organization.swift */,
 				4D081A272C6C2C8400E13BC8 /* UserMetaDataManager.swift */,
 			);
 			path = UserMetaDataManager;
@@ -863,6 +862,9 @@
 				4D70CF642C653BE100EB4CC6 /* Image+CardSymbolStyle.swift */,
 				4DF36FF82C66A884004D737A /* String+Identifiable.swift */,
 				4D62BF3F2C6AB8520088C414 /* KeyedDecodingContainer+DecodeISO8601Date.swift */,
+				9B1864872C9226E90042AC81 /* AccountDetails+Key.swift */,
+				9B18648A2C9227040042AC81 /* AccountNotifications+Extras.swift */,
+				9B1864972C9350D30042AC81 /* Account+Binding.swift */,
 			);
 			path = SharedExtensions;
 			sourceTree = "<group>";
@@ -1081,12 +1083,10 @@
 			children = (
 				A9DFE8A82ABE551400428242 /* AccountButton.swift */,
 				A9720E422ABB68CC00872D23 /* AccountSetupHeader.swift */,
-				A9623C072C18D03F00189BA1 /* AccountSetupSheet.swift */,
 				A9FE7ACF2AA39BAB0077B045 /* AccountSheet.swift */,
 				4D8CE0FE2C7540C000560327 /* AdditionalAccountSections.swift */,
 				A96C56BA2C0DFFCE00D6A50B /* InvitationCodeModule.swift */,
 				4DB624852C73F1BF00573807 /* NotificationSettingsView.swift */,
-				9B2401952C88FDC6003584BE /* Account+FinishSetup.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -1288,7 +1288,7 @@
 				2FE5DC4129EDD7EE004B9AB4 /* StorageKeys.swift in Sources */,
 				4D73A51B2C581C8F00CCEC46 /* TargetLabelSizeKey.swift in Sources */,
 				4D0F389E2C09779100DA12F7 /* ShowMoreButton.swift in Sources */,
-				4D081A1F2C6C1A3400E13BC8 /* OrganizationInformation.swift in Sources */,
+				4D081A1F2C6C1A3400E13BC8 /* Organization.swift in Sources */,
 				4DDFC7652BF350C2002B07A1 /* Education.swift in Sources */,
 				4DBE86DD2C7F9BBF0003390B /* MobilePlatform.swift in Sources */,
 				4D70CF6A2C65423D00EB4CC6 /* GraphSelection.swift in Sources */,
@@ -1303,7 +1303,6 @@
 				4DF506192C2E1AAE003E7EFB /* SymptomsType.swift in Sources */,
 				4DF5062F2C2F2B00003E7EFB /* SymptomsPicker.swift in Sources */,
 				4D8AD2C52C4A180300CB4F3E /* MeasurementSeries.swift in Sources */,
-				9B2401932C88FC1D003584BE /* AccountFinish.swift in Sources */,
 				4D8402C52C52C67100817495 /* RecommendationSummary.swift in Sources */,
 				4D92BA1A2C3E13F300ABCED7 /* FHIRSystem.swift in Sources */,
 				2FE5DC3A29EDD7CA004B9AB4 /* Welcome.swift in Sources */,
@@ -1315,6 +1314,7 @@
 				4D8CE0FC2C753A4700560327 /* NotificationManager.swift in Sources */,
 				4DC0F67A2C34AD620025AB13 /* VitalsList.swift in Sources */,
 				2FE5DC3829EDD7CA004B9AB4 /* InterestingModules.swift in Sources */,
+				9B1864882C9226E90042AC81 /* AccountDetails+Key.swift in Sources */,
 				4D8402B22C51D62400817495 /* MedicationsList.swift in Sources */,
 				4DC990612C7D3A13001E86C5 /* ClosedRange+InitFromSequence.swift in Sources */,
 				4D73A5112C58088E00CCEC46 /* PositionedCurrentLabel.swift in Sources */,
@@ -1323,6 +1323,7 @@
 				4DA20B642C2A0FF100715AA2 /* VitalsCard.swift in Sources */,
 				4DBDD3442BBFAD64001FB0CA /* InvitationCodeError.swift in Sources */,
 				4D8402B52C51D6D200817495 /* MedicationRecommendationSymbol.swift in Sources */,
+				9B1864982C9350D30042AC81 /* Account+Binding.swift in Sources */,
 				4D40A4AF2C5A9B4F003DC813 /* VideoPlayer.swift in Sources */,
 				4D84027E2C4EF82D00817495 /* AddMeasurementAsyncButton.swift in Sources */,
 				4D8402AE2C51C66D00817495 /* Medications.swift in Sources */,
@@ -1330,7 +1331,6 @@
 				4DF3700D2C66E479004D737A /* PDFDocument+Transferable.swift in Sources */,
 				2FC975A82978F11A00BA99FE /* Home.swift in Sources */,
 				4D40A4C62C5AE486003DC813 /* VideoListSection.swift in Sources */,
-				A9623C082C18D03F00189BA1 /* AccountSetupSheet.swift in Sources */,
 				4D8CE0F62C752D1C00560327 /* VideoCollection.swift in Sources */,
 				4D40727E2C465554007C5621 /* HKSampleGraphError.swift in Sources */,
 				4D4072782C460014007C5621 /* TapDrag+GestureValue.swift in Sources */,
@@ -1344,6 +1344,7 @@
 				4D40729F2C488172007C5621 /* KnownVitalsSeries.swift in Sources */,
 				4D8CE0F52C752D1C00560327 /* Video.swift in Sources */,
 				4DF36FFD2C66A904004D737A /* QuestionnaireSheetView.swift in Sources */,
+				9B18648B2C9227040042AC81 /* AccountNotifications+Extras.swift in Sources */,
 				2FF350E42C4F3F0B0095F08F /* Firebase+References.swift in Sources */,
 				4DC0F6712C34818B0025AB13 /* HKSample+GetDoubleValues.swift in Sources */,
 				4D62BF392C6A978C0088C414 /* (null) in Sources */,
@@ -1367,7 +1368,6 @@
 				4D34B3ED2C404C61006F0D40 /* VitalsUnit.swift in Sources */,
 				4D40A4CA2C5AF34D003DC813 /* EducationalVideoCard.swift in Sources */,
 				4D05F26D2C54696100201581 /* DosageGaugeStyle.swift in Sources */,
-				4D081A262C6C2C6B00E13BC8 /* NotificationSettings.swift in Sources */,
 				4D73A5142C5816AF00CCEC46 /* View+ReadSize.swift in Sources */,
 				4D40A4D22C5B0AB2003DC813 /* VideoList.swift in Sources */,
 				4D4670CC2C79408C004DEAC4 /* VitalsGraph+GraphHeader.swift in Sources */,
@@ -1397,7 +1397,6 @@
 				2F5E32BD297E05EA003432F8 /* ENGAGEHFDelegate.swift in Sources */,
 				4D065BE02C09401700EBB3AE /* StudyApplicationListCard.swift in Sources */,
 				4D9D43672C59A88C000062D3 /* ExpandableListCard.swift in Sources */,
-				9B2401962C88FDC6003584BE /* Account+FinishSetup.swift in Sources */,
 				4D40A4BC2C5AB03E003DC813 /* ThumbnailView.swift in Sources */,
 				4D8AD2CD2C4ACFB700CB4F3E /* DateInterval+asAdjustedRange.swift in Sources */,
 				4D70CF6C2C65425F00EB4CC6 /* VitalsType.swift in Sources */,
@@ -1424,6 +1423,7 @@
 				4D8402702C4EBE7D00817495 /* AddMeasurementView.swift in Sources */,
 				4D2D1D602C2B859C00ABDC19 /* GraphPicker.swift in Sources */,
 				4D8402DE2C5417F400817495 /* MedicationDescription.swift in Sources */,
+				9B1864942C9276C40042AC81 /* AuthFlow.swift in Sources */,
 				4DBDD3462BBFAE2D001FB0CA /* InvitationCodeView.swift in Sources */,
 				4D40A4B62C5AA094003DC813 /* VideoView.swift in Sources */,
 				4DB624862C73F1BF00573807 /* NotificationSettingsView.swift in Sources */,
@@ -1992,8 +1992,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/StanfordSpezi/SpeziAccount.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = "2.0.0-beta.7";
+				branch = "feature/async-throwing-setup";
+				kind = branch;
 			};
 		};
 		2FE5DC6529EDD894004B9AB4 /* XCRemoteSwiftPackageReference "SpeziContact" */ = {
@@ -2016,8 +2016,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/StanfordSpezi/SpeziFirebase.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = "2.0.0-beta.3";
+				branch = "fetch-account-details";
+				kind = branch;
 			};
 		};
 		2FE5DC8229EDD934004B9AB4 /* XCRemoteSwiftPackageReference "SpeziQuestionnaire" */ = {

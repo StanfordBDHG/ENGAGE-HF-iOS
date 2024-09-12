@@ -64,8 +64,7 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
                         return
                     }
 
-                    switch event {
-                    case .associatedAccount:
+                    if event.newEnrolledAccountDetails != nil {
                         do {
                             _ = try await self.requestNotificationPermissions()
                         } catch {
@@ -76,9 +75,9 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
                                 )
                             )
                         }
-                    case .disassociatingAccount:
+                    } else if event.accountDetails == nil {
                         do {
-                            _ = try await self.unregisterDeviceToken()
+                            _ = try? await self.unregisterDeviceToken()
                         } catch {
                             self.state = .error(
                                 AnyLocalizedError(
@@ -87,8 +86,6 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
                                 )
                             )
                         }
-                    default:
-                        break
                     }
                 }
             }
@@ -145,7 +142,7 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
         ///     "action": "medications"
         /// }
         let payload = response.notification.request.content.userInfo["action"] as? String
-        await _ = navigationManager.execute(MessageAction(from: payload))
+        _ = await navigationManager.execute(MessageAction(from: payload))
     }
     
     
@@ -170,13 +167,7 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
             do {
                 try await self.configureRemoteNotifications(using: deviceToken)
             } catch {
-                self.logger.error("Failed to configured remote notifications for updated device token: \(error)")
-                self.state = .error(
-                    AnyLocalizedError(
-                        error: error,
-                        defaultErrorDescription: "Unable to unregister for remote notifications."
-                    )
-                )
+                self.logger.error("Failed to configure remote notifications for updated device token: \(error)")
             }
         }
     }

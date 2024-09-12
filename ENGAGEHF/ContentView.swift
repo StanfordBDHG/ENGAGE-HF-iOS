@@ -1,55 +1,103 @@
 //
-//  ContentView.swift
-//  ENGAGEHF
+// This source file is part of the ENGAGE-HF project based on the Stanford Spezi Template Application project
 //
-//  Created by Paul Kraft on 04.09.2024.
+// SPDX-FileCopyrightText: 2023 Stanford University
+//
+// SPDX-License-Identifier: MIT
 //
 
 @_spi(TestingSupport) import SpeziAccount
+import SpeziOnboarding
 import SpeziViews
 import SwiftUI
 
 @MainActor
 struct ContentView: View {
-    @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
-    @Environment(Account.self) private var account: Account
-    @State private var isLoginActive = false
-    @State private var isPresentingLogin = false
-    
-    private var shouldPresentLogin: Bool {
-        guard !FeatureFlags.disableFirebase
-                && !FeatureFlags.skipOnboarding
-                && completedOnboardingFlow else {
-            return false
+    private enum SheetContent: String, Identifiable {
+        case onboarding
+        case auth
+        
+        var id: String {
+            rawValue
         }
-        return !account.signedIn
-            || (account.details?.isAnonymous ?? true)
-            || isLoginActive
     }
-
+    
+    @AppStorage(StorageKeys.onboardingFlowComplete) private var completedOnboardingFlow = false
+    @Environment(Account.self) private var account: Account
+    @State private var sheetContent: SheetContent?
+    
+    private var expectedSheetContent: SheetContent? {
+        guard FeatureFlags.skipOnboarding || completedOnboardingFlow else {
+            return .onboarding
+        }
+        guard FeatureFlags.disableFirebase || account.signedIn else {
+            return .auth
+        }
+        guard FeatureFlags.disableFirebase
+                || account.details?.isIncomplete ?? true
+                || account.details?.invitationCode != nil else {
+            return .auth
+        }
+        return nil
+    }
+    
     var body: some View {
         ZStack {
-            if !completedOnboardingFlow {
-                EmptyView()
-            } else if isPresentingLogin {
-                EmptyView()
+            if sheetContent != nil {
+                VStack {
+                    ContentUnavailableView(
+                        "Content Unavailable",
+                        systemImage: "person.fill.questionmark",
+                        description: Text("The user isn't currently set up correctly. Please try closing the app and opening it back up.")
+                    )
+                    Button("Retry") {
+                        sheetContent = nil
+                        updateSheetContent()
+                    }
+                }
             } else {
                 HomeView()
             }
         }
-            .onChange(of: shouldPresentLogin, initial: true) {
-                Task { @MainActor in
-                    // This task makes sure to show the sheet slightly after the view,
-                    // so that the presentation will actually occur - otherwise it might
-                    // not happen
-                    isPresentingLogin = shouldPresentLogin
+        .onChange(of: expectedSheetContent, initial: true) {
+            Task { @MainActor in
+                // Delaying this update by 0.5 seconds to ensure that animations are done
+                // and the AccountSheet is actually dismissed already, before continuing.
+                try? await Task.sleep(for: .seconds(0.5))
+                updateSheetContent()
+            }
+        }
+        .sheet(isPresented: $sheetContent.exists()) {
+            Group {
+                switch sheetContent {
+                case .onboarding:
+                    OnboardingFlow()
+                case .auth:
+                    AuthFlow()
+                case .none:
+                    EmptyView()
                 }
             }
-            .sheet(isPresented: !$completedOnboardingFlow) {
-                OnboardingFlow()
+            .interactiveDismissDisabled(true)
+        }
+    }
+    
+    @MainActor
+    private func updateSheetContent() {
+        sheetContent = expectedSheetContent
+    }
+}
+
+extension Binding {
+    fileprivate func exists<V>() -> Binding<Bool> where Value == V? {
+        Binding<Bool> {
+            wrappedValue != nil
+        } set: { newValue in
+            if newValue {
+                preconditionFailure("Tried setting wrappedValue to `true` on a binding built using `Binding.exists()`.")
+            } else {
+                wrappedValue = nil
             }
-            .sheet(isPresented: $isPresentingLogin) {
-                AccountSetupSheet(isLoginActive: $isLoginActive)
-            }
+        }
     }
 }

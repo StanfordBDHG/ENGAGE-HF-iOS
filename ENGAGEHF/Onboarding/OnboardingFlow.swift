@@ -11,7 +11,6 @@ import SpeziFirebaseAccount
 import SpeziOnboarding
 import SwiftUI
 
-
 /// Displays an multi-step onboarding flow for the ENGAGEHF.
 struct OnboardingFlow: View {
     @AppStorage(StorageKeys.onboardingFlowComplete) private var completedOnboardingFlow = false
@@ -21,16 +20,11 @@ struct OnboardingFlow: View {
         OnboardingStack(onboardingFlowComplete: $completedOnboardingFlow) {
             Welcome()
             InterestingModules()
-            
             if !FeatureFlags.disableFirebase {
-                InvitationCodeView()
                 AccountOnboarding()
-                AccountFinish()
             }
-            
             NotificationPermissions()
         }
-            .interactiveDismissDisabled(!completedOnboardingFlow)
     }
 }
 

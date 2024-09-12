@@ -51,26 +51,14 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
                 guard invitationCode == "ENGAGEHFTEST1" else {
                     throw InvitationCodeError.invitationCodeInvalid
                 }
-
+                
                 try? await Task.sleep(for: .seconds(0.25))
             } else {
-                guard let accountService else {
-                    preconditionFailure("The Firebase Account Service was not present even though `disableFirebase` was turned off!")
-                }
-
-                try await signOutAccount()
-                try await accountService.signUpAnonymously()
-
-                let checkInvitationCode = Functions.functions().httpsCallable("checkInvitationCode")
-
                 do {
-                    _ = try await checkInvitationCode.call(
-                        [
-                            "invitationCode": invitationCode
-                        ]
-                    )
+                    let enrollUser = Functions.functions().httpsCallable("enrollUser")
+                    _ = try await enrollUser.call(["invitationCode": invitationCode])
                 } catch {
-                    logger.error("Failed to check invitation code: \(error)")
+                    logger.error("Failed to enroll user: \(error)")
                     throw InvitationCodeError.invitationCodeInvalid
                 }
             }

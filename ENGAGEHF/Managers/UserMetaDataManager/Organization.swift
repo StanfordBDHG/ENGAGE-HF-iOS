@@ -10,12 +10,7 @@ import Foundation
 import SpeziContact
 
 
-struct OrganizationIdentifier: Decodable {
-    let organization: String?
-}
-
-
-struct OrganizationInformation: Decodable {
+struct Organization: Decodable {
     let name: String
     let contactName: String
     let phoneNumber: String
@@ -43,8 +38,8 @@ struct OrganizationInformation: Decodable {
 
 
 #if TEST || DEBUG
-extension OrganizationInformation {
-    static let testOrganization = OrganizationInformation(
+extension Organization {
+    static let test = Organization(
         name: "Stanford University",
         contactName: "Leland Stanford Jr.",
         phoneNumber: "(111) 111-1111",

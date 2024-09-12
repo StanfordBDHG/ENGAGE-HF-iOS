@@ -24,19 +24,27 @@ import SwiftUI
 
 class ENGAGEHFDelegate: SpeziAppDelegate {
     override var configuration: Configuration {
+        // swiftlint:disable:next closure_body_length
         Configuration(standard: ENGAGEHFStandard()) {
             if !FeatureFlags.disableFirebase {
                 AccountConfiguration(
                     service: FirebaseAccountService(providers: [.emailAndPassword, .signInWithApple], emulatorSettings: accountEmulator),
                     storageProvider: FirestoreAccountStorage(storeIn: Firestore.userCollection, mapping: [
-                        // ENGAGE was originally deployed with SpeziAccount 1.0 and key identifiers change with SpeziAccount 2.0.
-                        // Therefore, we need to provide a backwards compatibility mapping.
-                        "DateOfBirthKey": AccountKeys.dateOfBirth
+                        "dateOfBirth": AccountKeys.dateOfBirth,
+                        "invitationCode": AccountKeys.invitationCode
                     ]),
                     configuration: [
                         .requires(\.userId),
                         .supports(\.name),
-                        .supports(\.dateOfBirth)
+                        .hidden(\.invitationCode),
+                        .hidden(\.organization),
+                        .hidden(\.receivesAppointmentReminders),
+                        .hidden(\.receivesInactivityReminders),
+                        .hidden(\.receivesMedicationUpdates),
+                        .hidden(\.receivesQuestionnaireReminders),
+                        .hidden(\.receivesRecommendationUpdates),
+                        .hidden(\.receivesVitalsReminders),
+                        .hidden(\.receivesWeightAlerts)
                     ]
                 )
                 

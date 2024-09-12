@@ -50,13 +50,10 @@ class MedicationsManager: Module, EnvironmentAccessible {
                         return
                     }
 
-                    switch event {
-                    case let .associatedAccount(details):
+                    if let details = event.newEnrolledAccountDetails {
                         updateSnapshotListener(for: details)
-                    case .disassociatingAccount:
+                    } else if event.accountDetails == nil {
                         updateSnapshotListener(for: nil)
-                    default:
-                        break
                     }
                 }
             }
