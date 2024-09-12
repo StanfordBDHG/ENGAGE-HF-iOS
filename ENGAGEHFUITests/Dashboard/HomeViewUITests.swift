@@ -23,6 +23,8 @@ final class HomeViewUITests: XCTestCase {
     func testDashboard() throws {
         let app = XCUIApplication()
         
+        _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
+        
         // Test Home tab button
         XCTAssert(app.buttons["Home"].exists)
         app.buttons["Home"].tap()

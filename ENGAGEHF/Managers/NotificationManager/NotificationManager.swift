@@ -28,13 +28,14 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
     }
     
     
-    @ObservationIgnored @Application(\.registerRemoteNotifications) private var registerRemoteNotifications
     @ObservationIgnored @Dependency(AccountNotifications.self) private var accountNotifications: AccountNotifications?
-    @ObservationIgnored @Application(\.logger) private var logger
     @ObservationIgnored @Dependency(NavigationManager.self) private var navigationManager
+    @ObservationIgnored @Dependency(Account.self) private var account: Account?
+    
+    @ObservationIgnored @Application(\.registerRemoteNotifications) private var registerRemoteNotifications
+    @ObservationIgnored @Application(\.logger) private var logger
     
     @ObservationIgnored @AppStorage(StorageKeys.onboardingFlowComplete) private var completedOnboardingFlow = false
-    @ObservationIgnored @Environment(Account.self) private var account: Account?
     
     
     private var cancellable: AnyCancellable?
@@ -46,8 +47,8 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
     
     func configure() {
         self.cancellable = NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification).sink { _ in
-            if self.completedOnboardingFlow {
-                Task {
+            Task { @MainActor in
+                if self.completedOnboardingFlow, self.account != nil {
                     await self.checkNotificationsAuthorized()
                 }
             }
@@ -82,11 +83,12 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
             }
         }
         
-        Task {
-            await self.checkNotificationsAuthorized()
+        Task { @MainActor in
+            if self.account != nil {
+                await self.checkNotificationsAuthorized()
+            }
         }
     }
-    
     
     @MainActor
     func checkNotificationsAuthorized() async {

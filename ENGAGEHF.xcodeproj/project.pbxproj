@@ -894,6 +894,52 @@
 			path = Dashboard;
 			sourceTree = "<group>";
 		};
+		4DD5FC542C87B45A0051E6F5 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				4DD823052C17FF79004DC599 /* MessagesUITests.swift */,
+				4DB025C92BBE3A59002D2545 /* HomeViewUITests.swift */,
+				4DA20B682C2B299700715AA2 /* RecentVitalsUITests.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		4DD5FC552C87B4790051E6F5 /* HeartHealth */ = {
+			isa = PBXGroup;
+			children = (
+				4D8AD2E02C4B5D1600CB4F3E /* HeartHealthUITests.swift */,
+				4D8402762C4EE51F00817495 /* AddMeasurementUITests.swift */,
+			);
+			path = HeartHealth;
+			sourceTree = "<group>";
+		};
+		4DD5FC562C87B4880051E6F5 /* Education */ = {
+			isa = PBXGroup;
+			children = (
+				4D335C922C628F5600C720B5 /* EducationViewUITests.swift */,
+			);
+			path = Education;
+			sourceTree = "<group>";
+		};
+		4DD5FC572C87B4980051E6F5 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				4D4AA0A42BC5E43E00676489 /* OnboardingUITests.swift */,
+				A9F2138D2C18EBAB00A7578F /* AccountTests.swift */,
+				4D8CE1022C7568C700560327 /* ContactsUITests.swift */,
+				4D8CE1062C7576EB00560327 /* NotificationSettingsUITests.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		4DD5FC582C87B4A90051E6F5 /* Medications */ = {
+			isa = PBXGroup;
+			children = (
+				4D73A5232C58505100CCEC46 /* MedicationsUITests.swift */,
+			);
+			path = Medications;
+			sourceTree = "<group>";
+		};
 		4DDFC73B2BF2C46E002B07A1 /* Messages */ = {
 			isa = PBXGroup;
 			children = (
@@ -1054,19 +1100,13 @@
 		653A256A28338800005D4D48 /* ENGAGEHFUITests */ = {
 			isa = PBXGroup;
 			children = (
+				4DD5FC582C87B4A90051E6F5 /* Medications */,
+				4DD5FC572C87B4980051E6F5 /* Account */,
+				4DD5FC562C87B4880051E6F5 /* Education */,
+				4DD5FC552C87B4790051E6F5 /* HeartHealth */,
+				4DD5FC542C87B45A0051E6F5 /* Dashboard */,
 				4D84027B2C4EE61C00817495 /* HelperFunctions */,
 				2F4E237D2989A2FE0013F3D9 /* LaunchTests.swift */,
-				4DB025C92BBE3A59002D2545 /* HomeViewUITests.swift */,
-				4D4AA0A42BC5E43E00676489 /* OnboardingUITests.swift */,
-				4DD823052C17FF79004DC599 /* MessagesUITests.swift */,
-				A9F2138D2C18EBAB00A7578F /* AccountTests.swift */,
-				4DA20B682C2B299700715AA2 /* RecentVitalsUITests.swift */,
-				4D8AD2E02C4B5D1600CB4F3E /* HeartHealthUITests.swift */,
-				4D8402762C4EE51F00817495 /* AddMeasurementUITests.swift */,
-				4D73A5232C58505100CCEC46 /* MedicationsUITests.swift */,
-				4D335C922C628F5600C720B5 /* EducationViewUITests.swift */,
-				4D8CE1022C7568C700560327 /* ContactsUITests.swift */,
-				4D8CE1062C7576EB00560327 /* NotificationSettingsUITests.swift */,
 			);
 			path = ENGAGEHFUITests;
 			sourceTree = "<group>";

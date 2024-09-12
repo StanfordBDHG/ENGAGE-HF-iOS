@@ -63,7 +63,7 @@ class UserMetaDataManager: Module, EnvironmentAccessible {
             do {
 #if TEST
                 if FeatureFlags.setupTestUserMetaData {
-                    self.organization = .testOrganization
+                    self.organization = .test
                     self.logger.debug("Injected test organization.")
                     return
                 }

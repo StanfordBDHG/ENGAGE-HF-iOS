@@ -28,6 +28,8 @@ final class MessagesUITests: XCTestCase {
     
     func testDismissMessages() throws {
         let app = XCUIApplication()
+        
+        _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
         try app.goTo(tab: "Home")
         
         // Directly dismiss by tapping dismiss button
@@ -63,6 +65,8 @@ final class MessagesUITests: XCTestCase {
     
     func testPlayVideoAction() throws {
         let app = XCUIApplication()
+        
+        _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
         try app.goTo(tab: "Home")
         
         let medicationChangeMessage = app.otherElements["Message Card - Medication Change"]
@@ -83,6 +87,8 @@ final class MessagesUITests: XCTestCase {
     
     func testCompleteQuestionnaireAction() throws {
         let app = XCUIApplication()
+        
+        _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
         try app.goTo(tab: "Home")
         
         let questionnaireMessage = app.otherElements["Message Card - Symptom Questionnaire"]
@@ -98,6 +104,8 @@ final class MessagesUITests: XCTestCase {
     
     func testSeeMedicationsAction() throws {
         let app = XCUIApplication()
+        
+        _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
         try app.goTo(tab: "Home")
         
         let medicationUptitrationMessage = app.otherElements["Message Card - Medication Uptitration"]
@@ -112,6 +120,8 @@ final class MessagesUITests: XCTestCase {
     
     func testSeeHeartHealthAction() throws {
         let app = XCUIApplication()
+        
+        _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
         try app.goTo(tab: "Home")
         
         let vitalsMessage = app.otherElements["Message Card - Vitals"]
@@ -126,6 +136,8 @@ final class MessagesUITests: XCTestCase {
     
     func testUnsupportedAction() throws {
         let app = XCUIApplication()
+        
+        _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
         try app.goTo(tab: "Home")
         
         let unknownActionMessage = app.otherElements["Message Card - Unknown"]
@@ -139,6 +151,8 @@ final class MessagesUITests: XCTestCase {
     
     func testMessagesAppear() throws {
         let app = XCUIApplication()
+        
+        _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
         try app.goTo(tab: "Home")
         
         let medicationChangeMessage = app.otherElements["Message Card - Medication Change"]

@@ -101,6 +101,11 @@ public class VitalsManager: Module, EnvironmentAccessible {
         
         // Only register snapshot listeners when a user is signed in
         guard let details else {
+            self.heartRateHistory = []
+            self.bloodPressureHistory = []
+            self.weightHistory = []
+            self.symptomHistory = []
+            self.latestDryWeight = nil
             self.logger.debug("No user signed in, skipping snapshot listener.")
             return
         }

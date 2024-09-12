@@ -17,8 +17,6 @@ struct AccountOnboarding: View {
     @Environment(Account.self) private var account
     @Environment(OnboardingNavigationPath.self) private var onboardingNavigationPath
     
-    @State private var viewState = ViewState.idle
-
     var body: some View {
         AccountSetup { details in
             if details.invitationCode != nil {
@@ -41,7 +39,6 @@ struct AccountOnboarding: View {
             )
         }
             .preferredAccountSetupStyle(.login)
-            .viewStateAlert(state: $viewState)
     }
 }
 

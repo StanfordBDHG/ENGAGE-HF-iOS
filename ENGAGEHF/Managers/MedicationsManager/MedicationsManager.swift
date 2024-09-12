@@ -72,6 +72,7 @@ class MedicationsManager: Module, EnvironmentAccessible {
         self.snapshotListener?.remove()
 
         guard let details else {
+            self.medications.removeAll()
             return
         }
 

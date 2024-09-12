@@ -80,6 +80,7 @@ final class MessageManager: Module, EnvironmentAccessible, DefaultInitializable 
         self.snapshotListener?.remove()
 
         guard let details else {
+            self.messages.removeAll()
             return
         }
 

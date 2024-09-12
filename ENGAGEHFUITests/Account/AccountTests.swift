@@ -24,6 +24,7 @@ final class AccountTests: XCTestCase {
     func testInAppLogon() throws {
         let app = XCUIApplication()
 
+        _ = app.staticTexts["Home"].waitForExistence(timeout: 10)
 
         XCTAssert(app.buttons["Home"].waitForExistence(timeout: 2.0))
         app.buttons["Home"].tap()

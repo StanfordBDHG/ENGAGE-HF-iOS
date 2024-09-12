@@ -44,6 +44,8 @@ final class VideoManager: Module, EnvironmentAccessible, DefaultInitializable {
 
                     if event.newEnrolledAccountDetails != nil {
                         videoCollections = await getVideoSections()
+                    } else if event.accountDetails == nil {
+                        videoCollections = []
                     }
                 }
             }
