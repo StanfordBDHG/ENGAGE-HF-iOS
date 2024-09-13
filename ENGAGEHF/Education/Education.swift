@@ -21,14 +21,15 @@ struct Education: View {
         
         NavigationStack(path: $navigationManager.educationPath) {
             Group {
-                if videoManager.videoCollections.isEmpty || videoManager.videoCollections.allSatisfy({ $0.videos.isEmpty }) {
+                let videoCollections = videoManager.videoCollections.filter { !$0.videos.isEmpty }
+                if videoCollections.isEmpty {
                     ContentUnavailableView(
                         "No Educational Videos",
                         systemImage: "video.slash",
                         description: Text("There are currently no educational videos available.")
                     )
                 } else {
-                    VideoList(videoCollections: videoManager.videoCollections.filter { !$0.videos.isEmpty })
+                    VideoList(videoCollections: videoCollections)
                 }
             }
             .accessibilityIdentifier("Video List")
