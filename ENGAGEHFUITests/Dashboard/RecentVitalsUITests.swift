@@ -24,7 +24,7 @@ final class RecentVitalsUITests: XCTestCase {
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
         
-        let expectedWeight = Locale.current.measurementSystem == .us ? "92.6" : "42"
+        let expectedWeight = Locale.current.measurementSystem == .us ? "92.6" : "42.0"
         let weightUnit = Locale.current.measurementSystem == .us ? "lb" : "kg"
         
         // Delete all previous measurements
