@@ -59,7 +59,7 @@ class MedicationsManager: Module, EnvironmentAccessible {
             }
         }
 
-        if let account {
+        if let account, account.signedIn {
             updateSnapshotListener(for: account.details)
         }
     }

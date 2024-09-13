@@ -63,7 +63,7 @@ final class MessageManager: Module, EnvironmentAccessible, DefaultInitializable 
             }
         }
 
-        if let account {
+        if let account, account.signedIn {
             updateSnapshotListener(for: account.details)
         }
     }

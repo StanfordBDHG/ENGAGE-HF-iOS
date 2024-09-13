@@ -37,8 +37,10 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
                 try? await Task.sleep(for: .seconds(0.25))
             } else {
                 do {
+                    logger.debug("About to enroll user")
                     let enrollUser = Functions.functions().httpsCallable("enrollUser")
                     _ = try await enrollUser.call(["invitationCode": invitationCode])
+                    logger.debug("Successfully enrolled user!")
                 } catch {
                     logger.error("Failed to enroll user: \(error)")
                     throw InvitationCodeError.invitationCodeInvalid
@@ -72,8 +74,8 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
             preconditionFailure("The Firebase Account Service is required to be configured when setting up the test environment!")
         }
 
-        let email = "engagehf-patient0@stanford.edu"
-        let password = "password"
+        let email = "test@engage.stanford.edu"
+        let password = "123456789"
 
         if account.details != nil {
             // always start logged out, even if testing account had already been set up
@@ -87,7 +89,7 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
             // probably doesn't exist. We try to create a new one below
         } catch {
             logger.error("Failed logging into test account: \(error)")
-            // throw error
+            throw error
         }
         
         do {

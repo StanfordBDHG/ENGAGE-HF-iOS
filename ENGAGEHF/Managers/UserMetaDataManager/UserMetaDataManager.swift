@@ -44,7 +44,7 @@ class UserMetaDataManager: Module, EnvironmentAccessible {
             }
         }
         
-        if let account {
+        if let account, account.signedIn {
             updateOrganizationIfNeeded(id: account.details?.organization)
         }
     }

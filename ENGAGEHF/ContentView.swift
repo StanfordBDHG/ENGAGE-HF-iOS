@@ -61,9 +61,9 @@ struct ContentView: View {
         }
         .onChange(of: expectedSheetContent, initial: true) {
             Task { @MainActor in
-                // Delaying this update by 0.5 seconds to ensure that animations are done
-                // and the AccountSheet is actually dismissed already, before continuing.
-                try? await Task.sleep(for: .seconds(1))
+                // Delaying this update to ensure that animations are done
+                // and the AccountSheet is actually dismissed already before continuing.
+                try? await Task.sleep(for: .seconds(0.5))
                 updateSheetContent()
             }
         }
@@ -85,6 +85,7 @@ struct ContentView: View {
     @MainActor
     private func updateSheetContent() {
         sheetContent = expectedSheetContent
+        print("updated sheetContent: ", sheetContent?.rawValue ?? "nil")
     }
 }
 

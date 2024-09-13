@@ -29,7 +29,18 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
             if !FeatureFlags.disableFirebase {
                 AccountConfiguration(
                     service: FirebaseAccountService(providers: [.emailAndPassword, .signInWithApple], emulatorSettings: accountEmulator),
-                    storageProvider: FirestoreAccountStorage(storeIn: Firestore.userCollection),
+                    storageProvider: FirestoreAccountStorage(storeIn: Firestore.userCollection, mapping: [
+                        "dateOfBirth": AccountKeys.dateOfBirth,
+                        "invitationCode": AccountKeys.invitationCode,
+                        "organization": AccountKeys.organization,
+                        "receivesAppointmentReminders": AccountKeys.receivesAppointmentReminders,
+                        "receivesInactivityReminders": AccountKeys.receivesInactivityReminders,
+                        "receivesMedicationUpdates": AccountKeys.receivesMedicationUpdates,
+                        "receivesQuestionnaireReminders": AccountKeys.receivesQuestionnaireReminders,
+                        "receivesRecommendationUpdates": AccountKeys.receivesRecommendationUpdates,
+                        "receivesVitalsReminders": AccountKeys.receivesVitalsReminders,
+                        "receivesWeightAlerts": AccountKeys.receivesWeightAlerts
+                    ]),
                     configuration: [
                         .requires(\.userId),
                         .supports(\.name),

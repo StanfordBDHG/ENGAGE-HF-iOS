@@ -40,13 +40,7 @@ final class AccountTests: XCTestCase {
         XCTAssert(app.alerts[alert].waitForExistence(timeout: 6.0))
         app.alerts[alert].buttons["Logout"].tap()
 
-
-        // Login
-        if app.buttons["I Already Have an Account"].waitForExistence(timeout: 6.0) {
-            app.buttons["I Already Have an Account"].tap()
-        }
-
-        XCTAssert(app.textFields["E-Mail Address"].waitForExistence(timeout: 2))
+        XCTAssert(app.textFields["E-Mail Address"].waitForExistence(timeout: 10))
         try app.textFields["E-Mail Address"].enter(value: "engagehf-patient0@stanford.edu")
 
         XCTAssert(app.secureTextFields["Password"].waitForExistence(timeout: 2))
