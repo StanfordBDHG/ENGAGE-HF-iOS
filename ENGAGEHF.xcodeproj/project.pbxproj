@@ -2032,8 +2032,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/StanfordSpezi/SpeziAccount.git";
 			requirement = {
-				branch = "add-hidden-requirement";
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = "2.0.0-beta.1";
 			};
 		};
 		2FE5DC6529EDD894004B9AB4 /* XCRemoteSwiftPackageReference "SpeziContact" */ = {
@@ -2056,8 +2056,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/StanfordSpezi/SpeziFirebase.git";
 			requirement = {
-				branch = "fetch-account-details";
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = "2.0.0-beta.1";
 			};
 		};
 		2FE5DC8229EDD934004B9AB4 /* XCRemoteSwiftPackageReference "SpeziQuestionnaire" */ = {
