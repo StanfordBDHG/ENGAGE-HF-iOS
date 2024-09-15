@@ -9,7 +9,7 @@
 import Foundation
 import SpeziAccount
 
-// swiftlint:disable attributes
+// swiftlint:disable attributes discouraged_optional_boolean
 
 extension AccountDetails {
     @AccountKey(
@@ -37,7 +37,7 @@ extension AccountDetails {
         as: Bool.self,
         initial: .default(true)
     )
-    var receivesAppointmentReminders: Bool
+    var receivesAppointmentReminders: Bool?
     
     @AccountKey(
         id: "receivesInactivityReminders",
@@ -46,7 +46,7 @@ extension AccountDetails {
         as: Bool.self,
         initial: .default(true)
     )
-    var receivesInactivityReminders: Bool
+    var receivesInactivityReminders: Bool?
     
     @AccountKey(
         id: "receivesMedicationUpdates",
@@ -55,7 +55,7 @@ extension AccountDetails {
         as: Bool.self,
         initial: .default(true)
     )
-    var receivesMedicationUpdates: Bool
+    var receivesMedicationUpdates: Bool?
     
     @AccountKey(
         id: "receivesQuestionnaireReminders",
@@ -64,7 +64,7 @@ extension AccountDetails {
         as: Bool.self,
         initial: .default(true)
     )
-    var receivesQuestionnaireReminders: Bool
+    var receivesQuestionnaireReminders: Bool?
     
     @AccountKey(
         id: "receivesRecommendationUpdates",
@@ -73,7 +73,7 @@ extension AccountDetails {
         as: Bool.self,
         initial: .default(true)
     )
-    var receivesRecommendationUpdates: Bool
+    var receivesRecommendationUpdates: Bool?
     
     @AccountKey(
         id: "receivesVitalsReminders",
@@ -82,7 +82,7 @@ extension AccountDetails {
         as: Bool.self,
         initial: .default(true)
     )
-    var receivesVitalsReminders: Bool
+    var receivesVitalsReminders: Bool?
     
     @AccountKey(
         id: "receivesWeightAlerts",
@@ -91,7 +91,7 @@ extension AccountDetails {
         as: Bool.self,
         initial: .default(true)
     )
-    var receivesWeightAlerts: Bool
+    var receivesWeightAlerts: Bool?
 }
 
 @KeyEntry(\.invitationCode)
