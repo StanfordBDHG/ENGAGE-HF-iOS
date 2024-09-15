@@ -44,15 +44,15 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
                     configuration: [
                         .requires(\.userId),
                         .supports(\.name),
-                        .hidden(\.invitationCode),
-                        .hidden(\.organization),
-                        .hidden(\.receivesAppointmentReminders),
-                        .hidden(\.receivesInactivityReminders),
-                        .hidden(\.receivesMedicationUpdates),
-                        .hidden(\.receivesQuestionnaireReminders),
-                        .hidden(\.receivesRecommendationUpdates),
-                        .hidden(\.receivesVitalsReminders),
-                        .hidden(\.receivesWeightAlerts)
+                        .manual(\.invitationCode),
+                        .manual(\.organization),
+                        .manual(\.receivesAppointmentReminders),
+                        .manual(\.receivesInactivityReminders),
+                        .manual(\.receivesMedicationUpdates),
+                        .manual(\.receivesQuestionnaireReminders),
+                        .manual(\.receivesRecommendationUpdates),
+                        .manual(\.receivesVitalsReminders),
+                        .manual(\.receivesWeightAlerts)
                     ]
                 )
                 
