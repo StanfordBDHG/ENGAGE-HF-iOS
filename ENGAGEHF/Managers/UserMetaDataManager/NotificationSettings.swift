@@ -33,12 +33,12 @@ struct NotificationSettings: Codable, Equatable {
     
     
     init(
-        receivesAppointmentReminders: Bool = true,
-        receivesMedicationUpdates: Bool = true,
-        receivesQuestionnaireReminders: Bool = true,
-        receivesRecommendationUpdates: Bool = true,
-        receivesVitalsReminders: Bool = true,
-        receivesWeightAlerts: Bool = true
+        receivesAppointmentReminders: Bool = false,
+        receivesMedicationUpdates: Bool = false,
+        receivesQuestionnaireReminders: Bool = false,
+        receivesRecommendationUpdates: Bool = false,
+        receivesVitalsReminders: Bool = false,
+        receivesWeightAlerts: Bool = false
     ) {
         self.receivesAppointmentReminders = receivesAppointmentReminders
         self.receivesMedicationUpdates = receivesMedicationUpdates

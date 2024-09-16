@@ -22,23 +22,13 @@ struct HomeView: View {
         case heart
         case medications
         case education
-        case devices
-    }
-
-    
-    // Disable bluetooth in preview to prevent preview from crashing
-    private var bluetoothEnabled: Bool {
-        !ProcessInfo.processInfo.isPreviewSimulator
     }
 
     
     @Environment(HealthMeasurements.self) private var measurements
-    @Environment(Bluetooth.self) private var bluetooth
     @Environment(ENGAGEHFStandard.self) private var standard
     @Environment(NavigationManager.self) private var navigationManager
     @Environment(NotificationManager.self) private var notificationManager
-
-    @Environment(\.dismiss) private var dismiss
     
     @State private var presentingAccount = false
     
@@ -78,9 +68,6 @@ struct HomeView: View {
             }
             .sheet(isPresented: $presentingAccount) {
                 AccountSheet()
-            }
-            .accountRequired(!FeatureFlags.disableFirebase && !FeatureFlags.skipOnboarding) {
-                AccountSetupSheet()
             }
             .sheet(isPresented: $measurements.shouldPresentMeasurements) {
                 MeasurementsRecordedSheet { samples in

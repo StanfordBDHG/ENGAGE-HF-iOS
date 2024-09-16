@@ -50,19 +50,16 @@ class MedicationsManager: Module, EnvironmentAccessible {
                         return
                     }
 
-                    switch event {
-                    case let .associatedAccount(details):
+                    if let details = event.newEnrolledAccountDetails {
                         updateSnapshotListener(for: details)
-                    case .disassociatingAccount:
+                    } else if event.accountDetails == nil {
                         updateSnapshotListener(for: nil)
-                    default:
-                        break
                     }
                 }
             }
         }
 
-        if let account {
+        if let account, account.signedIn {
             updateSnapshotListener(for: account.details)
         }
     }
@@ -75,6 +72,7 @@ class MedicationsManager: Module, EnvironmentAccessible {
         self.snapshotListener?.remove()
 
         guard let details else {
+            self.medications.removeAll()
             return
         }
 

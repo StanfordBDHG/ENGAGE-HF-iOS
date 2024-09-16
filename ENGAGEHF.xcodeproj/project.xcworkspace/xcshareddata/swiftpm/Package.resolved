@@ -49,7 +49,7 @@
     {
       "identity" : "fhirmodels",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/FHIRModels.git",
+      "location" : "https://github.com/apple/FHIRModels",
       "state" : {
         "revision" : "861afd5816a98d38f86220eab2f812d76cad84a0",
         "version" : "0.5.0"
@@ -60,8 +60,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/firebase-ios-sdk.git",
       "state" : {
-        "revision" : "9118aca998dbe2ceac45d64b21a91c6376928df7",
-        "version" : "11.1.0"
+        "revision" : "1fc52ab0e172e7c5a961f975a76c2611f4f22852",
+        "version" : "11.2.0"
       }
     },
     {
@@ -114,8 +114,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordBDHG/HealthKitOnFHIR.git",
       "state" : {
-        "revision" : "c24e316311ff9813cb1fe32cd8820bcca6e5e7f2",
-        "version" : "0.2.10"
+        "revision" : "87a9257e6fa37407f3437e4a0bf21dd09a4ea7c5",
+        "version" : "0.2.11"
       }
     },
     {
@@ -195,8 +195,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziAccount.git",
       "state" : {
-        "revision" : "6b1603d2dd95b1787cfb0cbdce32a4b4bebb79ae",
-        "version" : "2.0.0-beta.5"
+        "revision" : "397a55a7b0f108088d3db510ee48fc974a322c87",
+        "version" : "2.0.0-beta.8"
       }
     },
     {
@@ -222,8 +222,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziDevices.git",
       "state" : {
-        "revision" : "cfba7691b6211bb2f566a8c263ff973921ee555b",
-        "version" : "1.2.2"
+        "revision" : "dc8dcd53773b9bb4041870b0f65cec32f7ed5108",
+        "version" : "1.3.0"
       }
     },
     {
@@ -231,8 +231,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziFirebase.git",
       "state" : {
-        "revision" : "12e7b779a3339737ea100b4eb7491072d4e83cd5",
-        "version" : "2.0.0-beta.2"
+        "revision" : "5aae93f567091b29f7683863baa2241f7c95290d",
+        "version" : "2.0.0-beta.4"
       }
     },
     {
@@ -328,7 +328,7 @@
     {
       "identity" : "swift-collections",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-collections.git",
+      "location" : "https://github.com/apple/swift-collections",
       "state" : {
         "revision" : "9bf03ff58ce34478e66aaee630e491823326fd06",
         "version" : "1.1.3"
@@ -339,8 +339,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-nio.git",
       "state" : {
-        "revision" : "4c4453b489cf76e6b3b0f300aba663eb78182fad",
-        "version" : "2.70.0"
+        "revision" : "9746cf80e29edfef2a39924a66731249223f42a3",
+        "version" : "2.72.0"
       }
     },
     {
@@ -348,8 +348,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/FelixHerrmann/swift-package-list",
       "state" : {
-        "revision" : "01f2e9860c122dd8c3ae2a7e642b85bbb053efe3",
-        "version" : "4.2.0"
+        "revision" : "60b77bea44f5b2f7369aecfcd993f7672e09602a",
+        "version" : "4.3.0"
       }
     },
     {

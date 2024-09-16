@@ -21,21 +21,10 @@ struct ENGAGEHF: App {
 
 
     @UIApplicationDelegateAdaptor(ENGAGEHFDelegate.self) var appDelegate
-    @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
-    
     
     var body: some Scene {
         WindowGroup {
-            ZStack {
-                if completedOnboardingFlow {
-                    HomeView()
-                } else {
-                    EmptyView()
-                }
-            }
-                .sheet(isPresented: !$completedOnboardingFlow) {
-                    OnboardingFlow()
-                }
+            ContentView()
                 .testingSetup()
                 .spezi(appDelegate)
         }

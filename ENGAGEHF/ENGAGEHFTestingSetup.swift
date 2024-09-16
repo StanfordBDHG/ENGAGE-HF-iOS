@@ -29,7 +29,7 @@ private struct ENGAGEHFAppTestingSetup: ViewModifier {
                 }
                 if FeatureFlags.setupTestEnvironment {
                     do {
-                        try await invitationCodeModule.setupTestEnvironment(invitationCode: "ENGAGETEST1")
+                        try await invitationCodeModule.setupTestEnvironment(invitationCode: "PATIENT0")
                     } catch {
                         viewState = .error(AnyLocalizedError(error: error, defaultErrorDescription: "Testing setup couldn't be set up."))
                     }
