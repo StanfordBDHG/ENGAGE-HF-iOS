@@ -7,6 +7,7 @@
 //
 
 import Firebase
+import FirebaseAuth
 import FirebaseFunctions
 import Spezi
 import SpeziAccount
@@ -40,6 +41,7 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
                     logger.debug("About to enroll user")
                     let enrollUser = Functions.functions().httpsCallable("enrollUser")
                     _ = try await enrollUser.call(["invitationCode": invitationCode])
+                    _ = try? await Auth.auth().currentUser?.getIDToken(forcingRefresh: true)
                     logger.debug("Successfully enrolled user!")
                 } catch {
                     logger.error("Failed to enroll user: \(error)")
