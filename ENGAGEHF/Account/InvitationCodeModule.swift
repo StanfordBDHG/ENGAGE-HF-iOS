@@ -7,6 +7,7 @@
 //
 
 import Firebase
+import FirebaseAuth
 import FirebaseFunctions
 import Spezi
 import SpeziAccount
@@ -27,50 +28,23 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
         }
     }
 
-    func clearAccount() async {
-        do {
-            try await signOutAccount()
-        } catch {
-            logger.debug("Failed to sing out firebase account: \(error)")
-        }
-    }
-
-    func signOutAccount() async throws {
-        do {
-            try await accountService?.logout()
-        } catch FirebaseAccountError.notSignedIn {
-            // do nothing
-        } catch {
-            throw error
-        }
-    }
-
     func verifyOnboardingCode(_ invitationCode: String) async throws {
         do {
             if FeatureFlags.disableFirebase {
                 guard invitationCode == "ENGAGEHFTEST1" else {
                     throw InvitationCodeError.invitationCodeInvalid
                 }
-
+                
                 try? await Task.sleep(for: .seconds(0.25))
             } else {
-                guard let accountService else {
-                    preconditionFailure("The Firebase Account Service was not present even though `disableFirebase` was turned off!")
-                }
-
-                try await signOutAccount()
-                try await accountService.signUpAnonymously()
-
-                let checkInvitationCode = Functions.functions().httpsCallable("checkInvitationCode")
-
                 do {
-                    _ = try await checkInvitationCode.call(
-                        [
-                            "invitationCode": invitationCode
-                        ]
-                    )
+                    logger.debug("About to enroll user")
+                    let enrollUser = Functions.functions().httpsCallable("enrollUser")
+                    _ = try await enrollUser.call(["invitationCode": invitationCode])
+                    _ = try? await Auth.auth().currentUser?.getIDToken(forcingRefresh: true)
+                    logger.debug("Successfully enrolled user!")
                 } catch {
-                    logger.error("Failed to check invitation code: \(error)")
+                    logger.error("Failed to enroll user: \(error)")
                     throw InvitationCodeError.invitationCodeInvalid
                 }
             }
@@ -114,20 +88,19 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
             try await accountService.login(userId: email, password: password)
             return // account was already established previously
         } catch FirebaseAccountError.invalidCredentials {
-            // probably doesn't exists. We try to create a new one below
+            // probably doesn't exist. We try to create a new one below
         } catch {
             logger.error("Failed logging into test account: \(error)")
-            return
+            throw error
         }
-
-        try await verifyOnboardingCode(invitationCode)
-
+        
         do {
             var details = AccountDetails()
             details.userId = email
             details.password = password
             details.name = PersonNameComponents(givenName: "Leland", familyName: "Stanford")
             try await accountService.signUp(with: details)
+            try await verifyOnboardingCode(invitationCode)
         } catch {
             logger.error("Failed setting up test account : \(error)")
             throw error

@@ -70,8 +70,7 @@ public class VitalsManager: Module, EnvironmentAccessible {
                         return
                     }
                     
-                    switch event {
-                    case let .associatedAccount(details):
+                    if let details = event.newEnrolledAccountDetails {
                         updateSnapshotListener(for: details)
                         
                         /// If testing, add mock measurements to the user's heart rate, blood pressure, weight, and symptoms histories
@@ -83,17 +82,11 @@ public class VitalsManager: Module, EnvironmentAccessible {
                                 logger.error("Failed to setup Heart Health testing: \(error)")
                             }
                         }
-                    case .disassociatingAccount:
+                    } else if event.accountDetails == nil {
                         updateSnapshotListener(for: nil)
-                    default:
-                        break
                     }
                 }
             }
-        }
-        
-        if let account {
-            updateSnapshotListener(for: account.details)
         }
     }
     
@@ -108,6 +101,11 @@ public class VitalsManager: Module, EnvironmentAccessible {
         
         // Only register snapshot listeners when a user is signed in
         guard let details else {
+            self.heartRateHistory = []
+            self.bloodPressureHistory = []
+            self.weightHistory = []
+            self.symptomHistory = []
+            self.latestDryWeight = nil
             self.logger.debug("No user signed in, skipping snapshot listener.")
             return
         }

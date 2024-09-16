@@ -11,6 +11,7 @@ import SpeziDevicesUI
 import SpeziLicense
 import SwiftUI
 
+
 struct AdditionalAccountSections: View {
     var body: some View {
         Section {
