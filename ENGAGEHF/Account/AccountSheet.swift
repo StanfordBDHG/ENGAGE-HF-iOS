@@ -6,50 +6,17 @@
 // SPDX-License-Identifier: MIT
 //
 
+import FirebaseFunctions
 @_spi(TestingSupport) import SpeziAccount
 import SpeziLicense
 import SwiftUI
 
 
 struct AccountSheet: View {
-    @Environment(\.dismiss) var dismiss
-    
-    @Environment(Account.self) private var account
-    @Environment(\.accountRequired) var accountRequired
-    
-    @State var isInSetup = false
-    
-    
     var body: some View {
         NavigationStack {
-            ZStack {
-                if account.signedIn && !isInSetup {
-                    AccountOverview(close: .showCloseButton, deletion: .disabled) {
-                        AdditionalAccountSections()
-                    }
-                } else {
-                    AccountSetup { _ in
-                        dismiss() // we just signed in, dismiss the account setup sheet
-                    } header: {
-                        AccountSetupHeader()
-                    }
-                        .onAppear {
-                            isInSetup = true
-                        }
-                        .toolbar {
-                            if !accountRequired {
-                                closeButton
-                            }
-                        }
-                }
-            }
-        }
-    }
-
-    var closeButton: some ToolbarContent {
-        ToolbarItem(placement: .cancellationAction) {
-            Button("CLOSE") {
-                dismiss()
+            AccountOverview(close: .showCloseButton, deletion: .disabled) {
+                AdditionalAccountSections()
             }
         }
     }

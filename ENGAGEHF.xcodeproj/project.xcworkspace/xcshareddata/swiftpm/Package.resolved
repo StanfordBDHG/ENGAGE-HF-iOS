@@ -60,8 +60,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/firebase-ios-sdk.git",
       "state" : {
-        "revision" : "9118aca998dbe2ceac45d64b21a91c6376928df7",
-        "version" : "11.1.0"
+        "revision" : "1fc52ab0e172e7c5a961f975a76c2611f4f22852",
+        "version" : "11.2.0"
       }
     },
     {
@@ -195,8 +195,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziAccount.git",
       "state" : {
-        "revision" : "7e78ee9e7e4df2071a18ac0fc722671ac1dcfac4",
-        "version" : "2.0.0-beta.7"
+        "revision" : "397a55a7b0f108088d3db510ee48fc974a322c87",
+        "version" : "2.0.0-beta.8"
       }
     },
     {
@@ -231,8 +231,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziFirebase.git",
       "state" : {
-        "revision" : "d0cb58fc43c99e632446b43c5cb56943f8339bf2",
-        "version" : "2.0.0-beta.3"
+        "revision" : "5aae93f567091b29f7683863baa2241f7c95290d",
+        "version" : "2.0.0-beta.4"
       }
     },
     {
@@ -328,7 +328,7 @@
     {
       "identity" : "swift-collections",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-collections.git",
+      "location" : "https://github.com/apple/swift-collections",
       "state" : {
         "revision" : "9bf03ff58ce34478e66aaee630e491823326fd06",
         "version" : "1.1.3"
@@ -348,8 +348,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/FelixHerrmann/swift-package-list",
       "state" : {
-        "revision" : "01f2e9860c122dd8c3ae2a7e642b85bbb053efe3",
-        "version" : "4.2.0"
+        "revision" : "60b77bea44f5b2f7369aecfcd993f7672e09602a",
+        "version" : "4.3.0"
       }
     },
     {

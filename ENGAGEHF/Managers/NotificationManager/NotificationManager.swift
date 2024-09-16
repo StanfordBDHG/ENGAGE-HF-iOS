@@ -29,13 +29,14 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
     }
     
     
-    @ObservationIgnored @Application(\.registerRemoteNotifications) private var registerRemoteNotifications
     @ObservationIgnored @Dependency(AccountNotifications.self) private var accountNotifications: AccountNotifications?
-    @ObservationIgnored @Application(\.logger) private var logger
     @ObservationIgnored @Dependency(NavigationManager.self) private var navigationManager
+    @ObservationIgnored @Dependency(Account.self) private var account: Account?
+    
+    @ObservationIgnored @Application(\.registerRemoteNotifications) private var registerRemoteNotifications
+    @ObservationIgnored @Application(\.logger) private var logger
     
     @ObservationIgnored @AppStorage(StorageKeys.onboardingFlowComplete) private var completedOnboardingFlow = false
-    @ObservationIgnored @Environment(Account.self) private var account: Account?
     
     
     private var cancellable: AnyCancellable?
@@ -47,8 +48,8 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
     
     func configure() {
         self.cancellable = NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification).sink { _ in
-            if self.completedOnboardingFlow {
-                Task {
+            Task { @MainActor in
+                if self.completedOnboardingFlow, self.account != nil {
                     await self.checkNotificationsAuthorized()
                 }
             }
@@ -64,9 +65,8 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
                     guard let self else {
                         return
                     }
-                    
-                    switch event {
-                    case .associatedAccount:
+                  
+                    if event.newEnrolledAccountDetails != nil {
                         do {
                             _ = try await self.requestNotificationPermissions()
                         } catch {
@@ -77,29 +77,19 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
                                 )
                             )
                         }
-                    case .disassociatingAccount:
-                        do {
-                            _ = try await self.unregisterDeviceToken()
-                        } catch {
-                            self.state = .error(
-                                AnyLocalizedError(
-                                    error: error,
-                                    defaultErrorDescription: "Unable to unregister for remote notifications."
-                                )
-                            )
-                        }
-                    default:
-                        break
+                    } else if event.accountDetails == nil {
+                        _ = try? await self.unregisterDeviceToken()
                     }
                 }
             }
         }
         
-        Task {
-            await self.checkNotificationsAuthorized()
+        Task { @MainActor in
+            if self.account != nil {
+                await self.checkNotificationsAuthorized()
+            }
         }
     }
-    
     
     @MainActor
     func checkNotificationsAuthorized() async {
@@ -146,7 +136,7 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
         ///     "action": "medications"
         /// }
         let payload = response.notification.request.content.userInfo["action"] as? String
-        await _ = navigationManager.execute(MessageAction(from: payload))
+        _ = await navigationManager.execute(MessageAction(from: payload))
     }
     
     
@@ -172,13 +162,7 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
                 let fcmToken = try await convertToFCM(apnsToken: apnsToken)
                 try await self.configureRemoteNotifications(using: fcmToken)
             } catch {
-                self.logger.error("Failed to configured remote notifications for updated device token: \(error)")
-                self.state = .error(
-                    AnyLocalizedError(
-                        error: error,
-                        defaultErrorDescription: "Unable to unregister for remote notifications."
-                    )
-                )
+                self.logger.error("Failed to configure remote notifications for updated device token: \(error)")
             }
         }
     }

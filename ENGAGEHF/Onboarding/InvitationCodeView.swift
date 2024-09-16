@@ -6,19 +6,21 @@
 // SPDX-License-Identifier: MIT
 //
 
+import SpeziAccount
 import SpeziOnboarding
 import SpeziValidation
 import SpeziViews
 import SwiftUI
 
-
+@MainActor
 struct InvitationCodeView: View {
     @Environment(OnboardingNavigationPath.self) private var onboardingNavigationPath
     @Environment(InvitationCodeModule.self) private var invitationCodeModule
+    @Environment(Account.self) private var account
 
     @State private var invitationCode = ""
     @State private var viewState: ViewState = .idle
-
+    
     @ValidationState private var validation
     
 
@@ -42,26 +44,7 @@ struct InvitationCodeView: View {
                     .padding(.top, -8)
                     .padding(.bottom, -12)
                 Divider()
-                OnboardingActionsView(
-                    primaryText: "Redeem Invitation Code",
-                    primaryAction: {
-                        guard validation.validateSubviews() else {
-                            return
-                        }
-                        
-                        do {
-                            try await invitationCodeModule.verifyOnboardingCode(invitationCode)
-                            onboardingNavigationPath.nextStep()
-                        } catch {
-                            viewState = .error(AnyLocalizedError(error: error))
-                        }
-                    },
-                    secondaryText: "I Already Have an Account",
-                    secondaryAction: {
-                        await invitationCodeModule.clearAccount()
-                        onboardingNavigationPath.nextStep()
-                    }
-                )
+                actionsView
             }
                 .padding(.horizontal)
                 .padding(.bottom)
@@ -69,8 +52,34 @@ struct InvitationCodeView: View {
                 .navigationBarTitleDisplayMode(.large)
                 .navigationTitle(String(localized: "Invitation Code"))
         }
+        .navigationBarBackButtonHidden()
     }
     
+    @ViewBuilder private var actionsView: some View {
+        OnboardingActionsView(
+            primaryText: "Redeem Invitation Code",
+            primaryAction: {
+                guard validation.validateSubviews() else {
+                    return
+                }
+                do {
+                    try await invitationCodeModule.verifyOnboardingCode(invitationCode)
+                    onboardingNavigationPath.nextStep()
+                } catch {
+                    viewState = .error(AnyLocalizedError(error: error))
+                }
+            },
+            secondaryText: "Logout",
+            secondaryAction: {
+                do {
+                    try await account.accountService.logout()
+                    onboardingNavigationPath.removeLast()
+                } catch {
+                    viewState = .error(AnyLocalizedError(error: error))
+                }
+            }
+        )
+    }
     
     @ViewBuilder private var invitationCodeView: some View {
         DescriptionGridRow {
@@ -99,9 +108,6 @@ struct InvitationCodeView: View {
             Text("Please enter your invitation code to join the ENGAGE-HF study.")
         }
     }
-
-    
-    init() {}
 }
 
 
