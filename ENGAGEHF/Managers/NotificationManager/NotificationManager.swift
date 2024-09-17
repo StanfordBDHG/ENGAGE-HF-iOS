@@ -145,13 +145,11 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
     func requestNotificationPermissions() async throws -> Bool {
         logger.debug("Requesting notification permissions.")
         
-        let deviceToken = try await self.getDeviceToken(askPermissionIfNeeded: true)
-        
-        guard let deviceToken else {
+        guard let deviceToken = try await self.getDeviceToken(askPermissionIfNeeded: true) else {
             return false
         }
         
-        try await self.configureRemoteNotifications(using: deviceToken)
+        try await self.registerDeviceToken(using: deviceToken)
         return true
     }
     
@@ -159,8 +157,7 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
     func receiveUpdatedDeviceToken(_ apnsToken: Data) {
         Task {
             do {
-                let fcmToken = try await convertToFCM(apnsToken: apnsToken)
-                try await self.configureRemoteNotifications(using: fcmToken)
+                try await self.registerDeviceToken(using: apnsToken)
             } catch {
                 self.logger.error("Failed to configure remote notifications for updated device token: \(error)")
             }
@@ -168,11 +165,12 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
     }
     
     
-    private func configureRemoteNotifications(using deviceToken: String) async throws {
+    private func registerDeviceToken(using apnsToken: Data) async throws {
         self.logger.debug("Registering device for remote notifications.")
         
+        let fcmToken = try await convertTokenToFCM(apns: apnsToken)
         let registerDevice = Functions.functions().httpsCallable("registerDevice")
-        _ = try await registerDevice.call(NotificationRegistrationSchema(deviceToken).codingRepresentation)
+        _ = try await registerDevice.call(NotificationRegistrationSchema(fcmToken).codingRepresentation)
         
         self.logger.debug("Successfully registered device for remote notifications.")
     }
@@ -185,14 +183,15 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
             return
         }
         
+        let fcmToken = try await convertTokenToFCM(apns: deviceToken)
         let unregisterDevice = Functions.functions().httpsCallable("unregisterDevice")
-        _ = try await unregisterDevice.call(NotificationRegistrationSchema(deviceToken).codingRepresentation)
+        _ = try await unregisterDevice.call(NotificationRegistrationSchema(fcmToken).codingRepresentation)
         
         self.logger.debug("Successfully unregistered device for remote notifications.")
     }
     
     
-    private func getDeviceToken(askPermissionIfNeeded: Bool = true) async throws -> String? {
+    private func getDeviceToken(askPermissionIfNeeded: Bool = true) async throws -> Data? {
         let settings = await UNUserNotificationCenter.current().notificationSettings()
         
         switch settings.authorizationStatus {
@@ -217,14 +216,13 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
         }
         
 #if TEST
-        return ""
+        return nil
 #else
-        let apnsToken = FeatureFlags.skipRemoteNotificationRegistration ? Data() : try await registerRemoteNotifications()
-        return try await convertToFCM(apnsToken: apnsToken)
+        return FeatureFlags.skipRemoteNotificationRegistration ? nil : try await registerRemoteNotifications()
 #endif
     }
 
-    private func convertToFCM(apnsToken: Data) async throws -> String {
+    private func convertTokenToFCM(apns apnsToken: Data) async throws -> String {
         let messaging = Messaging.messaging()
         messaging.apnsToken = apnsToken
         return try await messaging.token()
