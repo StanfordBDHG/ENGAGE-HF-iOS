@@ -11,9 +11,8 @@ import XCTest
 
 extension XCUIApplication {
     /// Attempts to delete all measurements of a given type by navigating to Heart Health view, then deleting the items in the All Data section of the page
-    func deleteAllMeasurements(_ id: String, header: String) throws {
-        try goTo(tab: "Heart Health")
-        try goTo(tab: id, header: header)
+    func deleteAllMeasurements(_ id: String, header: String) {
+        goToHeartHealth(segment: id, header: header)
         
         staticTexts["About \(header)"].swipeUp()
         

@@ -25,7 +25,7 @@ final class MedicationsUITests: XCTestCase {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
-        try app.goTo(tab: "Medications")
+        app.goTo(tab: "Medications")
         
         XCTAssert(app.buttons["More"].waitForExistence(timeout: 0.5), "No \"More\" Button Found.")
         app.buttons["More"].tap()
@@ -46,7 +46,7 @@ final class MedicationsUITests: XCTestCase {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
-        try app.goTo(tab: "Medications")
+        app.goTo(tab: "Medications")
         
         XCTAssert(app.staticTexts["No medication recommendations"].waitForExistence(timeout: 0.5))
     }
@@ -55,7 +55,7 @@ final class MedicationsUITests: XCTestCase {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
-        try app.goTo(tab: "Medications")
+        app.goTo(tab: "Medications")
         
         XCTAssert(app.buttons["More"].waitForExistence(timeout: 0.5), "No \"More\" Button Found.")
         app.buttons["More"].tap()
@@ -82,7 +82,7 @@ final class MedicationsUITests: XCTestCase {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
-        try app.goTo(tab: "Medications")
+        app.goTo(tab: "Medications")
         
         XCTAssert(app.buttons["More"].waitForExistence(timeout: 0.5), "No \"More\" Button Found.")
         app.buttons["More"].tap()
@@ -100,7 +100,7 @@ final class MedicationsUITests: XCTestCase {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
-        try app.goTo(tab: "Medications")
+        app.goTo(tab: "Medications")
         
         XCTAssert(app.buttons["More"].waitForExistence(timeout: 0.5), "No \"More\" Button Found.")
         app.buttons["More"].tap()
@@ -121,7 +121,7 @@ final class MedicationsUITests: XCTestCase {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
-        try app.goTo(tab: "Medications")
+        app.goTo(tab: "Medications")
         
         XCTAssert(app.buttons["More"].waitForExistence(timeout: 0.5), "No \"More\" Button Found.")
         app.buttons["More"].tap()
@@ -142,7 +142,7 @@ final class MedicationsUITests: XCTestCase {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
-        try app.goTo(tab: "Medications")
+        app.goTo(tab: "Medications")
         
         XCTAssert(app.buttons["More"].waitForExistence(timeout: 0.5), "No \"More\" Button Found.")
         app.buttons["More"].tap()
@@ -169,7 +169,7 @@ final class MedicationsUITests: XCTestCase {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
-        try app.goTo(tab: "Medications")
+        app.goTo(tab: "Medications")
         
         XCTAssert(app.buttons["More"].waitForExistence(timeout: 0.5), "No \"More\" Button Found.")
         app.buttons["More"].tap()
@@ -189,7 +189,7 @@ final class MedicationsUITests: XCTestCase {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
-        try app.goTo(tab: "Medications")
+        app.goTo(tab: "Medications")
         
         XCTAssert(app.buttons["More"].waitForExistence(timeout: 0.5), "No \"More\" Button Found.")
         app.buttons["More"].tap()
@@ -207,7 +207,7 @@ final class MedicationsUITests: XCTestCase {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
-        try app.goTo(tab: "Medications")
+        app.goTo(tab: "Medications")
         
         XCTAssert(app.buttons["More"].waitForExistence(timeout: 0.5), "No \"More\" Button Found.")
         app.buttons["More"].tap()
@@ -228,7 +228,7 @@ final class MedicationsUITests: XCTestCase {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
-        try app.goTo(tab: "Medications")
+        app.goTo(tab: "Medications")
         
         XCTAssert(app.buttons["More"].waitForExistence(timeout: 0.5), "No \"More\" Button Found.")
         app.buttons["More"].tap()

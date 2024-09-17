@@ -24,7 +24,7 @@ final class AddMeasurementUITests: XCTestCase {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
-        try app.goTo(tab: "Heart Health")
+        app.goTo(tab: "Heart Health")
         
         let expectedUnit = Locale.current.measurementSystem == .us ? "lb" : "kg"
         let inputs = [(expectedUnit, "100")]
@@ -41,7 +41,7 @@ final class AddMeasurementUITests: XCTestCase {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
-        try app.goTo(tab: "Heart Health")
+        app.goTo(tab: "Heart Health")
         
         let expectedUnit = "BPM"
         let inputs = [(expectedUnit, "60")]
@@ -58,7 +58,7 @@ final class AddMeasurementUITests: XCTestCase {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
-        try app.goTo(tab: "Heart Health")
+        app.goTo(tab: "Heart Health")
         
         let inputs = [("Systolic", "120"), ("Diastolic", "60")]
         let expectedQuantity = ("120/60", "mmHg")
@@ -74,8 +74,7 @@ final class AddMeasurementUITests: XCTestCase {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
-        try app.goTo(tab: "Heart Health")
-        try app.goTo(tab: "Symptoms", header: "Overall Score")
+        app.goToHeartHealth(segment: "Symptoms", header: "Overall Score")
         
         XCTAssertFalse(app.buttons["Add Measurement: Symptom Score"].exists)
     }
@@ -88,7 +87,7 @@ extension XCUIApplication {
         inputs: [(label: String, value: String)],
         expectedQuantity: (value: String, unit: String)
     ) throws {
-        try goTo(tab: id.short, header: id.full)
+        goToHeartHealth(segment: id.short, header: id.full)
         
         staticTexts["About \(id.full)"].swipeUp()
         buttons["Add Measurement: \(id.short)"].tap()
