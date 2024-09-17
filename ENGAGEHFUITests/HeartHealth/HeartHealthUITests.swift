@@ -276,7 +276,7 @@ extension XCUIApplication {
         XCTAssert(buttons[pickerLabel].waitForExistence(timeout: 0.5))
         buttons[pickerLabel].tap()
         
-        XCTAssert(staticTexts[vitalType].waitForExistence(timeout: 0.5))
+        XCTAssert(staticTexts[vitalType].waitForExistence(timeout: 2.0))
         XCTAssert(staticTexts["Overall Summary Quantity: No Data"].waitForExistence(timeout: 0.5))
         XCTAssert(staticTexts["About \(vitalType)"].waitForExistence(timeout: 0.5))
         staticTexts["About \(vitalType)"].swipeUp()

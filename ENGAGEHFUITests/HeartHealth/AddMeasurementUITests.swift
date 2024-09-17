@@ -90,7 +90,7 @@ extension XCUIApplication {
     ) throws {
         try goTo(tab: id.short, header: id.full)
         
-        swipeUp()
+        staticTexts["About \(id.full)"].swipeUp()
         buttons["Add Measurement: \(id.short)"].tap()
         
         XCTAssert(staticTexts[id.full].waitForExistence(timeout: 0.5))
