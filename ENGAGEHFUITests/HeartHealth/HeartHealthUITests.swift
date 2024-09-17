@@ -279,8 +279,8 @@ extension XCUIApplication {
         XCTAssert(staticTexts[vitalType].waitForExistence(timeout: 0.5))
         XCTAssert(staticTexts["Overall Summary Quantity: No Data"].waitForExistence(timeout: 0.5))
         XCTAssert(staticTexts["About \(vitalType)"].waitForExistence(timeout: 0.5))
+        staticTexts["About \(vitalType)"].swipeUp()
         XCTAssert(staticTexts["\(vitalType) Description"].waitForExistence(timeout: 0.5))
-        swipeUp()
         XCTAssert(staticTexts["Empty \(pickerLabel) List"].waitForExistence(timeout: 0.5))
         swipeDown()
     }
@@ -326,7 +326,7 @@ extension XCUIApplication {
         XCTAssert(staticTexts["Overall Summary Quantity: No Data"].waitForExistence(timeout: 0.5))
         XCTAssert(staticTexts["\(scoreType) Score Description"].waitForExistence(timeout: 0.5))
         XCTAssert(staticTexts["About \(scoreType) Score"].waitForExistence(timeout: 0.5))
-        swipeUp()
+        staticTexts["About \(scoreType) Score"].swipeUp()
         XCTAssert(staticTexts["Empty Symptoms List"].waitForExistence(timeout: 0.5))
         swipeDown()
     }

@@ -15,7 +15,7 @@ extension XCUIApplication {
         try goTo(tab: "Heart Health")
         try goTo(tab: id, header: header)
         
-        swipeUp()
+        staticTexts["About \(header)"].swipeUp()
         
         var dataPresent = !staticTexts["Empty \(id) List"].exists
         var totalRows = 0
