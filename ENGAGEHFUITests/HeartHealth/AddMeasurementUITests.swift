@@ -58,7 +58,6 @@ final class AddMeasurementUITests: XCTestCase {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
-        app.goTo(tab: "Heart Health")
         
         let inputs = [("Systolic", "120"), ("Diastolic", "60")]
         let expectedQuantity = ("120/60", "mmHg")
