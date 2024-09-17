@@ -28,7 +28,7 @@ final class NotificationSettingsUITests: XCTestCase {
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
         
-        try app.goTo(tab: "Home")
+        app.goTo(tab: "Home")
         
         XCTAssertTrue(app.navigationBars.buttons["Your Account"].waitForExistence(timeout: 2))
         app.navigationBars.buttons["Your Account"].tap()

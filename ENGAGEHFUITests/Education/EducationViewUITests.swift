@@ -24,7 +24,7 @@ final class EducationViewUITests: XCTestCase {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
-        try app.goTo(tab: "Education")
+        app.goTo(tab: "Education")
         
         let thumbnailOverlay = app.staticTexts["Thumbnail Overlay Title: Long Description"]
         XCTAssert(thumbnailOverlay.waitForExistence(timeout: 0.5))
@@ -73,7 +73,7 @@ final class EducationViewUITests: XCTestCase {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
-        try app.goTo(tab: "Education")
+        app.goTo(tab: "Education")
         
         let thumbnailOverlay = app.staticTexts["Thumbnail Overlay Title: Short Description"]
         XCTAssert(thumbnailOverlay.waitForExistence(timeout: 0.5))
@@ -117,7 +117,7 @@ final class EducationViewUITests: XCTestCase {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
-        try app.goTo(tab: "Education")
+        app.goTo(tab: "Education")
         
         let thumbnailOverlay = app.staticTexts["Thumbnail Overlay Title: No Description"]
         XCTAssert(thumbnailOverlay.waitForExistence(timeout: 0.5))
@@ -147,7 +147,7 @@ final class EducationViewUITests: XCTestCase {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
-        try app.goTo(tab: "Education")
+        app.goTo(tab: "Education")
         
         let sectionHeader = app.staticTexts["ENGAGE-HF Application"]
         
@@ -170,7 +170,7 @@ final class EducationViewUITests: XCTestCase {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
-        try app.goTo(tab: "Education")
+        app.goTo(tab: "Education")
         
         let videoSection = app.otherElements["Video Section: ENGAGE-HF Application"]
         XCTAssert(videoSection.exists)
