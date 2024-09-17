@@ -110,7 +110,7 @@ final class HKSampleGraphUnitTests: XCTestCase {
         validateSeriesDictionary(actualOutput: viewModel.seriesData, expectedOutput: expectedOutput)
         
         // Make sure the correct unit was identified
-        XCTAssertEqual(viewModel.displayUnit, "lb")
+        XCTAssertEqual(viewModel.displayUnit, Locale.current.measurementSystem == .us ? "lb" : "kg")
         
         // Make sure the correct formatter was chosen
         XCTAssertEqual(viewModel.formatter([(KnownVitalsSeries.bodyWeight.rawValue, 120.0), ("Diastolic", 60.0)]), "120.0")

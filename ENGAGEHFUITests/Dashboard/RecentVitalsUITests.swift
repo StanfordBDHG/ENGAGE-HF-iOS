@@ -28,7 +28,7 @@ final class RecentVitalsUITests: XCTestCase {
         let weightUnit = Locale.current.measurementSystem == .us ? "lb" : "kg"
         
         // Delete all previous measurements
-        try app.deleteAllMeasurements("Weight", header: "Body Weight")
+        app.deleteAllMeasurements("Weight", header: "Body Weight")
         
         // Make sure we're on the home screen
         XCTAssert(app.buttons["Home"].waitForExistence(timeout: 2.0))
@@ -67,8 +67,8 @@ final class RecentVitalsUITests: XCTestCase {
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
         
         // Delete previous measurements
-        try app.deleteAllMeasurements("HR", header: "Heart Rate")
-        try app.deleteAllMeasurements("BP", header: "Blood Pressure")
+        app.deleteAllMeasurements("HR", header: "Heart Rate")
+        app.deleteAllMeasurements("BP", header: "Blood Pressure")
         
         // Make sure we're on the home screen
         XCTAssert(app.buttons["Home"].waitForExistence(timeout: 2.0))

@@ -30,7 +30,7 @@ final class MessagesUITests: XCTestCase {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
-        try app.goTo(tab: "Home")
+        app.goTo(tab: "Home")
         
         // Directly dismiss by tapping dismiss button
         let medicationChangeMessage = app.otherElements["Message Card - Medication Change"]
@@ -48,7 +48,7 @@ final class MessagesUITests: XCTestCase {
         
         uptitrationMessage.tap()
         sleep(1)
-        try app.goTo(tab: "Home")
+        app.goTo(tab: "Home")
         XCTAssertFalse(app.otherElements["Message Card - Medication Uptitration"].exists)
         
         
@@ -59,7 +59,7 @@ final class MessagesUITests: XCTestCase {
         
         vitalsMessage.tap()
         sleep(1)
-        try app.goTo(tab: "Home")
+        app.goTo(tab: "Home")
         XCTAssert(app.otherElements["Message Card - Vitals"].exists)
     }
     
@@ -67,7 +67,7 @@ final class MessagesUITests: XCTestCase {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
-        try app.goTo(tab: "Home")
+        app.goTo(tab: "Home")
         
         let medicationChangeMessage = app.otherElements["Message Card - Medication Change"]
         XCTAssert(medicationChangeMessage.exists)
@@ -89,7 +89,7 @@ final class MessagesUITests: XCTestCase {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
-        try app.goTo(tab: "Home")
+        app.goTo(tab: "Home")
         
         let questionnaireMessage = app.otherElements["Message Card - Symptom Questionnaire"]
         XCTAssert(questionnaireMessage.exists)
@@ -106,7 +106,7 @@ final class MessagesUITests: XCTestCase {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
-        try app.goTo(tab: "Home")
+        app.goTo(tab: "Home")
         
         let medicationUptitrationMessage = app.otherElements["Message Card - Medication Uptitration"]
         XCTAssert(medicationUptitrationMessage.exists)
@@ -122,7 +122,7 @@ final class MessagesUITests: XCTestCase {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
-        try app.goTo(tab: "Home")
+        app.goTo(tab: "Home")
         
         let vitalsMessage = app.otherElements["Message Card - Vitals"]
         XCTAssert(vitalsMessage.exists)
@@ -138,7 +138,7 @@ final class MessagesUITests: XCTestCase {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
-        try app.goTo(tab: "Home")
+        app.goTo(tab: "Home")
         
         let unknownActionMessage = app.otherElements["Message Card - Unknown"]
         XCTAssert(unknownActionMessage.exists)
@@ -153,7 +153,7 @@ final class MessagesUITests: XCTestCase {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
-        try app.goTo(tab: "Home")
+        app.goTo(tab: "Home")
         
         let medicationChangeMessage = app.otherElements["Message Card - Medication Change"]
         XCTAssert(medicationChangeMessage.exists)
