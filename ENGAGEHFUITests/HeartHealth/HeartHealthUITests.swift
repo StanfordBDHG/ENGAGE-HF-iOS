@@ -267,10 +267,7 @@ extension XCUIApplication {
     fileprivate func testEmptyVitals(for vitalType: String, pickerLabel: String) {
         XCTAssert(buttons[pickerLabel].waitForExistence(timeout: 0.5))
         buttons[pickerLabel].tap()
-        
-        staticTexts["All Data"].swipeUp()
-        
-        // XCTAssert(staticTexts[vitalType].waitForExistence(timeout: 2.0))
+                
         XCTAssert(staticTexts["Overall Summary Quantity: No Data"].waitForExistence(timeout: 0.5))
         XCTAssert(staticTexts["About \(vitalType)"].waitForExistence(timeout: 0.5))
         staticTexts["About \(vitalType)"].swipeUp()
