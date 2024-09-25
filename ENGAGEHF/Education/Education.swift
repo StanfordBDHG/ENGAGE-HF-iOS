@@ -20,17 +20,28 @@ struct Education: View {
         @Bindable var navigationManager = navigationManager
         
         NavigationStack(path: $navigationManager.educationPath) {
-            VideoList(videoCollections: videoManager.videoCollections)
-                .accessibilityIdentifier("Video List")
-                .navigationTitle("Education")
-                .toolbar {
-                    if AccountButton.shouldDisplay {
-                        AccountButton(isPresented: $presentingAccount)
-                    }
+            Group {
+                let videoCollections = videoManager.videoCollections.filter { !$0.videos.isEmpty }
+                if videoCollections.isEmpty {
+                    ContentUnavailableView(
+                        "No Educational Videos",
+                        systemImage: "video.slash",
+                        description: Text("There are currently no educational videos available.")
+                    )
+                } else {
+                    VideoList(videoCollections: videoCollections)
                 }
-                .navigationDestination(for: Video.self) { video in
-                    VideoView(video)
+            }
+            .accessibilityIdentifier("Video List")
+            .navigationTitle("Education")
+            .toolbar {
+                if AccountButton.shouldDisplay {
+                    AccountButton(isPresented: $presentingAccount)
                 }
+            }
+            .navigationDestination(for: Video.self) { video in
+                VideoView(video)
+            }
         }
     }
 }
