@@ -32,16 +32,16 @@ struct Education: View {
                     VideoList(videoCollections: videoCollections)
                 }
             }
-            .accessibilityIdentifier("Video List")
-            .navigationTitle("Education")
-            .toolbar {
-                if AccountButton.shouldDisplay {
-                    AccountButton(isPresented: $presentingAccount)
+                .accessibilityIdentifier("Video List")
+                .navigationTitle("Education")
+                .toolbar {
+                    if AccountButton.shouldDisplay {
+                        AccountButton(isPresented: $presentingAccount)
+                    }
                 }
-            }
-            .navigationDestination(for: Video.self) { video in
-                VideoView(video)
-            }
+                .navigationDestination(for: Video.self) { video in
+                    VideoView(video)
+                }
         }
     }
 }
