@@ -17,36 +17,42 @@ struct MedicationsList: View {
         if viewModel.containsRecommendations {
             List {
                 if !viewModel.currentlyTakenMedications.isEmpty {
-                    Section {
-                        ForEach(viewModel.currentlyTakenMedications.sorted(by: { $0.type > $1.type })) { medication in
-                            ExpandableListCard(
-                                label: {
-                                    RecommendationSummary(medication: medication)
-                                },
-                                content: {
-                                    MedicationRowContent(medication: medication)
-                                }
-                            )
+                    Section(
+                        content: {
+                            ForEach(viewModel.currentlyTakenMedications.sorted(by: { $0.type > $1.type })) { medication in
+                                ExpandableListCard(
+                                    label: {
+                                        RecommendationSummary(medication: medication)
+                                    },
+                                    content: {
+                                        MedicationRowContent(medication: medication)
+                                    }
+                                )
+                            }
+                        },
+                        header: {
+                            Text("Current Medications")
                         }
-                    } header: {
-                        Text("Current Medications")
-                    }
+                    )
                 }
                 if !viewModel.notCurrentlyTakenMedications.isEmpty {
-                    Section {
-                        ForEach(viewModel.notCurrentlyTakenMedications.sorted(by: { $0.type > $1.type })) { medication in
-                            ExpandableListCard(
-                                label: {
-                                    RecommendationSummary(medication: medication)
-                                },
-                                content: {
-                                    MedicationRowContent(medication: medication)
-                                }
-                            )
+                    Section(
+                        content: {
+                            ForEach(viewModel.notCurrentlyTakenMedications.sorted(by: { $0.type > $1.type })) { medication in
+                                ExpandableListCard(
+                                    label: {
+                                        RecommendationSummary(medication: medication)
+                                    },
+                                    content: {
+                                        MedicationRowContent(medication: medication)
+                                    }
+                                )
+                            }
+                        },
+                        header: {
+                            Text("Medications That May Help")
                         }
-                    } header: {
-                        Text("Medications That May Help")
-                    }
+                    )
                 }
             }
                 .expandableCardListStyle()
