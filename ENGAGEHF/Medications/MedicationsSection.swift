@@ -10,14 +10,13 @@ import SwiftUI
 
 
 struct MedicationSection: View {
-    let header: String
-    let medications: [MedicationDetails]
+    private let viewModel: ViewModel
     
     
     var body: some View {
         Section(
             content: {
-                ForEach(medications.sorted(by: { $0.type > $1.type })) { medication in
+                ForEach(viewModel.medications.sorted(by: { $0.type > $1.type })) { medication in
                     ExpandableListCard(
                         label: {
                             RecommendationSummary(medication: medication)
@@ -29,9 +28,22 @@ struct MedicationSection: View {
                 }
             },
             header: {
-                Text(header)
+                Text(viewModel.header)
+                    .padding(.horizontal, -16)
+            },
+            footer: {
+                VStack(alignment: .leading) {
+                    ForEach(viewModel.colorLegendEntries, id: \.self) { entry in
+                        ColorKeyRow(color: entry.color, description: entry.description)
+                    }
+                }
                     .padding(.horizontal, -16)
             }
         )
+    }
+    
+    
+    init(header: String, medications: [MedicationDetails]) {
+        self.viewModel = ViewModel(header: header, medications: medications)
     }
 }

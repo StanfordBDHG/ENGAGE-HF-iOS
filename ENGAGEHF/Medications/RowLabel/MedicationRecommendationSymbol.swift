@@ -26,15 +26,7 @@ struct MedicationRecommendationSymbol: View {
     }
     
     private var labelColor: Color {
-        switch type {
-        case .targetDoseReached: .green
-        case .personalTargetDoseReached: .green
-        case .improvementAvailable: .yellow
-        case .moreLabObservationsRequired: .yellow
-        case .morePatientObservationsRequired: .yellow
-        case .noActionRequired: .blue
-        case .notStarted: .blue
-        }
+        RecommendationSymbolColor.color(for: type)
     }
     
     
