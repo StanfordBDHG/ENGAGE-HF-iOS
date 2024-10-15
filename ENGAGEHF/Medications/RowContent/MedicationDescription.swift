@@ -27,7 +27,7 @@ struct MedicationDescription: View {
             
             let action = MessageAction(from: videoPath)
             if action != .unknown {
-                Image(systemName: "questionmark.circle")
+                Image(systemName: "info.circle")
                     .foregroundStyle(.accent)
                     .accessibilityLabel("\(title) More Information")
                     .asButton {

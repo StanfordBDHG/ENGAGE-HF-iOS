@@ -10,28 +10,30 @@ import SwiftUI
 
 
 struct MedicationsList: View {
-    let medications: [MedicationDetails]
+    private let viewModel: ViewModel
     
     
     var body: some View {
-        if !medications.isEmpty {
+        if viewModel.containsRecommendations {
             List {
-                ForEach(medications.sorted(by: { $0.type > $1.type })) { medication in
-                    ExpandableListCard(
-                        label: {
-                            RecommendationSummary(medication: medication)
-                        },
-                        content: {
-                            MedicationRowContent(medication: medication)
-                        }
-                    )
+                if !viewModel.currentlyTakenMedications.isEmpty {
+                    MedicationSection(header: "Current Medications", medications: viewModel.currentlyTakenMedications)
+                }
+                if !viewModel.notCurrentlyTakenMedications.isEmpty {
+                    MedicationSection(header: "Medications That May Help", medications: viewModel.notCurrentlyTakenMedications)
                 }
             }
                 .expandableCardListStyle()
+                .headerProminence(.increased)
         } else {
             ContentUnavailableView("No medication recommendations", systemImage: "pill.fill")
                 .background(Color(.systemGroupedBackground))
         }
+    }
+    
+    
+    init(medications: [MedicationDetails]) {
+        self.viewModel = ViewModel(medications)
     }
 }
 

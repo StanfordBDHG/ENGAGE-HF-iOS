@@ -13,7 +13,7 @@ struct ExpandableListCard<Label: View, Content: View>: View {
     let label: () -> Label
     let content: () -> Content
     
-    @State private var isExpanded = true
+    @State private var isExpanded = false
     
     
     var body: some View {
