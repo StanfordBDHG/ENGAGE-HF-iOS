@@ -17,42 +17,10 @@ struct MedicationsList: View {
         if viewModel.containsRecommendations {
             List {
                 if !viewModel.currentlyTakenMedications.isEmpty {
-                    Section(
-                        content: {
-                            ForEach(viewModel.currentlyTakenMedications.sorted(by: { $0.type > $1.type })) { medication in
-                                ExpandableListCard(
-                                    label: {
-                                        RecommendationSummary(medication: medication)
-                                    },
-                                    content: {
-                                        MedicationRowContent(medication: medication)
-                                    }
-                                )
-                            }
-                        },
-                        header: {
-                            Text("Current Medications")
-                        }
-                    )
+                    MedicationSection(header: "Current Medications", medications: viewModel.currentlyTakenMedications)
                 }
                 if !viewModel.notCurrentlyTakenMedications.isEmpty {
-                    Section(
-                        content: {
-                            ForEach(viewModel.notCurrentlyTakenMedications.sorted(by: { $0.type > $1.type })) { medication in
-                                ExpandableListCard(
-                                    label: {
-                                        RecommendationSummary(medication: medication)
-                                    },
-                                    content: {
-                                        MedicationRowContent(medication: medication)
-                                    }
-                                )
-                            }
-                        },
-                        header: {
-                            Text("Medications That May Help")
-                        }
-                    )
+                    MedicationSection(header: "Medications That May Help", medications: viewModel.notCurrentlyTakenMedications)
                 }
             }
                 .expandableCardListStyle()

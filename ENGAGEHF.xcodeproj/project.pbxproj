@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		212522B82CBDE50700650728 /* MedicationsList+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212522B72CBDE50200650728 /* MedicationsList+ViewModel.swift */; };
+		213AD98D2CBDF74A005C6D69 /* MedicationsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AD98C2CBDF744005C6D69 /* MedicationsSection.swift */; };
 		2F49B7762980407C00BCB272 /* Spezi in Frameworks */ = {isa = PBXBuildFile; productRef = 2F49B7752980407B00BCB272 /* Spezi */; };
 		2F4E237E2989A2FE0013F3D9 /* LaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4E237D2989A2FE0013F3D9 /* LaunchTests.swift */; };
 		2F4E23832989D51F0013F3D9 /* ENGAGEHFTestingSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4E23822989D51F0013F3D9 /* ENGAGEHFTestingSetup.swift */; };
@@ -239,6 +240,7 @@
 
 /* Begin PBXFileReference section */
 		212522B72CBDE50200650728 /* MedicationsList+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MedicationsList+ViewModel.swift"; sourceTree = "<group>"; };
+		213AD98C2CBDF744005C6D69 /* MedicationsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationsSection.swift; sourceTree = "<group>"; };
 		2F4E237D2989A2FE0013F3D9 /* LaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchTests.swift; sourceTree = "<group>"; };
 		2F4E23822989D51F0013F3D9 /* ENGAGEHFTestingSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ENGAGEHFTestingSetup.swift; sourceTree = "<group>"; };
 		2F5E32BC297E05EA003432F8 /* ENGAGEHFDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ENGAGEHFDelegate.swift; sourceTree = "<group>"; };
@@ -757,6 +759,7 @@
 				4D8402C22C52C56400817495 /* RowLabel */,
 				4D8402AD2C51C66D00817495 /* Medications.swift */,
 				4D8402B12C51D62400817495 /* MedicationsList.swift */,
+				213AD98C2CBDF744005C6D69 /* MedicationsSection.swift */,
 				212522B72CBDE50200650728 /* MedicationsList+ViewModel.swift */,
 			);
 			path = Medications;
@@ -1467,6 +1470,7 @@
 				4D2D1D602C2B859C00ABDC19 /* GraphPicker.swift in Sources */,
 				4D8402DE2C5417F400817495 /* MedicationDescription.swift in Sources */,
 				9B1864942C9276C40042AC81 /* AuthFlow.swift in Sources */,
+				213AD98D2CBDF74A005C6D69 /* MedicationsSection.swift in Sources */,
 				4DBDD3462BBFAE2D001FB0CA /* InvitationCodeView.swift in Sources */,
 				4D40A4B62C5AA094003DC813 /* VideoView.swift in Sources */,
 				4DB624862C73F1BF00573807 /* NotificationSettingsView.swift in Sources */,
