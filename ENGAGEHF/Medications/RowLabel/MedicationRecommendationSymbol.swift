@@ -21,7 +21,7 @@ struct MedicationRecommendationSymbol: View {
         case .moreLabObservationsRequired: "circle.fill"
         case .morePatientObservationsRequired: "circle.fill"
         case .noActionRequired: "circle.fill"
-        case .notStarted: "arrow.up.circle.fill"
+        case .notStarted: "circle.fill"
         }
     }
     
@@ -32,8 +32,8 @@ struct MedicationRecommendationSymbol: View {
         case .improvementAvailable: .yellow
         case .moreLabObservationsRequired: .yellow
         case .morePatientObservationsRequired: .yellow
-        case .noActionRequired: .gray
-        case .notStarted: .gray
+        case .noActionRequired: .blue
+        case .notStarted: .blue
         }
     }
     

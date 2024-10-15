@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		212522B82CBDE50700650728 /* MedicationsList+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212522B72CBDE50200650728 /* MedicationsList+ViewModel.swift */; };
 		2F49B7762980407C00BCB272 /* Spezi in Frameworks */ = {isa = PBXBuildFile; productRef = 2F49B7752980407B00BCB272 /* Spezi */; };
 		2F4E237E2989A2FE0013F3D9 /* LaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4E237D2989A2FE0013F3D9 /* LaunchTests.swift */; };
 		2F4E23832989D51F0013F3D9 /* ENGAGEHFTestingSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4E23822989D51F0013F3D9 /* ENGAGEHFTestingSetup.swift */; };
@@ -237,6 +238,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		212522B72CBDE50200650728 /* MedicationsList+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MedicationsList+ViewModel.swift"; sourceTree = "<group>"; };
 		2F4E237D2989A2FE0013F3D9 /* LaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchTests.swift; sourceTree = "<group>"; };
 		2F4E23822989D51F0013F3D9 /* ENGAGEHFTestingSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ENGAGEHFTestingSetup.swift; sourceTree = "<group>"; };
 		2F5E32BC297E05EA003432F8 /* ENGAGEHFDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ENGAGEHFDelegate.swift; sourceTree = "<group>"; };
@@ -755,6 +757,7 @@
 				4D8402C22C52C56400817495 /* RowLabel */,
 				4D8402AD2C51C66D00817495 /* Medications.swift */,
 				4D8402B12C51D62400817495 /* MedicationsList.swift */,
+				212522B72CBDE50200650728 /* MedicationsList+ViewModel.swift */,
 			);
 			path = Medications;
 			sourceTree = "<group>";
@@ -1333,6 +1336,7 @@
 				4DBE86DD2C7F9BBF0003390B /* MobilePlatform.swift in Sources */,
 				4D70CF6A2C65423D00EB4CC6 /* GraphSelection.swift in Sources */,
 				4DDFC7692BF35113002B07A1 /* HeartHealth.swift in Sources */,
+				212522B82CBDE50700650728 /* MedicationsList+ViewModel.swift in Sources */,
 				4D92BA072C3CAE5300ABCED7 /* VitalListMeasurement.swift in Sources */,
 				4D40A4B12C5A9CD1003DC813 /* WebView.swift in Sources */,
 				4D73A51E2C581CB200CCEC46 /* GaugeSizeKey.swift in Sources */,

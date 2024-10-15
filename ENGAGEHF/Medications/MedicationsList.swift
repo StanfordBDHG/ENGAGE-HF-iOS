@@ -10,28 +10,56 @@ import SwiftUI
 
 
 struct MedicationsList: View {
-    let medications: [MedicationDetails]
+    private let viewModel: ViewModel
     
     
     var body: some View {
-        if !medications.isEmpty {
+        if viewModel.containsRecommendations {
             List {
-                ForEach(medications.sorted(by: { $0.type > $1.type })) { medication in
-                    ExpandableListCard(
-                        label: {
-                            RecommendationSummary(medication: medication)
-                        },
-                        content: {
-                            MedicationRowContent(medication: medication)
+                if !viewModel.currentlyTakenMedications.isEmpty {
+                    Section {
+                        ForEach(viewModel.currentlyTakenMedications.sorted(by: { $0.type > $1.type })) { medication in
+                            ExpandableListCard(
+                                label: {
+                                    RecommendationSummary(medication: medication)
+                                },
+                                content: {
+                                    MedicationRowContent(medication: medication)
+                                }
+                            )
                         }
-                    )
+                    } header: {
+                        Text("Current Medications")
+                    }
+                }
+                if !viewModel.notCurrentlyTakenMedications.isEmpty {
+                    Section {
+                        ForEach(viewModel.notCurrentlyTakenMedications.sorted(by: { $0.type > $1.type })) { medication in
+                            ExpandableListCard(
+                                label: {
+                                    RecommendationSummary(medication: medication)
+                                },
+                                content: {
+                                    MedicationRowContent(medication: medication)
+                                }
+                            )
+                        }
+                    } header: {
+                        Text("Medications That May Help")
+                    }
                 }
             }
                 .expandableCardListStyle()
+                .headerProminence(.increased)
         } else {
             ContentUnavailableView("No medication recommendations", systemImage: "pill.fill")
                 .background(Color(.systemGroupedBackground))
         }
+    }
+    
+    
+    init(medications: [MedicationDetails]) {
+        self.viewModel = ViewModel(medications)
     }
 }
 
