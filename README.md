@@ -33,13 +33,9 @@ There are 6 main features of the app: a Home page with a dashboard that displays
 
 The home page demonstrates that the application is server-driven, as the application displays messages that are generated on the backend. For ENGAGE-HF, this is a [Firebase](https://firebase.google.com/docs) based backend (for more information, see [ENGAGE-HF-Firebase](https://github.com/StanfordBDHG/ENGAGE-HF-Firebase)). To help integrate the backend with our application, we use the standard [Firebase Firestore SDK as defined in the API documentation](https://firebase.google.com/docs/firestore/manage-data/add-data#swift) as well as [SpeziFirebase](https://github.com/StanfordSpezi/SpeziFirebase). Similarly, we manage user account information via [SpeziAccount](https://github.com/StanfordSpezi/SpeziAccount).
 
-The Symptom Survey demonstrates how we can collect survery results from the user from pre-defined surveys. ENGAGE-HF presents the survey using [SpeziQuestionnaire](https://github.com/StanfordSpezi/SpeziQuestionnaire).
+The Symptom Survey demonstrates how we can collect survery results from the user from pre-defined surveys. ENGAGE-HF presents the survey using [SpeziQuestionnaire](https://github.com/StanfordSpezi/SpeziQuestionnaire). The survey is stored in Firestore as an [HL-7 FHIR Questionnaire Resource](https://build.fhir.org/questionnaire-definitions.html).
 
 ENGAGE-HF includes sophisticated bluetooth connectivity. Once paired, the app passively collects measurements from BLE peripherals. This is handled via [SpeziBluetooth](https://github.com/StanfordSpezi/SpeziBluetooth), a powerful library that builds on top of [Core Bluetooth](https://developer.apple.com/documentation/corebluetooth).
-
-
-[!NOTE]
-> To see
 
 
 ## Contributing
