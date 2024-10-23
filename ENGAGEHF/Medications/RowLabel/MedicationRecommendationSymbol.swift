@@ -21,19 +21,7 @@ struct MedicationRecommendationSymbol: View {
         case .moreLabObservationsRequired: "circle.fill"
         case .morePatientObservationsRequired: "circle.fill"
         case .noActionRequired: "circle.fill"
-        case .notStarted: "arrow.up.circle.fill"
-        }
-    }
-    
-    private var labelColor: Color {
-        switch type {
-        case .targetDoseReached: .green
-        case .personalTargetDoseReached: .green
-        case .improvementAvailable: .yellow
-        case .moreLabObservationsRequired: .yellow
-        case .morePatientObservationsRequired: .yellow
-        case .noActionRequired: .gray
-        case .notStarted: .gray
+        case .notStarted: "circle.fill"
         }
     }
     
@@ -42,7 +30,7 @@ struct MedicationRecommendationSymbol: View {
         Image(systemName: labelSystemName)
             .resizable()
             .frame(width: 35, height: 35)
-            .foregroundStyle(labelColor)
+            .foregroundStyle(type.style.color)
             .accessibilityLabel("Medication Label: \(type.rawValue)")
     }
 }
