@@ -414,6 +414,9 @@
     "No Data" : {
 
     },
+    "No Educational Videos" : {
+
+    },
     "No medication recommendations" : {
 
     },
@@ -654,6 +657,9 @@
       "comment" : "Invitation Code Invalid"
     },
     "The user isn't currently set up correctly. Please try closing the app and opening it back up." : {
+
+    },
+    "There are currently no educational videos available." : {
 
     },
     "Thumbnail Image: %@" : {

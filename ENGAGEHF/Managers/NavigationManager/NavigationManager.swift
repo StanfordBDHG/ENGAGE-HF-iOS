@@ -29,6 +29,7 @@ class NavigationManager: Module, EnvironmentAccessible {
     var heartHealthPath = NavigationPath()
     var homePath = NavigationPath()
     
+    var heartHealthVitalSelection: GraphSelection = .symptoms
     var selectedTab: HomeView.Tabs = .home
     var questionnaireId: String?
     var showHealthSummary = false
@@ -56,6 +57,9 @@ class NavigationManager: Module, EnvironmentAccessible {
                 heartHealthPath = NavigationPath()
                 homePath = NavigationPath()
 
+                heartHealthVitalSelection = .symptoms
+                questionnaireId = nil
+                showHealthSummary = false
                 selectedTab = .home
             }
         }
