@@ -10,18 +10,21 @@ import SwiftUI
 
 
 struct MedicationsList: View {
-    private let viewModel: ViewModel
+    let containsRecommendations: Bool
+    let currentlyTakenMedications: [MedicationDetails]
+    let notCurrentlyTakenMedications: [MedicationDetails]
     
     
     var body: some View {
-        if viewModel.containsRecommendations {
+        if containsRecommendations {
             List {
-                if !viewModel.currentlyTakenMedications.isEmpty {
-                    MedicationSection(header: "Current Medications", medications: viewModel.currentlyTakenMedications)
+                if !currentlyTakenMedications.isEmpty {
+                    MedicationSection(header: "Current Medications", medications: currentlyTakenMedications)
                 }
-                if !viewModel.notCurrentlyTakenMedications.isEmpty {
-                    MedicationSection(header: "Medications That May Help", medications: viewModel.notCurrentlyTakenMedications)
+                if !notCurrentlyTakenMedications.isEmpty {
+                    MedicationSection(header: "Medications That May Help", medications: notCurrentlyTakenMedications)
                 }
+                ColorLegend()
             }
                 .expandableCardListStyle()
                 .headerProminence(.increased)
@@ -33,7 +36,14 @@ struct MedicationsList: View {
     
     
     init(medications: [MedicationDetails]) {
-        self.viewModel = ViewModel(medications)
+        // A medication is marked as currently being taken if it contains a non-zero dosage schedule.
+        self.currentlyTakenMedications = medications.filter { !$0.dosageInformation.currentDailyIntake.isZero }
+        
+        // A medication is marked as not currenlty being taken if it does not contain a dosage schedule.
+        self.notCurrentlyTakenMedications = medications.filter { $0.dosageInformation.currentDailyIntake.isZero }
+        
+        // Flag for easily determining whether the ViewModel is empty or not.
+        self.containsRecommendations = !self.currentlyTakenMedications.isEmpty || !self.notCurrentlyTakenMedications.isEmpty
     }
 }
 

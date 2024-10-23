@@ -25,16 +25,12 @@ struct MedicationRecommendationSymbol: View {
         }
     }
     
-    private var labelColor: Color {
-        RecommendationSymbolColor.color(for: type)
-    }
-    
     
     var body: some View {
         Image(systemName: labelSystemName)
             .resizable()
             .frame(width: 35, height: 35)
-            .foregroundStyle(labelColor)
+            .foregroundStyle(type.style.color)
             .accessibilityLabel("Medication Label: \(type.rawValue)")
     }
 }

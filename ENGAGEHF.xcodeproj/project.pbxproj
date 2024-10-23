@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		211755492CC1B58600A81E24 /* ColorLegend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211755482CC1B58300A81E24 /* ColorLegend.swift */; };
+		2117554B2CC1B7E400A81E24 /* RecommendationStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2117554A2CC1B7C500A81E24 /* RecommendationStyle.swift */; };
+		2117554D2CC1D3AB00A81E24 /* ExpandableSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2117554C2CC1D39900A81E24 /* ExpandableSection.swift */; };
 		212522B82CBDE50700650728 /* MedicationsList+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212522B72CBDE50200650728 /* MedicationsList+ViewModel.swift */; };
 		213AD98D2CBDF74A005C6D69 /* MedicationsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AD98C2CBDF744005C6D69 /* MedicationsSection.swift */; };
-		213AD9902CBDFE6D005C6D69 /* MedicationsSection+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AD98F2CBDFE67005C6D69 /* MedicationsSection+ViewModel.swift */; };
-		213AD9942CBE02BB005C6D69 /* ColorKeyRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AD9922CBE02B1005C6D69 /* ColorKeyRow.swift */; };
-		213AD9962CBE0383005C6D69 /* RecommendationSymbolColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AD9952CBE0378005C6D69 /* RecommendationSymbolColor.swift */; };
-		213AD9982CBE08FC005C6D69 /* MedicationsLegendEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AD9972CBE08F8005C6D69 /* MedicationsLegendEntry.swift */; };
+		213AD9942CBE02BB005C6D69 /* ColorKeyEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AD9922CBE02B1005C6D69 /* ColorKeyEntryView.swift */; };
 		2F49B7762980407C00BCB272 /* Spezi in Frameworks */ = {isa = PBXBuildFile; productRef = 2F49B7752980407B00BCB272 /* Spezi */; };
 		2F4E237E2989A2FE0013F3D9 /* LaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4E237D2989A2FE0013F3D9 /* LaunchTests.swift */; };
 		2F4E23832989D51F0013F3D9 /* ENGAGEHFTestingSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4E23822989D51F0013F3D9 /* ENGAGEHFTestingSetup.swift */; };
@@ -243,12 +243,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		211755482CC1B58300A81E24 /* ColorLegend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorLegend.swift; sourceTree = "<group>"; };
+		2117554A2CC1B7C500A81E24 /* RecommendationStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationStyle.swift; sourceTree = "<group>"; };
+		2117554C2CC1D39900A81E24 /* ExpandableSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableSection.swift; sourceTree = "<group>"; };
 		212522B72CBDE50200650728 /* MedicationsList+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MedicationsList+ViewModel.swift"; sourceTree = "<group>"; };
 		213AD98C2CBDF744005C6D69 /* MedicationsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationsSection.swift; sourceTree = "<group>"; };
-		213AD98F2CBDFE67005C6D69 /* MedicationsSection+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MedicationsSection+ViewModel.swift"; sourceTree = "<group>"; };
-		213AD9922CBE02B1005C6D69 /* ColorKeyRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorKeyRow.swift; sourceTree = "<group>"; };
-		213AD9952CBE0378005C6D69 /* RecommendationSymbolColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationSymbolColor.swift; sourceTree = "<group>"; };
-		213AD9972CBE08F8005C6D69 /* MedicationsLegendEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationsLegendEntry.swift; sourceTree = "<group>"; };
+		213AD9922CBE02B1005C6D69 /* ColorKeyEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorKeyEntryView.swift; sourceTree = "<group>"; };
 		2F4E237D2989A2FE0013F3D9 /* LaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchTests.swift; sourceTree = "<group>"; };
 		2F4E23822989D51F0013F3D9 /* ENGAGEHFTestingSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ENGAGEHFTestingSetup.swift; sourceTree = "<group>"; };
 		2F5E32BC297E05EA003432F8 /* ENGAGEHFDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ENGAGEHFDelegate.swift; sourceTree = "<group>"; };
@@ -489,6 +489,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		211755462CC1B09700A81E24 /* ColorLegendSection */ = {
+			isa = PBXGroup;
+			children = (
+				211755482CC1B58300A81E24 /* ColorLegend.swift */,
+				213AD9922CBE02B1005C6D69 /* ColorKeyEntryView.swift */,
+			);
+			path = ColorLegendSection;
+			sourceTree = "<group>";
+		};
 		2FC9759D2978E30800BA99FE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -554,6 +563,7 @@
 				4D065BDF2C09401700EBB3AE /* StudyApplicationListCard.swift */,
 				4D0F389D2C09779000DA12F7 /* ShowMoreButton.swift */,
 				4D0F38A12C0A7AD900DA12F7 /* ExpandableText.swift */,
+				2117554C2CC1D39900A81E24 /* ExpandableSection.swift */,
 				4D9D43662C59A88C000062D3 /* ExpandableListCard.swift */,
 			);
 			path = ReusableElements;
@@ -765,13 +775,12 @@
 				4D8402D92C54143500817495 /* Extensions */,
 				4D8402C32C52C57500817495 /* RowContent */,
 				4D8402C22C52C56400817495 /* RowLabel */,
+				211755462CC1B09700A81E24 /* ColorLegendSection */,
 				4D8402AD2C51C66D00817495 /* Medications.swift */,
 				4D8402B12C51D62400817495 /* MedicationsList.swift */,
 				212522B72CBDE50200650728 /* MedicationsList+ViewModel.swift */,
 				213AD98C2CBDF744005C6D69 /* MedicationsSection.swift */,
-				213AD9922CBE02B1005C6D69 /* ColorKeyRow.swift */,
-				213AD9972CBE08F8005C6D69 /* MedicationsLegendEntry.swift */,
-				213AD98F2CBDFE67005C6D69 /* MedicationsSection+ViewModel.swift */,
+				2117554A2CC1B7C500A81E24 /* RecommendationStyle.swift */,
 			);
 			path = Medications;
 			sourceTree = "<group>";
@@ -779,7 +788,6 @@
 		4D8402C22C52C56400817495 /* RowLabel */ = {
 			isa = PBXGroup;
 			children = (
-				213AD9952CBE0378005C6D69 /* RecommendationSymbolColor.swift */,
 				4D8402B42C51D6D200817495 /* MedicationRecommendationSymbol.swift */,
 				4D8402C42C52C67100817495 /* RecommendationSummary.swift */,
 			);
@@ -1364,7 +1372,6 @@
 				4D8AD2C52C4A180300CB4F3E /* MeasurementSeries.swift in Sources */,
 				4D8402C52C52C67100817495 /* RecommendationSummary.swift in Sources */,
 				4D92BA1A2C3E13F300ABCED7 /* FHIRSystem.swift in Sources */,
-				213AD9902CBDFE6D005C6D69 /* MedicationsSection+ViewModel.swift in Sources */,
 				2FE5DC3A29EDD7CA004B9AB4 /* Welcome.swift in Sources */,
 				4D734AC02C5C58CA002D6D2F /* View+asButton.swift in Sources */,
 				4D734AC32C5D7C81002D6D2F /* MessageAction.swift in Sources */,
@@ -1380,12 +1387,10 @@
 				4D8AD2C22C49D51E00CB4F3E /* SeriesDictionary.swift in Sources */,
 				4D4072A42C49A07C007C5621 /* HKSampleGraph+ViewModel.swift in Sources */,
 				4DA20B642C2A0FF100715AA2 /* VitalsCard.swift in Sources */,
-				213AD9982CBE08FC005C6D69 /* MedicationsLegendEntry.swift in Sources */,
 				4DBDD3442BBFAD64001FB0CA /* InvitationCodeError.swift in Sources */,
 				4D8402B52C51D6D200817495 /* MedicationRecommendationSymbol.swift in Sources */,
 				9B1864982C9350D30042AC81 /* Account+Binding.swift in Sources */,
 				4D40A4AF2C5A9B4F003DC813 /* VideoPlayer.swift in Sources */,
-				213AD9962CBE0383005C6D69 /* RecommendationSymbolColor.swift in Sources */,
 				4D84027E2C4EF82D00817495 /* AddMeasurementAsyncButton.swift in Sources */,
 				4D8402AE2C51C66D00817495 /* Medications.swift in Sources */,
 				4D8402E52C545A4B00817495 /* ScheduleSummary.swift in Sources */,
@@ -1450,12 +1455,13 @@
 				4D8402AA2C51B6A000817495 /* FHIRAliases.swift in Sources */,
 				4D8CE0F72C752D1C00560327 /* VideoCollectionContext.swift in Sources */,
 				4DDFC7542BF3408F002B07A1 /* RecentVitalsSection.swift in Sources */,
-				213AD9942CBE02BB005C6D69 /* ColorKeyRow.swift in Sources */,
+				213AD9942CBE02BB005C6D69 /* ColorKeyEntryView.swift in Sources */,
 				4D4072662C4586AB007C5621 /* VitalMeasurement.swift in Sources */,
 				4D34B3F02C40518C006F0D40 /* HKSampleGraph.swift in Sources */,
 				2F4E23832989D51F0013F3D9 /* ENGAGEHFTestingSetup.swift in Sources */,
 				4D62BF402C6AB8520088C414 /* KeyedDecodingContainer+DecodeISO8601Date.swift in Sources */,
 				4DA20B4B2C249E7E00715AA2 /* VitalsManager.swift in Sources */,
+				2117554B2CC1B7E400A81E24 /* RecommendationStyle.swift in Sources */,
 				2F5E32BD297E05EA003432F8 /* ENGAGEHFDelegate.swift in Sources */,
 				4D065BE02C09401700EBB3AE /* StudyApplicationListCard.swift in Sources */,
 				4D9D43672C59A88C000062D3 /* ExpandableListCard.swift in Sources */,
@@ -1483,6 +1489,7 @@
 				4D8CE0FD2C753A4700560327 /* NotificationRegistrationSchema.swift in Sources */,
 				2FE5DC2629EDD38A004B9AB4 /* Contacts.swift in Sources */,
 				4D8402702C4EBE7D00817495 /* AddMeasurementView.swift in Sources */,
+				2117554D2CC1D3AB00A81E24 /* ExpandableSection.swift in Sources */,
 				4D2D1D602C2B859C00ABDC19 /* GraphPicker.swift in Sources */,
 				4D8402DE2C5417F400817495 /* MedicationDescription.swift in Sources */,
 				9B1864942C9276C40042AC81 /* AuthFlow.swift in Sources */,
@@ -1497,6 +1504,7 @@
 				4D8CE0FF2C7540C000560327 /* AdditionalAccountSections.swift in Sources */,
 				4DF506312C2F3421003E7EFB /* VitalsGraph.swift in Sources */,
 				4DF506212C2E1C89003E7EFB /* SymptomScore.swift in Sources */,
+				211755492CC1B58600A81E24 /* ColorLegend.swift in Sources */,
 				4DDFC73D2BF2C4FA002B07A1 /* Message.swift in Sources */,
 				4DA20B5C2C26098400715AA2 /* FHIRObservation+GetEffectiveDate.swift in Sources */,
 				4D8402D22C532D7100817495 /* DosageSummary.swift in Sources */,

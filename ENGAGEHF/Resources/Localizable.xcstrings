@@ -161,6 +161,9 @@
         }
       }
     },
+    "Color Key" : {
+
+    },
     "Contacts" : {
 
     },
@@ -420,6 +423,9 @@
     "No vitals" : {
 
     },
+    "Not on this med that may help your heart." : {
+      "comment" : "No action required legend entry."
+    },
     "Not Started" : {
 
     },
@@ -466,6 +472,9 @@
     },
     "Notifications" : {
 
+    },
+    "On the med but may benefit from a higher dose." : {
+      "comment" : "Improvement available color legend entry."
     },
     "Organization" : {
 
@@ -837,6 +846,9 @@
           }
         }
       }
+    },
+    "You're on your target dose." : {
+      "comment" : "Target dose reached color legend entry."
     }
   },
   "version" : "1.0"

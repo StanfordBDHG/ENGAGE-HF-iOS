@@ -9,9 +9,9 @@
 import SwiftUI
 
 
-struct ColorKeyRow: View {
+struct ColorKeyEntryView: View {
     let color: Color
-    let description: String
+    let interpretation: String
     
     
     var body: some View {
@@ -19,7 +19,14 @@ struct ColorKeyRow: View {
             Circle()
                 .fill(color)
                 .frame(width: 12)
-            Text(description)
+            Text(interpretation)
         }
+    }
+}
+
+
+#Preview {
+    List {
+        ColorKeyEntryView(color: .green, interpretation: "Target does reached.")
     }
 }

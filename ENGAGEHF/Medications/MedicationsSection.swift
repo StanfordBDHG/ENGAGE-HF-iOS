@@ -10,13 +10,14 @@ import SwiftUI
 
 
 struct MedicationSection: View {
-    private let viewModel: ViewModel
+    let header: String
+    let medications: [MedicationDetails]
     
     
     var body: some View {
-        Section(
+        ExpandableSection(
             content: {
-                ForEach(viewModel.medications.sorted(by: { $0.type > $1.type })) { medication in
+                ForEach(medications.sorted(by: { $0.type > $1.type })) { medication in
                     ExpandableListCard(
                         label: {
                             RecommendationSummary(medication: medication)
@@ -28,22 +29,39 @@ struct MedicationSection: View {
                 }
             },
             header: {
-                Text(viewModel.header)
-                    .padding(.horizontal, -16)
-            },
-            footer: {
-                VStack(alignment: .leading) {
-                    ForEach(viewModel.colorLegendEntries, id: \.self) { entry in
-                        ColorKeyRow(color: entry.color, description: entry.description)
-                    }
-                }
+                Text(header)
                     .padding(.horizontal, -16)
             }
         )
     }
-    
-    
-    init(header: String, medications: [MedicationDetails]) {
-        self.viewModel = ViewModel(header: header, medications: medications)
+}
+
+
+#Preview {
+    List {
+        MedicationSection(
+            header: "Current Medications",
+            medications: [
+                MedicationDetails(
+                    id: "test2",
+                    title: "Lozinopril",
+                    subtitle: "Beta Blocker",
+                    description: "Long description goes here",
+                    videoPath: "videoSections/1/videos/2",
+                    type: .improvementAvailable,
+                    dosageInformation: DosageInformation(
+                        currentSchedule: [
+                            DoseSchedule(frequency: 2, quantity: [25]),
+                            DoseSchedule(frequency: 1, quantity: [15])
+                        ],
+                        targetSchedule: [
+                            DoseSchedule(frequency: 2, quantity: [50]),
+                            DoseSchedule(frequency: 1, quantity: [25])
+                        ],
+                        unit: "mg"
+                    )
+                )
+            ]
+        )
     }
 }

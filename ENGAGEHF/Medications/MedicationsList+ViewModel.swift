@@ -10,6 +10,7 @@ import SwiftUI
 
 
 extension MedicationsList {
+    @Observable
     class ViewModel {
         let containsRecommendations: Bool
         
@@ -19,14 +20,10 @@ extension MedicationsList {
         
         init(_ medications: [MedicationDetails]) {
             // A medication is marked as currently being taken if it contains a non-zero dosage schedule.
-            self.currentlyTakenMedications = {
-                medications.filter { !$0.dosageInformation.currentDailyIntake.isZero }
-            }()
+            self.currentlyTakenMedications = medications.filter { !$0.dosageInformation.currentDailyIntake.isZero }
             
             // A medication is marked as not currenlty being taken if it does not contain a dosage schedule.
-            self.notCurrentlyTakenMedications = {
-                medications.filter { $0.dosageInformation.currentDailyIntake.isZero }
-            }()
+            self.notCurrentlyTakenMedications = medications.filter { $0.dosageInformation.currentDailyIntake.isZero }
             
             // Flag for easily determining whether the ViewModel is empty or not.
             self.containsRecommendations = !self.currentlyTakenMedications.isEmpty || !self.notCurrentlyTakenMedications.isEmpty
