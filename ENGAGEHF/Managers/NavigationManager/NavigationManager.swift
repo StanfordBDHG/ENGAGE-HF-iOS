@@ -29,6 +29,7 @@ class NavigationManager: Module, EnvironmentAccessible {
     var heartHealthPath = NavigationPath()
     var homePath = NavigationPath()
     
+    var heartHealthVitalSelection: GraphSelection = .symptoms
     var selectedTab: HomeView.Tabs = .home
     var questionnaireId: String?
     var showHealthSummary = false
@@ -37,25 +38,29 @@ class NavigationManager: Module, EnvironmentAccessible {
     
     // On sign in, reinitialize to an empty navigation path
     func configure() {
-        if let accountNotifications {
-            notificationTask = Task.detached { @MainActor [weak self] in
-                for await event in accountNotifications.events {
-                    guard let self else {
-                        return
-                    }
-                    guard case .associatedAccount = event else {
-                        continue
-                    }
-
-                    logger.debug("Reinitializing navigation path.")
-
-                    educationPath = NavigationPath()
-                    medicationsPath = NavigationPath()
-                    heartHealthPath = NavigationPath()
-                    homePath = NavigationPath()
-
-                    selectedTab = .home
+        guard let accountNotifications else {
+            preconditionFailure("Expected account notifications to be availble.")
+        }
+        notificationTask = Task.detached { @MainActor [weak self] in
+            for await event in accountNotifications.events {
+                guard let self else {
+                    return
                 }
+                guard event.newEnrolledAccountDetails != nil else {
+                    continue
+                }
+
+                logger.debug("Reinitializing navigation path.")
+
+                educationPath = NavigationPath()
+                medicationsPath = NavigationPath()
+                heartHealthPath = NavigationPath()
+                homePath = NavigationPath()
+
+                heartHealthVitalSelection = .symptoms
+                questionnaireId = nil
+                showHealthSummary = false
+                selectedTab = .home
             }
         }
     }
