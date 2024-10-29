@@ -46,6 +46,7 @@
 		2FE5DCB129EE6107004B9AB4 /* AccountOnboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE5DCAC29EE6107004B9AB4 /* AccountOnboarding.swift */; };
 		2FF350E42C4F3F0B0095F08F /* Firebase+References.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF350E32C4F3F0B0095F08F /* Firebase+References.swift */; };
 		2FF53D8D2A8729D600042B76 /* ENGAGEHFStandard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF53D8C2A8729D600042B76 /* ENGAGEHFStandard.swift */; };
+		2FF8F0522CC69015002C757A /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF8F0512CC69015002C757A /* SnapshotHelper.swift */; };
 		4D05F26A2C5466B700201581 /* DosageGauge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D05F2692C5466B700201581 /* DosageGauge.swift */; };
 		4D05F26D2C54696100201581 /* DosageGaugeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D05F26C2C54696100201581 /* DosageGaugeStyle.swift */; };
 		4D065BE02C09401700EBB3AE /* StudyApplicationListCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D065BDF2C09401700EBB3AE /* StudyApplicationListCard.swift */; };
@@ -267,6 +268,7 @@
 		2FE5DCAC29EE6107004B9AB4 /* AccountOnboarding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountOnboarding.swift; sourceTree = "<group>"; };
 		2FF350E32C4F3F0B0095F08F /* Firebase+References.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+References.swift"; sourceTree = "<group>"; };
 		2FF53D8C2A8729D600042B76 /* ENGAGEHFStandard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ENGAGEHFStandard.swift; sourceTree = "<group>"; };
+		2FF8F0512CC69015002C757A /* SnapshotHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		4D05F2692C5466B700201581 /* DosageGauge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DosageGauge.swift; sourceTree = "<group>"; };
 		4D05F26C2C54696100201581 /* DosageGaugeStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DosageGaugeStyle.swift; sourceTree = "<group>"; };
 		4D065BDF2C09401700EBB3AE /* StudyApplicationListCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyApplicationListCard.swift; sourceTree = "<group>"; };
@@ -761,6 +763,7 @@
 		4D84027B2C4EE61C00817495 /* HelperFunctions */ = {
 			isa = PBXGroup;
 			children = (
+				2FF8F0512CC69015002C757A /* SnapshotHelper.swift */,
 				4D8402792C4EE56000817495 /* XCUIApplication+GoTo.swift */,
 				4D8402832C4F11CB00817495 /* XCUIApplication+DeleteMeasurements.swift */,
 			);
@@ -1539,6 +1542,7 @@
 				4D8402842C4F11CB00817495 /* XCUIApplication+DeleteMeasurements.swift in Sources */,
 				4D8402772C4EE52000817495 /* AddMeasurementUITests.swift in Sources */,
 				4D8AD2E12C4B5D1600CB4F3E /* HeartHealthUITests.swift in Sources */,
+				2FF8F0522CC69015002C757A /* SnapshotHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
