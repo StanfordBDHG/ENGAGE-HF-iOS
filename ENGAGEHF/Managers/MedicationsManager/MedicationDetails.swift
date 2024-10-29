@@ -8,6 +8,7 @@
 
 import FirebaseFirestore
 import Foundation
+import SwiftUI
 
 
 enum MedicationRecommendationType: String, Decodable, Comparable {
@@ -18,6 +19,19 @@ enum MedicationRecommendationType: String, Decodable, Comparable {
     case moreLabObservationsRequired
     case notStarted
     case noActionRequired
+    
+    
+    var style: RecommendationStyle {
+        switch self {
+        case .targetDoseReached: .targetReached
+        case .personalTargetDoseReached: .targetReached
+        case .improvementAvailable: .improvementAvailable
+        case .moreLabObservationsRequired: .improvementAvailable
+        case .morePatientObservationsRequired: .improvementAvailable
+        case .noActionRequired: .notStarted
+        case .notStarted: .notStarted
+        }
+    }
     
     
     private var priority: Int {
