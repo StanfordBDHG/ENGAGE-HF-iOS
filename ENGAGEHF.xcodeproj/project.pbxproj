@@ -10,7 +10,6 @@
 		211755492CC1B58600A81E24 /* ColorLegend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211755482CC1B58300A81E24 /* ColorLegend.swift */; };
 		2117554B2CC1B7E400A81E24 /* RecommendationStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2117554A2CC1B7C500A81E24 /* RecommendationStyle.swift */; };
 		2117554D2CC1D3AB00A81E24 /* ExpandableSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2117554C2CC1D39900A81E24 /* ExpandableSection.swift */; };
-		212522B82CBDE50700650728 /* MedicationsList+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212522B72CBDE50200650728 /* MedicationsList+ViewModel.swift */; };
 		213AD98D2CBDF74A005C6D69 /* MedicationsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AD98C2CBDF744005C6D69 /* MedicationsSection.swift */; };
 		213AD9942CBE02BB005C6D69 /* ColorKeyEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AD9922CBE02B1005C6D69 /* ColorKeyEntryView.swift */; };
 		2F49B7762980407C00BCB272 /* Spezi in Frameworks */ = {isa = PBXBuildFile; productRef = 2F49B7752980407B00BCB272 /* Spezi */; };
@@ -246,7 +245,6 @@
 		211755482CC1B58300A81E24 /* ColorLegend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorLegend.swift; sourceTree = "<group>"; };
 		2117554A2CC1B7C500A81E24 /* RecommendationStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationStyle.swift; sourceTree = "<group>"; };
 		2117554C2CC1D39900A81E24 /* ExpandableSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableSection.swift; sourceTree = "<group>"; };
-		212522B72CBDE50200650728 /* MedicationsList+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MedicationsList+ViewModel.swift"; sourceTree = "<group>"; };
 		213AD98C2CBDF744005C6D69 /* MedicationsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationsSection.swift; sourceTree = "<group>"; };
 		213AD9922CBE02B1005C6D69 /* ColorKeyEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorKeyEntryView.swift; sourceTree = "<group>"; };
 		2F4E237D2989A2FE0013F3D9 /* LaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchTests.swift; sourceTree = "<group>"; };
@@ -778,7 +776,6 @@
 				211755462CC1B09700A81E24 /* ColorLegendSection */,
 				4D8402AD2C51C66D00817495 /* Medications.swift */,
 				4D8402B12C51D62400817495 /* MedicationsList.swift */,
-				212522B72CBDE50200650728 /* MedicationsList+ViewModel.swift */,
 				213AD98C2CBDF744005C6D69 /* MedicationsSection.swift */,
 				2117554A2CC1B7C500A81E24 /* RecommendationStyle.swift */,
 			);
@@ -1359,7 +1356,6 @@
 				4DBE86DD2C7F9BBF0003390B /* MobilePlatform.swift in Sources */,
 				4D70CF6A2C65423D00EB4CC6 /* GraphSelection.swift in Sources */,
 				4DDFC7692BF35113002B07A1 /* HeartHealth.swift in Sources */,
-				212522B82CBDE50700650728 /* MedicationsList+ViewModel.swift in Sources */,
 				4D92BA072C3CAE5300ABCED7 /* VitalListMeasurement.swift in Sources */,
 				4D40A4B12C5A9CD1003DC813 /* WebView.swift in Sources */,
 				4D73A51E2C581CB200CCEC46 /* GaugeSizeKey.swift in Sources */,
