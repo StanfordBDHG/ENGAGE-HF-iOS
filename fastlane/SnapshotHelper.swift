@@ -76,7 +76,7 @@ open class Snapshot: NSObject {
             setLanguage(app)
             setLocale(app)
             setLaunchArguments(app)
-        } catch let error {
+        } catch {
             NSLog(error.localizedDescription)
         }
     }
