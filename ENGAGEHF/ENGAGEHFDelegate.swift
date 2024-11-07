@@ -37,7 +37,7 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
                     storageProvider: FirestoreAccountStorage(storeIn: Firestore.userCollection, mapping: [
                         "dateOfBirth": AccountKeys.dateOfBirth,
                         "invitationCode": AccountKeys.invitationCode,
-                        "organization": AccountKeys.organization,
+                        "organization": AccountKeys.organization, // TODO: these are all not necessary!
                         "receivesAppointmentReminders": AccountKeys.receivesAppointmentReminders,
                         "receivesInactivityReminders": AccountKeys.receivesInactivityReminders,
                         "receivesMedicationUpdates": AccountKeys.receivesMedicationUpdates,
@@ -69,11 +69,34 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
                 } else {
                     FirebaseStorageConfiguration()
                 }
+            } else {
+                AccountConfiguration(
+                    service: InMemoryAccountService(),
+                    storageProvider: InMemoryAccountStorageProvider(),
+                    configuration: [
+                        .requires(\.userId),
+                        .supports(\.name),
+                        .manual(\.invitationCode),
+                        .manual(\.organization),
+                        .manual(\.receivesAppointmentReminders),
+                        .manual(\.receivesInactivityReminders),
+                        .manual(\.receivesMedicationUpdates),
+                        .manual(\.receivesQuestionnaireReminders),
+                        .manual(\.receivesRecommendationUpdates),
+                        .manual(\.receivesVitalsReminders),
+                        .manual(\.receivesWeightAlerts)
+                    ]
+                )
             }
 
             Bluetooth {
-                Discover(OmronWeightScale.self, by: .advertisedService(WeightScaleService.self))
-                Discover(OmronBloodPressureCuff.self, by: .advertisedService(BloodPressureService.self))
+                if #available(iOS 18, *) {
+                    Discover(OmronBloodPressureCuff.self, by: .accessory(advertising: BloodPressureService.self, supportOptions: .bluetoothPairingLE))
+                    Discover(OmronWeightScale.self, by: .accessory(advertising: WeightScaleService.self, supportOptions: .bluetoothPairingLE))
+                } else {
+                    Discover(OmronBloodPressureCuff.self, by: .advertisedService(BloodPressureService.self))
+                    Discover(OmronWeightScale.self, by: .advertisedService(WeightScaleService.self))
+                }
             }
             
             PairedDevices()

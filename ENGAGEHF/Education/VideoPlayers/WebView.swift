@@ -48,8 +48,11 @@ struct WebView: UIViewRepresentable {
 extension WebView {
     class ProgressCoordinator: NSObject, WKNavigationDelegate {
         let parent: WebView
-        
-        
+
+        init(_ parent: WebView) {
+            self.parent = parent
+        }
+
         func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation) {
             parent.viewState = .processing
 #if DEBUG
@@ -69,11 +72,6 @@ extension WebView {
         
         func webView(_ webView: WKWebView, didFail navigation: WKNavigation, withError error: any Error) {
             parent.viewState = .error(AnyLocalizedError(error: error, defaultErrorDescription: String(localized: "defaultLoadingError")))
-        }
-        
-        
-        init(_ parent: WebView) {
-            self.parent = parent
         }
     }
 }

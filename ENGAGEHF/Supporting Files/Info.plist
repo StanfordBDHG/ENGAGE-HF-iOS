@@ -8,6 +8,26 @@
 	<false/>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
+	<key>NSAccessorySetupBluetoothCompanyIdentifiers</key>
+	<array>
+		<string>020E</string>
+	</array>
+	<key>NSAccessorySetupBluetoothNames</key>
+	<array>
+		<string>BLESmart_00010112</string>
+		<string>BLEsmart_00000160</string>
+		<string>BLEsmart_0000021F</string>
+		<string>BLEsmart_0000011F</string>
+	</array>
+	<key>NSAccessorySetupBluetoothServices</key>
+	<array>
+		<string>1810</string>
+		<string>181D</string>
+	</array>
+	<key>NSAccessorySetupKitSupports</key>
+	<array>
+		<string>Bluetooth</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

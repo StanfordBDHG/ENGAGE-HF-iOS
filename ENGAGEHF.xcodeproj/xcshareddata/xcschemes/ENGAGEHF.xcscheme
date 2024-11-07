@@ -119,7 +119,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--setupTestEnvironment"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--testMockDevices"

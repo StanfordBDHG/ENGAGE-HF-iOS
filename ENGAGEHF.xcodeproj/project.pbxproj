@@ -1873,7 +1873,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 484YT3X9X7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ENGAGEHF/Supporting Files/Info.plist";
@@ -2080,8 +2080,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/StanfordBDHG/HealthKitOnFHIR.git";
 			requirement = {
-				kind = upToNextMinorVersion;
-				minimumVersion = 0.2.4;
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.11;
 			};
 		};
 		2FE5DC6229EDD883004B9AB4 /* XCRemoteSwiftPackageReference "SpeziAccount" */ = {
@@ -2192,8 +2192,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/StanfordSpezi/SpeziDevices.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.4.1;
+				branch = "feature/accessory-setup-kit";
+				kind = branch;
 			};
 		};
 		A9A0BF012C13121D00B8F3F3 /* XCRemoteSwiftPackageReference "SpeziNetworking" */ = {
