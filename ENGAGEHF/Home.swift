@@ -22,6 +22,7 @@ struct HomeView: View {
         case heart
         case medications
         case education
+        case device
     }
 
     
@@ -58,6 +59,17 @@ struct HomeView: View {
                 .tag(Tabs.education)
                 .tabItem {
                     Label("Education", systemImage: "brain")
+                }
+
+            NavigationStack {
+                DevicesView(appName: ENGAGEHF.appName ?? "ENGAGE") {
+                    Text("Hold down the Bluetooth button for 3 seconds to put the device into pairing mode.")
+                }
+                    .bluetoothScanningOptions(advertisementStaleInterval: 15)
+            }
+                .tag(Tabs.device)
+                .tabItem {
+                    Label("Devices", systemImage: "sensor")
                 }
         }
             .sheet(isPresented: $navigationManager.showHealthSummary) {

@@ -22,7 +22,7 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
     @Dependency(FirebaseAccountService.self) private var accountService: FirebaseAccountService?
 
     func configure() {
-        if FeatureFlags.useFirebaseEmulator {
+        if FeatureFlags.useFirebaseEmulator && !FeatureFlags.disableFirebase {
             let firestoreHost = FeatureFlags.useCustomFirestoreHost ? FirestoreSettings.customHost : FirestoreSettings.defaultHost
             Functions.functions().useEmulator(withHost: firestoreHost, port: 5001)
         }
