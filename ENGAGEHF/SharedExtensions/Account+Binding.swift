@@ -11,6 +11,7 @@ import SpeziViews
 import SwiftUI
 
 extension Account {
+    // TODO: Talk to Andreas about putting this into SpeziAccount.
     @MainActor
     func detailsBinding<Key: AccountKey>(
         for key: Key.Type,
