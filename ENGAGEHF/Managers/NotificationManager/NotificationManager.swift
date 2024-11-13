@@ -14,6 +14,7 @@ import OSLog
 import Spezi
 import SpeziAccount
 import SpeziFoundation
+import SpeziNotifications
 import SpeziViews
 import SwiftUI
 import UserNotifications
