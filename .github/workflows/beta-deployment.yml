@@ -6,7 +6,7 @@
 # SPDX-License-Identifier: MIT
 #
 
-name: Deployment
+name: Beta Deployment
 
 on:
   push:
@@ -34,7 +34,7 @@ on:
         default: staging
 
 concurrency:
-  group: deployment
+  group: Beta-Deployment
   cancel-in-progress: false
 
 jobs:
@@ -42,17 +42,16 @@ jobs:
     name: Determine Environment
     runs-on: ubuntu-latest
     outputs:
-      environment: ${{ steps.set-env.outputs.environment }}
+      environment: ${{ steps.determineenvironment.outputs.environment }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Determine Environment
-        id: set-env
+        id: determineenvironment
         run: |
           if [[ -z "${{ inputs.environment }}" ]]; then
             echo "environment=staging" >> $GITHUB_OUTPUT
           else
-            echo "environment=${{ inputs.environment }}" >> $GITHUB_OUTPUT
             echo "environment=${{ inputs.environment }}" >> $GITHUB_OUTPUT
           fi
   vars:
@@ -61,18 +60,21 @@ jobs:
     runs-on: ubuntu-latest
     environment: ${{ needs.determineenvironment.outputs.environment }}
     outputs:
-      FIREBASE_PROJECT_ID: ${{ vars.FIREBASE_PROJECT_ID }}
+      firebaseprojectid: ${{ vars.FIREBASE_PROJECT_ID }}
+      appidentifier: ${{ vars.APP_IDENTIFIER }}
+      provisioningProfileName: ${{ vars.PROVISIONING_PROFILE_NAME }}
     steps:
       - run: |
-          echo "Injecting Environment Variables In Deployment Workflow: ${{ vars.FIREBASE_PROJECT_ID }}"
+          echo "Injecting Environment Variables In Deployment Workflow:"
+          echo "firebaseprojectid: ${{ vars.FIREBASE_PROJECT_ID }}"
+          echo "appidentifier: ${{ vars.APP_IDENTIFIER }}"
+          echo "provisioningProfileName: ${{ vars.PROVISIONING_PROFILE_NAME }}"
   buildandtest:
     name: Build and Test
     needs: determineenvironment
     uses: ./.github/workflows/build-and-test.yml
     permissions:
       contents: read
-      actions: read
-      security-events: write
     secrets: inherit
   iosapptestflightdeployment:
     name: iOS App TestFlight Deployment
@@ -86,6 +88,6 @@ jobs:
       googleserviceinfoplistpath: 'PAWS/Supporting Files/GoogleService-Info.plist'
       setupsigning: true
       setupfirebaseemulator: true
-      firebaseemulatorimport: ./firebase --project ${{ needs.vars.outputs.FIREBASE_PROJECT_ID }}
-      fastlanelane: deploy environment:"${{ needs.determineenvironment.outputs.environment }} appidentifier:"${{ needs.determineenvironment.outputs.environment }}"
+      firebaseemulatorimport: ./firebase --project ${{ needs.vars.outputs.firebaseprojectid }}
+      fastlanelane: deploy environment:"${{ needs.determineenvironment.outputs.environment }} appidentifier:"${{ needs.vars.outputs.appidentifier }} provisioningProfile:"${{ needs.vars.outputs.provisioningProfileName }}"
     secrets: inherit

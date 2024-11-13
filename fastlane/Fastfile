@@ -52,8 +52,7 @@ platform :ios do
       test_without_building: true,
       derived_data_path: ".derivedData",
       devices: [
-        "iPhone 16 Pro",
-        "iPhone SE (3rd generation)"
+        "iPhone 16 Pro Max"
       ],
       languages: [
          "en-US",
@@ -67,13 +66,8 @@ platform :ios do
     )
     
     # Workaround for https://github.com/fastlane/fastlane/issues/21759 and 
-    Dir.glob("./screenshots/**/iPhone 16 Pro-*.png").each do |file|
-      sh("sips --resampleHeightWidth 2778 1284 '#{file}'")
-    end
-
-    # Scale to 1242 x 2208 as there are no iOS 18 Simulators supporting this screen size.
-    Dir.glob("./screenshots/**/iPhone SE (3rd generation)-*.png").each do |file|
-      sh("sips --resampleHeightWidth 2208 1242 '#{file}'")
+    Dir.glob("./screenshots/**/iPhone 16 Pro Max-*.png").each do |file|
+      sh("sips --resampleHeightWidth 2796 1290 '#{file}'")
     end
   end
 
@@ -91,7 +85,15 @@ platform :ios do
   end
 
   desc "Archive app"
-  lane :archive do
+  lane :archive do |options|
+    appidentifier = options[:appidentifier] || "edu.stanford.bdh.engagehf"
+    provisioningProfile = options[:provisioningProfile] || "Stanford BDHG ENGAGE-HF"
+
+    update_app_identifier(
+      plist_path: "ENGAGEHF/Supporting Files",
+      app_identifier: appidentifier
+    )
+
     build_app(
       derived_data_path: ".derivedData",
       xcargs: [
@@ -100,7 +102,7 @@ platform :ios do
       ],
       export_options: {
         provisioningProfiles: {
-          "edu.stanford.bdh.engagehf" => "Stanford BDHG ENGAGE-HF"
+          appidentifier => provisioningProfile
         }
       }
     )
@@ -120,6 +122,7 @@ platform :ios do
   lane :deploy do |options|
     environment = options[:environment] || "staging"
     appidentifier = options[:appidentifier] || "edu.stanford.bdh.engagehf"
+    provisioningProfile = options[:provisioningProfile] || "Stanford BDHG ENGAGE-HF"
     
     signin
     increment_build_number(
@@ -127,7 +130,10 @@ platform :ios do
         build_number: latest_testflight_build_number + 1
       }
     )
-    archive
+    archive(
+      appidentifier: appidentifier,
+      provisioningProfile: provisioningProfile,
+    )
     commit = last_git_commit
     
     if environment == "production"
