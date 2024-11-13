@@ -149,18 +149,6 @@
     "Cancel" : {
 
     },
-    "CLOSE" : {
-      "comment" : "MARK: General",
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Close"
-          }
-        }
-      }
-    },
     "Color Key" : {
 
     },
