@@ -81,7 +81,6 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
             MedicationsManager()
             VideoManager()
             
-            OnboardingDataSource()
             InvitationCodeModule()
 
             ConfigureTipKit()

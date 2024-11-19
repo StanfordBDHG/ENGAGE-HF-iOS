@@ -22,7 +22,7 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
     @Dependency(FirebaseAccountService.self) private var accountService: FirebaseAccountService?
 
     func configure() {
-        if FeatureFlags.useFirebaseEmulator {
+        if FeatureFlags.useFirebaseEmulator && !FeatureFlags.disableFirebase {
             let firestoreHost = FeatureFlags.useCustomFirestoreHost ? FirestoreSettings.customHost : FirestoreSettings.defaultHost
             Functions.functions().useEmulator(withHost: firestoreHost, port: 5001)
         }
@@ -68,12 +68,11 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
 
     @MainActor
     func setupTestEnvironment(invitationCode: String) async throws {
-        guard let account else {
-            preconditionFailure("Account feature must be enabled to support `setupTestEnvironment` flag!")
-        }
-
-        guard let accountService else {
-            preconditionFailure("The Firebase Account Service is required to be configured when setting up the test environment!")
+        guard let account, let accountService else {
+            guard FeatureFlags.disableFirebase else {
+                preconditionFailure("The Firebase Account Service is required to be configured when setting up the test environment!")
+            }
+            return
         }
 
         let email = "test@engage.stanford.edu"

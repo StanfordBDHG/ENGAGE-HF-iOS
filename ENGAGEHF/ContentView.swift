@@ -23,19 +23,19 @@ struct ContentView: View {
     }
     
     @AppStorage(StorageKeys.onboardingFlowComplete) private var completedOnboardingFlow = false
-    @Environment(Account.self) private var account: Account
+    @Environment(Account.self) private var account: Account?
     @State private var sheetContent: SheetContent?
     
     private var expectedSheetContent: SheetContent? {
         guard FeatureFlags.skipOnboarding || completedOnboardingFlow else {
             return .onboarding
         }
-        guard FeatureFlags.disableFirebase || account.signedIn else {
+        guard FeatureFlags.disableFirebase || account?.signedIn ?? false else {
             return .auth
         }
         guard FeatureFlags.disableFirebase
-                || account.details?.isIncomplete ?? true
-                || account.details?.invitationCode != nil else {
+                || account?.details?.isIncomplete ?? true
+                || account?.details?.invitationCode != nil else {
             return .auth
         }
         return nil
