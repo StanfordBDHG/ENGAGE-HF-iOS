@@ -52,7 +52,8 @@ platform :ios do
       test_without_building: true,
       derived_data_path: ".derivedData",
       devices: [
-        "iPhone 16 Pro"
+        "iPhone 16 Pro",
+        "iPad Pro 13-inch (M4)"
       ],
       languages: [
          "en-US",

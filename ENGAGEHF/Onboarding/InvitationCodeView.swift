@@ -16,10 +16,12 @@ import SwiftUI
 struct InvitationCodeView: View {
     @Environment(OnboardingNavigationPath.self) private var onboardingNavigationPath
     @Environment(InvitationCodeModule.self) private var invitationCodeModule
+    @Environment(AccountNotifications.self) private var accountNotifications
     @Environment(Account.self) private var account
 
     @State private var invitationCode = ""
-    @State private var viewState: ViewState = .idle
+    @State private var viewState: ViewState = .processing
+    @State private var accountNotificationsTask: Task<Void, Never>?
     
     @ValidationState private var validation
     
@@ -36,15 +38,26 @@ struct InvitationCodeView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 32) {
-                invitationCodeHeader
-                Divider()
-                Grid(horizontalSpacing: 16, verticalSpacing: 16) {
-                    invitationCodeView
+                if viewState == .processing {
+                    ContentUnavailableView {
+                        Label("ENGAGE-HF", systemImage: "person.crop.circle")
+                    } description: {
+                        Text("Preparing your Account")
+                        Spacer()
+                        ProgressView()
+                    }
+                        .padding(.vertical, 64)
+                } else {
+                    invitationCodeHeader
+                    Divider()
+                    Grid(horizontalSpacing: 16, verticalSpacing: 16) {
+                        invitationCodeView
+                    }
+                        .padding(.top, -8)
+                        .padding(.bottom, -12)
+                    Divider()
+                    actionsView
                 }
-                    .padding(.top, -8)
-                    .padding(.bottom, -12)
-                Divider()
-                actionsView
             }
                 .padding(.horizontal)
                 .padding(.bottom)
@@ -52,7 +65,29 @@ struct InvitationCodeView: View {
                 .navigationBarTitleDisplayMode(.large)
                 .navigationTitle(String(localized: "Invitation Code"))
         }
-        .navigationBarBackButtonHidden()
+            .navigationBarBackButtonHidden()
+            .task {
+                try? await Task.sleep(for: .seconds(0.5))
+                
+                guard account.details?.invitationCode == nil else {
+                    onboardingNavigationPath.removeLast()
+                    onboardingNavigationPath.nextStep()
+                    return
+                }
+                
+                accountNotificationsTask = Task.detached { @MainActor in
+                    for await event in accountNotifications.events where event.accountDetails?.invitationCode != nil {
+                        onboardingNavigationPath.removeLast()
+                        onboardingNavigationPath.nextStep()
+                    }
+                }
+                
+                viewState = .idle
+            }
+            .onDisappear {
+                accountNotificationsTask?.cancel()
+                accountNotificationsTask = nil
+            }
     }
     
     @ViewBuilder private var actionsView: some View {

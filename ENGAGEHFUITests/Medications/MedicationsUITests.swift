@@ -10,7 +10,8 @@ import XCTest
 
 
 final class MedicationsUITests: XCTestCase {
-    override func setUpWithError() throws {
+    @MainActor
+    override func setUp() async throws {
         try super.setUpWithError()
 
         continueAfterFailure = false
@@ -18,6 +19,7 @@ final class MedicationsUITests: XCTestCase {
         let app = XCUIApplication()
         app.launchArguments = ["--skipOnboarding", "--setupTestEnvironment", "--useFirebaseEmulator", "--setupTestMedications"]
         app.launch()
+        setupSnapshot(app)
     }
     
     
@@ -125,7 +127,8 @@ final class MedicationsUITests: XCTestCase {
         XCTAssert(app.staticTexts["97/103"].waitForExistence(timeout: 0.5), "Multi-ingredient target dose not found.")
     }
     
-    func testMultiScheduleDoseSummary() throws {
+    @MainActor
+    func testMultiScheduleDoseSummary() async throws {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
@@ -145,6 +148,8 @@ final class MedicationsUITests: XCTestCase {
         XCTAssert(app.staticTexts["5"].waitForExistence(timeout: 0.5), "Second component of current dose not found.")
         XCTAssert(app.staticTexts["mg"].firstMatch.waitForExistence(timeout: 0.5), "Units not found.")
         XCTAssert(app.staticTexts["daily"].firstMatch.waitForExistence(timeout: 0.5), "\"Daily\" quantifier not found.")
+        
+        snapshot("4Medications")
     }
     
     func testFrequencyStyling() throws {

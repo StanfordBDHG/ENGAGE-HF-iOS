@@ -10,16 +10,19 @@ import XCTest
 
 
 final class EducationViewUITests: XCTestCase {
-    override func setUpWithError() throws {
+    @MainActor
+    override func setUp() async throws {
         try super.setUpWithError()
         continueAfterFailure = false
         
         let app = XCUIApplication()
         app.launchArguments = ["--assumeOnboardingComplete", "--setupTestEnvironment", "--useFirebaseEmulator", "--setupTestVideos"]
         app.launch()
+        setupSnapshot(app)
     }
     
     
+    @MainActor
     func testLongDescriptionVideoView() throws {
         let app = XCUIApplication()
         
@@ -29,6 +32,7 @@ final class EducationViewUITests: XCTestCase {
         let thumbnailOverlay = app.staticTexts["Thumbnail Overlay Title: Long Description"]
         XCTAssert(thumbnailOverlay.waitForExistence(timeout: 0.5))
         
+        snapshot("5Education")
         thumbnailOverlay.tap()
         
         sleep(2)
@@ -66,6 +70,7 @@ final class EducationViewUITests: XCTestCase {
         let descriptionText = scrollableText.staticTexts["Scrollable Text"]
         XCTAssert(descriptionText.exists)
         XCTAssertEqual(descriptionText.label, expectedDescription)
+        snapshot("EducationVideo")
     }
     
     
