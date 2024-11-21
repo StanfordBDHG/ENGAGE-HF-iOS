@@ -2,29 +2,33 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CLIENT_ID</key>
+	<string>CLIENT_ID</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>REVERSED_CLIENT_ID</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDtSimbzLPmb7v-n2u9612y-PdXrFHNg9o</string>
+	<string>API_KEY89012345678901234567890123456789</string>
 	<key>GCM_SENDER_ID</key>
-	<string>672231779872</string>
+	<string>GCM_SENDER_ID</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>edu.stanford.bdh.engagehf</string>
 	<key>PROJECT_ID</key>
-	<string>som-rit-phi-enghf2-dev</string>
+	<string>stanford-bdhg-engage-hf</string>
 	<key>STORAGE_BUCKET</key>
-	<string>som-rit-phi-enghf2-dev.appspot.com</string>
+	<string>STORAGE_BUCKET</string>
 	<key>IS_ADS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_GCM_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:672231779872:ios:3519454ff7a793a6295645</string>
+	<string>1:123456789012:ios:1234567890123456789012</string>
 </dict>
 </plist>
