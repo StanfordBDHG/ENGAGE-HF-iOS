@@ -44,7 +44,18 @@ struct ContentView: View {
     }
     
     var body: some View {
-        HomeView()
+        ZStack(alignment: .center) {
+            if account?.signedIn ?? false {
+                HomeView()
+            } else {
+                Image(.healthSummary)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 128, height: 128)
+                    .clipShape(RoundedRectangle(cornerRadius: 32))
+                    .accessibilityLabel("ENGAGE-HF Application Loading Screen")
+            }
+        }
             .accountRequired(
                 accountSetupIsComplete: { _ in
                     expectedSheetContent == nil
