@@ -91,7 +91,7 @@ platform :ios do
     provisioningProfile = options[:provisioningProfile] || "Stanford BDHG ENGAGE-HF"
 
     update_app_identifier(
-      plist_path: "ENGAGEHF/Supporting Files",
+      plist_path: "ENGAGEHF/Supporting Files/Info.plist",
       app_identifier: appidentifier
     )
 
