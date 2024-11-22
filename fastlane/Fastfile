@@ -20,7 +20,7 @@ platform :ios do
       skip_build: true,
       derived_data_path: ".derivedData",
       code_coverage: true,
-      devices: ["iPhone 16 Pro"],
+      devices: ["iPhone 16 Plus"],
       force_quit_simulator: true,
       reset_simulator: true,
       prelaunch_simulator: false,
@@ -52,7 +52,7 @@ platform :ios do
       test_without_building: true,
       derived_data_path: ".derivedData",
       devices: [
-        "iPhone 16 Pro",
+        "iPhone 16 Plus",
         "iPad Pro 13-inch (M4)"
       ],
       languages: [
@@ -67,8 +67,8 @@ platform :ios do
     )
     
     # Workaround for https://github.com/fastlane/fastlane/issues/21759 and 
-    Dir.glob("./screenshots/**/iPhone 16 Pro-*.png").each do |file|
-      sh("sips --resampleHeightWidth 2778 1284 '#{file}'")
+    Dir.glob("./screenshots/**/iPhone 16 Plus-*.png").each do |file|
+      sh("sips --resampleHeightWidth 2796 1290 '#{file}'")
     end
   end
 

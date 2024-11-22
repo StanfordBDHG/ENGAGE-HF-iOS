@@ -83,7 +83,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--skipRemoteNotificationRegistration"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--setupTestUserMetaData"
@@ -115,11 +115,11 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--assumeOnboardingComplete"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--setupTestEnvironment"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--testMockDevices"
@@ -135,7 +135,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--useFirebaseEmulator"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
       <EnvironmentVariables>

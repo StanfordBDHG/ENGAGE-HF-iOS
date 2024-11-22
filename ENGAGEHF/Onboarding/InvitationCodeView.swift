@@ -67,7 +67,7 @@ struct InvitationCodeView: View {
         }
             .navigationBarBackButtonHidden()
             .task {
-                try? await Task.sleep(for: .seconds(0.5))
+                try? await Task.sleep(for: .seconds(1))
                 
                 guard account.details?.invitationCode == nil else {
                     onboardingNavigationPath.removeLast()
@@ -77,8 +77,13 @@ struct InvitationCodeView: View {
                 
                 accountNotificationsTask = Task.detached { @MainActor in
                     for await event in accountNotifications.events where event.accountDetails?.invitationCode != nil {
+                        guard (accountNotificationsTask?.isCancelled ?? true) == false else {
+                            return
+                        }
+                        
                         onboardingNavigationPath.removeLast()
                         onboardingNavigationPath.nextStep()
+                        accountNotificationsTask?.cancel()
                     }
                 }
                 
@@ -86,7 +91,6 @@ struct InvitationCodeView: View {
             }
             .onDisappear {
                 accountNotificationsTask?.cancel()
-                accountNotificationsTask = nil
             }
     }
     
@@ -98,6 +102,7 @@ struct InvitationCodeView: View {
                     return
                 }
                 do {
+                    accountNotificationsTask?.cancel()
                     try await invitationCodeModule.verifyOnboardingCode(invitationCode)
                     onboardingNavigationPath.nextStep()
                 } catch {
