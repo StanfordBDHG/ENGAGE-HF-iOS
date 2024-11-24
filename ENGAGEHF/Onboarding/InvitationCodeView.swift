@@ -20,9 +20,8 @@ struct InvitationCodeView: View {
     @Environment(Account.self) private var account
 
     @State private var invitationCode = ""
-    @State private var viewState: ViewState = .processing
-    @State private var accountNotificationsTask: Task<Void, Never>?
-    
+    @State private var viewState: ViewState = .idle
+
     @ValidationState private var validation
     
 
@@ -38,26 +37,15 @@ struct InvitationCodeView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 32) {
-                if viewState == .processing {
-                    ContentUnavailableView {
-                        Label("ENGAGE-HF", systemImage: "person.crop.circle")
-                    } description: {
-                        Text("Preparing your Account")
-                        Spacer()
-                        ProgressView()
-                    }
-                        .padding(.vertical, 64)
-                } else {
-                    invitationCodeHeader
-                    Divider()
-                    Grid(horizontalSpacing: 16, verticalSpacing: 16) {
-                        invitationCodeView
-                    }
-                        .padding(.top, -8)
-                        .padding(.bottom, -12)
-                    Divider()
-                    actionsView
+                invitationCodeHeader
+                Divider()
+                Grid(horizontalSpacing: 16, verticalSpacing: 16) {
+                    invitationCodeView
                 }
+                    .padding(.top, -8)
+                    .padding(.bottom, -12)
+                Divider()
+                actionsView
             }
                 .padding(.horizontal)
                 .padding(.bottom)
@@ -66,32 +54,6 @@ struct InvitationCodeView: View {
                 .navigationTitle(String(localized: "Invitation Code"))
         }
             .navigationBarBackButtonHidden()
-            .task {
-                try? await Task.sleep(for: .seconds(1))
-                
-                guard account.details?.invitationCode == nil else {
-                    onboardingNavigationPath.removeLast()
-                    onboardingNavigationPath.nextStep()
-                    return
-                }
-                
-                accountNotificationsTask = Task.detached { @MainActor in
-                    for await event in accountNotifications.events where event.accountDetails?.invitationCode != nil {
-                        guard (accountNotificationsTask?.isCancelled ?? true) == false else {
-                            return
-                        }
-                        
-                        onboardingNavigationPath.removeLast()
-                        onboardingNavigationPath.nextStep()
-                        accountNotificationsTask?.cancel()
-                    }
-                }
-                
-                viewState = .idle
-            }
-            .onDisappear {
-                accountNotificationsTask?.cancel()
-            }
     }
     
     @ViewBuilder private var actionsView: some View {
@@ -102,7 +64,6 @@ struct InvitationCodeView: View {
                     return
                 }
                 do {
-                    accountNotificationsTask?.cancel()
                     try await invitationCodeModule.verifyOnboardingCode(invitationCode)
                     onboardingNavigationPath.nextStep()
                 } catch {
