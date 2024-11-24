@@ -79,7 +79,7 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "--disableFirebase"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--skipRemoteNotificationRegistration"
@@ -115,7 +115,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--assumeOnboardingComplete"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--setupTestEnvironment"

@@ -23,6 +23,7 @@ struct HomeView: View {
         case medications
         case education
         case device
+        case test
     }
 
     
@@ -39,7 +40,8 @@ struct HomeView: View {
         @Bindable var navigationManager = navigationManager
         @Bindable var notificationManager = notificationManager
 
-        TabView(selection: $navigationManager.selectedTab) {
+        // TODO: remove swiftlint
+        TabView(selection: $navigationManager.selectedTab) { // swiftlint:disable:this closure_body_length
             Dashboard(presentingAccount: $presentingAccount)
                 .tag(Tabs.home)
                 .tabItem {
@@ -55,11 +57,12 @@ struct HomeView: View {
                 .tabItem {
                     Label("Medications", systemImage: "pill.fill")
                 }
+            /*
             Education(presentingAccount: $presentingAccount)
                 .tag(Tabs.education)
                 .tabItem {
                     Label("Education", systemImage: "brain")
-                }
+                }*/
 
             NavigationStack {
                 DevicesView(appName: ENGAGEHF.appName ?? "ENGAGE") {
@@ -70,6 +73,15 @@ struct HomeView: View {
                 .tag(Tabs.device)
                 .tabItem {
                     Label("Devices", systemImage: "sensor")
+                }
+            NavigationStack {
+                List {
+                    AdditionalAccountSections()
+                }
+            }
+                .tag(Tabs.test)
+                .tabItem {
+                    Label("Test", systemImage: "sensor")
                 }
         }
             .sheet(isPresented: $navigationManager.showHealthSummary) {
