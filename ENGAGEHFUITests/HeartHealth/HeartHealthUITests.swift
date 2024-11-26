@@ -277,15 +277,15 @@ extension XCUIApplication {
     }
     
     fileprivate func testEmptySymptomScores() {
-        XCTAssert(buttons["Symptoms"].waitForExistence(timeout: 0.5))
-        buttons["Symptoms"].tap()
+        XCTAssert(buttons["Symptoms"].firstMatch.waitForExistence(timeout: 0.5))
+        buttons["Symptoms"].firstMatch.tap()
         
         let symptomTypes = [
             "Overall",
             "Physical Limits",
             "Social Limits",
             "Quality of Life",
-            "Specific Symptoms",
+            "Symptom Frequency",
             "Dizziness"
         ]
         let symptomLabels = [
@@ -293,7 +293,7 @@ extension XCUIApplication {
             "Physical",
             "Social",
             "Quality",
-            "Specific",
+            "Symptoms",
             "Dizziness"
         ]
         
@@ -306,8 +306,8 @@ extension XCUIApplication {
             XCTAssert(buttons["\(symptomTypes[idx]) Score, Symptoms Picker Chevron"].waitForExistence(timeout: 0.5))
             images["Symptoms Picker Chevron"].tap()
             
-            XCTAssert(buttons["\(symptomLabels[nextIdx])"].waitForExistence(timeout: 0.5))
-            buttons["\(symptomLabels[nextIdx])"].tap()
+            XCTAssert(buttons["\(symptomLabels[nextIdx])"].firstMatch.waitForExistence(timeout: 0.5))
+            buttons["\(symptomLabels[nextIdx])"].firstMatch.tap()
             
             testEmptyForSpecificType(scoreType: symptomTypes[nextIdx])
         }
