@@ -408,6 +408,15 @@
     "Messages" : {
 
     },
+    "Mild" : {
+
+    },
+    "Minimal" : {
+
+    },
+    "Moderate" : {
+
+    },
     "No Contacts Available" : {
 
     },
@@ -424,6 +433,9 @@
 
     },
     "No vitals" : {
+
+    },
+    "None" : {
 
     },
     "Not on this med that may help your heart." : {
@@ -540,6 +552,9 @@
 
     },
     "Series" : {
+
+    },
+    "Severe" : {
 
     },
     "Share Link" : {
@@ -707,6 +722,9 @@
           }
         }
       }
+    },
+    "Very Severe" : {
+
     },
     "Vitals" : {
 
