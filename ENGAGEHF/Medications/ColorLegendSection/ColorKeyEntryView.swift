@@ -15,10 +15,10 @@ struct ColorKeyEntryView: View {
     
     
     var body: some View {
-        HStack {
+        HStack(alignment: .center) {
             Circle()
                 .fill(color)
-                .frame(width: 12)
+                .frame(width: 24)
             Text(interpretation)
         }
     }

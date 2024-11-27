@@ -417,6 +417,9 @@
     "Moderate" : {
 
     },
+    "More information is needed to make a recommendation." : {
+      "comment" : "Action required color legend entry."
+    },
     "No Contacts Available" : {
 
     },
