@@ -78,7 +78,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The ENGAGE-HF demonstrates the usage of the Firebase Account Module."
+            "value" : "Sign in or create an account."
           }
         }
       }
@@ -148,18 +148,6 @@
     },
     "Cancel" : {
 
-    },
-    "CLOSE" : {
-      "comment" : "MARK: General",
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Close"
-          }
-        }
-      }
     },
     "Color Key" : {
 
