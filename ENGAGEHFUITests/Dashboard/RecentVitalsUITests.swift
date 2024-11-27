@@ -64,8 +64,6 @@ final class RecentVitalsUITests: XCTestCase {
         XCTAssert(app.staticTexts["Body Weight"].waitForExistence(timeout: 2.0))
     }
     
-    // TODO: Reproduce Development UI tests with same simulator, iOS version, XCode version. Tag Andreas today/tmrw about infinite sign up.
-    
     func testHeartRateAndBloodPressure() throws {
         let app = XCUIApplication()
         
