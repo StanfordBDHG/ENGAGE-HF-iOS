@@ -31,9 +31,17 @@ struct RecentVitalsSection: View {
             return nil
         }
         
+#if TEST
+        var formatStyle: Date.FormatStyle = .dateTime
+        formatStyle.timeZone = TimeZone(identifier: "UTC")!
+        let formattedDate = measurement.startDate.formatted(formatStyle)
+#else
+        let formattedDate = measurement.startDate.formatted(date: .numeric, time: .shortened)
+#endif
+        
         return (
             String(format: "%.1f", measurement.quantity.doubleValue(for: massUnits)),
-            measurement.startDate.formatted(date: .numeric, time: .shortened)
+            formattedDate
         )
     }
     
