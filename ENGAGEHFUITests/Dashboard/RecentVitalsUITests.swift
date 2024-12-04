@@ -11,6 +11,16 @@ import XCTest
 
 
 final class RecentVitalsUITests: XCTestCase {
+    private var expectedFormattedMeasurementDate: String {
+        let expectedDateComponents = DateComponents(year: 2024, month: 6, day: 5, hour: 12, minute: 33, second: 11)
+        let expectedDate = Calendar.current.date(from: expectedDateComponents) ?? .now
+        let daylightSavingTimeOffset = TimeZone.current.daylightSavingTimeOffset(for: expectedDate)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "M/d/yyyy, h:mm a"
+        return formatter.string(from: expectedDate.addingTimeInterval(daylightSavingTimeOffset))
+    }
+    
+    
     override func setUpWithError() throws {
         try super.setUpWithError()
 
@@ -55,18 +65,11 @@ final class RecentVitalsUITests: XCTestCase {
 
         XCTAssertFalse(app.alerts.element.exists)
         
-        let expectedDateComponents = DateComponents(year: 2024, month: 6, day: 5, hour: 12, minute: 33, second: 11)
-        let expectedDate = Calendar.current.date(from: expectedDateComponents) ?? .now
-        
-        var formatStyle: Date.FormatStyle = .dateTime
-        formatStyle.timeZone = TimeZone(identifier: "UTC")!
-        let expectedFormattedDate = expectedDate.formatted(formatStyle)
-        
         // Weight measurement has been successfully saved, and should be represented in the dashboard
         XCTAssert(app.staticTexts["Recent Vitals"].waitForExistence(timeout: 0.5))
         XCTAssert(app.staticTexts["Weight Quantity: \(expectedWeight)"].exists)
         XCTAssert(app.staticTexts["Weight Unit: \(weightUnit)"].exists)
-        XCTAssert(app.staticTexts["Weight Date: \(expectedFormattedDate)"].exists)
+        XCTAssert(app.staticTexts["Weight Date: \(expectedFormattedMeasurementDate)"].exists)
         
         app.staticTexts["Weight Quantity: \(expectedWeight)"].tap()
         XCTAssert(app.staticTexts["Body Weight"].waitForExistence(timeout: 2.0))
@@ -108,17 +111,10 @@ final class RecentVitalsUITests: XCTestCase {
         // Measurement has been successfully saved, and should be represented in the dashboard
         XCTAssert(app.staticTexts["Recent Vitals"].waitForExistence(timeout: 2.0))
         
-        let expectedDateComponents = DateComponents(year: 2024, month: 6, day: 5, hour: 12, minute: 33, second: 11)
-        let expectedDate = Calendar.current.date(from: expectedDateComponents) ?? .now
-        
-        var formatStyle: Date.FormatStyle = .dateTime
-        formatStyle.timeZone = TimeZone(identifier: "UTC")!
-        let expectedFormattedDate = expectedDate.formatted(formatStyle)
-        
         let heartRateQuantityText = "Heart Rate Quantity: 62"
         XCTAssert(app.staticTexts[heartRateQuantityText].exists)
         XCTAssert(app.staticTexts["Heart Rate Unit: BPM"].exists)
-        XCTAssert(app.staticTexts["Heart Rate Date: \(expectedFormattedDate)"].exists)
+        XCTAssert(app.staticTexts["Heart Rate Date: \(expectedFormattedMeasurementDate)"].exists)
         
         app.staticTexts[heartRateQuantityText].tap()
         XCTAssert(app.staticTexts["Heart Rate"].waitForExistence(timeout: 2.0))
@@ -129,7 +125,7 @@ final class RecentVitalsUITests: XCTestCase {
         let bloodPressureQuantityText = "Blood Pressure Quantity: 103/64"
         XCTAssert(app.staticTexts[bloodPressureQuantityText].exists)
         XCTAssert(app.staticTexts["Blood Pressure Unit: mmHg"].exists)
-        XCTAssert(app.staticTexts["Blood Pressure Date: \(expectedFormattedDate)"].exists)
+        XCTAssert(app.staticTexts["Blood Pressure Date: \(expectedFormattedMeasurementDate)"].exists)
         
         app.staticTexts[bloodPressureQuantityText].tap()
         XCTAssert(app.staticTexts["Blood Pressure"].waitForExistence(timeout: 2.0))

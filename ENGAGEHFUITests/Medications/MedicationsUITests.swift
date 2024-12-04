@@ -19,7 +19,6 @@ final class MedicationsUITests: XCTestCase {
         let app = XCUIApplication()
         app.launchArguments = ["--skipOnboarding", "--setupTestEnvironment", "--useFirebaseEmulator", "--setupTestMedications"]
         app.launch()
-        setupSnapshot(app)
     }
     
     
@@ -148,8 +147,6 @@ final class MedicationsUITests: XCTestCase {
         XCTAssert(app.staticTexts["5"].waitForExistence(timeout: 0.5), "Second component of current dose not found.")
         XCTAssert(app.staticTexts["mg"].firstMatch.waitForExistence(timeout: 0.5), "Units not found.")
         XCTAssert(app.staticTexts["daily"].firstMatch.waitForExistence(timeout: 0.5), "\"Daily\" quantifier not found.")
-        
-        snapshot("4Medications")
     }
     
     func testFrequencyStyling() throws {

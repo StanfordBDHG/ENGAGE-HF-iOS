@@ -18,7 +18,6 @@ final class EducationViewUITests: XCTestCase {
         let app = XCUIApplication()
         app.launchArguments = ["--assumeOnboardingComplete", "--setupTestEnvironment", "--useFirebaseEmulator", "--setupTestVideos"]
         app.launch()
-        setupSnapshot(app)
     }
     
     
@@ -32,7 +31,6 @@ final class EducationViewUITests: XCTestCase {
         let thumbnailOverlay = app.staticTexts["Thumbnail Overlay Title: Long Description"]
         XCTAssert(thumbnailOverlay.waitForExistence(timeout: 0.5))
         
-        snapshot("5Education")
         thumbnailOverlay.tap()
         
         sleep(2)
@@ -70,7 +68,6 @@ final class EducationViewUITests: XCTestCase {
         let descriptionText = scrollableText.staticTexts["Scrollable Text"]
         XCTAssert(descriptionText.exists)
         XCTAssertEqual(descriptionText.label, expectedDescription)
-        snapshot("EducationVideo")
     }
     
     

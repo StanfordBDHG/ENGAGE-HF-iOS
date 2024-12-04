@@ -23,7 +23,6 @@ final class HeartHealthUITests: XCTestCase {
             "--useFirebaseEmulator"
         ]
         app.launch()
-        setupSnapshot(app)
     }
     
     func testSymptomScores() throws {
@@ -256,10 +255,6 @@ extension XCUIApplication {
         
         XCTAssert(buttons["Discard"].exists)
         XCTAssert(buttons["Save"].exists)
-        
-        if displayName == "Blood Pressure" {
-            ENGAGEHFUITests.snapshot("3BloodPressureMeasurement")
-        }
 
         buttons["Save"].tap()
         sleep(1)
