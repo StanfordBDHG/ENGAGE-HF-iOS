@@ -100,7 +100,6 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
             details.password = password
             details.name = PersonNameComponents(givenName: "Leland", familyName: "Stanford")
             try await accountService.signUp(with: details)
-            try await Task.sleep(for: .seconds(0.5))
             try await verifyOnboardingCode(invitationCode)
         } catch {
             logger.error("Failed setting up test account : \(error)")
