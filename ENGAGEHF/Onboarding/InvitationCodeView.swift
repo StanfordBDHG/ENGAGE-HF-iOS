@@ -16,7 +16,6 @@ import SwiftUI
 struct InvitationCodeView: View {
     @Environment(OnboardingNavigationPath.self) private var onboardingNavigationPath
     @Environment(InvitationCodeModule.self) private var invitationCodeModule
-    @Environment(AccountNotifications.self) private var accountNotifications
     @Environment(Account.self) private var account
 
     @State private var invitationCode = ""
