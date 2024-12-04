@@ -10,6 +10,7 @@
 		211755492CC1B58600A81E24 /* ColorLegend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211755482CC1B58300A81E24 /* ColorLegend.swift */; };
 		2117554B2CC1B7E400A81E24 /* RecommendationStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2117554A2CC1B7C500A81E24 /* RecommendationStyle.swift */; };
 		2117554D2CC1D3AB00A81E24 /* ExpandableSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2117554C2CC1D39900A81E24 /* ExpandableSection.swift */; };
+		21193C8E2CF6AAD000D44B23 /* FirebaseAuth+Continuation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21193C8D2CF6AAC900D44B23 /* FirebaseAuth+Continuation.swift */; };
 		213AD98D2CBDF74A005C6D69 /* MedicationsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AD98C2CBDF744005C6D69 /* MedicationsSection.swift */; };
 		213AD9942CBE02BB005C6D69 /* ColorKeyEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AD9922CBE02B1005C6D69 /* ColorKeyEntryView.swift */; };
 		2F49B7762980407C00BCB272 /* Spezi in Frameworks */ = {isa = PBXBuildFile; productRef = 2F49B7752980407B00BCB272 /* Spezi */; };
@@ -245,6 +246,7 @@
 		211755482CC1B58300A81E24 /* ColorLegend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorLegend.swift; sourceTree = "<group>"; };
 		2117554A2CC1B7C500A81E24 /* RecommendationStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationStyle.swift; sourceTree = "<group>"; };
 		2117554C2CC1D39900A81E24 /* ExpandableSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableSection.swift; sourceTree = "<group>"; };
+		21193C8D2CF6AAC900D44B23 /* FirebaseAuth+Continuation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FirebaseAuth+Continuation.swift"; sourceTree = "<group>"; };
 		213AD98C2CBDF744005C6D69 /* MedicationsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationsSection.swift; sourceTree = "<group>"; };
 		213AD9922CBE02B1005C6D69 /* ColorKeyEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorKeyEntryView.swift; sourceTree = "<group>"; };
 		2F4E237D2989A2FE0013F3D9 /* LaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchTests.swift; sourceTree = "<group>"; };
@@ -887,6 +889,7 @@
 				9B1864872C9226E90042AC81 /* AccountDetails+Key.swift */,
 				9B18648A2C9227040042AC81 /* AccountNotifications+Extras.swift */,
 				9B1864972C9350D30042AC81 /* Account+Binding.swift */,
+				21193C8D2CF6AAC900D44B23 /* FirebaseAuth+Continuation.swift */,
 			);
 			path = SharedExtensions;
 			sourceTree = "<group>";
@@ -1484,6 +1487,7 @@
 				4D0F38A22C0A7AD900DA12F7 /* ExpandableText.swift in Sources */,
 				4D8CE0FD2C753A4700560327 /* NotificationRegistrationSchema.swift in Sources */,
 				2FE5DC2629EDD38A004B9AB4 /* Contacts.swift in Sources */,
+				21193C8E2CF6AAD000D44B23 /* FirebaseAuth+Continuation.swift in Sources */,
 				4D8402702C4EBE7D00817495 /* AddMeasurementView.swift in Sources */,
 				2117554D2CC1D3AB00A81E24 /* ExpandableSection.swift in Sources */,
 				4D2D1D602C2B859C00ABDC19 /* GraphPicker.swift in Sources */,
