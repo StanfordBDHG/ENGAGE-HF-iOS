@@ -36,7 +36,8 @@ struct ContentView: View {
             return .auth
         }
         guard FeatureFlags.disableFirebase
-                || (!(account?.details?.isIncomplete ?? true) && (account?.details?.invitationCode != nil)) else {
+                || !(account?.details?.isIncomplete ?? true)
+                || account?.details?.invitationCode != nil else {
             return .auth
         }
         return nil
