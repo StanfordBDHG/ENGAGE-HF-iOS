@@ -12,6 +12,7 @@
 		2117554D2CC1D3AB00A81E24 /* ExpandableSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2117554C2CC1D39900A81E24 /* ExpandableSection.swift */; };
 		213AD98D2CBDF74A005C6D69 /* MedicationsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AD98C2CBDF744005C6D69 /* MedicationsSection.swift */; };
 		213AD9942CBE02BB005C6D69 /* ColorKeyEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AD9922CBE02B1005C6D69 /* ColorKeyEntryView.swift */; };
+		21B93B782D039E310034EC86 /* ManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B93B772D039E1B0034EC86 /* ManagerProtocol.swift */; };
 		2F49B7762980407C00BCB272 /* Spezi in Frameworks */ = {isa = PBXBuildFile; productRef = 2F49B7752980407B00BCB272 /* Spezi */; };
 		2F4E237E2989A2FE0013F3D9 /* LaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4E237D2989A2FE0013F3D9 /* LaunchTests.swift */; };
 		2F4E23832989D51F0013F3D9 /* ENGAGEHFTestingSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4E23822989D51F0013F3D9 /* ENGAGEHFTestingSetup.swift */; };
@@ -248,6 +249,7 @@
 		2117554C2CC1D39900A81E24 /* ExpandableSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableSection.swift; sourceTree = "<group>"; };
 		213AD98C2CBDF744005C6D69 /* MedicationsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationsSection.swift; sourceTree = "<group>"; };
 		213AD9922CBE02B1005C6D69 /* ColorKeyEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorKeyEntryView.swift; sourceTree = "<group>"; };
+		21B93B772D039E1B0034EC86 /* ManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerProtocol.swift; sourceTree = "<group>"; };
 		2F4E237D2989A2FE0013F3D9 /* LaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchTests.swift; sourceTree = "<group>"; };
 		2F4E23822989D51F0013F3D9 /* ENGAGEHFTestingSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ENGAGEHFTestingSetup.swift; sourceTree = "<group>"; };
 		2F5E32BC297E05EA003432F8 /* ENGAGEHFDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ENGAGEHFDelegate.swift; sourceTree = "<group>"; };
@@ -571,6 +573,7 @@
 		4D081A212C6C2BCB00E13BC8 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				21B93B772D039E1B0034EC86 /* ManagerProtocol.swift */,
 				4D8CE0F42C752D1C00560327 /* VideoManager */,
 				4D081A242C6C2C4500E13BC8 /* UserMetaDataManager */,
 				4D081A232C6C2BF200E13BC8 /* MedicationsManager */,
@@ -712,8 +715,8 @@
 		4D62BF372C6A97490088C414 /* NotificationManager */ = {
 			isa = PBXGroup;
 			children = (
-				4D8CE0FA2C753A4600560327 /* NotificationManager.swift */,
 				4D8CE0FB2C753A4600560327 /* NotificationRegistrationSchema.swift */,
+				4D8CE0FA2C753A4600560327 /* NotificationManager.swift */,
 			);
 			path = NotificationManager;
 			sourceTree = "<group>";
@@ -1041,10 +1044,10 @@
 			children = (
 				4D2D1D732C2CC89600ABDC19 /* Protocols+Aliases */,
 				4DA20B562C25FE2B00715AA2 /* Extensions */,
-				4DA20B4A2C249E7E00715AA2 /* VitalsManager.swift */,
 				4DF506202C2E1C89003E7EFB /* SymptomScore.swift */,
 				4D34B3EC2C404C61006F0D40 /* VitalsUnit.swift */,
 				4D4670C32C792429004DEAC4 /* FHIRObservationToHKSampleConverter.swift */,
+				4DA20B4A2C249E7E00715AA2 /* VitalsManager.swift */,
 			);
 			path = VitalsManager;
 			sourceTree = "<group>";
@@ -1448,6 +1451,7 @@
 				4D73A50E2C5807B500CCEC46 /* CapsuleStack.swift in Sources */,
 				4D2D1D682C2C82A200ABDC19 /* FHIRPeriod+GetDates.swift in Sources */,
 				4D2D1D762C2CC8B200ABDC19 /* ValueXProtocol.swift in Sources */,
+				21B93B782D039E310034EC86 /* ManagerProtocol.swift in Sources */,
 				4D4670C72C793327004DEAC4 /* SeriesTarget.swift in Sources */,
 				4DA20B542C25F8A600715AA2 /* FHIRDateTime+DateComponents.swift in Sources */,
 				4D081A282C6C2C8400E13BC8 /* UserMetaDataManager.swift in Sources */,

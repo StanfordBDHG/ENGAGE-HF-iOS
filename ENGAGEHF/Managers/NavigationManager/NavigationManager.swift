@@ -18,7 +18,7 @@ import SwiftUI
 /// Wraps an environment accessible and observable stack for use in navigating between views
 @MainActor
 @Observable
-class NavigationManager: Module, EnvironmentAccessible {
+final class NavigationManager: Manager {
     @ObservationIgnored @Dependency(AccountNotifications.self) private var accountNotifications: AccountNotifications?
     @ObservationIgnored @Dependency(VideoManager.self) private var videoManager
 
@@ -35,6 +35,10 @@ class NavigationManager: Module, EnvironmentAccessible {
     var showHealthSummary = false
 
     private var notificationTask: Task<Void, Never>?
+    
+    
+    nonisolated init() {}
+    
     
     // On sign in, reinitialize to an empty navigation path
     func configure() {
@@ -53,19 +57,23 @@ class NavigationManager: Module, EnvironmentAccessible {
                     continue
                 }
 
-                logger.debug("Reinitializing navigation path.")
-
-                educationPath = NavigationPath()
-                medicationsPath = NavigationPath()
-                heartHealthPath = NavigationPath()
-                homePath = NavigationPath()
-
-                heartHealthVitalSelection = .symptoms
-                questionnaireId = nil
-                showHealthSummary = false
-                selectedTab = .home
+                refreshContent()
             }
         }
+    }
+    
+    func refreshContent() {
+        logger.debug("Reinitializing navigation path.")
+
+        educationPath = NavigationPath()
+        medicationsPath = NavigationPath()
+        heartHealthPath = NavigationPath()
+        homePath = NavigationPath()
+
+        heartHealthVitalSelection = .symptoms
+        questionnaireId = nil
+        showHealthSummary = false
+        selectedTab = .home
     }
     
     
