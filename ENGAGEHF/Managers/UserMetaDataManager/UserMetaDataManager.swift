@@ -15,7 +15,7 @@ import SpeziFirebaseAccount
 
 @Observable
 @MainActor
-class UserMetaDataManager: Module, EnvironmentAccessible {
+final class UserMetaDataManager: Manager {
     @ObservationIgnored @Dependency(Account.self) private var account: Account?
     @ObservationIgnored @Dependency(AccountNotifications.self) private var accountNotifications: AccountNotifications?
     @ObservationIgnored @Application(\.logger) private var logger
@@ -25,6 +25,9 @@ class UserMetaDataManager: Module, EnvironmentAccessible {
     private var previousOrganizationId: String?
     
     private(set) var organization: Organization?
+    
+    
+    nonisolated init() {}
     
     
     func configure() {
@@ -48,6 +51,12 @@ class UserMetaDataManager: Module, EnvironmentAccessible {
             updateOrganizationIfNeeded(id: account.details?.organization)
         }
     }
+    
+    
+    func refreshContent() {
+        updateOrganizationIfNeeded(id: account?.details?.organization)
+    }
+    
     
     private func updateOrganizationIfNeeded(id organizationId: String?) {
         guard previousOrganizationId != organizationId else {

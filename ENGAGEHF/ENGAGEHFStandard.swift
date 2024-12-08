@@ -22,7 +22,7 @@ import SpeziQuestionnaire
 import SwiftUI
 
 
-actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint {
+actor ENGAGEHFStandard: Standard, EnvironmentAccessible {
     @Application(\.logger) private var logger
 
     @Dependency(Account.self) private var account: Account?
@@ -87,39 +87,6 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint {
             try await Firestore.questionnaireResponseCollectionReference(for: accountId).document(id).setData(from: response)
         } catch {
             throw FirestoreError(error)
-        }
-    }
-    
-    /// Stores the given consent form in the user's document directory with a unique timestamped filename.
-    ///
-    /// - Parameter consent: The consent form's data to be stored as a `PDFDocument`.
-    func store(consent: PDFDocument) async {
-        guard !FeatureFlags.disableFirebase else {
-            guard let basePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
-                logger.error("Could not create path for writing consent form to user document directory.")
-                return
-            }
-            
-            let filePath = basePath.appending(path: "consent.pdf")
-            consent.write(to: filePath)
-            
-            return
-        }
-        
-        do {
-            guard let consentData = consent.dataRepresentation() else {
-                logger.error("Could not store consent form.")
-                return
-            }
-            
-            let metadata = StorageMetadata()
-            metadata.contentType = "application/pdf"
-            _ = try await Storage.userBucketReference(for: accountId)
-                .child("consent")
-                .child("consent.pdf")
-                .putDataAsync(consentData, metadata: metadata)
-        } catch {
-            logger.error("Could not store consent form: \(error)")
         }
     }
 }

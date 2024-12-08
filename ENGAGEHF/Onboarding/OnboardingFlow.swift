@@ -33,7 +33,6 @@ struct OnboardingFlow: View {
 #Preview {
     OnboardingFlow()
         .previewWith(standard: ENGAGEHFStandard()) {
-            OnboardingDataSource()
             InvitationCodeModule()
             AccountConfiguration(service: InMemoryAccountService())
         }

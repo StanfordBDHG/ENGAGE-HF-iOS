@@ -6,6 +6,10 @@
 # SPDX-License-Identifier: MIT
 #
 
-test_output
-report.xml
-screenshots
+project: ENGAGEHF.xcodeproj
+schemes:
+- ENGAGEHF
+targets:
+- ENGAGEHF
+- ENGAGEHFTests
+- ENGAGEHFUITests

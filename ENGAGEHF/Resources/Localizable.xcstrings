@@ -149,18 +149,6 @@
     "Cancel" : {
 
     },
-    "CLOSE" : {
-      "comment" : "MARK: General",
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Close"
-          }
-        }
-      }
-    },
     "Color Key" : {
 
     },
@@ -176,9 +164,6 @@
           }
         }
       }
-    },
-    "Content Unavailable" : {
-
     },
     "Current" : {
 
@@ -202,6 +187,9 @@
 
     },
     "Enable Notifications in Settings" : {
+
+    },
+    "ENGAGE-HF Application Loading Screen" : {
 
     },
     "Expansion Button" : {
@@ -518,9 +506,6 @@
     "Resolution Picker" : {
 
     },
-    "Retry" : {
-
-    },
     "Review" : {
 
     },
@@ -655,9 +640,6 @@
     },
     "The invitation code is invalid or has already been used." : {
       "comment" : "Invitation Code Invalid"
-    },
-    "The user isn't currently set up correctly. Please try closing the app and opening it back up." : {
-
     },
     "There are currently no educational videos available." : {
 

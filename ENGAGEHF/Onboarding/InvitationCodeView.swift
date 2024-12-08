@@ -20,7 +20,7 @@ struct InvitationCodeView: View {
 
     @State private var invitationCode = ""
     @State private var viewState: ViewState = .idle
-    
+
     @ValidationState private var validation
     
 
@@ -52,7 +52,7 @@ struct InvitationCodeView: View {
                 .navigationBarTitleDisplayMode(.large)
                 .navigationTitle(String(localized: "Invitation Code"))
         }
-        .navigationBarBackButtonHidden()
+            .navigationBarBackButtonHidden()
     }
     
     @ViewBuilder private var actionsView: some View {

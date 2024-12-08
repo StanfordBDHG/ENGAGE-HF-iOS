@@ -28,7 +28,12 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
         Configuration(standard: ENGAGEHFStandard()) {
             if !FeatureFlags.disableFirebase {
                 AccountConfiguration(
-                    service: FirebaseAccountService(providers: [.emailAndPassword, .signInWithApple], emulatorSettings: accountEmulator),
+                    service: FirebaseAccountService(
+                        providers: [
+                            .emailAndPassword
+                        ],
+                        emulatorSettings: accountEmulator
+                    ),
                     storageProvider: FirestoreAccountStorage(storeIn: Firestore.userCollection, mapping: [
                         "dateOfBirth": AccountKeys.dateOfBirth,
                         "invitationCode": AccountKeys.invitationCode,
@@ -81,7 +86,6 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
             MedicationsManager()
             VideoManager()
             
-            OnboardingDataSource()
             InvitationCodeModule()
 
             ConfigureTipKit()

@@ -14,6 +14,7 @@ import OSLog
 import Spezi
 import SpeziAccount
 import SpeziFoundation
+import SpeziNotifications
 import SpeziViews
 import SwiftUI
 import UserNotifications
@@ -21,7 +22,7 @@ import UserNotifications
 
 @Observable
 @MainActor
-class NotificationManager: Module, NotificationHandler, NotificationTokenHandler, EnvironmentAccessible {
+final class NotificationManager: Manager, NotificationHandler, NotificationTokenHandler {
     private struct NotificationTokenTimeoutError: LocalizedError {
         var errorDescription: String? {
             "Remote notification registration timed out."
@@ -44,6 +45,9 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
     
     var notificationsAuthorized: Bool = false
     var state: ViewState = .idle
+    
+    
+    nonisolated init() {}
     
     
     func configure() {
@@ -91,7 +95,27 @@ class NotificationManager: Module, NotificationHandler, NotificationTokenHandler
         }
     }
     
-    @MainActor
+    
+    func refreshContent() {
+        Task {
+            do {
+                if account?.details != nil {
+                    _ = try await self.requestNotificationPermissions()
+                } else {
+                    _ = try await self.unregisterDeviceToken()
+                }
+            } catch {
+                self.state = .error(
+                    AnyLocalizedError(
+                        error: error,
+                        defaultErrorDescription: "Unable to register for remote notifications."
+                    )
+                )
+            }
+        }
+    }
+    
+
     func checkNotificationsAuthorized() async {
         let systemNotificationSettings = await UNUserNotificationCenter.current().notificationSettings()
         

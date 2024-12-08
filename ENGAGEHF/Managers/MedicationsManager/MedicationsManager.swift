@@ -18,7 +18,7 @@ import SpeziFirebaseAccount
 /// Decodes the current user's medication recommendations from Firestore to an easily displayed internal representation
 @Observable
 @MainActor
-class MedicationsManager: Module, EnvironmentAccessible {
+final class MedicationsManager: Manager {
     @ObservationIgnored @StandardActor private var standard: ENGAGEHFStandard
 
     @ObservationIgnored @Dependency(Account.self) private var account: Account?
@@ -31,6 +31,9 @@ class MedicationsManager: Module, EnvironmentAccessible {
     private var notificationsTask: Task<Void, Never>?
 
     var medications: [MedicationDetails] = []
+    
+    
+    nonisolated init() {}
     
     
     func configure() {
@@ -62,6 +65,11 @@ class MedicationsManager: Module, EnvironmentAccessible {
         if let account, account.signedIn {
             updateSnapshotListener(for: account.details)
         }
+    }
+    
+    
+    func refreshContent() {
+        updateSnapshotListener(for: account?.details)
     }
     
     

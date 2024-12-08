@@ -10,7 +10,8 @@ import XCTest
 
 
 final class HeartHealthUITests: XCTestCase {
-    override func setUpWithError() throws {
+    @MainActor
+    override func setUp() async throws {
         try super.setUpWithError()
         continueAfterFailure = false
         
@@ -251,7 +252,7 @@ extension XCUIApplication {
         for vital in measurements {
             XCTAssert(staticTexts[vital].exists)
         }
-
+        
         XCTAssert(buttons["Discard"].exists)
         XCTAssert(buttons["Save"].exists)
 
