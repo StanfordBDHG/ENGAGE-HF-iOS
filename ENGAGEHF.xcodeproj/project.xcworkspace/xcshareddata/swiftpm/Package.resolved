@@ -13,7 +13,7 @@
     {
       "identity" : "antlr4",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/antlr/antlr4",
+      "location" : "https://github.com/antlr/antlr4.git",
       "state" : {
         "revision" : "cc82115a4e7f53d71d9d905caa2c2dfa4da58899",
         "version" : "4.13.2"
@@ -60,8 +60,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/firebase-ios-sdk.git",
       "state" : {
-        "revision" : "dbdfdc44bee8b8e4eaa5ec27eb12b9338f3f2bc1",
-        "version" : "11.5.0"
+        "revision" : "2e02253fd1ce99145bcbf1bb367ccf61bd0ca46b",
+        "version" : "11.6.0"
       }
     },
     {
@@ -114,8 +114,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordBDHG/HealthKitOnFHIR.git",
       "state" : {
-        "revision" : "87a9257e6fa37407f3437e4a0bf21dd09a4ea7c5",
-        "version" : "0.2.11"
+        "revision" : "a1a71254a75c6a3b18a0b356fd8f76bc489a3030",
+        "version" : "0.2.12"
       }
     },
     {
@@ -196,7 +196,7 @@
       "location" : "https://github.com/StanfordSpezi/SpeziAccount.git",
       "state" : {
         "branch" : "fix/wait-for-complete-details",
-        "revision" : "a7e3df1b51d31771eccb8c2c624e46ef0b33153e"
+        "revision" : "e8698a3cda2b056419305f2dc97705f3d41ffe81"
       }
     },
     {
@@ -231,8 +231,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziFirebase.git",
       "state" : {
-        "revision" : "7c6829624884f6f1d700e0316b2580b39d3b0c5f",
-        "version" : "2.0.0"
+        "branch" : "fix/storage-never-returns",
+        "revision" : "0c64273de2376b3a6d55b60af3b1d22847b5c0b6"
       }
     },
     {
@@ -319,7 +319,7 @@
     {
       "identity" : "swift-argument-parser",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-argument-parser",
+      "location" : "https://github.com/apple/swift-argument-parser.git",
       "state" : {
         "revision" : "41982a3656a71c768319979febd796c6fd111d5c",
         "version" : "1.5.0"
@@ -348,8 +348,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-nio.git",
       "state" : {
-        "revision" : "914081701062b11e3bb9e21accc379822621995e",
-        "version" : "2.76.1"
+        "revision" : "dca6594f65308c761a9c409e09fbf35f48d50d34",
+        "version" : "2.77.0"
       }
     },
     {
@@ -357,8 +357,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/FelixHerrmann/swift-package-list",
       "state" : {
-        "revision" : "26732b1cf7e422cb330a1e24420394752a14b059",
-        "version" : "4.4.1"
+        "revision" : "5e954ec39ce2374ff28a38224fd4e6bba7c57cdc",
+        "version" : "4.4.2"
       }
     },
     {
@@ -375,8 +375,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/swiftlang/swift-syntax.git",
       "state" : {
-        "revision" : "515f79b522918f83483068d99c68daeb5116342d",
-        "version" : "600.0.0-prerelease-2024-08-14"
+        "revision" : "cb53fa1bd3219b0b23ded7dfdd3b2baff266fd25",
+        "version" : "600.0.0"
       }
     },
     {
@@ -393,8 +393,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/realm/SwiftLint.git",
       "state" : {
-        "revision" : "168fb98ed1f3e343d703ecceaf518b6cf565207b",
-        "version" : "0.57.0"
+        "revision" : "25f2776977e663305bee71309ea1e34d435065f1",
+        "version" : "0.57.1"
       }
     },
     {
@@ -436,7 +436,7 @@
     {
       "identity" : "xctruntimeassertions",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/StanfordBDHG/XCTRuntimeAssertions",
+      "location" : "https://github.com/StanfordBDHG/XCTRuntimeAssertions.git",
       "state" : {
         "revision" : "f560ec8410af032dd485ca9386e8c2b5d3e1a1f8",
         "version" : "1.1.3"
