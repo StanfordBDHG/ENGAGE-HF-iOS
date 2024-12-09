@@ -293,7 +293,7 @@ extension XCUIApplication {
             "Overall",
             "Physical",
             "Social",
-            "Quality",
+            "Quality of Life",
             "Symptoms",
             "Dizziness"
         ]

@@ -429,9 +429,6 @@
     "None" : {
 
     },
-    "Not on this med that may help your heart." : {
-      "comment" : "No action required legend entry."
-    },
     "Not Started" : {
 
     },
@@ -478,9 +475,6 @@
     },
     "Notifications" : {
 
-    },
-    "On the med but may benefit from a higher dose." : {
-      "comment" : "Improvement available color legend entry."
     },
     "Organization" : {
 
@@ -856,7 +850,13 @@
         }
       }
     },
-    "You're on your target dose." : {
+    "You are not in this medication, but it might be helpful in the future." : {
+      "comment" : "No action required legend entry."
+    },
+    "You are on this medication, but may benefit from a higher dose." : {
+      "comment" : "Improvement available color legend entry."
+    },
+    "You are on your target dose." : {
       "comment" : "Target dose reached color legend entry."
     }
   },
