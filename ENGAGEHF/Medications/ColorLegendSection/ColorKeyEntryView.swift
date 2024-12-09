@@ -18,7 +18,7 @@ struct ColorKeyEntryView: View {
         HStack(alignment: .center) {
             Circle()
                 .fill(color)
-                .frame(width: 24)
+                .frame(width: 12)
             Text(interpretation)
         }
     }

@@ -30,7 +30,7 @@ enum SymptomsType: String, CaseIterable, Identifiable, CustomStringConvertible, 
         case .overall: "Overall"
         case .physical: "Physical"
         case .social: "Social"
-        case .quality: "Quality"
+        case .quality: "Quality of Life"
         case .specific: "Symptoms"
         case .dizziness: "Dizziness"
         }

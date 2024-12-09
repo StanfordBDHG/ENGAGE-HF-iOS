@@ -19,7 +19,7 @@ enum RecommendationStyle: CaseIterable {
         case .targetReached: .green
         case .improvementAvailable: .yellow
         case .actionRequired: .blue.opacity(0.6)
-        case .notStarted: .accent.opacity(0.6)
+        case .notStarted: .gray.opacity(0.6)
         }
     }
     
