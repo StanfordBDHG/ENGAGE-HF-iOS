@@ -22,7 +22,7 @@ struct ColorLegend: View {
                 }
             },
             header: {
-                Text("Color Key")
+                Text("Legend")
                     .padding(.horizontal, -16)
             }
         )

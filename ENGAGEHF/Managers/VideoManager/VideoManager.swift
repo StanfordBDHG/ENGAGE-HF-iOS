@@ -6,11 +6,13 @@
 // SPDX-License-Identifier: MIT
 //
 
+import FirebaseAuth
 import FirebaseFirestore
 import Foundation
 import OSLog
 import Spezi
 import SpeziAccount
+
 
 @Observable
 @MainActor

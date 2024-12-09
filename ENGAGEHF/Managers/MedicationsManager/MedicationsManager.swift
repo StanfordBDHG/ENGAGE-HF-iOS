@@ -191,7 +191,7 @@ extension MedicationsManager {
                     unit: "mg"
                 )
             ),
-            // Multi-ingredient, single schedule, at minimum dose
+            // Multi-ingredient, single schedule, at minimum dose, improvement available.
             MedicationDetails(
                 id: UUID().uuidString,
                 title: "Sacubitril-Valsartan",
@@ -205,7 +205,8 @@ extension MedicationsManager {
                     unit: "mg"
                 )
             ),
-            // Single ingredient, below minimum dose, non-integer frequency
+            // Single ingredient, below minimum dose, non-integer frequency.
+            // Not on the med, but action required.
             MedicationDetails(
                 id: UUID().uuidString,
                 title: "Spironolactone",
@@ -215,6 +216,20 @@ extension MedicationsManager {
                 type: .morePatientObservationsRequired,
                 dosageInformation: DosageInformation(
                     currentSchedule: [DoseSchedule(frequency: 1.5, quantity: [0])],
+                    targetSchedule: [DoseSchedule(frequency: 1.5, quantity: [25])],
+                    unit: "mg"
+                )
+            ),
+            // On the med but action required.
+            MedicationDetails(
+                id: UUID().uuidString,
+                title: "Dapagliflozin",
+                subtitle: "SGLT2i",
+                description: "More lab observations required for recommendations.",
+                videoPath: nil,
+                type: .moreLabObservationsRequired,
+                dosageInformation: DosageInformation(
+                    currentSchedule: [DoseSchedule(frequency: 1.5, quantity: [15])],
                     targetSchedule: [DoseSchedule(frequency: 1.5, quantity: [25])],
                     unit: "mg"
                 )

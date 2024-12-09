@@ -24,12 +24,40 @@ extension AnyAxisContent {
         }
     }
     
+    // Dizziness scores range between 0 and 5, and each has a specific desired label.
+    @AxisContentBuilder private static var dizzinessYAxisModifierBuilder: some AxisContent {
+        AxisMarks(values: [0, 1, 2, 3, 4, 5]) { value in
+            switch value.as(Int.self) {
+            case 5:
+                AxisValueLabel("Very Severe")
+            case 4:
+                AxisValueLabel("Severe")
+            case 3:
+                AxisValueLabel("Moderate")
+            case 2:
+                AxisValueLabel("Mild")
+            case 1:
+                AxisValueLabel("Minimal")
+            case 0:
+                AxisValueLabel("None")
+            default:
+                AxisValueLabel("")
+            }
+        }
+        
+        AxisMarks(
+            values: [0, 1, 2, 3, 4, 5]
+        ) {
+            AxisGridLine()
+        }
+    }
+    
     static var percentageYAxisModifier: AnyAxisContent {
         AnyAxisContent(percentageYAxisModifierBuilder)
     }
     
     
     static var dizzinessYAxisModifier: AnyAxisContent {
-        AnyAxisContent(AxisMarks(values: .automatic(desiredCount: 5)))
+        AnyAxisContent(dizzinessYAxisModifierBuilder)
     }
 }
