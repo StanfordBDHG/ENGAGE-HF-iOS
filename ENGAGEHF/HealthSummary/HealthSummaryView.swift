@@ -35,7 +35,7 @@ struct HealthSummaryView: View {
                         ToolbarItem(placement: .confirmationAction) {
                             ShareLink(
                                 item: healthSummaryDocument,
-                                preview: SharePreview("Health Summary", image: Image(.healthSummary))
+                                preview: SharePreview("Health Summary", image: Image(.engagehfIcon))
                             )
                                 .accessibilityLabel("Share Link")
                         }
