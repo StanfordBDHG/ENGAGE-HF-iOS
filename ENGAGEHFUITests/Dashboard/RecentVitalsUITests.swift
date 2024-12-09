@@ -6,7 +6,9 @@
 // SPDX-License-Identifier: MIT
 //
 
+import Foundation
 import XCTest
+
 
 final class RecentVitalsUITests: XCTestCase {
     private var expectedFormattedMeasurementDate: String {
@@ -62,7 +64,6 @@ final class RecentVitalsUITests: XCTestCase {
         sleep(1)
 
         XCTAssertFalse(app.alerts.element.exists)
-        
         
         // Weight measurement has been successfully saved, and should be represented in the dashboard
         XCTAssert(app.staticTexts["Recent Vitals"].waitForExistence(timeout: 0.5))

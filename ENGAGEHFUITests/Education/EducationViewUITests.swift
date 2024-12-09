@@ -10,7 +10,8 @@ import XCTest
 
 
 final class EducationViewUITests: XCTestCase {
-    override func setUpWithError() throws {
+    @MainActor
+    override func setUp() async throws {
         try super.setUpWithError()
         continueAfterFailure = false
         
@@ -20,6 +21,7 @@ final class EducationViewUITests: XCTestCase {
     }
     
     
+    @MainActor
     func testLongDescriptionVideoView() throws {
         let app = XCUIApplication()
         

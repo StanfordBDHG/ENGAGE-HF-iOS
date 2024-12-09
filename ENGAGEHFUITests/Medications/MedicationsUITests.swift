@@ -10,7 +10,8 @@ import XCTest
 
 
 final class MedicationsUITests: XCTestCase {
-    override func setUpWithError() throws {
+    @MainActor
+    override func setUp() async throws {
         try super.setUpWithError()
 
         continueAfterFailure = false
@@ -125,7 +126,8 @@ final class MedicationsUITests: XCTestCase {
         XCTAssert(app.staticTexts["97/103"].waitForExistence(timeout: 0.5), "Multi-ingredient target dose not found.")
     }
     
-    func testMultiScheduleDoseSummary() throws {
+    @MainActor
+    func testMultiScheduleDoseSummary() async throws {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)

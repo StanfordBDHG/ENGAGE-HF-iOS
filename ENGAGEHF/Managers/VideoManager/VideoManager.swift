@@ -16,7 +16,7 @@ import SpeziAccount
 
 @Observable
 @MainActor
-final class VideoManager: Module, EnvironmentAccessible, DefaultInitializable {
+final class VideoManager: Manager {
     @ObservationIgnored @Dependency(Account.self) private var account: Account?
     @ObservationIgnored @Dependency(AccountNotifications.self) private var accountNotifications: AccountNotifications?
     @Application(\.logger) @ObservationIgnored private var logger
@@ -60,9 +60,14 @@ final class VideoManager: Module, EnvironmentAccessible, DefaultInitializable {
         }
         
         if let account, account.signedIn {
-            Task { @MainActor in
-                videoCollections = await getVideoSections()
-            }
+            refreshContent()
+        }
+    }
+    
+    
+    func refreshContent() {
+        Task { @MainActor in
+            videoCollections = await getVideoSections()
         }
     }
     

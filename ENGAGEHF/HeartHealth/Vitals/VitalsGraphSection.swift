@@ -43,6 +43,7 @@ struct VitalsGraphSection: View {
                     dateResolution: granularity.defaultDateUnit,
                     targetValue: vitalsType == .weight ? vitalsManager.latestDryWeight : nil
                 )
+                    .disabled(data.isEmpty)
             },
             header: {
                 HStack {
