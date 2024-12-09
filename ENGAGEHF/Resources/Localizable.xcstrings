@@ -149,9 +149,6 @@
     "Cancel" : {
 
     },
-    "Color Key" : {
-
-    },
     "Contacts" : {
 
     },
@@ -372,6 +369,9 @@
       }
     },
     "Invitation Code" : {
+
+    },
+    "Legend" : {
 
     },
     "LICENSE_INFO_TITLE" : {

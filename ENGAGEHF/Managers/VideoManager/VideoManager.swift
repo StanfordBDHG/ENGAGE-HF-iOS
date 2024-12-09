@@ -45,12 +45,6 @@ final class VideoManager: Manager {
                     }
 
                     if event.newEnrolledAccountDetails != nil {
-                        // Refresh Firebase token to ensure proper permissions for accessing educational videos.
-                        do {
-                            try await Auth.auth().getToken(forcingRefresh: true)
-                        } catch {
-                            logger.error("Failed to get token: \(error.localizedDescription)")
-                        }
                         videoCollections = await getVideoSections()
                     } else if event.accountDetails == nil {
                         videoCollections = []
