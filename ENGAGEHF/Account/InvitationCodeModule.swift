@@ -100,6 +100,7 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
         if account.details != nil {
             // always start logged out, even if testing account had already been set up
             try await accountService.logout()
+            try await Task.sleep(for: .seconds(1))
         }
 
         do {
