@@ -85,7 +85,7 @@ jobs:
     with:
       runsonlabels: '["macOS", "self-hosted"]'
       environment: ${{ needs.determineenvironment.outputs.environment }}
-      googleserviceinfoplistpath: 'PAWS/Supporting Files/GoogleService-Info.plist'
+      googleserviceinfoplistpath: 'ENGAGEHF/Supporting Files/GoogleService-Info.plist'
       setupsigning: true
       setupfirebaseemulator: true
       firebaseemulatorimport: ./firebase --project ${{ needs.vars.outputs.firebaseprojectid }}
