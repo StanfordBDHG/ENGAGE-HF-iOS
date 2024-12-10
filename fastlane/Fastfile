@@ -11,7 +11,8 @@ default_platform(:ios)
 APP_CONFIG = {
   default_environment: "staging",
   default_app_identifier: "edu.stanford.bdh.engagehf",
-  default_provisioningProfile: "Stanford BDHG ENGAGE-HF"
+  default_provisioningProfile: "Stanford BDHG ENGAGE-HF",
+  default_version_name: "2.0.1"
 }.freeze
 
 platform :ios do
@@ -91,9 +92,9 @@ platform :ios do
 
   desc "Archive app"
   lane :archive do |options|
-    appidentifier = options[:appidentifier] || "edu.stanford.bdh.engagehf"
-    provisioningProfile = options[:provisioningProfile] || "Stanford BDHG ENGAGE-HF"
-
+    appidentifier = options[:appidentifier].to_s.strip.empty? ? APP_CONFIG[:default_app_identifier] : options[:appidentifier]
+    provisioningProfile = options[:provisioningProfile].to_s.strip.empty? ? APP_CONFIG[:default_provisioningProfile] : options[:provisioningProfile]
+    
     update_app_identifier(
       plist_path: "ENGAGEHF/Supporting Files/Info.plist",
       app_identifier: appidentifier
@@ -128,10 +129,18 @@ platform :ios do
     environment = options[:environment].to_s.strip.empty? ? APP_CONFIG[:default_environment] : options[:environment]
     appidentifier = options[:appidentifier].to_s.strip.empty? ? APP_CONFIG[:default_app_identifier] : options[:appidentifier]
     provisioningProfile = options[:provisioningProfile].to_s.strip.empty? ? APP_CONFIG[:default_provisioningProfile] : options[:provisioningProfile]
+    versionname = options[:versionname].to_s.strip.empty? ? APP_CONFIG[:default_version_name] : options[:versionname]
 
     UI.message("Using environment: #{environment}")
     UI.message("Using app identifier: #{appidentifier}")
     UI.message("Using provisioning profile: #{provisioningProfile}")
+    UI.message("Using version name: #{versionname}")
+
+    if environment == "production"
+      increment_version_number(
+        version_number: versionname
+      )
+    end
     
     signin
     latest_build_number = latest_testflight_build_number(

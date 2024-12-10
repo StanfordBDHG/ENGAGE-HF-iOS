@@ -6,13 +6,12 @@
 # SPDX-License-Identifier: MIT
 #
 
-name: Beta Deployment
+name: Deployment
 
 on:
   push:
     branches:
       - main
-      - fixDeployment
   workflow_dispatch:
     inputs:
       environment:
@@ -25,6 +24,11 @@ on:
           - development
           - staging
           - production
+      version:
+        description: |
+          The semantic version of the app that should be released.
+        required: true
+        type: string
   workflow_call:
     inputs:
       environment:
@@ -33,9 +37,14 @@ on:
         required: false
         type: string
         default: staging
+      version:
+        description: |
+          The semantic version of the app that should be released.
+        required: true
+        type: string
 
 concurrency:
-  group: Beta-Deployment
+  group: deployment
   cancel-in-progress: false
 
 jobs:
@@ -63,21 +72,36 @@ jobs:
     outputs:
       appidentifier: ${{ vars.APP_IDENTIFIER }}
       provisioningProfileName: ${{ vars.PROVISIONING_PROFILE_NAME }}
+      version: ${{ steps.vars.outputs.version }}
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - uses: actions-ecosystem/action-get-latest-tag@v1
+        id: get-latest-tag
+        with:
+          semver_only: true
+          initial_version: "2.0.1"
       - run: |
           echo "Injecting Environment Variables In Deployment Workflow ..."
           echo "appidentifier: ${{ vars.APP_IDENTIFIER }}"
           echo "provisioningProfileName: ${{ vars.PROVISIONING_PROFILE_NAME }}"
-  # buildandtest:
-  #   name: Build and Test
-  #   needs: determineenvironment
-  #   uses: ./.github/workflows/build-and-test.yml
-  #   permissions:
-  #     contents: read
-  #   secrets: inherit
+          if [[ -z "${{ inputs.version }}" ]]; then
+            echo "version=${{ steps.get-latest-tag.outputs.tag }}" >> $GITHUB_OUTPUT
+            echo "version: ${{ steps.get-latest-tag.outputs.tag }}"
+          else
+            echo "version=${{ inputs.version }}" >> $GITHUB_OUTPUT
+            echo "version: ${{ inputs.version }}"
+          fi
+  buildandtest:
+    name: Build and Test
+    needs: determineenvironment
+    uses: ./.github/workflows/build-and-test.yml
+    permissions:
+      contents: read
+    secrets: inherit
   iosapptestflightdeployment:
     name: iOS App TestFlight Deployment
-    needs: [determineenvironment, vars] # buildandtest
+    needs: [determineenvironment, vars, buildandtest]
     uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
     permissions:
       contents: read
@@ -86,5 +110,5 @@ jobs:
       environment: ${{ needs.determineenvironment.outputs.environment }}
       googleserviceinfoplistpath: 'ENGAGEHF/Supporting Files/GoogleService-Info.plist'
       setupsigning: true
-      fastlanelane: deploy environment:"${{ needs.determineenvironment.outputs.environment }}" appidentifier:"${{ needs.vars.outputs.appidentifier }}" provisioningProfile:"${{ needs.vars.outputs.provisioningProfileName }}"
+      fastlanelane: deploy environment:"${{ needs.determineenvironment.outputs.environment }}" appidentifier:"${{ needs.vars.outputs.appidentifier }}" provisioningProfile:"${{ needs.vars.outputs.provisioningProfileName }}" versionname:"${{ needs.vars.outputs.version }}"
     secrets: inherit
