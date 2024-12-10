@@ -8,6 +8,13 @@
 
 default_platform(:ios)
 
+APP_CONFIG = {
+  default_environment: "staging",
+  default_app_identifier: "edu.stanford.bdh.engagehf",
+  default_provisioningProfile: "Stanford BDHG ENGAGE-HF",
+  default_version_name: "2.0.1"
+}.freeze
+
 platform :ios do
   before_all do
     ENV["FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT"] = "5"
@@ -85,9 +92,9 @@ platform :ios do
 
   desc "Archive app"
   lane :archive do |options|
-    appidentifier = options[:appidentifier] || "edu.stanford.bdh.engagehf"
-    provisioningProfile = options[:provisioningProfile] || "Stanford BDHG ENGAGE-HF"
-
+    appidentifier = options[:appidentifier].to_s.strip.empty? ? APP_CONFIG[:default_app_identifier] : options[:appidentifier]
+    provisioningProfile = options[:provisioningProfile].to_s.strip.empty? ? APP_CONFIG[:default_provisioningProfile] : options[:provisioningProfile]
+    
     update_app_identifier(
       plist_path: "ENGAGEHF/Supporting Files/Info.plist",
       app_identifier: appidentifier
@@ -119,15 +126,28 @@ platform :ios do
 
   desc "Publish a release to TestFlight or the App Store depending on the environment"
   lane :deploy do |options|
-    environment = options[:environment] || "staging"
-    appidentifier = options[:appidentifier] || "edu.stanford.bdh.engagehf"
-    provisioningProfile = options[:provisioningProfile] || "Stanford BDHG ENGAGE-HF"
+    environment = options[:environment].to_s.strip.empty? ? APP_CONFIG[:default_environment] : options[:environment]
+    appidentifier = options[:appidentifier].to_s.strip.empty? ? APP_CONFIG[:default_app_identifier] : options[:appidentifier]
+    provisioningProfile = options[:provisioningProfile].to_s.strip.empty? ? APP_CONFIG[:default_provisioningProfile] : options[:provisioningProfile]
+    versionname = options[:versionname].to_s.strip.empty? ? APP_CONFIG[:default_version_name] : options[:versionname]
+
+    UI.message("Using environment: #{environment}")
+    UI.message("Using app identifier: #{appidentifier}")
+    UI.message("Using provisioning profile: #{provisioningProfile}")
+    UI.message("Using version name: #{versionname}")
+
+    if environment == "production"
+      increment_version_number(
+        version_number: versionname
+      )
+    end
     
     signin
+    latest_build_number = latest_testflight_build_number(
+      app_identifier: appidentifier
+    )
     increment_build_number(
-      {
-        build_number: latest_testflight_build_number + 1
-      }
+      build_number: latest_build_number + 1
     )
     archive(
       appidentifier: appidentifier,
@@ -138,7 +158,6 @@ platform :ios do
     if environment == "production"
       deliver(
         app_identifier: appidentifier,
-        username: ENV["APPLE_ID"],
         submit_for_review: true,
         force: true,
         reject_if_possible: true,
@@ -148,7 +167,6 @@ platform :ios do
     else
       upload_to_testflight(
         app_identifier: appidentifier,
-        apple_id: ENV["APPLE_ID"],
         distribute_external: true,
         groups: [
           "External Testers"
