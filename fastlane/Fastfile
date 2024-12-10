@@ -128,15 +128,18 @@ platform :ios do
     environment = options[:environment].to_s.strip.empty? ? APP_CONFIG[:default_environment] : options[:environment]
     appidentifier = options[:appidentifier].to_s.strip.empty? ? APP_CONFIG[:default_app_identifier] : options[:appidentifier]
     provisioningProfile = options[:provisioningProfile].to_s.strip.empty? ? APP_CONFIG[:default_provisioningProfile] : options[:provisioningProfile]
-    
+
     UI.message("Using environment: #{environment}")
     UI.message("Using app identifier: #{appidentifier}")
     UI.message("Using provisioning profile: #{provisioningProfile}")
     
     signin
+    latest_build_number = latest_testflight_build_number(
+      app_identifier: appidentifier
+    )
     increment_build_number(
       app_identifier: appidentifier,
-      build_number: latest_testflight_build_number + 1
+      build_number: latest_build_number + 1
     )
     archive(
       appidentifier: appidentifier,
