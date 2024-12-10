@@ -149,7 +149,6 @@ platform :ios do
     if environment == "production"
       deliver(
         app_identifier: appidentifier,
-        username: ENV["APPLE_ID"],
         submit_for_review: true,
         force: true,
         reject_if_possible: true,
@@ -159,7 +158,6 @@ platform :ios do
     else
       upload_to_testflight(
         app_identifier: appidentifier,
-        apple_id: ENV["APPLE_ID"],
         distribute_external: true,
         groups: [
           "External Testers"
