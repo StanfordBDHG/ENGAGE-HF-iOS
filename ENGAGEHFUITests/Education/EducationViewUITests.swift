@@ -20,7 +20,6 @@ final class EducationViewUITests: XCTestCase {
         app.launch()
     }
     
-    
     @MainActor
     func testLongDescriptionVideoView() async throws {
         let app = XCUIApplication()
@@ -41,7 +40,7 @@ final class EducationViewUITests: XCTestCase {
         
         // Validate video player
         XCTAssert(app.staticTexts["Installing ENGAGE-HF App and Connecting Omron Devices"].waitForExistence(timeout: 2))
-        XCTAssert(app.links["Photo image of Education For Patients By Dr Zahra Azizi"].waitForExistence(timeout: 2))
+        XCTAssert(app.links["Photo image of Education For Patients"].waitForExistence(timeout: 2))
         XCTAssert(app.buttons["Play"].waitForExistence(timeout: 2))
         XCTAssert(app.buttons["Play"].isHittable)
         
@@ -89,7 +88,7 @@ final class EducationViewUITests: XCTestCase {
         
         // Validate video player
         XCTAssert(app.staticTexts["Beta Blockers for Heart Failure"].waitForExistence(timeout: 2))
-        XCTAssert(app.links["Photo image of Education For Patients By Dr Zahra Azizi"].waitForExistence(timeout: 2))
+        XCTAssert(app.links["Photo image of Education For Patients"].waitForExistence(timeout: 2))
         XCTAssert(app.buttons["Play"].waitForExistence(timeout: 2))
         XCTAssert(app.buttons["Play"].isHittable)
         
@@ -134,7 +133,7 @@ final class EducationViewUITests: XCTestCase {
         
         // Validate video player
         XCTAssert(app.staticTexts["How to Use the ENGAGE-HF App!"].waitForExistence(timeout: 2))
-        XCTAssert(app.links["Photo image of Education For Patients By Dr Zahra Azizi"].waitForExistence(timeout: 2))
+        XCTAssert(app.links["Photo image of Education For Patients"].waitForExistence(timeout: 2))
         XCTAssert(app.buttons["Play"].waitForExistence(timeout: 2))
         XCTAssert(app.buttons["Play"].isHittable)
         
