@@ -31,7 +31,7 @@ jobs:
       firebasejsonpath: ./ENGAGE-HF-Firebase/firebase.json
       setupfirebaseemulator: true
       checkout_submodules: true
-      customcommand: npm --prefix ENGAGE-HF-Firebase run prepare && firebase emulators:exec -c ./ENGAGE-HF-Firebase/firebase.json --export-on-exit=./firebase 'npm --prefix ./ENGAGE-HF-Firebase/functions run serve:seed'
+      customcommand: npm --prefix ENGAGE-HF-Firebase run prepare && firebase emulators:exec -c ./ENGAGE-HF-Firebase/firebase.json --export-on-exit=./firebase 'npm --prefix ./ENGAGE-HF-Firebase/functions run serve:seed && sleep 10'
     secrets:
       GOOGLE_APPLICATION_CREDENTIALS_BASE64: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_BASE64 }}
   uploadcoveragereport:
