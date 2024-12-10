@@ -60,13 +60,11 @@ jobs:
     runs-on: ubuntu-latest
     environment: ${{ needs.determineenvironment.outputs.environment }}
     outputs:
-      firebaseprojectid: ${{ vars.FIREBASE_PROJECT_ID }}
       appidentifier: ${{ vars.APP_IDENTIFIER }}
       provisioningProfileName: ${{ vars.PROVISIONING_PROFILE_NAME }}
     steps:
       - run: |
-          echo "Injecting Environment Variables In Deployment Workflow:"
-          echo "firebaseprojectid: ${{ vars.FIREBASE_PROJECT_ID }}"
+          echo "Injecting Environment Variables In Deployment Workflow ..."
           echo "appidentifier: ${{ vars.APP_IDENTIFIER }}"
           echo "provisioningProfileName: ${{ vars.PROVISIONING_PROFILE_NAME }}"
   buildandtest:
@@ -87,7 +85,5 @@ jobs:
       environment: ${{ needs.determineenvironment.outputs.environment }}
       googleserviceinfoplistpath: 'ENGAGEHF/Supporting Files/GoogleService-Info.plist'
       setupsigning: true
-      setupfirebaseemulator: true
-      firebaseemulatorimport: ./firebase --project ${{ needs.vars.outputs.firebaseprojectid }}
       fastlanelane: deploy environment:"${{ needs.determineenvironment.outputs.environment }} appidentifier:"${{ needs.vars.outputs.appidentifier }} provisioningProfile:"${{ needs.vars.outputs.provisioningProfileName }}"
     secrets: inherit
