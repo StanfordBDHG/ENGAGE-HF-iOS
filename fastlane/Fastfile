@@ -138,7 +138,6 @@ platform :ios do
       app_identifier: appidentifier
     )
     increment_build_number(
-      app_identifier: appidentifier,
       build_number: latest_build_number + 1
     )
     archive(
