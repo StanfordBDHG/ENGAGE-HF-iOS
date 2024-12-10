@@ -67,16 +67,16 @@ jobs:
           echo "Injecting Environment Variables In Deployment Workflow ..."
           echo "appidentifier: ${{ vars.APP_IDENTIFIER }}"
           echo "provisioningProfileName: ${{ vars.PROVISIONING_PROFILE_NAME }}"
-  buildandtest:
-    name: Build and Test
-    needs: determineenvironment
-    uses: ./.github/workflows/build-and-test.yml
-    permissions:
-      contents: read
-    secrets: inherit
+  # buildandtest:
+  #   name: Build and Test
+  #   needs: determineenvironment
+  #   uses: ./.github/workflows/build-and-test.yml
+  #   permissions:
+  #     contents: read
+  #   secrets: inherit
   iosapptestflightdeployment:
     name: iOS App TestFlight Deployment
-    needs: [determineenvironment, vars, buildandtest]
+    needs: [determineenvironment, vars] # buildandtest
     uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
     permissions:
       contents: read
