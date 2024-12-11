@@ -100,6 +100,7 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
         if account.details != nil {
             // always start logged out, even if testing account had already been set up
             try await accountService.logout()
+            try await Task.sleep(for: .seconds(1))
         }
 
         do {
@@ -118,6 +119,7 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
             details.password = password
             details.name = PersonNameComponents(givenName: "Leland", familyName: "Stanford")
             try await accountService.signUp(with: details)
+            try await Task.sleep(for: .seconds(1))
             try await verifyOnboardingCode(invitationCode)
         } catch {
             logger.error("Failed setting up test account : \(error)")
