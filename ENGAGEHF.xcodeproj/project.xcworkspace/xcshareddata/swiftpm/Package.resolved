@@ -1,5 +1,5 @@
 {
-  "originHash" : "81116aad1429e128f33d546ff8e0a208e7aef1ec280da12116d9badf93ef6b25",
+  "originHash" : "1285773bc511019486804fe96ced0fc4d3b7b0117bc649da45147d177144f8df",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -60,8 +60,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/firebase-ios-sdk.git",
       "state" : {
-        "revision" : "8328630971a8fdd8072b36bb22bef732eb15e1f0",
-        "version" : "11.4.0"
+        "revision" : "2e02253fd1ce99145bcbf1bb367ccf61bd0ca46b",
+        "version" : "11.6.0"
       }
     },
     {
@@ -195,8 +195,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziAccount.git",
       "state" : {
-        "revision" : "0e4dcc7d3284b439b17fae621c5c6e73d9213696",
-        "version" : "2.1.0"
+        "revision" : "37df11e8f65b9aa0a3aaf0d4bc3e65e87b425637",
+        "version" : "2.1.1"
       }
     },
     {
@@ -205,7 +205,7 @@
       "location" : "https://github.com/StanfordSpezi/SpeziBluetooth.git",
       "state" : {
         "branch" : "feature/accessory-setup-kit",
-        "revision" : "0b2225b0c6877d3614fb3acd504501066ef409f8"
+        "revision" : "e00b5475efaf3b12a0585854f74aec35d65e0757"
       }
     },
     {
@@ -223,7 +223,7 @@
       "location" : "https://github.com/StanfordSpezi/SpeziDevices.git",
       "state" : {
         "branch" : "feature/accessory-setup-kit",
-        "revision" : "0ab64d1e391e094cdd8fe56bd92ca2aa7b28d382"
+        "revision" : "d200058c088b2d01259a614f92c8d5d25cf27d6c"
       }
     },
     {
@@ -231,8 +231,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziFirebase.git",
       "state" : {
-        "revision" : "7c6829624884f6f1d700e0316b2580b39d3b0c5f",
-        "version" : "2.0.0"
+        "revision" : "5dd57f9de42c02d6a94f3af4d8cf3d9b81ec6661",
+        "version" : "2.0.1"
       }
     },
     {
@@ -269,6 +269,15 @@
       "state" : {
         "revision" : "89fad797897bb741fc148027859c1bab3129999a",
         "version" : "2.2.0"
+      }
+    },
+    {
+      "identity" : "spezinotifications",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordSpezi/SpeziNotifications.git",
+      "state" : {
+        "revision" : "7f24fce6b969d0f1a7bcc0e228af1c01e55fb59f",
+        "version" : "1.0.2"
       }
     },
     {
@@ -310,7 +319,7 @@
     {
       "identity" : "swift-argument-parser",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-argument-parser.git",
+      "location" : "https://github.com/apple/swift-argument-parser",
       "state" : {
         "revision" : "41982a3656a71c768319979febd796c6fd111d5c",
         "version" : "1.5.0"
@@ -339,8 +348,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-nio.git",
       "state" : {
-        "revision" : "914081701062b11e3bb9e21accc379822621995e",
-        "version" : "2.76.1"
+        "revision" : "dca6594f65308c761a9c409e09fbf35f48d50d34",
+        "version" : "2.77.0"
       }
     },
     {
@@ -348,8 +357,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/FelixHerrmann/swift-package-list.git",
       "state" : {
-        "revision" : "e84b63c88f0797d769732440fe0786c5a2c634d8",
-        "version" : "4.4.0"
+        "revision" : "5e954ec39ce2374ff28a38224fd4e6bba7c57cdc",
+        "version" : "4.4.2"
       }
     },
     {
@@ -366,8 +375,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/swiftlang/swift-syntax.git",
       "state" : {
-        "revision" : "515f79b522918f83483068d99c68daeb5116342d",
-        "version" : "600.0.0-prerelease-2024-08-14"
+        "revision" : "cb53fa1bd3219b0b23ded7dfdd3b2baff266fd25",
+        "version" : "600.0.0"
       }
     },
     {
@@ -384,8 +393,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/realm/SwiftLint.git",
       "state" : {
-        "revision" : "168fb98ed1f3e343d703ecceaf518b6cf565207b",
-        "version" : "0.57.0"
+        "revision" : "25f2776977e663305bee71309ea1e34d435065f1",
+        "version" : "0.57.1"
       }
     },
     {
