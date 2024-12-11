@@ -43,9 +43,7 @@ final class NavigationManager: Manager {
     // On sign in, reinitialize to an empty navigation path
     func configure() {
         guard let accountNotifications else {
-            guard FeatureFlags.disableFirebase else {
-                preconditionFailure("Expected account notifications to be availble.")
-            }
+            precondition(FeatureFlags.disableFirebase, "Expected account notifications to be available.")
             return
         }
         notificationTask = Task.detached { @MainActor [weak self] in

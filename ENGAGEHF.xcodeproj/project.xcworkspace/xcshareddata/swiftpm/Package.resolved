@@ -1,5 +1,5 @@
 {
-  "originHash" : "2f8235f304c1dd7bcfc68f692f99b4029356877d29f596e8787777ad4f475cb3",
+  "originHash" : "1285773bc511019486804fe96ced0fc4d3b7b0117bc649da45147d177144f8df",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -49,7 +49,7 @@
     {
       "identity" : "fhirmodels",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/FHIRModels",
+      "location" : "https://github.com/apple/FHIRModels.git",
       "state" : {
         "revision" : "861afd5816a98d38f86220eab2f812d76cad84a0",
         "version" : "0.5.0"
@@ -184,7 +184,7 @@
     {
       "identity" : "spezi",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/StanfordSpezi/Spezi",
+      "location" : "https://github.com/StanfordSpezi/Spezi.git",
       "state" : {
         "revision" : "4513a697572e8e1faea1e0ee52e6fad4b8d3dd8d",
         "version" : "1.8.0"
@@ -204,8 +204,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziBluetooth.git",
       "state" : {
-        "revision" : "977cc675d8c2dca51eabd52dc0e9476702c678eb",
-        "version" : "3.1.0"
+        "branch" : "feature/accessory-setup-kit",
+        "revision" : "e00b5475efaf3b12a0585854f74aec35d65e0757"
       }
     },
     {
@@ -222,8 +222,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziDevices.git",
       "state" : {
-        "revision" : "397c0e8217350a32621a3e6abdec0d86f8c651a6",
-        "version" : "1.4.1"
+        "branch" : "feature/accessory-setup-kit",
+        "revision" : "d200058c088b2d01259a614f92c8d5d25cf27d6c"
       }
     },
     {
@@ -238,7 +238,7 @@
     {
       "identity" : "spezifoundation",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/StanfordSpezi/SpeziFoundation",
+      "location" : "https://github.com/StanfordSpezi/SpeziFoundation.git",
       "state" : {
         "revision" : "5b4ad1b343154b52a68c33a6bfe02d9cb07cb9dc",
         "version" : "2.0.0"
@@ -256,7 +256,7 @@
     {
       "identity" : "spezilicense",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/StanfordSpezi/SpeziLicense",
+      "location" : "https://github.com/StanfordSpezi/SpeziLicense.git",
       "state" : {
         "revision" : "2249ce615a624a072834e31e7906b779ba82b824",
         "version" : "0.1.1"
@@ -265,7 +265,7 @@
     {
       "identity" : "spezinetworking",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/StanfordSpezi/SpeziNetworking",
+      "location" : "https://github.com/StanfordSpezi/SpeziNetworking.git",
       "state" : {
         "revision" : "89fad797897bb741fc148027859c1bab3129999a",
         "version" : "2.2.0"
@@ -283,7 +283,7 @@
     {
       "identity" : "spezionboarding",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/StanfordSpezi/SpeziOnboarding",
+      "location" : "https://github.com/StanfordSpezi/SpeziOnboarding.git",
       "state" : {
         "revision" : "a3d7bc15e6803b2205eb8dca010a48b1a40215be",
         "version" : "1.2.2"
@@ -319,7 +319,7 @@
     {
       "identity" : "swift-argument-parser",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-argument-parser.git",
+      "location" : "https://github.com/apple/swift-argument-parser",
       "state" : {
         "revision" : "41982a3656a71c768319979febd796c6fd111d5c",
         "version" : "1.5.0"
@@ -355,7 +355,7 @@
     {
       "identity" : "swift-package-list",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/FelixHerrmann/swift-package-list",
+      "location" : "https://github.com/FelixHerrmann/swift-package-list.git",
       "state" : {
         "revision" : "5e954ec39ce2374ff28a38224fd4e6bba7c57cdc",
         "version" : "4.4.2"
