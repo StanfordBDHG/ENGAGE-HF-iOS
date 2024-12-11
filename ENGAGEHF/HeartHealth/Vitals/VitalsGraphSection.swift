@@ -48,7 +48,6 @@ struct VitalsGraphSection: View {
 #else
                     .disabled(data.isEmpty)
 #endif
-                
             },
             header: {
                 HStack {
