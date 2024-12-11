@@ -21,7 +21,7 @@ import SpeziFirebaseAccount
 /// On sign-in, adds a snapshot listener to the user's messages collection
 @Observable
 @MainActor
-final class MessageManager: Module, EnvironmentAccessible, DefaultInitializable {
+final class MessageManager: Manager {
     @ObservationIgnored @StandardActor var standard: ENGAGEHFStandard
     
     @ObservationIgnored @Dependency(Account.self) private var account: Account?
@@ -69,10 +69,14 @@ final class MessageManager: Module, EnvironmentAccessible, DefaultInitializable 
     }
     
     
+    func refreshContent() {
+        updateSnapshotListener(for: account?.details)
+    }
+    
+    
     /// Call on initialization and sign-in of user
     ///
     /// Creates a snapshot listener to save new messages to the manager as they are added to the user's directory in Firebase
-    @MainActor
     private func updateSnapshotListener(for details: AccountDetails?) {
         logger.info("Initializing message snapshot listener...")
 
@@ -111,7 +115,7 @@ final class MessageManager: Module, EnvironmentAccessible, DefaultInitializable 
             }
     }
 
-    @MainActor
+    
     func dismiss(_ message: Message, didPerformAction: Bool) async {
         logger.debug("Dismissing message with id: \(message.id ?? "nil")")
         
@@ -154,6 +158,7 @@ final class MessageManager: Module, EnvironmentAccessible, DefaultInitializable 
         logger.debug("Successfully dismissed message (\(messageId)).")
     }
 
+    
     deinit {
         _notificationTask?.cancel()
     }
@@ -164,7 +169,6 @@ final class MessageManager: Module, EnvironmentAccessible, DefaultInitializable 
 extension MessageManager {
     /// Adds a mock message to self.messages
     /// Used for testing in previews
-    @MainActor
     func addMockMessage(dismissible: Bool = true, action: MessageAction = .showHealthSummary) {
         let mockMessage = Message(
             title: "Medication Change",
@@ -179,7 +183,6 @@ extension MessageManager {
     }
     
 
-    @MainActor
     private func injectTestMessages() {
         self.messages = [
             // With play video action, with description, is dismissible

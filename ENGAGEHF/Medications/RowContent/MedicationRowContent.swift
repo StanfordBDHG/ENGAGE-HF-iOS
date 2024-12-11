@@ -51,4 +51,7 @@ struct MedicationRowContent: View {
             )
         )
     )
+    .previewWith(standard: ENGAGEHFStandard()) {
+        NavigationManager()
+    }
 }

@@ -10,7 +10,8 @@ import XCTest
 
 
 final class MedicationsUITests: XCTestCase {
-    override func setUpWithError() throws {
+    @MainActor
+    override func setUp() async throws {
         try super.setUpWithError()
 
         continueAfterFailure = false
@@ -34,6 +35,8 @@ final class MedicationsUITests: XCTestCase {
         app.buttons["Add Medications"].tap()
         
         XCTAssert(app.images["Medication Label: improvementAvailable"].waitForExistence(timeout: 0.5))
+        app.images["Medication Label: improvementAvailable"].tap()
+        
         XCTAssert(app.images["Sacubitril-Valsartan More Information"].waitForExistence(timeout: 0.5))
         app.images["Sacubitril-Valsartan More Information"].tap()
         
@@ -64,6 +67,7 @@ final class MedicationsUITests: XCTestCase {
         app.buttons["Add Medications"].tap()
         
         XCTAssert(app.images["Medication Label: improvementAvailable"].waitForExistence(timeout: 0.5))
+        app.images["Medication Label: improvementAvailable"].tap()
         
         let medicationDescription = app.staticTexts["You are eligible for a new dosage."]
         XCTAssert(medicationDescription.waitForExistence(timeout: 0.5))
@@ -93,6 +97,8 @@ final class MedicationsUITests: XCTestCase {
         app.swipeUp()
         
         XCTAssert(app.images["Medication Label: notStarted"].waitForExistence(timeout: 0.5))
+        app.images["Medication Label: notStarted"].tap()
+        
         XCTAssert(app.staticTexts["Not Started"].waitForExistence(timeout: 0.5))
     }
     
@@ -108,6 +114,9 @@ final class MedicationsUITests: XCTestCase {
         XCTAssert(app.buttons["Add Medications"].waitForExistence(timeout: 0.5), "No \"Add Medications\" Button Found.")
         app.buttons["Add Medications"].tap()
         
+        XCTAssert(app.images["Medication Label: improvementAvailable"].waitForExistence(timeout: 0.5))
+        app.images["Medication Label: improvementAvailable"].tap()
+        
         // Multi-ingredient, "twice daily"
         XCTAssert(app.staticTexts["Sacubitril-Valsartan Schedule Summary"].firstMatch.exists)
         
@@ -117,7 +126,8 @@ final class MedicationsUITests: XCTestCase {
         XCTAssert(app.staticTexts["97/103"].waitForExistence(timeout: 0.5), "Multi-ingredient target dose not found.")
     }
     
-    func testMultiScheduleDoseSummary() throws {
+    @MainActor
+    func testMultiScheduleDoseSummary() async throws {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
@@ -131,6 +141,7 @@ final class MedicationsUITests: XCTestCase {
         
         // Single ingredient, multiple schedules, "daily"
         XCTAssert(app.images["Medication Label: personalTargetDoseReached"].waitForExistence(timeout: 0.5))
+        app.images["Medication Label: personalTargetDoseReached"].tap()
         
         XCTAssert(app.staticTexts["2.5"].waitForExistence(timeout: 0.5), "First component of current dose not found.")
         XCTAssert(app.staticTexts["5"].waitForExistence(timeout: 0.5), "Second component of current dose not found.")
@@ -153,15 +164,21 @@ final class MedicationsUITests: XCTestCase {
         // Once daily
         app.swipeUp()
         XCTAssert(app.images["Medication Label: targetDoseReached"].firstMatch.waitForExistence(timeout: 0.5))
+        app.images["Medication Label: targetDoseReached"].firstMatch.tap()
+        
         XCTAssert(app.staticTexts["daily"].firstMatch.waitForExistence(timeout: 0.5), "No \"daily\" quantifier found.")
         
         // Twice daily
         app.swipeDown()
         XCTAssert(app.images["Medication Label: improvementAvailable"].waitForExistence(timeout: 0.5))
+        app.images["Medication Label: improvementAvailable"].tap()
+        
         XCTAssert(app.staticTexts["twice daily"].firstMatch.waitForExistence(timeout: 0.5), "No \"twice daily\" quantifier found.")
         
         // Non-integer frequency
         XCTAssert(app.images["Medication Label: morePatientObservationsRequired"].waitForExistence(timeout: 0.5))
+        app.images["Medication Label: morePatientObservationsRequired"].tap()
+        
         XCTAssert(app.staticTexts["1.5x daily"].firstMatch.waitForExistence(timeout: 0.5), "No \"1.5x daily\" quantifier found.")
     }
     
@@ -178,6 +195,8 @@ final class MedicationsUITests: XCTestCase {
         app.buttons["Add Medications"].tap()
         
         app.swipeUp()
+        
+        app.images["Medication Label: personalTargetDoseReached"].tap()
         
         let halfFilledGauge = app.otherElements["Empagliflozin Dosage Gauge"]
         XCTAssert(halfFilledGauge.waitForExistence(timeout: 0.5))
@@ -197,6 +216,8 @@ final class MedicationsUITests: XCTestCase {
         XCTAssert(app.buttons["Add Medications"].waitForExistence(timeout: 0.5), "No \"Add Medications\" Button Found.")
         app.buttons["Add Medications"].tap()
         
+        app.images["Medication Label: improvementAvailable"].tap()
+        
         let minimalGauge = app.otherElements["Sacubitril-Valsartan Dosage Gauge"]
         XCTAssert(minimalGauge.waitForExistence(timeout: 0.5))
         XCTAssertEqual(minimalGauge.label, "Current, Target", "Label not correct in minimum schedule gauge.")
@@ -214,6 +235,8 @@ final class MedicationsUITests: XCTestCase {
         
         XCTAssert(app.buttons["Add Medications"].waitForExistence(timeout: 0.5), "No \"Add Medications\" Button Found.")
         app.buttons["Add Medications"].tap()
+        
+        app.images["Medication Label: morePatientObservationsRequired"].tap()
         
         let emptyGauge = app.otherElements["Spironolactone Dosage Gauge"]
         XCTAssert(emptyGauge.waitForExistence(timeout: 0.5))
@@ -237,6 +260,8 @@ final class MedicationsUITests: XCTestCase {
         app.buttons["Add Medications"].tap()
         
         app.swipeUp()
+        
+        app.images["Medication Label: targetDoseReached"].tap()
         
         let fullGauge = app.otherElements["Carvedilol Dosage Gauge"]
         XCTAssert(fullGauge.waitForExistence(timeout: 0.5), "Full gauge not found.")

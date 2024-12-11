@@ -6,9 +6,21 @@
 // SPDX-License-Identifier: MIT
 //
 
+import Foundation
 import XCTest
 
+
 final class RecentVitalsUITests: XCTestCase {
+    private var expectedFormattedMeasurementDate: String {
+        let expectedDateComponents = DateComponents(year: 2024, month: 6, day: 5, hour: 12, minute: 33, second: 11)
+        let expectedDate = Calendar.current.date(from: expectedDateComponents) ?? .now
+        let daylightSavingTimeOffset = TimeZone.current.daylightSavingTimeOffset(for: expectedDate)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "M/d/yyyy, h:mm a"
+        return formatter.string(from: expectedDate.addingTimeInterval(daylightSavingTimeOffset))
+    }
+    
+    
     override func setUpWithError() throws {
         try super.setUpWithError()
 
@@ -53,12 +65,14 @@ final class RecentVitalsUITests: XCTestCase {
 
         XCTAssertFalse(app.alerts.element.exists)
         
-        
         // Weight measurement has been successfully saved, and should be represented in the dashboard
         XCTAssert(app.staticTexts["Recent Vitals"].waitForExistence(timeout: 0.5))
         XCTAssert(app.staticTexts["Weight Quantity: \(expectedWeight)"].exists)
         XCTAssert(app.staticTexts["Weight Unit: \(weightUnit)"].exists)
-        XCTAssert(app.staticTexts["Weight Date: 6/5/2024, 12:33 PM"].exists)
+        XCTAssert(app.staticTexts["Weight Date: \(expectedFormattedMeasurementDate)"].exists)
+        
+        app.staticTexts["Weight Quantity: \(expectedWeight)"].tap()
+        XCTAssert(app.staticTexts["Body Weight"].waitForExistence(timeout: 2.0))
     }
     
     func testHeartRateAndBloodPressure() throws {
@@ -95,14 +109,25 @@ final class RecentVitalsUITests: XCTestCase {
         
         
         // Measurement has been successfully saved, and should be represented in the dashboard
-        XCTAssert(app.staticTexts["Recent Vitals"].waitForExistence(timeout: 0.5))
+        XCTAssert(app.staticTexts["Recent Vitals"].waitForExistence(timeout: 2.0))
         
-        XCTAssert(app.staticTexts["Heart Rate Quantity: 62"].exists)
+        let heartRateQuantityText = "Heart Rate Quantity: 62"
+        XCTAssert(app.staticTexts[heartRateQuantityText].exists)
         XCTAssert(app.staticTexts["Heart Rate Unit: BPM"].exists)
-        XCTAssert(app.staticTexts["Heart Rate Date: 6/5/2024, 12:33 PM"].exists)
+        XCTAssert(app.staticTexts["Heart Rate Date: \(expectedFormattedMeasurementDate)"].exists)
         
-        XCTAssert(app.staticTexts["Blood Pressure Quantity: 103/64"].exists)
+        app.staticTexts[heartRateQuantityText].tap()
+        XCTAssert(app.staticTexts["Heart Rate"].waitForExistence(timeout: 2.0))
+        
+        app.goTo(tab: "Home")
+        XCTAssert(app.staticTexts["Recent Vitals"].waitForExistence(timeout: 2.0))
+        
+        let bloodPressureQuantityText = "Blood Pressure Quantity: 103/64"
+        XCTAssert(app.staticTexts[bloodPressureQuantityText].exists)
         XCTAssert(app.staticTexts["Blood Pressure Unit: mmHg"].exists)
-        XCTAssert(app.staticTexts["Blood Pressure Date: 6/5/2024, 12:33 PM"].exists)
+        XCTAssert(app.staticTexts["Blood Pressure Date: \(expectedFormattedMeasurementDate)"].exists)
+        
+        app.staticTexts[bloodPressureQuantityText].tap()
+        XCTAssert(app.staticTexts["Blood Pressure"].waitForExistence(timeout: 2.0))
     }
 }

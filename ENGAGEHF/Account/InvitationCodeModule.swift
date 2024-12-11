@@ -20,6 +20,15 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
 
     @Dependency(Account.self) private var account: Account?
     @Dependency(FirebaseAccountService.self) private var accountService: FirebaseAccountService?
+    
+    @Dependency(VideoManager.self) private var videoManager
+    @Dependency(UserMetaDataManager.self) private var userMetaDataManager
+    @Dependency(MedicationsManager.self) private var medicationsManager
+    @Dependency(NotificationManager.self) private var notificationManager
+    @Dependency(MessageManager.self) private var messageManager
+    @Dependency(NavigationManager.self) private var navigationManager
+    @Dependency(VitalsManager.self) private var vitalsManager
+
 
     func configure() {
         if FeatureFlags.useFirebaseEmulator && !FeatureFlags.disableFirebase {
@@ -42,6 +51,16 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
                     let enrollUser = Functions.functions().httpsCallable("enrollUser")
                     _ = try await enrollUser.call(["invitationCode": invitationCode])
                     _ = try? await Auth.auth().currentUser?.getIDToken(forcingRefresh: true)
+                    
+                    // Now that we've forced refresh on the auth token, refresh the content of the managers.
+                    await videoManager.refreshContent()
+                    await userMetaDataManager.refreshContent()
+                    await medicationsManager.refreshContent()
+                    await notificationManager.refreshContent()
+                    await messageManager.refreshContent()
+                    await navigationManager.refreshContent()
+                    await vitalsManager.refreshContent()
+                    
                     logger.debug("Successfully enrolled user!")
                 } catch {
                     logger.error("Failed to enroll user: \(error)")
@@ -68,12 +87,11 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
 
     @MainActor
     func setupTestEnvironment(invitationCode: String) async throws {
-        guard let account else {
-            preconditionFailure("Account feature must be enabled to support `setupTestEnvironment` flag!")
-        }
-
-        guard let accountService else {
-            preconditionFailure("The Firebase Account Service is required to be configured when setting up the test environment!")
+        guard let account, let accountService else {
+            guard FeatureFlags.disableFirebase else {
+                preconditionFailure("The Firebase Account Service is required to be configured when setting up the test environment!")
+            }
+            return
         }
 
         let email = "test@engage.stanford.edu"
@@ -82,6 +100,7 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
         if account.details != nil {
             // always start logged out, even if testing account had already been set up
             try await accountService.logout()
+            try await Task.sleep(for: .seconds(1))
         }
 
         do {
@@ -100,6 +119,7 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
             details.password = password
             details.name = PersonNameComponents(givenName: "Leland", familyName: "Stanford")
             try await accountService.signUp(with: details)
+            try await Task.sleep(for: .seconds(1))
             try await verifyOnboardingCode(invitationCode)
         } catch {
             logger.error("Failed setting up test account : \(error)")

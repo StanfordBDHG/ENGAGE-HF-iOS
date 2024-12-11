@@ -9,20 +9,22 @@
 import SpeziViews
 import SwiftUI
 
-
+@MainActor
 struct HeartHealth: View {
     @Binding var presentingAccount: Bool
     
+    @Environment(NavigationManager.self) private var navigationManager
     @Environment(VitalsManager.self) private var vitalsManager
-    @State private var vitalSelection: GraphSelection = .symptoms
     
     
     var body: some View {
+        @Bindable var navigationManager = navigationManager
+        
         NavigationStack {
             VStack(alignment: .trailing) {
-                GraphPicker(selection: $vitalSelection)
+                GraphPicker(selection: $navigationManager.heartHealthVitalSelection)
                     .padding(.horizontal)
-                VitalsList(vitalSelection: vitalSelection)
+                VitalsList(vitalSelection: navigationManager.heartHealthVitalSelection)
             }
                 .navigationTitle("Heart Health")
                 .toolbar {

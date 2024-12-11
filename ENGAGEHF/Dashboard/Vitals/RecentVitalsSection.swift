@@ -12,6 +12,7 @@ import SwiftUI
 
 
 struct RecentVitalsSection: View {
+    @Environment(NavigationManager.self) private var navigationManager
     @Environment(VitalsManager.self) private var vitalsManager
     @Environment(HealthMeasurements.self) private var measurements
 
@@ -69,17 +70,29 @@ struct RecentVitalsSection: View {
                             units: massUnits.unitString,
                             measurement: weightMeasurement
                         )
+                        .onTapGesture {
+                            navigationManager.selectedTab = .heart
+                            navigationManager.heartHealthVitalSelection = .weight
+                        }
                         VitalsCard(
                             type: "Heart Rate",
                             units: "BPM",
                             measurement: heartRateMeasurement
                         )
+                        .onTapGesture {
+                            navigationManager.selectedTab = .heart
+                            navigationManager.heartHealthVitalSelection = .heartRate
+                        }
                     }
                     VitalsCard(
                         type: "Blood Pressure",
                         units: "mmHg",
                         measurement: bloodPressureMeasurement
                     )
+                    .onTapGesture {
+                        navigationManager.selectedTab = .heart
+                        navigationManager.heartHealthVitalSelection = .bloodPressure
+                    }
                 }
             },
             header: {

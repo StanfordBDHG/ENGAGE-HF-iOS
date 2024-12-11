@@ -13,22 +13,11 @@ on:
   workflow_dispatch:
   workflow_call:
 
+concurrency:
+  group: Build-and-Test-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  reuse_action:
-    name: REUSE Compliance Check
-    uses: StanfordBDHG/.github/.github/workflows/reuse.yml@v2
-    permissions:
-      contents: read
-  swiftlint:
-    name: SwiftLint
-    uses: StanfordBDHG/.github/.github/workflows/swiftlint.yml@v2
-    permissions:
-      contents: read
-  markdownlinkcheck:
-    name: Markdown Link Check
-    uses: StanfordBDHG/.github/.github/workflows/markdown-link-check.yml@v2
-    permissions:
-      contents: read
   buildandtest:
     name: Build and Test
     uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
@@ -42,7 +31,7 @@ jobs:
       firebasejsonpath: ./ENGAGE-HF-Firebase/firebase.json
       setupfirebaseemulator: true
       checkout_submodules: true
-      customcommand: npm --prefix ENGAGE-HF-Firebase run prepare && firebase emulators:exec -c ./ENGAGE-HF-Firebase/firebase.json --export-on-exit=./firebase 'npm --prefix ./ENGAGE-HF-Firebase/functions run serve:seed'
+      customcommand: npm --prefix ENGAGE-HF-Firebase run prepare && firebase emulators:exec -c ./ENGAGE-HF-Firebase/firebase.json --export-on-exit=./firebase 'npm --prefix ./ENGAGE-HF-Firebase/functions run serve:seed && sleep 10'
     secrets:
       GOOGLE_APPLICATION_CREDENTIALS_BASE64: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_BASE64 }}
   uploadcoveragereport:

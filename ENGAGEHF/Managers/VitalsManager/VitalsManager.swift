@@ -23,7 +23,7 @@ import SpeziFirestore
 /// - Convert FHIR observations to HKQuantitySamples and HKCorrelations
 @Observable
 @MainActor
-public class VitalsManager: Module, EnvironmentAccessible {
+public final class VitalsManager: Manager {
     @ObservationIgnored @StandardActor private var standard: ENGAGEHFStandard
     
     @ObservationIgnored @Dependency(Account.self) private var account: Account?
@@ -53,6 +53,9 @@ public class VitalsManager: Module, EnvironmentAccessible {
     public var latestWeight: HKQuantitySample? {
         weightHistory.max { $0.startDate < $1.startDate }
     }
+    
+    
+    nonisolated public init() {}
     
     
     /// Call on initial configuration:
@@ -89,6 +92,12 @@ public class VitalsManager: Module, EnvironmentAccessible {
             }
         }
     }
+    
+    
+    public func refreshContent() {
+        updateSnapshotListener(for: account?.details)
+    }
+    
     
     private func updateSnapshotListener(for details: AccountDetails?) {
         self.logger.debug("Initializing vitals snapshot listener...")

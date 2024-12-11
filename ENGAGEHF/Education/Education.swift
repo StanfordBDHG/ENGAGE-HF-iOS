@@ -20,7 +20,18 @@ struct Education: View {
         @Bindable var navigationManager = navigationManager
         
         NavigationStack(path: $navigationManager.educationPath) {
-            VideoList(videoCollections: videoManager.videoCollections)
+            Group {
+                let videoCollections = videoManager.videoCollections.filter { !$0.videos.isEmpty }
+                if videoCollections.isEmpty {
+                    ContentUnavailableView(
+                        "No Educational Videos",
+                        systemImage: "video.slash",
+                        description: Text("There are currently no educational videos available.")
+                    )
+                } else {
+                    VideoList(videoCollections: videoCollections)
+                }
+            }
                 .accessibilityIdentifier("Video List")
                 .navigationTitle("Education")
                 .toolbar {

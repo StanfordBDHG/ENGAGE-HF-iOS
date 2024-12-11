@@ -10,7 +10,8 @@ import XCTest
 
 
 final class EducationViewUITests: XCTestCase {
-    override func setUpWithError() throws {
+    @MainActor
+    override func setUp() async throws {
         try super.setUpWithError()
         continueAfterFailure = false
         
@@ -19,8 +20,8 @@ final class EducationViewUITests: XCTestCase {
         app.launch()
     }
     
-    
-    func testLongDescriptionVideoView() throws {
+    @MainActor
+    func testLongDescriptionVideoView() async throws {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
@@ -31,18 +32,16 @@ final class EducationViewUITests: XCTestCase {
         
         thumbnailOverlay.tap()
         
-        sleep(2)
-        
         // Validate navigation bar
-        XCTAssert(app.buttons["Education"].waitForExistence(timeout: 0.5))
+        XCTAssert(app.buttons["Education"].waitForExistence(timeout: 2))
         
         let expectedNavigationTitle = app.navigationBars["Long Description"]
-        XCTAssert(expectedNavigationTitle.exists)
+        XCTAssert(expectedNavigationTitle.waitForExistence(timeout: 2))
         
         // Validate video player
-        XCTAssert(app.staticTexts["Installing ENGAGE-HF App and Connecting Omron Devices"].exists)
-        XCTAssert(app.links["Photo image of Education For Patients By Dr Zahra Azizi"].exists)
-        XCTAssert(app.buttons["Play"].exists)
+        XCTAssert(app.staticTexts["Installing ENGAGE-HF App and Connecting Omron Devices"].waitForExistence(timeout: 2))
+        XCTAssert(app.links["Photo image of Education For Patients"].waitForExistence(timeout: 2))
+        XCTAssert(app.buttons["Play"].waitForExistence(timeout: 2))
         XCTAssert(app.buttons["Play"].isHittable)
         
         // Validate video description
@@ -69,7 +68,8 @@ final class EducationViewUITests: XCTestCase {
     }
     
     
-    func testShortDescrtiptionVideoView() throws {
+    @MainActor
+    func testShortDescrtiptionVideoView() async throws {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
@@ -80,18 +80,16 @@ final class EducationViewUITests: XCTestCase {
         
         thumbnailOverlay.tap()
         
-        sleep(2)
-        
         // Validate navigation bar
-        XCTAssert(app.buttons["Education"].waitForExistence(timeout: 0.5))
+        XCTAssert(app.buttons["Education"].waitForExistence(timeout: 2))
         
         let expectedNavigationTitle = app.navigationBars["Short Description"]
-        XCTAssert(expectedNavigationTitle.exists)
+        XCTAssert(expectedNavigationTitle.waitForExistence(timeout: 2))
         
         // Validate video player
-        XCTAssert(app.staticTexts["Beta Blockers for Heart Failure"].exists)
-        XCTAssert(app.links["Photo image of Education For Patients By Dr Zahra Azizi"].exists)
-        XCTAssert(app.buttons["Play"].exists)
+        XCTAssert(app.staticTexts["Beta Blockers for Heart Failure"].waitForExistence(timeout: 2))
+        XCTAssert(app.links["Photo image of Education For Patients"].waitForExistence(timeout: 2))
+        XCTAssert(app.buttons["Play"].waitForExistence(timeout: 2))
         XCTAssert(app.buttons["Play"].isHittable)
         
         // Validate video description
@@ -113,7 +111,8 @@ final class EducationViewUITests: XCTestCase {
     }
     
     
-    func testNoDescriptionVideoView() throws {
+    @MainActor
+    func testNoDescriptionVideoView() async throws {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
@@ -124,18 +123,18 @@ final class EducationViewUITests: XCTestCase {
         
         thumbnailOverlay.tap()
         
-        sleep(2)
+        try await Task.sleep(for: .seconds(2))
         
         // Validate navigation bar
-        XCTAssert(app.buttons["Education"].waitForExistence(timeout: 0.5))
+        XCTAssert(app.buttons["Education"].waitForExistence(timeout: 2))
         
         let expectedNavigationTitle = app.navigationBars["No Description"]
         XCTAssert(expectedNavigationTitle.exists)
         
         // Validate video player
-        XCTAssert(app.staticTexts["How to Use the ENGAGE-HF App!"].exists)
-        XCTAssert(app.links["Photo image of Education For Patients By Dr Zahra Azizi"].exists)
-        XCTAssert(app.buttons["Play"].exists)
+        XCTAssert(app.staticTexts["How to Use the ENGAGE-HF App!"].waitForExistence(timeout: 2))
+        XCTAssert(app.links["Photo image of Education For Patients"].waitForExistence(timeout: 2))
+        XCTAssert(app.buttons["Play"].waitForExistence(timeout: 2))
         XCTAssert(app.buttons["Play"].isHittable)
         
         // Make sure there's no description
