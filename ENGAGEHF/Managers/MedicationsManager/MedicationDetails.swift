@@ -26,8 +26,8 @@ enum MedicationRecommendationType: String, Decodable, Comparable {
         case .targetDoseReached: .targetReached
         case .personalTargetDoseReached: .targetReached
         case .improvementAvailable: .improvementAvailable
-        case .moreLabObservationsRequired: .improvementAvailable
-        case .morePatientObservationsRequired: .improvementAvailable
+        case .moreLabObservationsRequired: .actionRequired
+        case .morePatientObservationsRequired: .actionRequired
         case .noActionRequired: .notStarted
         case .notStarted: .notStarted
         }

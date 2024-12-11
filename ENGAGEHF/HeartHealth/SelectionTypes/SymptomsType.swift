@@ -30,8 +30,8 @@ enum SymptomsType: String, CaseIterable, Identifiable, CustomStringConvertible, 
         case .overall: "Overall"
         case .physical: "Physical"
         case .social: "Social"
-        case .quality: "Quality"
-        case .specific: "Specific"
+        case .quality: "Quality of Life"
+        case .specific: "Symptoms"
         case .dizziness: "Dizziness"
         }
     }
@@ -44,7 +44,7 @@ enum SymptomsType: String, CaseIterable, Identifiable, CustomStringConvertible, 
         case .physical: "Physical Limits Score"
         case .social: "Social Limits Score"
         case .quality: "Quality of Life Score"
-        case .specific: "Specific Symptoms Score"
+        case .specific: "Symptom Frequency Score"
         case .dizziness: "Dizziness Score"
         }
     }

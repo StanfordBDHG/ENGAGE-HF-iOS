@@ -58,7 +58,11 @@ struct SymptomsGraphSection: View {
             content: {
                 VitalsGraph(data: graphData, options: options)
                     .environment(\.customChartYAxis, symptomsType == .dizziness ? .dizzinessYAxisModifier : .percentageYAxisModifier )
+#if TEST
+                    .disabled(true)
+#else
                     .disabled(vitalsManager.symptomHistory.isEmpty)
+#endif
             },
             header: {
                 SymptomsPicker(symptomsType: $symptomsType)
