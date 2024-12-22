@@ -12,6 +12,7 @@ import OSLog
 import Spezi
 import SpeziAccount
 
+
 @Observable
 @MainActor
 final class VideoManager: Manager {

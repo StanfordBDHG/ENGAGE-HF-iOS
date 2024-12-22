@@ -146,10 +146,18 @@ extension XCUIApplication {
     }
     
     fileprivate func assertOnboardingComplete() {
-        XCTAssert(staticTexts["Home"].waitForExistence(timeout: 10))
-        
         let tabBar = tabBars["Tab Bar"]
-        XCTAssert(tabBar.buttons["Home"].waitForExistence(timeout: 2))
+                
+        // Regression test: make sure the videos appeared correctly
+        XCTAssert(tabBar.buttons["Education"].waitForExistence(timeout: 2))
+        tabBar.buttons["Education"].tap()
+        XCTAssertFalse(staticTexts["No Educational Videos"].exists)
+        
+        // Navigate back to home page
+        XCTAssert(tabBar.buttons["Home"].waitForExistence(timeout: 0.5))
+        tabBar.buttons["Home"].tap()
+        
+        XCTAssert(staticTexts["Home"].waitForExistence(timeout: 4))
     }
     
     fileprivate func assertAccountInformation(email: String) throws {
