@@ -850,7 +850,7 @@
         }
       }
     },
-    "You are not in this medication, but it might be helpful in the future." : {
+    "You are not on this medication, but it might be helpful in the future." : {
       "comment" : "No action required legend entry."
     },
     "You are on this medication, but may benefit from a higher dose." : {
