@@ -158,7 +158,6 @@ extension XCUIApplication {
         tabBar.buttons["Home"].tap()
         
         XCTAssert(staticTexts["Home"].waitForExistence(timeout: 4))
-        
     }
     
     fileprivate func assertAccountInformation(email: String) throws {
