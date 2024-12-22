@@ -32,7 +32,7 @@ enum RecommendationStyle: CaseIterable {
         case .actionRequired:
             String(localized: "More information is needed to make a recommendation.", comment: "Action required color legend entry.")
         case .notStarted:
-            String(localized: "You are not in this medication, but it might be helpful in the future.", comment: "No action required legend entry.")
+            String(localized: "You are not on this medication, but it might be helpful in the future.", comment: "No action required legend entry.")
         }
     }
 }
