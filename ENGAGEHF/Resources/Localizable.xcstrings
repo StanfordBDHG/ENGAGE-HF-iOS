@@ -174,6 +174,9 @@
     "defaultLoadingError" : {
 
     },
+    "Devices" : {
+
+    },
     "Dismiss Button" : {
 
     },
@@ -648,6 +651,9 @@
       }
     },
     "Target" : {
+
+    },
+    "Test" : {
 
     },
     "The invitation code is invalid or has already been used." : {
