@@ -21,23 +21,24 @@ import SpeziFirebaseAccount
 /// On sign-in, adds a snapshot listener to the user's messages collection
 @Observable
 @MainActor
-final class MessageManager: Manager {
+final class MessageManager: Module, EnvironmentAccessible, DefaultInitializable {
     @ObservationIgnored @StandardActor var standard: ENGAGEHFStandard
     
     @ObservationIgnored @Dependency(Account.self) private var account: Account?
     @ObservationIgnored @Dependency(AccountNotifications.self) private var accountNotifications: AccountNotifications?
     @ObservationIgnored @Dependency(FirebaseAccountService.self) private var accountService: FirebaseAccountService?
+    @ObservationIgnored @Dependency(NotificationManager.self) private var notificationManager: NotificationManager?
 
     @Application(\.logger) @ObservationIgnored private var logger
 
     private(set) var messages: [Message] = []
-
+    private var processingStates: [String: ProcessingState] = [:]
+    
     private var notificationTask: Task<Void, Never>?
     private var snapshotListener: ListenerRegistration?
-
+    private var activeProcessingTimer: Task<Void, Never>?
     
     nonisolated init() {}
-
     
     func configure() {
 #if DEBUG || TEST
@@ -66,17 +67,69 @@ final class MessageManager: Manager {
         if let account, account.signedIn {
             updateSnapshotListener(for: account.details)
         }
+        
+        startProcessingCleanupTimer()
     }
     
-    
-    func refreshContent() {
-        updateSnapshotListener(for: account?.details)
+    private func startProcessingCleanupTimer() {
+        activeProcessingTimer?.cancel()
+        activeProcessingTimer = Task { @MainActor in
+            while !Task.isCancelled {
+                cleanupExpiredProcessingStates()
+                try? await Task.sleep(nanoseconds: 1_000_000_000) // Check every second
+            }
+        }
     }
     
+    @MainActor
+    private func cleanupExpiredProcessingStates() {
+        processingStates = processingStates.filter { $0.value.isStillProcessing }
+        
+        // Update messages that might have expired processing states
+        for index in messages.indices {
+            if let state = messages[index].processingState, !state.isStillProcessing {
+                messages[index].processingState = nil
+            }
+        }
+    }
     
-    /// Call on initialization and sign-in of user
-    ///
-    /// Creates a snapshot listener to save new messages to the manager as they are added to the user's directory in Firebase
+    @MainActor
+    func markAsProcessing(type: ProcessingState.ProcessingType) {
+        let correlationId = UUID().uuidString
+        let state = ProcessingState(
+            startTime: Date(),
+            type: type,
+            correlationId: correlationId
+        )
+        
+        processingStates[correlationId] = state
+        
+        // Update all related messages' processing states
+        for index in messages.indices where messages[index].isRelatedTo(state) {
+            messages[index].processingState = state
+        }
+        
+        // Schedule state cleanup
+        Task {
+            try? await Task.sleep(nanoseconds: 60_000_000_000) // 60 seconds
+            await cleanupProcessingState(correlationId: correlationId)
+        }
+    }
+    
+    @MainActor
+    private func cleanupProcessingState(correlationId: String) {
+        guard processingStates[correlationId] != nil else {
+            return
+        }
+        
+        processingStates.removeValue(forKey: correlationId)
+        
+        for index in messages.indices where messages[index].processingState?.correlationId == correlationId {
+            messages[index].processingState = nil
+        }
+    }
+    
+    @MainActor
     private func updateSnapshotListener(for details: AccountDetails?) {
         logger.info("Initializing message snapshot listener...")
 
@@ -115,7 +168,7 @@ final class MessageManager: Manager {
             }
     }
 
-    
+    @MainActor
     func dismiss(_ message: Message, didPerformAction: Bool) async {
         logger.debug("Dismissing message with id: \(message.id ?? "nil")")
         
@@ -158,9 +211,9 @@ final class MessageManager: Manager {
         logger.debug("Successfully dismissed message (\(messageId)).")
     }
 
-    
     deinit {
-        _notificationTask?.cancel()
+        notificationTask?.cancel()
+        activeProcessingTimer?.cancel()
     }
 }
 
@@ -169,6 +222,7 @@ final class MessageManager: Manager {
 extension MessageManager {
     /// Adds a mock message to self.messages
     /// Used for testing in previews
+    @MainActor
     func addMockMessage(dismissible: Bool = true, action: MessageAction = .showHealthSummary) {
         let mockMessage = Message(
             title: "Medication Change",
@@ -182,7 +236,7 @@ extension MessageManager {
         self.messages.append(mockMessage)
     }
     
-
+    @MainActor
     private func injectTestMessages() {
         self.messages = [
             // With play video action, with description, is dismissible

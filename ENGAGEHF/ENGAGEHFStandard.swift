@@ -22,12 +22,12 @@ import SpeziQuestionnaire
 import SwiftUI
 
 
-actor ENGAGEHFStandard: Standard, EnvironmentAccessible {
+actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint {
     @Application(\.logger) private var logger
 
     @Dependency(Account.self) private var account: Account?
     @Dependency(FirebaseAccountService.self) private var accountService: FirebaseAccountService?
-
+    @Dependency(MessageManager.self) private var messageManager: MessageManager?
 
     private var accountId: String {
         get async throws {
@@ -38,11 +38,15 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible {
         }
     }
 
-
     func addMeasurement(samples: [HKSample]) async throws {
         guard !samples.isEmpty else {
             return
         }
+        
+        // Mark related messages as processing
+        await messageManager?.markAsProcessing(
+            type: .healthMeasurement(samples: samples.count)
+        )
 
         logger.debug("Saving \(samples.count) samples to firestore ...")
         let accountId = try await accountId
@@ -69,7 +73,6 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible {
         }
     }
     
-    
     func add(symptomScore: SymptomScore) async throws {
         let accountId = try await accountId
         do {
@@ -79,14 +82,54 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible {
         }
     }
     
-    
     func add(response: ModelsR4.QuestionnaireResponse) async throws {
+        let questionnaireId = response.identifier?.value?.value?.string ?? UUID().uuidString
+        
+        // Mark related messages as processing
+        await messageManager?.markAsProcessing(
+            type: .questionnaire(id: questionnaireId)
+        )
+        
         let accountId = try await accountId
         do {
-            let id = response.identifier?.value?.value?.string ?? UUID().uuidString
-            try await Firestore.questionnaireResponseCollectionReference(for: accountId).document(id).setData(from: response)
+            try await Firestore.questionnaireResponseCollectionReference(for: accountId)
+                .document(questionnaireId)
+                .setData(from: response)
         } catch {
             throw FirestoreError(error)
+        }
+    }
+    
+    /// Stores the given consent form in the user's document directory with a unique timestamped filename.
+    ///
+    /// - Parameter consent: The consent form's data to be stored as a `PDFDocument`.
+    func store(consent: PDFDocument) async {
+        guard !FeatureFlags.disableFirebase else {
+            guard let basePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+                logger.error("Could not create path for writing consent form to user document directory.")
+                return
+            }
+            
+            let filePath = basePath.appending(path: "consent.pdf")
+            consent.write(to: filePath)
+            
+            return
+        }
+        
+        do {
+            guard let consentData = consent.dataRepresentation() else {
+                logger.error("Could not store consent form.")
+                return
+            }
+            
+            let metadata = StorageMetadata()
+            metadata.contentType = "application/pdf"
+            _ = try await Storage.userBucketReference(for: accountId)
+                .child("consent")
+                .child("consent.pdf")
+                .putDataAsync(consentData, metadata: metadata)
+        } catch {
+            logger.error("Could not store consent form: \(error)")
         }
     }
 }
