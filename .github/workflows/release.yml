@@ -53,26 +53,23 @@ jobs:
         changelog = re.sub(r'^Full Changelog:.*$', '', changelog, flags=re.MULTILINE)  # Remove specific line
         changelog = re.sub(r'https://github\.com/[^/]+/[^/]+/pull/(\d+)', r'#\1', changelog)  # Shorten pull request URLs
 
-        # Remove excess blank lines
-        changelog = re.sub(r'\n\s*\n', '\n', changelog).strip()
-
         # Write cleaned changelog to GITHUB_OUTPUT
         with open(os.environ['GITHUB_OUTPUT'], 'a') as output_file:
             output_file.write(f"changelog<<EOF\n{changelog}\nEOF\n")
         EOF
-    - name: Use Processed Changelog in Fastlane
+    - name: Formatted Release Notes
       run: |
-        echo "Processed Changelog:"
+        echo "Formatted Release Notes:"
         echo "${{ steps.changelog.outputs.changelog }}"
-  build-and-test:
-    name: Build and Test
-    uses: ./.github/workflows/deployment.yml
-    permissions:
-      contents: read
-      checks: write
-      actions: read
-      security-events: write
-    secrets: inherit
-    with:
-      environment: production
-      version: ${{ github.event.release.tag_name }}
+  # build-and-test:
+  #   name: Build and Test
+  #   uses: ./.github/workflows/deployment.yml
+  #   permissions:
+  #     contents: read
+  #     checks: write
+  #     actions: read
+  #     security-events: write
+  #   secrets: inherit
+  #   with:
+  #     environment: production
+  #     version: ${{ github.event.release.tag_name }}
