@@ -46,12 +46,21 @@ jobs:
         release = response.json()
         changelog = release.get('body', '')
 
+        # Extract only the "What's Changed" section
+        match = re.search(r"## What's Changed(.*?)(##|$)", changelog, flags=re.DOTALL)
+        if match:
+            changelog = match.group(1).strip()
+        else:
+            changelog = "Bug fixes and performance improvements."
+
         # Remove all Markdown formatting
-        changelog = re.sub(r'^#+\s*', '', changelog, flags=re.MULTILINE)  # Remove all headers
+        changelog = re.sub(r'^#+\s*', '', changelog, flags=re.MULTILINE)  # Remove headers
         changelog = re.sub(r'\*\*|__|\*|_', '', changelog)  # Remove bold, italics, etc.
         changelog = re.sub(r'\[(.*?)\]\((.*?)\)', r'\1', changelog)  # Remove links but keep text
-        changelog = re.sub(r'^Full Changelog:.*$', '', changelog, flags=re.MULTILINE)  # Remove specific line
         changelog = re.sub(r'https://github\.com/[^/]+/[^/]+/pull/(\d+)', r'#\1', changelog)  # Shorten pull request URLs
+
+        # Remove excess blank lines
+        changelog = re.sub(r'\n\s*\n', '\n', changelog).strip()
 
         # Write cleaned changelog to GITHUB_OUTPUT
         with open(os.environ['GITHUB_OUTPUT'], 'a') as output_file:
