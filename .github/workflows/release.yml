@@ -53,13 +53,16 @@ jobs:
         if match:
             releasenotes = match.group(1)
         else:
-            releasenotes = "Bug fixes and performance improvements."
+            releasenotes = "What's Changed section not found."
 
-        # Remove all Markdown formatting (optional, customize as needed)
+        # Remove all Markdown formatting
         releasenotes = re.sub(r'^#+\s*', '', releasenotes, flags=re.MULTILINE)  # Remove all headers
         releasenotes = re.sub(r'\*\*|__|\*|_', '', releasenotes)  # Remove bold, italics, etc.
         releasenotes = re.sub(r'\[(.*?)\]\((.*?)\)', r'\1', releasenotes)  # Remove links but keep text
         releasenotes = re.sub(r'https://github\.com/[^/]+/[^/]+/pull/(\d+)', r'#\1', releasenotes)  # Shorten pull request URLs
+
+        # Replace list items "*" with "-"
+        releasenotes = re.sub(r'^\s*\*\s+', '- ', releasenotes, flags=re.MULTILINE)
 
         # Remove excess blank lines
         releasenotes = re.sub(r'\n\s*\n', '\n', releasenotes).strip()
