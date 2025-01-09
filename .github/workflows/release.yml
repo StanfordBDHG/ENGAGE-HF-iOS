@@ -53,13 +53,22 @@ jobs:
         if match:
             releasenotes = match.group(1)
         else:
-            releasenotes = "What's Changed section not found."
+            releasenotes = "Bug fixes and performance improvements."
 
-        # Remove all Markdown formatting
-        releasenotes = re.sub(r'^#+\s*', '', releasenotes, flags=re.MULTILINE)  # Remove all headers
-        releasenotes = re.sub(r'\*\*|__|\*|_', '', releasenotes)  # Remove bold, italics, etc.
-        releasenotes = re.sub(r'\[(.*?)\]\((.*?)\)', r'\1', releasenotes)  # Remove links but keep text
-        releasenotes = re.sub(r'https://github\.com/[^/]+/[^/]+/pull/(\d+)', r'#\1', releasenotes)  # Shorten pull request URLs
+        # Remove bold (**text**), italics (*text* or _text_), and underline (__text__)
+        releasenotes = re.sub(r'\*\*(.*?)\*\*', r'\1', releasenotes)  # Remove **bold**
+        releasenotes = re.sub(r'\*(.*?)\*', r'\1', releasenotes)      # Remove *italics*
+        releasenotes = re.sub(r'_(.*?)_', r'\1', releasenotes)        # Remove _italics/underline_
+        releasenotes = re.sub(r'__(.*?)__', r'\1', releasenotes)      # Remove __underline__
+
+        # Remove all headers (e.g., ## What's Changed)
+        releasenotes = re.sub(r'^#+\s*', '', releasenotes, flags=re.MULTILINE)
+
+        # Remove inline links but keep text (e.g., [text](url) → text)
+        releasenotes = re.sub(r'\[(.*?)\]\((.*?)\)', r'\1', releasenotes)
+
+        # Shorten pull request URLs to reference IDs (e.g., #123)
+        releasenotes = re.sub(r'https://github\.com/[^/]+/[^/]+/pull/(\d+)', r'#\1', releasenotes)
 
         # Replace list items "*" with "-"
         releasenotes = re.sub(r'^\s*\*\s+', '- ', releasenotes, flags=re.MULTILINE)
