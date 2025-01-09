@@ -49,24 +49,24 @@ jobs:
         releasenotes = release.get('body', '')
 
         # Extract the "What's Changed" section
-        match = re.search(r"(## What's Changed.*?)(\n##|$)", changelog, flags=re.DOTALL)
+        match = re.search(r"(## What's Changed.*?)(\n##|$)", releasenotes, flags=re.DOTALL)
         if match:
-            changelog = match.group(1)
+            releasenotes = match.group(1)
         else:
-            changelog = "Bug fixes and performance improvements."
+            releasenotes = "Bug fixes and performance improvements."
 
         # Remove all Markdown formatting (optional, customize as needed)
-        changelog = re.sub(r'^#+\s*', '', changelog, flags=re.MULTILINE)  # Remove all headers
-        changelog = re.sub(r'\*\*|__|\*|_', '', changelog)  # Remove bold, italics, etc.
-        changelog = re.sub(r'\[(.*?)\]\((.*?)\)', r'\1', changelog)  # Remove links but keep text
-        changelog = re.sub(r'https://github\.com/[^/]+/[^/]+/pull/(\d+)', r'#\1', changelog)  # Shorten pull request URLs
+        releasenotes = re.sub(r'^#+\s*', '', releasenotes, flags=re.MULTILINE)  # Remove all headers
+        releasenotes = re.sub(r'\*\*|__|\*|_', '', releasenotes)  # Remove bold, italics, etc.
+        releasenotes = re.sub(r'\[(.*?)\]\((.*?)\)', r'\1', releasenotes)  # Remove links but keep text
+        releasenotes = re.sub(r'https://github\.com/[^/]+/[^/]+/pull/(\d+)', r'#\1', releasenotes)  # Shorten pull request URLs
 
         # Remove excess blank lines
-        changelog = re.sub(r'\n\s*\n', '\n', changelog).strip()
+        releasenotes = re.sub(r'\n\s*\n', '\n', releasenotes).strip()
 
-        # Write cleaned changelog to GITHUB_OUTPUT
+        # Write cleaned releasenotes to GITHUB_OUTPUT
         with open(os.environ['GITHUB_OUTPUT'], 'a') as output_file:
-            output_file.write(f"changelog<<EOF\n{changelog}\nEOF\n")
+            output_file.write(f"releasenotes<<EOF\n{releasenotes}\nEOF\n")
         EOF
     - name: Formatted Release Notes
       run: |
