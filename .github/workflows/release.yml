@@ -48,25 +48,25 @@ jobs:
         release = response.json()
         releasenotes = release.get('body', '')
 
-        # Extract only the "What's Changed" section
-        match = re.search(r"## What's Changed(.*?)(##|$)", releasenotes, flags=re.DOTALL)
+        # Extract the "What's Changed" section
+        match = re.search(r"(## What's Changed.*?)(\n##|$)", changelog, flags=re.DOTALL)
         if match:
-            releasenotes = match.group(1).strip()
+            changelog = match.group(1)
         else:
-            releasenotes = "Bug fixes and performance improvements."
+            changelog = "Bug fixes and performance improvements."
 
-        # Remove all Markdown formatting
-        releasenotes = re.sub(r'^#+\s*', '', releasenotes, flags=re.MULTILINE)  # Remove headers
-        releasenotes = re.sub(r'\*\*|__|\*|_', '', releasenotes)  # Remove bold, italics, etc.
-        releasenotes = re.sub(r'\[(.*?)\]\((.*?)\)', r'\1', releasenotes)  # Remove links but keep text
-        releasenotes = re.sub(r'https://github\.com/[^/]+/[^/]+/pull/(\d+)', r'#\1', releasenotes)  # Shorten pull request URLs
+        # Remove all Markdown formatting (optional, customize as needed)
+        changelog = re.sub(r'^#+\s*', '', changelog, flags=re.MULTILINE)  # Remove all headers
+        changelog = re.sub(r'\*\*|__|\*|_', '', changelog)  # Remove bold, italics, etc.
+        changelog = re.sub(r'\[(.*?)\]\((.*?)\)', r'\1', changelog)  # Remove links but keep text
+        changelog = re.sub(r'https://github\.com/[^/]+/[^/]+/pull/(\d+)', r'#\1', changelog)  # Shorten pull request URLs
 
         # Remove excess blank lines
-        releasenotes = re.sub(r'\n\s*\n', '\n', releasenotes).strip()
+        changelog = re.sub(r'\n\s*\n', '\n', changelog).strip()
 
-        # Write cleaned releasenotes to GITHUB_OUTPUT
+        # Write cleaned changelog to GITHUB_OUTPUT
         with open(os.environ['GITHUB_OUTPUT'], 'a') as output_file:
-            output_file.write(f"releasenotes<<EOF\n{releasenotes}\nEOF\n")
+            output_file.write(f"changelog<<EOF\n{changelog}\nEOF\n")
         EOF
     - name: Formatted Release Notes
       run: |
