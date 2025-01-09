@@ -77,8 +77,9 @@ jobs:
         releasenotes = re.sub(r'\n\s*\n', '\n', releasenotes).strip()
 
         # Escape single quotes and line breaks
-        releasenotes = releasenotes.replace("'", "\\'")
-        releasenotes = releasenotes.replace("\n", "\\n")
+        releasenotes = releasenotes.replace('"', "'")
+        releasenotes = releasenotes.replace("'", "\\\'")
+        releasenotes = releasenotes.replace("\n", "\\\n")
 
         # Write cleaned releasenotes to GITHUB_OUTPUT
         with open(os.environ['GITHUB_OUTPUT'], 'a') as output_file:
