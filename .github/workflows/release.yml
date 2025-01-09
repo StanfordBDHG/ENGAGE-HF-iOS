@@ -11,12 +11,59 @@ name: Release
 on:
   release:
     types: [published]
+  push:
+    branches:
+      - fixReleaseNotes
 
 concurrency:
   group: production
   cancel-in-progress: false
 
 jobs:
+  formatreleasenotes:
+    name: Format Release Notes
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+    - name: Install Dependencies
+      run: pip install requests
+    - name: Fetch and Process Changelog
+      id: changelog
+      run: |
+        python <<EOF
+        import re
+        import os
+        import requests
+
+        # Fetch release notes from the GitHub API
+        RELEASE_TAG = "2.0.1"
+        REPO = "StanfordBDHG/ENGAGE-HF-iOS"
+        URL = f"https://api.github.com/repos/{REPO}/releases/tags/{RELEASE_TAG}"
+        response = requests.get(URL)
+        release = response.json()
+        changelog = release.get('body', '')
+
+        # Remove all Markdown formatting
+        changelog = re.sub(r'^#+\s*', '', changelog, flags=re.MULTILINE)  # Remove all headers
+        changelog = re.sub(r'\*\*|__|\*|_', '', changelog)  # Remove bold, italics, etc.
+        changelog = re.sub(r'\[(.*?)\]\((.*?)\)', r'\1', changelog)  # Remove links but keep text
+        changelog = re.sub(r'^Full Changelog:.*$', '', changelog, flags=re.MULTILINE)  # Remove specific line
+        changelog = re.sub(r'https://github\.com/[^/]+/[^/]+/pull/(\d+)', r'#\1', changelog)  # Shorten pull request URLs
+
+        # Remove excess blank lines
+        changelog = re.sub(r'\n\s*\n', '\n', changelog).strip()
+
+        # Write cleaned changelog to GITHUB_OUTPUT
+        with open(os.environ['GITHUB_OUTPUT'], 'a') as output_file:
+            output_file.write(f"changelog<<EOF\n{changelog}\nEOF\n")
+        EOF
+    - name: Use Processed Changelog in Fastlane
+      run: |
+        echo "Processed Changelog:"
+        echo "${{ steps.changelog.outputs.changelog }}"
   build-and-test:
     name: Build and Test
     uses: ./.github/workflows/deployment.yml
