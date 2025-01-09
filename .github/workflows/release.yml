@@ -84,17 +84,17 @@ jobs:
       run: |
         echo "Formatted Release Notes:"
         echo "${{ steps.releasenotes.outputs.releasenotes }}"
-  # build-and-test:
-  #   name: Build and Test
-  #   uses: ./.github/workflows/deployment.yml
-  #   needs: formatreleasenotes
-  #   permissions:
-  #     contents: read
-  #     checks: write
-  #     actions: read
-  #     security-events: write
-  #   secrets: inherit
-  #   with:
-  #     environment: production
-  #     version: ${{ github.event.release.tag_name }}
-  #     releasenotes: ${{ needs.formatreleasenotes.outputs.releasenotes }}
+  build-and-test:
+    name: Build and Test
+    uses: ./.github/workflows/deployment.yml
+    needs: formatreleasenotes
+    permissions:
+      contents: read
+      checks: write
+      actions: read
+      security-events: write
+    secrets: inherit
+    with:
+      environment: production
+      version: ${{ github.event.release.tag_name }}
+      releasenotes: ${{ needs.formatreleasenotes.outputs.releasenotes }}
