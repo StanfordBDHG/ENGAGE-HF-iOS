@@ -23,6 +23,8 @@ jobs:
   formatreleasenotes:
     name: Format Release Notes
     runs-on: ubuntu-latest
+    outputs:
+      releasenotes: ${{ steps.releasenotes.outputs.releasenotes }}
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-python@v5
@@ -30,8 +32,8 @@ jobs:
         python-version: '3.x'
     - name: Install Dependencies
       run: pip install requests
-    - name: Fetch and Process Changelog
-      id: changelog
+    - name: Fetch and Process releasenotes
+      id: releasenotes
       run: |
         python <<EOF
         import re
@@ -44,35 +46,36 @@ jobs:
         URL = f"https://api.github.com/repos/{REPO}/releases/tags/{RELEASE_TAG}"
         response = requests.get(URL)
         release = response.json()
-        changelog = release.get('body', '')
+        releasenotes = release.get('body', '')
 
         # Extract only the "What's Changed" section
-        match = re.search(r"## What's Changed(.*?)(##|$)", changelog, flags=re.DOTALL)
+        match = re.search(r"## What's Changed(.*?)(##|$)", releasenotes, flags=re.DOTALL)
         if match:
-            changelog = match.group(1).strip()
+            releasenotes = match.group(1).strip()
         else:
-            changelog = "Bug fixes and performance improvements."
+            releasenotes = "Bug fixes and performance improvements."
 
         # Remove all Markdown formatting
-        changelog = re.sub(r'^#+\s*', '', changelog, flags=re.MULTILINE)  # Remove headers
-        changelog = re.sub(r'\*\*|__|\*|_', '', changelog)  # Remove bold, italics, etc.
-        changelog = re.sub(r'\[(.*?)\]\((.*?)\)', r'\1', changelog)  # Remove links but keep text
-        changelog = re.sub(r'https://github\.com/[^/]+/[^/]+/pull/(\d+)', r'#\1', changelog)  # Shorten pull request URLs
+        releasenotes = re.sub(r'^#+\s*', '', releasenotes, flags=re.MULTILINE)  # Remove headers
+        releasenotes = re.sub(r'\*\*|__|\*|_', '', releasenotes)  # Remove bold, italics, etc.
+        releasenotes = re.sub(r'\[(.*?)\]\((.*?)\)', r'\1', releasenotes)  # Remove links but keep text
+        releasenotes = re.sub(r'https://github\.com/[^/]+/[^/]+/pull/(\d+)', r'#\1', releasenotes)  # Shorten pull request URLs
 
         # Remove excess blank lines
-        changelog = re.sub(r'\n\s*\n', '\n', changelog).strip()
+        releasenotes = re.sub(r'\n\s*\n', '\n', releasenotes).strip()
 
-        # Write cleaned changelog to GITHUB_OUTPUT
+        # Write cleaned releasenotes to GITHUB_OUTPUT
         with open(os.environ['GITHUB_OUTPUT'], 'a') as output_file:
-            output_file.write(f"changelog<<EOF\n{changelog}\nEOF\n")
+            output_file.write(f"releasenotes<<EOF\n{releasenotes}\nEOF\n")
         EOF
     - name: Formatted Release Notes
       run: |
         echo "Formatted Release Notes:"
-        echo "${{ steps.changelog.outputs.changelog }}"
+        echo "${{ steps.releasenotes.outputs.releasenotes }}"
   # build-and-test:
   #   name: Build and Test
   #   uses: ./.github/workflows/deployment.yml
+  #   needs: formatreleasenotes
   #   permissions:
   #     contents: read
   #     checks: write
@@ -82,3 +85,4 @@ jobs:
   #   with:
   #     environment: production
   #     version: ${{ github.event.release.tag_name }}
+  #     releasenotes: ${{ needs.formatreleasenotes.outputs.releasenotes }}
