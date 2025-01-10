@@ -77,7 +77,8 @@ jobs:
         releasenotes = re.sub(r'\n\s*\n', '\n', releasenotes).strip()
 
         # Replace quotation marks with single quotes and line breaks
-        releasenotes = releasenotes.replace('"', "'")
+        releasenotes = releasenotes.replace('"', "’")
+        releasenotes = releasenotes.replace("'", "’")
         releasenotes = releasenotes.replace("\n", "\\\n")
 
         # Write cleaned releasenotes to GITHUB_OUTPUT
