@@ -29,6 +29,12 @@ on:
           The semantic version of the app that should be released.
         required: true
         type: string
+      releasenotes:
+        description: |
+          Release notes of what changed in this version.
+        required: false
+        type: string
+        default: Bug fixes and performance improvements.
   workflow_call:
     inputs:
       environment:
@@ -42,6 +48,12 @@ on:
           The semantic version of the app that should be released.
         required: true
         type: string
+      releasenotes:
+        description: |
+          Release notes of what changed in this version.
+        required: false
+        type: string
+        default: Bug fixes and performance improvements.
 
 concurrency:
   group: deployment
@@ -61,8 +73,10 @@ jobs:
         run: |
           if [[ -z "${{ inputs.environment }}" ]]; then
             echo "environment=staging" >> $GITHUB_OUTPUT
+            echo "environment: staging"
           else
             echo "environment=${{ inputs.environment }}" >> $GITHUB_OUTPUT
+            echo "environment: ${{ inputs.environment }}"
           fi
   vars:
     name: Inject Environment Variables In Deployment Workflow
@@ -92,6 +106,7 @@ jobs:
             echo "version=${{ inputs.version }}" >> $GITHUB_OUTPUT
             echo "version: ${{ inputs.version }}"
           fi
+          echo "releasenotes: ${{ inputs.releasenotes }}"
   buildandtest:
     name: Build and Test
     needs: determineenvironment
@@ -110,5 +125,5 @@ jobs:
       environment: ${{ needs.determineenvironment.outputs.environment }}
       googleserviceinfoplistpath: 'ENGAGEHF/Supporting Files/GoogleService-Info.plist'
       setupsigning: true
-      fastlanelane: deploy environment:"${{ needs.determineenvironment.outputs.environment }}" appidentifier:"${{ needs.vars.outputs.appidentifier }}" provisioningProfile:"${{ needs.vars.outputs.provisioningProfileName }}" versionname:"${{ needs.vars.outputs.version }}"
+      fastlanelane: deploy environment:"${{ needs.determineenvironment.outputs.environment }}" appidentifier:"${{ needs.vars.outputs.appidentifier }}" provisioningProfile:"${{ needs.vars.outputs.provisioningProfileName }}" versionname:"${{ needs.vars.outputs.version }}" releasenotes:"${{ inputs.releasenotes }}"
     secrets: inherit

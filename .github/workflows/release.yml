@@ -17,9 +17,79 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  formatreleasenotes:
+    name: Format Release Notes
+    runs-on: ubuntu-latest
+    outputs:
+      releasenotes: ${{ steps.releasenotes.outputs.releasenotes }}
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+    - name: Install Dependencies
+      run: pip install requests
+    - name: Fetch and Process releasenotes
+      id: releasenotes
+      run: |
+        python <<EOF
+        import re
+        import os
+        import requests
+
+        # Fetch release notes from the GitHub API
+        RELEASE_TAG = "${{ github.event.release.tag_name }}"
+        REPO = "${{ github.repository }}"
+        URL = f"https://api.github.com/repos/{REPO}/releases/tags/{RELEASE_TAG}"
+        response = requests.get(URL)
+        release = response.json()
+        releasenotes = release.get('body', '')
+
+        # Extract the "What's Changed" section
+        match = re.search(r"(## What's Changed.*?)(\n##|$)", releasenotes, flags=re.DOTALL)
+        if match:
+            releasenotes = match.group(1)
+        else:
+            releasenotes = "Bug fixes and performance improvements."
+
+        # Remove bold (**text**), italics (*text* or _text_), and underline (__text__)
+        releasenotes = re.sub(r'\*\*(.*?)\*\*', r'\1', releasenotes)  # Remove **bold**
+        releasenotes = re.sub(r'\*(.*?)\*', r'\1', releasenotes)      # Remove *italics*
+        releasenotes = re.sub(r'_(.*?)_', r'\1', releasenotes)        # Remove _italics/underline_
+        releasenotes = re.sub(r'__(.*?)__', r'\1', releasenotes)      # Remove __underline__
+
+        # Remove all headers (e.g., ## What's Changed)
+        releasenotes = re.sub(r'^#+\s*', '', releasenotes, flags=re.MULTILINE)
+
+        # Remove inline links but keep text (e.g., [text](url) → text)
+        releasenotes = re.sub(r'\[(.*?)\]\((.*?)\)', r'\1', releasenotes)
+
+        # Shorten pull request URLs to reference IDs (e.g., #123)
+        releasenotes = re.sub(r'https://github\.com/[^/]+/[^/]+/pull/(\d+)', r'#\1', releasenotes)
+
+        # Replace list items "*" with "-"
+        releasenotes = re.sub(r'^\s*\*\s+', '- ', releasenotes, flags=re.MULTILINE)
+
+        # Remove excess blank lines
+        releasenotes = re.sub(r'\n\s*\n', '\n', releasenotes).strip()
+
+        # Replace quotation marks with single quotes and line breaks
+        releasenotes = releasenotes.replace('"', "’")
+        releasenotes = releasenotes.replace("'", "’")
+        releasenotes = releasenotes.replace("\n", "\\n")
+
+        # Write cleaned releasenotes to GITHUB_OUTPUT
+        with open(os.environ['GITHUB_OUTPUT'], 'a') as output_file:
+            output_file.write(f"releasenotes<<EOF\n{releasenotes}\nEOF\n")
+        EOF
+    - name: Formatted Release Notes
+      run: |
+        echo "Formatted Release Notes:"
+        echo "${{ steps.releasenotes.outputs.releasenotes }}"
   build-and-test:
     name: Build and Test
     uses: ./.github/workflows/deployment.yml
+    needs: formatreleasenotes
     permissions:
       contents: read
       checks: write
@@ -29,3 +99,4 @@ jobs:
     with:
       environment: production
       version: ${{ github.event.release.tag_name }}
+      releasenotes: ${{ needs.formatreleasenotes.outputs.releasenotes }}
