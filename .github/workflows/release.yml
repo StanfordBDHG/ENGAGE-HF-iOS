@@ -11,9 +11,6 @@ name: Release
 on:
   release:
     types: [published]
-  push:
-    branches:
-      - fixReleaseNotes
 
 concurrency:
   group: production
@@ -41,8 +38,8 @@ jobs:
         import requests
 
         # Fetch release notes from the GitHub API
-        RELEASE_TAG = "2.0.1"
-        REPO = "StanfordBDHG/ENGAGE-HF-iOS"
+        RELEASE_TAG = "${{ github.event.release.tag_name }}"
+        REPO = "${{ github.repository }}"
         URL = f"https://api.github.com/repos/{REPO}/releases/tags/{RELEASE_TAG}"
         response = requests.get(URL)
         release = response.json()
