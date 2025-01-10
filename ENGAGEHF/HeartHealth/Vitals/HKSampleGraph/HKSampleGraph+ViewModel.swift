@@ -28,7 +28,7 @@ extension HKSampleGraph {
                 return
             }
             
-            guard let (hkUnits, unitString) = getUnits(data: [target]) else {
+            guard let (hkUnits, _) = getUnits(data: [target]) else {
                 self.targetValue = nil
                 return
             }
@@ -39,8 +39,6 @@ extension HKSampleGraph {
                 case HKQuantityTypeIdentifier.bodyMass.rawValue:
                     self.targetValue = SeriesTarget(
                         value: quantitySample.quantity.doubleValue(for: hkUnits),
-                        unit: unitString,
-                        date: quantitySample.startDate,
                         label: "Dry Weight"
                     )
                 default:

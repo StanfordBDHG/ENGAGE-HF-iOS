@@ -35,7 +35,16 @@ struct StudyApplicationListCard<Content: View>: View {
     }
 }
 
+extension Text {
+    func studyApplicationHeaderStyle() -> some View {
+        self
+            .font(.title2.bold())
+            .foregroundStyle(Color(.label))
+    }
+}
 
+
+#if DEBUG
 extension List {
     func studyApplicationList() -> some View {
         self
@@ -49,16 +58,6 @@ extension List {
     }
 }
 
-extension Text {
-    func studyApplicationHeaderStyle() -> some View {
-        self
-            .font(.title2.bold())
-            .foregroundStyle(Color(.label))
-    }
-}
-
-
-#if DEBUG
 #Preview("Sections") {
     NavigationStack {
         List {

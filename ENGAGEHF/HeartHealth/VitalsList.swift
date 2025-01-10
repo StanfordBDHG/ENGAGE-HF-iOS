@@ -10,9 +10,7 @@ import SwiftUI
 
 
 struct VitalsList: View {
-    @Environment(VitalsManager.self) private var vitalsManager
-    
-    var vitalSelection: GraphSelection
+    let vitalSelection: GraphSelection
     
     
     var body: some View {

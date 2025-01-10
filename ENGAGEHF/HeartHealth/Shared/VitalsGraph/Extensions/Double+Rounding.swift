@@ -23,9 +23,4 @@ extension Double {
         
         return target * (((self + offsetSign * offsetMagnitude) / target).rounded(rule))
     }
-    
-    /// Rounds `self` to the nearest multiple of the given target, in the direction determedin by the given rule.
-    func roundedToNearestMultipleOf(_ target: Double, rule: FloatingPointRoundingRule = .up) -> Self {
-        self.roundedToNthMultipleOf(target, skipping: 0, rule: rule)
-    }
 }

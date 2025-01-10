@@ -49,10 +49,6 @@ enum SymptomsType: String, CaseIterable, Identifiable, CustomStringConvertible, 
         }
     }
     
-    var localizedEmptyHistoryWarning: String {
-        GraphSelection.symptoms.localizedEmptyHistoryWarning
-    }
-    
     /// The localized description of the symptoms score
     var localizedExplanation: String {
         switch self {

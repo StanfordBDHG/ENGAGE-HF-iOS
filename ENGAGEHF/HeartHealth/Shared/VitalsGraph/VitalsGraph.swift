@@ -13,7 +13,6 @@ import SwiftUI
 
 struct VitalsGraph: View {
     let data: SeriesDictionary
-    let targetValue: SeriesTarget?
     let options: VitalsGraphOptions
     
     @State private var viewModel = ViewModel()
@@ -35,9 +34,8 @@ struct VitalsGraph: View {
     }
     
      
-    init(data: SeriesDictionary, target: SeriesTarget? = nil, options: VitalsGraphOptions = .defaultOptions) {
+    init(data: SeriesDictionary, options: VitalsGraphOptions = .defaultOptions) {
         self.data = data
-        self.targetValue = target
         self.options = options
     }
 }

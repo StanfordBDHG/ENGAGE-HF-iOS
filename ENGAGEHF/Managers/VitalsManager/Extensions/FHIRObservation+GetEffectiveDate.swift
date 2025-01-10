@@ -12,7 +12,7 @@ import ModelsR4
 
 extension Observation {
     /// Returns Observation.effective as a startDate and an endDate, if present, converting from FHIR Primitives to Swift Dates
-    public func getEffectiveDate() -> (start: Date, end: Date)? {
+    func getEffectiveDate() -> (start: Date, end: Date)? {
         guard let effective else {
             return nil
         }

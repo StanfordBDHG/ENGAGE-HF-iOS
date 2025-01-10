@@ -51,27 +51,6 @@ enum GraphSelection: CaseIterable, Identifiable, CustomStringConvertible, Equata
         }
     }
     
-    
-    init(collectionRef: CollectionReference?, for accountId: String) throws {
-        switch collectionRef {
-        case Firestore.symptomScoresCollectionReference(for: accountId):
-            self = .symptoms
-        case Firestore.collectionReference(for: accountId, type: HKQuantityType(.bodyMass)):
-            self = .weight
-        case Firestore.collectionReference(for: accountId, type: HKQuantityType(.heartRate)):
-            self = .heartRate
-        case Firestore.collectionReference(for: accountId, type: HKCorrelationType(.bloodPressure)):
-            self = .bloodPressure
-        default:
-            throw DecodingError.valueNotFound(
-                CollectionReference.self,
-                .init(
-                    codingPath: [],
-                    debugDescription: "No collection matches given reference."
-                )
-            )
-        }
-    }
 
     func collectionReference(for accountId: String) -> CollectionReference? {
         switch self {

@@ -34,6 +34,7 @@ final class NotificationManager: Manager, NotificationHandler, NotificationToken
     @ObservationIgnored @Dependency(NavigationManager.self) private var navigationManager
     @ObservationIgnored @Dependency(Account.self) private var account: Account?
     
+    // periphery:ignore - Properly used then the TEST flag is not set.
     @ObservationIgnored @Application(\.registerRemoteNotifications) private var registerRemoteNotifications
     @ObservationIgnored @Application(\.logger) private var logger
     
