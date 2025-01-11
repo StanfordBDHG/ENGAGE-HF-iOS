@@ -14,7 +14,6 @@ struct HeartHealth: View {
     @Binding var presentingAccount: Bool
     
     @Environment(NavigationManager.self) private var navigationManager
-    @Environment(VitalsManager.self) private var vitalsManager
     
     
     var body: some View {

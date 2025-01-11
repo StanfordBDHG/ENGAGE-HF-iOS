@@ -13,7 +13,9 @@ APP_CONFIG = {
   default_app_identifier: "edu.stanford.bdh.engagehf",
   default_provisioningProfile: "Stanford BDHG ENGAGE-HF",
   default_version_name: "2.0.1",
-  default_release_notes: "Bug fixes and performance improvements."
+  default_release_notes: "Bug fixes and performance improvements.",
+  scheme: "ENGAGEHF",
+  plist_path: "ENGAGEHF/Supporting Files/Info.plist"
 }.freeze
 
 platform :ios do
@@ -64,7 +66,7 @@ platform :ios do
       languages: [
          "en-US",
       ],
-      scheme: "ENGAGEHF",
+      scheme: APP_CONFIG[:scheme],
       output_directory: "./fastlane/screenshots",
       clear_previous_screenshots: true,
       concurrent_simulators: false,
@@ -76,6 +78,20 @@ platform :ios do
     Dir.glob("./screenshots/**/iPhone 16 Plus-*.png").each do |file|
       sh("sips --resampleHeightWidth 2796 1290 '#{file}'")
     end
+  end
+
+  desc "CodeQL"
+  lane :codeql do
+    ENV["FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT"] = "320" # CodeQL runs on GitHub CI. We need much higher timeout here.
+    build_app(
+      skip_archive: true,
+      skip_codesigning: true,
+      derived_data_path: ".derivedData",
+      xcargs: [
+        "-skipPackagePluginValidation",
+        "-skipMacroValidation"
+      ]
+    )
   end
 
   desc "Build app"
@@ -97,7 +113,7 @@ platform :ios do
     provisioningProfile = options[:provisioningProfile].to_s.strip.empty? ? APP_CONFIG[:default_provisioningProfile] : options[:provisioningProfile]
     
     update_app_identifier(
-      plist_path: "ENGAGEHF/Supporting Files/Info.plist",
+      plist_path: APP_CONFIG[:plist_path],
       app_identifier: appidentifier
     )
 
@@ -161,9 +177,9 @@ platform :ios do
     if environment == "production"
       deliver(
         app_identifier: appidentifier,
-        release_notes: ({
+        release_notes: {
           'default' => releasenotes
-        }),
+        },
         submit_for_review: true,
         force: true,
         reject_if_possible: true,

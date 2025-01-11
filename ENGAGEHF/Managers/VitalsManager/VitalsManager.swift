@@ -23,44 +23,43 @@ import SpeziFirestore
 /// - Convert FHIR observations to HKQuantitySamples and HKCorrelations
 @Observable
 @MainActor
-public final class VitalsManager: Manager {
+final class VitalsManager: Manager {
     @ObservationIgnored @StandardActor private var standard: ENGAGEHFStandard
     
     @ObservationIgnored @Dependency(Account.self) private var account: Account?
     @ObservationIgnored @Dependency(AccountNotifications.self) private var accountNotifications: AccountNotifications?
-    @ObservationIgnored @Dependency(FirebaseAccountService.self) private var accountService: FirebaseAccountService?
-    
+
     @Application(\.logger) @ObservationIgnored private var logger
     
     private var snapshotListeners: [ListenerRegistration] = []
     private var notificationsTask: Task<Void, Never>?
     
-    public var heartRateHistory: [HKQuantitySample] = []
-    public var bloodPressureHistory: [HKCorrelation] = []
-    public var weightHistory: [HKQuantitySample] = []
+    var heartRateHistory: [HKQuantitySample] = []
+    var bloodPressureHistory: [HKCorrelation] = []
+    var weightHistory: [HKQuantitySample] = []
     
-    public var symptomHistory: [SymptomScore] = []
+    var symptomHistory: [SymptomScore] = []
     
     private(set) var latestDryWeight: HKQuantitySample?
     
     
-    public var latestHeartRate: HKQuantitySample? {
+    var latestHeartRate: HKQuantitySample? {
         heartRateHistory.max { $0.startDate < $1.startDate }
     }
-    public var latestBloodPressure: HKCorrelation? {
+    var latestBloodPressure: HKCorrelation? {
         bloodPressureHistory.max { $0.startDate < $1.startDate }
     }
-    public var latestWeight: HKQuantitySample? {
+    var latestWeight: HKQuantitySample? {
         weightHistory.max { $0.startDate < $1.startDate }
     }
     
     
-    nonisolated public init() {}
+    nonisolated init() {}
     
     
     /// Call on initial configuration:
     /// - Add a snapshot listener to the three health data collections
-    public func configure() {
+    func configure() {
         if ProcessInfo.processInfo.isPreviewSimulator {
             self.setupPreview()
             return
@@ -94,7 +93,7 @@ public final class VitalsManager: Manager {
     }
     
     
-    public func refreshContent() {
+    func refreshContent() {
         updateSnapshotListener(for: account?.details)
     }
     

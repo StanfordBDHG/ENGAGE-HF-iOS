@@ -22,12 +22,9 @@ import SpeziFirebaseAccount
 @Observable
 @MainActor
 final class MessageManager: Manager {
-    @ObservationIgnored @StandardActor var standard: ENGAGEHFStandard
-    
     @ObservationIgnored @Dependency(Account.self) private var account: Account?
     @ObservationIgnored @Dependency(AccountNotifications.self) private var accountNotifications: AccountNotifications?
-    @ObservationIgnored @Dependency(FirebaseAccountService.self) private var accountService: FirebaseAccountService?
-
+    
     @Application(\.logger) @ObservationIgnored private var logger
 
     private(set) var messages: [Message] = []
@@ -167,6 +164,7 @@ final class MessageManager: Manager {
 
 #if DEBUG || TEST
 extension MessageManager {
+    // periphery:ignore - Used in Previews across the application.
     /// Adds a mock message to self.messages
     /// Used for testing in previews
     func addMockMessage(dismissible: Bool = true, action: MessageAction = .showHealthSummary) {

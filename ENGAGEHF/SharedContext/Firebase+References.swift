@@ -65,17 +65,6 @@ extension Firestore {
     static func questionnaireResponseCollectionReference(for accountId: String) -> CollectionReference {
         userDocumentReference(for: accountId).collection("questionnaireResponses")
     }
-
-    static func heartHealthCollectionReferences(for accountId: String) -> [CollectionReference] {
-        [
-            symptomScoresCollectionReference(for: accountId),
-            collectionReference(for: accountId, type: HKQuantityType(.bodyMass)),
-            collectionReference(for: accountId, type: HKQuantityType(.heartRate)),
-            collectionReference(for: accountId, type: HKCorrelationType(.bloodPressure))
-        ]
-            .compactMap { $0 }
-    }
-    
     
     static func collectionReference(for accountId: String, type: HKSampleType) -> CollectionReference? {
         switch type {
@@ -92,11 +81,5 @@ extension Firestore {
         default:
             nil
         }
-    }
-}
-
-extension Storage {
-    static func userBucketReference(for accountId: String) -> StorageReference {
-        Storage.storage().reference().child("users/\(accountId)")
     }
 }

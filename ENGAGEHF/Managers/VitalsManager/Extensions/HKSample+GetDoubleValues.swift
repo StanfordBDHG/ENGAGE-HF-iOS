@@ -13,7 +13,7 @@ import HealthKit
 extension HKSample {
     /// Returns the Double value corresponding to each quantity in the Sample in the given units, if compatable
     /// For now, only supports HKQuantitySamples and HKCorrelations
-    public func getDoubleValues(for unit: HKUnit) -> [String: Double] {
+    func getDoubleValues(for unit: HKUnit) -> [String: Double] {
         switch self {
         case let quantitySample as HKQuantitySample:
             let quantity = quantitySample.quantity

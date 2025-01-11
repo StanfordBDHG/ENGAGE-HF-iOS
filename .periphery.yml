@@ -9,7 +9,3 @@
 project: ENGAGEHF.xcodeproj
 schemes:
 - ENGAGEHF
-targets:
-- ENGAGEHF
-- ENGAGEHFTests
-- ENGAGEHFUITests

@@ -13,20 +13,20 @@ import Foundation
 /// The score representing the result of a patient's response to a KCCQ survey
 /// Parameters are specified in compliance with:
 /// https://github.com/StanfordBDHG/ENGAGE-HF-Firebase/tree/web-data-scheme
-public struct SymptomScore: Identifiable, Equatable {
-    @DocumentID public var id: String?
-    public let date: Date
-    public let overallScore: Double?
-    public let physicalLimitsScore: Double?
-    public let socialLimitsScore: Double?
-    public let qualityOfLifeScore: Double?
-    public let symptomFrequencyScore: Double?
-    public let dizzinessScore: Double?
+struct SymptomScore: Identifiable, Equatable {
+    @DocumentID var id: String?
+    let date: Date
+    let overallScore: Double?
+    let physicalLimitsScore: Double?
+    let socialLimitsScore: Double?
+    let qualityOfLifeScore: Double?
+    let symptomFrequencyScore: Double?
+    let dizzinessScore: Double?
 }
 
 
 extension SymptomScore: Codable {
-    public init(from decoder: any Decoder) throws {
+    init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         self._id = try container.decode(DocumentID<String>.self, forKey: .id)
