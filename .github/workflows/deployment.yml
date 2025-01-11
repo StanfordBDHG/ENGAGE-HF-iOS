@@ -86,7 +86,7 @@ jobs:
     outputs:
       appidentifier: ${{ vars.APP_IDENTIFIER }}
       provisioningProfileName: ${{ vars.PROVISIONING_PROFILE_NAME }}
-      version: ${{ steps.vars.outputs.version }}
+      version: ${{ steps.script.outputs.version }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -95,7 +95,8 @@ jobs:
         with:
           semver_only: true
           initial_version: "2.0.1"
-      - run: |
+      - id: script
+        run: |
           echo "Injecting Environment Variables In Deployment Workflow ..."
           echo "appidentifier: ${{ vars.APP_IDENTIFIER }}"
           echo "provisioningProfileName: ${{ vars.PROVISIONING_PROFILE_NAME }}"
