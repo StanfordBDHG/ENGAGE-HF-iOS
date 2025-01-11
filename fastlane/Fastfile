@@ -149,13 +149,13 @@ platform :ios do
     versionname = options[:versionname].to_s.strip.empty? ? APP_CONFIG[:default_version_name] : options[:versionname]
     releasenotes = options[:releasenotes].to_s.strip.empty? ? APP_CONFIG[:default_release_notes] : options[:releasenotes]
 
-    releasenotes = releasenotes.gsub('’', "'")
-
     UI.message("Using environment: #{environment}")
     UI.message("Using app identifier: #{appidentifier}")
     UI.message("Using provisioning profile: #{provisioningProfile}")
     UI.message("Using version name: #{versionname}")
     UI.message("Using release notes: #{releasenotes}")
+
+    releasenotes = releasenotes.gsub('\u2019', "'")
 
     if environment == "production"
       increment_version_number(
