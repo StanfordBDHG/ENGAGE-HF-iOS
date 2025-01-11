@@ -155,6 +155,8 @@ platform :ios do
     UI.message("Using version name: #{versionname}")
     UI.message("Using release notes: #{releasenotes}")
 
+    releasenotes = releasenotes.gsub('\u2019', "'")
+
     if environment == "production"
       increment_version_number(
         version_number: versionname
