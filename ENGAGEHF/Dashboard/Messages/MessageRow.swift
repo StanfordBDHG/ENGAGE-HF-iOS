@@ -151,10 +151,10 @@ struct MessageRow: View {
 
 
 #if DEBUG
-#Preview {
+#Preview { // swiftlint:disable:this closure_body_length
     struct MessageRowPreviewWrapper: View {
         @Environment(MessageManager.self) private var messageManager
-        
+
         var body: some View {
             List {
                 Section(
