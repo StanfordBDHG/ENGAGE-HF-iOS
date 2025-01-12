@@ -28,15 +28,15 @@ final class MessageManager: Module, EnvironmentAccessible, DefaultInitializable 
     @ObservationIgnored @Dependency(AccountNotifications.self) private var accountNotifications: AccountNotifications?
     @ObservationIgnored @Dependency(FirebaseAccountService.self) private var accountService: FirebaseAccountService?
     @ObservationIgnored @Dependency(NotificationManager.self) private var notificationManager: NotificationManager?
-
+    
+    @ObservationIgnored private var notificationTask: Task<Void, Never>?
+    @ObservationIgnored private var snapshotListener: ListenerRegistration?
+    @ObservationIgnored private var activeProcessingTimer: Task<Void, Never>?
+    
     @Application(\.logger) @ObservationIgnored private var logger
 
     private(set) var messages: [Message] = []
     private var processingStates: [String: ProcessingState] = [:]
-    
-    private var notificationTask: Task<Void, Never>?
-    private var snapshotListener: ListenerRegistration?
-    private var activeProcessingTimer: Task<Void, Never>?
     
     nonisolated init() {}
     
