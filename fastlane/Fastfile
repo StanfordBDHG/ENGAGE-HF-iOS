@@ -180,7 +180,7 @@ platform :ios do
       deliver(
         app_identifier: appidentifier,
         release_notes: {
-          'default' => releasenotes
+          'en-US' => releasenotes
         },
         submit_for_review: true,
         force: true,
