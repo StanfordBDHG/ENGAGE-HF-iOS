@@ -9,10 +9,6 @@
 import Foundation
 
 struct ProcessingState: Equatable {
-    let startTime: Date // TODO: remove contents order violation
-    let type: ProcessingType
-    let correlationId: String
-    
     enum ProcessingType: Equatable {
         case healthMeasurement(samples: Int)
         case questionnaire(id: String)
@@ -26,6 +22,10 @@ struct ProcessingState: Equatable {
             }
         }
     }
+    
+    let startTime: Date
+    let type: ProcessingType
+    let correlationId: String
     
     var isStillProcessing: Bool {
         Date().timeIntervalSince(startTime) < 60
