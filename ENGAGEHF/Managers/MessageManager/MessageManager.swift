@@ -112,8 +112,13 @@ final class MessageManager: Module, EnvironmentAccessible, DefaultInitializable 
         // Schedule state cleanup
         Task {
             try? await Task.sleep(nanoseconds: 60_000_000_000) // 60 seconds
-            await cleanupProcessingState(correlationId: correlationId)
+            cleanupProcessingState(correlationId: correlationId)
         }
+    }
+    
+    @MainActor
+    func refreshContent() {
+            updateSnapshotListener(for: account?.details)
     }
     
     @MainActor
