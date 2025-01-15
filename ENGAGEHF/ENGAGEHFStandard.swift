@@ -43,7 +43,6 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint {
             return
         }
         
-        // Mark related messages as processing
         await messageManager?.markAsProcessing(
             type: .healthMeasurement(samples: samples.count)
         )
@@ -85,7 +84,6 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint {
     func add(response: ModelsR4.QuestionnaireResponse) async throws {
         let questionnaireId = response.identifier?.value?.value?.string ?? UUID().uuidString
         
-        // Mark related messages as processing
         await messageManager?.markAsProcessing(
             type: .questionnaire(id: questionnaireId)
         )

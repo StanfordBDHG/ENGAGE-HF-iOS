@@ -14,15 +14,18 @@ import SwiftUI
 
 
 struct QuestionnaireSheetView: View {
-    private let questionnaireId: String
+    // MARK: - Type Properties
+    
+    // MARK: - Properties
+    @Environment(ENGAGEHFStandard.self) private var standard
+    @Environment(\.dismiss) private var dismiss
     
     @State private var questionnaire: Questionnaire?
     @State private var viewState: ViewState = .idle
     
-    @Environment(ENGAGEHFStandard.self) private var standard
-    @Environment(\.dismiss) private var dismiss
+    private let questionnaireId: String
     
-    
+    // MARK: - View
     var body: some View {
         ZStack {
             if let questionnaire {
@@ -40,11 +43,14 @@ struct QuestionnaireSheetView: View {
                     }
 #endif
                     
-                    do {
-                        try await standard.add(response: questionnaireResponse)
-                        dismiss()
-                    } catch {
-                        viewState = .error(AnyLocalizedError(error: error))
+                    Task {
+                        do {
+                            try await standard.add(response: questionnaireResponse)
+                            try? await Task.sleep(nanoseconds: 1_000_000_000)
+                            dismiss()
+                        } catch {
+                            viewState = .error(AnyLocalizedError(error: error))
+                        }
                     }
                 }
             } else {
@@ -52,25 +58,28 @@ struct QuestionnaireSheetView: View {
                     .background(Color(.systemGroupedBackground))
             }
         }
-            .task {
-                do {
+        .task {
+            do {
 #if DEBUG || TEST
-                    if ProcessInfo.processInfo.isPreviewSimulator || FeatureFlags.setupTestMessages {
-                        questionnaire = .formExample
-                        return
-                    }
-#endif
-                    questionnaire = try await Firestore.questionnairesCollectionReference
-                        .document(questionnaireId)
-                        .getDocument(as: Questionnaire.self)
-                } catch {
-                    viewState = .error(AnyLocalizedError(error: error, defaultErrorDescription: String(localized: "Unable to load questionnaire.")))
+                if ProcessInfo.processInfo.isPreviewSimulator || FeatureFlags.setupTestMessages {
+                    questionnaire = .formExample
+                    return
                 }
+#endif
+                questionnaire = try await Firestore.questionnairesCollectionReference
+                    .document(questionnaireId)
+                    .getDocument(as: Questionnaire.self)
+            } catch {
+                viewState = .error(AnyLocalizedError(
+                    error: error,
+                    defaultErrorDescription: String(localized: "Unable to load questionnaire.")
+                ))
             }
-            .viewStateAlert(state: $viewState)
+        }
+        .viewStateAlert(state: $viewState)
     }
     
-    
+    // MARK: - Initialization
     init(questionnaireId: String) {
         self.questionnaireId = questionnaireId
     }
@@ -81,15 +90,14 @@ struct QuestionnaireSheetView: View {
     struct QuestionnaireSheetViewPreviewWrapper: View {
         @State private var questionnaireId: String?
         
-        
         var body: some View {
             Button("Tap Here") {
                 questionnaireId = "0"
             }
-                .buttonStyle(.borderedProminent)
-                .sheet(item: $questionnaireId) { questionnaireId in
-                    QuestionnaireSheetView(questionnaireId: questionnaireId)
-                }
+            .buttonStyle(.borderedProminent)
+            .sheet(item: $questionnaireId) { questionnaireId in
+                QuestionnaireSheetView(questionnaireId: questionnaireId)
+            }
         }
     }
     
