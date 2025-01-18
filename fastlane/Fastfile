@@ -12,7 +12,7 @@ APP_CONFIG = {
   default_environment: "staging",
   default_app_identifier: "edu.stanford.bdh.engagehf",
   default_provisioningProfile: "Stanford BDHG ENGAGE-HF",
-  default_version_name: "2.0.1",
+  default_version_name: "2.0.0",
   default_release_notes: "Bug fixes and performance improvements.",
   scheme: "ENGAGEHF",
   plist_path: "ENGAGEHF/Supporting Files/Info.plist"
