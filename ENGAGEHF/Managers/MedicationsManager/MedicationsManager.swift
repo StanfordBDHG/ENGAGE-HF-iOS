@@ -19,12 +19,9 @@ import SpeziFirebaseAccount
 @Observable
 @MainActor
 final class MedicationsManager: Manager {
-    @ObservationIgnored @StandardActor private var standard: ENGAGEHFStandard
-
     @ObservationIgnored @Dependency(Account.self) private var account: Account?
     @ObservationIgnored @Dependency(AccountNotifications.self) private var accountNotifications: AccountNotifications?
-    @ObservationIgnored @Dependency(FirebaseAccountService.self) private var accountService: FirebaseAccountService?
-
+    
     @Application(\.logger) @ObservationIgnored private var logger
     
     private var snapshotListener: ListenerRegistration?

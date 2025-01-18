@@ -23,12 +23,12 @@ import SwiftUI
 
 
 actor ENGAGEHFStandard: Standard, EnvironmentAccessible, OnboardingConstraint {
-    @Application(\.logger) private var logger
-
     @Dependency(Account.self) private var account: Account?
-    @Dependency(FirebaseAccountService.self) private var accountService: FirebaseAccountService?
     @Dependency(MessageManager.self) private var messageManager: MessageManager?
-
+    
+    @Application(\.logger) private var logger
+    
+    
     private var accountId: String {
         get async throws {
             guard let details = await account?.details else {

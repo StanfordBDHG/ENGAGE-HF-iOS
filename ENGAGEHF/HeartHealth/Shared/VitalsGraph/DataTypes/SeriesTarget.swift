@@ -11,7 +11,5 @@ import Foundation
 
 struct SeriesTarget {
     let value: Double
-    let unit: String
-    let date: Date
     let label: String
 }

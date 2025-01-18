@@ -24,10 +24,6 @@ enum VitalsType: CustomStringConvertible {
         }
     }
     
-    var localizedEmptyHistoryWarning: String {
-        graphType.localizedEmptyHistoryWarning
-    }
-    
     /// The localized description of the vitals type
     var localizedExplanation: String {
         switch self {

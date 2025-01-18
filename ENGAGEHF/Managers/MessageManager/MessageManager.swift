@@ -21,7 +21,7 @@ import SpeziFirebaseAccount
 /// On sign-in, adds a snapshot listener to the user's messages collection
 @Observable
 @MainActor
-final class MessageManager: Module, EnvironmentAccessible, DefaultInitializable {
+final class MessageManager: Manager, EnvironmentAccessible, DefaultInitializable {
     @ObservationIgnored @StandardActor var standard: ENGAGEHFStandard
     
     @ObservationIgnored @Dependency(Account.self) private var account: Account?
@@ -225,6 +225,7 @@ final class MessageManager: Module, EnvironmentAccessible, DefaultInitializable 
 
 #if DEBUG || TEST
 extension MessageManager {
+    // periphery:ignore - Used in Previews across the application.
     /// Adds a mock message to self.messages
     /// Used for testing in previews
     @MainActor

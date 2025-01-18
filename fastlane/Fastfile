@@ -12,7 +12,10 @@ APP_CONFIG = {
   default_environment: "staging",
   default_app_identifier: "edu.stanford.bdh.engagehf",
   default_provisioningProfile: "Stanford BDHG ENGAGE-HF",
-  default_version_name: "2.0.1"
+  default_version_name: "2.0.0",
+  default_release_notes: "Bug fixes and performance improvements.",
+  scheme: "ENGAGEHF",
+  plist_path: "ENGAGEHF/Supporting Files/Info.plist"
 }.freeze
 
 platform :ios do
@@ -63,7 +66,7 @@ platform :ios do
       languages: [
          "en-US",
       ],
-      scheme: "ENGAGEHF",
+      scheme: APP_CONFIG[:scheme],
       output_directory: "./fastlane/screenshots",
       clear_previous_screenshots: true,
       concurrent_simulators: false,
@@ -77,9 +80,25 @@ platform :ios do
     end
   end
 
+  desc "CodeQL"
+  lane :codeql do
+    ENV["FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT"] = "320" # CodeQL runs on GitHub CI. We need much higher timeout here.
+    build_app(
+      scheme: APP_CONFIG[:scheme],
+      skip_archive: true,
+      skip_codesigning: true,
+      derived_data_path: ".derivedData",
+      xcargs: [
+        "-skipPackagePluginValidation",
+        "-skipMacroValidation"
+      ]
+    )
+  end
+
   desc "Build app"
   lane :build do
     build_app(
+      scheme: APP_CONFIG[:scheme],
       skip_archive: true,
       skip_codesigning: true,
       derived_data_path: ".derivedData",
@@ -96,11 +115,12 @@ platform :ios do
     provisioningProfile = options[:provisioningProfile].to_s.strip.empty? ? APP_CONFIG[:default_provisioningProfile] : options[:provisioningProfile]
     
     update_app_identifier(
-      plist_path: "ENGAGEHF/Supporting Files/Info.plist",
+      plist_path: APP_CONFIG[:plist_path],
       app_identifier: appidentifier
     )
 
     build_app(
+      scheme: APP_CONFIG[:scheme],
       derived_data_path: ".derivedData",
       xcargs: [
         "-skipPackagePluginValidation",
@@ -130,11 +150,15 @@ platform :ios do
     appidentifier = options[:appidentifier].to_s.strip.empty? ? APP_CONFIG[:default_app_identifier] : options[:appidentifier]
     provisioningProfile = options[:provisioningProfile].to_s.strip.empty? ? APP_CONFIG[:default_provisioningProfile] : options[:provisioningProfile]
     versionname = options[:versionname].to_s.strip.empty? ? APP_CONFIG[:default_version_name] : options[:versionname]
+    releasenotes = options[:releasenotes].to_s.strip.empty? ? APP_CONFIG[:default_release_notes] : options[:releasenotes]
 
     UI.message("Using environment: #{environment}")
     UI.message("Using app identifier: #{appidentifier}")
     UI.message("Using provisioning profile: #{provisioningProfile}")
     UI.message("Using version name: #{versionname}")
+    UI.message("Using release notes: #{releasenotes}")
+
+    releasenotes = releasenotes.gsub('\u2019', "'")
 
     if environment == "production"
       increment_version_number(
@@ -158,6 +182,9 @@ platform :ios do
     if environment == "production"
       deliver(
         app_identifier: appidentifier,
+        release_notes: {
+          'en-US' => releasenotes
+        },
         submit_for_review: true,
         force: true,
         reject_if_possible: true,
