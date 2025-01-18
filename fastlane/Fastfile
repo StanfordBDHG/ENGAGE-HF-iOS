@@ -12,7 +12,7 @@ APP_CONFIG = {
   default_environment: "staging",
   default_app_identifier: "edu.stanford.bdh.engagehf",
   default_provisioningProfile: "Stanford BDHG ENGAGE-HF",
-  default_version_name: "2.0.1",
+  default_version_name: "2.0.0",
   default_release_notes: "Bug fixes and performance improvements.",
   scheme: "ENGAGEHF",
   plist_path: "ENGAGEHF/Supporting Files/Info.plist"
@@ -84,6 +84,7 @@ platform :ios do
   lane :codeql do
     ENV["FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT"] = "320" # CodeQL runs on GitHub CI. We need much higher timeout here.
     build_app(
+      scheme: APP_CONFIG[:scheme],
       skip_archive: true,
       skip_codesigning: true,
       derived_data_path: ".derivedData",
@@ -97,6 +98,7 @@ platform :ios do
   desc "Build app"
   lane :build do
     build_app(
+      scheme: APP_CONFIG[:scheme],
       skip_archive: true,
       skip_codesigning: true,
       derived_data_path: ".derivedData",
@@ -118,6 +120,7 @@ platform :ios do
     )
 
     build_app(
+      scheme: APP_CONFIG[:scheme],
       derived_data_path: ".derivedData",
       xcargs: [
         "-skipPackagePluginValidation",
