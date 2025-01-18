@@ -2041,7 +2041,7 @@
 /* Begin XCRemoteSwiftPackageReference section */
 		2F49B7742980407B00BCB272 /* XCRemoteSwiftPackageReference "Spezi" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/StanfordSpezi/Spezi";
+			repositoryURL = "https://github.com/StanfordSpezi/Spezi.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.8.0;
@@ -2092,7 +2092,7 @@
 			repositoryURL = "https://github.com/StanfordSpezi/SpeziFirebase.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.2;
+				minimumVersion = 2.0.1;
 			};
 		};
 		2FE5DC8229EDD934004B9AB4 /* XCRemoteSwiftPackageReference "SpeziQuestionnaire" */ = {
@@ -2153,7 +2153,7 @@
 		};
 		5661551B2AB8384200209B80 /* XCRemoteSwiftPackageReference "swift-package-list" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/FelixHerrmann/swift-package-list";
+			repositoryURL = "https://github.com/FelixHerrmann/swift-package-list.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 4.1.0;
@@ -2161,7 +2161,7 @@
 		};
 		56E708332BB06B7100B08F0A /* XCRemoteSwiftPackageReference "SpeziLicense" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/StanfordSpezi/SpeziLicense";
+			repositoryURL = "https://github.com/StanfordSpezi/SpeziLicense.git";
 			requirement = {
 				kind = upToNextMinorVersion;
 				minimumVersion = 0.1.1;
@@ -2177,7 +2177,7 @@
 		};
 		97F466E62A76BBEE005DC9B4 /* XCRemoteSwiftPackageReference "SpeziOnboarding" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/StanfordSpezi/SpeziOnboarding";
+			repositoryURL = "https://github.com/StanfordSpezi/SpeziOnboarding.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.2.2;
@@ -2193,7 +2193,7 @@
 		};
 		A9A0BF012C13121D00B8F3F3 /* XCRemoteSwiftPackageReference "SpeziNetworking" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/StanfordSpezi/SpeziNetworking";
+			repositoryURL = "https://github.com/StanfordSpezi/SpeziNetworking.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 2.2.0;
