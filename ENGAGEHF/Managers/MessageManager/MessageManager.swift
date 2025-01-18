@@ -21,13 +21,9 @@ import SpeziFirebaseAccount
 /// On sign-in, adds a snapshot listener to the user's messages collection
 @Observable
 @MainActor
-final class MessageManager: Manager, EnvironmentAccessible, DefaultInitializable {
-    @ObservationIgnored @StandardActor var standard: ENGAGEHFStandard
-    
+final class MessageManager: Manager {
     @ObservationIgnored @Dependency(Account.self) private var account: Account?
     @ObservationIgnored @Dependency(AccountNotifications.self) private var accountNotifications: AccountNotifications?
-    @ObservationIgnored @Dependency(FirebaseAccountService.self) private var accountService: FirebaseAccountService?
-    @ObservationIgnored @Dependency(NotificationManager.self) private var notificationManager: NotificationManager?
     
     @ObservationIgnored private var notificationTask: Task<Void, Never>?
     @ObservationIgnored private var snapshotListener: ListenerRegistration?
@@ -118,7 +114,7 @@ final class MessageManager: Manager, EnvironmentAccessible, DefaultInitializable
     
     @MainActor
     func refreshContent() {
-            updateSnapshotListener(for: account?.details)
+        updateSnapshotListener(for: account?.details)
     }
     
     @MainActor
@@ -240,6 +236,14 @@ extension MessageManager {
         )
         
         self.messages.append(mockMessage)
+    }
+    
+    // periphery:ignore - Used in Previews across the application.
+    /// Marks all messages that can be processing as processing.
+    /// Used for testing in previews
+    func makeMockMessagesProcessing() {
+        markAsProcessing(type: .healthMeasurement(samples: 1))
+        markAsProcessing(type: .questionnaire(id: "0"))
     }
     
     @MainActor

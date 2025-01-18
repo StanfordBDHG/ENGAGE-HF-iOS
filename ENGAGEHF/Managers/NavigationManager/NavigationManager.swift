@@ -20,7 +20,7 @@ import SwiftUI
 @Observable
 final class NavigationManager: Manager {
     @ObservationIgnored @Dependency(AccountNotifications.self) private var accountNotifications: AccountNotifications?
-    @ObservationIgnored @Dependency(VideoManager.self) private var videoManager
+    @ObservationIgnored @Dependency(VideoManager.self) private var videoManager: VideoManager?
 
     @Application(\.logger) @ObservationIgnored private var logger
     
@@ -82,7 +82,8 @@ final class NavigationManager: Manager {
         
         switch messageAction {
         case let .playVideo(sectionId, videoId):
-            let matchingVideo = videoManager.videoCollections
+            let matchingVideo = videoManager?
+                .videoCollections
                 .filter { $0.id == sectionId }
                 .flatMap { $0.videos.filter { $0.id == videoId } }
                 .first

@@ -6,6 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
+@_spi(TestingSupport) import SpeziAccount
 import SpeziViews
 import SwiftUI
 
@@ -156,46 +157,49 @@ struct MessageRow: View {
         @Environment(MessageManager.self) private var messageManager
 
         var body: some View {
-            List {
-                Section(
-                    content: {
-                        ForEach(messageManager.messages) { message in
-                            StudyApplicationListCard {
-                                MessageRow(message: message)
-                            }
-                        }
-                            .buttonStyle(.borderless)
-                    },
-                    header: {
-                        Text("Messages")
-                            .studyApplicationHeaderStyle()
-                    }
-                )
-                Section(
-                    content: {
-                        StudyApplicationListCard {
-                            Button(
-                                action: {
-                                    messageManager.addMockMessage()
-                                },
-                                label: {
-                                    Text("Add Mock")
+            NavigationStack {
+                List {
+                    Section(
+                        content: {
+                            ForEach(messageManager.messages) { message in
+                                StudyApplicationListCard {
+                                    MessageRow(message: message)
                                 }
-                            )
-                                .buttonStyle(.borderless)
+                            }
+                            .buttonStyle(.borderless)
+                        },
+                        header: {
+                            Text("Messages")
+                                .studyApplicationHeaderStyle()
                         }
-                    },
-                    header: {
-                        Text("")
+                    )
+                }
+                    .studyApplicationList()
+                    .toolbar {
+                        Button(
+                            action: {
+                                messageManager.addMockMessage()
+                            },
+                            label: {
+                                Text("Add Mock")
+                            }
+                        )
+                        Button(
+                            action: {
+                                messageManager.makeMockMessagesProcessing()
+                            },
+                            label: {
+                                Text("Set Processing")
+                            }
+                        )
                     }
-                )
             }
-                .studyApplicationList()
         }
     }
     
     return MessageRowPreviewWrapper()
         .previewWith(standard: ENGAGEHFStandard()) {
+            AccountConfiguration(service: InMemoryAccountService())
             MessageManager()
             NavigationManager()
         }
