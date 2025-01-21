@@ -46,8 +46,20 @@ struct SymptomsGraphSection: View {
             granularity: .day,
             localizedUnitString: symptomsType == .dizziness ? "" : "%",
             selectionFormatter: { selected in
-                let matchingSeriesValue = selected.first(where: { $0.0 == KnownVitalsSeries.symptomScore.rawValue })?.1
-                return matchingSeriesValue?.asString(minimumFractionDigits: 0, maximumFractionDigits: 1) ?? "No Data"
+                switch symptomsType {
+                case .overall, .physical, .social, .quality, .specific:
+                    let matchingSeriesValue = selected.first(where: {
+                        $0.0 == KnownVitalsSeries.symptomScore.rawValue
+                    })?.1
+                    return matchingSeriesValue?.asString(minimumFractionDigits: 0, maximumFractionDigits: 1) ?? "No Data"
+                case .dizziness:
+                    let matchingSeriesValue = selected.first(where: {
+                        $0.0 == KnownVitalsSeries.symptomScore.rawValue
+                    })?.1
+                    return matchingSeriesValue.flatMap {
+                        SymptomScore.mapLocalizedDizzinessScore($0)?.localizedString()
+                    } ?? "No Data"
+                }
             }
         )
     }
@@ -75,7 +87,8 @@ struct SymptomsGraphSection: View {
 
 
 #Preview {
-    SymptomsGraphSection(symptomsType: .constant(.overall))
+    @Previewable @State var symptomsType = SymptomsType.overall
+    SymptomsGraphSection(symptomsType: $symptomsType)
         .previewWith(standard: ENGAGEHFStandard()) {
             VitalsManager()
         }
