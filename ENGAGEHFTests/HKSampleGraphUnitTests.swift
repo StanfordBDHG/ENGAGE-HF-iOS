@@ -55,7 +55,15 @@ final class HKSampleGraphUnitTests: XCTestCase {
         XCTAssertEqual(viewModel.displayUnit, "mmHg")
         
         // Make sure the correct formatter was chosen
-        XCTAssertEqual(viewModel.formatter([("Systolic", 120.0), ("Diastolic", 60.0)]), "120/60")
+        XCTAssertEqual(
+            viewModel.formatter(
+                [
+                    (KnownVitalsSeries.bloodPressureSystolic.rawValue, 120.0),
+                    (KnownVitalsSeries.bloodPressureDiastolic.rawValue, 60.0)
+                ]
+            ),
+            "120/60"
+        )
     }
     
     func testHKSampleGraphViewModelWithBodyWeight() throws {
@@ -113,7 +121,10 @@ final class HKSampleGraphUnitTests: XCTestCase {
         XCTAssertEqual(viewModel.displayUnit, Locale.current.measurementSystem == .us ? "lb" : "kg")
         
         // Make sure the correct formatter was chosen
-        XCTAssertEqual(viewModel.formatter([(KnownVitalsSeries.bodyWeight.rawValue, 120.0), ("Diastolic", 60.0)]), "120.0")
+        XCTAssertEqual(
+            viewModel.formatter([(KnownVitalsSeries.bodyWeight.rawValue, 120.0)]),
+            "120.0"
+        )
     }
     
     func testHKSampleGraphViewModelWithHeartRate() throws {
@@ -148,7 +159,10 @@ final class HKSampleGraphUnitTests: XCTestCase {
         XCTAssertEqual(viewModel.displayUnit, "BPM")
         
         // Make sure the correct formatter was chosen
-        XCTAssertEqual(viewModel.formatter([(KnownVitalsSeries.heartRate.rawValue, 120.0), ("Diastolic", 60.0)]), "120")
+        XCTAssertEqual(
+            viewModel.formatter([(KnownVitalsSeries.heartRate.rawValue, 120.0)]),
+            "120"
+        )
     }
     
     
