@@ -6,8 +6,10 @@
 // SPDX-License-Identifier: MIT
 //
 
+@_spi(TestingSupport) import SpeziAccount
 import SpeziViews
 import SwiftUI
+
 
 @MainActor
 struct HeartHealth: View {
@@ -40,6 +42,8 @@ struct HeartHealth: View {
 #Preview {
     HeartHealth(presentingAccount: .constant(false))
         .previewWith(standard: ENGAGEHFStandard()) {
+            AccountConfiguration(service: InMemoryAccountService())
             VitalsManager()
+            NavigationManager()
         }
 }

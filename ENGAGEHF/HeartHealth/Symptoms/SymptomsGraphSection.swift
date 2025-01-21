@@ -31,7 +31,7 @@ struct SymptomsGraphSection: View {
                 return VitalMeasurement(
                     date: score.date,
                     value: value,
-                    type: KnownVitalsSeries.symptomScore.rawValue
+                    type: KnownVitalsSeries.symptomScore(symptomsType).localizedDescription.localizedString()
                 )
             }
             .filter { dateRange.contains($0.date) }
@@ -46,7 +46,9 @@ struct SymptomsGraphSection: View {
             granularity: .day,
             localizedUnitString: symptomsType == .dizziness ? "" : "%",
             selectionFormatter: { selected in
-                let matchingSeriesValue = selected.first(where: { $0.0 == KnownVitalsSeries.symptomScore.rawValue })?.1
+                let matchingSeriesValue = selected.first(where: {
+                    KnownVitalsSeries(matching: $0.0) == KnownVitalsSeries.symptomScore(symptomsType)
+                })?.1
                 return matchingSeriesValue?.asString(minimumFractionDigits: 0, maximumFractionDigits: 1) ?? "No Data"
             }
         )

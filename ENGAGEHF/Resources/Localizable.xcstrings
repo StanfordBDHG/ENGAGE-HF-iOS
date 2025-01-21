@@ -146,6 +146,9 @@
     "Bluetooth Devices" : {
 
     },
+    "Body Weight" : {
+
+    },
     "Cancel" : {
 
     },
@@ -172,6 +175,9 @@
 
     },
     "defaultLoadingError" : {
+
+    },
+    "Diastolic" : {
 
     },
     "Dismiss Button" : {
@@ -211,6 +217,9 @@
 
     },
     "Heart Health" : {
+
+    },
+    "Heart Rate" : {
 
     },
     "heartRateMissing" : {
@@ -397,13 +406,13 @@
 
     },
     "Mild" : {
-
+      "comment" : "Dizziness symptom score label."
     },
     "Minimal" : {
-
+      "comment" : "Dizziness symptom score label."
     },
     "Moderate" : {
-
+      "comment" : "Dizziness symptom score label."
     },
     "More information is needed to make a recommendation." : {
       "comment" : "Action required color legend entry."
@@ -427,7 +436,7 @@
 
     },
     "None" : {
-
+      "comment" : "Dizziness symptom score label."
     },
     "Not Started" : {
 
@@ -537,7 +546,7 @@
 
     },
     "Severe" : {
-
+      "comment" : "Dizziness symptom score label."
     },
     "Share Link" : {
 
@@ -558,6 +567,9 @@
 
     },
     "Survey" : {
+
+    },
+    "Symptom Score: %@" : {
 
     },
     "symptomDizziness" : {
@@ -647,6 +659,9 @@
         }
       }
     },
+    "Systolic" : {
+
+    },
     "Target" : {
 
     },
@@ -703,7 +718,7 @@
       }
     },
     "Very Severe" : {
-
+      "comment" : "Dizziness symptom score label."
     },
     "Vitals" : {
 

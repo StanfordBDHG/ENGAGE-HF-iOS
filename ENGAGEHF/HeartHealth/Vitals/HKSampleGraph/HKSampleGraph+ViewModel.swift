@@ -69,7 +69,8 @@ extension HKSampleGraph {
                         VitalMeasurement(
                             date: quantitySample.startDate,
                             value: quantitySample.quantity.doubleValue(for: hkUnits),
-                            type: KnownVitalsSeries(matching: quantitySample.quantityType.identifier)?.rawValue ?? "Unknown"
+                            type: KnownVitalsSeries(matching: quantitySample.quantityType.identifier)?.localizedDescription.localizedString()
+                                    ?? "Unknown"
                         )
                     ]
                 case let correlation as HKCorrelation:
@@ -86,12 +87,12 @@ extension HKSampleGraph {
                         VitalMeasurement(
                             date: correlation.startDate,
                             value: systolic,
-                            type: KnownVitalsSeries.bloodPressureSystolic.rawValue
+                            type: KnownVitalsSeries.bloodPressureSystolic.localizedDescription.localizedString()
                         ),
                         VitalMeasurement(
                             date: correlation.startDate,
                             value: diastolic,
-                            type: KnownVitalsSeries.bloodPressureDiastolic.rawValue
+                            type: KnownVitalsSeries.bloodPressureDiastolic.localizedDescription.localizedString()
                         )
                     ]
                 default:
@@ -135,7 +136,7 @@ extension HKSampleGraph {
             switch series {
             case .heartRate:
                 self.formatter = {
-                    guard let matchingData = $0.first(where: { $0.0 == series.rawValue })?.1 else {
+                    guard let matchingData = $0.first(where: { KnownVitalsSeries(matching: $0.0) == series })?.1 else {
                         return "No Data"
                     }
                     return "\(Int(matchingData))"
@@ -143,7 +144,7 @@ extension HKSampleGraph {
                 return (HKUnit.count().unitDivided(by: .minute()), "BPM")
             case .bodyWeight:
                 self.formatter = {
-                    guard let matchingData = $0.first(where: { $0.0 == series.rawValue })?.1 else {
+                    guard let matchingData = $0.first(where: { KnownVitalsSeries(matching: $0.0) == series })?.1 else {
                         return "No Data"
                     }
                     return String(format: "%.1f", matchingData)
@@ -151,8 +152,8 @@ extension HKSampleGraph {
                 return Locale.current.measurementSystem == .us ? (HKUnit.pound(), "lb") : (HKUnit.gramUnit(with: .kilo), "kg")
             case .bloodPressureSystolic, .bloodPressureDiastolic:
                 self.formatter = {
-                    let systolic = $0.first(where: { $0.0 == KnownVitalsSeries.bloodPressureSystolic.rawValue })?.1
-                    let diastolic = $0.first(where: { $0.0 == KnownVitalsSeries.bloodPressureDiastolic.rawValue })?.1
+                    let systolic = $0.first(where: { KnownVitalsSeries(matching: $0.0) == KnownVitalsSeries.bloodPressureSystolic })?.1
+                    let diastolic = $0.first(where: { KnownVitalsSeries(matching: $0.0) == KnownVitalsSeries.bloodPressureDiastolic })?.1
                     
                     var systolicString = "No Data"
                     if let systolic {
