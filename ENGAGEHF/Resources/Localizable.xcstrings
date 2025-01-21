@@ -145,9 +145,6 @@
     "Bluetooth Devices" : {
 
     },
-    "Body Weight" : {
-
-    },
     "Cancel" : {
 
     },
@@ -174,9 +171,6 @@
 
     },
     "defaultLoadingError" : {
-
-    },
-    "Diastolic" : {
 
     },
     "Dismiss Button" : {
@@ -216,9 +210,6 @@
 
     },
     "Heart Health" : {
-
-    },
-    "Heart Rate" : {
 
     },
     "heartRateMissing" : {
@@ -567,9 +558,6 @@
     "Survey" : {
 
     },
-    "Symptom Score" : {
-
-    },
     "symptomDizziness" : {
       "comment" : "For Heart Health view",
       "localizations" : {
@@ -649,9 +637,6 @@
           }
         }
       }
-    },
-    "Systolic" : {
-
     },
     "Target" : {
 

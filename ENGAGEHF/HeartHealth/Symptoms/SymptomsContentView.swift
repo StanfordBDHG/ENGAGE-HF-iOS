@@ -21,7 +21,7 @@ struct SymptomsContentView: View {
                     id: score.id,
                     value: score[keyPath: symptomsType.symptomScoreKeyMap].map {
                         if symptomsType == .dizziness {
-                            SymptomScore.mapLocalizedDizzinessScore($0)?.localizedString() ?? "-"
+                            SymptomScore.mapLocalizedDizzinessScore($0)?.localizedString() ?? "No Data"
                         } else {
                             $0.asString(minimumFractionDigits: 0, maximumFractionDigits: 1)
                         }
