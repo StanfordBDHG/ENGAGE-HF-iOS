@@ -31,7 +31,7 @@ struct SymptomsGraphSection: View {
                 return VitalMeasurement(
                     date: score.date,
                     value: value,
-                    type: KnownVitalsSeries.symptomScore.localizedDescription.localizedString()
+                    type: KnownVitalsSeries.symptomScore.rawValue
                 )
             }
             .filter { dateRange.contains($0.date) }
