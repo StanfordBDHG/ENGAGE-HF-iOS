@@ -31,7 +31,7 @@ struct SymptomsGraphSection: View {
                 return VitalMeasurement(
                     date: score.date,
                     value: value,
-                    type: KnownVitalsSeries.symptomScore(symptomsType).localizedDescription.localizedString()
+                    type: KnownVitalsSeries.symptomScore.localizedDescription.localizedString()
                 )
             }
             .filter { dateRange.contains($0.date) }
@@ -46,10 +46,20 @@ struct SymptomsGraphSection: View {
             granularity: .day,
             localizedUnitString: symptomsType == .dizziness ? "" : "%",
             selectionFormatter: { selected in
-                let matchingSeriesValue = selected.first(where: {
-                    KnownVitalsSeries(matching: $0.0) == KnownVitalsSeries.symptomScore(symptomsType)
-                })?.1
-                return matchingSeriesValue?.asString(minimumFractionDigits: 0, maximumFractionDigits: 1) ?? "No Data"
+                switch symptomsType {
+                case .overall, .physical, .social, .quality, .specific:
+                    let matchingSeriesValue = selected.first(where: {
+                        KnownVitalsSeries(matching: $0.0) == KnownVitalsSeries.symptomScore
+                    })?.1
+                    return matchingSeriesValue?.asString(minimumFractionDigits: 0, maximumFractionDigits: 1) ?? "No Data"
+                case .dizziness:
+                    let matchingSeriesValue = selected.first(where: {
+                        KnownVitalsSeries(matching: $0.0) == KnownVitalsSeries.symptomScore
+                    })?.1
+                    return matchingSeriesValue.flatMap {
+                        SymptomScore.mapLocalizedDizzinessScore($0)?.localizedString()
+                    } ?? "-"
+                }
             }
         )
     }
@@ -58,6 +68,7 @@ struct SymptomsGraphSection: View {
     var body: some View {
         Section(
             content: {
+                // Latest point where we have access to the symptomsType.
                 VitalsGraph(data: graphData, options: options)
                     .environment(\.customChartYAxis, symptomsType == .dizziness ? .dizzinessYAxisModifier : .percentageYAxisModifier )
 #if TEST
