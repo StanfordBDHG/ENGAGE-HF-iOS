@@ -68,7 +68,6 @@ struct SymptomsGraphSection: View {
     var body: some View {
         Section(
             content: {
-                // Latest point where we have access to the symptomsType.
                 VitalsGraph(data: graphData, options: options)
                     .environment(\.customChartYAxis, symptomsType == .dizziness ? .dizzinessYAxisModifier : .percentageYAxisModifier )
 #if TEST

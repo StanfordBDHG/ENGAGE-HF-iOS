@@ -12,28 +12,12 @@ import HealthKit
 
 /// A collection of known vitals types that may be encountered while plotting data using VitalsGraph
 /// Note: Currently, HKSampleGraph.ViewModel uses the HKQuantityTypeIdentifier for bodyWeight and heartRate instead
-enum KnownVitalsSeries: Equatable {
+enum KnownVitalsSeries: String, Equatable {
     case symptomScore
     case bodyWeight
     case heartRate
     case bloodPressureSystolic
     case bloodPressureDiastolic
-    
-    
-    var localizedDescription: LocalizedStringResource {
-        switch self {
-        case .symptomScore:
-            LocalizedStringResource("Symptom Score")
-        case .bodyWeight:
-            LocalizedStringResource("Body Weight")
-        case .heartRate:
-            LocalizedStringResource("Heart Rate")
-        case .bloodPressureSystolic:
-            LocalizedStringResource("Systolic")
-        case .bloodPressureDiastolic:
-            LocalizedStringResource("Diastolic")
-        }
-    }
 }
 
 
