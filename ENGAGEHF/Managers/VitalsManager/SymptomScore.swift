@@ -24,11 +24,6 @@ struct SymptomScore: Identifiable, Equatable {
     let dizzinessScore: Double?
     
     
-    var localizedDizzinessScore: LocalizedStringResource? {
-        dizzinessScore.flatMap(Self.mapLocalizedDizzinessScore)
-    }
-    
-    
     static func mapLocalizedDizzinessScore(_ score: Double) -> LocalizedStringResource? {
         switch score {
         case 4.5...5:
