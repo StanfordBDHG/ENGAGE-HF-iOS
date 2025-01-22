@@ -6,6 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
+@_spi(TestingSupport) import SpeziAccount
 import SpeziBluetooth
 import SpeziDevicesUI
 import SpeziLicense
@@ -13,22 +14,27 @@ import SwiftUI
 
 
 struct AdditionalAccountSections: View {
+    @Environment(Account.self) private var account: Account?
+    
+    
     var body: some View {
         Section {
-            NavigationLink {
-                HealthSummaryView()
-            } label: {
-                Text("Health Summary")
-            }
-            NavigationLink {
-                Contacts()
-            } label: {
-                Text("Contacts")
-            }
-            NavigationLink {
-                NotificationSettingsView()
-            } label: {
-                Text("Notifications")
+            if !(account?.details?.disabled ?? false) {
+                NavigationLink {
+                    HealthSummaryView()
+                } label: {
+                    Text("Health Summary")
+                }
+                NavigationLink {
+                    Contacts()
+                } label: {
+                    Text("Contacts")
+                }
+                NavigationLink {
+                    NotificationSettingsView()
+                } label: {
+                    Text("Notifications")
+                }
             }
             NavigationLink {
                 NavigationStack {
@@ -47,6 +53,18 @@ struct AdditionalAccountSections: View {
             } label: {
                 Text("LICENSE_INFO_TITLE")
             }
+        }
+    }
+}
+
+
+#Preview {
+    NavigationStack {
+        List {
+            AdditionalAccountSections()
+                .previewWith(standard: ENGAGEHFStandard()) {
+                    AccountConfiguration(service: InMemoryAccountService())
+                }
         }
     }
 }

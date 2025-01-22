@@ -57,7 +57,8 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
                         .manual(\.receivesQuestionnaireReminders),
                         .manual(\.receivesRecommendationUpdates),
                         .manual(\.receivesVitalsReminders),
-                        .manual(\.receivesWeightAlerts)
+                        .manual(\.receivesWeightAlerts),
+                        .manual(\.disabled)
                     ]
                 )
                 

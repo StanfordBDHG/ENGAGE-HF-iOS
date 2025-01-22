@@ -16,16 +16,15 @@ struct StudyConcluded: View {
     
     var body: some View {
         NavigationStack {
-            VStack(alignment: .center) {
+            VStack(alignment: .center, spacing: 16) {
                 Icon()
                     .padding()
-                Text(
-                    """
-                    Thank you for participating in the ENGAGE-HF Study!
-                    """
-                )
-                    .multilineTextAlignment(.center)
+                Text("Thank you for participating in the\nENGAGE-HF study!")
+                Text("Your account was deactivated\nby your study coordinator.")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
             }
+                .multilineTextAlignment(.center)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .padding()
                 .background(Color(.systemGroupedBackground))
