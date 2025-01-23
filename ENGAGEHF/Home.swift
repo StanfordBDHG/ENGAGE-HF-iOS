@@ -29,6 +29,7 @@ struct HomeView: View {
     @Environment(ENGAGEHFStandard.self) private var standard
     @Environment(NavigationManager.self) private var navigationManager
     @Environment(NotificationManager.self) private var notificationManager
+    @Environment(Account.self) private var account: Account?
     
     @State private var presentingAccount = false
     
@@ -38,27 +39,33 @@ struct HomeView: View {
         @Bindable var navigationManager = navigationManager
         @Bindable var notificationManager = notificationManager
 
-        TabView(selection: $navigationManager.selectedTab) {
-            Dashboard(presentingAccount: $presentingAccount)
-                .tag(Tabs.home)
-                .tabItem {
-                    Label("Home", systemImage: "house")
+        Group {
+            if account?.details?.disabled ?? false {
+                StudyConcluded(presentingAccount: $presentingAccount)
+            } else {
+                TabView(selection: $navigationManager.selectedTab) {
+                    Dashboard(presentingAccount: $presentingAccount)
+                        .tag(Tabs.home)
+                        .tabItem {
+                            Label("Home", systemImage: "house")
+                        }
+                    HeartHealth(presentingAccount: $presentingAccount)
+                        .tag(Tabs.heart)
+                        .tabItem {
+                            Label("Heart Health", systemImage: "heart")
+                        }
+                    Medications(presentingAccount: $presentingAccount)
+                        .tag(Tabs.medications)
+                        .tabItem {
+                            Label("Medications", systemImage: "pill.fill")
+                        }
+                    Education(presentingAccount: $presentingAccount)
+                        .tag(Tabs.education)
+                        .tabItem {
+                            Label("Education", systemImage: "brain")
+                        }
                 }
-            HeartHealth(presentingAccount: $presentingAccount)
-                .tag(Tabs.heart)
-                .tabItem {
-                    Label("Heart Health", systemImage: "heart")
-                }
-            Medications(presentingAccount: $presentingAccount)
-                .tag(Tabs.medications)
-                .tabItem {
-                    Label("Medications", systemImage: "pill.fill")
-                }
-            Education(presentingAccount: $presentingAccount)
-                .tag(Tabs.education)
-                .tabItem {
-                    Label("Education", systemImage: "brain")
-                }
+            }
         }
             .sheet(isPresented: $navigationManager.showHealthSummary) {
                 HealthSummaryView()
@@ -80,12 +87,8 @@ struct HomeView: View {
 
 
 #if DEBUG
-#Preview {
-    var details = AccountDetails()
-    details.userId = "lelandstanford@stanford.edu"
-    details.name = PersonNameComponents(givenName: "Leland", familyName: "Stanford")
-
-    return HomeView()
+#Preview("Home") {
+    HomeView()
         .previewWith(standard: ENGAGEHFStandard()) {
             AccountConfiguration(service: InMemoryAccountService())
             HealthMeasurements()
@@ -97,6 +100,22 @@ struct HomeView: View {
             NavigationManager()
             VideoManager()
             MedicationsManager()
+            NotificationManager()
+        }
+}
+
+#Preview("Home - Disabled") {
+    var details = AccountDetails()
+    details.userId = "lelandstanford@stanford.edu"
+    details.name = PersonNameComponents(givenName: "Leland", familyName: "Stanford")
+    details.disabled = true
+
+    return HomeView()
+        .previewWith(standard: ENGAGEHFStandard()) {
+            AccountConfiguration(service: InMemoryAccountService(), activeDetails: details)
+            HealthMeasurements()
+            NavigationManager()
+            NotificationManager()
         }
 }
 #endif

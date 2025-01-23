@@ -6,6 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
+@_spi(TestingSupport) import SpeziAccount
 @_spi(TestingSupport) import SpeziDevices
 import SwiftUI
 
@@ -63,6 +64,7 @@ struct Dashboard: View {
 #Preview {
     Dashboard(presentingAccount: .constant(false))
         .previewWith(standard: ENGAGEHFStandard()) {
+            AccountConfiguration(service: InMemoryAccountService())
             MessageManager()
             HealthMeasurements(mock: [.weight(.mockWeighSample)])
             VitalsManager()

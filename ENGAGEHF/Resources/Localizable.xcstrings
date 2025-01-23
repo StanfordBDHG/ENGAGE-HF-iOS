@@ -43,6 +43,9 @@
     "About %@" : {
 
     },
+    "Account Disabled" : {
+
+    },
     "ACCOUNT_NEXT" : {
       "localizations" : {
         "en" : {
@@ -185,7 +188,13 @@
     "Enable Notifications in Settings" : {
 
     },
+    "ENGAGE-HF" : {
+
+    },
     "ENGAGE-HF Application Loading Screen" : {
+
+    },
+    "ENGAGE-HF Icon" : {
 
     },
     "Expansion Button" : {
@@ -641,6 +650,9 @@
     "Target" : {
 
     },
+    "Thank you for participating in the ENGAGE-HF Study!" : {
+
+    },
     "The invitation code is invalid or has already been used." : {
       "comment" : "Invitation Code Invalid"
     },
@@ -845,6 +857,9 @@
     },
     "You are on your target dose." : {
       "comment" : "Target dose reached color legend entry."
+    },
+    "Your account was deactivated by the study coordinator." : {
+
     }
   },
   "version" : "1.0"

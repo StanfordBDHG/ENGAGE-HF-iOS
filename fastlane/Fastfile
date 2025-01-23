@@ -195,6 +195,8 @@ platform :ios do
       upload_to_testflight(
         app_identifier: appidentifier,
         distribute_external: true,
+        reject_build_waiting_for_review: true,
+        expire_previous_builds: true,
         groups: [
           "External Testers"
         ],
