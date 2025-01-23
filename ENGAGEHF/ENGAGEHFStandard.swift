@@ -24,6 +24,7 @@ import SwiftUI
 
 actor ENGAGEHFStandard: Standard, EnvironmentAccessible {
     @Dependency(Account.self) private var account: Account?
+    @Dependency(MessageManager.self) private var messageManager: MessageManager?
     
     @Application(\.logger) private var logger
     
@@ -37,11 +38,14 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible {
         }
     }
 
-
     func addMeasurement(samples: [HKSample]) async throws {
         guard !samples.isEmpty else {
             return
         }
+        
+        await messageManager?.markAsProcessing(
+            type: .healthMeasurement(samples: samples.count)
+        )
 
         logger.debug("Saving \(samples.count) samples to firestore ...")
         let accountId = try await accountId
@@ -68,7 +72,6 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible {
         }
     }
     
-    
     func add(symptomScore: SymptomScore) async throws {
         let accountId = try await accountId
         do {
@@ -78,12 +81,18 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible {
         }
     }
     
-    
     func add(response: ModelsR4.QuestionnaireResponse) async throws {
+        let questionnaireId = response.identifier?.value?.value?.string ?? UUID().uuidString
+        
+        await messageManager?.markAsProcessing(
+            type: .questionnaire(id: questionnaireId)
+        )
+        
         let accountId = try await accountId
         do {
-            let id = response.identifier?.value?.value?.string ?? UUID().uuidString
-            try await Firestore.questionnaireResponseCollectionReference(for: accountId).document(id).setData(from: response)
+            try await Firestore.questionnaireResponseCollectionReference(for: accountId)
+                .document(questionnaireId)
+                .setData(from: response)
         } catch {
             throw FirestoreError(error)
         }
