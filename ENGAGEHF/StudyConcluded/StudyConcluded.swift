@@ -7,43 +7,43 @@
 //
 
 @_spi(TestingSupport) import SpeziAccount
-import SpeziViews
 import SwiftUI
 
 
-@MainActor
-struct HeartHealth: View {
+struct StudyConcluded: View {
     @Binding var presentingAccount: Bool
-    
-    @Environment(NavigationManager.self) private var navigationManager
     
     
     var body: some View {
-        @Bindable var navigationManager = navigationManager
-        
         NavigationStack {
-            VStack(alignment: .trailing) {
-                GraphPicker(selection: $navigationManager.heartHealthVitalSelection)
-                    .padding(.horizontal)
-                VitalsList(vitalSelection: navigationManager.heartHealthVitalSelection)
+            VStack(alignment: .center, spacing: 16) {
+                Icon()
+                    .padding()
+                Text("Thank you for participating in the\nENGAGE-HF study!")
+                Text("Your account was deactivated\nby your study coordinator.")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
             }
-                .navigationTitle("Heart Health")
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .padding()
+                .background(Color(.systemGroupedBackground))
+                .navigationTitle("ENGAGE-HF")
                 .toolbar {
                     if AccountButton.shouldDisplay {
                         AccountButton(isPresented: $presentingAccount)
                     }
                 }
-                .background(Color(.systemGroupedBackground))
         }
     }
 }
 
 
+#if DEBUG
 #Preview {
-    HeartHealth(presentingAccount: .constant(false))
+    StudyConcluded(presentingAccount: .constant(false))
         .previewWith(standard: ENGAGEHFStandard()) {
             AccountConfiguration(service: InMemoryAccountService())
-            VitalsManager()
-            NavigationManager()
         }
 }
+#endif

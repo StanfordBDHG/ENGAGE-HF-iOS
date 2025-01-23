@@ -20,7 +20,11 @@ struct SymptomsContentView: View {
                 VitalListMeasurement(
                     id: score.id,
                     value: score[keyPath: symptomsType.symptomScoreKeyMap].map {
-                        $0.asString(minimumFractionDigits: 0, maximumFractionDigits: 1)
+                        if symptomsType == .dizziness {
+                            SymptomScore.mapLocalizedDizzinessScore($0)?.localizedString() ?? "No Data"
+                        } else {
+                            $0.asString(minimumFractionDigits: 0, maximumFractionDigits: 1)
+                        }
                     },
                     date: score.date
                 )

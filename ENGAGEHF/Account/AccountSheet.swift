@@ -35,6 +35,18 @@ struct AccountSheet: View {
         }
 }
 
+#Preview("AccountSheet Disabled") {
+    var details = AccountDetails()
+    details.userId = "lelandstanford@stanford.edu"
+    details.name = PersonNameComponents(givenName: "Leland", familyName: "Stanford")
+    details.disabled = true
+
+    return AccountSheet()
+        .previewWith {
+            AccountConfiguration(service: InMemoryAccountService(), activeDetails: details)
+        }
+}
+
 #Preview("AccountSheet SignIn") {
     AccountSheet()
         .previewWith {

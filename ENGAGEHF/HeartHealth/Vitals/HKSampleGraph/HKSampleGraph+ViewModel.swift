@@ -69,7 +69,7 @@ extension HKSampleGraph {
                         VitalMeasurement(
                             date: quantitySample.startDate,
                             value: quantitySample.quantity.doubleValue(for: hkUnits),
-                            type: KnownVitalsSeries(matching: quantitySample.quantityType.identifier)?.rawValue ?? "Unknown"
+                            type: KnownVitalsSeries(matching: quantitySample.quantityType.identifier)?.rawValue ?? "-"
                         )
                     ]
                 case let correlation as HKCorrelation:

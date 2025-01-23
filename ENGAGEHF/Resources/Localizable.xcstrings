@@ -43,6 +43,9 @@
     "About %@" : {
 
     },
+    "Account Disabled" : {
+
+    },
     "ACCOUNT_NEXT" : {
       "localizations" : {
         "en" : {
@@ -133,7 +136,6 @@
     },
     "bloodPressureMissing" : {
       "comment" : "Displayed in the MeasurementListSection of the Heart Health view when no Blood Pressure history found.",
-      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -186,7 +188,13 @@
     "Enable Notifications in Settings" : {
 
     },
+    "ENGAGE-HF" : {
+
+    },
     "ENGAGE-HF Application Loading Screen" : {
+
+    },
+    "ENGAGE-HF Icon" : {
 
     },
     "Expansion Button" : {
@@ -215,7 +223,6 @@
     },
     "heartRateMissing" : {
       "comment" : "Displayed in the MeasurementListSection of the Heart Health view when no heart rate measurements were found.",
-      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -397,13 +404,13 @@
 
     },
     "Mild" : {
-
+      "comment" : "Dizziness symptom score label."
     },
     "Minimal" : {
-
+      "comment" : "Dizziness symptom score label."
     },
     "Moderate" : {
-
+      "comment" : "Dizziness symptom score label."
     },
     "More information is needed to make a recommendation." : {
       "comment" : "Action required color legend entry."
@@ -427,7 +434,7 @@
 
     },
     "None" : {
-
+      "comment" : "Dizziness symptom score label."
     },
     "Not Started" : {
 
@@ -537,7 +544,7 @@
 
     },
     "Severe" : {
-
+      "comment" : "Dizziness symptom score label."
     },
     "Share Link" : {
 
@@ -562,7 +569,6 @@
     },
     "symptomDizziness" : {
       "comment" : "For Heart Health view",
-      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -574,7 +580,6 @@
     },
     "symptomOverall" : {
       "comment" : "For Heart Health view",
-      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -586,7 +591,6 @@
     },
     "symptomPhysical" : {
       "comment" : "For Heart Health view",
-      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -598,7 +602,6 @@
     },
     "symptomQuality" : {
       "comment" : "For Heart Health view",
-      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -613,7 +616,6 @@
     },
     "symptomsMissing" : {
       "comment" : "Displayed in the MeasurementListSection in the Heart Health view when no symptom scores were found.",
-      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -625,7 +627,6 @@
     },
     "symptomSocial" : {
       "comment" : "For Heart Health view",
-      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -637,7 +638,6 @@
     },
     "symptomSpecific" : {
       "comment" : "For Heart Health view",
-      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -648,6 +648,9 @@
       }
     },
     "Target" : {
+
+    },
+    "Thank you for participating in the ENGAGE-HF Study!" : {
 
     },
     "The invitation code is invalid or has already been used." : {
@@ -703,14 +706,13 @@
       }
     },
     "Very Severe" : {
-
+      "comment" : "Dizziness symptom score label."
     },
     "Vitals" : {
 
     },
     "vitalsBloodPressure" : {
       "comment" : "For Heart Health view",
-      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -722,7 +724,6 @@
     },
     "vitalsHeartRate" : {
       "comment" : "For Heart Health view",
-      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -734,7 +735,6 @@
     },
     "vitalsWeight" : {
       "comment" : "For Heart Health view",
-      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -749,7 +749,6 @@
     },
     "weightMissing" : {
       "comment" : "Displayed in the MeasurementListSection of the Heart Health view when no weight history was found.",
-      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -858,6 +857,9 @@
     },
     "You are on your target dose." : {
       "comment" : "Target dose reached color legend entry."
+    },
+    "Your account was deactivated by the study coordinator." : {
+
     }
   },
   "version" : "1.0"

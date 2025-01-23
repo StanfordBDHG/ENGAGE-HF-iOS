@@ -47,11 +47,7 @@ struct ContentView: View {
             if account?.signedIn ?? false {
                 HomeView()
             } else {
-                Image(.engagehfIcon)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 128, height: 128)
-                    .clipShape(RoundedRectangle(cornerRadius: 32))
+                Icon()
                     .accessibilityLabel("ENGAGE-HF Application Loading Screen")
             }
         }
