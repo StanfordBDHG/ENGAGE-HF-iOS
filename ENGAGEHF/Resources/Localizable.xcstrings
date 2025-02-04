@@ -650,7 +650,7 @@
     "Target" : {
 
     },
-    "Thank you for participating in the ENGAGE-HF Study!" : {
+    "Thank you for participating in the\nENGAGE-HF study!" : {
 
     },
     "The invitation code is invalid or has already been used." : {
@@ -858,7 +858,7 @@
     "You are on your target dose." : {
       "comment" : "Target dose reached color legend entry."
     },
-    "Your account was deactivated by the study coordinator." : {
+    "Your account was deactivated\nby your study coordinator." : {
 
     }
   },
