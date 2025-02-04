@@ -14,10 +14,9 @@ final class RecentVitalsUITests: XCTestCase {
     private var expectedFormattedMeasurementDate: String {
         let expectedDateComponents = DateComponents(year: 2024, month: 6, day: 5, hour: 12, minute: 33, second: 11)
         let expectedDate = Calendar.current.date(from: expectedDateComponents) ?? .now
-        let daylightSavingTimeOffset = TimeZone.current.daylightSavingTimeOffset(for: expectedDate)
         let formatter = DateFormatter()
         formatter.dateFormat = "M/d/yyyy, h:mm a"
-        return formatter.string(from: expectedDate.addingTimeInterval(daylightSavingTimeOffset))
+        return formatter.string(from: expectedDate)
     }
     
     
