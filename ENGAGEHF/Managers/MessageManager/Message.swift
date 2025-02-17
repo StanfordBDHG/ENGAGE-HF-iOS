@@ -26,10 +26,7 @@ struct Message: Identifiable, Equatable {
     var processingState: ProcessingState?
     
     var isProcessing: Bool {
-        guard let processingState else {
-            return false
-        }
-        return processingState.isStillProcessing
+        processingState.isStillProcessing ?? false
     }
     
     func isRelatedTo(_ state: ProcessingState) -> Bool {
