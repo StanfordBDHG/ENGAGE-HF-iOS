@@ -28,6 +28,6 @@ struct ProcessingState: Equatable {
     let correlationId: String
     
     var isStillProcessing: Bool {
-        .now.timeIntervalSince(startTime) < 60
+        Date.now.timeIntervalSince(startTime) < 60
     }
 }
