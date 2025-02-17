@@ -72,7 +72,7 @@ final class MessageManager: Manager {
         activeProcessingTimer = Task { @MainActor in
             while !Task.isCancelled {
                 cleanupExpiredProcessingStates()
-                try? await Task.sleep(nanoseconds: 1_000_000_000) // Check every second
+                try? await Task.sleep(for: .seconds(1)) // Check every second
             }
         }
     }
@@ -107,7 +107,7 @@ final class MessageManager: Manager {
         
         // Schedule state cleanup
         Task {
-            try? await Task.sleep(nanoseconds: 60_000_000_000) // 60 seconds
+            try? await Task.sleep(for: .seconds(60))
             cleanupProcessingState(correlationId: correlationId)
         }
     }
