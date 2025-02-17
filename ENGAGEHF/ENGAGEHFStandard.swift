@@ -38,6 +38,7 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible {
         }
     }
 
+    
     func addMeasurement(samples: [HKSample]) async throws {
         guard !samples.isEmpty else {
             return
@@ -72,6 +73,7 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible {
         }
     }
     
+    
     func add(symptomScore: SymptomScore) async throws {
         let accountId = try await accountId
         do {
@@ -80,6 +82,7 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible {
             throw FirestoreError(error)
         }
     }
+    
     
     func add(response: ModelsR4.QuestionnaireResponse) async throws {
         let questionnaireId = response.identifier?.value?.value?.string ?? UUID().uuidString

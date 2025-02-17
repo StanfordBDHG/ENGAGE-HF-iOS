@@ -79,6 +79,7 @@ struct QuestionnaireSheetView: View {
         .viewStateAlert(state: $viewState)
     }
     
+
     // MARK: - Initialization
     init(questionnaireId: String) {
         self.questionnaireId = questionnaireId
@@ -94,10 +95,10 @@ struct QuestionnaireSheetView: View {
             Button("Tap Here") {
                 questionnaireId = "0"
             }
-            .buttonStyle(.borderedProminent)
-            .sheet(item: $questionnaireId) { questionnaireId in
-                QuestionnaireSheetView(questionnaireId: questionnaireId)
-            }
+                .buttonStyle(.borderedProminent)
+                .sheet(item: $questionnaireId) { questionnaireId in
+                    QuestionnaireSheetView(questionnaireId: questionnaireId)
+                }
         }
     }
     

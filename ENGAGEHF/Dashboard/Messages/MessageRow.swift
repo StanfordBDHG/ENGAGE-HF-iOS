@@ -18,6 +18,7 @@ struct MessageRow: View {
         let message: Message
         let labelSize: CGFloat
         
+
         var body: some View {
             AsyncButton(
                 action: {
@@ -35,6 +36,7 @@ struct MessageRow: View {
         }
     }
     
+    
     let message: Message
     
     @ScaledMetric private var spacing: CGFloat = 8
@@ -42,6 +44,7 @@ struct MessageRow: View {
     
     @Environment(NavigationManager.self) private var navigationManager
     @Environment(MessageManager.self) private var messageManager
+    
     
     private var actionImage: some View {
         let imageName = switch message.action {

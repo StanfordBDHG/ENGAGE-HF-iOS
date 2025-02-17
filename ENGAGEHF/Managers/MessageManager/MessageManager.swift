@@ -32,9 +32,11 @@ final class MessageManager: Manager {
     @Application(\.logger) @ObservationIgnored private var logger
 
     private(set) var messages: [Message] = []
+
     private var processingStates: [String: ProcessingState] = [:]
     
     nonisolated init() {}
+    
     
     func configure() {
 #if DEBUG || TEST
@@ -111,6 +113,7 @@ final class MessageManager: Manager {
             cleanupProcessingState(correlationId: correlationId)
         }
     }
+    
     
     @MainActor
     func refreshContent() {
@@ -211,6 +214,7 @@ final class MessageManager: Manager {
         
         logger.debug("Successfully dismissed message (\(messageId)).")
     }
+
 
     deinit {
         notificationTask?.cancel()
