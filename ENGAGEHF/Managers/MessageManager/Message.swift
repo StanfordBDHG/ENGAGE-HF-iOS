@@ -29,17 +29,6 @@ struct Message: Identifiable, Equatable {
         processingState?.isStillProcessing ?? false
     }
     
-    func isRelatedTo(_ state: ProcessingState) -> Bool {
-        switch (self.action, state.type) {
-        case (.showHeartHealth, .healthMeasurement):
-            return true
-        case (.completeQuestionnaire(let questionnaireId), .questionnaire(let id)):
-            return questionnaireId == id
-        default:
-            return false
-        }
-    }
-    
     init(
         title: String,
         description: String?,
@@ -58,6 +47,17 @@ struct Message: Identifiable, Equatable {
         self.dueDate = dueDate
         self.completionDate = completionDate
         self.processingState = processingState
+    }
+    
+    func isRelatedTo(_ state: ProcessingState) -> Bool {
+        switch (action, state.type) {
+        case (.showHeartHealth, .healthMeasurement):
+            return true
+        case let (.completeQuestionnaire(questionnaireId), .questionnaire(id)):
+            return questionnaireId == id
+        default:
+            return false
+        }
     }
 }
 
