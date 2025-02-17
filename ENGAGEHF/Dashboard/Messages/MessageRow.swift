@@ -135,18 +135,18 @@ struct MessageRow: View {
                 .frame(width: 38)
             mainContent
         }
-        .padding(2)
-        .asButton {
-            if message.action != .unknown && !message.isProcessing {
-                Task {
-                    let didPerformAction = await navigationManager.execute(message.action)
-                    if message.isDismissible, didPerformAction {
-                        await messageManager.dismiss(message, didPerformAction: didPerformAction)
+            .padding(2)
+            .asButton {
+                if message.action != .unknown && !message.isProcessing {
+                    Task {
+                        let didPerformAction = await navigationManager.execute(message.action)
+                        if message.isDismissible, didPerformAction {
+                            await messageManager.dismiss(message, didPerformAction: didPerformAction)
+                        }
                     }
                 }
             }
-        }
-        .disabled(message.isProcessing)
+            .disabled(message.isProcessing)
     }
 }
 
