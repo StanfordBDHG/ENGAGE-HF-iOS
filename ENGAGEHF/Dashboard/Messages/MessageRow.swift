@@ -95,7 +95,7 @@ struct MessageRow: View {
                 Text(message.title)
                     .bold()
             }
-            .font(.subheadline)
+                .font(.subheadline)
             Spacer()
             if message.isDismissible && !message.isProcessing {
                 XButton(message: message, labelSize: dismissLabelSize)
