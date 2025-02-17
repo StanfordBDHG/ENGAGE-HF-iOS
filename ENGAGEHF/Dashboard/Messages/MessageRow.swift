@@ -131,6 +131,7 @@ struct MessageRow: View {
         }
     }
     
+    
     var body: some View {
         HStack(alignment: .top, spacing: 16) {
             actionImage
@@ -158,7 +159,7 @@ struct MessageRow: View {
 #Preview { // swiftlint:disable:this closure_body_length
     struct MessageRowPreviewWrapper: View {
         @Environment(MessageManager.self) private var messageManager
-
+        
         var body: some View {
             NavigationStack {
                 List {
@@ -177,28 +178,29 @@ struct MessageRow: View {
                         }
                     )
                 }
-                    .studyApplicationList()
-                    .toolbar {
-                        Button(
-                            action: {
-                                messageManager.addMockMessage()
-                            },
-                            label: {
-                                Text("Add Mock")
-                            }
-                        )
-                        Button(
-                            action: {
-                                messageManager.makeMockMessagesProcessing()
-                            },
-                            label: {
-                                Text("Set Processing")
-                            }
-                        )
-                    }
+                .studyApplicationList()
+                .toolbar {
+                    Button(
+                        action: {
+                            messageManager.addMockMessage()
+                        },
+                        label: {
+                            Text("Add Mock")
+                        }
+                    )
+                    Button(
+                        action: {
+                            messageManager.makeMockMessagesProcessing()
+                        },
+                        label: {
+                            Text("Set Processing")
+                        }
+                    )
+                }
             }
         }
     }
+    
     
     return MessageRowPreviewWrapper()
         .previewWith(standard: ENGAGEHFStandard()) {
