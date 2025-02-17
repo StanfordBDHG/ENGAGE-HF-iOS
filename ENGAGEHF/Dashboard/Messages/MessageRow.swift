@@ -18,7 +18,7 @@ struct MessageRow: View {
         let message: Message
         let labelSize: CGFloat
         
-
+        
         var body: some View {
             AsyncButton(
                 action: {

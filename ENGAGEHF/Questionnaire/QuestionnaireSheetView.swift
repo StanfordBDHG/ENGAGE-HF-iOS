@@ -58,29 +58,25 @@ struct QuestionnaireSheetView: View {
                     .background(Color(.systemGroupedBackground))
             }
         }
-        .task {
-            do {
+            .task {
+                do {
 #if DEBUG || TEST
-                if ProcessInfo.processInfo.isPreviewSimulator || FeatureFlags.setupTestMessages {
-                    questionnaire = .formExample
-                    return
-                }
+                    if ProcessInfo.processInfo.isPreviewSimulator || FeatureFlags.setupTestMessages {
+                        questionnaire = .formExample
+                        return
+                    }
 #endif
-                questionnaire = try await Firestore.questionnairesCollectionReference
-                    .document(questionnaireId)
-                    .getDocument(as: Questionnaire.self)
-            } catch {
-                viewState = .error(AnyLocalizedError(
-                    error: error,
-                    defaultErrorDescription: String(localized: "Unable to load questionnaire.")
-                ))
+                    questionnaire = try await Firestore.questionnairesCollectionReference
+                        .document(questionnaireId)
+                        .getDocument(as: Questionnaire.self)
+                } catch {
+                    viewState = .error(AnyLocalizedError(error: error, defaultErrorDescription: String(localized: "Unable to load questionnaire.")))
+                }
             }
-        }
-        .viewStateAlert(state: $viewState)
+            .viewStateAlert(state: $viewState)
     }
     
-
-    // MARK: - Initialization
+    
     init(questionnaireId: String) {
         self.questionnaireId = questionnaireId
     }
@@ -91,6 +87,7 @@ struct QuestionnaireSheetView: View {
     struct QuestionnaireSheetViewPreviewWrapper: View {
         @State private var questionnaireId: String?
         
+
         var body: some View {
             Button("Tap Here") {
                 questionnaireId = "0"

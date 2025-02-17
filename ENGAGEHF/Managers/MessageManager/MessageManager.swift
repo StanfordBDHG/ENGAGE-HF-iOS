@@ -34,7 +34,7 @@ final class MessageManager: Manager {
     private(set) var messages: [Message] = []
 
     private var processingStates: [String: ProcessingState] = [:]
-    
+
     nonisolated init() {}
     
     
@@ -45,7 +45,7 @@ final class MessageManager: Manager {
             return
         }
 #endif
-
+        
         if let accountNotifications {
             notificationTask = Task.detached { @MainActor [weak self] in
                 for await event in accountNotifications.events {
@@ -215,7 +215,7 @@ final class MessageManager: Manager {
         logger.debug("Successfully dismissed message (\(messageId)).")
     }
 
-
+    
     deinit {
         notificationTask?.cancel()
         activeProcessingTimer?.cancel()
