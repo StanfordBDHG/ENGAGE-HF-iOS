@@ -69,12 +69,12 @@ struct MessageRow: View {
                 .font(.caption)
                 .foregroundStyle(.secondary)
         }
-        .padding(.vertical, 4)
-        .padding(.horizontal, 8)
-        .background {
-            Capsule()
-                .fill(.secondary.opacity(0.1))
-        }
+            .padding(.vertical, 4)
+            .padding(.horizontal, 8)
+            .background {
+                Capsule()
+                    .fill(.secondary.opacity(0.1))
+            }
     }
     
     private var processingStateText: String {
@@ -138,18 +138,18 @@ struct MessageRow: View {
                 .frame(width: 38)
             mainContent
         }
-        .padding(2)
-        .asButton {
-            if message.action != .unknown && !message.isProcessing {
-                Task {
-                    let didPerformAction = await navigationManager.execute(message.action)
-                    if message.isDismissible, didPerformAction {
-                        await messageManager.dismiss(message, didPerformAction: didPerformAction)
+            .padding(2)
+            .asButton {
+                if message.action != .unknown && !message.isProcessing {
+                    Task {
+                        let didPerformAction = await navigationManager.execute(message.action)
+                        if message.isDismissible, didPerformAction {
+                            await messageManager.dismiss(message, didPerformAction: didPerformAction)
+                        }
                     }
                 }
             }
-        }
-        .disabled(message.isProcessing)
+            .disabled(message.isProcessing)
     }
 }
 
