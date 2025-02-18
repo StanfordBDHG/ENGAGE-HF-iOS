@@ -27,7 +27,6 @@ final class MessageManager: Manager {
     
     @ObservationIgnored private var notificationTask: Task<Void, Never>?
     @ObservationIgnored private var snapshotListener: ListenerRegistration?
-    @ObservationIgnored private var activeProcessingTimer: Task<Void, Never>?
     
     @Application(\.logger) @ObservationIgnored private var logger
 
@@ -64,30 +63,6 @@ final class MessageManager: Manager {
 
         if let account, account.signedIn {
             updateSnapshotListener(for: account.details)
-        }
-        
-        startProcessingCleanupTimer()
-    }
-    
-    private func startProcessingCleanupTimer() {
-        activeProcessingTimer?.cancel()
-        activeProcessingTimer = Task { @MainActor in
-            while !Task.isCancelled {
-                cleanupExpiredProcessingStates()
-                try? await Task.sleep(for: .seconds(1)) // Check every second
-            }
-        }
-    }
-    
-    @MainActor
-    private func cleanupExpiredProcessingStates() {
-        processingStates = processingStates.filter { $0.value.isStillProcessing }
-        
-        // Update messages that might have expired processing states
-        for index in messages.indices {
-            if let state = messages[index].processingState, !state.isStillProcessing {
-                messages[index].processingState = nil
-            }
         }
     }
     
@@ -218,7 +193,6 @@ final class MessageManager: Manager {
     
     deinit {
         notificationTask?.cancel()
-        activeProcessingTimer?.cancel()
     }
 }
 
