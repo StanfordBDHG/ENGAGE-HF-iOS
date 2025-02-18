@@ -21,9 +21,70 @@ final class MessagesUITests: XCTestCase {
             "--useFirebaseEmulator",
             "--setupTestEnvironment",
             "--setupTestMessages",
-            "--setupTestVideos"
+            "--setupTestVideos",
+            "--testMockDevices"
         ]
         app.launch()
+    }
+    
+    func testProcessingState() throws {
+        let app = XCUIApplication()
+        
+        _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
+        
+        // This is not optimal - TODO: Find way to make this test multilang compatible with texts coming from SPEZI directly
+        let moreButton = app.buttons["Weitere"]
+        XCTAssert(moreButton.waitForExistence(timeout: 0.5), "More button not found")
+        moreButton.tap()
+        
+        XCTAssert(app.buttons["Trigger Blood Pressure Measurement"].waitForExistence(timeout: 0.5))
+        app.buttons["Trigger Blood Pressure Measurement"].tap()
+        
+        // Verify measurements appear and save them
+        XCTAssert(app.staticTexts["Measurement Recorded"].waitForExistence(timeout: 2.0))
+        XCTAssert(app.staticTexts["103/64 mmHg"].exists)
+        XCTAssert(app.staticTexts["62 BPM"].exists)
+        
+        app.buttons["Save"].tap()
+        sleep(1)
+        
+        // Verify processing state appears on related message
+        let vitalsMessage = app.otherElements["Message Card - Vitals"]
+        XCTAssert(vitalsMessage.exists)
+        XCTAssert(vitalsMessage.staticTexts["Processing 2 measurements..."].exists)
+        
+        // Start questionnaire
+        let questionnaireMessage = app.otherElements["Message Card - Symptom Questionnaire"]
+        XCTAssert(questionnaireMessage.exists)
+        XCTAssert(questionnaireMessage.isHittable)
+        
+        questionnaireMessage.tap()
+        sleep(1)
+        
+        // First submit to get to the form
+        let submitButton = app.buttons["ORKContinueButton.Next"]
+        XCTAssert(submitButton.waitForExistence(timeout: 0.5), "Initial submit button not found")
+        submitButton.tap()
+        
+        // Fill out form using StaticText
+        app.staticTexts["Ja"].tap()
+        app.staticTexts["Vanilla"].tap()
+        app.staticTexts["Sprinkles"].tap()
+        
+        // Final submit
+        let finalSubmitButton = app.buttons["ORKContinueButton.Next"]
+        XCTAssert(finalSubmitButton.waitForExistence(timeout: 0.5), "Final submit button not found")
+        finalSubmitButton.tap()
+        
+        // Wait and tap home tab directly instead of using goTo
+        sleep(1)
+        let homeTab = app.tabBars.buttons["Home"]
+        XCTAssert(homeTab.waitForExistence(timeout: 0.5), "Home tab not found")
+        homeTab.tap()
+        
+        // Verify processing states are cleared
+        XCTAssertFalse(vitalsMessage.staticTexts["Processing 2 measurements..."].exists)
+        XCTAssertFalse(questionnaireMessage.staticTexts["Processing questionnaire..."].exists)
     }
     
     func testDismissMessages() throws {

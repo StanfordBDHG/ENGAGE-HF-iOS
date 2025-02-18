@@ -241,7 +241,7 @@ extension XCUIApplication {
     }
     
     
-    fileprivate func triggerMockMeasurement(_ displayName: String, expect measurements: [String]) {
+    func triggerMockMeasurement(_ displayName: String, expect measurements: [String]) {
         XCTAssert(navigationBars.buttons["More"].exists)
         navigationBars.buttons["More"].tap()
         
