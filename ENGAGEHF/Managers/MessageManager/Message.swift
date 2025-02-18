@@ -23,11 +23,7 @@ struct Message: Identifiable, Equatable {
     let dueDate: Date?
     // periphery:ignore - Currently not used in the app but a complete representation of the model.
     let completionDate: Date?
-    var processingState: ProcessingState?
     
-    var isProcessing: Bool {
-        processingState?.isStillProcessing ?? false
-    }
     
     init(
         title: String,
@@ -36,8 +32,7 @@ struct Message: Identifiable, Equatable {
         isDismissible: Bool,
         dueDate: Date?,
         completionDate: Date?,
-        id: String? = UUID().uuidString,
-        processingState: ProcessingState? = nil
+        id: String? = UUID().uuidString
     ) {
         self.id = id
         self.title = title
@@ -46,18 +41,6 @@ struct Message: Identifiable, Equatable {
         self.isDismissible = isDismissible
         self.dueDate = dueDate
         self.completionDate = completionDate
-        self.processingState = processingState
-    }
-    
-    func isRelatedTo(_ state: ProcessingState) -> Bool {
-        switch (action, state.type) {
-        case (.showHeartHealth, .healthMeasurement):
-            return true
-        case let (.completeQuestionnaire(questionnaireId), .questionnaire(id)):
-            return questionnaireId == id
-        default:
-            return false
-        }
     }
 }
 
@@ -84,6 +67,5 @@ extension Message: Decodable {
         self.isDismissible = try container.decode(Bool.self, forKey: .isDismissible)
         self.dueDate = try container.decodeISO8601DateIfPresent(forKey: .dueDate)
         self.completionDate = try container.decodeISO8601DateIfPresent(forKey: .completionDate)
-        self.processingState = nil  // Initialize as nil since it's not stored in Firebase
     }
 }

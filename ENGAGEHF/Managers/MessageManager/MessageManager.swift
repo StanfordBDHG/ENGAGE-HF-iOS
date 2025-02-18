@@ -77,15 +77,24 @@ final class MessageManager: Manager {
         
         processingStates[correlationId] = state
         
-        // Update all related messages' processing states
-        for index in messages.indices where messages[index].isRelatedTo(state) {
-            messages[index].processingState = state
-        }
-        
         // Schedule state cleanup
         Task {
             try? await Task.sleep(for: .seconds(60))
             cleanupProcessingState(correlationId: correlationId)
+        }
+    }
+    
+    @MainActor
+    func processingState(for message: Message) -> ProcessingState? {
+        processingStates.values.first { state in
+            switch (message.action, state.type) {
+            case (.showHeartHealth, .healthMeasurement):
+                true
+            case let (.completeQuestionnaire(questionnaireId), .questionnaire(id)):
+                questionnaireId == id
+            default:
+                false
+            }
         }
     }
     
@@ -102,10 +111,6 @@ final class MessageManager: Manager {
         }
         
         processingStates.removeValue(forKey: correlationId)
-        
-        for index in messages.indices where messages[index].processingState?.correlationId == correlationId {
-            messages[index].processingState = nil
-        }
     }
     
     @MainActor

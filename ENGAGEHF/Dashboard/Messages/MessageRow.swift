@@ -69,16 +69,16 @@ struct MessageRow: View {
                 .font(.caption)
                 .foregroundStyle(.secondary)
         }
-            .padding(.vertical, 4)
-            .padding(.horizontal, 8)
-            .background {
-                Capsule()
-                    .fill(.secondary.opacity(0.1))
-            }
+        .padding(.vertical, 4)
+        .padding(.horizontal, 8)
+        .background {
+            Capsule()
+                .fill(.secondary.opacity(0.1))
+        }
     }
     
     private var processingStateText: String {
-        if let processingState = message.processingState {
+        if let processingState = messageManager.processingState(for: message) {
             switch processingState.type {
             case .healthMeasurement(let count):
                 return "Processing \(count) measurement\(count == 1 ? "" : "s")..."
@@ -89,15 +89,19 @@ struct MessageRow: View {
         return "Processing..."
     }
     
+    private var isProcessing: Bool {
+        messageManager.processingState(for: message)?.isStillProcessing ?? false
+    }
+    
     private var titleRow: some View {
         HStack(alignment: .top) {
             HStack(alignment: .center, spacing: 8) {
                 Text(message.title)
                     .bold()
             }
-                .font(.subheadline)
+            .font(.subheadline)
             Spacer()
-            if message.isDismissible && !message.isProcessing {
+            if message.isDismissible && !isProcessing {
                 XButton(message: message, labelSize: dismissLabelSize)
             }
         }
@@ -113,7 +117,7 @@ struct MessageRow: View {
                     .accessibilityIdentifier("Message Description")
             }
             
-            if message.isProcessing {
+            if isProcessing {
                 processingStateView
                     .accessibilityIdentifier("Processing State")
             } else if message.action != .unknown {
@@ -139,18 +143,18 @@ struct MessageRow: View {
                 .frame(width: 38)
             mainContent
         }
-            .padding(2)
-            .asButton {
-                if message.action != .unknown && !message.isProcessing {
-                    Task {
-                        let didPerformAction = await navigationManager.execute(message.action)
-                        if message.isDismissible, didPerformAction {
-                            await messageManager.dismiss(message, didPerformAction: didPerformAction)
-                        }
+        .padding(2)
+        .asButton {
+            if message.action != .unknown && !isProcessing {
+                Task {
+                    let didPerformAction = await navigationManager.execute(message.action)
+                    if message.isDismissible, didPerformAction {
+                        await messageManager.dismiss(message, didPerformAction: didPerformAction)
                     }
                 }
             }
-            .disabled(message.isProcessing)
+        }
+        .disabled(isProcessing)
     }
 }
 
