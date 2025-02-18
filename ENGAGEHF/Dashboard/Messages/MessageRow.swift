@@ -79,14 +79,9 @@ struct MessageRow: View {
     
     private var processingStateText: String {
         if let processingState = messageManager.processingState(for: message) {
-            switch processingState.type {
-            case .healthMeasurement(let count):
-                return "Processing \(count) measurement\(count == 1 ? "" : "s")..."
-            case .questionnaire:
-                return "Processing questionnaire..."
-            }
+            return processingState.type.localizedDescription
         }
-        return "Processing..."
+        return String(localized: "Processing...", comment: "Processing state")
     }
     
     private var isProcessing: Bool {

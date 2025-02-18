@@ -16,9 +16,12 @@ struct ProcessingState: Equatable {
         var localizedDescription: String {
             switch self {
             case .healthMeasurement(let count):
-                return "\(count) health measurement\(count == 1 ? "" : "s")"
+                let measurementString = String(localized: "measurement", comment: "Single measurement in processing state")
+                let measurementsString = String(localized: "measurements", comment: "Multiple measurements in processing state")
+                let countString = count == 1 ? measurementString : measurementsString
+                return String(localized: "Processing \(count) \(countString)...", comment: "Processing state for health measurements")
             case .questionnaire:
-                return "questionnaire response"
+                return String(localized: "Processing questionnaire...", comment: "Processing state for questionnaire")
             }
         }
     }
