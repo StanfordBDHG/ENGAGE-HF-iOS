@@ -32,8 +32,7 @@ final class MessagesUITests: XCTestCase {
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
         
-        // This is not optimal - TODO: Find way to make this test multilang compatible with texts coming from SPEZI directly
-        let moreButton = app.buttons["Weitere"]
+        let moreButton = app.buttons["More"]
         XCTAssert(moreButton.waitForExistence(timeout: 0.5), "More button not found")
         moreButton.tap()
         
@@ -67,7 +66,7 @@ final class MessagesUITests: XCTestCase {
         submitButton.tap()
         
         // Fill out form using StaticText
-        app.staticTexts["Ja"].tap()
+        app.staticTexts["Yes"].tap()
         app.staticTexts["Vanilla"].tap()
         app.staticTexts["Sprinkles"].tap()
         
