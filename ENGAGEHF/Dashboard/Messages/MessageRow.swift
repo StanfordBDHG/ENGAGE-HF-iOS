@@ -69,12 +69,12 @@ struct MessageRow: View {
                 .font(.caption)
                 .foregroundStyle(.secondary)
         }
-        .padding(.vertical, 4)
-        .padding(.horizontal, 8)
-        .background {
-            Capsule()
-                .fill(.secondary.opacity(0.1))
-        }
+            .padding(.vertical, 4)
+            .padding(.horizontal, 8)
+            .background {
+                Capsule()
+                    .fill(.secondary.opacity(0.1))
+            }
     }
     
     private var processingStateText: String {
