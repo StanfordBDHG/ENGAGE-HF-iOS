@@ -34,8 +34,9 @@ final class MessageManager: Manager {
 
     private var processingStates: [String: ProcessingState] = [:]
 
+
     nonisolated init() {}
-    
+
     
     func configure() {
 #if DEBUG || TEST
@@ -44,7 +45,7 @@ final class MessageManager: Manager {
             return
         }
 #endif
-        
+
         if let accountNotifications {
             notificationTask = Task.detached { @MainActor [weak self] in
                 for await event in accountNotifications.events {
