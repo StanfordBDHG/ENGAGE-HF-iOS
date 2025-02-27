@@ -512,8 +512,19 @@
         }
       }
     },
+    "Processing %lld measurement%@..." : {
+      "comment" : "Status text for processing health measurements",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Processing %1$lld measurement%2$@..."
+          }
+        }
+      }
+    },
     "Processing questionnaire..." : {
-      "comment" : "Processing state for questionnaire"
+      "comment" : "Processing state for questionnaire\nStatus text for processing questionnaire"
     },
     "Processing..." : {
       "comment" : "Processing state"

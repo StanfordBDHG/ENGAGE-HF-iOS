@@ -51,6 +51,34 @@ final class MessagesUITests: XCTestCase {
         let vitalsMessage = app.otherElements["Message Card - Vitals"]
         XCTAssert(vitalsMessage.exists)
         XCTAssert(vitalsMessage.staticTexts["Processing 2 measurements..."].exists)
+        
+        // Start questionnaire
+        let questionnaireMessage = app.otherElements["Message Card - Symptom Questionnaire"]
+        XCTAssert(questionnaireMessage.exists)
+        XCTAssert(questionnaireMessage.isHittable)
+        
+        questionnaireMessage.tap()
+        sleep(1)
+        
+        // First submit to get to the form
+        let submitButton = app.buttons["ORKContinueButton.Next"]
+        XCTAssert(submitButton.waitForExistence(timeout: 0.5), "Initial submit button not found")
+        submitButton.tap()
+        
+        // Fill out form using StaticText
+        app.staticTexts["Yes"].tap()
+        app.staticTexts["Vanilla"].tap()
+        app.staticTexts["Sprinkles"].tap()
+        
+        // Final submit
+        let finalSubmitButton = app.buttons["ORKContinueButton.Next"]
+        XCTAssert(finalSubmitButton.waitForExistence(timeout: 0.5), "Final submit button not found")
+        finalSubmitButton.tap()
+        sleep(1)
+
+        // Verify processing states are cleared
+        XCTAssert(vitalsMessage.staticTexts["Processing 2 measurements..."].exists)
+        XCTAssert(questionnaireMessage.staticTexts["Processing questionnaire..."].exists)
     }
     
     func testDismissMessages() throws {

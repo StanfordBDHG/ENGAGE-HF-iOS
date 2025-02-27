@@ -85,11 +85,25 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible {
     
     
     func add(response: ModelsR4.QuestionnaireResponse) async throws {
-        let questionnaireId = response.identifier?.value?.value?.string ?? UUID().uuidString
+        var questionnaireId = response.identifier?.value?.value?.string ?? UUID().uuidString
+
+        // Use ID "0" in test mode to match test message
+#if DEBUG || TEST
+        if ProcessInfo.processInfo.isPreviewSimulator || FeatureFlags.setupTestMessages {
+            questionnaireId = "0"
+        }
+#endif
         
         await messageManager?.markAsProcessing(
             type: .questionnaire(id: questionnaireId)
         )
+        
+#if DEBUG || TEST
+        if ProcessInfo.processInfo.isPreviewSimulator || FeatureFlags.setupTestMessages {
+            try? await Task.sleep(for: .seconds(2)) // Simulate delay
+            return
+        }
+#endif
         
         let accountId = try await accountId
         do {

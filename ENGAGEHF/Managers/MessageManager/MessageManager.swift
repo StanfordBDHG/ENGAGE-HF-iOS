@@ -90,11 +90,21 @@ final class MessageManager: Manager {
         processingStates.values.first { state in
             switch (message.action, state.type) {
             case (.showHeartHealth, .healthMeasurement):
-                true
+                return true
             case let (.completeQuestionnaire(questionnaireId), .questionnaire(id)):
-                questionnaireId == id
+
+#if DEBUG || TEST
+                if ProcessInfo.processInfo.isPreviewSimulator || FeatureFlags.setupTestMessages {
+                    if questionnaireId == "0" {
+                        return true
+                    }
+                }
+#endif
+                
+                return questionnaireId == id
+                
             default:
-                false
+                return false
             }
         }
     }
