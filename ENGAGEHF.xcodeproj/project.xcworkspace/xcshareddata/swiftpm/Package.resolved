@@ -1,5 +1,5 @@
 {
-  "originHash" : "2f8235f304c1dd7bcfc68f692f99b4029356877d29f596e8787777ad4f475cb3",
+  "originHash" : "1285773bc511019486804fe96ced0fc4d3b7b0117bc649da45147d177144f8df",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -42,8 +42,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/krzyzanowskim/CryptoSwift.git",
       "state" : {
-        "revision" : "678d442c6f7828def400a70ae15968aef67ef52d",
-        "version" : "1.8.3"
+        "revision" : "729e01bc9b9dab466ac85f21fb9ee2bc1c61b258",
+        "version" : "1.8.4"
       }
     },
     {
@@ -60,8 +60,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/firebase-ios-sdk.git",
       "state" : {
-        "revision" : "2e02253fd1ce99145bcbf1bb367ccf61bd0ca46b",
-        "version" : "11.6.0"
+        "revision" : "075679d6b25b28f4cb167f1d7769b58fb556fb30",
+        "version" : "11.8.0"
       }
     },
     {
@@ -69,8 +69,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/GoogleAppMeasurement.git",
       "state" : {
-        "revision" : "4f234bcbdae841d7015258fbbf8e7743a39b8200",
-        "version" : "11.4.0"
+        "revision" : "be0881ff728eca210ccb628092af400c086abda3",
+        "version" : "11.7.0"
       }
     },
     {
@@ -105,8 +105,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/gtm-session-fetcher.git",
       "state" : {
-        "revision" : "5cfe5f090c982de9c58605d2a82a4fc77b774fbd",
-        "version" : "4.1.0"
+        "revision" : "3cdb78efb79b4a5383c3911488d8025bfc545b5e",
+        "version" : "4.3.0"
       }
     },
     {
@@ -114,8 +114,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordBDHG/HealthKitOnFHIR.git",
       "state" : {
-        "revision" : "a1a71254a75c6a3b18a0b356fd8f76bc489a3030",
-        "version" : "0.2.12"
+        "revision" : "c898c0bace660ecae37fc682d629f7883f92e700",
+        "version" : "0.2.13"
       }
     },
     {
@@ -168,8 +168,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordBDHG/ResearchKitOnFHIR",
       "state" : {
-        "revision" : "d8d8b0d01599ad8a5a8397d10a99073728e6ae9b",
-        "version" : "2.0.2"
+        "revision" : "2c70b9dc7a1be9c804222e93d1737be9fca9af84",
+        "version" : "2.0.3"
       }
     },
     {
@@ -204,8 +204,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziBluetooth.git",
       "state" : {
-        "revision" : "977cc675d8c2dca51eabd52dc0e9476702c678eb",
-        "version" : "3.1.0"
+        "revision" : "e2600a2fd0b8c59513ac0b549785b123c1508894",
+        "version" : "3.2.0"
       }
     },
     {
@@ -222,8 +222,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziDevices.git",
       "state" : {
-        "revision" : "397c0e8217350a32621a3e6abdec0d86f8c651a6",
-        "version" : "1.4.1"
+        "revision" : "e842a01372c6682f4ed390601125a6928e46c1ee",
+        "version" : "1.5.0"
       }
     },
     {
@@ -240,8 +240,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziFoundation",
       "state" : {
-        "revision" : "5b4ad1b343154b52a68c33a6bfe02d9cb07cb9dc",
-        "version" : "2.0.0"
+        "revision" : "c844b98242829fe44e7908739374d4c8b88d6da7",
+        "version" : "2.1.0"
       }
     },
     {
@@ -276,8 +276,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziNotifications.git",
       "state" : {
-        "revision" : "7f24fce6b969d0f1a7bcc0e228af1c01e55fb59f",
-        "version" : "1.0.2"
+        "revision" : "b886f192282a925f600ec5ecbc94acfc75460293",
+        "version" : "1.0.3"
       }
     },
     {
@@ -303,8 +303,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziStorage.git",
       "state" : {
-        "revision" : "0f4a54430e51f82d29da63a7ce5f61bad7dfb9cd",
-        "version" : "1.2.1"
+        "revision" : "935a7e121d7235a394a2c744ba8b83fd52f71ece",
+        "version" : "1.2.3"
       }
     },
     {
@@ -312,8 +312,17 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziViews.git",
       "state" : {
-        "revision" : "69b085705f2af4c5dfe93278a228c12caa6c3379",
-        "version" : "1.8.0"
+        "revision" : "80c7cdfd5e50c3e279ab889cc90bbcfc88c4f24c",
+        "version" : "1.9.0"
+      }
+    },
+    {
+      "identity" : "swift-algorithms",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-algorithms.git",
+      "state" : {
+        "revision" : "f6919dfc309e7f1b56224378b11e28bab5bccc42",
+        "version" : "1.2.0"
       }
     },
     {
@@ -348,8 +357,17 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-nio.git",
       "state" : {
-        "revision" : "dca6594f65308c761a9c409e09fbf35f48d50d34",
-        "version" : "2.77.0"
+        "revision" : "dff45738d84a53dbc8ee899c306b3a7227f54f89",
+        "version" : "2.80.0"
+      }
+    },
+    {
+      "identity" : "swift-numerics",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-numerics.git",
+      "state" : {
+        "revision" : "0a5bc04095a675662cf24757cc0640aa2204253b",
+        "version" : "1.0.2"
       }
     },
     {
@@ -393,8 +411,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/realm/SwiftLint.git",
       "state" : {
-        "revision" : "25f2776977e663305bee71309ea1e34d435065f1",
-        "version" : "0.57.1"
+        "revision" : "eba420f77846e93beb98d516b225abeb2fef4ca2",
+        "version" : "0.58.2"
       }
     },
     {
@@ -420,8 +438,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordBDHG/XCTestExtensions.git",
       "state" : {
-        "revision" : "5379d70249cae926927105bfb6686770f03ee5b9",
-        "version" : "1.1.0"
+        "revision" : "03eb0646dbceededbbb9d46b289f6eb50a4ec791",
+        "version" : "1.1.2"
       }
     },
     {
