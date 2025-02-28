@@ -79,12 +79,7 @@ struct MessageRow: View {
     
     private var processingStateText: String {
         if let processingState = messageManager.processingState(for: message) {
-            switch processingState.type {
-            case .healthMeasurement(let count):
-                return String(localized: "Processing \(count) measurement\(count == 1 ? "" : "s")...", comment: "Status text for processing health measurements")
-            case .questionnaire:
-                return String(localized: "Processing questionnaire...", comment: "Status text for processing questionnaire")
-            }
+            return processingState.type.localizedDescription
         }
         return String(localized: "Processing...", comment: "Processing state")
     }

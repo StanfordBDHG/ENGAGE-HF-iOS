@@ -70,11 +70,7 @@ final class MessageManager: Manager {
     @MainActor
     func markAsProcessing(type: ProcessingState.ProcessingType) {
         let correlationId = UUID().uuidString
-        let state = ProcessingState(
-            startTime: Date(),
-            type: type,
-            correlationId: correlationId
-        )
+        let state = ProcessingState(startTime: Date(), type: type)
         
         processingStates[correlationId] = state
         
