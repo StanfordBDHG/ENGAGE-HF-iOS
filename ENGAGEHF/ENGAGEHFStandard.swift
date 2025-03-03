@@ -8,6 +8,7 @@
 
 import FirebaseFirestore
 import FirebaseStorage
+import HealthKit
 import HealthKitOnFHIR
 import OSLog
 import PDFKit
@@ -16,7 +17,6 @@ import SpeziAccount
 import SpeziDevices
 import SpeziFirebaseAccount
 import SpeziFirestore
-import SpeziHealthKit
 import SpeziOnboarding
 import SpeziQuestionnaire
 import SwiftUI
@@ -59,7 +59,7 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible {
                         continue
                     }
 
-                    let document = collection.document(sample.id.uuidString)
+                    let document = collection.document(sample.uuid.uuidString)
                     try batch.setData(from: sample.resource, forDocument: document)
                 } catch {
                     // either document retrieval or encoding failed, this should not stop other samples from getting saved
