@@ -394,6 +394,12 @@
     "Logout" : {
 
     },
+    "measurement" : {
+      "comment" : "Single measurement in processing state"
+    },
+    "measurements" : {
+      "comment" : "Multiple measurements in processing state"
+    },
     "Medication Label: %@" : {
 
     },
@@ -494,6 +500,23 @@
     },
     "Process timed out." : {
 
+    },
+    "Processing %lld %@..." : {
+      "comment" : "Processing state for health measurements",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Processing %1$lld %2$@..."
+          }
+        }
+      }
+    },
+    "Processing questionnaire..." : {
+      "comment" : "Processing state for questionnaire"
+    },
+    "Processing..." : {
+      "comment" : "Processing state"
     },
     "Questionnaire Loading" : {
 

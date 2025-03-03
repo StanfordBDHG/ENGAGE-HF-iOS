@@ -25,14 +25,16 @@ final class MessageManager: Manager {
     @ObservationIgnored @Dependency(Account.self) private var account: Account?
     @ObservationIgnored @Dependency(AccountNotifications.self) private var accountNotifications: AccountNotifications?
     
+    @ObservationIgnored private var notificationTask: Task<Void, Never>?
+    @ObservationIgnored private var snapshotListener: ListenerRegistration?
+    
     @Application(\.logger) @ObservationIgnored private var logger
 
     private(set) var messages: [Message] = []
 
-    private var notificationTask: Task<Void, Never>?
-    private var snapshotListener: ListenerRegistration?
+    private var processingStates: [String: ProcessingState] = [:]
 
-    
+
     nonisolated init() {}
 
     
@@ -65,15 +67,60 @@ final class MessageManager: Manager {
         }
     }
     
+    @MainActor
+    func markAsProcessing(type: ProcessingState.ProcessingType) {
+        let correlationId = UUID().uuidString
+        let state = ProcessingState(startTime: Date(), type: type)
+        
+        processingStates[correlationId] = state
+        
+        // Schedule state cleanup
+        Task {
+            try? await Task.sleep(for: .seconds(60))
+            cleanupProcessingState(correlationId: correlationId)
+        }
+    }
     
+    @MainActor
+    func processingState(for message: Message) -> ProcessingState? {
+        processingStates.values.first { state in
+            switch (message.action, state.type) {
+            case (.showHeartHealth, .healthMeasurement):
+                return true
+            case let (.completeQuestionnaire(questionnaireId), .questionnaire(id)):
+
+#if DEBUG || TEST
+                if ProcessInfo.processInfo.isPreviewSimulator || FeatureFlags.setupTestMessages {
+                    if questionnaireId == "0" {
+                        return true
+                    }
+                }
+#endif
+                
+                return questionnaireId == id
+                
+            default:
+                return false
+            }
+        }
+    }
+    
+    
+    @MainActor
     func refreshContent() {
         updateSnapshotListener(for: account?.details)
     }
     
+    @MainActor
+    private func cleanupProcessingState(correlationId: String) {
+        guard processingStates[correlationId] != nil else {
+            return
+        }
+        
+        processingStates.removeValue(forKey: correlationId)
+    }
     
-    /// Call on initialization and sign-in of user
-    ///
-    /// Creates a snapshot listener to save new messages to the manager as they are added to the user's directory in Firebase
+    @MainActor
     private func updateSnapshotListener(for details: AccountDetails?) {
         logger.info("Initializing message snapshot listener...")
 
@@ -112,7 +159,7 @@ final class MessageManager: Manager {
             }
     }
 
-    
+    @MainActor
     func dismiss(_ message: Message, didPerformAction: Bool) async {
         logger.debug("Dismissing message with id: \(message.id ?? "nil")")
         
@@ -157,7 +204,7 @@ final class MessageManager: Manager {
 
     
     deinit {
-        _notificationTask?.cancel()
+        notificationTask?.cancel()
     }
 }
 
@@ -167,6 +214,7 @@ extension MessageManager {
     // periphery:ignore - Used in Previews across the application.
     /// Adds a mock message to self.messages
     /// Used for testing in previews
+    @MainActor
     func addMockMessage(dismissible: Bool = true, action: MessageAction = .showHealthSummary) {
         let mockMessage = Message(
             title: "Medication Change",
@@ -180,7 +228,15 @@ extension MessageManager {
         self.messages.append(mockMessage)
     }
     
-
+    // periphery:ignore - Used in Previews across the application.
+    /// Marks all messages that can be processing as processing.
+    /// Used for testing in previews
+    func makeMockMessagesProcessing() {
+        markAsProcessing(type: .healthMeasurement(samples: 1))
+        markAsProcessing(type: .questionnaire(id: "0"))
+    }
+    
+    @MainActor
     private func injectTestMessages() {
         self.messages = [
             // With play video action, with description, is dismissible

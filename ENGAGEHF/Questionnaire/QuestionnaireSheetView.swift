@@ -14,15 +14,18 @@ import SwiftUI
 
 
 struct QuestionnaireSheetView: View {
-    private let questionnaireId: String
+    // MARK: - Type Properties
+    
+    // MARK: - Properties
+    @Environment(ENGAGEHFStandard.self) private var standard
+    @Environment(\.dismiss) private var dismiss
     
     @State private var questionnaire: Questionnaire?
     @State private var viewState: ViewState = .idle
     
-    @Environment(ENGAGEHFStandard.self) private var standard
-    @Environment(\.dismiss) private var dismiss
+    private let questionnaireId: String
     
-    
+    // MARK: - View
     var body: some View {
         ZStack {
             if let questionnaire {
@@ -40,11 +43,14 @@ struct QuestionnaireSheetView: View {
                     }
 #endif
                     
-                    do {
-                        try await standard.add(response: questionnaireResponse)
-                        dismiss()
-                    } catch {
-                        viewState = .error(AnyLocalizedError(error: error))
+                    Task {
+                        do {
+                            try await standard.add(response: questionnaireResponse)
+                            try? await Task.sleep(for: .seconds(1))
+                            dismiss()
+                        } catch {
+                            viewState = .error(AnyLocalizedError(error: error))
+                        }
                     }
                 }
             } else {

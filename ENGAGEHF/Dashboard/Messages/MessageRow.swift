@@ -6,6 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
+@_spi(TestingSupport) import SpeziAccount
 import SpeziViews
 import SwiftUI
 
@@ -60,54 +61,95 @@ struct MessageRow: View {
             .accessibilityLabel(message.action.localizedDescription.localizedString() + " Symbol")
     }
     
+    private var processingStateView: some View {
+        HStack(spacing: 8) {
+            ProgressView()
+                .controlSize(.small)
+            Text(processingStateText)
+                .font(.caption)
+                .foregroundStyle(.secondary)
+        }
+            .padding(.vertical, 4)
+            .padding(.horizontal, 8)
+            .background {
+                Capsule()
+                    .fill(.secondary.opacity(0.1))
+            }
+    }
+    
+    private var processingStateText: String {
+        if let processingState = messageManager.processingState(for: message) {
+            return processingState.type.localizedDescription
+        }
+        return String(localized: "Processing...", comment: "Processing state")
+    }
+    
+    private var isProcessing: Bool {
+        messageManager.processingState(for: message)?.isStillProcessing ?? false
+    }
+    
+    private var titleRow: some View {
+        HStack(alignment: .top) {
+            HStack(alignment: .center, spacing: 8) {
+                Text(message.title)
+                    .bold()
+            }
+            .font(.subheadline)
+            Spacer()
+            if message.isDismissible && !isProcessing {
+                XButton(message: message, labelSize: dismissLabelSize)
+            }
+        }
+    }
+    
+    private var mainContent: some View {
+        VStack(alignment: .leading, spacing: spacing) {
+            titleRow
+            
+            if let description = message.description {
+                ExpandableText(text: description, lineLimit: 3)
+                    .font(.footnote)
+                    .accessibilityIdentifier("Message Description")
+            }
+            
+            if isProcessing {
+                processingStateView
+                    .accessibilityIdentifier("Processing State")
+            } else if message.action != .unknown {
+                Text(message.action.localizedDescription)
+                    .padding(.vertical, 4)
+                    .padding(.horizontal, 8)
+                    .background {
+                        Capsule()
+                            .fill(.accent.opacity(0.7))
+                    }
+                    .font(.caption.weight(.heavy))
+                    .foregroundStyle(.white)
+                    .accessibilityIdentifier("Message Action")
+            }
+        }
+    }
+    
     
     var body: some View {
         HStack(alignment: .top, spacing: 16) {
             actionImage
                 .foregroundStyle(.accent)
                 .frame(width: 38)
-            VStack(alignment: .leading, spacing: spacing) {
-                HStack(alignment: .top) {
-                    HStack(alignment: .center, spacing: 8) {
-                        Text(message.title)
-                            .bold()
+            mainContent
+        }
+        .padding(2)
+        .asButton {
+            if message.action != .unknown && !isProcessing {
+                Task {
+                    let didPerformAction = await navigationManager.execute(message.action)
+                    if message.isDismissible, didPerformAction {
+                        await messageManager.dismiss(message, didPerformAction: didPerformAction)
                     }
-                        .font(.subheadline)
-                    Spacer()
-                    if message.isDismissible {
-                        XButton(message: message, labelSize: dismissLabelSize)
-                    }
-                }
-                if let description = message.description {
-                    ExpandableText(text: description, lineLimit: 3)
-                        .font(.footnote)
-                        .accessibilityIdentifier("Message Description")
-                }
-                if message.action != .unknown {
-                    Text(message.action.localizedDescription)
-                        .padding(.vertical, 4)
-                        .padding(.horizontal, 8)
-                        .background {
-                            Capsule()
-                                .fill(.accent.opacity(0.7))
-                        }
-                        .font(.caption.weight(.heavy))
-                        .foregroundStyle(.white)
-                        .accessibilityIdentifier("Message Action")
                 }
             }
         }
-            .padding(2)
-            .asButton {
-                if message.action != .unknown {
-                    Task {
-                        let didPerformAction = await navigationManager.execute(message.action)
-                        if message.isDismissible, didPerformAction {
-                            await messageManager.dismiss(message, didPerformAction: didPerformAction)
-                        }
-                    }
-                }
-            }
+        .disabled(isProcessing)
     }
 }
 
@@ -117,49 +159,51 @@ struct MessageRow: View {
     struct MessageRowPreviewWrapper: View {
         @Environment(MessageManager.self) private var messageManager
         
-        
         var body: some View {
-            List {
-                Section(
-                    content: {
-                        ForEach(messageManager.messages) { message in
-                            StudyApplicationListCard {
-                                MessageRow(message: message)
-                            }
-                        }
-                            .buttonStyle(.borderless)
-                    },
-                    header: {
-                        Text("Messages")
-                            .studyApplicationHeaderStyle()
-                    }
-                )
-                Section(
-                    content: {
-                        StudyApplicationListCard {
-                            Button(
-                                action: {
-                                    messageManager.addMockMessage()
-                                },
-                                label: {
-                                    Text("Add Mock")
+            NavigationStack {
+                List {
+                    Section(
+                        content: {
+                            ForEach(messageManager.messages) { message in
+                                StudyApplicationListCard {
+                                    MessageRow(message: message)
                                 }
-                            )
-                                .buttonStyle(.borderless)
+                            }
+                            .buttonStyle(.borderless)
+                        },
+                        header: {
+                            Text("Messages")
+                                .studyApplicationHeaderStyle()
                         }
-                    },
-                    header: {
-                        Text("")
-                    }
-                )
-            }
+                    )
+                }
                 .studyApplicationList()
+                .toolbar {
+                    Button(
+                        action: {
+                            messageManager.addMockMessage()
+                        },
+                        label: {
+                            Text("Add Mock")
+                        }
+                    )
+                    Button(
+                        action: {
+                            messageManager.makeMockMessagesProcessing()
+                        },
+                        label: {
+                            Text("Set Processing")
+                        }
+                    )
+                }
+            }
         }
     }
     
     
     return MessageRowPreviewWrapper()
         .previewWith(standard: ENGAGEHFStandard()) {
+            AccountConfiguration(service: InMemoryAccountService())
             MessageManager()
             NavigationManager()
         }

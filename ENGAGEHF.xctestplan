@@ -18,6 +18,7 @@
         }
       ]
     },
+    "language" : "en",
     "targetForVariableExpansion" : {
       "containerPath" : "container:ENGAGEHF.xcodeproj",
       "identifier" : "653A254C283387FE005D4D48",
