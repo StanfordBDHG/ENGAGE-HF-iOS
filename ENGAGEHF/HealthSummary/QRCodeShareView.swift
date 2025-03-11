@@ -32,6 +32,7 @@ struct QRCodeShareView: View {
                 GroupBox {
                     HStack {
                         Text("One-time Code")
+                            .bold()
                         Spacer()
                         Text(code.uppercased())
                     }

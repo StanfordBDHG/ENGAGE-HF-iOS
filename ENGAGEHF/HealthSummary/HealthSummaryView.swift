@@ -84,7 +84,7 @@ struct HealthSummaryView: View {
     
     private var shareModeSelector: some ToolbarContent {
         ToolbarItem(placement: .principal) {
-            Picker("?", selection: $shareState) {
+            Picker("Health Summary Share Mode", selection: $shareState) {
                 Text("PDF").tag(ShareState.pdf)
                 Text("QR Code").tag(ShareState.qrCode)
             }
