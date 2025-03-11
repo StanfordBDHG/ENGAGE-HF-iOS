@@ -14,37 +14,83 @@ import SwiftUI
 
 
 struct HealthSummaryView: View {
+    private enum ShareState {
+        case pdf
+        case qrCode
+    }
+    
     @State private var healthSummaryDocument: PDFDocument?
     @State private var viewState: ViewState = .idle
+    @State private var fullUrl: String?
+    @State private var code: String?
+    @State private var shareState: ShareState = .pdf
     
     
     var body: some View {
         NavigationStack {
-            ZStack {
-                if let healthSummaryDocument {
-                    PDFViewer(document: healthSummaryDocument)
+            VStack {
+                if shareState == .pdf {
+                    pdfView
                 } else {
-                    ProgressView("Generating Health Summary")
+                    qrCodeView
                 }
             }
-                .task {
-                    await self.generateHealthSummary()
-                }
                 .toolbar {
-                    if let healthSummaryDocument {
-                        ToolbarItem(placement: .confirmationAction) {
-                            ShareLink(
-                                item: healthSummaryDocument,
-                                preview: SharePreview("Health Summary", image: Image(.engagehfIcon))
-                            )
-                                .accessibilityLabel("Share Link")
-                        }
-                    }
+                    shareButton
+                    shareModeSelector
                 }
                 .viewStateAlert(state: $viewState)
         }
     }
     
+    
+    private var pdfView: some View {
+        ZStack {
+            if let healthSummaryDocument {
+                PDFViewer(document: healthSummaryDocument)
+            } else {
+                ProgressView("Generating Health Summary")
+            }
+        }
+        .task {
+            await generateHealthSummary()
+        }
+    }
+    
+    private var qrCodeView: some View {
+        ZStack {
+            if let fullUrl, let code {
+                QRCodeShareView(url: fullUrl, code: code)
+            } else {
+                ProgressView("Generating QR Code")
+            }
+        }
+        .task {
+            await fetchLink()
+        }
+    }
+    
+    private var shareButton: some ToolbarContent {
+        ToolbarItem(placement: .confirmationAction) {
+            if let healthSummaryDocument, shareState == .pdf {
+                ShareLink(
+                    item: healthSummaryDocument,
+                    preview: SharePreview("Health Summary", image: Image(.engagehfIcon))
+                )
+                .accessibilityLabel("Share Link")
+            }
+        }
+    }
+    
+    private var shareModeSelector: some ToolbarContent {
+        ToolbarItem(placement: .principal) {
+            Picker("?", selection: $shareState) {
+                Text("PDF").tag(ShareState.pdf)
+                Text("QR Code").tag(ShareState.qrCode)
+            }
+            .pickerStyle(.segmented)
+        }
+    }
     
     private func generateHealthSummary() async {
         do {
@@ -63,6 +109,27 @@ struct HealthSummaryView: View {
             }
             
             self.healthSummaryDocument = PDFDocument(data: contentData)
+        } catch {
+            self.viewState = .error(
+                AnyLocalizedError(
+                    error: error,
+                    defaultErrorDescription: String(localized: "Process timed out.")
+                )
+            )
+        }
+    }
+    
+    private func fetchLink() async {
+        do {
+            guard let userId = Auth.auth().currentUser?.uid else {
+                return
+            }
+            let shareHealthSummary = Functions.functions().httpsCallable("shareHealthSummary")
+            let result = try await shareHealthSummary.call([ "userId": userId ] )
+            
+            let dataDictionary = result.data as? [String: Any]
+            self.fullUrl = dataDictionary?["fullUrl"] as? String
+            self.code = dataDictionary?["code"] as? String
         } catch {
             self.viewState = .error(
                 AnyLocalizedError(

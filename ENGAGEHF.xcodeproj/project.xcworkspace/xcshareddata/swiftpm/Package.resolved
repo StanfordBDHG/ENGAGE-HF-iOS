@@ -1,5 +1,5 @@
 {
-  "originHash" : "49f71d3f232f37193b58998d85e7e5244bc482d675480e41c8c084f5b7e068f5",
+  "originHash" : "759b5b442d547635957ae0aecf41ebdbfdd51c12c31492ed125bcf4000e9bec1",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -184,10 +184,10 @@
     {
       "identity" : "spezi",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/StanfordSpezi/Spezi",
+      "location" : "https://github.com/StanfordSpezi/Spezi.git",
       "state" : {
-        "revision" : "4513a697572e8e1faea1e0ee52e6fad4b8d3dd8d",
-        "version" : "1.8.0"
+        "revision" : "49ed1ddcfb7d0f753990b55578c33a887513fb39",
+        "version" : "1.8.1"
       }
     },
     {
@@ -204,8 +204,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziBluetooth.git",
       "state" : {
-        "revision" : "e2600a2fd0b8c59513ac0b549785b123c1508894",
-        "version" : "3.2.0"
+        "revision" : "f6b958107ef1a1ae18d2e1f449ace74191c62d9e",
+        "version" : "3.2.1"
       }
     },
     {
@@ -245,18 +245,9 @@
       }
     },
     {
-      "identity" : "spezihealthkit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/StanfordSpezi/SpeziHealthKit.git",
-      "state" : {
-        "revision" : "1e9cb5a6036ac7f4ff37ea1c3ed4898103339ad1",
-        "version" : "0.5.3"
-      }
-    },
-    {
       "identity" : "spezilicense",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/StanfordSpezi/SpeziLicense",
+      "location" : "https://github.com/StanfordSpezi/SpeziLicense.git",
       "state" : {
         "revision" : "2249ce615a624a072834e31e7906b779ba82b824",
         "version" : "0.1.1"
@@ -265,10 +256,10 @@
     {
       "identity" : "spezinetworking",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/StanfordSpezi/SpeziNetworking",
+      "location" : "https://github.com/StanfordSpezi/SpeziNetworking.git",
       "state" : {
-        "revision" : "89fad797897bb741fc148027859c1bab3129999a",
-        "version" : "2.2.0"
+        "revision" : "098e78d7717fc4e3199c579e47c75b916ce678ca",
+        "version" : "2.3.0"
       }
     },
     {
@@ -283,7 +274,7 @@
     {
       "identity" : "spezionboarding",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/StanfordSpezi/SpeziOnboarding",
+      "location" : "https://github.com/StanfordSpezi/SpeziOnboarding.git",
       "state" : {
         "revision" : "a3d7bc15e6803b2205eb8dca010a48b1a40215be",
         "version" : "1.2.2"
@@ -366,8 +357,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-numerics.git",
       "state" : {
-        "revision" : "0a5bc04095a675662cf24757cc0640aa2204253b",
-        "version" : "1.0.2"
+        "revision" : "e0ec0f5f3af6f3e4d5e7a19d2af26b481acb6ba8",
+        "version" : "1.0.3"
       }
     },
     {
@@ -447,8 +438,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordBDHG/XCTHealthKit.git",
       "state" : {
-        "revision" : "9353b5fea249a73e9b35761bd781c63c02088203",
-        "version" : "1.1.1"
+        "revision" : "550a6f5feb05d8b08a4f4a1c512701f4622bd2d4",
+        "version" : "1.1.2"
       }
     },
     {
