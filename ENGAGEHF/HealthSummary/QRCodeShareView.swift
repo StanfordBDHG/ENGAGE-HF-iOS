@@ -24,7 +24,7 @@ struct QRCodeShareView: View {
         VStack {
             GroupBox(label: Text("Health Summary QR Code")) {
                 VStack(alignment: .leading) {
-                    Text("This QR code can be scanned by your doctor to share your health summary.")
+                    Text("This QR code can be scanned by your healthcare provider to share your health summary.")
                     VStack {
                         Text("Expires in: \(Int(timeRemaining) / 60):\(String(format: "%02d", Int(timeRemaining) % 60))")
                             .font(.callout)
