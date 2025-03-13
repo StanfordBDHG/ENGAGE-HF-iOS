@@ -12,6 +12,7 @@ import SwiftUI
 
 struct QRCodeShareView: View {
     @State private var originalBrightness: CGFloat = UIScreen.main.brightness
+    @State private var qrCodeImage: UIImage?
     
     let url: String
     let code: String
@@ -29,13 +30,15 @@ struct QRCodeShareView: View {
                         Text("Expires in: \(Int(timeRemaining) / 60):\(String(format: "%02d", Int(timeRemaining) % 60))")
                             .font(.callout)
                             .foregroundStyle(.secondary)
-                        Image(uiImage: generateQRCode(from: url))
-                            .interpolation(.none)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(maxWidth: .infinity)
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                            .accessibilityLabel("QR code for sharing your health summary with your doctor")
+                        if let image = qrCodeImage {
+                            Image(uiImage: image)
+                                .interpolation(.none)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(maxWidth: .infinity)
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                                .accessibilityLabel("QR code for sharing your health summary with your doctor")
+                        }
                     }
                         .padding(.top)
                     GroupBox {
@@ -52,6 +55,9 @@ struct QRCodeShareView: View {
                 .padding()
             Spacer()
         }
+            .task(id: url) {
+                qrCodeImage = generateQRCode(from: url)
+            }
             .onAppear {
                 UIScreen.main.brightness = 1.0
             }

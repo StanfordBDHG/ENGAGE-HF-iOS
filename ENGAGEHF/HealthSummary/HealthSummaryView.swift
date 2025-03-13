@@ -22,7 +22,6 @@ struct HealthSummaryView: View {
     
     @State private var healthSummaryDocument: PDFDocument?
     @State private var viewState: ViewState = .idle
-    @State private var fullUrl: String?
     @State private var url: String?
     @State private var code: String?
     @State private var timeRemaining: Int?
@@ -73,8 +72,8 @@ struct HealthSummaryView: View {
     
     private var qrCodeView: some View {
         ZStack {
-            if let fullUrl, let code, let timeRemaining {
-                QRCodeShareView(url: fullUrl, code: code, timeRemaining: timeRemaining)
+            if let url, let code, let timeRemaining {
+                QRCodeShareView(url: url, code: code, timeRemaining: timeRemaining)
             } else {
                 ProgressView("Generating QR Code")
             }
@@ -149,7 +148,6 @@ struct HealthSummaryView: View {
             let result = try await shareHealthSummary.call([ "userId": userId ] )
             
             let dataDictionary = result.data as? [String: Any]
-            self.fullUrl = dataDictionary?["fullUrl"] as? String
             self.url = dataDictionary?["url"] as? String
             self.code = dataDictionary?["code"] as? String
             if let expiresAtString = dataDictionary?["expiresAt"] as? String {
