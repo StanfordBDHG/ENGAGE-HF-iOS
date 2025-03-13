@@ -20,7 +20,7 @@ struct QRCodeShareView: View {
     var body: some View {
         VStack {
             GroupBox(label: Text("Health Summary QR Code")) {
-                Text("This QR code can be scanned by your doctor to share your health summary.")
+                Text("This QR code can be scanned by your healthcare provider to share your health summary.")
                     .padding(.top)
                 Image(uiImage: generateQRCode(from: url))
                     .interpolation(.none)
