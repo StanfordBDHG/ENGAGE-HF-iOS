@@ -18,11 +18,14 @@ struct HealthSummaryView: View {
         case pdf
         case qrCode
     }
+    private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     @State private var healthSummaryDocument: PDFDocument?
     @State private var viewState: ViewState = .idle
     @State private var fullUrl: String?
+    @State private var url: String?
     @State private var code: String?
+    @State private var timeRemaining: Int?
     @State private var shareState: ShareState = .pdf
     
     
@@ -40,6 +43,17 @@ struct HealthSummaryView: View {
                     shareModeSelector
                 }
                 .viewStateAlert(state: $viewState)
+        }
+        .onReceive(timer) { _ in
+            if let timeRemaining = self.timeRemaining {
+                if timeRemaining <= 0 {
+                    Task {
+                        await self.fetchLink()
+                    }
+                } else {
+                    self.timeRemaining = timeRemaining - 1
+                }
+            }
         }
     }
     
@@ -59,8 +73,8 @@ struct HealthSummaryView: View {
     
     private var qrCodeView: some View {
         ZStack {
-            if let fullUrl, let code {
-                QRCodeShareView(url: fullUrl, code: code)
+            if let fullUrl, let code, let timeRemaining {
+                QRCodeShareView(url: fullUrl, code: code, timeRemaining: timeRemaining)
             } else {
                 ProgressView("Generating QR Code")
             }
@@ -75,6 +89,13 @@ struct HealthSummaryView: View {
             if let healthSummaryDocument, shareState == .pdf {
                 ShareLink(
                     item: healthSummaryDocument,
+                    preview: SharePreview("Health Summary", image: Image(.engagehfIcon))
+                )
+                .accessibilityLabel("Share Link")
+            } else if let url, shareState == .qrCode {
+                ShareLink(
+                    // swiftlint:disable:next force_unwrapping
+                    item: URL(string: url)!,
                     preview: SharePreview("Health Summary", image: Image(.engagehfIcon))
                 )
                 .accessibilityLabel("Share Link")
@@ -129,7 +150,22 @@ struct HealthSummaryView: View {
             
             let dataDictionary = result.data as? [String: Any]
             self.fullUrl = dataDictionary?["fullUrl"] as? String
+            self.url = dataDictionary?["url"] as? String
             self.code = dataDictionary?["code"] as? String
+            if let expiresAtString = dataDictionary?["expiresAt"] as? String {
+                let formatter = ISO8601DateFormatter()
+                formatter.formatOptions = [
+                    .withInternetDateTime,
+                    .withFractionalSeconds,
+                    .withTimeZone
+                ]
+                if let expiresAt = formatter.date(from: expiresAtString) {
+                    let timeInterval = expiresAt.timeIntervalSinceNow
+                    if timeInterval > 0 && timeInterval < 60 * 10 {
+                        self.timeRemaining = Int(timeInterval)
+                    }
+                }
+            }
         } catch {
             self.viewState = .error(
                 AnyLocalizedError(

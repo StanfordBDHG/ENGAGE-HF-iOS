@@ -4,9 +4,6 @@
     "" : {
 
     },
-    "?" : {
-
-    },
     "%@ Date: %@" : {
       "localizations" : {
         "en" : {
@@ -203,6 +200,16 @@
     "Expansion Button" : {
 
     },
+    "Expires in: %lld:%@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Expires in: %1$lld:%2$@"
+          }
+        }
+      }
+    },
     "Failed to fetch HKUnits for the given samples." : {
 
     },
@@ -225,6 +232,9 @@
 
     },
     "Health Summary QR Code" : {
+
+    },
+    "Health Summary Share Mode" : {
 
     },
     "Heart Health" : {

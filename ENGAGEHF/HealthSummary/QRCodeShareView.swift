@@ -11,8 +11,11 @@ import SwiftUI
 
 
 struct QRCodeShareView: View {
+    @State private var originalBrightness: CGFloat = UIScreen.main.brightness
+    
     let url: String
     let code: String
+    let timeRemaining: Int
     let context = CIContext()
     let filter = CIFilter.qrCodeGenerator()
     
@@ -20,29 +23,43 @@ struct QRCodeShareView: View {
     var body: some View {
         VStack {
             GroupBox(label: Text("Health Summary QR Code")) {
-                Text("This QR code can be scanned by your doctor to share your health summary.")
-                    .padding(.top)
-                Image(uiImage: generateQRCode(from: url))
-                    .interpolation(.none)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 200, height: 200)
-                    .padding()
-                    .accessibilityLabel("QR code for sharing your health summary with your doctor")
-                GroupBox {
-                    HStack {
-                        Text("One-time Code")
-                            .bold()
-                        Spacer()
-                        Text(code.uppercased())
+                VStack(alignment: .leading) {
+                    Text("This QR code can be scanned by your doctor to share your health summary.")
+                    VStack {
+                        Text("Expires in: \(Int(timeRemaining) / 60):\(String(format: "%02d", Int(timeRemaining) % 60))")
+                            .font(.callout)
+                            .foregroundStyle(.secondary)
+                        Image(uiImage: generateQRCode(from: url))
+                            .interpolation(.none)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(maxWidth: .infinity)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .accessibilityLabel("QR code for sharing your health summary with your doctor")
+                    }
+                        .padding(.top)
+                    GroupBox {
+                        HStack {
+                            Text("One-time Code")
+                                .bold()
+                            Spacer()
+                            Text(code.uppercased())
+                                .font(.body.monospaced())
+                        }
                     }
                 }
             }
                 .padding()
             Spacer()
         }
+            .onAppear {
+                UIScreen.main.brightness = 1.0
+            }
+            .onDisappear {
+                UIScreen.main.brightness = originalBrightness
+            }
     }
-    
+       
     
     private func generateQRCode(from string: String) -> UIImage {
         filter.message = Data(string.utf8)
@@ -58,5 +75,5 @@ struct QRCodeShareView: View {
 }
 
 #Preview {
-    QRCodeShareView(url: "/example-link", code: "1111")
+    QRCodeShareView(url: "/example-link", code: "1111", timeRemaining: 10)
 }
