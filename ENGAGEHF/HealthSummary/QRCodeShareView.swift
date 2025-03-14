@@ -17,8 +17,6 @@ struct QRCodeShareView: View {
     let url: String
     let code: String
     let timeRemaining: Int
-    let context = CIContext()
-    let filter = CIFilter.qrCodeGenerator()
     
     
     var body: some View {
@@ -68,6 +66,9 @@ struct QRCodeShareView: View {
        
     
     private func generateQRCode(from string: String) -> UIImage {
+        let context = CIContext()
+        let filter = CIFilter.qrCodeGenerator()
+        
         filter.message = Data(string.utf8)
 
         if let outputImage = filter.outputImage {

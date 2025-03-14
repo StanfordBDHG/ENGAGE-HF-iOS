@@ -95,7 +95,7 @@ struct HealthSummaryView: View {
                 ShareLink(
                     // swiftlint:disable:next force_unwrapping
                     item: URL(string: url)!,
-                    preview: SharePreview("Health Summary", image: Image(.engagehfIcon))
+                    preview: SharePreview("Health Summary Link", image: Image(.engagehfIcon))
                 )
                 .accessibilityLabel("Share Link")
             }
