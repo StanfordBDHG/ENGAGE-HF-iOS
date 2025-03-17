@@ -7,6 +7,7 @@
 //
 
 import CoreImage.CIFilterBuiltins
+import SpeziViews
 import SwiftUI
 
 
@@ -26,7 +27,6 @@ struct QRCodeShareView: View {
                     Text("This QR code can be scanned by your healthcare provider to share your health summary.")
                     VStack {
                         Text("Expires in: \(Int(timeRemaining) / 60):\(String(format: "%02d", Int(timeRemaining) % 60))")
-                            .font(.callout)
                             .foregroundStyle(.secondary)
                         if let image = qrCodeImage {
                             Image(uiImage: image)
@@ -36,6 +36,8 @@ struct QRCodeShareView: View {
                                 .frame(maxWidth: .infinity)
                                 .clipShape(RoundedRectangle(cornerRadius: 10))
                                 .accessibilityLabel("QR code for sharing your health summary with your doctor")
+                        } else {
+                            qrCodePlaceholderView
                         }
                     }
                         .padding(.top)
@@ -63,7 +65,18 @@ struct QRCodeShareView: View {
                 UIScreen.main.brightness = originalBrightness
             }
     }
-       
+    
+    
+    private var qrCodePlaceholderView: some View {
+        RoundedRectangle(cornerRadius: 10)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .aspectRatio(1, contentMode: .fit)
+            .foregroundColor(.white)
+            .overlay(
+                ProgressView()
+                    .scaleEffect(1.5)
+            )
+    }
     
     private func generateQRCode(from string: String) -> UIImage {
         let context = CIContext()
