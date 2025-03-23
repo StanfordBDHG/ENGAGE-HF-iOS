@@ -49,6 +49,7 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
                     configuration: [
                         .requires(\.userId),
                         .supports(\.name),
+                        .supports(\.phoneNumbers),
                         .manual(\.invitationCode),
                         .manual(\.organization),
                         .manual(\.receivesAppointmentReminders),

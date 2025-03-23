@@ -116,6 +116,9 @@
     "Add Medications" : {
 
     },
+    "Add Phone Number" : {
+
+    },
     "All Data" : {
 
     },
@@ -176,6 +179,12 @@
     "defaultLoadingError" : {
 
     },
+    "Discard" : {
+
+    },
+    "Discard Changes?" : {
+
+    },
     "Dismiss Button" : {
 
     },
@@ -195,6 +204,9 @@
 
     },
     "ENGAGE-HF Icon" : {
+
+    },
+    "Enter your 6 digit verification code you received via text message." : {
 
     },
     "Expansion Button" : {
@@ -492,6 +504,12 @@
     "Organization" : {
 
     },
+    "Phone Number" : {
+
+    },
+    "Phone Numbers" : {
+
+    },
     "Play Video" : {
 
     },
@@ -561,6 +579,9 @@
 
     },
     "See Medications" : {
+
+    },
+    "Send Verification Message" : {
 
     },
     "Series" : {
@@ -728,6 +749,12 @@
         }
       }
     },
+    "Verify" : {
+
+    },
+    "Verify Number" : {
+
+    },
     "Very Severe" : {
       "comment" : "Dizziness symptom score label."
     },
@@ -880,6 +907,9 @@
     },
     "You are on your target dose." : {
       "comment" : "Target dose reached color legend entry."
+    },
+    "You have unsaved changes. Are you sure you want to discard them?" : {
+
     },
     "Your account was deactivated\nby your study coordinator." : {
 

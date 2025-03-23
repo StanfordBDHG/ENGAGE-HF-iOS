@@ -195,6 +195,10 @@
 		4DF5062F2C2F2B00003E7EFB /* SymptomsPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF5062E2C2F2B00003E7EFB /* SymptomsPicker.swift */; };
 		4DF506312C2F3421003E7EFB /* VitalsGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF506302C2F3421003E7EFB /* VitalsGraph.swift */; };
 		4DF5063A2C2F5104003E7EFB /* DisplayMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF506392C2F5104003E7EFB /* DisplayMeasurement.swift */; };
+		5628ED392D8D69A50094A682 /* PhoneNumberEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5628ED382D8D69A50094A682 /* PhoneNumberEntryView.swift */; };
+		5628ED3C2D8D69B60094A682 /* PhoneNumberDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5628ED3B2D8D69B60094A682 /* PhoneNumberDisplayView.swift */; };
+		56823D3C2D90710800911F09 /* OTCEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56823D3B2D90710800911F09 /* OTCEntryView.swift */; };
+		56823D3E2D90719700911F09 /* OTCModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56823D3D2D90719300911F09 /* OTCModifier.swift */; };
 		56E708352BB06B7100B08F0A /* SpeziLicense in Frameworks */ = {isa = PBXBuildFile; productRef = 56E708342BB06B7100B08F0A /* SpeziLicense */; };
 		56E7083B2BB06F6F00B08F0A /* SwiftPackageList in Frameworks */ = {isa = PBXBuildFile; productRef = 56E7083A2BB06F6F00B08F0A /* SwiftPackageList */; };
 		6504AFF62D40383F001F4A03 /* StudyConcluded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6504AFF52D40382F001F4A03 /* StudyConcluded.swift */; };
@@ -417,6 +421,10 @@
 		4DF5062E2C2F2B00003E7EFB /* SymptomsPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomsPicker.swift; sourceTree = "<group>"; };
 		4DF506302C2F3421003E7EFB /* VitalsGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalsGraph.swift; sourceTree = "<group>"; };
 		4DF506392C2F5104003E7EFB /* DisplayMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayMeasurement.swift; sourceTree = "<group>"; };
+		5628ED382D8D69A50094A682 /* PhoneNumberEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberEntryView.swift; sourceTree = "<group>"; };
+		5628ED3B2D8D69B60094A682 /* PhoneNumberDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberDisplayView.swift; sourceTree = "<group>"; };
+		56823D3B2D90710800911F09 /* OTCEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTCEntryView.swift; sourceTree = "<group>"; };
+		56823D3D2D90719300911F09 /* OTCModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTCModifier.swift; sourceTree = "<group>"; };
 		6504AFF52D40382F001F4A03 /* StudyConcluded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyConcluded.swift; sourceTree = "<group>"; };
 		6504AFF72D403914001F4A03 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
 		6504B0022D40C8BF001F4A03 /* AccountDisabled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDisabled.swift; sourceTree = "<group>"; };
@@ -1161,6 +1169,7 @@
 		A9720E412ABB68B300872D23 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				56823D3D2D90719300911F09 /* OTCModifier.swift */,
 				A9DFE8A82ABE551400428242 /* AccountButton.swift */,
 				A9720E422ABB68CC00872D23 /* AccountSetupHeader.swift */,
 				A9FE7ACF2AA39BAB0077B045 /* AccountSheet.swift */,
@@ -1168,6 +1177,9 @@
 				A96C56BA2C0DFFCE00D6A50B /* InvitationCodeModule.swift */,
 				4DB624852C73F1BF00573807 /* NotificationSettingsView.swift */,
 				6504B0022D40C8BF001F4A03 /* AccountDisabled.swift */,
+				5628ED382D8D69A50094A682 /* PhoneNumberEntryView.swift */,
+				5628ED3B2D8D69B60094A682 /* PhoneNumberDisplayView.swift */,
+				56823D3B2D90710800911F09 /* OTCEntryView.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -1382,6 +1394,8 @@
 				4DF5062F2C2F2B00003E7EFB /* SymptomsPicker.swift in Sources */,
 				4D8AD2C52C4A180300CB4F3E /* MeasurementSeries.swift in Sources */,
 				4D8402C52C52C67100817495 /* RecommendationSummary.swift in Sources */,
+				56823D3C2D90710800911F09 /* OTCEntryView.swift in Sources */,
+				56823D3E2D90719700911F09 /* OTCModifier.swift in Sources */,
 				4D92BA1A2C3E13F300ABCED7 /* FHIRSystem.swift in Sources */,
 				2FE5DC3A29EDD7CA004B9AB4 /* Welcome.swift in Sources */,
 				4D734AC02C5C58CA002D6D2F /* View+asButton.swift in Sources */,
@@ -1446,6 +1460,7 @@
 				4D92B9F22C3C8D1E00ABCED7 /* MeasurementListSection.swift in Sources */,
 				4D34B3ED2C404C61006F0D40 /* VitalsUnit.swift in Sources */,
 				4D40A4CA2C5AF34D003DC813 /* EducationalVideoCard.swift in Sources */,
+				5628ED392D8D69A50094A682 /* PhoneNumberEntryView.swift in Sources */,
 				4D05F26D2C54696100201581 /* DosageGaugeStyle.swift in Sources */,
 				4D73A5142C5816AF00CCEC46 /* View+ReadSize.swift in Sources */,
 				4D40A4D22C5B0AB2003DC813 /* VideoList.swift in Sources */,
@@ -1466,6 +1481,7 @@
 				21B93B782D039E310034EC86 /* ManagerProtocol.swift in Sources */,
 				4D4670C72C793327004DEAC4 /* SeriesTarget.swift in Sources */,
 				4DA20B542C25F8A600715AA2 /* FHIRDateTime+DateComponents.swift in Sources */,
+				5628ED3C2D8D69B60094A682 /* PhoneNumberDisplayView.swift in Sources */,
 				4D081A282C6C2C8400E13BC8 /* UserMetaDataManager.swift in Sources */,
 				4D8402AA2C51B6A000817495 /* FHIRAliases.swift in Sources */,
 				4D8CE0F72C752D1C00560327 /* VideoCollectionContext.swift in Sources */,

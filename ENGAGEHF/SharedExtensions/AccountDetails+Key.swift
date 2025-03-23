@@ -8,6 +8,8 @@
 
 import Foundation
 import SpeziAccount
+import SwiftUI
+
 
 // swiftlint:disable attributes discouraged_optional_boolean
 
@@ -92,6 +94,25 @@ extension AccountDetails {
         initial: .default(true)
     )
     var receivesWeightAlerts: Bool?
+ 
+    public struct PhoneNumberArray: Sendable, Equatable, Codable {
+        var numbers: [String]
+        
+        init(_ numbers: [String] = []) {
+            self.numbers = numbers
+        }
+    }
+    
+    @AccountKey(
+        id: "phoneNumbers",
+        name: "Phone Numbers",
+        category: .other,
+        as: PhoneNumberArray.self,
+        initial: .empty(PhoneNumberArray()),
+        displayView: DisplayView.self,
+        entryView: EntryView.self
+    )
+    var phoneNumbers: PhoneNumberArray?
 }
 
 @KeyEntry(\.invitationCode)
@@ -103,4 +124,5 @@ extension AccountDetails {
 @KeyEntry(\.receivesRecommendationUpdates)
 @KeyEntry(\.receivesVitalsReminders)
 @KeyEntry(\.receivesWeightAlerts)
+@KeyEntry(\.phoneNumbers)
 extension AccountKeys {}
