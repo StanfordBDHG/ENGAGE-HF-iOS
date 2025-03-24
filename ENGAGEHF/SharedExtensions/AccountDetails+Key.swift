@@ -94,14 +94,6 @@ extension AccountDetails {
         initial: .default(true)
     )
     var receivesWeightAlerts: Bool?
- 
-    public struct PhoneNumberArray: Sendable, Equatable, Codable {
-        var numbers: [String]
-        
-        init(_ numbers: [String] = []) {
-            self.numbers = numbers
-        }
-    }
     
     @AccountKey(
         id: "phoneNumbers",

@@ -7,19 +7,25 @@
 //
 
 import SpeziAccount
+import SpeziViews
 import SwiftUI
 
 
 struct PhoneNumberDisplayView: DataDisplayView {
-    private var phoneNumbers: AccountDetails.PhoneNumberArray
+    private var phoneNumbers: PhoneNumberArray
     
     var body: some View {
-        List(phoneNumbers.numbers) {
-            Text($0)
+        ForEach(phoneNumbers.numbers, id: \.self) { number in
+            ListRow(number) {
+                HStack {
+                    Text(number)
+                    Spacer()
+                }
+            }
         }
     }
     
-    init(_ value: AccountDetails.PhoneNumberArray) {
+    init(_ value: PhoneNumberArray) {
         self.phoneNumbers = value
     }
 }
@@ -27,6 +33,6 @@ struct PhoneNumberDisplayView: DataDisplayView {
 
 #if DEBUG
 #Preview {
-    PhoneNumberDisplayView(AccountDetails.PhoneNumberArray())
+    PhoneNumberDisplayView(PhoneNumberArray())
 }
 #endif

@@ -8,10 +8,10 @@
 
 import SwiftUI
 
+
 enum FocusPin: Hashable {
     case pin(Int)
 }
-
 
 struct OTCEntryView: View {
     @FocusState private var focusState: FocusPin?

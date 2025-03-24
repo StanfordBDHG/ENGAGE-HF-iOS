@@ -199,6 +199,8 @@
 		5628ED3C2D8D69B60094A682 /* PhoneNumberDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5628ED3B2D8D69B60094A682 /* PhoneNumberDisplayView.swift */; };
 		56823D3C2D90710800911F09 /* OTCEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56823D3B2D90710800911F09 /* OTCEntryView.swift */; };
 		56823D3E2D90719700911F09 /* OTCModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56823D3D2D90719300911F09 /* OTCModifier.swift */; };
+		56D638232D916257000D6344 /* PhoneNumberKit in Frameworks */ = {isa = PBXBuildFile; productRef = 56D638222D916257000D6344 /* PhoneNumberKit */; };
+		56D638582D91A8D4000D6344 /* PhoneNumberArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D638572D91A8CD000D6344 /* PhoneNumberArray.swift */; };
 		56E708352BB06B7100B08F0A /* SpeziLicense in Frameworks */ = {isa = PBXBuildFile; productRef = 56E708342BB06B7100B08F0A /* SpeziLicense */; };
 		56E7083B2BB06F6F00B08F0A /* SwiftPackageList in Frameworks */ = {isa = PBXBuildFile; productRef = 56E7083A2BB06F6F00B08F0A /* SwiftPackageList */; };
 		6504AFF62D40383F001F4A03 /* StudyConcluded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6504AFF52D40382F001F4A03 /* StudyConcluded.swift */; };
@@ -425,6 +427,7 @@
 		5628ED3B2D8D69B60094A682 /* PhoneNumberDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberDisplayView.swift; sourceTree = "<group>"; };
 		56823D3B2D90710800911F09 /* OTCEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTCEntryView.swift; sourceTree = "<group>"; };
 		56823D3D2D90719300911F09 /* OTCModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTCModifier.swift; sourceTree = "<group>"; };
+		56D638572D91A8CD000D6344 /* PhoneNumberArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberArray.swift; sourceTree = "<group>"; };
 		6504AFF52D40382F001F4A03 /* StudyConcluded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyConcluded.swift; sourceTree = "<group>"; };
 		6504AFF72D403914001F4A03 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
 		6504B0022D40C8BF001F4A03 /* AccountDisabled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDisabled.swift; sourceTree = "<group>"; };
@@ -468,6 +471,7 @@
 				A977DD5D2C26279E00A2A8E5 /* SpeziBluetoothServices in Frameworks */,
 				65D39ABD2CE497630040BF71 /* SpeziNotifications in Frameworks */,
 				4D49AB022BC9D50400C77310 /* SpeziBluetooth in Frameworks */,
+				56D638232D916257000D6344 /* PhoneNumberKit in Frameworks */,
 				56E708352BB06B7100B08F0A /* SpeziLicense in Frameworks */,
 				9B0723AB2C8F6AE700D901E5 /* FirebaseMessaging in Frameworks */,
 				A9623C042C17A3F500189BA1 /* SpeziOmron in Frameworks */,
@@ -895,6 +899,7 @@
 		4D9D43542C596CED000062D3 /* SharedExtensions */ = {
 			isa = PBXGroup;
 			children = (
+				56D638572D91A8CD000D6344 /* PhoneNumberArray.swift */,
 				4D9D43552C596D09000062D3 /* KeyedDecodingContainer+DecodeLocalizedString.swift */,
 				4D734ABF2C5C58C9002D6D2F /* View+asButton.swift */,
 				4D70CF642C653BE100EB4CC6 /* Image+CardSymbolStyle.swift */,
@@ -1229,6 +1234,7 @@
 				A977DD5C2C26279E00A2A8E5 /* SpeziBluetoothServices */,
 				9B0723AA2C8F6AE700D901E5 /* FirebaseMessaging */,
 				65D39ABC2CE497630040BF71 /* SpeziNotifications */,
+				56D638222D916257000D6344 /* PhoneNumberKit */,
 			);
 			productName = ENGAGEHF;
 			productReference = 653A254D283387FE005D4D48 /* ENGAGEHF.app */;
@@ -1327,6 +1333,7 @@
 				A9A0BF012C13121D00B8F3F3 /* XCRemoteSwiftPackageReference "SpeziNetworking" */,
 				A9623C022C17A3F500189BA1 /* XCRemoteSwiftPackageReference "SpeziDevices" */,
 				65D39ABB2CE497630040BF71 /* XCRemoteSwiftPackageReference "SpeziNotifications" */,
+				56D638212D916257000D6344 /* XCRemoteSwiftPackageReference "PhoneNumberKit" */,
 			);
 			productRefGroup = 653A254E283387FE005D4D48 /* Products */;
 			projectDirPath = "";
@@ -1536,6 +1543,7 @@
 				4D8CE0FF2C7540C000560327 /* AdditionalAccountSections.swift in Sources */,
 				4DF506312C2F3421003E7EFB /* VitalsGraph.swift in Sources */,
 				4DF506212C2E1C89003E7EFB /* SymptomScore.swift in Sources */,
+				56D638582D91A8D4000D6344 /* PhoneNumberArray.swift in Sources */,
 				211755492CC1B58600A81E24 /* ColorLegend.swift in Sources */,
 				4DDFC73D2BF2C4FA002B07A1 /* Message.swift in Sources */,
 				4DA20B5C2C26098400715AA2 /* FHIRObservation+GetEffectiveDate.swift in Sources */,
@@ -2172,6 +2180,14 @@
 				minimumVersion = 4.1.0;
 			};
 		};
+		56D638212D916257000D6344 /* XCRemoteSwiftPackageReference "PhoneNumberKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/marmelroy/PhoneNumberKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.2;
+			};
+		};
 		56E708332BB06B7100B08F0A /* XCRemoteSwiftPackageReference "SpeziLicense" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/StanfordSpezi/SpeziLicense.git";
@@ -2304,6 +2320,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2FE5DC9029EDD9C3004B9AB4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFunctions;
+		};
+		56D638222D916257000D6344 /* PhoneNumberKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 56D638212D916257000D6344 /* XCRemoteSwiftPackageReference "PhoneNumberKit" */;
+			productName = PhoneNumberKit;
 		};
 		56E708342BB06B7100B08F0A /* SpeziLicense */ = {
 			isa = XCSwiftPackageProductDependency;

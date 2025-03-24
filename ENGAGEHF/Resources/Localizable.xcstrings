@@ -700,6 +700,9 @@
     "Thank you for participating in the\nENGAGE-HF study!" : {
 
     },
+    "The entered phone number is invalid." : {
+
+    },
     "The invitation code is invalid or has already been used." : {
       "comment" : "Invitation Code Invalid"
     },
@@ -912,6 +915,9 @@
 
     },
     "Your account was deactivated\nby your study coordinator." : {
+
+    },
+    "Your country" : {
 
     }
   },
