@@ -206,7 +206,10 @@
     "ENGAGE-HF Icon" : {
 
     },
-    "Enter your 6 digit verification code you received via text message." : {
+    "Enter Verification Code" : {
+
+    },
+    "Enter your %lld digit verification code you received via text message." : {
 
     },
     "Expansion Button" : {
@@ -749,10 +752,7 @@
         }
       }
     },
-    "Verify" : {
-
-    },
-    "Verify Number" : {
+    "Verify Phone Number" : {
 
     },
     "Very Severe" : {

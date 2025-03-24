@@ -10,6 +10,7 @@ import Combine
 import SwiftUI
 
 
+/// A view modifier for a cell of a one-time code entry view.
 struct OTCModifier: ViewModifier {
     @Binding var pin: String
     var textLimit = 1
@@ -25,7 +26,7 @@ struct OTCModifier: ViewModifier {
         content
             .multilineTextAlignment(.center)
             .keyboardType(.numberPad)
-            .onReceive(Just(pin)) { _ in limitText(textLimit)}
+            .onReceive(Just(pin)) { _ in limitText(textLimit) }
             .frame(width: 45, height: 45)
             .background(Color.white.cornerRadius(5))
             .background(

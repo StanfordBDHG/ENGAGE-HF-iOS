@@ -109,8 +109,8 @@ extension AccountDetails {
         category: .other,
         as: PhoneNumberArray.self,
         initial: .empty(PhoneNumberArray()),
-        displayView: DisplayView.self,
-        entryView: EntryView.self
+        displayView: PhoneNumberDisplayView.self,
+        entryView: PhoneNumberEntryView.self
     )
     var phoneNumbers: PhoneNumberArray?
 }

@@ -10,7 +10,7 @@ import SpeziAccount
 import SwiftUI
 
 
-struct DisplayView: DataDisplayView {
+struct PhoneNumberDisplayView: DataDisplayView {
     private var phoneNumbers: AccountDetails.PhoneNumberArray
     
     var body: some View {
@@ -24,6 +24,9 @@ struct DisplayView: DataDisplayView {
     }
 }
 
+
+#if DEBUG
 #Preview {
-    DisplayView(AccountDetails.PhoneNumberArray())
+    PhoneNumberDisplayView(AccountDetails.PhoneNumberArray())
 }
+#endif

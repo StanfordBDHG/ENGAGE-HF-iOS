@@ -40,8 +40,8 @@ struct OTCEntryView: View {
     private func individualPin(index: Int) -> some View {
         TextField("", text: $pins[index])
             .modifier(OTCModifier(pin: $pins[index]))
-            .onChange(of: $pins[index].wrappedValue) { _, newVal in
-                if !newVal.isEmpty {
+            .onChange(of: $pins[index].wrappedValue) { _, newValue in
+                if !newValue.isEmpty {
                     if index < codeLength - 1 {
                         focusState = .pin(index + 1)
                     }
@@ -63,6 +63,9 @@ struct OTCEntryView: View {
     }
 }
 
+
+#if DEBUG
 #Preview {
     OTCEntryView(code: .constant("012345"))
 }
+#endif
