@@ -7,7 +7,7 @@
 //
 
 
-public struct PhoneNumberArray: Sendable, Equatable, Codable {
+struct PhoneNumberArray: Sendable, Equatable, Codable {
     var numbers: [String]
     
     init(_ numbers: [String] = []) {

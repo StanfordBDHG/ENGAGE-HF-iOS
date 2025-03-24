@@ -12,10 +12,10 @@ import SwiftUI
 
 
 struct PhoneNumberDisplayView: DataDisplayView {
-    private var phoneNumbers: PhoneNumberArray
+    private var value: PhoneNumberArray
     
     var body: some View {
-        ForEach(phoneNumbers.numbers, id: \.self) { number in
+        ForEach(value.numbers, id: \.self) { number in
             ListRow(number) {
                 HStack {
                     Text(number)
@@ -26,7 +26,7 @@ struct PhoneNumberDisplayView: DataDisplayView {
     }
     
     init(_ value: PhoneNumberArray) {
-        self.phoneNumbers = value
+        self.value = value
     }
 }
 
