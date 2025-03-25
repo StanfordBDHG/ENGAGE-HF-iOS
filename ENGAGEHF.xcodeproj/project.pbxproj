@@ -196,6 +196,7 @@
 		4DF506312C2F3421003E7EFB /* VitalsGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF506302C2F3421003E7EFB /* VitalsGraph.swift */; };
 		4DF5063A2C2F5104003E7EFB /* DisplayMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF506392C2F5104003E7EFB /* DisplayMeasurement.swift */; };
 		562E7C222D8039630088D8DF /* QRCodeShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562E7C212D8039630088D8DF /* QRCodeShareView.swift */; };
+		5681F6C62D9292F90071EA5D /* HealthSummaryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5681F6C52D9292ED0071EA5D /* HealthSummaryUITests.swift */; };
 		56E708352BB06B7100B08F0A /* SpeziLicense in Frameworks */ = {isa = PBXBuildFile; productRef = 56E708342BB06B7100B08F0A /* SpeziLicense */; };
 		56E7083B2BB06F6F00B08F0A /* SwiftPackageList in Frameworks */ = {isa = PBXBuildFile; productRef = 56E7083A2BB06F6F00B08F0A /* SwiftPackageList */; };
 		6504AFF62D40383F001F4A03 /* StudyConcluded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6504AFF52D40382F001F4A03 /* StudyConcluded.swift */; };
@@ -419,6 +420,7 @@
 		4DF506302C2F3421003E7EFB /* VitalsGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalsGraph.swift; sourceTree = "<group>"; };
 		4DF506392C2F5104003E7EFB /* DisplayMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayMeasurement.swift; sourceTree = "<group>"; };
 		562E7C212D8039630088D8DF /* QRCodeShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeShareView.swift; sourceTree = "<group>"; };
+		5681F6C52D9292ED0071EA5D /* HealthSummaryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthSummaryUITests.swift; sourceTree = "<group>"; };
 		6504AFF52D40382F001F4A03 /* StudyConcluded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyConcluded.swift; sourceTree = "<group>"; };
 		6504AFF72D403914001F4A03 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
 		6504B0022D40C8BF001F4A03 /* AccountDisabled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDisabled.swift; sourceTree = "<group>"; };
@@ -956,6 +958,7 @@
 		4DD5FC572C87B4980051E6F5 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				5681F6C52D9292ED0071EA5D /* HealthSummaryUITests.swift */,
 				4D4AA0A42BC5E43E00676489 /* OnboardingUITests.swift */,
 				A9F2138D2C18EBAB00A7578F /* AccountTests.swift */,
 				4D8CE1022C7568C700560327 /* ContactsUITests.swift */,
@@ -1559,6 +1562,7 @@
 				4D335C932C628F5600C720B5 /* EducationViewUITests.swift in Sources */,
 				4DD823062C17FF79004DC599 /* MessagesUITests.swift in Sources */,
 				2F4E237E2989A2FE0013F3D9 /* LaunchTests.swift in Sources */,
+				5681F6C62D9292F90071EA5D /* HealthSummaryUITests.swift in Sources */,
 				4DB025CA2BBE3A59002D2545 /* HomeViewUITests.swift in Sources */,
 				4D8402842C4F11CB00817495 /* XCUIApplication+DeleteMeasurements.swift in Sources */,
 				4D8402772C4EE52000817495 /* AddMeasurementUITests.swift in Sources */,
