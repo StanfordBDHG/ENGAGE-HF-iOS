@@ -18,15 +18,24 @@ struct HealthSummaryView: View {
         case pdf
         case qrCode
     }
-    private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     @State private var healthSummaryDocument: PDFDocument?
     @State private var viewState: ViewState = .idle
     @State private var url: String?
     @State private var code: String?
-    @State private var timeRemaining: Int?
+    @State private var expirationTime: Date?
     @State private var shareState: ShareState = .pdf
+    @State private var currentTime = Date()
     
+    private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
+    private var timeRemaining: Int? {
+        guard let expirationTime = expirationTime else {
+            return nil
+        }
+        let remaining = Int(expirationTime.timeIntervalSince(currentTime))
+        return remaining > 0 ? remaining : 0
+    }
     
     var body: some View {
         NavigationStack {
@@ -43,14 +52,11 @@ struct HealthSummaryView: View {
                 }
                 .viewStateAlert(state: $viewState)
         }
-        .onReceive(timer) { _ in
-            if let timeRemaining = self.timeRemaining {
-                if timeRemaining <= 0 {
-                    Task {
-                        await self.fetchLink()
-                    }
-                } else {
-                    self.timeRemaining = timeRemaining - 1
+        .onReceive(timer) { time in
+            currentTime = time
+            if let timeRemaining = self.timeRemaining, timeRemaining <= 0 {
+                Task {
+                    await self.fetchLink()
                 }
             }
         }
@@ -160,7 +166,7 @@ struct HealthSummaryView: View {
                 if let expiresAt = formatter.date(from: expiresAtString) {
                     let timeInterval = expiresAt.timeIntervalSinceNow
                     if timeInterval > 0 && timeInterval < 60 * 10 {
-                        self.timeRemaining = Int(timeInterval)
+                        self.expirationTime = expiresAt
                     }
                 }
             }
