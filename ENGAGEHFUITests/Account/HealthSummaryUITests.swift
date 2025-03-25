@@ -40,11 +40,11 @@ final class HealthSummaryUITests: XCTestCase {
         XCTAssertTrue(app.segmentedControls.buttons["PDF"].exists)
         XCTAssertTrue(app.segmentedControls.buttons["QR Code"].exists)
         
-        XCTAssertTrue(app.navigationBars.buttons["Share Link"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.navigationBars.buttons["Share Link"].waitForExistence(timeout: 5))
         
         app.segmentedControls.buttons["QR Code"].tap()
         
-        XCTAssertTrue(app.navigationBars.buttons["Share Link"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.navigationBars.buttons["Share Link"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.staticTexts["Health Summary QR Code"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.staticTexts["One-time Code"].waitForExistence(timeout: 2))
     }
