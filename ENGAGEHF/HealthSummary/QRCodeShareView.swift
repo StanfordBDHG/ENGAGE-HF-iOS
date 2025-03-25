@@ -48,6 +48,7 @@ struct QRCodeShareView: View {
                             Spacer()
                             Text(code.uppercased())
                                 .font(.body.monospaced())
+                                .textSelection(.enabled)
                         }
                     }
                 }
