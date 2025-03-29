@@ -204,6 +204,8 @@
 		56823D3C2D90710800911F09 /* OTCEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56823D3B2D90710800911F09 /* OTCEntryView.swift */; };
 		56823D3E2D90719700911F09 /* OTCModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56823D3D2D90719300911F09 /* OTCModifier.swift */; };
 		56D638232D916257000D6344 /* PhoneNumberKit in Frameworks */ = {isa = PBXBuildFile; productRef = 56D638222D916257000D6344 /* PhoneNumberKit */; };
+		562E7C222D8039630088D8DF /* QRCodeShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562E7C212D8039630088D8DF /* QRCodeShareView.swift */; };
+		5681F6C62D9292F90071EA5D /* HealthSummaryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5681F6C52D9292ED0071EA5D /* HealthSummaryUITests.swift */; };
 		56E708352BB06B7100B08F0A /* SpeziLicense in Frameworks */ = {isa = PBXBuildFile; productRef = 56E708342BB06B7100B08F0A /* SpeziLicense */; };
 		56E7083B2BB06F6F00B08F0A /* SwiftPackageList in Frameworks */ = {isa = PBXBuildFile; productRef = 56E7083A2BB06F6F00B08F0A /* SwiftPackageList */; };
 		6504AFF62D40383F001F4A03 /* StudyConcluded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6504AFF52D40382F001F4A03 /* StudyConcluded.swift */; };
@@ -434,6 +436,8 @@
 		5681F6E62D93FFBF0071EA5D /* CountryUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryUtility.swift; sourceTree = "<group>"; };
 		56823D3B2D90710800911F09 /* OTCEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTCEntryView.swift; sourceTree = "<group>"; };
 		56823D3D2D90719300911F09 /* OTCModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTCModifier.swift; sourceTree = "<group>"; };
+		562E7C212D8039630088D8DF /* QRCodeShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeShareView.swift; sourceTree = "<group>"; };
+		5681F6C52D9292ED0071EA5D /* HealthSummaryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthSummaryUITests.swift; sourceTree = "<group>"; };
 		6504AFF52D40382F001F4A03 /* StudyConcluded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyConcluded.swift; sourceTree = "<group>"; };
 		6504AFF72D403914001F4A03 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
 		6504B0022D40C8BF001F4A03 /* AccountDisabled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDisabled.swift; sourceTree = "<group>"; };
@@ -972,6 +976,7 @@
 		4DD5FC572C87B4980051E6F5 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				5681F6C52D9292ED0071EA5D /* HealthSummaryUITests.swift */,
 				4D4AA0A42BC5E43E00676489 /* OnboardingUITests.swift */,
 				A9F2138D2C18EBAB00A7578F /* AccountTests.swift */,
 				4D8CE1022C7568C700560327 /* ContactsUITests.swift */,
@@ -1056,6 +1061,7 @@
 				4DF370032C66C9F9004D737A /* HealthSummaryView.swift */,
 				4DF370072C66CAC9004D737A /* PDFViewer.swift */,
 				4DF3700C2C66E479004D737A /* PDFDocument+Transferable.swift */,
+				562E7C212D8039630088D8DF /* QRCodeShareView.swift */,
 			);
 			path = HealthSummary;
 			sourceTree = "<group>";
@@ -1469,6 +1475,7 @@
 				4D4072972C484716007C5621 /* VitalsGraph+VitalsGraphContent.swift in Sources */,
 				4DF506282C2F2598003E7EFB /* VitalsContentView.swift in Sources */,
 				4D40728F2C483A5C007C5621 /* VitalsGraph+GestureOverlay.swift in Sources */,
+				562E7C222D8039630088D8DF /* QRCodeShareView.swift in Sources */,
 				4D92B9F82C3C901500ABCED7 /* SymptomsGraphSection.swift in Sources */,
 				4DC9905D2C7D1C98001E86C5 /* Double+Rounding.swift in Sources */,
 				4DF36FF52C667D39004D737A /* AnyAxisContent+CustomAxes.swift in Sources */,
@@ -1591,6 +1598,7 @@
 				4D335C932C628F5600C720B5 /* EducationViewUITests.swift in Sources */,
 				4DD823062C17FF79004DC599 /* MessagesUITests.swift in Sources */,
 				2F4E237E2989A2FE0013F3D9 /* LaunchTests.swift in Sources */,
+				5681F6C62D9292F90071EA5D /* HealthSummaryUITests.swift in Sources */,
 				4DB025CA2BBE3A59002D2545 /* HomeViewUITests.swift in Sources */,
 				4D8402842C4F11CB00817495 /* XCUIApplication+DeleteMeasurements.swift in Sources */,
 				4D8402772C4EE52000817495 /* AddMeasurementUITests.swift in Sources */,

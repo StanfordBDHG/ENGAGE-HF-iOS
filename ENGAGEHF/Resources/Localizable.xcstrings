@@ -218,6 +218,16 @@
     "Expansion Button" : {
 
     },
+    "Expires in: %lld:%@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Expires in: %1$lld:%2$@"
+          }
+        }
+      }
+    },
     "Failed to fetch HKUnits for the given samples." : {
 
     },
@@ -230,10 +240,22 @@
     "Generating Health Summary" : {
 
     },
+    "Generating QR Code" : {
+
+    },
     "Graph Selection" : {
 
     },
     "Health Summary" : {
+
+    },
+    "Health Summary Link" : {
+
+    },
+    "Health Summary QR Code" : {
+
+    },
+    "Health Summary Share Mode" : {
 
     },
     "Heart Health" : {
@@ -507,6 +529,9 @@
     "Notifications" : {
 
     },
+    "One-time Code" : {
+
+    },
     "Organization" : {
 
     },
@@ -514,6 +539,9 @@
 
     },
     "Phone Numbers" : {
+
+    },
+    "PDF" : {
 
     },
     "Play Video" : {
@@ -541,6 +569,12 @@
     },
     "Processing..." : {
       "comment" : "Processing state"
+    },
+    "QR Code" : {
+
+    },
+    "QR code for sharing your health summary with your doctor" : {
+
     },
     "Questionnaire Loading" : {
 
@@ -710,6 +744,9 @@
       "comment" : "Invitation Code Invalid"
     },
     "There are currently no educational videos available." : {
+
+    },
+    "This QR code can be scanned by your healthcare provider to share your health summary." : {
 
     },
     "Thumbnail Image: %@" : {
