@@ -197,10 +197,13 @@
 		4DF5063A2C2F5104003E7EFB /* DisplayMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF506392C2F5104003E7EFB /* DisplayMeasurement.swift */; };
 		5628ED392D8D69A50094A682 /* PhoneNumberEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5628ED382D8D69A50094A682 /* PhoneNumberEntryView.swift */; };
 		5628ED3C2D8D69B60094A682 /* PhoneNumberDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5628ED3B2D8D69B60094A682 /* PhoneNumberDisplayView.swift */; };
+		5681F6DD2D934D800071EA5D /* CountryListSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5681F6DC2D934D800071EA5D /* CountryListSheet.swift */; };
+		5681F6DF2D9350730071EA5D /* PhoneNumberEntryField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5681F6DE2D9350730071EA5D /* PhoneNumberEntryField.swift */; };
+		5681F6E52D93FE090071EA5D /* PhoneNumberViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5681F6E42D93FE030071EA5D /* PhoneNumberViewModel.swift */; };
+		5681F6E72D93FFC60071EA5D /* CountryUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5681F6E62D93FFBF0071EA5D /* CountryUtility.swift */; };
 		56823D3C2D90710800911F09 /* OTCEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56823D3B2D90710800911F09 /* OTCEntryView.swift */; };
 		56823D3E2D90719700911F09 /* OTCModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56823D3D2D90719300911F09 /* OTCModifier.swift */; };
 		56D638232D916257000D6344 /* PhoneNumberKit in Frameworks */ = {isa = PBXBuildFile; productRef = 56D638222D916257000D6344 /* PhoneNumberKit */; };
-		56D638582D91A8D4000D6344 /* PhoneNumberArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D638572D91A8CD000D6344 /* PhoneNumberArray.swift */; };
 		56E708352BB06B7100B08F0A /* SpeziLicense in Frameworks */ = {isa = PBXBuildFile; productRef = 56E708342BB06B7100B08F0A /* SpeziLicense */; };
 		56E7083B2BB06F6F00B08F0A /* SwiftPackageList in Frameworks */ = {isa = PBXBuildFile; productRef = 56E7083A2BB06F6F00B08F0A /* SwiftPackageList */; };
 		6504AFF62D40383F001F4A03 /* StudyConcluded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6504AFF52D40382F001F4A03 /* StudyConcluded.swift */; };
@@ -425,9 +428,12 @@
 		4DF506392C2F5104003E7EFB /* DisplayMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayMeasurement.swift; sourceTree = "<group>"; };
 		5628ED382D8D69A50094A682 /* PhoneNumberEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberEntryView.swift; sourceTree = "<group>"; };
 		5628ED3B2D8D69B60094A682 /* PhoneNumberDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberDisplayView.swift; sourceTree = "<group>"; };
+		5681F6DC2D934D800071EA5D /* CountryListSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryListSheet.swift; sourceTree = "<group>"; };
+		5681F6DE2D9350730071EA5D /* PhoneNumberEntryField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberEntryField.swift; sourceTree = "<group>"; };
+		5681F6E42D93FE030071EA5D /* PhoneNumberViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberViewModel.swift; sourceTree = "<group>"; };
+		5681F6E62D93FFBF0071EA5D /* CountryUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryUtility.swift; sourceTree = "<group>"; };
 		56823D3B2D90710800911F09 /* OTCEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTCEntryView.swift; sourceTree = "<group>"; };
 		56823D3D2D90719300911F09 /* OTCModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTCModifier.swift; sourceTree = "<group>"; };
-		56D638572D91A8CD000D6344 /* PhoneNumberArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberArray.swift; sourceTree = "<group>"; };
 		6504AFF52D40382F001F4A03 /* StudyConcluded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyConcluded.swift; sourceTree = "<group>"; };
 		6504AFF72D403914001F4A03 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
 		6504B0022D40C8BF001F4A03 /* AccountDisabled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDisabled.swift; sourceTree = "<group>"; };
@@ -899,7 +905,6 @@
 		4D9D43542C596CED000062D3 /* SharedExtensions */ = {
 			isa = PBXGroup;
 			children = (
-				56D638572D91A8CD000D6344 /* PhoneNumberArray.swift */,
 				4D9D43552C596D09000062D3 /* KeyedDecodingContainer+DecodeLocalizedString.swift */,
 				4D734ABF2C5C58C9002D6D2F /* View+asButton.swift */,
 				4D70CF642C653BE100EB4CC6 /* Image+CardSymbolStyle.swift */,
@@ -1174,6 +1179,8 @@
 		A9720E412ABB68B300872D23 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				5681F6E62D93FFBF0071EA5D /* CountryUtility.swift */,
+				5681F6E42D93FE030071EA5D /* PhoneNumberViewModel.swift */,
 				56823D3D2D90719300911F09 /* OTCModifier.swift */,
 				A9DFE8A82ABE551400428242 /* AccountButton.swift */,
 				A9720E422ABB68CC00872D23 /* AccountSetupHeader.swift */,
@@ -1185,6 +1192,8 @@
 				5628ED382D8D69A50094A682 /* PhoneNumberEntryView.swift */,
 				5628ED3B2D8D69B60094A682 /* PhoneNumberDisplayView.swift */,
 				56823D3B2D90710800911F09 /* OTCEntryView.swift */,
+				5681F6DC2D934D800071EA5D /* CountryListSheet.swift */,
+				5681F6DE2D9350730071EA5D /* PhoneNumberEntryField.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -1404,6 +1413,7 @@
 				56823D3C2D90710800911F09 /* OTCEntryView.swift in Sources */,
 				56823D3E2D90719700911F09 /* OTCModifier.swift in Sources */,
 				4D92BA1A2C3E13F300ABCED7 /* FHIRSystem.swift in Sources */,
+				5681F6E52D93FE090071EA5D /* PhoneNumberViewModel.swift in Sources */,
 				2FE5DC3A29EDD7CA004B9AB4 /* Welcome.swift in Sources */,
 				4D734AC02C5C58CA002D6D2F /* View+asButton.swift in Sources */,
 				4D734AC32C5D7C81002D6D2F /* MessageAction.swift in Sources */,
@@ -1412,6 +1422,7 @@
 				4D8CE0FC2C753A4700560327 /* NotificationManager.swift in Sources */,
 				4DC0F67A2C34AD620025AB13 /* VitalsList.swift in Sources */,
 				2FE5DC3829EDD7CA004B9AB4 /* InterestingModules.swift in Sources */,
+				5681F6DF2D9350730071EA5D /* PhoneNumberEntryField.swift in Sources */,
 				9B1864882C9226E90042AC81 /* AccountDetails+Key.swift in Sources */,
 				4D8402B22C51D62400817495 /* MedicationsList.swift in Sources */,
 				4DC990612C7D3A13001E86C5 /* ClosedRange+InitFromSequence.swift in Sources */,
@@ -1441,6 +1452,7 @@
 				4D4670C42C792429004DEAC4 /* FHIRObservationToHKSampleConverter.swift in Sources */,
 				4DDFC7392BF2C3C9002B07A1 /* MessagesSection.swift in Sources */,
 				4D34B3F42C406340006F0D40 /* DateGranularity.swift in Sources */,
+				5681F6DD2D934D800071EA5D /* CountryListSheet.swift in Sources */,
 				4D40729F2C488172007C5621 /* KnownVitalsSeries.swift in Sources */,
 				4D8CE0F52C752D1C00560327 /* Video.swift in Sources */,
 				4DF36FFD2C66A904004D737A /* QuestionnaireSheetView.swift in Sources */,
@@ -1460,6 +1472,7 @@
 				4D92B9F82C3C901500ABCED7 /* SymptomsGraphSection.swift in Sources */,
 				4DC9905D2C7D1C98001E86C5 /* Double+Rounding.swift in Sources */,
 				4DF36FF52C667D39004D737A /* AnyAxisContent+CustomAxes.swift in Sources */,
+				5681F6E72D93FFC60071EA5D /* CountryUtility.swift in Sources */,
 				2FF53D8D2A8729D600042B76 /* ENGAGEHFStandard.swift in Sources */,
 				4D62BF3B2C6A9F330088C414 /* (null) in Sources */,
 				4DDFC78A2BFC1312002B07A1 /* MessageRow.swift in Sources */,
@@ -1543,7 +1556,6 @@
 				4D8CE0FF2C7540C000560327 /* AdditionalAccountSections.swift in Sources */,
 				4DF506312C2F3421003E7EFB /* VitalsGraph.swift in Sources */,
 				4DF506212C2E1C89003E7EFB /* SymptomScore.swift in Sources */,
-				56D638582D91A8D4000D6344 /* PhoneNumberArray.swift in Sources */,
 				211755492CC1B58600A81E24 /* ColorLegend.swift in Sources */,
 				4DDFC73D2BF2C4FA002B07A1 /* Message.swift in Sources */,
 				4DA20B5C2C26098400715AA2 /* FHIRObservation+GetEffectiveDate.swift in Sources */,
@@ -1721,6 +1733,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Test;
@@ -1917,6 +1930,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1962,6 +1976,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

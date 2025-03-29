@@ -35,6 +35,7 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
                         emulatorSettings: accountEmulator
                     ),
                     storageProvider: FirestoreAccountStorage(storeIn: Firestore.userCollection, mapping: [
+                        "phoneNumbers": AccountKeys.phoneNumbers,
                         "dateOfBirth": AccountKeys.dateOfBirth,
                         "invitationCode": AccountKeys.invitationCode,
                         "organization": AccountKeys.organization,

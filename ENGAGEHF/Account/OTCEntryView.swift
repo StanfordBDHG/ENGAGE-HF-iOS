@@ -15,8 +15,8 @@ enum FocusPin: Hashable {
 
 struct OTCEntryView: View {
     @FocusState private var focusState: FocusPin?
-    let codeLength: Int
-    @Binding var code: String
+    @EnvironmentObject private var phoneNumberViewModel: PhoneNumberViewModel
+    private let codeLength: Int
     @State private var pins: [String]
     
     
@@ -31,9 +31,9 @@ struct OTCEntryView: View {
         }
     }
     
-    init(code: Binding<String>, codeLength: Int = 6) {
+    init(codeLength: Int = 6) {
+        precondition(codeLength > 0 && codeLength <= 8, "Code length must be between one and eight")
         self.codeLength = codeLength
-        self._code = code
         self._pins = State(initialValue: Array(repeating: "", count: codeLength))
     }
     
@@ -59,13 +59,13 @@ struct OTCEntryView: View {
     }
     
     private func updateCode() {
-        code = pins.joined()
+        phoneNumberViewModel.verificationCode = pins.joined()
     }
 }
 
 
 #if DEBUG
 #Preview {
-    OTCEntryView(code: .constant("012345"))
+    OTCEntryView()
 }
 #endif

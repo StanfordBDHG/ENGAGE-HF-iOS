@@ -212,6 +212,9 @@
     "Enter your %lld digit verification code you received via text message." : {
 
     },
+    "Enter your phone number and we'll send you a verification code to add the number to your account." : {
+
+    },
     "Expansion Button" : {
 
     },

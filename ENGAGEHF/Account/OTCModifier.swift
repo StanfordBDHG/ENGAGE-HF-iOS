@@ -26,7 +26,9 @@ struct OTCModifier: ViewModifier {
         content
             .multilineTextAlignment(.center)
             .keyboardType(.numberPad)
-            .onReceive(Just(pin)) { _ in limitText(textLimit) }
+            .onChange(of: pin) {
+                limitText(textLimit)
+            }
             .frame(width: 45, height: 45)
             .background(Color.white.cornerRadius(5))
             .background(
