@@ -8,10 +8,24 @@
 
 import Foundation
 import SpeziAccount
+import SwiftUI
+
 
 // swiftlint:disable attributes discouraged_optional_boolean
 
+typealias PhoneNumbersArray = [String]
+
 extension AccountDetails {
+    @AccountKey(
+        id: "phoneNumbers",
+        name: "Phone Numbers",
+        category: .contactDetails,
+        as: PhoneNumbersArray.self,
+        displayView: PhoneNumberDisplayView.self,
+        entryView: PhoneNumberEntryView.self
+    )
+    var phoneNumbers: PhoneNumbersArray?
+    
     @AccountKey(
         id: "invitationCode",
         name: "Invitation Code",
@@ -94,6 +108,7 @@ extension AccountDetails {
     var receivesWeightAlerts: Bool?
 }
 
+@KeyEntry(\.phoneNumbers)
 @KeyEntry(\.invitationCode)
 @KeyEntry(\.organization)
 @KeyEntry(\.receivesAppointmentReminders)
