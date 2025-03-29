@@ -116,6 +116,9 @@
     "Add Medications" : {
 
     },
+    "Add Phone Number" : {
+
+    },
     "All Data" : {
 
     },
@@ -176,6 +179,12 @@
     "defaultLoadingError" : {
 
     },
+    "Discard" : {
+
+    },
+    "Discard Changes?" : {
+
+    },
     "Dismiss Button" : {
 
     },
@@ -195,6 +204,15 @@
 
     },
     "ENGAGE-HF Icon" : {
+
+    },
+    "Enter Verification Code" : {
+
+    },
+    "Enter your %lld digit verification code you received via text message." : {
+
+    },
+    "Enter your phone number and we'll send you a verification code to add the number to your account." : {
 
     },
     "Expansion Button" : {
@@ -517,6 +535,12 @@
     "Organization" : {
 
     },
+    "Phone Number" : {
+
+    },
+    "Phone Numbers" : {
+
+    },
     "PDF" : {
 
     },
@@ -595,6 +619,9 @@
 
     },
     "See Medications" : {
+
+    },
+    "Send Verification Message" : {
 
     },
     "Series" : {
@@ -710,6 +737,9 @@
     "Thank you for participating in the\nENGAGE-HF study!" : {
 
     },
+    "The entered phone number is invalid." : {
+
+    },
     "The invitation code is invalid or has already been used." : {
       "comment" : "Invitation Code Invalid"
     },
@@ -764,6 +794,9 @@
           }
         }
       }
+    },
+    "Verify Phone Number" : {
+
     },
     "Very Severe" : {
       "comment" : "Dizziness symptom score label."
@@ -918,7 +951,13 @@
     "You are on your target dose." : {
       "comment" : "Target dose reached color legend entry."
     },
+    "You have unsaved changes. Are you sure you want to discard them?" : {
+
+    },
     "Your account was deactivated\nby your study coordinator." : {
+
+    },
+    "Your country" : {
 
     }
   },
