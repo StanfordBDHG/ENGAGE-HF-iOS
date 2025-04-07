@@ -12,7 +12,7 @@ import SpeziViews
 import SwiftUI
 
 
-private struct PhoneNumberEntryStep: View {
+struct PhoneNumberEntryStep: View {
     @State private var viewState = ViewState.idle
     @EnvironmentObject private var phoneNumberViewModel: PhoneNumberViewModel
     let onNext: () -> Void
@@ -52,7 +52,7 @@ private struct PhoneNumberEntryStep: View {
 }
 
 
-private struct VerificationCodeStep: View {
+struct VerificationCodeStep: View {
     @State private var viewState = ViewState.idle
     @EnvironmentObject private var phoneNumberViewModel: PhoneNumberViewModel
     let codeLength: Int
@@ -140,7 +140,7 @@ struct PhoneNumberEntryView: DataEntryView {
                 VerificationCodeStep(
                     codeLength: codeLength,
                     onVerify: {
-                        phoneNumbers.append(phoneNumberViewModel.phoneNumber)
+                        // phoneNumbers.append(phoneNumberViewModel.phoneNumber)
                         presentSheet = false
                     }
                 )

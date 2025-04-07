@@ -50,7 +50,7 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
                     configuration: [
                         .requires(\.userId),
                         .supports(\.name),
-                        .supports(\.phoneNumbers),
+                        .manual(\.phoneNumbers),
                         .manual(\.invitationCode),
                         .manual(\.organization),
                         .manual(\.receivesAppointmentReminders),
