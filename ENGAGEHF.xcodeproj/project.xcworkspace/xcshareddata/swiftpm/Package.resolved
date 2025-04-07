@@ -1,5 +1,5 @@
 {
-  "originHash" : "759b5b442d547635957ae0aecf41ebdbfdd51c12c31492ed125bcf4000e9bec1",
+  "originHash" : "a06545ec288727487714798acd2055ea9e7ffbe9995b0588f644669500b9624b",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -60,8 +60,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/firebase-ios-sdk.git",
       "state" : {
-        "revision" : "eb523407e4293568ed55590728205c359cbecc5b",
-        "version" : "11.9.0"
+        "revision" : "2e4a4daac9da51f79c131e76cb47e785dd7708c4",
+        "version" : "11.10.0"
       }
     },
     {
@@ -69,8 +69,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/GoogleAppMeasurement.git",
       "state" : {
-        "revision" : "d80e25104abe76d69a134d4ec18f011edd8df06c",
-        "version" : "11.9.0"
+        "revision" : "defe1970a9099d47765592ebd7ac5f5e9fdb57c6",
+        "version" : "11.10.0"
       }
     },
     {
@@ -114,8 +114,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordBDHG/HealthKitOnFHIR.git",
       "state" : {
-        "revision" : "c898c0bace660ecae37fc682d629f7883f92e700",
-        "version" : "0.2.13"
+        "revision" : "aff3db17e2276963d56fff0bac67bdf00da1c00a",
+        "version" : "0.2.14"
       }
     },
     {
@@ -143,6 +143,15 @@
       "state" : {
         "revision" : "b7e1104502eca3a213b46303391ca4d3bc8ddec1",
         "version" : "2.30910.0"
+      }
+    },
+    {
+      "identity" : "phonenumberkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/marmelroy/PhoneNumberKit.git",
+      "state" : {
+        "revision" : "288b99e9e99926bc8be41220802df83c059fac9b",
+        "version" : "4.0.2"
       }
     },
     {
@@ -195,8 +204,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziAccount.git",
       "state" : {
-        "revision" : "6f6684486d37fa72e532725578582328b2546995",
-        "version" : "2.1.3"
+        "revision" : "f2e30f91c124fd3f9fed692684d6efcd227389e2",
+        "version" : "2.1.4"
       }
     },
     {
@@ -231,8 +240,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziFirebase.git",
       "state" : {
-        "revision" : "73b8aa818044597231d5dff002415b1e836280d1",
-        "version" : "2.0.3"
+        "revision" : "9e487efb60d807d02effbe39eb9e859f485b78a6",
+        "version" : "2.0.4"
       }
     },
     {
@@ -240,8 +249,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziFoundation.git",
       "state" : {
-        "revision" : "78f3d912a82f951564d7e133867cf01351f53062",
-        "version" : "2.1.1"
+        "revision" : "2eef4bdacc8d03560f2c2bce292f7524ea477515",
+        "version" : "2.1.2"
       }
     },
     {
@@ -303,8 +312,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziViews.git",
       "state" : {
-        "revision" : "76be1e28a88c9a102524aded45f6c76850266110",
-        "version" : "1.9.1"
+        "revision" : "93e7b564866438b00db3833152a19548f54b8c58",
+        "version" : "1.9.2"
       }
     },
     {
@@ -366,8 +375,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/FelixHerrmann/swift-package-list.git",
       "state" : {
-        "revision" : "b3ee4748096984ea58dade510f63b12027e0de84",
-        "version" : "4.6.0"
+        "revision" : "1ba4f42e1731673fddd8aed8b97fe997cc55cbd5",
+        "version" : "4.7.0"
       }
     },
     {
