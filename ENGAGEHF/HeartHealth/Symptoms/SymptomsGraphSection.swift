@@ -51,14 +51,15 @@ struct SymptomsGraphSection: View {
                     let matchingSeriesValue = selected.first(where: {
                         $0.0 == KnownVitalsSeries.symptomScore.rawValue
                     })?.1
-                    return matchingSeriesValue?.asString(minimumFractionDigits: 0, maximumFractionDigits: 1) ?? "No Data"
+                    return matchingSeriesValue?.asString(minimumFractionDigits: 0, maximumFractionDigits: 1) ??
+                    String(localized: "No Data", comment: "No data available")
                 case .dizziness:
                     let matchingSeriesValue = selected.first(where: {
                         $0.0 == KnownVitalsSeries.symptomScore.rawValue
                     })?.1
                     return matchingSeriesValue.flatMap {
                         SymptomScore.mapLocalizedDizzinessScore($0)?.localizedString()
-                    } ?? "No Data"
+                    } ?? String(localized: "No Data", comment: "No data available")
                 }
             }
         )

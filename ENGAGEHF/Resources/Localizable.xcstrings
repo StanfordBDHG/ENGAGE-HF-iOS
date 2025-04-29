@@ -43,6 +43,9 @@
         }
       }
     },
+    "%@x daily" : {
+      "comment" : "Schedule frequency"
+    },
     "About %@" : {
       "comment" : "The text displayed in the header of the DescriptionSection view."
     },
@@ -156,6 +159,9 @@
     "Bluetooth Devices" : {
       "comment" : "The label of the navigation link that leads to the DevicesView in the AdditionalAccountSections."
     },
+    "BPM" : {
+      "comment" : "Beats per minute"
+    },
     "Cancel" : {
       "comment" : "The text displayed on the toolbar button of the AddMeasurementView."
     },
@@ -179,6 +185,9 @@
     "Current Dose:" : {
       "comment" : "The text used in the TextualDosageSummary and ScheduleSummary view."
     },
+    "daily" : {
+      "comment" : "Schedule frequency"
+    },
     "Date" : {
       "comment" : "The text displayed in the label of the date DatePicker in the AddMeasurementView and in the LineMark and PointMark of the VitalsGraph."
     },
@@ -192,6 +201,9 @@
           }
         }
       }
+    },
+    "Diastolic" : {
+      "comment" : "The lower number in a blood pressure reading"
     },
     "Dismiss Button" : {
       "comment" : "Accessability label for the XButton view of the MessageRow view."
@@ -478,7 +490,7 @@
       "comment" : "The title displayed in the ContentUnavailableView of the Contacts view."
     },
     "No Data" : {
-
+      "comment" : "No data available"
     },
     "No Educational Videos" : {
       "comment" : "The title displayed in the ContentUnavailableView of the Education view."
@@ -738,6 +750,9 @@
         }
       }
     },
+    "Systolic" : {
+      "comment" : "The higher number in a blood pressure reading"
+    },
     "Target" : {
       "comment" : "The text used as the minimumValueLabel used in DosageGauge and DosageGaugeStyle and the maximumValueLabel of PositionedCurrentLabel."
     },
@@ -770,6 +785,9 @@
     },
     "Trigger Weight Measurement" : {
       "comment" : "The text displayed on one of the toolbar buttons for debug and test environments in the Dashboard view."
+    },
+    "twice daily" : {
+      "comment" : "Schedule frequency"
     },
     "Unable to create time interval for date: %@" : {
       "comment" : "The error message for a invalid date."
