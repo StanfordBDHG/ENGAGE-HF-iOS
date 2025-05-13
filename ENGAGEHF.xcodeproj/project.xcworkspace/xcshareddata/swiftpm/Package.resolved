@@ -247,7 +247,7 @@
     {
       "identity" : "spezilicense",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/StanfordSpezi/SpeziLicense",
+      "location" : "https://github.com/StanfordSpezi/SpeziLicense.git",
       "state" : {
         "revision" : "2249ce615a624a072834e31e7906b779ba82b824",
         "version" : "0.1.1"
@@ -274,7 +274,7 @@
     {
       "identity" : "spezionboarding",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/StanfordSpezi/SpeziOnboarding",
+      "location" : "https://github.com/StanfordSpezi/SpeziOnboarding.git",
       "state" : {
         "revision" : "a3d7bc15e6803b2205eb8dca010a48b1a40215be",
         "version" : "1.2.2"
@@ -366,8 +366,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/FelixHerrmann/swift-package-list.git",
       "state" : {
-        "branch" : "improvement/generalize-plugin-source-packages-location-fix",
-        "revision" : "e4b4b87f87a2d582c64dec4b0356fd4566cb2c8b"
+        "revision" : "22ef2a2b1b51b453be02ce2bd780753718e8893a",
+        "version" : "4.8.0"
       }
     },
     {
