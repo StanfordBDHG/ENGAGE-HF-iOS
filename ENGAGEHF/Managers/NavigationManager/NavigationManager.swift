@@ -44,7 +44,7 @@ final class NavigationManager: Manager {
     func configure() {
         guard let accountNotifications else {
             guard FeatureFlags.disableFirebase else {
-                preconditionFailure("Expected account notifications to be availble.")
+                preconditionFailure("Expected account notifications to be available.")
             }
             return
         }

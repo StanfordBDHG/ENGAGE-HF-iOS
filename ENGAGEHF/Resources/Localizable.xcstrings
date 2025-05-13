@@ -176,6 +176,9 @@
     "defaultLoadingError" : {
 
     },
+    "Devices" : {
+
+    },
     "Dismiss Button" : {
 
     },
@@ -708,6 +711,9 @@
 
     },
     "Thank you for participating in the\nENGAGE-HF study!" : {
+      
+    },
+    "Test" : {
 
     },
     "The invitation code is invalid or has already been used." : {
