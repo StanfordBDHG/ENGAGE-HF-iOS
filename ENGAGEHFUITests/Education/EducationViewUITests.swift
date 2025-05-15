@@ -39,10 +39,10 @@ final class EducationViewUITests: XCTestCase {
         XCTAssert(expectedNavigationTitle.waitForExistence(timeout: 2))
         
         // Validate video player
-        XCTAssert(app.staticTexts["Installing ENGAGE-HF App and Connecting Omron Devices"].waitForExistence(timeout: 5))
-        XCTAssert(app.links["Photo image of Education For Patients"].waitForExistence(timeout: 5))
-        XCTAssert(app.buttons["Play"].waitForExistence(timeout: 5))
-        XCTAssert(app.buttons["Play"].isHittable)
+        XCTAssert(app.staticTexts["Installing ENGAGE-HF App and Connecting Omron Devices"].waitForExistence(timeout: 2))
+        XCTAssert(app.links["Education For Patients By Dr Zahra Azizi, MD, MSc"].waitForExistence(timeout: 2))
+        XCTAssert(app.buttons["Play video"].waitForExistence(timeout: 2))
+        XCTAssert(app.buttons["Play video"].isHittable)
         
         // Validate video description
         let expectedDescription = """
@@ -88,9 +88,9 @@ final class EducationViewUITests: XCTestCase {
         
         // Validate video player
         XCTAssert(app.staticTexts["Beta Blockers for Heart Failure"].waitForExistence(timeout: 2))
-        XCTAssert(app.links["Photo image of Education For Patients"].waitForExistence(timeout: 5))
-        XCTAssert(app.buttons["Play"].waitForExistence(timeout: 5))
-        XCTAssert(app.buttons["Play"].isHittable)
+        XCTAssert(app.links["Education For Patients By Dr Zahra Azizi, MD, MSc"].waitForExistence(timeout: 2))
+        XCTAssert(app.buttons["Play video"].waitForExistence(timeout: 2))
+        XCTAssert(app.buttons["Play video"].isHittable)
         
         // Validate video description
         let expectedDescription = """
@@ -132,10 +132,10 @@ final class EducationViewUITests: XCTestCase {
         XCTAssert(expectedNavigationTitle.exists)
         
         // Validate video player
-        XCTAssert(app.staticTexts["How to Use the ENGAGE-HF App!"].waitForExistence(timeout: 5))
-        XCTAssert(app.links["Photo image of Education For Patients"].waitForExistence(timeout: 5))
-        XCTAssert(app.buttons["Play"].waitForExistence(timeout: 5))
-        XCTAssert(app.buttons["Play"].isHittable)
+        XCTAssert(app.staticTexts["How to Use the ENGAGE-HF App!"].waitForExistence(timeout: 2))
+        XCTAssert(app.links["Education For Patients By Dr Zahra Azizi, MD, MSc"].waitForExistence(timeout: 2))
+        XCTAssert(app.buttons["Play video"].waitForExistence(timeout: 2))
+        XCTAssert(app.buttons["Play video"].isHittable)
         
         // Make sure there's no description
         XCTAssertFalse(app.scrollViews["Video Description: No Description"].exists)
