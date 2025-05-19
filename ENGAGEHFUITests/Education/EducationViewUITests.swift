@@ -39,7 +39,7 @@ final class EducationViewUITests: XCTestCase {
         XCTAssert(expectedNavigationTitle.waitForExistence(timeout: 2))
         
         // Validate video player
-        XCTAssert(app.staticTexts["Installing ENGAGE-HF App and Connecting Omron Devices"].waitForExistence(timeout: 2))
+        XCTAssert(app.staticTexts["Installing ENGAGE-HF App and Connecting Omron Devices"].waitForExistence(timeout: 5))
         XCTAssert(app.links["Education For Patients By Dr Zahra Azizi, MD, MSc"].waitForExistence(timeout: 2))
         XCTAssert(app.buttons["Play video"].waitForExistence(timeout: 2))
         XCTAssert(app.buttons["Play video"].isHittable)
@@ -87,7 +87,7 @@ final class EducationViewUITests: XCTestCase {
         XCTAssert(expectedNavigationTitle.waitForExistence(timeout: 2))
         
         // Validate video player
-        XCTAssert(app.staticTexts["Beta Blockers for Heart Failure"].waitForExistence(timeout: 2))
+        XCTAssert(app.staticTexts["Beta Blockers for Heart Failure"].waitForExistence(timeout: 5))
         XCTAssert(app.links["Education For Patients By Dr Zahra Azizi, MD, MSc"].waitForExistence(timeout: 2))
         XCTAssert(app.buttons["Play video"].waitForExistence(timeout: 2))
         XCTAssert(app.buttons["Play video"].isHittable)

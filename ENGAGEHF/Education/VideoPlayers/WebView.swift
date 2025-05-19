@@ -22,7 +22,8 @@ import WebKit
 struct WebView: UIViewRepresentable {
     let urlString: String
     @Binding var viewState: ViewState
-    
+    @State private var retryCount = 0
+    private let maxRetries = 3
     
     func makeCoordinator() -> ProgressCoordinator {
         ProgressCoordinator(self)
@@ -34,14 +35,18 @@ struct WebView: UIViewRepresentable {
         webView.allowsLinkPreview = true
         webView.navigationDelegate = context.coordinator
         
-        if let url = URL(string: urlString) {
-            let request = URLRequest(url: url)
-            webView.load(request)
-        }
+        loadURL(in: webView)
         return webView
     }
     
     func updateUIView(_ uiView: WKWebView, context: Context) {}
+    
+    private func loadURL(in webView: WKWebView) {
+        if let url = URL(string: urlString) {
+            let request = URLRequest(url: url)
+            webView.load(request)
+        }
+    }
 }
 
 
@@ -64,14 +69,25 @@ extension WebView {
         
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation) {
             parent.viewState = .idle
+            parent.retryCount = 0 // Reset retry count on successful load
         }
         
         func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation, withError error: any Error) {
-            parent.viewState = .error(AnyLocalizedError(error: error, defaultErrorDescription: String(localized: "defaultLoadingError")))
+            handleError(error, webView: webView)
         }
         
         func webView(_ webView: WKWebView, didFail navigation: WKNavigation, withError error: any Error) {
-            parent.viewState = .error(AnyLocalizedError(error: error, defaultErrorDescription: String(localized: "defaultLoadingError")))
+            handleError(error, webView: webView)
+        }
+        
+        private func handleError(_ error: Error, webView: WKWebView) {
+            if parent.retryCount < parent.maxRetries {
+                parent.retryCount += 1
+                parent.viewState = .processing
+                parent.loadURL(in: webView)
+            } else {
+                parent.viewState = .error(AnyLocalizedError(error: error, defaultErrorDescription: String(localized: "defaultLoadingError")))
+            }
         }
     }
 }
