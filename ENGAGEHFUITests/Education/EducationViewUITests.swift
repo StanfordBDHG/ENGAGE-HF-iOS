@@ -25,14 +25,13 @@ final class EducationViewUITests: XCTestCase {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
+        
         app.goTo(tab: "Education")
         
         let thumbnailOverlay = app.staticTexts["Thumbnail Overlay Title: Long Description"]
         XCTAssert(thumbnailOverlay.waitForExistence(timeout: 0.5))
         
         thumbnailOverlay.tap()
-        
-        try await Task.sleep(for: .seconds(5))
         
         // Validate navigation bar
         XCTAssert(app.buttons["Education"].waitForExistence(timeout: 2))
@@ -75,14 +74,15 @@ final class EducationViewUITests: XCTestCase {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
+        
+        try await Task.sleep(for: .seconds(5))
+        
         app.goTo(tab: "Education")
         
         let thumbnailOverlay = app.staticTexts["Thumbnail Overlay Title: Short Description"]
         XCTAssert(thumbnailOverlay.waitForExistence(timeout: 0.5))
         
         thumbnailOverlay.tap()
-        
-        try await Task.sleep(for: .seconds(5))
         
         // Validate navigation bar
         XCTAssert(app.buttons["Education"].waitForExistence(timeout: 2))
@@ -120,14 +120,15 @@ final class EducationViewUITests: XCTestCase {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
+        
+        try await Task.sleep(for: .seconds(5))
+        
         app.goTo(tab: "Education")
         
         let thumbnailOverlay = app.staticTexts["Thumbnail Overlay Title: No Description"]
         XCTAssert(thumbnailOverlay.waitForExistence(timeout: 0.5))
         
         thumbnailOverlay.tap()
-        
-        try await Task.sleep(for: .seconds(5))
         
         // Validate navigation bar
         XCTAssert(app.buttons["Education"].waitForExistence(timeout: 2))
@@ -146,10 +147,14 @@ final class EducationViewUITests: XCTestCase {
     }
     
     
-    func testSectionExtension() throws {
+    @MainActor
+    func testSectionExtension() async throws {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
+        
+        try await Task.sleep(for: .seconds(5))
+        
         app.goTo(tab: "Education")
         
         let sectionHeader = app.staticTexts["ENGAGE-HF Application"]
@@ -168,11 +173,15 @@ final class EducationViewUITests: XCTestCase {
         XCTAssert(app.images["Thumbnail Image: y2ziZVWossE"].waitForExistence(timeout: 0.5))
     }
     
-
-    func testThumbnailsAppear() throws {
+    
+    @MainActor
+    func testThumbnailsAppear() async throws {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
+        
+        try await Task.sleep(for: .seconds(5))
+        
         app.goTo(tab: "Education")
         
         let videoSection = app.otherElements["Video Section: ENGAGE-HF Application"]
