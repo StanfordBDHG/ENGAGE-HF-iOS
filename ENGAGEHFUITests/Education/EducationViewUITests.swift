@@ -19,6 +19,12 @@ final class EducationViewUITests: XCTestCase {
         app.launchArguments = ["--assumeOnboardingComplete", "--setupTestEnvironment", "--useFirebaseEmulator", "--setupTestVideos"]
         app.launch()
     }
+
+    @MainActor
+    override func tearDown() async throws {
+        try await Task.sleep(for: .seconds(5))
+        try await super.tearDown()
+    }
     
     @MainActor
     func testLongDescriptionVideoView() async throws {
@@ -75,14 +81,10 @@ final class EducationViewUITests: XCTestCase {
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
         
-        try await Task.sleep(for: .seconds(10))
-        
         app.goTo(tab: "Education")
         
         let thumbnailOverlay = app.staticTexts["Thumbnail Overlay Title: Short Description"]
         XCTAssert(thumbnailOverlay.waitForExistence(timeout: 0.5))
-        
-        try await Task.sleep(for: .seconds(10))
         
         thumbnailOverlay.tap()
         
@@ -123,14 +125,10 @@ final class EducationViewUITests: XCTestCase {
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
         
-        try await Task.sleep(for: .seconds(10))
-        
         app.goTo(tab: "Education")
         
         let thumbnailOverlay = app.staticTexts["Thumbnail Overlay Title: No Description"]
         XCTAssert(thumbnailOverlay.waitForExistence(timeout: 0.5))
-        
-        try await Task.sleep(for: .seconds(10))
         
         thumbnailOverlay.tap()
         
@@ -157,11 +155,7 @@ final class EducationViewUITests: XCTestCase {
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
         
-        try await Task.sleep(for: .seconds(19))
-        
         app.goTo(tab: "Education")
-        
-        try await Task.sleep(for: .seconds(10))
         
         let sectionHeader = app.staticTexts["ENGAGE-HF Application"]
         
@@ -186,11 +180,7 @@ final class EducationViewUITests: XCTestCase {
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
         
-        try await Task.sleep(for: .seconds(10))
-        
         app.goTo(tab: "Education")
-        
-        try await Task.sleep(for: .seconds(10))
         
         let videoSection = app.otherElements["Video Section: ENGAGE-HF Application"]
         XCTAssert(videoSection.exists)
