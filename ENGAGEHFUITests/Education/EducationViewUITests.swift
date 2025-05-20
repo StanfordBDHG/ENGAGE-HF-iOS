@@ -32,6 +32,8 @@ final class EducationViewUITests: XCTestCase {
         
         thumbnailOverlay.tap()
         
+        try await Task.sleep(for: .seconds(5))
+        
         // Validate navigation bar
         XCTAssert(app.buttons["Education"].waitForExistence(timeout: 2))
         
@@ -80,6 +82,8 @@ final class EducationViewUITests: XCTestCase {
         
         thumbnailOverlay.tap()
         
+        try await Task.sleep(for: .seconds(5))
+        
         // Validate navigation bar
         XCTAssert(app.buttons["Education"].waitForExistence(timeout: 2))
         
@@ -123,7 +127,7 @@ final class EducationViewUITests: XCTestCase {
         
         thumbnailOverlay.tap()
         
-        try await Task.sleep(for: .seconds(2))
+        try await Task.sleep(for: .seconds(5))
         
         // Validate navigation bar
         XCTAssert(app.buttons["Education"].waitForExistence(timeout: 2))
