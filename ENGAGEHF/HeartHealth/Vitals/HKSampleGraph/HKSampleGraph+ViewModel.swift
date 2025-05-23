@@ -136,15 +136,15 @@ extension HKSampleGraph {
             case .heartRate:
                 self.formatter = {
                     guard let matchingData = $0.first(where: { $0.0 == series.rawValue })?.1 else {
-                        return "No Data"
+                        return String(localized: "No Data", comment: "No data available")
                     }
                     return "\(Int(matchingData))"
                 }
-                return (HKUnit.count().unitDivided(by: .minute()), "BPM")
+                return (HKUnit.count().unitDivided(by: .minute()), String(localized: "BPM", comment: "Beats per minute"))
             case .bodyWeight:
                 self.formatter = {
                     guard let matchingData = $0.first(where: { $0.0 == series.rawValue })?.1 else {
-                        return "No Data"
+                        return String(localized: "No Data", comment: "No data available")
                     }
                     return String(format: "%.1f", matchingData)
                 }
@@ -154,11 +154,11 @@ extension HKSampleGraph {
                     let systolic = $0.first(where: { $0.0 == KnownVitalsSeries.bloodPressureSystolic.rawValue })?.1
                     let diastolic = $0.first(where: { $0.0 == KnownVitalsSeries.bloodPressureDiastolic.rawValue })?.1
                     
-                    var systolicString = "No Data"
+                    var systolicString = String(localized: "No Data", comment: "No data available")
                     if let systolic {
                         systolicString = "\(Int(systolic))"
                     }
-                    var diastolicString = "No Data"
+                    var diastolicString = String(localized: "No Data", comment: "No data available")
                     if let diastolic {
                         diastolicString = "\(Int(diastolic))"
                     }
