@@ -21,7 +21,7 @@ extension VitalsGraph {
         
         private(set) var aggregatedData: [MeasurementSeries] = []
         private(set) var selection: SelectedInterval?
-        private(set) var selectionFormatter: ([(String, Double)]) -> String = { _ in "No Data" }
+        private(set) var selectionFormatter: ([(String, Double)]) -> String = { _ in String(localized: "No Data", comment: "No data available") }
         private(set) var localizedUnitString: String?
         private(set) var dateRange: ClosedRange<Date> = Date().addingTimeInterval(-60 * 60 * 24 * 30)...Date()
         private(set) var dateUnit: Calendar.Component = .day
@@ -132,7 +132,9 @@ extension VitalsGraph {
                 }
             }
             self.dateUnit = options.granularity
-            self.selectionFormatter = seriesData.isEmpty ? { _ in "No Data" } : options.selectionFormatter
+            self.selectionFormatter = seriesData.isEmpty ?
+            { _ in String(localized: "No Data", comment: "No data available") } :
+            options.selectionFormatter
             self.localizedUnitString = seriesData.isEmpty ? nil : options.localizedUnitString
             self.selection = nil
             
