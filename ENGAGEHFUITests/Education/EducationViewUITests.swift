@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import WebKit
 
 
 final class EducationViewUITests: XCTestCase {
@@ -18,6 +19,13 @@ final class EducationViewUITests: XCTestCase {
         let app = XCUIApplication()
         app.launchArguments = ["--assumeOnboardingComplete", "--setupTestEnvironment", "--useFirebaseEmulator", "--setupTestVideos"]
         app.launch()
+        
+        let dataStore = WKWebsiteDataStore.default()
+        dataStore.fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
+            dataStore.removeData(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes(), for: records) {
+                // Cache cleared
+            }
+        }
     }
 
     @MainActor
