@@ -81,20 +81,18 @@ extension WebView {
         }
         
         private func handleError(_ error: Error, webView: WKWebView) {
-            // --- BEGIN LOGGING ---
             print("WebView failed to load. Error: \(error)")
             if let nsError = error as? NSError {
                 print("NSError domain: \(nsError.domain)")
                 print("NSError code: \(nsError.code)")
                 print("NSError userInfo: \(nsError.userInfo)")
             }
-            // --- END LOGGING ---
 
             if parent.retryCount < parent.maxRetries {
                 parent.retryCount += 1
                 parent.viewState = .processing
                 DispatchQueue.main.asyncAfter(deadline: .now() + 5) { // Add a delay between retries
-                    parent.loadURL(in: webView)
+                    self.parent.loadURL(in: webView)
                 }
             } else {
                 parent.viewState = .error(AnyLocalizedError(error: error, defaultErrorDescription: String(localized: "defaultLoadingError")))
