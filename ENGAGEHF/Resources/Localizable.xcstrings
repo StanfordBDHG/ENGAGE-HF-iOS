@@ -643,6 +643,9 @@
     "See Medications" : {
       "comment" : "The description of the showMedication MessageAction."
     },
+    "Self-Managed" : {
+
+    },
     "Series" : {
 
     },
@@ -800,6 +803,9 @@
     },
     "Unknown Thumbnail" : {
       "comment" : "Accessability label for the failure case of the ThumbnailView."
+    },
+    "Update data" : {
+
     },
     "Updates" : {
       "comment" : "The header text for the updatesSection in the NotificationSettingsView."

@@ -15,9 +15,19 @@ import SwiftUI
 
 struct AdditionalAccountSections: View {
     @Environment(Account.self) private var account: Account?
-    
+    @Binding var questionnaireId: String?
     
     var body: some View {
+        if !(account?.details?.disabled ?? false)
+            && account?.details?.selfManaged ?? false {
+            Section {
+                Button {
+                    questionnaireId = "dataUpdate_en_US"
+                } label: {
+                    Text("Update data")
+                }
+            }
+        }
         Section {
             if !(account?.details?.disabled ?? false) {
                 NavigationLink {
@@ -61,7 +71,7 @@ struct AdditionalAccountSections: View {
 #Preview {
     NavigationStack {
         List {
-            AdditionalAccountSections()
+            AdditionalAccountSections(questionnaireId: .constant(nil))
                 .previewWith(standard: ENGAGEHFStandard()) {
                     AccountConfiguration(service: InMemoryAccountService())
                 }
