@@ -71,7 +71,8 @@ final class EducationViewUITests: XCTestCase {
     
     @MainActor
     func testShortDescrtiptionVideoView() async throws {
-        try XCTSkip("Skipping test due to network issues on runner")
+        try XCTSkipIf(true, "Skipping test due to network issues on runner") // remove once the runner network issue is resolved
+        
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
@@ -116,7 +117,8 @@ final class EducationViewUITests: XCTestCase {
     
     @MainActor
     func testNoDescriptionVideoView() async throws {
-        try XCTSkip("Skipping test due to network issues on runner")
+        try XCTSkipIf(true, "Skipping test due to network issues on runner") // remove once the runner network issue is resolved
+        
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
@@ -147,7 +149,8 @@ final class EducationViewUITests: XCTestCase {
     
     @MainActor
     func testSectionExtension() async throws {
-        try XCTSkip("Skipping test due to network issues on runner")
+        try XCTSkipIf(true, "Skipping test due to network issues on runner") // remove once the runner network issue is resolved
+        
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
@@ -173,7 +176,8 @@ final class EducationViewUITests: XCTestCase {
     
     @MainActor
     func testThumbnailsAppear() async throws {
-        try XCTSkip("Skipping test due to network issues on runner")
+        try XCTSkipIf(true, "Skipping test due to network issues on runner") // remove once the runner network issue is resolved
+        
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
