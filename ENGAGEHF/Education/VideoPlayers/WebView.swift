@@ -69,7 +69,7 @@ extension WebView {
         
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation) {
             parent.viewState = .idle
-            parent.retryCount = 0 // Reset retry count on successful load
+            parent.retryCount = 0
         }
         
         func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation, withError error: any Error) {
