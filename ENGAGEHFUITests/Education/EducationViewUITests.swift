@@ -22,7 +22,10 @@ final class EducationViewUITests: XCTestCase {
 
     @MainActor
     override func tearDown() async throws {
-        try await Task.sleep(for: .seconds(5))
+        let app = XCUIApplication()
+        app.goTo(tab: "Home")
+        
+        try await Task.sleep(for: .seconds(15))
         try await super.tearDown()
     }
     
