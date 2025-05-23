@@ -22,6 +22,7 @@ struct QuestionnaireSheetView: View {
     
     @State private var questionnaire: Questionnaire?
     @State private var viewState: ViewState = .idle
+    @State private var isProcessingResult: Bool = false
     
     private let questionnaireId: String
     
@@ -30,14 +31,20 @@ struct QuestionnaireSheetView: View {
         ZStack {
             if let questionnaire {
                 QuestionnaireView(questionnaire: questionnaire) { result in
+                    guard !isProcessingResult else {
+                        return
+                    }
+                    isProcessingResult = true
                     guard case let .completed(questionnaireResponse) = result else {
                         // user cancelled
+                        isProcessingResult = false
                         dismiss()
                         return
                     }
                     
 #if DEBUG
                     if ProcessInfo.processInfo.isPreviewSimulator {
+                        isProcessingResult = false
                         dismiss()
                         return
                     }
@@ -47,8 +54,10 @@ struct QuestionnaireSheetView: View {
                         do {
                             try await standard.add(response: questionnaireResponse)
                             try? await Task.sleep(for: .seconds(1))
+                            isProcessingResult = false
                             dismiss()
                         } catch {
+                            isProcessingResult = false
                             viewState = .error(AnyLocalizedError(error: error))
                         }
                     }
