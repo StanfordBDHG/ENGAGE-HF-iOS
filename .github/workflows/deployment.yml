@@ -29,6 +29,11 @@ on:
           The semantic version of the app that should be released.
         required: true
         type: string
+      buildnumber:
+        description: |
+          Optional build number to use for deployment.
+        required: false
+        type: string
       releasenotes:
         description: |
           Release notes of what changed in this version.
@@ -47,6 +52,11 @@ on:
         description: |
           The semantic version of the app that should be released.
         required: true
+        type: string
+      buildnumber:
+        description: |
+          Optional build number to use for deployment.
+        required: false
         type: string
       releasenotes:
         description: |
@@ -134,5 +144,5 @@ jobs:
       environment: ${{ needs.determineenvironment.outputs.environment }}
       googleserviceinfoplistpath: 'ENGAGEHF/Supporting Files/GoogleService-Info.plist'
       setupsigning: true
-      fastlanelane: deploy environment:"${{ needs.determineenvironment.outputs.environment }}" appidentifier:"${{ needs.vars.outputs.appidentifier }}" provisioningProfile:"${{ needs.vars.outputs.provisioningProfileName }}" versionname:"${{ needs.vars.outputs.version }}" releasenotes:"${{ inputs.releasenotes }}"
+      fastlanelane: deploy environment:"${{ needs.determineenvironment.outputs.environment }}" appidentifier:"${{ needs.vars.outputs.appidentifier }}" provisioningProfile:"${{ needs.vars.outputs.provisioningProfileName }}" versionname:"${{ needs.vars.outputs.version }}" releasenotes:"${{ inputs.releasenotes }}" ${{ inputs.buildnumber && format('buildnumber:"{0}"', inputs.buildnumber) || '' }}
     secrets: inherit
