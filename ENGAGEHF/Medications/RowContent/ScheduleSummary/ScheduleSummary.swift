@@ -44,9 +44,9 @@ struct ScheduleSummary: View {
     
     private func formatDisplayFrequency(_ schedule: DoseSchedule) -> String {
         switch schedule.frequency {
-        case 1: "daily"
-        case 2: "twice daily"
-        default: "\(schedule.frequency.asString())x daily"
+        case 1: String(localized: "daily", comment: "Schedule frequency")
+        case 2: String(localized: "twice daily", comment: "Schedule frequency")
+        default: String(localized: "\(schedule.frequency.asString())x daily", comment: "Schedule frequency")
         }
     }
 }

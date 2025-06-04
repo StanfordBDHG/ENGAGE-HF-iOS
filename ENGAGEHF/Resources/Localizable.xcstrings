@@ -5,6 +5,7 @@
 
     },
     "%@ Date: %@" : {
+      "comment" : "Accessability label used in VitalsCard and MeasurementListRow.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -15,12 +16,13 @@
       }
     },
     "%@ Description" : {
-
+      "comment" : "Accessability label used in DescriptionSection."
     },
     "%@ More Information" : {
-
+      "comment" : "Accessability label for the info button in the MedicationDescription view."
     },
     "%@ Quantity: %@" : {
+      "comment" : "Accessability label used in DisplayMeasurement.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -31,6 +33,7 @@
       }
     },
     "%@ Unit: %@" : {
+      "comment" : "Accessability label used in DisplayMeasurement.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -40,13 +43,17 @@
         }
       }
     },
+    "%@x daily" : {
+      "comment" : "Schedule frequency"
+    },
     "About %@" : {
-
+      "comment" : "The text displayed in the header of the DescriptionSection view."
     },
     "Account Disabled" : {
 
     },
     "ACCOUNT_NEXT" : {
+      "comment" : "The text displayed on the action button in the AccountOnboarding view.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -57,6 +64,7 @@
       }
     },
     "ACCOUNT_SETUP_DESCRIPTION" : {
+      "comment" : "The description displayed in the AccountSetupHeader if not signed in.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -67,6 +75,7 @@
       }
     },
     "ACCOUNT_SIGNED_IN_DESCRIPTION" : {
+      "comment" : "The description displayed in the AccountSetupHeader if signed in.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -77,6 +86,7 @@
       }
     },
     "ACCOUNT_SUBTITLE" : {
+      "comment" : "The subtitle displayed in the AccountSetupHeader.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -87,7 +97,7 @@
       }
     },
     "ACCOUNT_TITLE" : {
-      "comment" : "MARK: Account",
+      "comment" : "The title displayed in the AccountSetupHeader.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -98,6 +108,7 @@
       }
     },
     "accountDeletionError" : {
+      "comment" : "The error message for failed account deletion.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -108,31 +119,31 @@
       }
     },
     "Add" : {
-
+      "comment" : "The text displayed on the AddMeasurementAsyncButton."
     },
     "Add Measurement: %@" : {
-
+      "comment" : "Accessability label for the TriggerNewMeasurementButton."
     },
     "Add Medications" : {
-
+      "comment" : "The text displayed on the button to add medications within the Medications view."
     },
     "All Data" : {
-
+      "comment" : "The text displayed in the MeasurementListHeader view."
     },
     "An error occurred: %@" : {
       "comment" : "General Error"
     },
     "An invitation code is at least 8 characters long." : {
-
+      "comment" : "The validation rule message on the invitation code text field within the InvitationCodeView."
     },
     "Appointments" : {
-
+      "comment" : "The text displayed in the toggleRow to control to receive appointment reminders in the NotificationSettingsView."
     },
     "Attempted to add a symptom score without first taking survey." : {
-
+      "comment" : "The error message for a failed attempt to add a symptom score."
     },
     "Average" : {
-
+      "comment" : "The text displayed as part of the IntervalSummary."
     },
     "bloodPressureMissing" : {
       "comment" : "Displayed in the MeasurementListSection of the Heart Health view when no Blood Pressure history found.",
@@ -146,15 +157,19 @@
       }
     },
     "Bluetooth Devices" : {
-
+      "comment" : "The label of the navigation link that leads to the DevicesView in the AdditionalAccountSections."
+    },
+    "BPM" : {
+      "comment" : "Beats per minute"
     },
     "Cancel" : {
-
+      "comment" : "The text displayed on the toolbar button of the AddMeasurementView."
     },
     "Contacts" : {
-
+      "comment" : "The label of the navigation link that leads to the Contacts view in the AdditionalAccountSections."
     },
     "CONTACTS_NAVIGATION_TITLE" : {
+      "comment" : "The navigation title of the Contacts view.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -165,42 +180,57 @@
       }
     },
     "Current" : {
-
+      "comment" : "The text used as the currentValueLabel used in DosageGauge."
     },
     "Current Dose:" : {
-
+      "comment" : "The text used in the TextualDosageSummary and ScheduleSummary view."
+    },
+    "daily" : {
+      "comment" : "Schedule frequency"
     },
     "Date" : {
-
+      "comment" : "The text displayed in the label of the date DatePicker in the AddMeasurementView and in the LineMark and PointMark of the VitalsGraph."
     },
     "defaultLoadingError" : {
-
+      "comment" : "The error message for an unsuccessful loading of a web view.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Something went wrong"
+          }
+        }
+      }
+    },
+    "Diastolic" : {
+      "comment" : "The lower number in a blood pressure reading"
     },
     "Dismiss Button" : {
-
+      "comment" : "Accessability label for the XButton view of the MessageRow view."
     },
     "Education" : {
-
+      "comment" : "Displayed in the tab item label and navigation title of the Educations view."
     },
     "Education Video Inspect Button" : {
-
+      "comment" : "Accessability label for the inspect button on the EducationalVideoCard."
     },
     "Enable Notifications in Settings" : {
-
+      "comment" : "The text displayed on the button that is shown in the NotificationSettingsView if notifications are not authorized."
     },
     "ENGAGE-HF" : {
-
+      "comment" : "The text used for the navigationTitle of the StudyConcluded view."
     },
     "ENGAGE-HF Application Loading Screen" : {
-
+      "comment" : "Accessability label for the ContentView if the user is not signed in."
     },
     "ENGAGE-HF Icon" : {
-
+      "comment" : "Accessability label for the ENGAGE-HF icon."
     },
     "Expansion Button" : {
-
+      "comment" : "Accessability label for the expansion button."
     },
     "Expires in: %lld:%@" : {
+      "comment" : "The text displayed for indicating the remaining time of the QR code validity in the QRCodeShareView.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -211,37 +241,37 @@
       }
     },
     "Failed to fetch HKUnits for the given samples." : {
-
+      "comment" : "The error message for an unsuccessfull fetching of HKUnits."
     },
     "Failed to identify HKSample concrete subclass." : {
-
+      "comment" : "The error message for an unknown HKSample."
     },
     "Failed to save new %@ measurement." : {
-
+      "comment" : "The error message for an unsuccessfull attempt adding a measurement."
     },
     "Generating Health Summary" : {
-
+      "comment" : "The text displayed in the ProgressView of the pdfView in the HealthSummaryView."
     },
     "Generating QR Code" : {
-
+      "comment" : "The text displayed in the ProgressView of the qrCodeView in the HealthSummaryView."
     },
     "Graph Selection" : {
-
+      "comment" : "The label of the GraphPicker view."
     },
     "Health Summary" : {
-
+      "comment" : "The label of the navigation link that leads to the HealthSummaryView in the AdditionalAccountSections."
     },
     "Health Summary Link" : {
-
+      "comment" : "The text displayed in the SharePreview of the HealthSummaryView."
     },
     "Health Summary QR Code" : {
-
+      "comment" : "The title displayed in the QRCodeShareView."
     },
     "Health Summary Share Mode" : {
-
+      "comment" : "The label of the shareModeSelector Picker view."
     },
     "Heart Health" : {
-
+      "comment" : "Displayed in tab item label and navigation title of the Heart Health view."
     },
     "heartRateMissing" : {
       "comment" : "Displayed in the MeasurementListSection of the Heart Health view when no heart rate measurements were found.",
@@ -255,18 +285,19 @@
       }
     },
     "Hold down the Bluetooth button for 3 seconds to put the device into pairing mode." : {
-
+      "comment" : "The text displayed as the pairing hint in the DevicesView in the AdditionalAccountSections view."
     },
     "Home" : {
-
+      "comment" : "Displayed in the tab item label and navigation title of the Dashboard view."
     },
     "Inactivity" : {
-
+      "comment" : "The text displayed in the toggleRow to control to receive inactivity reminders in the NotificationSettingsView."
     },
     "Input: %@" : {
-
+      "comment" : "Accessability label for the text field in the AddMeasurementView."
     },
     "INTERESTING_MODULES_AREA1_DESCRIPTION" : {
+      "comment" : "The description displayed in the first area of the InterestingModules OnboardingView.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -277,6 +308,7 @@
       }
     },
     "INTERESTING_MODULES_AREA1_TITLE" : {
+      "comment" : "The title displayed in the first area of the InterestingModules OnboardingView.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -287,6 +319,7 @@
       }
     },
     "INTERESTING_MODULES_AREA2_DESCRIPTION" : {
+      "comment" : "The description displayed in the second area of the InterestingModules OnboardingView.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -297,6 +330,7 @@
       }
     },
     "INTERESTING_MODULES_AREA2_TITLE" : {
+      "comment" : "The title displayed in the second area of the InterestingModules OnboardingView.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -307,6 +341,7 @@
       }
     },
     "INTERESTING_MODULES_AREA3_DESCRIPTION" : {
+      "comment" : "The description displayed in the third area of the InterestingModules OnboardingView.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -317,6 +352,7 @@
       }
     },
     "INTERESTING_MODULES_AREA3_TITLE" : {
+      "comment" : "The title displayed in the third area of the InterestingModules OnboardingView.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -327,6 +363,7 @@
       }
     },
     "INTERESTING_MODULES_AREA4_DESCRIPTION" : {
+      "comment" : "The description displayed in the fourth area of the InterestingModules OnboardingView.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -337,6 +374,7 @@
       }
     },
     "INTERESTING_MODULES_AREA4_TITLE" : {
+      "comment" : "The title displayed in the fourth area of the InterestingModules OnboardingView.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -347,6 +385,7 @@
       }
     },
     "INTERESTING_MODULES_AREA5_DESCRIPTION" : {
+      "comment" : "The description displayed in the fifth area of the InterestingModules OnboardingView.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -357,6 +396,7 @@
       }
     },
     "INTERESTING_MODULES_AREA5_TITLE" : {
+      "comment" : "The title displayed in the fifth area of the InterestingModules OnboardingView.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -367,6 +407,7 @@
       }
     },
     "INTERESTING_MODULES_BUTTON" : {
+      "comment" : "The text displayed on the action button of the InterestingModules OnboardingView.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -377,6 +418,7 @@
       }
     },
     "INTERESTING_MODULES_SUBTITLE" : {
+      "comment" : "The text displayed in the subtitle of the InterestingModules OnboardingView.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -387,7 +429,7 @@
       }
     },
     "INTERESTING_MODULES_TITLE" : {
-      "comment" : "MARK: Interesting Modules",
+      "comment" : "The text displayed in the title of the InterestingModules OnboardingView.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -398,12 +440,13 @@
       }
     },
     "Invitation Code" : {
-
+      "comment" : "The navigation title and description displayed next to the invitation code text field within the InvitationCodeView."
     },
     "Legend" : {
-
+      "comment" : "The text displayed in the header of the ColorLegend view."
     },
     "LICENSE_INFO_TITLE" : {
+      "comment" : "The label of the navigation link that leads to the ContributionsList view in the AdditionalAccountSections.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -414,7 +457,7 @@
       }
     },
     "Logout" : {
-
+      "comment" : "The text displayed on the secondary action button in the InvitationCodeView."
     },
     "measurement" : {
       "comment" : "Single measurement in processing state"
@@ -423,13 +466,13 @@
       "comment" : "Multiple measurements in processing state"
     },
     "Medication Label: %@" : {
-
+      "comment" : "Accessability label for the MedicationRecommendationSymbol view."
     },
     "Medications" : {
-
+      "comment" : "Displayed in the tab item label and navigation title of the Medications view and in a toggleRow of the NotificationSettingsView."
     },
     "Messages" : {
-
+      "comment" : "The text displayed in the header of MessagesSection and MessageRow views."
     },
     "Mild" : {
       "comment" : "Dizziness symptom score label."
@@ -444,30 +487,31 @@
       "comment" : "Action required color legend entry."
     },
     "No Contacts Available" : {
-
+      "comment" : "The title displayed in the ContentUnavailableView of the Contacts view."
     },
     "No Data" : {
-
+      "comment" : "No data available"
     },
     "No Educational Videos" : {
-
+      "comment" : "The title displayed in the ContentUnavailableView of the Education view."
     },
     "No medication recommendations" : {
-
+      "comment" : "The text displayed in the ContentUnavailableView of the MedicationsList."
     },
     "No recent %@ measurement available" : {
-
+      "comment" : "The text displayed in the VitalsCard if no measurement is available."
     },
     "No vitals" : {
-
+      "comment" : "Accessability label for the VitalsCard if no measurement is available."
     },
     "None" : {
       "comment" : "Dizziness symptom score label."
     },
     "Not Started" : {
-
+      "comment" : "The text displayed for the current dose in TextualDosageSummary if no information is available."
     },
     "NOTIFICATION_PERMISSIONS_BUTTON" : {
+      "comment" : "The text displayed on the action button in the NotificationPermission OnboardingView.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -478,6 +522,7 @@
       }
     },
     "NOTIFICATION_PERMISSIONS_DESCRIPTION" : {
+      "comment" : "The text displayed in the description of the NotificationPermission OnboardingView.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -488,6 +533,7 @@
       }
     },
     "NOTIFICATION_PERMISSIONS_SUBTITLE" : {
+      "comment" : "The text displayed in the subtitle of the NotificationPermission OnboardingView.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -498,7 +544,7 @@
       }
     },
     "NOTIFICATION_PERMISSIONS_TITLE" : {
-      "comment" : "MARK: Notifications",
+      "comment" : "The text displayed in the title of the NotificationPermission OnboardingView.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -509,25 +555,25 @@
       }
     },
     "Notifications" : {
-
+      "comment" : "The label of the navigation link that leads to the NotificationSettingsView in the AdditionalAccountSections and the navigatition title of NotificationSettingsView."
     },
     "One-time Code" : {
-
+      "comment" : "The text displayed next to the one-time code entry field."
     },
     "Organization" : {
 
     },
     "PDF" : {
-
+      "comment" : "The text displayed as one of the options of the shareModeSelector in the HealthSummaryView. "
     },
     "Play Video" : {
-
+      "comment" : "The description of the playVideo MessageAction."
     },
     "Please enter your invitation code to join the ENGAGE-HF study." : {
-
+      "comment" : "The description displayed in the header of the InvitationCodeView."
     },
     "Process timed out." : {
-
+      "comment" : "The error message for a timed out health summary generation."
     },
     "Processing %lld %@..." : {
       "comment" : "Processing state for health measurements",
@@ -547,54 +593,57 @@
       "comment" : "Processing state"
     },
     "QR Code" : {
-
+      "comment" : "The text displayed as one of the options of the shareModeSelector in the HealthSummaryView. "
     },
     "QR code for sharing your health summary with your doctor" : {
-
+      "comment" : "Accessability label used in the QRCodeShareView."
     },
     "Questionnaire Loading" : {
-
+      "comment" : "The text displayed in the ProgressView of the QuestionnaireSheetView."
     },
     "Receive notifications of changes in vital trends." : {
-
+      "comment" : "The text displayed in the footer of the trendsSection of the NotificationSettingsView."
     },
     "Receive reminders for appointments (one day before), symptom surveys, and vital measurements." : {
-
+      "comment" : "The text displayed in the footer of the remindersSection of the NotificationSettingsView."
     },
     "Receive updates when current medications and medication recommendations change." : {
-
+      "comment" : "The text displayed in the footer of the updatesSection of the NotificationSettingsView."
     },
     "Recent Vitals" : {
-
+      "comment" : "The text displayed in the header of the RecentVitalsSection view."
     },
     "Recommendations" : {
-
+      "comment" : "The text displayed in a toggleRow of the NotificationSettingsView."
     },
     "Redeem Invitation Code" : {
-
+      "comment" : "The text displayed on the action button in the InvitationCodeView."
     },
     "Reminders" : {
-
+      "comment" : "The header text for the remindersSection in the NotificationSettingsView."
     },
     "Resolution Picker" : {
-
+      "comment" : "The text displayed in the label of the picker in the ResolutionPicker view."
     },
     "Review" : {
-
+      "comment" : "The text displayed on the header button in the RecentVitalsSection view."
     },
     "Score" : {
 
     },
     "Section Expander" : {
-
+      "comment" : "Accessability Label for the expand button in the VideoListSection view."
     },
     "See Health Summary" : {
-
+      "comment" : "The description of the showHealthSummary MessageAction."
     },
     "See Heart Health" : {
-
+      "comment" : "The description of the showHeartHealth MessageAction."
     },
     "See Medications" : {
+      "comment" : "The description of the showMedication MessageAction."
+    },
+    "Self-Managed" : {
 
     },
     "Series" : {
@@ -604,28 +653,28 @@
       "comment" : "Dizziness symptom score label."
     },
     "Share Link" : {
-
+      "comment" : "AccessabilityLabel of the shareButton in the HealthSummaryView."
     },
     "Show less" : {
-
+      "comment" : "The text displayed on the ShowMoreButton if content is expanded."
     },
     "Show Measurements" : {
-
+      "comment" : "The text displayed on one of the toolbar buttons for debug and test environments in the Dashboard view."
     },
     "Show more" : {
-
+      "comment" : "The text displayed on the ShowMoreButton if content is collapsed."
     },
     "Skip" : {
-
+      "comment" : "The text displayed on the secondary action button in the NotificationPermissions OnboardingView."
     },
     "Start Questionnaire" : {
-
+      "comment" : "The description of the completeQuestionnaire MessageAction."
     },
     "Survey" : {
-
+      "comment" : "The text displayed in the toggleRow to control to receive questionnaire reminders in the NotificationSettingsView."
     },
     "symptomDizziness" : {
-      "comment" : "For Heart Health view",
+      "comment" : "A text used in the HeartHealth view.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -636,7 +685,7 @@
       }
     },
     "symptomOverall" : {
-      "comment" : "For Heart Health view",
+      "comment" : "A text used in the HeartHealth view.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -647,7 +696,7 @@
       }
     },
     "symptomPhysical" : {
-      "comment" : "For Heart Health view",
+      "comment" : "A text used in the HeartHealth view.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -658,7 +707,7 @@
       }
     },
     "symptomQuality" : {
-      "comment" : "For Heart Health view",
+      "comment" : "A text used in the HeartHealth view.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -669,7 +718,7 @@
       }
     },
     "Symptoms Picker Chevron" : {
-
+      "comment" : "Accessability label for the SymptomsPicker view."
     },
     "symptomsMissing" : {
       "comment" : "Displayed in the MeasurementListSection in the Heart Health view when no symptom scores were found.",
@@ -704,58 +753,68 @@
         }
       }
     },
+    "Systolic" : {
+      "comment" : "The higher number in a blood pressure reading"
+    },
     "Target" : {
-
+      "comment" : "The text used as the minimumValueLabel used in DosageGauge and DosageGaugeStyle and the maximumValueLabel of PositionedCurrentLabel."
     },
     "Thank you for participating in the\nENGAGE-HF study!" : {
-
+      "comment" : "The title that is displayed in the StudyConcluded view."
     },
     "The invitation code is invalid or has already been used." : {
       "comment" : "Invitation Code Invalid"
     },
     "There are currently no educational videos available." : {
-
+      "comment" : "The description displayed in the ContentUnavailableView of the Education view."
     },
     "This QR code can be scanned by your healthcare provider to share your health summary." : {
-
+      "comment" : "The description displayed in the QRCodeShareView."
     },
     "Thumbnail Image: %@" : {
-
+      "comment" : "Accessability label for the success case of the ThumbnailView."
     },
     "Time" : {
-
+      "comment" : "The text displayed in the label of the time DatePicker in the AddMeasurementView."
     },
     "Trends" : {
-
+      "comment" : "The header text for the trendsSection in the NotificationSettingsView."
     },
     "Trigger Blood Pressure Measurement" : {
-
+      "comment" : "The text displayed on one of the toolbar buttons for debug and test environments in the Dashboard view."
     },
     "Trigger Sheet" : {
-
+      "comment" : "The text displayed on the button to open the AddMeasurementView."
     },
     "Trigger Weight Measurement" : {
-
+      "comment" : "The text displayed on one of the toolbar buttons for debug and test environments in the Dashboard view."
+    },
+    "twice daily" : {
+      "comment" : "Schedule frequency"
     },
     "Unable to create time interval for date: %@" : {
-
+      "comment" : "The error message for a invalid date."
     },
     "Unable to delete measurement, check network connection." : {
-
+      "comment" : "The error message for a failed deletion of a measurement."
     },
     "Unable to load questionnaire." : {
-
+      "comment" : "The error message for a unsuccessfull questionnaire fetching."
     },
     "Unknown Thumbnail" : {
+      "comment" : "Accessability label for the failure case of the ThumbnailView."
+    },
+    "Update data" : {
 
     },
     "Updates" : {
-
+      "comment" : "The header text for the updatesSection in the NotificationSettingsView."
     },
     "User authentication failed. Please try to sign in again." : {
       "comment" : "User Not Authenticated"
     },
     "userNotSignedIn" : {
+      "comment" : "The error message for a user that is not signed in.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -769,10 +828,10 @@
       "comment" : "Dizziness symptom score label."
     },
     "Vitals" : {
-
+      "comment" : "The text displayed in the toggleRow to control to receive vitals reminders in the NotificationSettingsView."
     },
     "vitalsBloodPressure" : {
-      "comment" : "For Heart Health view",
+      "comment" : "A text used in the HeartHealth view.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -783,7 +842,7 @@
       }
     },
     "vitalsHeartRate" : {
-      "comment" : "For Heart Health view",
+      "comment" : "A text used in the HeartHealth view.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -794,7 +853,7 @@
       }
     },
     "vitalsWeight" : {
-      "comment" : "For Heart Health view",
+      "comment" : "A text used in the HeartHealth view.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -805,7 +864,7 @@
       }
     },
     "Weight Trends" : {
-
+      "comment" : "The text displayed in the toggleRow to control to receive weight trend notifications in the NotificationSettingsView."
     },
     "weightMissing" : {
       "comment" : "Displayed in the MeasurementListSection of the Heart Health view when no weight history was found.",
@@ -819,6 +878,7 @@
       }
     },
     "WELCOME_AREA1_DESCRIPTION" : {
+      "comment" : "The description displayed in the first area of the Welcome OnboardingView.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -829,6 +889,7 @@
       }
     },
     "WELCOME_AREA1_TITLE" : {
+      "comment" : "The title displayed in the first area of the Welcome OnboardingView.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -839,6 +900,7 @@
       }
     },
     "WELCOME_AREA2_DESCRIPTION" : {
+      "comment" : "The description displayed in the second area of the Welcome OnboardingView.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -849,6 +911,7 @@
       }
     },
     "WELCOME_AREA2_TITLE" : {
+      "comment" : "The title displayed in the second area of the Welcome OnboardingView.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -859,6 +922,7 @@
       }
     },
     "WELCOME_AREA3_DESCRIPTION" : {
+      "comment" : "The description displayed in the third area of the Welcome OnboardingView.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -869,6 +933,7 @@
       }
     },
     "WELCOME_AREA3_TITLE" : {
+      "comment" : "The title displayed in the third area of the Welcome OnboardingView.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -879,6 +944,7 @@
       }
     },
     "WELCOME_BUTTON" : {
+      "comment" : "The text displayed on the action button in the Welcome OnboardingView.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -889,6 +955,7 @@
       }
     },
     "WELCOME_SUBTITLE" : {
+      "comment" : "The subtitle displayed in the Welcome OnboardingView.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -899,7 +966,7 @@
       }
     },
     "WELCOME_TITLE" : {
-      "comment" : "MARK: Welcome",
+      "comment" : "The title displayed in the Welcome OnboardingView.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -919,7 +986,7 @@
       "comment" : "Target dose reached color legend entry."
     },
     "Your account was deactivated\nby your study coordinator." : {
-
+      "comment" : "The note that is displayed in the StudyConcluded view."
     }
   },
   "version" : "1.0"

@@ -29,6 +29,11 @@ on:
           The semantic version of the app that should be released.
         required: true
         type: string
+      buildnumber:
+        description: |
+          Optional build number to use for deployment.
+        required: false
+        type: string
       releasenotes:
         description: |
           Release notes of what changed in this version.
@@ -47,6 +52,11 @@ on:
         description: |
           The semantic version of the app that should be released.
         required: true
+        type: string
+      buildnumber:
+        description: |
+          Optional build number to use for deployment.
+        required: false
         type: string
       releasenotes:
         description: |
@@ -101,8 +111,16 @@ jobs:
           echo "appidentifier: ${{ vars.APP_IDENTIFIER }}"
           echo "provisioningProfileName: ${{ vars.PROVISIONING_PROFILE_NAME }}"
           if [[ -z "${{ inputs.version }}" ]]; then
-            echo "version=${{ steps.get-latest-tag.outputs.tag }}" >> $GITHUB_OUTPUT
-            echo "version: ${{ steps.get-latest-tag.outputs.tag }}"
+            LATEST_VERSION="${{ steps.get-latest-tag.outputs.tag }}"
+            LATEST_VERSION="${LATEST_VERSION#v}"
+
+            IFS='.' read -r MAJOR MINOR PATCH <<< "$LATEST_VERSION"
+
+            PATCH=$((PATCH + 1))
+            NEW_VERSION="${MAJOR}.${MINOR}.${PATCH}"
+
+            echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
+            echo "version: $NEW_VERSION"
           else
             echo "version=${{ inputs.version }}" >> $GITHUB_OUTPUT
             echo "version: ${{ inputs.version }}"
@@ -126,5 +144,5 @@ jobs:
       environment: ${{ needs.determineenvironment.outputs.environment }}
       googleserviceinfoplistpath: 'ENGAGEHF/Supporting Files/GoogleService-Info.plist'
       setupsigning: true
-      fastlanelane: deploy environment:"${{ needs.determineenvironment.outputs.environment }}" appidentifier:"${{ needs.vars.outputs.appidentifier }}" provisioningProfile:"${{ needs.vars.outputs.provisioningProfileName }}" versionname:"${{ needs.vars.outputs.version }}" releasenotes:"${{ inputs.releasenotes }}"
+      fastlanelane: deploy environment:"${{ needs.determineenvironment.outputs.environment }}" appidentifier:"${{ needs.vars.outputs.appidentifier }}" provisioningProfile:"${{ needs.vars.outputs.provisioningProfileName }}" versionname:"${{ needs.vars.outputs.version }}" releasenotes:"${{ inputs.releasenotes }}" ${{ inputs.buildnumber && format('buildnumber:"{0}"', inputs.buildnumber) || '' }}
     secrets: inherit

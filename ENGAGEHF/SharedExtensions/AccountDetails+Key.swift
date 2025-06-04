@@ -105,6 +105,15 @@ extension AccountDetails {
         initial: .default(true)
     )
     var receivesWeightAlerts: Bool?
+    
+    @AccountKey(
+        id: "selfManaged",
+        name: "Self-Managed",
+        category: .other,
+        as: Bool.self,
+        initial: .default(false)
+    )
+    var selfManaged: Bool?
 }
 
 @KeyEntry(\.phoneNumbers)
@@ -117,4 +126,5 @@ extension AccountDetails {
 @KeyEntry(\.receivesRecommendationUpdates)
 @KeyEntry(\.receivesVitalsReminders)
 @KeyEntry(\.receivesWeightAlerts)
+@KeyEntry(\.selfManaged)
 extension AccountKeys {}

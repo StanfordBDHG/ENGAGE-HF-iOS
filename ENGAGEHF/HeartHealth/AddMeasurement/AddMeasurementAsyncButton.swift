@@ -54,7 +54,7 @@ struct AddMeasurementAsyncButton: View {
             
             return HKQuantitySample(type: quantityType, quantity: quantity, start: date, end: date)
         case .heartRate:
-            guard let heartRate = fields.first(where: { $0.title == "BPM" })?.value else {
+            guard let heartRate = fields.first(where: { $0.title == String(localized: "BPM", comment: "Beats per minute") })?.value else {
                 throw HeartHealthError.failedAddition(type.fullName)
             }
             
@@ -64,8 +64,12 @@ struct AddMeasurementAsyncButton: View {
             
             return HKQuantitySample(type: quantityType, quantity: quantity, start: date, end: date)
         case .bloodPressure:
-            guard let systolic = fields.first(where: { $0.title == "Systolic" })?.value,
-                  let diastolic = fields.first(where: { $0.title == "Diastolic" })?.value else {
+            guard let systolic = fields.first(where: {
+                $0.title == String(localized: "Systolic", comment: "The higher number in a blood pressure reading")
+            })?.value,
+                  let diastolic = fields.first(where: {
+                      $0.title == String(localized: "Diastolic", comment: "The lower number in a blood pressure reading")
+                  })?.value else {
                 throw HeartHealthError.failedAddition(type.fullName)
             }
             

@@ -60,8 +60,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/firebase-ios-sdk.git",
       "state" : {
-        "revision" : "2e4a4daac9da51f79c131e76cb47e785dd7708c4",
-        "version" : "11.10.0"
+        "revision" : "fbd463894af94d90eb4d6a4e54080459a8179519",
+        "version" : "11.12.0"
       }
     },
     {
@@ -69,8 +69,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/GoogleAppMeasurement.git",
       "state" : {
-        "revision" : "defe1970a9099d47765592ebd7ac5f5e9fdb57c6",
-        "version" : "11.10.0"
+        "revision" : "f7460ea630bddf172115c28493ae8b3798d95ce3",
+        "version" : "11.12.0"
       }
     },
     {
@@ -87,8 +87,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/GoogleUtilities.git",
       "state" : {
-        "revision" : "53156c7ec267db846e6b64c9f4c4e31ba4cf75eb",
-        "version" : "8.0.2"
+        "revision" : "60da361632d0de02786f709bdc0c4df340f7613e",
+        "version" : "8.1.0"
       }
     },
     {
@@ -105,8 +105,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/gtm-session-fetcher.git",
       "state" : {
-        "revision" : "4d70340d55d7d07cc2fdf8e8125c4c126c1d5f35",
-        "version" : "4.4.0"
+        "revision" : "c756a29784521063b6a1202907e2cc47f41b667c",
+        "version" : "4.5.0"
       }
     },
     {
@@ -114,8 +114,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordBDHG/HealthKitOnFHIR.git",
       "state" : {
-        "revision" : "aff3db17e2276963d56fff0bac67bdf00da1c00a",
-        "version" : "0.2.14"
+        "revision" : "a0b6a7393894be173b3052f4735e59f712ed729c",
+        "version" : "0.2.15"
       }
     },
     {
@@ -213,8 +213,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziBluetooth.git",
       "state" : {
-        "revision" : "f6b958107ef1a1ae18d2e1f449ace74191c62d9e",
-        "version" : "3.2.1"
+        "revision" : "6bfc0378fca295237dee9746f9697a773410c658",
+        "version" : "3.2.2"
       }
     },
     {
@@ -276,8 +276,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziNotifications.git",
       "state" : {
-        "revision" : "21427fff437e6bc17db74b125fa43970a2ab9b0b",
-        "version" : "1.0.5"
+        "revision" : "4a9ff11f41a0d3d3cf70e4696dbf604afe4330e6",
+        "version" : "1.0.6"
       }
     },
     {
@@ -357,8 +357,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-nio.git",
       "state" : {
-        "revision" : "c51907a839e63ebf0ba2076bba73dd96436bd1b9",
-        "version" : "2.81.0"
+        "revision" : "34d486b01cd891297ac615e40d5999536a1e138d",
+        "version" : "2.83.0"
       }
     },
     {
@@ -375,8 +375,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/FelixHerrmann/swift-package-list.git",
       "state" : {
-        "revision" : "1ba4f42e1731673fddd8aed8b97fe997cc55cbd5",
-        "version" : "4.7.0"
+        "revision" : "22ef2a2b1b51b453be02ce2bd780753718e8893a",
+        "version" : "4.8.0"
       }
     },
     {
@@ -465,8 +465,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/jpsim/Yams.git",
       "state" : {
-        "revision" : "b4b8042411dc7bbb696300a34a4bf3ba1b7ad19b",
-        "version" : "5.3.1"
+        "revision" : "3d6871d5b4a5cd519adf233fbb576e0a2af71c17",
+        "version" : "5.4.0"
       }
     }
   ],
