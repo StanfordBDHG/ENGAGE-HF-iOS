@@ -9,6 +9,7 @@
 import FirebaseFirestore
 import Spezi
 import SpeziAccount
+import SpeziAccountPhoneNumbers
 import SpeziBluetooth
 import SpeziBluetoothServices
 import SpeziDevices
@@ -50,7 +51,7 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
                     configuration: [
                         .requires(\.userId),
                         .supports(\.name),
-                        .manual(\.phoneNumbers),
+                        .supports(\.phoneNumbers),
                         .manual(\.invitationCode),
                         .manual(\.organization),
                         .manual(\.receivesAppointmentReminders),
@@ -71,6 +72,7 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
                 } else {
                     FirebaseStorageConfiguration()
                 }
+                PhoneVerificationProvider()
             }
 
             Bluetooth {

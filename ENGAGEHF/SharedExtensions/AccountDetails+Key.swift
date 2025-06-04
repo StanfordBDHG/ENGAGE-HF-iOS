@@ -8,24 +8,23 @@
 
 import Foundation
 import SpeziAccount
+import SpeziAccountPhoneNumbers
 import SwiftUI
 
 
 // swiftlint:disable attributes discouraged_optional_boolean
 
-typealias PhoneNumbersArray = [String]
-
 extension AccountDetails {
-    @AccountKey(
-        id: "phoneNumbers",
-        name: "Phone Numbers",
-        category: .contactDetails,
-        as: PhoneNumbersArray.self,
-        displayView: PhoneNumberDisplayView.self,
-        entryView: PhoneNumberEntryView.self
-    )
-    var phoneNumbers: PhoneNumbersArray?
-    
+//    @AccountKey(
+//        id: "phoneNumbers",
+//        name: "Phone Numbers",
+//        category: .contactDetails,
+//        as: PhoneNumbersArray.self,
+//        displayView: PhoneNumberDisplayView.self,
+//        entryView: PhoneNumberEntryView.self
+//    )
+//    var phoneNumbers: PhoneNumbersArray?
+//    
     @AccountKey(
         id: "invitationCode",
         name: "Invitation Code",

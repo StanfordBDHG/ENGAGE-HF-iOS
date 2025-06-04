@@ -31,7 +31,6 @@
 		2FE5DC3A29EDD7CA004B9AB4 /* Welcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE5DC3429EDD7CA004B9AB4 /* Welcome.swift */; };
 		2FE5DC4029EDD7EE004B9AB4 /* FeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE5DC3E29EDD7ED004B9AB4 /* FeatureFlags.swift */; };
 		2FE5DC4129EDD7EE004B9AB4 /* StorageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE5DC3F29EDD7EE004B9AB4 /* StorageKeys.swift */; };
-		2FE5DC6429EDD883004B9AB4 /* SpeziAccount in Frameworks */ = {isa = PBXBuildFile; productRef = 2FE5DC6329EDD883004B9AB4 /* SpeziAccount */; };
 		2FE5DC6729EDD894004B9AB4 /* SpeziContact in Frameworks */ = {isa = PBXBuildFile; productRef = 2FE5DC6629EDD894004B9AB4 /* SpeziContact */; };
 		2FE5DC7529EDD8E6004B9AB4 /* SpeziFirebaseAccount in Frameworks */ = {isa = PBXBuildFile; productRef = 2FE5DC7429EDD8E6004B9AB4 /* SpeziFirebaseAccount */; };
 		2FE5DC7729EDD8E6004B9AB4 /* SpeziFirebaseConfiguration in Frameworks */ = {isa = PBXBuildFile; productRef = 2FE5DC7629EDD8E6004B9AB4 /* SpeziFirebaseConfiguration */; };
@@ -195,16 +194,10 @@
 		4DF5062F2C2F2B00003E7EFB /* SymptomsPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF5062E2C2F2B00003E7EFB /* SymptomsPicker.swift */; };
 		4DF506312C2F3421003E7EFB /* VitalsGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF506302C2F3421003E7EFB /* VitalsGraph.swift */; };
 		4DF5063A2C2F5104003E7EFB /* DisplayMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF506392C2F5104003E7EFB /* DisplayMeasurement.swift */; };
-		5628ED392D8D69A50094A682 /* PhoneNumberEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5628ED382D8D69A50094A682 /* PhoneNumberEntryView.swift */; };
-		5628ED3C2D8D69B60094A682 /* PhoneNumberDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5628ED3B2D8D69B60094A682 /* PhoneNumberDisplayView.swift */; };
+		562C49F62DF08030004F7684 /* SpeziAccountPhoneNumbers in Frameworks */ = {isa = PBXBuildFile; productRef = 562C49F52DF08030004F7684 /* SpeziAccountPhoneNumbers */; };
+		562C49F92DF08047004F7684 /* SpeziAccount in Frameworks */ = {isa = PBXBuildFile; productRef = 562C49F82DF08047004F7684 /* SpeziAccount */; };
 		562E7C222D8039630088D8DF /* QRCodeShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562E7C212D8039630088D8DF /* QRCodeShareView.swift */; };
 		5681F6C62D9292F90071EA5D /* HealthSummaryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5681F6C52D9292ED0071EA5D /* HealthSummaryUITests.swift */; };
-		5681F6DD2D934D800071EA5D /* CountryListSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5681F6DC2D934D800071EA5D /* CountryListSheet.swift */; };
-		5681F6DF2D9350730071EA5D /* PhoneNumberEntryField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5681F6DE2D9350730071EA5D /* PhoneNumberEntryField.swift */; };
-		5681F6E52D93FE090071EA5D /* PhoneNumberViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5681F6E42D93FE030071EA5D /* PhoneNumberViewModel.swift */; };
-		56823D3C2D90710800911F09 /* OTCEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56823D3B2D90710800911F09 /* OTCEntryView.swift */; };
-		56823D3E2D90719700911F09 /* OTCModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56823D3D2D90719300911F09 /* OTCModifier.swift */; };
-		56D638232D916257000D6344 /* PhoneNumberKit in Frameworks */ = {isa = PBXBuildFile; productRef = 56D638222D916257000D6344 /* PhoneNumberKit */; };
 		56E708352BB06B7100B08F0A /* SpeziLicense in Frameworks */ = {isa = PBXBuildFile; productRef = 56E708342BB06B7100B08F0A /* SpeziLicense */; };
 		56E7083B2BB06F6F00B08F0A /* SwiftPackageList in Frameworks */ = {isa = PBXBuildFile; productRef = 56E7083A2BB06F6F00B08F0A /* SwiftPackageList */; };
 		6504AFF62D40383F001F4A03 /* StudyConcluded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6504AFF52D40382F001F4A03 /* StudyConcluded.swift */; };
@@ -427,15 +420,8 @@
 		4DF5062E2C2F2B00003E7EFB /* SymptomsPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomsPicker.swift; sourceTree = "<group>"; };
 		4DF506302C2F3421003E7EFB /* VitalsGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalsGraph.swift; sourceTree = "<group>"; };
 		4DF506392C2F5104003E7EFB /* DisplayMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayMeasurement.swift; sourceTree = "<group>"; };
-		5628ED382D8D69A50094A682 /* PhoneNumberEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberEntryView.swift; sourceTree = "<group>"; };
-		5628ED3B2D8D69B60094A682 /* PhoneNumberDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberDisplayView.swift; sourceTree = "<group>"; };
 		562E7C212D8039630088D8DF /* QRCodeShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeShareView.swift; sourceTree = "<group>"; };
 		5681F6C52D9292ED0071EA5D /* HealthSummaryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthSummaryUITests.swift; sourceTree = "<group>"; };
-		5681F6DC2D934D800071EA5D /* CountryListSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryListSheet.swift; sourceTree = "<group>"; };
-		5681F6DE2D9350730071EA5D /* PhoneNumberEntryField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberEntryField.swift; sourceTree = "<group>"; };
-		5681F6E42D93FE030071EA5D /* PhoneNumberViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberViewModel.swift; sourceTree = "<group>"; };
-		56823D3B2D90710800911F09 /* OTCEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTCEntryView.swift; sourceTree = "<group>"; };
-		56823D3D2D90719300911F09 /* OTCModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTCModifier.swift; sourceTree = "<group>"; };
 		6504AFF52D40382F001F4A03 /* StudyConcluded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyConcluded.swift; sourceTree = "<group>"; };
 		6504AFF72D403914001F4A03 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
 		6504B0022D40C8BF001F4A03 /* AccountDisabled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDisabled.swift; sourceTree = "<group>"; };
@@ -466,7 +452,7 @@
 			files = (
 				A977DD562C25E2DA00A2A8E5 /* SpeziDevicesUI in Frameworks */,
 				9733CFC62A8066DE001B7ABC /* SpeziOnboarding in Frameworks */,
-				2FE5DC6429EDD883004B9AB4 /* SpeziAccount in Frameworks */,
+				562C49F62DF08030004F7684 /* SpeziAccountPhoneNumbers in Frameworks */,
 				A9A0BF032C13121D00B8F3F3 /* SpeziNumerics in Frameworks */,
 				2FB099AF2A875DF100B20952 /* FirebaseAuth in Frameworks */,
 				97D73D6A2AD860AD00B47FA0 /* SpeziFirebaseStorage in Frameworks */,
@@ -479,11 +465,11 @@
 				A977DD5D2C26279E00A2A8E5 /* SpeziBluetoothServices in Frameworks */,
 				65D39ABD2CE497630040BF71 /* SpeziNotifications in Frameworks */,
 				4D49AB022BC9D50400C77310 /* SpeziBluetooth in Frameworks */,
-				56D638232D916257000D6344 /* PhoneNumberKit in Frameworks */,
 				56E708352BB06B7100B08F0A /* SpeziLicense in Frameworks */,
 				9B0723AB2C8F6AE700D901E5 /* FirebaseMessaging in Frameworks */,
 				A9623C042C17A3F500189BA1 /* SpeziOmron in Frameworks */,
 				2FE5DC7529EDD8E6004B9AB4 /* SpeziFirebaseAccount in Frameworks */,
+				562C49F92DF08047004F7684 /* SpeziAccount in Frameworks */,
 				9739A0C62AD7B5730084BEA5 /* FirebaseStorage in Frameworks */,
 				4DBDD3482BC073EF001FB0CA /* FirebaseFunctions in Frameworks */,
 				A977DD542C25E2DA00A2A8E5 /* SpeziDevices in Frameworks */,
@@ -1183,8 +1169,6 @@
 		A9720E412ABB68B300872D23 /* Account */ = {
 			isa = PBXGroup;
 			children = (
-				5681F6E42D93FE030071EA5D /* PhoneNumberViewModel.swift */,
-				56823D3D2D90719300911F09 /* OTCModifier.swift */,
 				A9DFE8A82ABE551400428242 /* AccountButton.swift */,
 				A9720E422ABB68CC00872D23 /* AccountSetupHeader.swift */,
 				A9FE7ACF2AA39BAB0077B045 /* AccountSheet.swift */,
@@ -1192,11 +1176,6 @@
 				A96C56BA2C0DFFCE00D6A50B /* InvitationCodeModule.swift */,
 				4DB624852C73F1BF00573807 /* NotificationSettingsView.swift */,
 				6504B0022D40C8BF001F4A03 /* AccountDisabled.swift */,
-				5628ED382D8D69A50094A682 /* PhoneNumberEntryView.swift */,
-				5628ED3B2D8D69B60094A682 /* PhoneNumberDisplayView.swift */,
-				56823D3B2D90710800911F09 /* OTCEntryView.swift */,
-				5681F6DC2D934D800071EA5D /* CountryListSheet.swift */,
-				5681F6DE2D9350730071EA5D /* PhoneNumberEntryField.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -1221,7 +1200,6 @@
 			name = ENGAGEHF;
 			packageProductDependencies = (
 				2F49B7752980407B00BCB272 /* Spezi */,
-				2FE5DC6329EDD883004B9AB4 /* SpeziAccount */,
 				2FE5DC6629EDD894004B9AB4 /* SpeziContact */,
 				2FE5DC7429EDD8E6004B9AB4 /* SpeziFirebaseAccount */,
 				2FE5DC7629EDD8E6004B9AB4 /* SpeziFirebaseConfiguration */,
@@ -1246,7 +1224,8 @@
 				A977DD5C2C26279E00A2A8E5 /* SpeziBluetoothServices */,
 				9B0723AA2C8F6AE700D901E5 /* FirebaseMessaging */,
 				65D39ABC2CE497630040BF71 /* SpeziNotifications */,
-				56D638222D916257000D6344 /* PhoneNumberKit */,
+				562C49F52DF08030004F7684 /* SpeziAccountPhoneNumbers */,
+				562C49F82DF08047004F7684 /* SpeziAccount */,
 			);
 			productName = ENGAGEHF;
 			productReference = 653A254D283387FE005D4D48 /* ENGAGEHF.app */;
@@ -1345,7 +1324,6 @@
 				A9A0BF012C13121D00B8F3F3 /* XCRemoteSwiftPackageReference "SpeziNetworking" */,
 				A9623C022C17A3F500189BA1 /* XCRemoteSwiftPackageReference "SpeziDevices" */,
 				65D39ABB2CE497630040BF71 /* XCRemoteSwiftPackageReference "SpeziNotifications" */,
-				56D638212D916257000D6344 /* XCRemoteSwiftPackageReference "PhoneNumberKit" */,
 			);
 			productRefGroup = 653A254E283387FE005D4D48 /* Products */;
 			projectDirPath = "";
@@ -1413,10 +1391,7 @@
 				4DF5062F2C2F2B00003E7EFB /* SymptomsPicker.swift in Sources */,
 				4D8AD2C52C4A180300CB4F3E /* MeasurementSeries.swift in Sources */,
 				4D8402C52C52C67100817495 /* RecommendationSummary.swift in Sources */,
-				56823D3C2D90710800911F09 /* OTCEntryView.swift in Sources */,
-				56823D3E2D90719700911F09 /* OTCModifier.swift in Sources */,
 				4D92BA1A2C3E13F300ABCED7 /* FHIRSystem.swift in Sources */,
-				5681F6E52D93FE090071EA5D /* PhoneNumberViewModel.swift in Sources */,
 				2FE5DC3A29EDD7CA004B9AB4 /* Welcome.swift in Sources */,
 				4D734AC02C5C58CA002D6D2F /* View+asButton.swift in Sources */,
 				4D734AC32C5D7C81002D6D2F /* MessageAction.swift in Sources */,
@@ -1425,7 +1400,6 @@
 				4D8CE0FC2C753A4700560327 /* NotificationManager.swift in Sources */,
 				4DC0F67A2C34AD620025AB13 /* VitalsList.swift in Sources */,
 				2FE5DC3829EDD7CA004B9AB4 /* InterestingModules.swift in Sources */,
-				5681F6DF2D9350730071EA5D /* PhoneNumberEntryField.swift in Sources */,
 				9B1864882C9226E90042AC81 /* AccountDetails+Key.swift in Sources */,
 				4D8402B22C51D62400817495 /* MedicationsList.swift in Sources */,
 				4DC990612C7D3A13001E86C5 /* ClosedRange+InitFromSequence.swift in Sources */,
@@ -1455,7 +1429,6 @@
 				4D4670C42C792429004DEAC4 /* FHIRObservationToHKSampleConverter.swift in Sources */,
 				4DDFC7392BF2C3C9002B07A1 /* MessagesSection.swift in Sources */,
 				4D34B3F42C406340006F0D40 /* DateGranularity.swift in Sources */,
-				5681F6DD2D934D800071EA5D /* CountryListSheet.swift in Sources */,
 				4D40729F2C488172007C5621 /* KnownVitalsSeries.swift in Sources */,
 				4D8CE0F52C752D1C00560327 /* Video.swift in Sources */,
 				4DF36FFD2C66A904004D737A /* QuestionnaireSheetView.swift in Sources */,
@@ -1483,7 +1456,6 @@
 				4D92B9F22C3C8D1E00ABCED7 /* MeasurementListSection.swift in Sources */,
 				4D34B3ED2C404C61006F0D40 /* VitalsUnit.swift in Sources */,
 				4D40A4CA2C5AF34D003DC813 /* EducationalVideoCard.swift in Sources */,
-				5628ED392D8D69A50094A682 /* PhoneNumberEntryView.swift in Sources */,
 				4D05F26D2C54696100201581 /* DosageGaugeStyle.swift in Sources */,
 				4D73A5142C5816AF00CCEC46 /* View+ReadSize.swift in Sources */,
 				4D40A4D22C5B0AB2003DC813 /* VideoList.swift in Sources */,
@@ -1504,7 +1476,6 @@
 				21B93B782D039E310034EC86 /* ManagerProtocol.swift in Sources */,
 				4D4670C72C793327004DEAC4 /* SeriesTarget.swift in Sources */,
 				4DA20B542C25F8A600715AA2 /* FHIRDateTime+DateComponents.swift in Sources */,
-				5628ED3C2D8D69B60094A682 /* PhoneNumberDisplayView.swift in Sources */,
 				4D081A282C6C2C8400E13BC8 /* UserMetaDataManager.swift in Sources */,
 				4D8402AA2C51B6A000817495 /* FHIRAliases.swift in Sources */,
 				4D8CE0F72C752D1C00560327 /* VideoCollectionContext.swift in Sources */,
@@ -2123,8 +2094,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/StanfordSpezi/SpeziAccount.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.1.2;
+				branch = "feature/optional-phone-number-key";
+				kind = branch;
 			};
 		};
 		2FE5DC6529EDD894004B9AB4 /* XCRemoteSwiftPackageReference "SpeziContact" */ = {
@@ -2199,14 +2170,6 @@
 				minimumVersion = 4.1.0;
 			};
 		};
-		56D638212D916257000D6344 /* XCRemoteSwiftPackageReference "PhoneNumberKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/marmelroy/PhoneNumberKit.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.2;
-			};
-		};
 		56E708332BB06B7100B08F0A /* XCRemoteSwiftPackageReference "SpeziLicense" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/StanfordSpezi/SpeziLicense.git";
@@ -2269,11 +2232,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2FB099B42A875E2B00B20952 /* XCRemoteSwiftPackageReference "HealthKitOnFHIR" */;
 			productName = HealthKitOnFHIR;
-		};
-		2FE5DC6329EDD883004B9AB4 /* SpeziAccount */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2FE5DC6229EDD883004B9AB4 /* XCRemoteSwiftPackageReference "SpeziAccount" */;
-			productName = SpeziAccount;
 		};
 		2FE5DC6629EDD894004B9AB4 /* SpeziContact */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -2340,10 +2298,15 @@
 			package = 2FE5DC9029EDD9C3004B9AB4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFunctions;
 		};
-		56D638222D916257000D6344 /* PhoneNumberKit */ = {
+		562C49F52DF08030004F7684 /* SpeziAccountPhoneNumbers */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 56D638212D916257000D6344 /* XCRemoteSwiftPackageReference "PhoneNumberKit" */;
-			productName = PhoneNumberKit;
+			package = 2FE5DC6229EDD883004B9AB4 /* XCRemoteSwiftPackageReference "SpeziAccount" */;
+			productName = SpeziAccountPhoneNumbers;
+		};
+		562C49F82DF08047004F7684 /* SpeziAccount */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2FE5DC6229EDD883004B9AB4 /* XCRemoteSwiftPackageReference "SpeziAccount" */;
+			productName = SpeziAccount;
 		};
 		56E708342BB06B7100B08F0A /* SpeziLicense */ = {
 			isa = XCSwiftPackageProductDependency;

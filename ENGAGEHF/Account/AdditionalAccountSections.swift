@@ -16,32 +16,9 @@ import SwiftUI
 
 struct AdditionalAccountSections: View {
     @Environment(Account.self) private var account: Account?
-    @Environment(\.editMode) private var editMode
-    @Binding var presentSheet: Bool
+    
 
     var body: some View {
-        Section {
-            let phoneNumbers = account?.details?.phoneNumbers ?? []
-            ForEach(phoneNumbers, id: \.self) { phoneNumber in
-                Text(phoneNumber)
-            }
-            .onDelete { indexSet in
-                let value = phoneNumbers
-                for index in indexSet {
-                    // TODO: Think about possibly showing an alert when delete fails
-                    // TODO: phoneNumberViewModel.delete(value[index])
-                }
-            }
-            
-            if editMode?.wrappedValue == .active {
-                Button("Add new phone number") {
-                    presentSheet = true
-                }
-            }
-        } header: {
-            Text("Phone numbers")
-        }
-        
         Section {
             if !(account?.details?.disabled ?? false) {
                 NavigationLink {
@@ -85,7 +62,7 @@ struct AdditionalAccountSections: View {
 #Preview {
     NavigationStack {
         List {
-            AdditionalAccountSections(presentSheet: .constant(false))
+            AdditionalAccountSections()
                 .previewWith(standard: ENGAGEHFStandard()) {
                     AccountConfiguration(service: InMemoryAccountService())
                 }
