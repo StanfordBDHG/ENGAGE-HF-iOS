@@ -216,6 +216,7 @@
 		9B1864942C9276C40042AC81 /* AuthFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1864932C9276C40042AC81 /* AuthFlow.swift */; };
 		9B1864982C9350D30042AC81 /* Account+Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1864972C9350D30042AC81 /* Account+Binding.swift */; };
 		9B9C21E02C89389900FE1430 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C21DF2C89389900FE1430 /* ContentView.swift */; };
+		9BB86B312DF02C300043B09A /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 9BB86B302DF02C300043B09A /* InfoPlist.xcstrings */; };
 		A9623C042C17A3F500189BA1 /* SpeziOmron in Frameworks */ = {isa = PBXBuildFile; productRef = A9623C032C17A3F500189BA1 /* SpeziOmron */; };
 		A96C56BB2C0DFFCE00D6A50B /* InvitationCodeModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96C56BA2C0DFFCE00D6A50B /* InvitationCodeModule.swift */; };
 		A9720E432ABB68CC00872D23 /* AccountSetupHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9720E422ABB68CC00872D23 /* AccountSetupHeader.swift */; };
@@ -437,6 +438,7 @@
 		9B1864932C9276C40042AC81 /* AuthFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFlow.swift; sourceTree = "<group>"; };
 		9B1864972C9350D30042AC81 /* Account+Binding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Account+Binding.swift"; sourceTree = "<group>"; };
 		9B9C21DF2C89389900FE1430 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		9BB86B302DF02C300043B09A /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		A96C56BA2C0DFFCE00D6A50B /* InvitationCodeModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationCodeModule.swift; sourceTree = "<group>"; };
 		A9720E422ABB68CC00872D23 /* AccountSetupHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSetupHeader.swift; sourceTree = "<group>"; };
 		A9DFE8A82ABE551400428242 /* AccountButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountButton.swift; sourceTree = "<group>"; };
@@ -511,6 +513,7 @@
 			children = (
 				2FAEC07F297F583900C11C42 /* ENGAGEHF.entitlements */,
 				653A258928339462005D4D48 /* Info.plist */,
+				9BB86B302DF02C300043B09A /* InfoPlist.xcstrings */,
 				2F6025CA29BBE70F0045459E /* GoogleService-Info.plist */,
 			);
 			path = "Supporting Files";
@@ -1300,6 +1303,7 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
 			);
 			mainGroup = 653A2544283387FE005D4D48;
 			packageReferences = (
@@ -1339,6 +1343,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				653A255528338800005D4D48 /* Assets.xcassets in Resources */,
+				9BB86B312DF02C300043B09A /* InfoPlist.xcstrings in Resources */,
 				2FC3439029EE6346002D773C /* SocialSupportQuestionnaire.json in Resources */,
 				2FA0BFED2ACC977500E0EF83 /* Localizable.xcstrings in Resources */,
 				2F6025CB29BBE70F0045459E /* GoogleService-Info.plist in Resources */,
@@ -1662,6 +1667,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = TEST;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
@@ -1786,6 +1792,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
@@ -1843,6 +1850,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;

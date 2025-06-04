@@ -12,14 +12,36 @@
             "state" : "new",
             "value" : "%1$@ Date: %2$@"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ Fecha: %2$@"
+          }
         }
       }
     },
     "%@ Description" : {
-      "comment" : "Accessability label used in DescriptionSection."
+      "comment" : "Accessability label used in DescriptionSection.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ Descripción"
+          }
+        }
+      }
     },
     "%@ More Information" : {
-      "comment" : "Accessability label for the info button in the MedicationDescription view."
+      "comment" : "Accessability label for the info button in the MedicationDescription view.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ Más información"
+          }
+        }
+      }
     },
     "%@ Quantity: %@" : {
       "comment" : "Accessability label used in DisplayMeasurement.",
@@ -28,6 +50,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "%1$@ Quantity: %2$@"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ Cantidad: %2$@"
           }
         }
       }
@@ -40,17 +68,46 @@
             "state" : "new",
             "value" : "%1$@ Unit: %2$@"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ Unidad: %2$@"
+          }
         }
       }
     },
     "%@x daily" : {
-      "comment" : "Schedule frequency"
+      "comment" : "Schedule frequency",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ veces al día"
+          }
+        }
+      }
     },
     "About %@" : {
-      "comment" : "The text displayed in the header of the DescriptionSection view."
+      "comment" : "The text displayed in the header of the DescriptionSection view.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Acerca de %@"
+          }
+        }
+      }
     },
     "Account Disabled" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cuenta deshabilitada"
+          }
+        }
+      }
     },
     "ACCOUNT_NEXT" : {
       "comment" : "The text displayed on the action button in the AccountOnboarding view.",
@@ -59,6 +116,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Next"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siguiente"
           }
         }
       }
@@ -71,6 +134,12 @@
             "state" : "translated",
             "value" : "You may login to your existing account. Or create a new one if you don't have one already."
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Puede iniciar sesión en su cuenta existente. O crear una nueva si aún no la tiene."
+          }
         }
       }
     },
@@ -81,6 +150,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "You are already logged in with the account shown below. Continue or change your account by logging out."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ya ha iniciado sesión con la cuenta que se muestra a continuación. Continúe o cambie su cuenta cerrando sesión."
           }
         }
       }
@@ -93,6 +168,12 @@
             "state" : "translated",
             "value" : "Sign in or create an account."
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Iniciar sesión o cree una cuenta."
+          }
         }
       }
     },
@@ -103,6 +184,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Your Account"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Su cuenta"
           }
         }
       }
@@ -115,35 +202,113 @@
             "state" : "translated",
             "value" : "Account deletion within the app is not currently supported. Please contact your study coordinator."
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Actualmente, no es posible eliminar la cuenta dentro de la aplicación. Contacte con el coordinador del estudio."
+          }
         }
       }
     },
     "Add" : {
-      "comment" : "The text displayed on the AddMeasurementAsyncButton."
+      "comment" : "The text displayed on the AddMeasurementAsyncButton.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Añadir"
+          }
+        }
+      }
     },
     "Add Measurement: %@" : {
-      "comment" : "Accessability label for the TriggerNewMeasurementButton."
+      "comment" : "Accessability label for the TriggerNewMeasurementButton.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Añadir medición: %@"
+          }
+        }
+      }
     },
     "Add Medications" : {
-      "comment" : "The text displayed on the button to add medications within the Medications view."
+      "comment" : "The text displayed on the button to add medications within the Medications view.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Añadir medicamentos"
+          }
+        }
+      }
     },
     "All Data" : {
-      "comment" : "The text displayed in the MeasurementListHeader view."
+      "comment" : "The text displayed in the MeasurementListHeader view.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Todos los datos"
+          }
+        }
+      }
     },
     "An error occurred: %@" : {
-      "comment" : "General Error"
+      "comment" : "General Error",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ocurrió un error: %@"
+          }
+        }
+      }
     },
     "An invitation code is at least 8 characters long." : {
-      "comment" : "The validation rule message on the invitation code text field within the InvitationCodeView."
+      "comment" : "The validation rule message on the invitation code text field within the InvitationCodeView.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El código de invitación tiene al menos 8 caracteres."
+          }
+        }
+      }
     },
     "Appointments" : {
-      "comment" : "The text displayed in the toggleRow to control to receive appointment reminders in the NotificationSettingsView."
+      "comment" : "The text displayed in the toggleRow to control to receive appointment reminders in the NotificationSettingsView.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Citas"
+          }
+        }
+      }
     },
     "Attempted to add a symptom score without first taking survey." : {
-      "comment" : "The error message for a failed attempt to add a symptom score."
+      "comment" : "The error message for a failed attempt to add a symptom score.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se intentó añadir la puntuación de un síntoma sin realizar primero el cuestionario."
+          }
+        }
+      }
     },
     "Average" : {
-      "comment" : "The text displayed as part of the IntervalSummary."
+      "comment" : "The text displayed as part of the IntervalSummary.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Promedio"
+          }
+        }
+      }
     },
     "bloodPressureMissing" : {
       "comment" : "Displayed in the MeasurementListSection of the Heart Health view when no Blood Pressure history found.",
@@ -153,20 +318,58 @@
             "state" : "translated",
             "value" : "No blood pressure measurements available. Please connect your Blood Pressure Cuff device to begin recording."
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No hay mediciones de presión arterial disponibles. Conecte su tensiómetro para comenzar el registro."
+          }
         }
       }
     },
     "Bluetooth Devices" : {
-      "comment" : "The label of the navigation link that leads to the DevicesView in the AdditionalAccountSections."
+      "comment" : "The label of the navigation link that leads to the DevicesView in the AdditionalAccountSections.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dispositivos Bluetooth"
+          }
+        }
+      }
     },
     "BPM" : {
-      "comment" : "Beats per minute"
+      "comment" : "Beats per minute",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PPM"
+          }
+        }
+      }
     },
     "Cancel" : {
-      "comment" : "The text displayed on the toolbar button of the AddMeasurementView."
+      "comment" : "The text displayed on the toolbar button of the AddMeasurementView.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancelar"
+          }
+        }
+      }
     },
     "Contacts" : {
-      "comment" : "The label of the navigation link that leads to the Contacts view in the AdditionalAccountSections."
+      "comment" : "The label of the navigation link that leads to the Contacts view in the AdditionalAccountSections.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contactos"
+          }
+        }
+      }
     },
     "CONTACTS_NAVIGATION_TITLE" : {
       "comment" : "The navigation title of the Contacts view.",
@@ -180,16 +383,48 @@
       }
     },
     "Current" : {
-      "comment" : "The text used as the currentValueLabel used in DosageGauge."
+      "comment" : "The text used as the currentValueLabel used in DosageGauge.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Actual"
+          }
+        }
+      }
     },
     "Current Dose:" : {
-      "comment" : "The text used in the TextualDosageSummary and ScheduleSummary view."
+      "comment" : "The text used in the TextualDosageSummary and ScheduleSummary view.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dosis actual:"
+          }
+        }
+      }
     },
     "daily" : {
-      "comment" : "Schedule frequency"
+      "comment" : "Schedule frequency",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "diariamente"
+          }
+        }
+      }
     },
     "Date" : {
-      "comment" : "The text displayed in the label of the date DatePicker in the AddMeasurementView and in the LineMark and PointMark of the VitalsGraph."
+      "comment" : "The text displayed in the label of the date DatePicker in the AddMeasurementView and in the LineMark and PointMark of the VitalsGraph.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fecha"
+          }
+        }
+      }
     },
     "defaultLoadingError" : {
       "comment" : "The error message for an unsuccessful loading of a web view.",
@@ -199,35 +434,113 @@
             "state" : "translated",
             "value" : "Something went wrong"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Algo salió mal"
+          }
         }
       }
     },
     "Diastolic" : {
-      "comment" : "The lower number in a blood pressure reading"
+      "comment" : "The lower number in a blood pressure reading",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diastólica"
+          }
+        }
+      }
     },
     "Dismiss Button" : {
-      "comment" : "Accessability label for the XButton view of the MessageRow view."
+      "comment" : "Accessability label for the XButton view of the MessageRow view.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Botón de descarte"
+          }
+        }
+      }
     },
     "Education" : {
-      "comment" : "Displayed in the tab item label and navigation title of the Educations view."
+      "comment" : "Displayed in the tab item label and navigation title of the Educations view.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Educación"
+          }
+        }
+      }
     },
     "Education Video Inspect Button" : {
-      "comment" : "Accessability label for the inspect button on the EducationalVideoCard."
+      "comment" : "Accessability label for the inspect button on the EducationalVideoCard.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Botón de inspección del video educativo"
+          }
+        }
+      }
     },
     "Enable Notifications in Settings" : {
-      "comment" : "The text displayed on the button that is shown in the NotificationSettingsView if notifications are not authorized."
+      "comment" : "The text displayed on the button that is shown in the NotificationSettingsView if notifications are not authorized.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Habilitar notificaciones en la configuración"
+          }
+        }
+      }
     },
     "ENGAGE-HF" : {
-      "comment" : "The text used for the navigationTitle of the StudyConcluded view."
+      "comment" : "The text used for the navigationTitle of the StudyConcluded view.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ENGAGE-HF"
+          }
+        }
+      }
     },
     "ENGAGE-HF Application Loading Screen" : {
-      "comment" : "Accessability label for the ContentView if the user is not signed in."
+      "comment" : "Accessability label for the ContentView if the user is not signed in.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pantalla de carga de la aplicación ENGAGE-HF"
+          }
+        }
+      }
     },
     "ENGAGE-HF Icon" : {
-      "comment" : "Accessability label for the ENGAGE-HF icon."
+      "comment" : "Accessability label for the ENGAGE-HF icon.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ícono de ENGAGE-HF"
+          }
+        }
+      }
     },
     "Expansion Button" : {
-      "comment" : "Accessability label for the expansion button."
+      "comment" : "Accessability label for the expansion button.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Botón de expansión"
+          }
+        }
+      }
     },
     "Expires in: %lld:%@" : {
       "comment" : "The text displayed for indicating the remaining time of the QR code validity in the QRCodeShareView.",
@@ -237,41 +550,135 @@
             "state" : "new",
             "value" : "Expires in: %1$lld:%2$@"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Caduca el: %1$lld:%2$@"
+          }
         }
       }
     },
     "Failed to fetch HKUnits for the given samples." : {
-      "comment" : "The error message for an unsuccessfull fetching of HKUnits."
+      "comment" : "The error message for an unsuccessfull fetching of HKUnits.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se pudo obtener la información de HKUnits para las muestras proporcionadas."
+          }
+        }
+      }
     },
     "Failed to identify HKSample concrete subclass." : {
-      "comment" : "The error message for an unknown HKSample."
+      "comment" : "The error message for an unknown HKSample.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se pudo identificar la subclase concreta de HKSample."
+          }
+        }
+      }
     },
     "Failed to save new %@ measurement." : {
-      "comment" : "The error message for an unsuccessfull attempt adding a measurement."
+      "comment" : "The error message for an unsuccessfull attempt adding a measurement.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se pudo guardar la nueva medición de %@."
+          }
+        }
+      }
     },
     "Generating Health Summary" : {
-      "comment" : "The text displayed in the ProgressView of the pdfView in the HealthSummaryView."
+      "comment" : "The text displayed in the ProgressView of the pdfView in the HealthSummaryView.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Generando resumen de salud"
+          }
+        }
+      }
     },
     "Generating QR Code" : {
-      "comment" : "The text displayed in the ProgressView of the qrCodeView in the HealthSummaryView."
+      "comment" : "The text displayed in the ProgressView of the qrCodeView in the HealthSummaryView.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Generar código QR"
+          }
+        }
+      }
     },
     "Graph Selection" : {
-      "comment" : "The label of the GraphPicker view."
+      "comment" : "The label of the GraphPicker view.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selección de gráfico"
+          }
+        }
+      }
     },
     "Health Summary" : {
-      "comment" : "The label of the navigation link that leads to the HealthSummaryView in the AdditionalAccountSections."
+      "comment" : "The label of the navigation link that leads to the HealthSummaryView in the AdditionalAccountSections.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resumen de salud"
+          }
+        }
+      }
     },
     "Health Summary Link" : {
-      "comment" : "The text displayed in the SharePreview of the HealthSummaryView."
+      "comment" : "The text displayed in the SharePreview of the HealthSummaryView.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enlace al resumen de salud"
+          }
+        }
+      }
     },
     "Health Summary QR Code" : {
-      "comment" : "The title displayed in the QRCodeShareView."
+      "comment" : "The title displayed in the QRCodeShareView.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Código QR del resumen de salud"
+          }
+        }
+      }
     },
     "Health Summary Share Mode" : {
-      "comment" : "The label of the shareModeSelector Picker view."
+      "comment" : "The label of the shareModeSelector Picker view.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modo compartir resumen de salud"
+          }
+        }
+      }
     },
     "Heart Health" : {
-      "comment" : "Displayed in tab item label and navigation title of the Heart Health view."
+      "comment" : "Displayed in tab item label and navigation title of the Heart Health view.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salud cardíaca"
+          }
+        }
+      }
     },
     "heartRateMissing" : {
       "comment" : "Displayed in the MeasurementListSection of the Heart Health view when no heart rate measurements were found.",
@@ -281,20 +688,58 @@
             "state" : "translated",
             "value" : "No recent heart rate measurements available. Please connect your Blood Pressure Cuff device to begin recording."
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No hay mediciones recientes de frecuencia cardíaca disponibles. Conecte su tensiómetro para comenzar el registro."
+          }
         }
       }
     },
     "Hold down the Bluetooth button for 3 seconds to put the device into pairing mode." : {
-      "comment" : "The text displayed as the pairing hint in the DevicesView in the AdditionalAccountSections view."
+      "comment" : "The text displayed as the pairing hint in the DevicesView in the AdditionalAccountSections view.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mantenga presionado el botón de Bluetooth durante 3 segundos para activar el modo de emparejamiento."
+          }
+        }
+      }
     },
     "Home" : {
-      "comment" : "Displayed in the tab item label and navigation title of the Dashboard view."
+      "comment" : "Displayed in the tab item label and navigation title of the Dashboard view.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inicio"
+          }
+        }
+      }
     },
     "Inactivity" : {
-      "comment" : "The text displayed in the toggleRow to control to receive inactivity reminders in the NotificationSettingsView."
+      "comment" : "The text displayed in the toggleRow to control to receive inactivity reminders in the NotificationSettingsView.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inactividad"
+          }
+        }
+      }
     },
     "Input: %@" : {
-      "comment" : "Accessability label for the text field in the AddMeasurementView."
+      "comment" : "Accessability label for the text field in the AddMeasurementView.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entrada: %@"
+          }
+        }
+      }
     },
     "INTERESTING_MODULES_AREA1_DESCRIPTION" : {
       "comment" : "The description displayed in the first area of the InterestingModules OnboardingView.",
@@ -303,6 +748,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pair with the provided weight scale and blood pressure cuff in Bluetooth settings."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Empareje con la báscula y el tensiómetro proporcionados en la configuración de Bluetooth."
           }
         }
       }
@@ -315,6 +766,12 @@
             "state" : "translated",
             "value" : "Connect Devices"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conectar dispositivos"
+          }
         }
       }
     },
@@ -325,6 +782,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Use the weight scale and blood pressure cuff to record health data in Heart Health."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Use la báscula y el tensiómetro para registrar datos de salud en Salud cardíaca."
           }
         }
       }
@@ -337,6 +800,12 @@
             "state" : "translated",
             "value" : "Record Health Data"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registrar los datos de salud"
+          }
         }
       }
     },
@@ -347,6 +816,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "See your medication dosage, schedule, and updates in Medications."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Consulte la dosis, el horario y las actualizaciones de sus medicinas en Medicamentos."
           }
         }
       }
@@ -359,6 +834,12 @@
             "state" : "translated",
             "value" : "Tune Medications"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajustar medicamentos"
+          }
         }
       }
     },
@@ -369,6 +850,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Generate and export a full PDF health report in Health Summary."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Genere y exporte un informe de salud completo en PDF en Resumen de salud."
           }
         }
       }
@@ -381,6 +868,12 @@
             "state" : "translated",
             "value" : "Summarize"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resumir"
+          }
         }
       }
     },
@@ -391,6 +884,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Learn more about your medications and heart health in Education."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aprenda más sobre sus medicamentos y su salud cardíaca en Educación."
           }
         }
       }
@@ -403,6 +902,12 @@
             "state" : "translated",
             "value" : "Learn"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aprenda más"
+          }
         }
       }
     },
@@ -413,6 +918,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Next"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siguiente"
           }
         }
       }
@@ -425,6 +936,12 @@
             "state" : "translated",
             "value" : "Together we will..."
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Juntos podremos..."
+          }
         }
       }
     },
@@ -436,14 +953,36 @@
             "state" : "translated",
             "value" : "Key Features"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Características clave"
+          }
         }
       }
     },
     "Invitation Code" : {
-      "comment" : "The navigation title and description displayed next to the invitation code text field within the InvitationCodeView."
+      "comment" : "The navigation title and description displayed next to the invitation code text field within the InvitationCodeView.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Código de invitación"
+          }
+        }
+      }
     },
     "Legend" : {
-      "comment" : "The text displayed in the header of the ColorLegend view."
+      "comment" : "The text displayed in the header of the ColorLegend view.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leyenda"
+          }
+        }
+      }
     },
     "LICENSE_INFO_TITLE" : {
       "comment" : "The label of the navigation link that leads to the ContributionsList view in the AdditionalAccountSections.",
@@ -453,62 +992,212 @@
             "state" : "translated",
             "value" : "License Information"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Información de licencia"
+          }
         }
       }
     },
     "Logout" : {
-      "comment" : "The text displayed on the secondary action button in the InvitationCodeView."
+      "comment" : "The text displayed on the secondary action button in the InvitationCodeView.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cerrar sesión"
+          }
+        }
+      }
     },
     "measurement" : {
-      "comment" : "Single measurement in processing state"
+      "comment" : "Single measurement in processing state",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "medición"
+          }
+        }
+      }
     },
     "measurements" : {
-      "comment" : "Multiple measurements in processing state"
+      "comment" : "Multiple measurements in processing state",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "mediciones"
+          }
+        }
+      }
     },
     "Medication Label: %@" : {
-      "comment" : "Accessability label for the MedicationRecommendationSymbol view."
+      "comment" : "Accessability label for the MedicationRecommendationSymbol view.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Etiqueta del medicamento: %@"
+          }
+        }
+      }
     },
     "Medications" : {
-      "comment" : "Displayed in the tab item label and navigation title of the Medications view and in a toggleRow of the NotificationSettingsView."
+      "comment" : "Displayed in the tab item label and navigation title of the Medications view and in a toggleRow of the NotificationSettingsView.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Medicamentos"
+          }
+        }
+      }
     },
     "Messages" : {
-      "comment" : "The text displayed in the header of MessagesSection and MessageRow views."
+      "comment" : "The text displayed in the header of MessagesSection and MessageRow views.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mensajes"
+          }
+        }
+      }
     },
     "Mild" : {
-      "comment" : "Dizziness symptom score label."
+      "comment" : "Dizziness symptom score label.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leve"
+          }
+        }
+      }
     },
     "Minimal" : {
-      "comment" : "Dizziness symptom score label."
+      "comment" : "Dizziness symptom score label.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mínimo"
+          }
+        }
+      }
     },
     "Moderate" : {
-      "comment" : "Dizziness symptom score label."
+      "comment" : "Dizziness symptom score label.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Moderado"
+          }
+        }
+      }
     },
     "More information is needed to make a recommendation." : {
-      "comment" : "Action required color legend entry."
+      "comment" : "Action required color legend entry.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se necesita más información para hacer una recomendación."
+          }
+        }
+      }
     },
     "No Contacts Available" : {
-      "comment" : "The title displayed in the ContentUnavailableView of the Contacts view."
+      "comment" : "The title displayed in the ContentUnavailableView of the Contacts view.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No hay contactos disponibles"
+          }
+        }
+      }
     },
     "No Data" : {
-      "comment" : "No data available"
+      "comment" : "No data available",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sin datos"
+          }
+        }
+      }
     },
     "No Educational Videos" : {
-      "comment" : "The title displayed in the ContentUnavailableView of the Education view."
+      "comment" : "The title displayed in the ContentUnavailableView of the Education view.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No hay videos educativos"
+          }
+        }
+      }
     },
     "No medication recommendations" : {
-      "comment" : "The text displayed in the ContentUnavailableView of the MedicationsList."
+      "comment" : "The text displayed in the ContentUnavailableView of the MedicationsList.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No hay recomendaciones de medicamentos"
+          }
+        }
+      }
     },
     "No recent %@ measurement available" : {
-      "comment" : "The text displayed in the VitalsCard if no measurement is available."
+      "comment" : "The text displayed in the VitalsCard if no measurement is available.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No hay mediciones recientes de %@ disponibles"
+          }
+        }
+      }
     },
     "No vitals" : {
-      "comment" : "Accessability label for the VitalsCard if no measurement is available."
+      "comment" : "Accessability label for the VitalsCard if no measurement is available.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No hay signos vitales"
+          }
+        }
+      }
     },
     "None" : {
-      "comment" : "Dizziness symptom score label."
+      "comment" : "Dizziness symptom score label.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ninguno"
+          }
+        }
+      }
     },
     "Not Started" : {
-      "comment" : "The text displayed for the current dose in TextualDosageSummary if no information is available."
+      "comment" : "The text displayed for the current dose in TextualDosageSummary if no information is available.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No ha iniciado"
+          }
+        }
+      }
     },
     "NOTIFICATION_PERMISSIONS_BUTTON" : {
       "comment" : "The text displayed on the action button in the NotificationPermission OnboardingView.",
@@ -517,6 +1206,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Allow Notifications"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Permitir notificaciones"
           }
         }
       }
@@ -529,6 +1224,12 @@
             "state" : "translated",
             "value" : "We will send notifications to your device to alert you of changes to your medication recommendations and remind you of upcoming appointments."
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le enviaremos notificaciones a su dispositivo para avisarle sobre cambios en sus recomendaciones de medicamentos y recordarle sus próximas citas."
+          }
         }
       }
     },
@@ -539,6 +1240,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Allow push notifications?"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Permitir notificaciones emergentes?"
           }
         }
       }
@@ -551,29 +1258,90 @@
             "state" : "translated",
             "value" : "Notifications"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notificaciones"
+          }
         }
       }
     },
     "Notifications" : {
-      "comment" : "The label of the navigation link that leads to the NotificationSettingsView in the AdditionalAccountSections and the navigatition title of NotificationSettingsView."
+      "comment" : "The label of the navigation link that leads to the NotificationSettingsView in the AdditionalAccountSections and the navigatition title of NotificationSettingsView.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notificaciones"
+          }
+        }
+      }
     },
     "One-time Code" : {
-      "comment" : "The text displayed next to the one-time code entry field."
+      "comment" : "The text displayed next to the one-time code entry field.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Código de un solo uso"
+          }
+        }
+      }
     },
     "Organization" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Organización"
+          }
+        }
+      }
     },
     "PDF" : {
-      "comment" : "The text displayed as one of the options of the shareModeSelector in the HealthSummaryView. "
+      "comment" : "The text displayed as one of the options of the shareModeSelector in the HealthSummaryView. ",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PDF"
+          }
+        }
+      }
     },
     "Play Video" : {
-      "comment" : "The description of the playVideo MessageAction."
+      "comment" : "The description of the playVideo MessageAction.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reproducir video"
+          }
+        }
+      }
     },
     "Please enter your invitation code to join the ENGAGE-HF study." : {
-      "comment" : "The description displayed in the header of the InvitationCodeView."
+      "comment" : "The description displayed in the header of the InvitationCodeView.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingrese su código de invitación para unirse al estudio de ENGAGE-HF."
+          }
+        }
+      }
     },
     "Process timed out." : {
-      "comment" : "The error message for a timed out health summary generation."
+      "comment" : "The error message for a timed out health summary generation.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tiempo de espera agotado."
+          }
+        }
+      }
     },
     "Processing %lld %@..." : {
       "comment" : "Processing state for health measurements",
@@ -583,95 +1351,323 @@
             "state" : "new",
             "value" : "Processing %1$lld %2$@..."
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Procesando %1$lld %2$@..."
+          }
         }
       }
     },
     "Processing questionnaire..." : {
-      "comment" : "Processing state for questionnaire"
+      "comment" : "Processing state for questionnaire",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Procesando cuestionario..."
+          }
+        }
+      }
     },
     "Processing..." : {
-      "comment" : "Processing state"
+      "comment" : "Processing state",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Procesando..."
+          }
+        }
+      }
     },
     "QR Code" : {
-      "comment" : "The text displayed as one of the options of the shareModeSelector in the HealthSummaryView. "
+      "comment" : "The text displayed as one of the options of the shareModeSelector in the HealthSummaryView. ",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Código QR"
+          }
+        }
+      }
     },
     "QR code for sharing your health summary with your doctor" : {
-      "comment" : "Accessability label used in the QRCodeShareView."
+      "comment" : "Accessability label used in the QRCodeShareView.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Código QR para compartir su resumen de salud con su médico"
+          }
+        }
+      }
     },
     "Questionnaire Loading" : {
-      "comment" : "The text displayed in the ProgressView of the QuestionnaireSheetView."
+      "comment" : "The text displayed in the ProgressView of the QuestionnaireSheetView.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cargando cuestionario"
+          }
+        }
+      }
     },
     "Receive notifications of changes in vital trends." : {
-      "comment" : "The text displayed in the footer of the trendsSection of the NotificationSettingsView."
+      "comment" : "The text displayed in the footer of the trendsSection of the NotificationSettingsView.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reciba notificaciones sobre cambios en las tendencias de signos vitales."
+          }
+        }
+      }
     },
     "Receive reminders for appointments (one day before), symptom surveys, and vital measurements." : {
-      "comment" : "The text displayed in the footer of the remindersSection of the NotificationSettingsView."
+      "comment" : "The text displayed in the footer of the remindersSection of the NotificationSettingsView.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reciba recordatorios de citas (un día antes), cuestionarios de síntomas y mediciones de signos vitales."
+          }
+        }
+      }
     },
     "Receive updates when current medications and medication recommendations change." : {
-      "comment" : "The text displayed in the footer of the updatesSection of the NotificationSettingsView."
+      "comment" : "The text displayed in the footer of the updatesSection of the NotificationSettingsView.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reciba actualizaciones cuando cambien los medicamentos y las recomendaciones actuales."
+          }
+        }
+      }
     },
     "Recent Vitals" : {
-      "comment" : "The text displayed in the header of the RecentVitalsSection view."
+      "comment" : "The text displayed in the header of the RecentVitalsSection view.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Signos vitales recientes"
+          }
+        }
+      }
     },
     "Recommendations" : {
-      "comment" : "The text displayed in a toggleRow of the NotificationSettingsView."
+      "comment" : "The text displayed in a toggleRow of the NotificationSettingsView.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recomendaciones"
+          }
+        }
+      }
     },
     "Redeem Invitation Code" : {
-      "comment" : "The text displayed on the action button in the InvitationCodeView."
+      "comment" : "The text displayed on the action button in the InvitationCodeView.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Canjear código de invitación"
+          }
+        }
+      }
     },
     "Reminders" : {
-      "comment" : "The header text for the remindersSection in the NotificationSettingsView."
+      "comment" : "The header text for the remindersSection in the NotificationSettingsView.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recordatorios"
+          }
+        }
+      }
     },
     "Resolution Picker" : {
-      "comment" : "The text displayed in the label of the picker in the ResolutionPicker view."
+      "comment" : "The text displayed in the label of the picker in the ResolutionPicker view.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selector de resolución"
+          }
+        }
+      }
     },
     "Review" : {
-      "comment" : "The text displayed on the header button in the RecentVitalsSection view."
+      "comment" : "The text displayed on the header button in the RecentVitalsSection view.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Revisión"
+          }
+        }
+      }
     },
     "Score" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Puntuación"
+          }
+        }
+      }
     },
     "Section Expander" : {
-      "comment" : "Accessability Label for the expand button in the VideoListSection view."
+      "comment" : "Accessability Label for the expand button in the VideoListSection view.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Expandir sección"
+          }
+        }
+      }
     },
     "See Health Summary" : {
-      "comment" : "The description of the showHealthSummary MessageAction."
+      "comment" : "The description of the showHealthSummary MessageAction.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Consulte el resumen de salud"
+          }
+        }
+      }
     },
     "See Heart Health" : {
-      "comment" : "The description of the showHeartHealth MessageAction."
+      "comment" : "The description of the showHeartHealth MessageAction.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Consulte la salud cardíaca"
+          }
+        }
+      }
     },
     "See Medications" : {
-      "comment" : "The description of the showMedication MessageAction."
+      "comment" : "The description of the showMedication MessageAction.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Consulte los medicamentos"
+          }
+        }
+      }
     },
     "Self-Managed" : {
 
     },
     "Series" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Serie"
+          }
+        }
+      }
     },
     "Severe" : {
-      "comment" : "Dizziness symptom score label."
+      "comment" : "Dizziness symptom score label.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grave"
+          }
+        }
+      }
     },
     "Share Link" : {
-      "comment" : "AccessabilityLabel of the shareButton in the HealthSummaryView."
+      "comment" : "AccessabilityLabel of the shareButton in the HealthSummaryView.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compartir enlace"
+          }
+        }
+      }
     },
     "Show less" : {
-      "comment" : "The text displayed on the ShowMoreButton if content is expanded."
+      "comment" : "The text displayed on the ShowMoreButton if content is expanded.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostrar menos"
+          }
+        }
+      }
     },
     "Show Measurements" : {
-      "comment" : "The text displayed on one of the toolbar buttons for debug and test environments in the Dashboard view."
+      "comment" : "The text displayed on one of the toolbar buttons for debug and test environments in the Dashboard view.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostrar mediciones"
+          }
+        }
+      }
     },
     "Show more" : {
-      "comment" : "The text displayed on the ShowMoreButton if content is collapsed."
+      "comment" : "The text displayed on the ShowMoreButton if content is collapsed.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostrar más"
+          }
+        }
+      }
     },
     "Skip" : {
-      "comment" : "The text displayed on the secondary action button in the NotificationPermissions OnboardingView."
+      "comment" : "The text displayed on the secondary action button in the NotificationPermissions OnboardingView.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Omitir"
+          }
+        }
+      }
     },
     "Start Questionnaire" : {
-      "comment" : "The description of the completeQuestionnaire MessageAction."
+      "comment" : "The description of the completeQuestionnaire MessageAction.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Iniciar cuestionario"
+          }
+        }
+      }
     },
     "Survey" : {
-      "comment" : "The text displayed in the toggleRow to control to receive questionnaire reminders in the NotificationSettingsView."
+      "comment" : "The text displayed in the toggleRow to control to receive questionnaire reminders in the NotificationSettingsView.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cuestionario"
+          }
+        }
+      }
     },
     "symptomDizziness" : {
       "comment" : "A text used in the HeartHealth view.",
@@ -680,6 +1676,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Your dizziness is important to keep track of because dizziness can be a side effect of your heart or your heart medicines."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Es importante controlar sus mareos, ya que pueden ser un efecto secundario de su corazón o de sus medicamentos para el corazón."
           }
         }
       }
@@ -692,6 +1694,12 @@
             "state" : "translated",
             "value" : "This score shows how your heart failure affects you overall. You can score 0 to 100. A higher score means you are doing better. Over 80 is often considered doing well.\n\nA goal of heart medicines is to improve this score over time or keep it from decreasing. "
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esta puntuación muestra cómo le afecta la insuficiencia cardíaca en general. Puede obtener una puntuación de 0 a 100. Una puntuación más alta significa que está mejor. Más de 80 a menudo se considera que está bien."
+          }
         }
       }
     },
@@ -702,6 +1710,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "This represents how your heart affects your ability to do activity. Higher scores mean you are less limited, and over 80 is often considered doing well."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esto representa cómo su corazón afecta su capacidad para realizar actividades. Las puntuaciones más altas significan que está menos limitado, y por encima de 80 se considera que está bien."
           }
         }
       }
@@ -714,11 +1728,25 @@
             "state" : "translated",
             "value" : "This score represents how content you are with your heart symptoms. Higher scores mean you are overall more content, while lower scores mean you are less satisfied with how you are doing. "
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esta puntuación representa su nivel de satisfacción con sus síntomas cardíacos. Las puntuaciones más altas significan que está más satisfecho en general, mientras que las puntuaciones más bajas significan que está menos satisfecho con su rendimiento."
+          }
         }
       }
     },
     "Symptoms Picker Chevron" : {
-      "comment" : "Accessability label for the SymptomsPicker view."
+      "comment" : "Accessability label for the SymptomsPicker view.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selector de síntomas Chevron"
+          }
+        }
+      }
     },
     "symptomsMissing" : {
       "comment" : "Displayed in the MeasurementListSection in the Heart Health view when no symptom scores were found.",
@@ -727,6 +1755,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "No symptom scores available. Please complete the KCCQ-12 survey to begin recording symptoms history."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No hay puntuaciones de síntomas disponibles. Complete la encuesta KCCQ-12 para comenzar a registrar su historial de síntomas."
           }
         }
       }
@@ -739,6 +1773,12 @@
             "state" : "translated",
             "value" : "This score represents how your heart affects your ability to do social activities. Higher scores mean you are able to do more, while lower scores mean you are more limited by your heart."
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esta puntuación representa cómo su corazón afecta su capacidad para realizar actividades sociales. Las puntuaciones más altas significan que puede hacer más, mientras que las puntuaciones más bajas significan que está más limitado por su corazón."
+          }
         }
       }
     },
@@ -750,68 +1790,226 @@
             "state" : "translated",
             "value" : "This represents the frequency you are experiencing heart-related symptoms. Higher scores mean less frequent symptoms and lower scores mean more frequent symptoms."
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esto representa la frecuencia con la que experimenta síntomas relacionados con el corazón. Las puntuaciones más altas significan síntomas menos frecuentes y las puntuaciones más bajas significan síntomas más frecuentes."
+          }
         }
       }
     },
     "Systolic" : {
-      "comment" : "The higher number in a blood pressure reading"
+      "comment" : "The higher number in a blood pressure reading",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sistólica"
+          }
+        }
+      }
     },
     "Target" : {
-      "comment" : "The text used as the minimumValueLabel used in DosageGauge and DosageGaugeStyle and the maximumValueLabel of PositionedCurrentLabel."
+      "comment" : "The text used as the minimumValueLabel used in DosageGauge and DosageGaugeStyle and the maximumValueLabel of PositionedCurrentLabel.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Objetivo"
+          }
+        }
+      }
     },
     "Thank you for participating in the\nENGAGE-HF study!" : {
-      "comment" : "The title that is displayed in the StudyConcluded view."
+      "comment" : "The title that is displayed in the StudyConcluded view.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gracias por participar!"
+          }
+        }
+      }
     },
     "The invitation code is invalid or has already been used." : {
-      "comment" : "Invitation Code Invalid"
+      "comment" : "Invitation Code Invalid",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El código de invitación no es válido o ya se ha utilizado."
+          }
+        }
+      }
     },
     "There are currently no educational videos available." : {
-      "comment" : "The description displayed in the ContentUnavailableView of the Education view."
+      "comment" : "The description displayed in the ContentUnavailableView of the Education view.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Actualmente no hay videos educativos disponibles."
+          }
+        }
+      }
     },
     "This QR code can be scanned by your healthcare provider to share your health summary." : {
-      "comment" : "The description displayed in the QRCodeShareView."
+      "comment" : "The description displayed in the QRCodeShareView.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Su profesional de la salud puede escanear este código QR para compartir su resumen de salud."
+          }
+        }
+      }
     },
     "Thumbnail Image: %@" : {
-      "comment" : "Accessability label for the success case of the ThumbnailView."
+      "comment" : "Accessability label for the success case of the ThumbnailView.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Imagen en miniatura: %@"
+          }
+        }
+      }
     },
     "Time" : {
-      "comment" : "The text displayed in the label of the time DatePicker in the AddMeasurementView."
+      "comment" : "The text displayed in the label of the time DatePicker in the AddMeasurementView.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hora"
+          }
+        }
+      }
     },
     "Trends" : {
-      "comment" : "The header text for the trendsSection in the NotificationSettingsView."
+      "comment" : "The header text for the trendsSection in the NotificationSettingsView.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tendencias"
+          }
+        }
+      }
     },
     "Trigger Blood Pressure Measurement" : {
-      "comment" : "The text displayed on one of the toolbar buttons for debug and test environments in the Dashboard view."
+      "comment" : "The text displayed on one of the toolbar buttons for debug and test environments in the Dashboard view.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activar medición de presión arterial"
+          }
+        }
+      }
     },
     "Trigger Sheet" : {
-      "comment" : "The text displayed on the button to open the AddMeasurementView."
+      "comment" : "The text displayed on the button to open the AddMeasurementView.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hoja de activación"
+          }
+        }
+      }
     },
     "Trigger Weight Measurement" : {
-      "comment" : "The text displayed on one of the toolbar buttons for debug and test environments in the Dashboard view."
+      "comment" : "The text displayed on one of the toolbar buttons for debug and test environments in the Dashboard view.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activación de medición de peso"
+          }
+        }
+      }
     },
     "twice daily" : {
-      "comment" : "Schedule frequency"
+      "comment" : "Schedule frequency",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "dos veces al día"
+          }
+        }
+      }
     },
     "Unable to create time interval for date: %@" : {
-      "comment" : "The error message for a invalid date."
+      "comment" : "The error message for a invalid date.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se puede crear un intervalo de tiempo para la fecha: %@"
+          }
+        }
+      }
     },
     "Unable to delete measurement, check network connection." : {
-      "comment" : "The error message for a failed deletion of a measurement."
+      "comment" : "The error message for a failed deletion of a measurement.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se puede eliminar la medición; verifique la conexión de red."
+          }
+        }
+      }
     },
     "Unable to load questionnaire." : {
-      "comment" : "The error message for a unsuccessfull questionnaire fetching."
+      "comment" : "The error message for a unsuccessfull questionnaire fetching.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se puede cargar el cuestionario."
+          }
+        }
+      }
     },
     "Unknown Thumbnail" : {
-      "comment" : "Accessability label for the failure case of the ThumbnailView."
+      "comment" : "Accessability label for the failure case of the ThumbnailView.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Imagen en miniatura desconocida"
+          }
+        }
+      }
     },
     "Update data" : {
 
     },
     "Updates" : {
-      "comment" : "The header text for the updatesSection in the NotificationSettingsView."
+      "comment" : "The header text for the updatesSection in the NotificationSettingsView.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Actualizaciones"
+          }
+        }
+      }
     },
     "User authentication failed. Please try to sign in again." : {
-      "comment" : "User Not Authenticated"
+      "comment" : "User Not Authenticated",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error de autenticación de usuario. Intente iniciar sesión nuevamente."
+          }
+        }
+      }
     },
     "userNotSignedIn" : {
       "comment" : "The error message for a user that is not signed in.",
@@ -821,14 +2019,36 @@
             "state" : "translated",
             "value" : "User not signed in."
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sesión de usuario no iniciada."
+          }
         }
       }
     },
     "Very Severe" : {
-      "comment" : "Dizziness symptom score label."
+      "comment" : "Dizziness symptom score label.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muy Grave"
+          }
+        }
+      }
     },
     "Vitals" : {
-      "comment" : "The text displayed in the toggleRow to control to receive vitals reminders in the NotificationSettingsView."
+      "comment" : "The text displayed in the toggleRow to control to receive vitals reminders in the NotificationSettingsView.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Signos vitales"
+          }
+        }
+      }
     },
     "vitalsBloodPressure" : {
       "comment" : "A text used in the HeartHealth view.",
@@ -837,6 +2057,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Blood pressure measures the force in your blood vessels as your heart pumps blood in your body. Check your blood pressure daily to track your heart and how it is responding to your meds.\nThe top number of the blood pressure (called systolic) should be under 130 mmHg. The blood pressure that is too low is different for each person and should be discussed with your care team. If your blood pressure is too low, it can make you feel dizzy.\nDo not exercise in the 30 minutes before taking your blood pressure. Make sure the cuff fits well around your upper arm, and keep your legs uncrossed. For more info, see the blood pressure video."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La presión arterial mide la fuerza en los vasos sanguíneos mientras el corazón bombea sangre en el cuerpo. Controle su presión arterial diariamente para supervisar su corazón y cómo responde a sus medicamentos."
           }
         }
       }
@@ -849,6 +2075,12 @@
             "state" : "translated",
             "value" : "Heart rate is the number of times your heart beats per minute. Checking your heart rate helps your care team see how you are responding to your meds and if any meds need to be changed. \nEveryone’s normal heart rate is different. A heart rate under 50 can make you dizzy. If your heart rate suddenly increases and stays high, you should tell your care team. \nYour heart rate will be checked when you take your blood pressure. For more info, see the heart rate video."
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La frecuencia cardíaca es el número de veces que su corazón late por minuto. Controlar su frecuencia cardíaca ayuda a su equipo médico a ver cómo está respondiendo a sus medicamentos y si es necesario cambiar alguno."
+          }
         }
       }
     },
@@ -860,11 +2092,25 @@
             "state" : "translated",
             "value" : "When the heart is weak, your body can hold onto more salt and water and your weight can rise quickly. This can lead to trouble breathing, leg swelling, and stomach bloating. \nSmall changes in weight are normal. But if you gain over 3 pounds in a day or over 5 pounds in a week, talk to your care team. \nCheck your weight every day at the same time of day to see if there may be fluid buildup. For more info, see the weight video."
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cuando el corazón está débil, su cuerpo puede retener más sal y agua, y su peso puede aumentar rápidamente. Esto puede causar dificultad para respirar, hinchazón de piernas y distensión abdominal."
+          }
         }
       }
     },
     "Weight Trends" : {
-      "comment" : "The text displayed in the toggleRow to control to receive weight trend notifications in the NotificationSettingsView."
+      "comment" : "The text displayed in the toggleRow to control to receive weight trend notifications in the NotificationSettingsView.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tendencias de peso"
+          }
+        }
+      }
     },
     "weightMissing" : {
       "comment" : "Displayed in the MeasurementListSection of the Heart Health view when no weight history was found.",
@@ -873,6 +2119,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "No body weight measurements available. Please connect your Weight Scale device to begin recording."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No hay mediciones de peso corporal disponibles. Conecte su báscula para comenzar a registrar."
           }
         }
       }
@@ -885,6 +2137,12 @@
             "state" : "translated",
             "value" : "Connect to your study via an invitation code from the researchers."
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conéctese a su estudio mediante un código de invitación de los investigadores."
+          }
         }
       }
     },
@@ -895,6 +2153,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Join the Study"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Únase al estudio"
           }
         }
       }
@@ -907,6 +2171,12 @@
             "state" : "translated",
             "value" : "Record and report health data automatically according to a schedule set by the research team."
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registre y reporte sus datos de salud automáticamente según un cronograma establecido por el equipo de investigación."
+          }
         }
       }
     },
@@ -917,6 +2187,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Complete Health Checks"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Complete sus chequeos de salud"
           }
         }
       }
@@ -929,6 +2205,12 @@
             "state" : "translated",
             "value" : "Visualize your heart health progress throughout participation in the study."
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visualice el progreso de su salud cardíaca durante su participación en el estudio."
+          }
         }
       }
     },
@@ -939,6 +2221,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Visualize Data"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visualizar datos"
           }
         }
       }
@@ -951,6 +2239,12 @@
             "state" : "translated",
             "value" : "Learn More"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Más información"
+          }
         }
       }
     },
@@ -961,6 +2255,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Remote study participation made easy."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Participación remota y simplificada en estudios."
           }
         }
       }
@@ -973,20 +2273,58 @@
             "state" : "translated",
             "value" : "Welcome to ENGAGE-HF"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bienvenido a ENGAGE-HF"
+          }
         }
       }
     },
     "You are not on this medication, but it might be helpful in the future." : {
-      "comment" : "No action required legend entry."
+      "comment" : "No action required legend entry.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No está tomando este medicamento, pero podría ser útil en el futuro."
+          }
+        }
+      }
     },
     "You are on this medication, but may benefit from a higher dose." : {
-      "comment" : "Improvement available color legend entry."
+      "comment" : "Improvement available color legend entry.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Está tomando este medicamento, pero podría beneficiarse de una dosis más alta."
+          }
+        }
+      }
     },
     "You are on your target dose." : {
-      "comment" : "Target dose reached color legend entry."
+      "comment" : "Target dose reached color legend entry.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Está en su dosis objetivo."
+          }
+        }
+      }
     },
     "Your account was deactivated\nby your study coordinator." : {
-      "comment" : "The note that is displayed in the StudyConcluded view."
+      "comment" : "The note that is displayed in the StudyConcluded view.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Su cuenta fue desactivada."
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
