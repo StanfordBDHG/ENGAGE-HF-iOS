@@ -1,5 +1,5 @@
 {
-  "originHash" : "a06545ec288727487714798acd2055ea9e7ffbe9995b0588f644669500b9624b",
+  "originHash" : "759b5b442d547635957ae0aecf41ebdbfdd51c12c31492ed125bcf4000e9bec1",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -205,7 +205,7 @@
       "location" : "https://github.com/StanfordSpezi/SpeziAccount.git",
       "state" : {
         "branch" : "feature/optional-phone-number-key",
-        "revision" : "10db010e5a3d0c40448b98a6339c342fbf5c2227"
+        "revision" : "68622ba278e36522f96d376a9114d692499708c1"
       }
     },
     {
