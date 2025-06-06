@@ -8,6 +8,8 @@
 
 import Foundation
 import SpeziAccount
+import SwiftUI
+
 
 // swiftlint:disable attributes discouraged_optional_boolean
 

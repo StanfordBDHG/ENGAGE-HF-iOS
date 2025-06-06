@@ -7,13 +7,16 @@
 //
 
 import FirebaseFirestore
+import FirebaseFunctions
 import FirebaseStorage
 import HealthKit
 import HealthKitOnFHIR
 import OSLog
 import PDFKit
+import PhoneNumberKit
 import Spezi
 import SpeziAccount
+import SpeziAccountPhoneNumbers
 import SpeziDevices
 import SpeziFirebaseAccount
 import SpeziFirestore
@@ -22,7 +25,7 @@ import SpeziQuestionnaire
 import SwiftUI
 
 
-actor ENGAGEHFStandard: Standard, EnvironmentAccessible {
+actor ENGAGEHFStandard: Standard, EnvironmentAccessible, PhoneVerificationConstraint {
     @Dependency(Account.self) private var account: Account?
     @Dependency(MessageManager.self) private var messageManager: MessageManager?
     
@@ -112,6 +115,40 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible {
                 .setData(from: response)
         } catch {
             throw FirestoreError(error)
+        }
+    }
+    
+    func startVerification(_ accountId: String, _ data: SpeziAccountPhoneNumbers.StartVerificationRequest) async throws {
+        let function = Functions.functions().httpsCallable("startPhoneNumberVerification")
+        let e164FormattedNumber = PhoneNumberUtility().format(data.phoneNumber, toType: .e164)
+        do {
+            _ = try await function.call(["phoneNumber": e164FormattedNumber])
+        } catch {
+            logger.error("Failed to start phone number verification: \(error.localizedDescription)")
+            throw error
+        }
+    }
+    
+    func completeVerification(_ accountId: String, _ data: SpeziAccountPhoneNumbers.CompleteVerificationRequest) async throws {
+        let function = Functions.functions().httpsCallable("checkPhoneNumberVerification")
+        let e164FormattedNumber = PhoneNumberUtility().format(data.phoneNumber, toType: .e164)
+        let code = data.code
+        do {
+            _ = try await function.call(["phoneNumber": e164FormattedNumber, "code": code])
+        } catch {
+            logger.error("Failed to complete phone number verification: \(error.localizedDescription)")
+            throw error
+        }
+    }
+    
+    func delete(_ accountId: String, _ number: PhoneNumberKit.PhoneNumber) async throws {
+        let function = Functions.functions().httpsCallable("deletePhoneNumber")
+        let e164FormattedNumber = PhoneNumberUtility().format(number, toType: .e164)
+        do {
+            _ = try await function.call(["phoneNumber": e164FormattedNumber])
+        } catch {
+            logger.error("Failed to delete phone number: \(error.localizedDescription)")
+            throw error
         }
     }
 }

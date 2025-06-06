@@ -10,6 +10,7 @@
 import SpeziBluetooth
 import SpeziDevicesUI
 import SpeziLicense
+import SpeziViews
 import SwiftUI
 
 
