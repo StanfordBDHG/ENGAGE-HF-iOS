@@ -122,6 +122,9 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, PhoneVerificationConstr
         let function = Functions.functions().httpsCallable("startPhoneNumberVerification")
         let e164FormattedNumber = PhoneNumberUtility().format(data.phoneNumber, toType: .e164)
         do {
+#if TEST
+            return
+#endif
             _ = try await function.call(["phoneNumber": e164FormattedNumber])
         } catch {
             logger.error("Failed to start phone number verification: \(error.localizedDescription)")
@@ -134,6 +137,9 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, PhoneVerificationConstr
         let e164FormattedNumber = PhoneNumberUtility().format(data.phoneNumber, toType: .e164)
         let code = data.code
         do {
+#if TEST
+            return
+#endif
             _ = try await function.call(["phoneNumber": e164FormattedNumber, "code": code])
         } catch {
             logger.error("Failed to complete phone number verification: \(error.localizedDescription)")

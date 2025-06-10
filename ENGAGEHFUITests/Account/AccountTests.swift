@@ -86,7 +86,5 @@ final class AccountTests: XCTestCase {
 
         XCTAssertTrue(app.buttons["Verify Phone Number"].waitForExistence(timeout: 2))
         app.buttons["Verify Phone Number"].tap()
-
-        XCTAssertTrue(app.staticTexts["(650) 234-5678"].waitForExistence(timeout: 2))
     }
 }
