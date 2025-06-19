@@ -118,9 +118,9 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, PhoneVerificationConstr
         }
     }
     
-    func startVerification(_ accountId: String, _ data: SpeziAccountPhoneNumbers.StartVerificationRequest) async throws {
+    func startVerification(_ number: PhoneNumber) async throws {
         let function = Functions.functions().httpsCallable("startPhoneNumberVerification")
-        let e164FormattedNumber = PhoneNumberUtility().format(data.phoneNumber, toType: .e164)
+        let e164FormattedNumber = PhoneNumberUtility().format(number, toType: .e164)
         do {
 #if TEST
             return
@@ -132,10 +132,9 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, PhoneVerificationConstr
         }
     }
     
-    func completeVerification(_ accountId: String, _ data: SpeziAccountPhoneNumbers.CompleteVerificationRequest) async throws {
+    func completeVerification(_ number: PhoneNumber, _ code: String) async throws {
         let function = Functions.functions().httpsCallable("checkPhoneNumberVerification")
-        let e164FormattedNumber = PhoneNumberUtility().format(data.phoneNumber, toType: .e164)
-        let code = data.code
+        let e164FormattedNumber = PhoneNumberUtility().format(number, toType: .e164)
         do {
 #if TEST
             return
@@ -147,7 +146,7 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, PhoneVerificationConstr
         }
     }
     
-    func delete(_ accountId: String, _ number: PhoneNumberKit.PhoneNumber) async throws {
+    func delete(_ number: PhoneNumber) async throws {
         let function = Functions.functions().httpsCallable("deletePhoneNumber")
         let e164FormattedNumber = PhoneNumberUtility().format(number, toType: .e164)
         do {
