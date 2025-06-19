@@ -54,4 +54,39 @@ final class AccountTests: XCTestCase {
         XCTAssert(tabBar.buttons["Home"].waitForExistence(timeout: 2))
         tabBar.buttons["Home"].tap()
     }
+    
+    func testAddPhoneNumber() throws {
+        let app = XCUIApplication()
+
+        _ = app.staticTexts["Home"].waitForExistence(timeout: 10)
+
+        XCTAssert(app.navigationBars.buttons["Your Account"].waitForExistence(timeout: 2))
+        app.navigationBars.buttons["Your Account"].tap()
+
+        XCTAssertTrue(app.buttons["Phone Numbers"].exists)
+        app.buttons["Phone Numbers"].tap()
+        
+        XCTAssertTrue(app.navigationBars.buttons["Add Phone Number"].exists)
+        app.navigationBars.buttons["Add Phone Number"].tap()
+        
+        let phoneNumber = "6502345678"
+        let phoneField = app.textFields["Phone Number"]
+        XCTAssertTrue(phoneField.exists)
+        phoneField.tap()
+        phoneField.typeText(phoneNumber)
+
+        XCTAssert(app.buttons["Send Verification Message"].waitForExistence(timeout: 2))
+        app.buttons["Send Verification Message"].tap()
+
+        let otc = "012345"
+        let codeField = app.textFields["Verification code entry"]
+        XCTAssertTrue(codeField.waitForExistence(timeout: 2.0))
+        
+        for key in otc.enumerated() {
+            app.keys["\(key.element)"].tap()
+        }
+
+        XCTAssertTrue(app.buttons["Verify Phone Number"].waitForExistence(timeout: 2))
+        app.buttons["Verify Phone Number"].tap()
+    }
 }

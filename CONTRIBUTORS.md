@@ -13,6 +13,6 @@ ENGAGE-HF Contributors
 
 * [Paul Schmiedmayer](https://github.com/PSchmiedmayer)
 * [Nick Riedman](https://github.com/nriedman)
-* [Andreas Bauer](https://github.com/Supereg)
+* [Andreas Bauer](https://github.com/bauer-andreas)
 * [Philipp Zagar](https://github.com/philippzagar)
 * [Nikolai Madlener](https://github.com/NikolaiMadlener)
