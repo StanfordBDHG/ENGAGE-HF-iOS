@@ -79,9 +79,11 @@ final class AccountTests: XCTestCase {
         app.buttons["Send Verification Message"].tap()
 
         let otc = "012345"
-        XCTAssertTrue(app.textFields["One-Time Code Entry Pin 0"].waitForExistence(timeout: 5))
-        for (index, pin) in otc.enumerated() {
-            app.textFields["One-Time Code Entry Pin \(index)"].typeText(String(pin))
+        let codeField = app.textFields["Verification code entry"]
+        XCTAssertTrue(codeField.waitForExistence(timeout: 2.0))
+        
+        for key in otc.enumerated() {
+            app.keys["\(key.element)"].tap()
         }
 
         XCTAssertTrue(app.buttons["Verify Phone Number"].waitForExistence(timeout: 2))
