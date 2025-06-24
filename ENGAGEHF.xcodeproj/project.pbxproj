@@ -194,10 +194,11 @@
 		4DF5062F2C2F2B00003E7EFB /* SymptomsPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF5062E2C2F2B00003E7EFB /* SymptomsPicker.swift */; };
 		4DF506312C2F3421003E7EFB /* VitalsGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF506302C2F3421003E7EFB /* VitalsGraph.swift */; };
 		4DF5063A2C2F5104003E7EFB /* DisplayMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF506392C2F5104003E7EFB /* DisplayMeasurement.swift */; };
-		562C49F62DF08030004F7684 /* SpeziAccountPhoneNumbers in Frameworks */ = {isa = PBXBuildFile; productRef = 562C49F52DF08030004F7684 /* SpeziAccountPhoneNumbers */; };
-		562C49F92DF08047004F7684 /* SpeziAccount in Frameworks */ = {isa = PBXBuildFile; productRef = 562C49F82DF08047004F7684 /* SpeziAccount */; };
 		562E7C222D8039630088D8DF /* QRCodeShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562E7C212D8039630088D8DF /* QRCodeShareView.swift */; };
 		5681F6C62D9292F90071EA5D /* HealthSummaryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5681F6C52D9292ED0071EA5D /* HealthSummaryUITests.swift */; };
+		56A0372B2E0AACD9001E2A00 /* SpeziAccount in Frameworks */ = {isa = PBXBuildFile; productRef = 56A0372A2E0AACD9001E2A00 /* SpeziAccount */; };
+		56A0372D2E0AACD9001E2A00 /* SpeziAccountPhoneNumbers in Frameworks */ = {isa = PBXBuildFile; productRef = 56A0372C2E0AACD9001E2A00 /* SpeziAccountPhoneNumbers */; };
+		56A037302E0AB395001E2A00 /* PhoneNumberKit in Frameworks */ = {isa = PBXBuildFile; productRef = 56A0372F2E0AB395001E2A00 /* PhoneNumberKit */; };
 		56E708352BB06B7100B08F0A /* SpeziLicense in Frameworks */ = {isa = PBXBuildFile; productRef = 56E708342BB06B7100B08F0A /* SpeziLicense */; };
 		56E7083B2BB06F6F00B08F0A /* SwiftPackageList in Frameworks */ = {isa = PBXBuildFile; productRef = 56E7083A2BB06F6F00B08F0A /* SwiftPackageList */; };
 		6504AFF62D40383F001F4A03 /* StudyConcluded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6504AFF52D40382F001F4A03 /* StudyConcluded.swift */; };
@@ -452,10 +453,10 @@
 			files = (
 				A977DD562C25E2DA00A2A8E5 /* SpeziDevicesUI in Frameworks */,
 				9733CFC62A8066DE001B7ABC /* SpeziOnboarding in Frameworks */,
-				562C49F62DF08030004F7684 /* SpeziAccountPhoneNumbers in Frameworks */,
 				A9A0BF032C13121D00B8F3F3 /* SpeziNumerics in Frameworks */,
 				2FB099AF2A875DF100B20952 /* FirebaseAuth in Frameworks */,
 				97D73D6A2AD860AD00B47FA0 /* SpeziFirebaseStorage in Frameworks */,
+				56A0372D2E0AACD9001E2A00 /* SpeziAccountPhoneNumbers in Frameworks */,
 				2FE5DC6729EDD894004B9AB4 /* SpeziContact in Frameworks */,
 				2FE5DC8429EDD934004B9AB4 /* SpeziQuestionnaire in Frameworks */,
 				2FB099B12A875DF100B20952 /* FirebaseFirestore in Frameworks */,
@@ -465,12 +466,13 @@
 				A977DD5D2C26279E00A2A8E5 /* SpeziBluetoothServices in Frameworks */,
 				65D39ABD2CE497630040BF71 /* SpeziNotifications in Frameworks */,
 				4D49AB022BC9D50400C77310 /* SpeziBluetooth in Frameworks */,
+				56A0372B2E0AACD9001E2A00 /* SpeziAccount in Frameworks */,
 				56E708352BB06B7100B08F0A /* SpeziLicense in Frameworks */,
 				9B0723AB2C8F6AE700D901E5 /* FirebaseMessaging in Frameworks */,
 				A9623C042C17A3F500189BA1 /* SpeziOmron in Frameworks */,
 				2FE5DC7529EDD8E6004B9AB4 /* SpeziFirebaseAccount in Frameworks */,
-				562C49F92DF08047004F7684 /* SpeziAccount in Frameworks */,
 				9739A0C62AD7B5730084BEA5 /* FirebaseStorage in Frameworks */,
+				56A037302E0AB395001E2A00 /* PhoneNumberKit in Frameworks */,
 				4DBDD3482BC073EF001FB0CA /* FirebaseFunctions in Frameworks */,
 				A977DD542C25E2DA00A2A8E5 /* SpeziDevices in Frameworks */,
 				2F49B7762980407C00BCB272 /* Spezi in Frameworks */,
@@ -1224,8 +1226,9 @@
 				A977DD5C2C26279E00A2A8E5 /* SpeziBluetoothServices */,
 				9B0723AA2C8F6AE700D901E5 /* FirebaseMessaging */,
 				65D39ABC2CE497630040BF71 /* SpeziNotifications */,
-				562C49F52DF08030004F7684 /* SpeziAccountPhoneNumbers */,
-				562C49F82DF08047004F7684 /* SpeziAccount */,
+				56A0372A2E0AACD9001E2A00 /* SpeziAccount */,
+				56A0372C2E0AACD9001E2A00 /* SpeziAccountPhoneNumbers */,
+				56A0372F2E0AB395001E2A00 /* PhoneNumberKit */,
 			);
 			productName = ENGAGEHF;
 			productReference = 653A254D283387FE005D4D48 /* ENGAGEHF.app */;
@@ -1307,7 +1310,6 @@
 			mainGroup = 653A2544283387FE005D4D48;
 			packageReferences = (
 				2F49B7742980407B00BCB272 /* XCRemoteSwiftPackageReference "Spezi" */,
-				2FE5DC6229EDD883004B9AB4 /* XCRemoteSwiftPackageReference "SpeziAccount" */,
 				2FE5DC6529EDD894004B9AB4 /* XCRemoteSwiftPackageReference "SpeziContact" */,
 				2FE5DC7329EDD8E6004B9AB4 /* XCRemoteSwiftPackageReference "SpeziFirebase" */,
 				2FE5DC8229EDD934004B9AB4 /* XCRemoteSwiftPackageReference "SpeziQuestionnaire" */,
@@ -1324,6 +1326,8 @@
 				A9A0BF012C13121D00B8F3F3 /* XCRemoteSwiftPackageReference "SpeziNetworking" */,
 				A9623C022C17A3F500189BA1 /* XCRemoteSwiftPackageReference "SpeziDevices" */,
 				65D39ABB2CE497630040BF71 /* XCRemoteSwiftPackageReference "SpeziNotifications" */,
+				56A037292E0AACD8001E2A00 /* XCRemoteSwiftPackageReference "SpeziAccount" */,
+				56A0372E2E0AB395001E2A00 /* XCRemoteSwiftPackageReference "PhoneNumberKit" */,
 			);
 			productRefGroup = 653A254E283387FE005D4D48 /* Products */;
 			projectDirPath = "";
@@ -2048,14 +2052,6 @@
 				minimumVersion = 0.2.4;
 			};
 		};
-		2FE5DC6229EDD883004B9AB4 /* XCRemoteSwiftPackageReference "SpeziAccount" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/StanfordSpezi/SpeziAccount.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.1.2;
-			};
-		};
 		2FE5DC6529EDD894004B9AB4 /* XCRemoteSwiftPackageReference "SpeziContact" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/StanfordSpezi/SpeziContact.git";
@@ -2069,7 +2065,7 @@
 			repositoryURL = "https://github.com/StanfordSpezi/SpeziFirebase.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.1;
+				minimumVersion = 2.0.6;
 			};
 		};
 		2FE5DC8229EDD934004B9AB4 /* XCRemoteSwiftPackageReference "SpeziQuestionnaire" */ = {
@@ -2126,6 +2122,22 @@
 			requirement = {
 				kind = upToNextMinorVersion;
 				minimumVersion = 4.8.0;
+			};
+		};
+		56A037292E0AACD8001E2A00 /* XCRemoteSwiftPackageReference "SpeziAccount" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/StanfordSpezi/SpeziAccount.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.3.1;
+			};
+		};
+		56A0372E2E0AB395001E2A00 /* XCRemoteSwiftPackageReference "PhoneNumberKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/marmelroy/PhoneNumberKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.1.1;
 			};
 		};
 		56E708332BB06B7100B08F0A /* XCRemoteSwiftPackageReference "SpeziLicense" */ = {
@@ -2256,15 +2268,20 @@
 			package = 2FE5DC9029EDD9C3004B9AB4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFunctions;
 		};
-		562C49F52DF08030004F7684 /* SpeziAccountPhoneNumbers */ = {
+		56A0372A2E0AACD9001E2A00 /* SpeziAccount */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2FE5DC6229EDD883004B9AB4 /* XCRemoteSwiftPackageReference "SpeziAccount" */;
+			package = 56A037292E0AACD8001E2A00 /* XCRemoteSwiftPackageReference "SpeziAccount" */;
+			productName = SpeziAccount;
+		};
+		56A0372C2E0AACD9001E2A00 /* SpeziAccountPhoneNumbers */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 56A037292E0AACD8001E2A00 /* XCRemoteSwiftPackageReference "SpeziAccount" */;
 			productName = SpeziAccountPhoneNumbers;
 		};
-		562C49F82DF08047004F7684 /* SpeziAccount */ = {
+		56A0372F2E0AB395001E2A00 /* PhoneNumberKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2FE5DC6229EDD883004B9AB4 /* XCRemoteSwiftPackageReference "SpeziAccount" */;
-			productName = SpeziAccount;
+			package = 56A0372E2E0AB395001E2A00 /* XCRemoteSwiftPackageReference "PhoneNumberKit" */;
+			productName = PhoneNumberKit;
 		};
 		56E708342BB06B7100B08F0A /* SpeziLicense */ = {
 			isa = XCSwiftPackageProductDependency;
