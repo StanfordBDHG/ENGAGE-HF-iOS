@@ -117,8 +117,7 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
     
     private var customDecoder: FirebaseFirestore.Firestore.Decoder {
         let decoder = FirebaseFirestore.Firestore.Decoder()
-        // swiftlint:disable:next force_unwrapping
-        decoder.userInfo[CodingUserInfoKey(rawValue: "com.roymarmelstein.PhoneNumberKit.decoding-strategy")!] = PhoneNumberDecodingStrategy.e164
+        decoder.userInfo[.phoneNumberDecodingStrategy] = PhoneNumberDecodingStrategy.e164
         return decoder
     }
 }

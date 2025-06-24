@@ -1,5 +1,5 @@
 {
-  "originHash" : "759b5b442d547635957ae0aecf41ebdbfdd51c12c31492ed125bcf4000e9bec1",
+  "originHash" : "a2dbd0aaeca1bc8495d4d177907cf773b07c349ebebc4a060167e8790e6decb1",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -150,8 +150,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/marmelroy/PhoneNumberKit.git",
       "state" : {
-        "revision" : "24af4d5147fc42e97cb6cb3761d5d9933d41c240",
-        "version" : "4.1.0"
+        "revision" : "16c847cbdb024a66cf330fa1d6c3d3e6fc827c50",
+        "version" : "4.1.1"
       }
     },
     {
@@ -204,8 +204,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziAccount.git",
       "state" : {
-        "revision" : "ff4a953446d46222d8e473505f64126e1f7a5065",
-        "version" : "2.3.0"
+        "revision" : "b85bd877f7fedc9866981590e4ac715adb0ff81f",
+        "version" : "2.3.1"
       }
     },
     {
@@ -240,8 +240,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziFirebase.git",
       "state" : {
-        "revision" : "9e487efb60d807d02effbe39eb9e859f485b78a6",
-        "version" : "2.0.4"
+        "revision" : "633bc3acef854fd1570f8f3619e04e3aca81ea33",
+        "version" : "2.0.6"
       }
     },
     {
