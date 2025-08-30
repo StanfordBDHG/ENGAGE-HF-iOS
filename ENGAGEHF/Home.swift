@@ -30,7 +30,8 @@ struct HomeView: View {
     @Environment(NavigationManager.self) private var navigationManager
     @Environment(NotificationManager.self) private var notificationManager
     @Environment(Account.self) private var account: Account?
-    
+    @Environment(PairedDevices.self) private var pairedDevices
+
     @State private var presentingAccount = false
     
 
@@ -82,6 +83,11 @@ struct HomeView: View {
                 }
             }
             .viewStateAlert(state: $notificationManager.state)
+            .onAppear {
+                if pairedDevices.needsAccessorySetupKitMigration {
+                    pairedDevices.showAccessoryMigration()
+                }
+            }
     }
 }
 

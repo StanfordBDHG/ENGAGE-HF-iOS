@@ -1,5 +1,5 @@
 {
-  "originHash" : "a06545ec288727487714798acd2055ea9e7ffbe9995b0588f644669500b9624b",
+  "originHash" : "1d22fe2aa8d68c3f919c0207bff17b90bba299a59dc1133ae563f4d2beee75ef",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -213,8 +213,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/Spezi.git",
       "state" : {
-        "revision" : "a15b01c99cf7f8f9357af1be092d30bfcfd21dad",
-        "version" : "1.9.0"
+        "revision" : "aea262c1bba638494c3ce9a749e834aafd10ba63",
+        "version" : "1.9.2"
       }
     },
     {
@@ -231,8 +231,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziBluetooth.git",
       "state" : {
-        "revision" : "6bfc0378fca295237dee9746f9697a773410c658",
-        "version" : "3.2.2"
+        "revision" : "c52a63755a4a11c479f12128dd896f707f8e6dd8",
+        "version" : "3.3.1"
       }
     },
     {
@@ -249,8 +249,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziDevices.git",
       "state" : {
-        "revision" : "e842a01372c6682f4ed390601125a6928e46c1ee",
-        "version" : "1.5.0"
+        "branch" : "feature/accessory-setup-kit",
+        "revision" : "5a8f697edef734ab5cf919e5a5b75f1c26965266"
       }
     },
     {

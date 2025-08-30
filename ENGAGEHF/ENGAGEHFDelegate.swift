@@ -82,8 +82,17 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
             }
 
             Bluetooth {
-                Discover(OmronWeightScale.self, by: .advertisedService(WeightScaleService.self))
-                Discover(OmronBloodPressureCuff.self, by: .advertisedService(BloodPressureService.self))
+                if #available(iOS 18, *) {
+                    // Normally, we would supply the `supportOptions: .bluetoothPairingLE` argument to automatically handle the "Pair" alert.
+                    // However, some build of iOS broke this, and if you do this with a factory reset device, results in the following error:
+                    // Code=14, Description=Peer removed pairing information and the device will never connect or pair.
+                    // This seems to not be a problem with the SC-150 scale.
+                    Discover(OmronBloodPressureCuff.self, by: .accessory(advertising: BloodPressureService.self))
+                    Discover(OmronWeightScale.self, by: .accessory(advertising: WeightScaleService.self, supportOptions: .bluetoothPairingLE))
+                } else {
+                    Discover(OmronBloodPressureCuff.self, by: .advertisedService(BloodPressureService.self))
+                    Discover(OmronWeightScale.self, by: .advertisedService(WeightScaleService.self))
+                }
             }
             
             PairedDevices()
