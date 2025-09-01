@@ -40,7 +40,7 @@ struct SymptomsContentView: View {
         SymptomsGraphSection(symptomsType: $symptomsType)
         DescriptionSection(
             localizedExplanation: symptomsType.localizedExplanation,
-            quantityName: symptomsType.fullName
+            quantityName: symptomsType.localizedFullName
         )
         MeasurementListSection(
             data: listDisplayData,

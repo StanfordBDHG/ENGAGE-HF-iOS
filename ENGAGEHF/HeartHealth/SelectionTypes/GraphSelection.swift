@@ -13,7 +13,7 @@ import HealthKit
 
 /// The type of Vitals to be displayed as the main content of the Heart Health view
 /// Chosen by GraphPicker in HeartHealth
-enum GraphSelection: CaseIterable, Identifiable, CustomStringConvertible, Equatable {
+enum GraphSelection: String, CaseIterable, Identifiable, CustomLocalizedStringResourceConvertible, Equatable {
     case symptoms
     case weight
     case heartRate
@@ -24,16 +24,7 @@ enum GraphSelection: CaseIterable, Identifiable, CustomStringConvertible, Equata
         self
     }
     
-    var description: String {
-        switch self {
-        case .symptoms: "Symptoms"
-        case .weight: "Weight"
-        case .heartRate: "HR"
-        case .bloodPressure: "BP"
-        }
-    }
-    
-    var fullName: String {
+    var fullName: LocalizedStringResource {
         switch self {
         case .symptoms: "Symptom Score"
         case .weight: "Body Weight"
@@ -42,12 +33,21 @@ enum GraphSelection: CaseIterable, Identifiable, CustomStringConvertible, Equata
         }
     }
     
-    var localizedEmptyHistoryWarning: String {
+    var localizedStringResource: LocalizedStringResource {
         switch self {
-        case .symptoms: String(localized: "symptomsMissing")
-        case .weight: String(localized: "weightMissing")
-        case .heartRate: String(localized: "heartRateMissing")
-        case .bloodPressure: String(localized: "bloodPressureMissing")
+        case .symptoms: "Symptoms"
+        case .weight: "Weight"
+        case .heartRate: "HR"
+        case .bloodPressure: "BP"
+        }
+    }
+    
+    var localizedEmptyHistoryWarning: LocalizedStringResource {
+        switch self {
+        case .symptoms: "symptomsMissing"
+        case .weight: "weightMissing"
+        case .heartRate: "heartRateMissing"
+        case .bloodPressure: "bloodPressureMissing"
         }
     }
     

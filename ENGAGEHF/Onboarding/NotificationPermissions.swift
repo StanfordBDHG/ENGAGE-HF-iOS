@@ -7,17 +7,18 @@
 //
 
 import SpeziOnboarding
+import SpeziViews
 import SwiftUI
 import UserNotifications
 
 
 struct NotificationPermissions: View {
-    @Environment(OnboardingNavigationPath.self) private var onboardingNavigationPath
+    @Environment(ManagedNavigationStack.Path.self) private var managedNavigationStackPath
     @Environment(NotificationManager.self) private var notificationManager
     
     var body: some View {
         OnboardingView(
-            contentView: {
+            content: {
                 VStack {
                     OnboardingTitleView(
                         title: "NOTIFICATION_PERMISSIONS_TITLE",
@@ -33,9 +34,10 @@ struct NotificationPermissions: View {
                         .padding(.vertical, 16)
                     Spacer()
                 }
-            }, actionView: {
+            },
+            footer: {
                 OnboardingActionsView(
-                    primaryText: "NOTIFICATION_PERMISSIONS_BUTTON",
+                    primaryTitle: "NOTIFICATION_PERMISSIONS_BUTTON",
                     primaryAction: {
                         // Notification Authorization is not available in the preview simulator.
                         if ProcessInfo.processInfo.isPreviewSimulator {
@@ -43,11 +45,11 @@ struct NotificationPermissions: View {
                         } else {
                             _ = try await notificationManager.requestNotificationPermissions()
                         }
-                        onboardingNavigationPath.nextStep()
+                        managedNavigationStackPath.nextStep()
                     },
-                    secondaryText: "Skip",
+                    secondaryTitle: "Skip",
                     secondaryAction: {
-                        onboardingNavigationPath.nextStep()
+                        managedNavigationStackPath.nextStep()
                     }
                 )
             }
@@ -61,7 +63,7 @@ struct NotificationPermissions: View {
 
 #if DEBUG
 #Preview {
-    OnboardingStack {
+    ManagedNavigationStack {
         NotificationPermissions()
     }
 }

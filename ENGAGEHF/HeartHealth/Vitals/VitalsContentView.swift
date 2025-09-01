@@ -24,7 +24,7 @@ struct VitalsContentView: View {
         VitalsGraphSection(vitalsType: vitalsType)
         DescriptionSection(
             localizedExplanation: vitalsType.localizedExplanation,
-            quantityName: vitalsType.description
+            quantityName: vitalsType.localizedStringResource
         )
         MeasurementListSection(
             data: listDisplayData,

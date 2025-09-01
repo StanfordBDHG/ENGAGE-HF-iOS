@@ -42,7 +42,6 @@
 	</array>
 	<key>NSAccessorySetupKitSupports</key>
 	<array>
-		<string>Bluetooth</string>
 	</array>
 	<key>NSBluetoothAlwaysUsageDescription</key>
 	<string>Application must access bluetooth to connect to data collecting devices and retrieve data from weight scale and blood pressure cuff.</string>

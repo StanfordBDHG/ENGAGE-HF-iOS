@@ -17,14 +17,14 @@ struct SymptomsPicker: View {
         Menu(
             content: {
                 ForEach(SymptomsType.allCases) { symptom in
-                    Button(symptom.description) {
+                    Button(symptom.localizedStringResource) {
                         symptomsType = symptom
                     }
                 }
             },
             label: {
                 HStack(alignment: .firstTextBaseline, spacing: 4) {
-                    Text(symptomsType.fullName)
+                    Text(symptomsType.localizedFullName)
                         .font(.title3.bold())
                         .foregroundStyle(Color(.label))
                     Image(systemName: "chevron.down")
@@ -44,7 +44,7 @@ struct SymptomsPicker: View {
         var body: some View {
             VStack {
                 SymptomsPicker(symptomsType: $symptomsType)
-                Text(symptomsType.description)
+                Text(symptomsType.localizedStringResource)
             }
         }
     }

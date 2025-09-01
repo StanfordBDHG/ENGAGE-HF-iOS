@@ -19,7 +19,6 @@ import SpeziFirebaseAccountStorage
 import SpeziFirebaseStorage
 import SpeziFirestore
 import SpeziOmron
-import SpeziOnboarding
 import SpeziViews
 import SwiftUI
 

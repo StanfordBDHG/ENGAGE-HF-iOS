@@ -13,7 +13,7 @@ import HealthKit
 
 /// The subfield of Symptom Score to be displayed as the main content of Heart Health view when GraphSelection is .symptom
 /// Chosen by the SymptomPicker in SymptomContentView
-enum SymptomsType: String, CaseIterable, Identifiable, CustomStringConvertible, Equatable {
+enum SymptomsType: String, CaseIterable, Identifiable, CustomLocalizedStringResourceConvertible, Equatable {
     case overall
     case physical
     case social
@@ -25,7 +25,7 @@ enum SymptomsType: String, CaseIterable, Identifiable, CustomStringConvertible, 
     
     
     /// The name displayed in the Picker UI element for selecting the symptom type to be shown
-    var description: String {
+    var localizedStringResource: LocalizedStringResource {
         switch self {
         case .overall: "Overall"
         case .physical: "Physical"
@@ -38,7 +38,7 @@ enum SymptomsType: String, CaseIterable, Identifiable, CustomStringConvertible, 
     
     
     /// The full name of the score, displayed in the Description Header
-    var fullName: String {
+    var localizedFullName: LocalizedStringResource {
         switch self {
         case .overall: "Overall Score"
         case .physical: "Physical Limits Score"
@@ -50,14 +50,14 @@ enum SymptomsType: String, CaseIterable, Identifiable, CustomStringConvertible, 
     }
     
     /// The localized description of the symptoms score
-    var localizedExplanation: String {
+    var localizedExplanation: LocalizedStringResource {
         switch self {
-        case .overall: String(localized: "symptomOverall")
-        case .physical: String(localized: "symptomPhysical")
-        case .social: String(localized: "symptomSocial")
-        case .quality: String(localized: "symptomQuality")
-        case .specific: String(localized: "symptomSpecific")
-        case .dizziness: String(localized: "symptomDizziness")
+        case .overall: "symptomOverall"
+        case .physical: "symptomPhysical"
+        case .social: "symptomSocial"
+        case .quality: "symptomQuality"
+        case .specific: "symptomSpecific"
+        case .dizziness: "symptomDizziness"
         }
     }
     
