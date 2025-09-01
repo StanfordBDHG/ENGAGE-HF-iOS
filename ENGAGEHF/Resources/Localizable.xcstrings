@@ -145,9 +145,6 @@
     "Average" : {
       "comment" : "The text displayed as part of the IntervalSummary."
     },
-    "Blood Pressure" : {
-
-    },
     "bloodPressureMissing" : {
       "comment" : "Displayed in the MeasurementListSection of the Heart Health view when no Blood Pressure history found.",
       "localizations" : {
@@ -161,12 +158,6 @@
     },
     "Bluetooth Devices" : {
       "comment" : "The label of the navigation link that leads to the DevicesView in the AdditionalAccountSections."
-    },
-    "Body Weight" : {
-
-    },
-    "BP" : {
-
     },
     "BPM" : {
       "comment" : "Beats per minute"
@@ -217,20 +208,11 @@
     "Dismiss Button" : {
       "comment" : "Accessability label for the XButton view of the MessageRow view."
     },
-    "Dizziness" : {
-
-    },
-    "Dizziness Score" : {
-
-    },
     "Education" : {
       "comment" : "Displayed in the tab item label and navigation title of the Educations view."
     },
     "Education Video Inspect Button" : {
       "comment" : "Accessability label for the inspect button on the EducationalVideoCard."
-    },
-    "Empty %@ List" : {
-
     },
     "Enable Notifications in Settings" : {
       "comment" : "The text displayed on the button that is shown in the NotificationSettingsView if notifications are not authorized."
@@ -291,9 +273,6 @@
     "Heart Health" : {
       "comment" : "Displayed in tab item label and navigation title of the Heart Health view."
     },
-    "Heart Rate" : {
-
-    },
     "heartRateMissing" : {
       "comment" : "Displayed in the MeasurementListSection of the Heart Health view when no heart rate measurements were found.",
       "localizations" : {
@@ -310,9 +289,6 @@
     },
     "Home" : {
       "comment" : "Displayed in the tab item label and navigation title of the Dashboard view."
-    },
-    "HR" : {
-
     },
     "Inactivity" : {
       "comment" : "The text displayed in the toggleRow to control to receive inactivity reminders in the NotificationSettingsView."
@@ -587,20 +563,8 @@
     "Organization" : {
 
     },
-    "Overall" : {
-
-    },
-    "Overall Score" : {
-
-    },
     "PDF" : {
       "comment" : "The text displayed as one of the options of the shareModeSelector in the HealthSummaryView. "
-    },
-    "Physical" : {
-
-    },
-    "Physical Limits Score" : {
-
     },
     "Play Video" : {
       "comment" : "The description of the playVideo MessageAction."
@@ -633,12 +597,6 @@
     },
     "QR code for sharing your health summary with your doctor" : {
       "comment" : "Accessability label used in the QRCodeShareView."
-    },
-    "Quality of Life" : {
-
-    },
-    "Quality of Life Score" : {
-
     },
     "Questionnaire Loading" : {
       "comment" : "The text displayed in the ProgressView of the QuestionnaireSheetView."
@@ -709,23 +667,11 @@
     "Skip" : {
       "comment" : "The text displayed on the secondary action button in the NotificationPermissions OnboardingView."
     },
-    "Social" : {
-
-    },
-    "Social Limits Score" : {
-
-    },
     "Start Questionnaire" : {
       "comment" : "The description of the completeQuestionnaire MessageAction."
     },
     "Survey" : {
       "comment" : "The text displayed in the toggleRow to control to receive questionnaire reminders in the NotificationSettingsView."
-    },
-    "Symptom Frequency Score" : {
-
-    },
-    "Symptom Score" : {
-
     },
     "symptomDizziness" : {
       "comment" : "A text used in the HeartHealth view.",
@@ -770,9 +716,6 @@
           }
         }
       }
-    },
-    "Symptoms" : {
-
     },
     "Symptoms Picker Chevron" : {
       "comment" : "Accessability label for the SymptomsPicker view."
@@ -919,9 +862,6 @@
           }
         }
       }
-    },
-    "Weight" : {
-
     },
     "Weight Trends" : {
       "comment" : "The text displayed in the toggleRow to control to receive weight trend notifications in the NotificationSettingsView."
