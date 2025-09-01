@@ -20,7 +20,6 @@ import SpeziAccountPhoneNumbers
 import SpeziDevices
 import SpeziFirebaseAccount
 import SpeziFirestore
-import SpeziOnboarding
 import SpeziQuestionnaire
 import SwiftUI
 
@@ -63,7 +62,7 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, PhoneVerificationConstr
                     }
 
                     let document = collection.document(sample.uuid.uuidString)
-                    try batch.setData(from: sample.resource, forDocument: document)
+                    try batch.setData(from: sample.resource(), forDocument: document)
                 } catch {
                     // either document retrieval or encoding failed, this should not stop other samples from getting saved
                     logger.debug("Failed to store sample in firebase, discarding: \(sample)")

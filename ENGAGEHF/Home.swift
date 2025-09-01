@@ -11,7 +11,6 @@ import SpeziBluetooth
 import SpeziBluetoothServices
 import SpeziDevices
 import SpeziDevicesUI
-import SpeziOnboarding
 import SpeziViews
 import SwiftUI
 
@@ -30,7 +29,8 @@ struct HomeView: View {
     @Environment(NavigationManager.self) private var navigationManager
     @Environment(NotificationManager.self) private var notificationManager
     @Environment(Account.self) private var account: Account?
-    
+    @Environment(PairedDevices.self) private var pairedDevices
+
     @State private var presentingAccount = false
     
 
@@ -82,6 +82,13 @@ struct HomeView: View {
                 }
             }
             .viewStateAlert(state: $notificationManager.state)
+            .onAppear {
+                if #available(iOS 18, *) {
+                    if pairedDevices.needsAccessorySetupKitMigration {
+                        pairedDevices.showAccessoryMigration()
+                    }
+                }
+            }
     }
 }
 

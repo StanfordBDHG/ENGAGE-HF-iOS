@@ -8,7 +8,7 @@
 
 @_spi(TestingSupport) import SpeziAccount
 import SpeziFirebaseAccount
-import SpeziOnboarding
+import SpeziViews
 import SwiftUI
 
 /// Displays an multi-step onboarding flow for the ENGAGEHF.
@@ -17,7 +17,7 @@ struct OnboardingFlow: View {
     
     
     var body: some View {
-        OnboardingStack(onboardingFlowComplete: $completedOnboardingFlow) {
+        ManagedNavigationStack(didComplete: $completedOnboardingFlow) {
             Welcome()
             InterestingModules()
             if !FeatureFlags.disableFirebase {

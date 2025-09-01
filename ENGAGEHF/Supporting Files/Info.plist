@@ -24,14 +24,33 @@
 	<false/>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
+	<key>NSAccessorySetupBluetoothCompanyIdentifiers</key>
+	<array>
+		<string>020E</string>
+	</array>
+	<key>NSAccessorySetupBluetoothNames</key>
+	<array>
+		<string>BLESmart_00010112</string>
+		<string>BLEsmart_00000160</string>
+		<string>BLEsmart_0000021F</string>
+		<string>BLEsmart_0000011F</string>
+	</array>
+	<key>NSAccessorySetupBluetoothServices</key>
+	<array>
+		<string>1810</string>
+		<string>181D</string>
+	</array>
+	<key>NSAccessorySetupKitSupports</key>
+	<array>
+	</array>
 	<key>NSBluetoothAlwaysUsageDescription</key>
 	<string>Application must access bluetooth to connect to data collecting devices and retrieve data from weight scale and blood pressure cuff.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>This message should never appear. Please adjust this when you start using camera information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.</string>
 	<key>NSHealthShareUsageDescription</key>
-	<string>The ENGAGE-HF app uses the step count to demonstrate Spezi&apos;s integration with HealthKit.</string>
+	<string>The ENGAGE-HF app uses the step count to demonstrate Spezi's integration with HealthKit.</string>
 	<key>NSHealthUpdateUsageDescription</key>
-	<string>The ENGAGE-HF app uses the step count to demonstrate Spezi&apos;s integration with HealthKit.</string>
+	<string>The ENGAGE-HF app uses the step count to demonstrate Spezi's integration with HealthKit.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>This message should never appear. Please adjust this when you start using location information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>

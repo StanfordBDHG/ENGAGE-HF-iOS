@@ -7,7 +7,6 @@
 //
 
 @_spi(TestingSupport) import SpeziAccount
-import SpeziOnboarding
 import SpeziViews
 import SwiftUI
 

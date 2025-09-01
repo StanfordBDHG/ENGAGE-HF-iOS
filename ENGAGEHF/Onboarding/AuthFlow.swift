@@ -7,12 +7,12 @@
 //
 
 @_spi(TestingSupport) import SpeziAccount
-import SpeziOnboarding
+import SpeziViews
 import SwiftUI
 
 struct AuthFlow: View {
     var body: some View {
-        OnboardingStack {
+        ManagedNavigationStack {
             AccountOnboarding()
         }
     }
