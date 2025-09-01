@@ -28,7 +28,7 @@ struct MeasurementListSection: View {
                             displayQuantity: measurement.value,
                             displayUnit: units,
                             displayDate: measurement.date.formatted(date: .abbreviated, time: .omitted),
-                            type: type.localizedStringResource.localizedString()
+                            type: type.description
                         )
                     }
                         .onDelete { indexSet in
@@ -45,7 +45,7 @@ struct MeasurementListSection: View {
                         description: Text(type.localizedEmptyHistoryWarning)
                     )
                         .symbolVariant(.slash)
-                        .accessibilityLabel(LocalizedStringResource("Empty \(type) List"))
+                        .accessibilityLabel("Empty \(type) List")
                 }
             },
             header: {

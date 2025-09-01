@@ -33,7 +33,7 @@ struct AddMeasurementAsyncButton: View {
                 try await standard.addMeasurement(samples: [newSample])
                 dismiss()
             } catch {
-                viewState = .error(HeartHealthError.failedAddition(type.fullName.localizedString()))
+                viewState = .error(HeartHealthError.failedAddition(type.fullName))
             }
         }
     }
@@ -45,7 +45,7 @@ struct AddMeasurementAsyncButton: View {
             let unitLabel = Locale.current.measurementSystem == .us ? "lb" : "kg"
             
             guard let bodyWeight = fields.first(where: { $0.title == unitLabel })?.value else {
-                throw HeartHealthError.failedAddition(type.fullName.localizedString())
+                throw HeartHealthError.failedAddition(type.fullName)
             }
             
             let quantityType = HKQuantityType(.bodyMass)
@@ -55,7 +55,7 @@ struct AddMeasurementAsyncButton: View {
             return HKQuantitySample(type: quantityType, quantity: quantity, start: date, end: date)
         case .heartRate:
             guard let heartRate = fields.first(where: { $0.title == String(localized: "BPM", comment: "Beats per minute") })?.value else {
-                throw HeartHealthError.failedAddition(type.fullName.localizedString())
+                throw HeartHealthError.failedAddition(type.fullName)
             }
             
             let quantityType = HKQuantityType(.heartRate)
@@ -70,7 +70,7 @@ struct AddMeasurementAsyncButton: View {
                   let diastolic = fields.first(where: {
                       $0.title == String(localized: "Diastolic", comment: "The lower number in a blood pressure reading")
                   })?.value else {
-                throw HeartHealthError.failedAddition(type.fullName.localizedString())
+                throw HeartHealthError.failedAddition(type.fullName)
             }
             
             let systolicType = HKQuantityType(.bloodPressureSystolic)
@@ -85,7 +85,7 @@ struct AddMeasurementAsyncButton: View {
             
             return HKCorrelation(type: bloodPressureType, start: date, end: date, objects: [systolicSample, diastolicSample])
         default:
-            throw HeartHealthError.failedAddition(type.fullName.localizedString())
+            throw HeartHealthError.failedAddition(type.fullName)
         }
     }
 }

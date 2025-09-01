@@ -51,7 +51,7 @@ struct VitalsGraphSection: View {
             },
             header: {
                 HStack {
-                    Text(vitalsType.localizedStringResource)
+                    Text(vitalsType.description)
                         .font(.title3.bold())
                     Spacer()
                     ResolutionPicker(selection: $granularity)

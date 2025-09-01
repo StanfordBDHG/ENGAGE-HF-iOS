@@ -13,7 +13,7 @@ import HealthKit
 
 /// The subfield of Symptom Score to be displayed as the main content of Heart Health view when GraphSelection is .symptom
 /// Chosen by the SymptomPicker in SymptomContentView
-enum SymptomsType: String, CaseIterable, Identifiable, CustomLocalizedStringResourceConvertible, Equatable {
+enum SymptomsType: String, CaseIterable, Identifiable, CustomStringConvertible, Equatable {
     case overall
     case physical
     case social
@@ -25,7 +25,7 @@ enum SymptomsType: String, CaseIterable, Identifiable, CustomLocalizedStringReso
     
     
     /// The name displayed in the Picker UI element for selecting the symptom type to be shown
-    var localizedStringResource: LocalizedStringResource {
+    var description: String {
         switch self {
         case .overall: "Overall"
         case .physical: "Physical"
@@ -38,7 +38,7 @@ enum SymptomsType: String, CaseIterable, Identifiable, CustomLocalizedStringReso
     
     
     /// The full name of the score, displayed in the Description Header
-    var localizedFullName: LocalizedStringResource {
+    var fullName: String {
         switch self {
         case .overall: "Overall Score"
         case .physical: "Physical Limits Score"
@@ -50,14 +50,14 @@ enum SymptomsType: String, CaseIterable, Identifiable, CustomLocalizedStringReso
     }
     
     /// The localized description of the symptoms score
-    var localizedExplanation: LocalizedStringResource {
+    var localizedExplanation: String {
         switch self {
-        case .overall: "symptomOverall"
-        case .physical: "symptomPhysical"
-        case .social: "symptomSocial"
-        case .quality: "symptomQuality"
-        case .specific: "symptomSpecific"
-        case .dizziness: "symptomDizziness"
+        case .overall: String(localized: "symptomOverall")
+        case .physical: String(localized: "symptomPhysical")
+        case .social: String(localized: "symptomSocial")
+        case .quality: String(localized: "symptomQuality")
+        case .specific: String(localized: "symptomSpecific")
+        case .dizziness: String(localized: "symptomDizziness")
         }
     }
     

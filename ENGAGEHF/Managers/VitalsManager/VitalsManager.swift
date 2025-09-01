@@ -367,7 +367,7 @@ extension VitalsManager {
     func deleteMeasurement(id: String?, graphSelection: GraphSelection) async throws {
         guard let id, let account, let details = account.details,
               let collectionReference = graphSelection.collectionReference(for: details.accountId) else {
-            self.logger.warning("Attempting to delete \(graphSelection.rawValue) measurement. Failed!")
+            self.logger.warning("Attempting to delete \(graphSelection) measurement. Failed!")
             return
         }
         

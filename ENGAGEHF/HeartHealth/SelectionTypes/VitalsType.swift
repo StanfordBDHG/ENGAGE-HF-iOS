@@ -10,13 +10,13 @@ import Foundation
 
 
 /// The type of health data to be displayed as the main content of Heart Health view, after selecting .bloodPressure, .weight, or .heartRate
-enum VitalsType: CustomLocalizedStringResourceConvertible {
+enum VitalsType: CustomStringConvertible {
     case weight
     case heartRate
     case bloodPressure
     
     
-    var localizedStringResource: LocalizedStringResource {
+    var description: String {
         switch self {
         case .weight: "Body Weight"
         case .heartRate: "Heart Rate"
@@ -25,11 +25,11 @@ enum VitalsType: CustomLocalizedStringResourceConvertible {
     }
     
     /// The localized description of the vitals type
-    var localizedExplanation: LocalizedStringResource {
+    var localizedExplanation: String {
         switch self {
-        case .weight: "vitalsWeight"
-        case .heartRate: "vitalsHeartRate"
-        case .bloodPressure: "vitalsBloodPressure"
+        case .weight: String(localized: "vitalsWeight")
+        case .heartRate: String(localized: "vitalsHeartRate")
+        case .bloodPressure: String(localized: "vitalsBloodPressure")
         }
     }
     

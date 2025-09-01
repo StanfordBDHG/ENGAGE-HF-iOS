@@ -10,8 +10,8 @@ import SwiftUI
 
 
 struct DescriptionSection: View {
-    var localizedExplanation: LocalizedStringResource
-    var quantityName: LocalizedStringResource
+    var localizedExplanation: String
+    var quantityName: String
     
     
     var body: some View {

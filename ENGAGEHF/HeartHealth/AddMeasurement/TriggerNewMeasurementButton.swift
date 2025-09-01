@@ -22,7 +22,7 @@ struct TriggerNewMeasurementButton: View {
             },
             label: {
                 Image(systemName: "plus")
-                    .accessibilityLabel("Add Measurement: \(measurementType.localizedStringResource)")
+                    .accessibilityLabel("Add Measurement: \(measurementType.description)")
             }
         )
     }
