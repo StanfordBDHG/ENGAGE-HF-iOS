@@ -57,7 +57,7 @@ enum SnapshotError: Error, CustomDebugStringConvertible {
 
 @objcMembers
 @MainActor
-open class Snapshot: NSObject {
+class Snapshot: NSObject {
     static var app: XCUIApplication?
     static var waitForAnimations = true
     static var cacheDirectory: URL?
