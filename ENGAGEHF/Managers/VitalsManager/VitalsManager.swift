@@ -31,7 +31,7 @@ final class VitalsManager: Manager {
 
     @Application(\.logger) @ObservationIgnored private var logger
     
-    private var snapshotListeners: [ListenerRegistration] = []
+    private var snapshotListeners: [any ListenerRegistration] = []
     private var notificationsTask: Task<Void, Never>?
     
     var heartRateHistory: [HKQuantitySample] = []

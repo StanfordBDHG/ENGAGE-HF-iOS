@@ -8,11 +8,10 @@
 
 import FirebaseFirestore
 import Foundation
+import os
 import Spezi
 import SpeziAccount
 import SpeziFirebaseAccount
-
-
 @Observable
 @MainActor
 final class UserMetaDataManager: Manager {
@@ -20,7 +19,7 @@ final class UserMetaDataManager: Manager {
     @ObservationIgnored @Dependency(AccountNotifications.self) private var accountNotifications: AccountNotifications?
     @ObservationIgnored @Application(\.logger) private var logger
     
-    private var snapshotListener: ListenerRegistration?
+    private var snapshotListener: (any ListenerRegistration)?
     private var notificationsTask: Task<Void, Never>?
     private var previousOrganizationId: String?
     

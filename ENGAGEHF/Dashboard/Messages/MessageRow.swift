@@ -9,6 +9,7 @@
 @_spi(TestingSupport) import SpeziAccount
 import SpeziViews
 import SwiftUI
+import Spezi
 
 
 struct MessageRow: View {

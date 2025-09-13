@@ -9,6 +9,7 @@
 import SpeziViews
 import SwiftUI
 import WebKit
+import Spezi
 
 
 // Note: This view prints the following errors to the console:

@@ -10,6 +10,7 @@ import FirebaseFunctions
 @_spi(TestingSupport) import SpeziAccount
 import SpeziLicense
 import SwiftUI
+import Spezi
 
 
 struct AccountSheet: View {

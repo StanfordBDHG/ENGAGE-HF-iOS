@@ -13,7 +13,7 @@ import SpeziAccount
 extension AccountDetails {
     /// If a user account has been disabled by the study coordinator.
     @AccountKey(name: LocalizedStringResource("Account Disabled"), as: Bool.self)
-    public var disabled: Bool? // swiftlint:disable:this attributes discouraged_optional_boolean
+    var disabled: Bool? // swiftlint:disable:this attributes discouraged_optional_boolean
 
 }
 

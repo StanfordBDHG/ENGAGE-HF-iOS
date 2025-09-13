@@ -8,6 +8,7 @@
 
 import FHIRQuestionnaires
 import FirebaseFirestore
+import Spezi
 import SpeziQuestionnaire
 import SpeziViews
 import SwiftUI

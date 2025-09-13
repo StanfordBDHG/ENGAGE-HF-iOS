@@ -7,6 +7,8 @@
 //
 
 import SwiftUI
+import SpeziViews
+import Spezi
 
 
 struct SymptomsContentView: View {

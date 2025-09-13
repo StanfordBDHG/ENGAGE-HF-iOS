@@ -8,6 +8,7 @@
 
 import SpeziViews
 import SwiftUI
+import Spezi
 
 
 struct MeasurementListSection: View {

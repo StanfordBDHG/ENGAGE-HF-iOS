@@ -7,6 +7,7 @@
 //
 
 import FirebaseFunctions
+import Spezi
 @_spi(TestingSupport) import SpeziAccount
 import SpeziOnboarding
 import SpeziViews

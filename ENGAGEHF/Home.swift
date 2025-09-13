@@ -13,6 +13,7 @@ import SpeziDevices
 import SpeziDevicesUI
 import SpeziViews
 import SwiftUI
+import Spezi
 
 
 struct HomeView: View {

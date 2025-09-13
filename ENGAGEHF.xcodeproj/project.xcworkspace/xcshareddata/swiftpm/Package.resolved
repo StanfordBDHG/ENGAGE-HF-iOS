@@ -1,5 +1,5 @@
 {
-  "originHash" : "a06545ec288727487714798acd2055ea9e7ffbe9995b0588f644669500b9624b",
+  "originHash" : "001159181a02446243e133db32c25190803f604ce830492cfee036b252d2f1b5",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -26,24 +26,6 @@
       "state" : {
         "revision" : "61b85103a1aeed8218f17c794687781505fbbef5",
         "version" : "11.2.0"
-      }
-    },
-    {
-      "identity" : "collectionconcurrencykit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/JohnSundell/CollectionConcurrencyKit.git",
-      "state" : {
-        "revision" : "b4f23e24b5a1bff301efc5e70871083ca029ff95",
-        "version" : "0.2.0"
-      }
-    },
-    {
-      "identity" : "cryptoswift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/krzyzanowskim/CryptoSwift.git",
-      "state" : {
-        "revision" : "e45a26384239e028ec87fbcc788f513b67e10d8f",
-        "version" : "1.9.0"
       }
     },
     {
@@ -197,15 +179,6 @@
       "state" : {
         "revision" : "ad35779bde5c57c29af3b476defaf32c5accf637",
         "version" : "2.0.6"
-      }
-    },
-    {
-      "identity" : "sourcekitten",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/jpsim/SourceKitten.git",
-      "state" : {
-        "revision" : "453f75b8a3bb2c3596c0d2dd422c289788233a22",
-        "version" : "0.37.1"
       }
     },
     {
@@ -443,30 +416,12 @@
       }
     },
     {
-      "identity" : "swiftlint",
+      "identity" : "swiftlintplugins",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/realm/SwiftLint.git",
+      "location" : "https://github.com/SimplyDanny/SwiftLintPlugins",
       "state" : {
-        "revision" : "625792423014cc49b0a1e5a1a5c0d6b8b3de10f9",
-        "version" : "0.59.1"
-      }
-    },
-    {
-      "identity" : "swiftytexttable",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/scottrhoyt/SwiftyTextTable.git",
-      "state" : {
-        "revision" : "c6df6cf533d120716bff38f8ff9885e1ce2a4ac3",
-        "version" : "0.9.0"
-      }
-    },
-    {
-      "identity" : "swxmlhash",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/drmohundro/SWXMLHash.git",
-      "state" : {
-        "revision" : "a853604c9e9a83ad9954c7e3d2a565273982471f",
-        "version" : "7.0.2"
+        "revision" : "6166499ede0efe43c3809f101d2c3cd409e2b77a",
+        "version" : "0.61.0"
       }
     },
     {
@@ -494,15 +449,6 @@
       "state" : {
         "revision" : "ba5753f59905b80fd98d0da0f552f4e5d5c0488e",
         "version" : "2.2.0"
-      }
-    },
-    {
-      "identity" : "yams",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/jpsim/Yams.git",
-      "state" : {
-        "revision" : "3d6871d5b4a5cd519adf233fbb576e0a2af71c17",
-        "version" : "5.4.0"
       }
     }
   ],

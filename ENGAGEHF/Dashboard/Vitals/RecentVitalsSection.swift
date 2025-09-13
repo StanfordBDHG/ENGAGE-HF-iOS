@@ -7,6 +7,7 @@
 //
 
 import HealthKit
+import Spezi
 @_spi(TestingSupport) import SpeziDevices
 import SwiftUI
 

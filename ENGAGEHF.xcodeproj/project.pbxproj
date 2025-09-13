@@ -1198,7 +1198,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				A996F4512C111017002328C5 /* PBXTargetDependency */,
+				651E81E72E754B43007A27E5 /* PBXTargetDependency */,
 				56E7083D2BB06FCA00B08F0A /* PBXTargetDependency */,
 			);
 			name = ENGAGEHF;
@@ -1247,7 +1247,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				4D8AD2D82C4B451400CB4F3E /* PBXTargetDependency */,
 				653A255F28338800005D4D48 /* PBXTargetDependency */,
 			);
 			name = ENGAGEHFTests;
@@ -1266,7 +1265,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				4D8AD2DA2C4B451900CB4F3E /* PBXTargetDependency */,
 				653A256928338800005D4D48 /* PBXTargetDependency */,
 			);
 			name = ENGAGEHFUITests;
@@ -1323,13 +1321,13 @@
 				2FB099B42A875E2B00B20952 /* XCRemoteSwiftPackageReference "HealthKitOnFHIR" */,
 				5661551B2AB8384200209B80 /* XCRemoteSwiftPackageReference "swift-package-list" */,
 				56E708332BB06B7100B08F0A /* XCRemoteSwiftPackageReference "SpeziLicense" */,
-				2F66D20D2BB723180010D555 /* XCRemoteSwiftPackageReference "SwiftLint" */,
 				A9A0BF012C13121D00B8F3F3 /* XCRemoteSwiftPackageReference "SpeziNetworking" */,
 				65D39ABB2CE497630040BF71 /* XCRemoteSwiftPackageReference "SpeziNotifications" */,
 				56A037292E0AACD8001E2A00 /* XCRemoteSwiftPackageReference "SpeziAccount" */,
 				56A0372E2E0AB395001E2A00 /* XCRemoteSwiftPackageReference "PhoneNumberKit" */,
 				A960D69E2E63978F004C6FED /* XCRemoteSwiftPackageReference "SpeziBluetooth" */,
 				A92F50622E63A2CB0051C0FD /* XCRemoteSwiftPackageReference "SpeziDevices" */,
+				651E81E52E754B3A007A27E5 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
 			);
 			productRefGroup = 653A254E283387FE005D4D48 /* Products */;
 			projectDirPath = "";
@@ -1583,17 +1581,13 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		4D8AD2D82C4B451400CB4F3E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = 4D8AD2D72C4B451400CB4F3E /* SwiftLintBuildToolPlugin */;
-		};
-		4D8AD2DA2C4B451900CB4F3E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = 4D8AD2D92C4B451900CB4F3E /* SwiftLintBuildToolPlugin */;
-		};
 		56E7083D2BB06FCA00B08F0A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			productRef = 56E7083C2BB06FCA00B08F0A /* SwiftPackageListPlugin */;
+		};
+		651E81E72E754B43007A27E5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 651E81E62E754B43007A27E5 /* SwiftLintBuildToolPlugin */;
 		};
 		653A255F28338800005D4D48 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1604,10 +1598,6 @@
 			isa = PBXTargetDependency;
 			target = 653A254C283387FE005D4D48 /* ENGAGEHF */;
 			targetProxy = 653A256828338800005D4D48 /* PBXContainerItemProxy */;
-		};
-		A996F4512C111017002328C5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = A996F4502C111017002328C5 /* SwiftLintBuildToolPlugin */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1672,8 +1662,14 @@
 				SDKROOT = iphoneos;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = TEST;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_UPCOMING_FEATURE_EXISTENTIAL_ANY = YES;
+				SWIFT_UPCOMING_FEATURE_INTERNAL_IMPORTS_BY_DEFAULT = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 6.0;
 			};
 			name = Test;
 		};
@@ -1811,8 +1807,14 @@
 				SDKROOT = iphoneos;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_UPCOMING_FEATURE_EXISTENTIAL_ANY = YES;
+				SWIFT_UPCOMING_FEATURE_INTERNAL_IMPORTS_BY_DEFAULT = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 6.0;
 			};
 			name = Debug;
 		};
@@ -1868,9 +1870,15 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 5.0;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_UPCOMING_FEATURE_EXISTENTIAL_ANY = YES;
+				SWIFT_UPCOMING_FEATURE_INTERNAL_IMPORTS_BY_DEFAULT = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 6.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -2081,14 +2089,6 @@
 				minimumVersion = 1.9.2;
 			};
 		};
-		2F66D20D2BB723180010D555 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/SwiftLint.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.59.0;
-			};
-		};
 		2FB099B42A875E2B00B20952 /* XCRemoteSwiftPackageReference "HealthKitOnFHIR" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/StanfordBDHG/HealthKitOnFHIR.git";
@@ -2183,6 +2183,14 @@
 			requirement = {
 				kind = upToNextMinorVersion;
 				minimumVersion = 1.0.0;
+			};
+		};
+		651E81E52E754B3A007A27E5 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SimplyDanny/SwiftLintPlugins";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.61.0;
 			};
 		};
 		65D39ABB2CE497630040BF71 /* XCRemoteSwiftPackageReference "SpeziNotifications" */ = {
@@ -2293,16 +2301,6 @@
 			package = 2FE5DC9A29EDD9EF004B9AB4 /* XCRemoteSwiftPackageReference "XCTHealthKit" */;
 			productName = XCTHealthKit;
 		};
-		4D8AD2D72C4B451400CB4F3E /* SwiftLintBuildToolPlugin */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2F66D20D2BB723180010D555 /* XCRemoteSwiftPackageReference "SwiftLint" */;
-			productName = "plugin:SwiftLintBuildToolPlugin";
-		};
-		4D8AD2D92C4B451900CB4F3E /* SwiftLintBuildToolPlugin */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2F66D20D2BB723180010D555 /* XCRemoteSwiftPackageReference "SwiftLint" */;
-			productName = "plugin:SwiftLintBuildToolPlugin";
-		};
 		4DBDD3472BC073EF001FB0CA /* FirebaseFunctions */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2FE5DC9029EDD9C3004B9AB4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
@@ -2337,6 +2335,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5661551B2AB8384200209B80 /* XCRemoteSwiftPackageReference "swift-package-list" */;
 			productName = "plugin:SwiftPackageListPlugin";
+		};
+		651E81E62E754B43007A27E5 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 651E81E52E754B3A007A27E5 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
 		};
 		65D39ABC2CE497630040BF71 /* SpeziNotifications */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -2385,11 +2388,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A960D69E2E63978F004C6FED /* XCRemoteSwiftPackageReference "SpeziBluetooth" */;
 			productName = SpeziBluetooth;
-		};
-		A996F4502C111017002328C5 /* SwiftLintBuildToolPlugin */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2F66D20D2BB723180010D555 /* XCRemoteSwiftPackageReference "SwiftLint" */;
-			productName = "plugin:SwiftLintBuildToolPlugin";
 		};
 		A9A0BF022C13121D00B8F3F3 /* SpeziNumerics */ = {
 			isa = XCSwiftPackageProductDependency;

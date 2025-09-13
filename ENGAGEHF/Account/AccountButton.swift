@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Spezi
 
 
 struct AccountButton: View {

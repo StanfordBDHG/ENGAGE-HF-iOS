@@ -8,6 +8,7 @@
 
 import Charts
 import SwiftUI
+import SpeziViews
 
 
 extension AnyAxisContent {

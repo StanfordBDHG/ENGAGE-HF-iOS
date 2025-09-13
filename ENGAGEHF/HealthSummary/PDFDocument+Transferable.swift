@@ -9,7 +9,8 @@
 //
 
 import Foundation
-import PDFKit
+public import PDFKit
+public import CoreTransferable
 import SwiftUI
 
 #if compiler(>=6)
