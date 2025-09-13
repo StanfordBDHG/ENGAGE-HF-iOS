@@ -54,13 +54,13 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
                     _ = try? await Auth.auth().currentUser?.getIDToken(forcingRefresh: true)
                     
                     // Now that we've forced refresh on the auth token, refresh the content of the managers.
-                    videoManager.refreshContent()
-                    userMetaDataManager.refreshContent()
-                    medicationsManager.refreshContent()
-                    notificationManager.refreshContent()
-                    messageManager.refreshContent()
-                    navigationManager.refreshContent()
-                    vitalsManager.refreshContent()
+                    await videoManager.refreshContent()
+                    await userMetaDataManager.refreshContent()
+                    await medicationsManager.refreshContent()
+                    await notificationManager.refreshContent()
+                    await messageManager.refreshContent()
+                    await navigationManager.refreshContent()
+                    await vitalsManager.refreshContent()
                     
                     logger.debug("Successfully enrolled user!")
                 } catch {

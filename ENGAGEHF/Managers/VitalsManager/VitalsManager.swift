@@ -364,7 +364,7 @@ extension VitalsManager {
 extension VitalsManager {
     /// Call on deletion of a measurement -- removes the measurement with the given document id from the user's collection 
     func deleteMeasurement(id: String?, graphSelection: GraphSelection) async throws {
-        guard let id, let account, let details = account.details,
+        guard let id, let account, let details = await account.details,
               let collectionReference = graphSelection.collectionReference(for: details.accountId) else {
             self.logger.warning("Attempting to delete \(graphSelection) measurement. Failed!")
             return

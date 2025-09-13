@@ -26,7 +26,7 @@ import SwiftUI
 
 actor ENGAGEHFStandard: Standard, EnvironmentAccessible, PhoneVerificationConstraint {
     @Dependency(Account.self) private var account: Account?
-    @Dependency(MessageManager.self) private var messageManager: MessageManager?
+    @Dependency(MessageManager.self) private var messageManager: MessageManager
     
     @Application(\.logger) private var logger
     
@@ -46,7 +46,7 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, PhoneVerificationConstr
             return
         }
         
-        await messageManager?.markAsProcessing(
+        await messageManager.markAsProcessing(
             type: .healthMeasurement(samples: samples.count)
         )
 
@@ -96,7 +96,7 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, PhoneVerificationConstr
         }
 #endif
         
-        await messageManager?.markAsProcessing(
+        await messageManager.markAsProcessing(
             type: .questionnaire(id: questionnaireId)
         )
         
