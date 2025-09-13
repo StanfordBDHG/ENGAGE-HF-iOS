@@ -1,5 +1,5 @@
 {
-  "originHash" : "001159181a02446243e133db32c25190803f604ce830492cfee036b252d2f1b5",
+  "originHash" : "49c7f9ef6834089e5b556ff2bc9f5dcf675cdb9cdfb1fb3e9e39e3f06bebc069",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -195,8 +195,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziAccount.git",
       "state" : {
-        "revision" : "e1eea32a1814d8527e4c43af0e5f347220a40c53",
-        "version" : "2.3.2"
+        "revision" : "6b1eb33f978282b360f9c72b64c0d949a71afa85",
+        "version" : "2.3.3"
       }
     },
     {
@@ -240,8 +240,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziFoundation.git",
       "state" : {
-        "revision" : "89f3334e685ddad1bbf2e8b33fa0820620aec6c1",
-        "version" : "2.2.1"
+        "revision" : "eaf89f70c255f21cafabdca5c731fa15f618432b",
+        "version" : "2.4.1"
       }
     },
     {
@@ -267,8 +267,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziNotifications.git",
       "state" : {
-        "revision" : "5ea35ac06e245b5350b382647ec21d6a5a486d24",
-        "version" : "1.0.7"
+        "revision" : "827b7ecefe44eaac2412a3b7d669f16d0d1e906b",
+        "version" : "1.0.8"
       }
     },
     {
@@ -303,8 +303,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziViews.git",
       "state" : {
-        "revision" : "9a7cd323ae6023a57bdf57af644538e723902f67",
-        "version" : "1.12.1"
+        "revision" : "8c12a94fcd118128db87736b849e71dbca7d1a46",
+        "version" : "1.12.2"
       }
     },
     {
@@ -402,8 +402,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/swiftlang/swift-syntax.git",
       "state" : {
-        "revision" : "1103c45ece4f7fe160b8f75b4ea1ee2e5fac1841",
-        "version" : "601.0.0"
+        "revision" : "f99ae8aa18f0cf0d53481901f88a0991dc3bd4a2",
+        "version" : "601.0.1"
       }
     },
     {
@@ -438,8 +438,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordBDHG/XCTHealthKit.git",
       "state" : {
-        "revision" : "44eb3d734741294ee6c4fbf734cc5cd6f51f02a5",
-        "version" : "1.1.4"
+        "revision" : "907d85095d2129e8ccb2cb2d1e5542df5f6ba0ad",
+        "version" : "1.1.5"
       }
     },
     {
