@@ -8,9 +8,11 @@
 
 import XCTest
 
+
+@MainActor
 final class ContactsUITests: XCTestCase {
-    override func setUpWithError() throws {
-        try super.setUpWithError()
+    override func setUp() async throws {
+        try await super.setUp()
         continueAfterFailure = false
 
         let app = XCUIApplication()

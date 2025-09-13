@@ -10,6 +10,7 @@ import Foundation
 import XCTest
 
 
+@MainActor
 final class RecentVitalsUITests: XCTestCase {
     private var expectedFormattedMeasurementDate: String {
         let expectedDateComponents = DateComponents(year: 2024, month: 6, day: 5, hour: 12, minute: 33, second: 11)
@@ -20,8 +21,8 @@ final class RecentVitalsUITests: XCTestCase {
     }
     
     
-    override func setUpWithError() throws {
-        try super.setUpWithError()
+    override func setUp() async throws {
+        try await super.setUp()
 
         continueAfterFailure = false
 

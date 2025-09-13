@@ -8,9 +8,10 @@
 import XCTest
 
 
+@MainActor
 final class HomeViewUITests: XCTestCase {
-    override func setUpWithError() throws {
-        try super.setUpWithError()
+    override func setUp() async throws {
+        try await super.setUp()
         
         continueAfterFailure = false
         

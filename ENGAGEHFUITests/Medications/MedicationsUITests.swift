@@ -9,10 +9,10 @@
 import XCTest
 
 
+@MainActor
 final class MedicationsUITests: XCTestCase {
-    @MainActor
     override func setUp() async throws {
-        try super.setUpWithError()
+        try await super.setUp()
 
         continueAfterFailure = false
 
@@ -176,8 +176,8 @@ final class MedicationsUITests: XCTestCase {
         XCTAssert(app.staticTexts["twice daily"].firstMatch.waitForExistence(timeout: 0.5), "No \"twice daily\" quantifier found.")
         
         // Non-integer frequency
-        XCTAssert(app.images["Medication Label: morePatientObservationsRequired"].waitForExistence(timeout: 0.5))
-        app.images["Medication Label: morePatientObservationsRequired"].tap()
+        XCTAssert(app.images["Medication Label: moreLabObservationsRequired"].waitForExistence(timeout: 0.5))
+        app.images["Medication Label: moreLabObservationsRequired"].tap()
         
         XCTAssert(app.staticTexts["1.5x daily"].firstMatch.waitForExistence(timeout: 0.5), "No \"1.5x daily\" quantifier found.")
     }

@@ -9,9 +9,10 @@
 import XCTest
 
 
+@MainActor
 final class AddMeasurementUITests: XCTestCase {
-    override func setUpWithError() throws {
-        try super.setUpWithError()
+    override func setUp() async throws {
+        try await super.setUp()
 
         continueAfterFailure = false
 

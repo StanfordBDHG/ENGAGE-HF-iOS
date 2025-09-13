@@ -10,9 +10,10 @@ import XCTest
 import XCTestExtensions
 
 
+@MainActor
 final class AccountTests: XCTestCase {
-    override func setUpWithError() throws {
-        try super.setUpWithError()
+    override func setUp() async throws {
+        try await super.setUp()
 
         continueAfterFailure = false
 
@@ -33,6 +34,9 @@ final class AccountTests: XCTestCase {
         XCTAssertTrue(app.navigationBars.buttons["Your Account"].waitForExistence(timeout: 2))
         app.navigationBars.buttons["Your Account"].tap()
 
+        XCTAssertTrue(app.navigationBars.staticTexts["Account Overview"].waitForExistence(timeout: 2))
+        app.swipeUp()
+        
         XCTAssert(app.buttons["Logout"].waitForExistence(timeout: 2))
         app.buttons["Logout"].tap()
 

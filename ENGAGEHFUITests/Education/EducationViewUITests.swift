@@ -9,10 +9,10 @@
 import XCTest
 
 
+@MainActor
 final class EducationViewUITests: XCTestCase {
-    @MainActor
     override func setUp() async throws {
-        try super.setUpWithError()
+        try await super.setUp()
         continueAfterFailure = false
         
         let app = XCUIApplication()
@@ -20,7 +20,7 @@ final class EducationViewUITests: XCTestCase {
         app.launch()
     }
     
-    @MainActor
+    
     func testLongDescriptionVideoView() async throws {
         let app = XCUIApplication()
         
@@ -69,7 +69,6 @@ final class EducationViewUITests: XCTestCase {
     }
     
     
-    @MainActor
     func testShortDescrtiptionVideoView() async throws {
         try XCTSkipIf(true, "Skipping test due to network issues on runner") // remove once the runner network issue is resolved
         
@@ -115,7 +114,6 @@ final class EducationViewUITests: XCTestCase {
     }
     
     
-    @MainActor
     func testNoDescriptionVideoView() async throws {
         try XCTSkipIf(true, "Skipping test due to network issues on runner") // remove once the runner network issue is resolved
         
@@ -146,8 +144,6 @@ final class EducationViewUITests: XCTestCase {
         XCTAssertFalse(app.scrollViews["Video Description: No Description"].exists)
     }
     
-    
-    @MainActor
     func testSectionExtension() async throws {
         try XCTSkipIf(true, "Skipping test due to network issues on runner") // remove once the runner network issue is resolved
         
@@ -173,8 +169,6 @@ final class EducationViewUITests: XCTestCase {
         XCTAssert(app.images["Thumbnail Image: y2ziZVWossE"].waitForExistence(timeout: 0.5))
     }
     
-    
-    @MainActor
     func testThumbnailsAppear() async throws {
         try XCTSkipIf(true, "Skipping test due to network issues on runner") // remove once the runner network issue is resolved
         

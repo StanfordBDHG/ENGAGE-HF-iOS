@@ -9,10 +9,10 @@
 import XCTest
 
 
+@MainActor
 final class HeartHealthUITests: XCTestCase {
-    @MainActor
     override func setUp() async throws {
-        try super.setUpWithError()
+        try await super.setUp()
         continueAfterFailure = false
         
         let app = XCUIApplication()
@@ -269,7 +269,7 @@ extension XCUIApplication {
         XCTAssert(buttons[pickerLabel].waitForExistence(timeout: 0.5))
         buttons[pickerLabel].tap()
                 
-        XCTAssert(staticTexts["Overall Summary Quantity: No Data"].waitForExistence(timeout: 0.5))
+        XCTAssert(staticTexts["Overall Summary Quantity: No Data"].waitForExistence(timeout: 2))
         XCTAssert(staticTexts["About \(vitalType)"].waitForExistence(timeout: 0.5))
         staticTexts["About \(vitalType)"].swipeUp()
         XCTAssert(staticTexts["\(vitalType) Description"].waitForExistence(timeout: 0.5))
@@ -305,7 +305,7 @@ extension XCUIApplication {
             let nextIdx = (idx + 1) % numTypes
             
             XCTAssert(buttons["\(symptomTypes[idx]) Score, Symptoms Picker Chevron"].waitForExistence(timeout: 0.5))
-            images["Symptoms Picker Chevron"].tap()
+            buttons["\(symptomTypes[idx]) Score, Symptoms Picker Chevron"].tap()
             
             XCTAssert(buttons["\(symptomLabels[nextIdx])"].firstMatch.waitForExistence(timeout: 0.5))
             buttons["\(symptomLabels[nextIdx])"].firstMatch.tap()

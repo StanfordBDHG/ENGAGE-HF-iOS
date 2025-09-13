@@ -10,9 +10,10 @@ import XCTest
 
 
 // Based off of https://github.com/CS342/2024-Intake/blob/main/IntakeUITests/LaunchTests.swift
+@MainActor
 final class LaunchTests: XCTestCase {
-    override func setUpWithError() throws {
-        try super.setUpWithError()
+    override func setUp() async throws {
+        try await super.setUp()
         
         continueAfterFailure = false
         
