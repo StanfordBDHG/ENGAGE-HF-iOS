@@ -19,9 +19,9 @@ final class HomeViewUITests: XCTestCase {
         app.launchArguments = ["--skipOnboarding", "--setupTestEnvironment"]
         app.launch()
         
-        addNotificatinosUIInterruptionMonitor()
+                try await Task.sleep(for: .seconds(2))
         
-        try await Task.sleep(for: .seconds(2))
+        addNotificatinosUIInterruptionMonitor()
     }
     
     // Make sure the Dashboard view UI functions correctly

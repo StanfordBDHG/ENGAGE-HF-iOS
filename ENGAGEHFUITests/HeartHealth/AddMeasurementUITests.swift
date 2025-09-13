@@ -20,9 +20,9 @@ final class AddMeasurementUITests: XCTestCase {
         app.launchArguments = ["--assumeOnboardingComplete", "--setupTestEnvironment", "--useFirebaseEmulator"]
         app.launch()
         
-        addNotificatinosUIInterruptionMonitor()
+                try await Task.sleep(for: .seconds(2))
         
-        try await Task.sleep(for: .seconds(2))
+        addNotificatinosUIInterruptionMonitor()
     }
 
     func testAddingBodyWeight() throws {

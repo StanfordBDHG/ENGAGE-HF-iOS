@@ -19,9 +19,9 @@ final class EducationViewUITests: XCTestCase {
         app.launchArguments = ["--assumeOnboardingComplete", "--setupTestEnvironment", "--useFirebaseEmulator", "--setupTestVideos"]
         app.launch()
         
-        addNotificatinosUIInterruptionMonitor()
+                try await Task.sleep(for: .seconds(2))
         
-        try await Task.sleep(for: .seconds(2))
+        addNotificatinosUIInterruptionMonitor()
     }
     
     

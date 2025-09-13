@@ -27,9 +27,9 @@ final class MessagesUITests: XCTestCase {
         ]
         app.launch()
         
-        addNotificatinosUIInterruptionMonitor()
+                try await Task.sleep(for: .seconds(2))
         
-        try await Task.sleep(for: .seconds(2))
+        addNotificatinosUIInterruptionMonitor()
     }
     
     func testProcessingState() throws {

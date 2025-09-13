@@ -31,9 +31,9 @@ final class OnboardingUITests: XCTestCase {
         app.launchArguments = ["--showOnboarding", "--useFirebaseEmulator"]
         app.launch()
         
-        addNotificatinosUIInterruptionMonitor()
+                try await Task.sleep(for: .seconds(2))
         
-        try await Task.sleep(for: .seconds(2))
+        addNotificatinosUIInterruptionMonitor()
     }
     
     func testOnboardingFlow() throws {

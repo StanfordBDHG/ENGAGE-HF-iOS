@@ -21,14 +21,16 @@ final class AccountTests: XCTestCase {
         app.launchArguments = ["--assumeOnboardingComplete", "--setupTestEnvironment", "--useFirebaseEmulator"]
         app.launch()
         
-        addNotificatinosUIInterruptionMonitor()
-        
         try await Task.sleep(for: .seconds(2))
+        
+        addNotificatinosUIInterruptionMonitor()
     }
 
-    func testInAppLogon() throws {
+    func testInAppLogon() async throws {
         let app = XCUIApplication()
 
+        // Runners seem to take a longer time for the basic setup here ...
+        try await Task.sleep(for: .seconds(2))
         _ = app.staticTexts["Home"].waitForExistence(timeout: 10)
 
         XCTAssert(app.buttons["Home"].waitForExistence(timeout: 2.0))
