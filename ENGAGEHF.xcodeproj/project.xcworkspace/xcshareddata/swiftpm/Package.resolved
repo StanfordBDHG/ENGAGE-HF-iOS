@@ -204,8 +204,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziBluetooth.git",
       "state" : {
-        "revision" : "c52a63755a4a11c479f12128dd896f707f8e6dd8",
-        "version" : "3.3.1"
+        "revision" : "eedaf1720f678febe09ec10ce3a6bdbba7e44900",
+        "version" : "3.3.2"
       }
     },
     {
@@ -213,8 +213,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziContact.git",
       "state" : {
-        "revision" : "8dd7cb426e79f30ced23f37e438c0ca38bfe9a47",
-        "version" : "1.0.2"
+        "revision" : "f44b915dab50a862e7152cc77081ba9cb743fca4",
+        "version" : "1.0.3"
       }
     },
     {
@@ -222,8 +222,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziDevices.git",
       "state" : {
-        "revision" : "18c3b3cb0a6b2f0ed19fd776dc52ed17776bf329",
-        "version" : "1.6.0"
+        "revision" : "f6d0b16fc1e0f1fecd0e074db7ce493c8b88cb68",
+        "version" : "1.6.1"
       }
     },
     {
