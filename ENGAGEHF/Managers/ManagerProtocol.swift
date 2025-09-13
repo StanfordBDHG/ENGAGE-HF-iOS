@@ -12,7 +12,7 @@ import Spezi
 /// A protocol to force refresh of the content of conforming Managers.
 protocol RefreshableContent {
     // periphery:ignore - Actually used in the invitation code module.
-    func refreshContent()
+    func refreshContent() async
 }
 
 

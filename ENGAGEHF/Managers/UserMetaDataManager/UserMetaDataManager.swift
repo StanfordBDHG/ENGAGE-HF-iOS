@@ -15,7 +15,7 @@ import SpeziFirebaseAccount
 
 
 @Observable
-final class UserMetaDataManager: Manager {
+final class UserMetaDataManager: Manager, Sendable {
     @ObservationIgnored @Dependency(Account.self) private var account: Account?
     @ObservationIgnored @Dependency(AccountNotifications.self) private var accountNotifications: AccountNotifications?
     @ObservationIgnored @Application(\.logger) private var logger
@@ -42,7 +42,7 @@ final class UserMetaDataManager: Manager {
                         return
                     }
                     
-                    await updateOrganizationIfNeeded(id: event.accountDetails?.organization)
+                    updateOrganizationIfNeeded(id: event.accountDetails?.organization)
                 }
             }
         }

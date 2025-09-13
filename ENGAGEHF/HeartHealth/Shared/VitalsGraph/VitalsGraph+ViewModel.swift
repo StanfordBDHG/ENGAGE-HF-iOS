@@ -132,9 +132,11 @@ extension VitalsGraph {
                 }
             }
             self.dateUnit = options.granularity
-            self.selectionFormatter = seriesData.isEmpty ?
-            { _ in String(localized: "No Data", comment: "No data available") } :
-            options.selectionFormatter
+            self.selectionFormatter = if seriesData.isEmpty {
+                { _ in String(localized: "No Data", comment: "No data available") }
+            } else {
+                options.selectionFormatter
+            }
             self.localizedUnitString = seriesData.isEmpty ? nil : options.localizedUnitString
             self.selection = nil
             

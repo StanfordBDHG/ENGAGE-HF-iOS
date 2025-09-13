@@ -20,7 +20,7 @@ import SpeziFirebaseAccount
 /// Maintains a list of Messages assigned to the current user in firebase
 /// On sign-in, adds a snapshot listener to the user's messages collection
 @Observable
-final class MessageManager: Manager {
+final class MessageManager: Manager, Sendable {
     @ObservationIgnored @Dependency(Account.self) private var account: Account?
     @ObservationIgnored @Dependency(AccountNotifications.self) private var accountNotifications: AccountNotifications?
     
@@ -53,9 +53,9 @@ final class MessageManager: Manager {
                     }
 
                     if let details = event.newEnrolledAccountDetails {
-                        await updateSnapshotListener(for: details)
+                        updateSnapshotListener(for: details)
                     } else if event.accountDetails == nil {
-                        await updateSnapshotListener(for: nil)
+                        updateSnapshotListener(for: nil)
                     }
                 }
             }
@@ -224,9 +224,9 @@ extension MessageManager {
     // periphery:ignore - Used in Previews across the application.
     /// Marks all messages that can be processing as processing.
     /// Used for testing in previews
-    func makeMockMessagesProcessing() async {
-        await markAsProcessing(type: .healthMeasurement(samples: 1))
-        await markAsProcessing(type: .questionnaire(id: "0"))
+    func makeMockMessagesProcessing() {
+        markAsProcessing(type: .healthMeasurement(samples: 1))
+        markAsProcessing(type: .questionnaire(id: "0"))
     }
     
     private func injectTestMessages() {

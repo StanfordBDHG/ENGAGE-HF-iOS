@@ -21,7 +21,7 @@ import UserNotifications
 
 
 @Observable
-final class NotificationManager: Manager, NotificationHandler, NotificationTokenHandler {
+final class NotificationManager: Manager, NotificationHandler, NotificationTokenHandler, Sendable {
     private struct NotificationTokenTimeoutError: LocalizedError {
         var errorDescription: String? {
             "Remote notification registration timed out."
@@ -70,7 +70,7 @@ final class NotificationManager: Manager, NotificationHandler, NotificationToken
                         return
                     }
                   
-                    if await event.newEnrolledAccountDetails != nil {
+                    if event.newEnrolledAccountDetails != nil {
                         do {
                             _ = try await self.requestNotificationPermissions()
                         } catch {
@@ -81,7 +81,7 @@ final class NotificationManager: Manager, NotificationHandler, NotificationToken
                                 )
                             )
                         }
-                    } else if await event.accountDetails == nil {
+                    } else if event.accountDetails == nil {
                         _ = try? await self.unregisterDeviceToken()
                     }
                 }

@@ -22,7 +22,7 @@ import SpeziFirestore
 /// - Maintain local, up-to-date arrays of the patients health data via Firestore SnapshotListeners
 /// - Convert FHIR observations to HKQuantitySamples and HKCorrelations
 @Observable
-final class VitalsManager: Manager {
+final class VitalsManager: Manager, Sendable {
     @ObservationIgnored @StandardActor private var standard: ENGAGEHFStandard
     
     @ObservationIgnored @Dependency(Account.self) private var account: Account?
@@ -71,8 +71,8 @@ final class VitalsManager: Manager {
                         return
                     }
                     
-                    if let details = await event.newEnrolledAccountDetails {
-                        await updateSnapshotListener(for: details)
+                    if let details = event.newEnrolledAccountDetails {
+                        updateSnapshotListener(for: details)
                         
                         /// If testing, add mock measurements to the user's heart rate, blood pressure, weight, and symptoms histories
                         /// Called each time a new user signs in
@@ -80,11 +80,11 @@ final class VitalsManager: Manager {
                             do {
                                 try await self.setupHeartHealthTesting(for: details)
                             } catch {
-                                await logger.error("Failed to setup Heart Health testing: \(error)")
+                                logger.error("Failed to setup Heart Health testing: \(error)")
                             }
                         }
-                    } else if await event.accountDetails == nil {
-                        await updateSnapshotListener(for: nil)
+                    } else if event.accountDetails == nil {
+                        updateSnapshotListener(for: nil)
                     }
                 }
             }

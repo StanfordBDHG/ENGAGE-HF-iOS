@@ -17,7 +17,7 @@ import SwiftUI
 ///
 /// Wraps an environment accessible and observable stack for use in navigating between views
 @Observable
-final class NavigationManager: Manager {
+final class NavigationManager: Manager, Sendable {
     @ObservationIgnored @Dependency(AccountNotifications.self) private var accountNotifications: AccountNotifications?
     @ObservationIgnored @Dependency(VideoManager.self) private var videoManager: VideoManager?
 
@@ -52,11 +52,11 @@ final class NavigationManager: Manager {
                 guard let self else {
                     return
                 }
-                guard await event.newEnrolledAccountDetails != nil else {
+                guard event.newEnrolledAccountDetails != nil else {
                     continue
                 }
 
-                await refreshContent()
+                refreshContent()
             }
         }
     }

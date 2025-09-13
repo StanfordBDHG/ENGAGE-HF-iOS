@@ -16,7 +16,7 @@ import SpeziFirebaseAccount
 import SpeziFirestore
 
 
-class InvitationCodeModule: Module, EnvironmentAccessible {
+final class InvitationCodeModule: Module, EnvironmentAccessible, Sendable {
     @Application(\.logger) private var logger
 
     @Dependency(Account.self) private var account: Account?
@@ -54,12 +54,12 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
                     _ = try? await Auth.auth().currentUser?.getIDToken(forcingRefresh: true)
                     
                     // Now that we've forced refresh on the auth token, refresh the content of the managers.
-                    await videoManager.refreshContent()
+                    videoManager.refreshContent()
                     await userMetaDataManager.refreshContent()
                     await medicationsManager.refreshContent()
-                    await notificationManager.refreshContent()
+                    notificationManager.refreshContent()
                     await messageManager.refreshContent()
-                    await navigationManager.refreshContent()
+                    navigationManager.refreshContent()
                     await vitalsManager.refreshContent()
                     
                     logger.debug("Successfully enrolled user!")

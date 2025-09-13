@@ -24,7 +24,7 @@ import SpeziQuestionnaire
 import SwiftUI
 
 
-actor ENGAGEHFStandard: Standard, EnvironmentAccessible, PhoneVerificationConstraint {
+actor ENGAGEHFStandard: Standard, EnvironmentAccessible, PhoneVerificationConstraint, Sendable {
     @Dependency(Account.self) private var account: Account?
     @Dependency(MessageManager.self) private var messageManager: MessageManager
     
@@ -46,7 +46,7 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, PhoneVerificationConstr
             return
         }
         
-        await messageManager.markAsProcessing(
+        messageManager.markAsProcessing(
             type: .healthMeasurement(samples: samples.count)
         )
 
@@ -96,7 +96,7 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, PhoneVerificationConstr
         }
 #endif
         
-        await messageManager.markAsProcessing(
+        messageManager.markAsProcessing(
             type: .questionnaire(id: questionnaireId)
         )
         

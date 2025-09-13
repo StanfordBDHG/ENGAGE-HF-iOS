@@ -14,7 +14,7 @@ import SpeziAccount
 
 
 @Observable
-final class VideoManager: Manager {
+final class VideoManager: Manager, Sendable {
     @ObservationIgnored @Dependency(Account.self) private var account: Account?
     @ObservationIgnored @Dependency(AccountNotifications.self) private var accountNotifications: AccountNotifications?
     @Application(\.logger) @ObservationIgnored private var logger
@@ -42,9 +42,9 @@ final class VideoManager: Manager {
                         return
                     }
 
-                    if await event.newEnrolledAccountDetails != nil {
+                    if event.newEnrolledAccountDetails != nil {
                         videoCollections = await getVideoSections()
-                    } else if await event.accountDetails == nil {
+                    } else if event.accountDetails == nil {
                         videoCollections = []
                     }
                 }

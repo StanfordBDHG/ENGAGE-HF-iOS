@@ -190,7 +190,7 @@ struct MessageRow: View {
                     )
                     AsyncButton(
                         action: {
-                            await messageManager.makeMockMessagesProcessing()
+                            messageManager.makeMockMessagesProcessing()
                         },
                         label: {
                             Text("Set Processing")
