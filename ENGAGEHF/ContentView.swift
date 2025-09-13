@@ -11,7 +11,6 @@ import SpeziViews
 import SwiftUI
 
 
-@MainActor
 struct ContentView: View {
     private enum SheetContent: String, Identifiable {
         case onboarding

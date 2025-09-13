@@ -12,7 +12,6 @@ import SpeziViews
 import SwiftUI
 
 
-@MainActor
 struct HeartHealth: View {
     @Binding var presentingAccount: Bool
     

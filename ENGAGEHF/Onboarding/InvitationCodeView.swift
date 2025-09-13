@@ -13,7 +13,7 @@ import SpeziValidation
 import SpeziViews
 import SwiftUI
 
-@MainActor
+
 struct InvitationCodeView: View {
     @Environment(ManagedNavigationStack.Path.self) private var managedNavigationStackPath
     @Environment(InvitationCodeModule.self) private var invitationCodeModule

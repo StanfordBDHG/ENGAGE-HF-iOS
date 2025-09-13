@@ -17,7 +17,7 @@ import SwiftUI
 ///
 /// Wraps an environment accessible and observable stack for use in navigating between views
 @Observable
-final class NavigationManager: @MainActor Manager {
+final class NavigationManager: Manager {
     @ObservationIgnored @Dependency(AccountNotifications.self) private var accountNotifications: AccountNotifications?
     @ObservationIgnored @Dependency(VideoManager.self) private var videoManager: VideoManager?
 

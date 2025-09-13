@@ -15,7 +15,7 @@ import SpeziFirebaseAccount
 
 
 @Observable
-final class UserMetaDataManager: @MainActor Manager {
+final class UserMetaDataManager: Manager {
     @ObservationIgnored @Dependency(Account.self) private var account: Account?
     @ObservationIgnored @Dependency(AccountNotifications.self) private var accountNotifications: AccountNotifications?
     @ObservationIgnored @Application(\.logger) private var logger
@@ -53,6 +53,7 @@ final class UserMetaDataManager: @MainActor Manager {
     }
     
     
+    @MainActor
     func refreshContent() {
         updateOrganizationIfNeeded(id: account?.details?.organization)
     }
@@ -68,7 +69,7 @@ final class UserMetaDataManager: @MainActor Manager {
             return
         }
         let organizationDocRef = Firestore.organizationCollectionReference.document(organizationId)
-        Task { @MainActor in
+        Task {
             do {
 #if TEST
                 if FeatureFlags.setupTestUserMetaData {

@@ -23,7 +23,7 @@ struct SymptomsGraphSection: View {
         resolution.getDateRange(endDate: .now)
     }
     
-    @MainActor private var graphData: [String: [VitalMeasurement]] {
+    private var graphData: [String: [VitalMeasurement]] {
         let ungroupedData = vitalsManager.symptomHistory
             .compactMap { score -> VitalMeasurement? in
                 guard let value = score[keyPath: symptomsType.symptomScoreKeyMap] else {

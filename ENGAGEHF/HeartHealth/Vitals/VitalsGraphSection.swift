@@ -23,7 +23,7 @@ struct VitalsGraphSection: View {
         granularity.getDateRange(endDate: .now)
     }
     
-    @MainActor private var graphData: [HKSample] {
+    private var graphData: [HKSample] {
         let unfilteredData: [HKSample] = switch vitalsType {
         case .weight: vitalsManager.weightHistory
         case .heartRate: vitalsManager.heartRateHistory

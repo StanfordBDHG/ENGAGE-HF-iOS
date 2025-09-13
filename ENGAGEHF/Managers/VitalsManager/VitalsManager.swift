@@ -22,7 +22,7 @@ import SpeziFirestore
 /// - Maintain local, up-to-date arrays of the patients health data via Firestore SnapshotListeners
 /// - Convert FHIR observations to HKQuantitySamples and HKCorrelations
 @Observable
-final class VitalsManager: @MainActor Manager {
+final class VitalsManager: Manager {
     @ObservationIgnored @StandardActor private var standard: ENGAGEHFStandard
     
     @ObservationIgnored @Dependency(Account.self) private var account: Account?
@@ -92,6 +92,7 @@ final class VitalsManager: @MainActor Manager {
     }
     
     
+    @MainActor
     func refreshContent() {
         updateSnapshotListener(for: account?.details)
     }

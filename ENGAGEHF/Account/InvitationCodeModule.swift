@@ -86,7 +86,6 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
         }
     }
 
-    @MainActor
     func setupTestEnvironment(invitationCode: String) async throws {
         guard let account, let accountService else {
             guard FeatureFlags.disableFirebase else {
@@ -98,7 +97,7 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
         let email = "test@engage.stanford.edu"
         let password = "123456789"
 
-        if account.details != nil {
+        if await account.details != nil {
             // always start logged out, even if testing account had already been set up
             try await accountService.logout()
             try await Task.sleep(for: .seconds(1))

@@ -188,9 +188,9 @@ struct MessageRow: View {
                             Text("Add Mock")
                         }
                     )
-                    Button(
+                    AsyncButton(
                         action: {
-                            messageManager.makeMockMessagesProcessing()
+                            await messageManager.makeMockMessagesProcessing()
                         },
                         label: {
                             Text("Set Processing")

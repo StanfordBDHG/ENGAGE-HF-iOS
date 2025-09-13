@@ -65,7 +65,6 @@ struct MeasurementListSection: View {
     }
 
 
-    @MainActor
     private func deleteIndices(indexSet: IndexSet) throws {
         guard !ProcessInfo.processInfo.isPreviewSimulator && !FeatureFlags.disableFirebase else {
             for idx in indexSet {

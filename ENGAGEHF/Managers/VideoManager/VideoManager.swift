@@ -14,7 +14,7 @@ import SpeziAccount
 
 
 @Observable
-final class VideoManager: @MainActor Manager {
+final class VideoManager: Manager {
     @ObservationIgnored @Dependency(Account.self) private var account: Account?
     @ObservationIgnored @Dependency(AccountNotifications.self) private var accountNotifications: AccountNotifications?
     @Application(\.logger) @ObservationIgnored private var logger
@@ -58,7 +58,7 @@ final class VideoManager: @MainActor Manager {
     
     
     func refreshContent() {
-        Task { @MainActor in
+        Task {
             videoCollections = await getVideoSections()
         }
     }

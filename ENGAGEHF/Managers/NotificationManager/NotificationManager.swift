@@ -21,7 +21,7 @@ import UserNotifications
 
 
 @Observable
-final class NotificationManager: @MainActor Manager, NotificationHandler, NotificationTokenHandler {
+final class NotificationManager: Manager, NotificationHandler, NotificationTokenHandler {
     private struct NotificationTokenTimeoutError: LocalizedError {
         var errorDescription: String? {
             "Remote notification registration timed out."
@@ -52,7 +52,7 @@ final class NotificationManager: @MainActor Manager, NotificationHandler, Notifi
     
     func configure() {
         self.cancellable = NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification).sink { _ in
-            Task { @MainActor in
+            Task {
                 if self.completedOnboardingFlow, self.account != nil {
                     await self.checkNotificationsAuthorized()
                 }
@@ -88,7 +88,7 @@ final class NotificationManager: @MainActor Manager, NotificationHandler, Notifi
             }
         }
         
-        Task { @MainActor in
+        Task {
             if self.account != nil {
                 await self.checkNotificationsAuthorized()
             }
@@ -99,7 +99,7 @@ final class NotificationManager: @MainActor Manager, NotificationHandler, Notifi
     func refreshContent() {
         Task {
             do {
-                if account?.details != nil {
+                if await account?.details != nil {
                     _ = try await self.requestNotificationPermissions()
                 } else {
                     _ = try await self.unregisterDeviceToken()
