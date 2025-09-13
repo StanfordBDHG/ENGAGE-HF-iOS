@@ -6,9 +6,9 @@
 // SPDX-License-Identifier: MIT
 //
 
+import Spezi
 import SpeziViews
 import SwiftUI
-import Spezi
 
 
 struct MeasurementListSection: View {

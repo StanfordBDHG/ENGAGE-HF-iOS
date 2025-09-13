@@ -20,8 +20,7 @@ import SpeziFirebaseAccount
 /// Maintains a list of Messages assigned to the current user in firebase
 /// On sign-in, adds a snapshot listener to the user's messages collection
 @Observable
-@MainActor
-final class MessageManager: Manager {
+final class MessageManager: @MainActor Manager {
     @ObservationIgnored @Dependency(Account.self) private var account: Account?
     @ObservationIgnored @Dependency(AccountNotifications.self) private var accountNotifications: AccountNotifications?
     
@@ -47,16 +46,16 @@ final class MessageManager: Manager {
 #endif
 
         if let accountNotifications {
-            notificationTask = Task.detached { @MainActor [weak self] in
+            notificationTask = Task.detached { [weak self] in
                 for await event in accountNotifications.events {
                     guard let self else {
                         return
                     }
 
-                    if let details = event.newEnrolledAccountDetails {
-                        updateSnapshotListener(for: details)
-                    } else if event.accountDetails == nil {
-                        updateSnapshotListener(for: nil)
+                    if let details = await event.newEnrolledAccountDetails {
+                        await updateSnapshotListener(for: details)
+                    } else if await event.accountDetails == nil {
+                        await updateSnapshotListener(for: nil)
                     }
                 }
             }

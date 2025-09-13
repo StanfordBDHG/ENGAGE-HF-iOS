@@ -7,9 +7,9 @@
 //
 
 import HealthKit
+import Spezi
 import SpeziViews
 import SwiftUI
-import Spezi
 
 
 struct AddMeasurementAsyncButton: View {

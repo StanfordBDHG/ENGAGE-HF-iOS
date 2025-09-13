@@ -64,7 +64,7 @@ extension VitalsGraph {
             self.saveProcessingResults(seriesData: seriesData, options: options)
         }
         
-        func selectPoint(value: GestureValue, proxy: ChartProxy, geometry: GeometryProxy, clearOnGap: Bool) {
+        func selectPoint(value: any GestureValue, proxy: ChartProxy, geometry: GeometryProxy, clearOnGap: Bool) {
             // Convert the tap location to the coordinate space of the plot area
             guard let anchor: Anchor<CGRect> = proxy.plotFrame else {
                 return

@@ -6,10 +6,10 @@
 // SPDX-License-Identifier: MIT
 //
 
+import Spezi
 @_spi(TestingSupport) import SpeziAccount
 @_spi(TestingSupport) import SpeziDevices
 import SwiftUI
-import Spezi
 
 
 struct Dashboard: View {

@@ -26,47 +26,47 @@ enum FirebaseError: LocalizedError {
 
 
 extension Firestore {
-    static var userCollection: CollectionReference {
+    nonisolated static var userCollection: CollectionReference {
         Firestore.firestore().collection("users")
     }
     
-    static var videoSectionsCollectionReference: CollectionReference {
+    nonisolated static var videoSectionsCollectionReference: CollectionReference {
         Firestore.firestore().collection("videoSections")
     }
     
-    static var questionnairesCollectionReference: CollectionReference {
+    nonisolated static var questionnairesCollectionReference: CollectionReference {
         Firestore.firestore().collection("questionnaires")
     }
 
-    static var organizationCollectionReference: CollectionReference {
+    nonisolated static var organizationCollectionReference: CollectionReference {
         Firestore.firestore().collection("organizations")
     }
 
-    static func userDocumentReference(for accountId: String) -> DocumentReference {
+    nonisolated static func userDocumentReference(for accountId: String) -> DocumentReference {
         Self.userCollection.document(accountId)
     }
 
-    static func messagesCollectionReference(for accountId: String) -> CollectionReference {
+    nonisolated static func messagesCollectionReference(for accountId: String) -> CollectionReference {
         userDocumentReference(for: accountId).collection("messages")
     }
     
-    static func dryWeightCollectionReference(for accountId: String) -> CollectionReference {
+    nonisolated static func dryWeightCollectionReference(for accountId: String) -> CollectionReference {
         userDocumentReference(for: accountId).collection("dryWeightObservations")
     }
 
-    static func symptomScoresCollectionReference(for accountId: String) -> CollectionReference {
+    nonisolated static func symptomScoresCollectionReference(for accountId: String) -> CollectionReference {
         userDocumentReference(for: accountId).collection("symptomScores")
     }
 
-    static func medicationRecsCollectionReference(for accountId: String) -> CollectionReference {
+    nonisolated static func medicationRecsCollectionReference(for accountId: String) -> CollectionReference {
         userDocumentReference(for: accountId).collection("medicationRecommendations")
     }
 
-    static func questionnaireResponseCollectionReference(for accountId: String) -> CollectionReference {
+    nonisolated static func questionnaireResponseCollectionReference(for accountId: String) -> CollectionReference {
         userDocumentReference(for: accountId).collection("questionnaireResponses")
     }
     
-    static func collectionReference(for accountId: String, type: HKSampleType) -> CollectionReference? {
+    nonisolated static func collectionReference(for accountId: String, type: HKSampleType) -> CollectionReference? {
         switch type {
         case HKQuantityType(.bodyMass):
             userDocumentReference(for: accountId).collection("bodyWeightObservations")

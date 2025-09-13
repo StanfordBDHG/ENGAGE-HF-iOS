@@ -6,10 +6,10 @@
 // SPDX-License-Identifier: MIT
 //
 
+import Spezi
 import SpeziViews
 import SwiftUI
 import WebKit
-import Spezi
 
 
 // Note: This view prints the following errors to the console:
@@ -81,7 +81,7 @@ extension WebView {
             handleError(error, webView: webView)
         }
         
-        private func handleError(_ error: Error, webView: WKWebView) {
+        private func handleError(_ error: any Error, webView: WKWebView) {
             if parent.retryCount < parent.maxRetries {
                 parent.retryCount += 1
                 parent.viewState = .processing

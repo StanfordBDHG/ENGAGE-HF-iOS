@@ -12,9 +12,10 @@ import os
 import Spezi
 import SpeziAccount
 import SpeziFirebaseAccount
+
+
 @Observable
-@MainActor
-final class UserMetaDataManager: Manager {
+final class UserMetaDataManager: @MainActor Manager {
     @ObservationIgnored @Dependency(Account.self) private var account: Account?
     @ObservationIgnored @Dependency(AccountNotifications.self) private var accountNotifications: AccountNotifications?
     @ObservationIgnored @Application(\.logger) private var logger
@@ -35,13 +36,13 @@ final class UserMetaDataManager: Manager {
         }
         
         if let accountNotifications {
-            notificationsTask = Task.detached { @MainActor [weak self] in
+            notificationsTask = Task.detached { [weak self] in
                 for await event in accountNotifications.events {
                     guard let self else {
                         return
                     }
                     
-                    updateOrganizationIfNeeded(id: event.accountDetails?.organization)
+                    await updateOrganizationIfNeeded(id: event.accountDetails?.organization)
                 }
             }
         }

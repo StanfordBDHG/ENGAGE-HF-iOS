@@ -13,7 +13,7 @@ import Foundation
 /// The score representing the result of a patient's response to a KCCQ survey
 /// Parameters are specified in compliance with:
 /// https://github.com/StanfordBDHG/ENGAGE-HF-Firebase/tree/web-data-scheme
-struct SymptomScore: Identifiable, Equatable {
+struct SymptomScore: Sendable, Identifiable, Equatable {
     @DocumentID var id: String?
     let date: Date
     let overallScore: Double?

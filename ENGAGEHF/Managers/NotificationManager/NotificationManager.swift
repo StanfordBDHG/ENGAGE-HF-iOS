@@ -21,8 +21,7 @@ import UserNotifications
 
 
 @Observable
-@MainActor
-final class NotificationManager: Manager, NotificationHandler, NotificationTokenHandler {
+final class NotificationManager: @MainActor Manager, NotificationHandler, NotificationTokenHandler {
     private struct NotificationTokenTimeoutError: LocalizedError {
         var errorDescription: String? {
             "Remote notification registration timed out."
@@ -48,7 +47,7 @@ final class NotificationManager: Manager, NotificationHandler, NotificationToken
     var state: ViewState = .idle
     
     
-    nonisolated init() {}
+    init() {}
     
     
     func configure() {
@@ -65,13 +64,13 @@ final class NotificationManager: Manager, NotificationHandler, NotificationToken
         }
         
         if let accountNotifications {
-            notificationsTask = Task.detached { @MainActor [weak self] in
+            notificationsTask = Task.detached { [weak self] in
                 for await event in accountNotifications.events {
                     guard let self else {
                         return
                     }
                   
-                    if event.newEnrolledAccountDetails != nil {
+                    if await event.newEnrolledAccountDetails != nil {
                         do {
                             _ = try await self.requestNotificationPermissions()
                         } catch {
@@ -82,7 +81,7 @@ final class NotificationManager: Manager, NotificationHandler, NotificationToken
                                 )
                             )
                         }
-                    } else if event.accountDetails == nil {
+                    } else if await event.accountDetails == nil {
                         _ = try? await self.unregisterDeviceToken()
                     }
                 }

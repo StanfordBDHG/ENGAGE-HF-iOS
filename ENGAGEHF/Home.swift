@@ -6,6 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
+import Spezi
 @_spi(TestingSupport) import SpeziAccount
 import SpeziBluetooth
 import SpeziBluetoothServices
@@ -13,7 +14,6 @@ import SpeziDevices
 import SpeziDevicesUI
 import SpeziViews
 import SwiftUI
-import Spezi
 
 
 struct HomeView: View {

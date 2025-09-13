@@ -7,9 +7,9 @@
 //
 
 import Charts
-import SwiftUI
-import SpeziViews
 import Spezi
+import SpeziViews
+import SwiftUI
 
 
 struct SymptomsGraphSection: View {

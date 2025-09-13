@@ -6,9 +6,9 @@
 // SPDX-License-Identifier: MIT
 //
 
-import SwiftUI
-import SpeziViews
 import Spezi
+import SpeziViews
+import SwiftUI
 
 
 struct SymptomsContentView: View {

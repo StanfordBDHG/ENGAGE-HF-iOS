@@ -14,8 +14,7 @@ import SpeziAccount
 
 
 @Observable
-@MainActor
-final class VideoManager: Manager {
+final class VideoManager: @MainActor Manager {
     @ObservationIgnored @Dependency(Account.self) private var account: Account?
     @ObservationIgnored @Dependency(AccountNotifications.self) private var accountNotifications: AccountNotifications?
     @Application(\.logger) @ObservationIgnored private var logger
@@ -37,15 +36,15 @@ final class VideoManager: Manager {
 #endif
 
         if let accountNotifications {
-            notificationTask = Task.detached { @MainActor [weak self] in
+            notificationTask = Task.detached { [weak self] in
                 for await event in accountNotifications.events {
                     guard let self else {
                         return
                     }
 
-                    if event.newEnrolledAccountDetails != nil {
+                    if await event.newEnrolledAccountDetails != nil {
                         videoCollections = await getVideoSections()
-                    } else if event.accountDetails == nil {
+                    } else if await event.accountDetails == nil {
                         videoCollections = []
                     }
                 }

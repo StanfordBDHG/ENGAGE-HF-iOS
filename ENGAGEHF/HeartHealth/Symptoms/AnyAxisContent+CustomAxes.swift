@@ -7,8 +7,8 @@
 //
 
 import Charts
-import SwiftUI
 import SpeziViews
+import SwiftUI
 
 
 extension AnyAxisContent {

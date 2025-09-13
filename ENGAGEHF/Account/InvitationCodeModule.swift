@@ -9,6 +9,7 @@
 import Firebase
 import FirebaseAuth
 import FirebaseFunctions
+import os
 import Spezi
 import SpeziAccount
 import SpeziFirebaseAccount
@@ -53,13 +54,13 @@ class InvitationCodeModule: Module, EnvironmentAccessible {
                     _ = try? await Auth.auth().currentUser?.getIDToken(forcingRefresh: true)
                     
                     // Now that we've forced refresh on the auth token, refresh the content of the managers.
-                    await videoManager.refreshContent()
-                    await userMetaDataManager.refreshContent()
-                    await medicationsManager.refreshContent()
-                    await notificationManager.refreshContent()
-                    await messageManager.refreshContent()
-                    await navigationManager.refreshContent()
-                    await vitalsManager.refreshContent()
+                    videoManager.refreshContent()
+                    userMetaDataManager.refreshContent()
+                    medicationsManager.refreshContent()
+                    notificationManager.refreshContent()
+                    messageManager.refreshContent()
+                    navigationManager.refreshContent()
+                    vitalsManager.refreshContent()
                     
                     logger.debug("Successfully enrolled user!")
                 } catch {

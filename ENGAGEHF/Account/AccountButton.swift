@@ -6,8 +6,8 @@
 // SPDX-License-Identifier: MIT
 //
 
-import SwiftUI
 import Spezi
+import SwiftUI
 
 
 struct AccountButton: View {

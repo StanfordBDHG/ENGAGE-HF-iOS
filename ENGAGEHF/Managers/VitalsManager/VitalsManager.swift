@@ -22,8 +22,7 @@ import SpeziFirestore
 /// - Maintain local, up-to-date arrays of the patients health data via Firestore SnapshotListeners
 /// - Convert FHIR observations to HKQuantitySamples and HKCorrelations
 @Observable
-@MainActor
-final class VitalsManager: Manager {
+final class VitalsManager: @MainActor Manager {
     @ObservationIgnored @StandardActor private var standard: ENGAGEHFStandard
     
     @ObservationIgnored @Dependency(Account.self) private var account: Account?
@@ -66,14 +65,14 @@ final class VitalsManager: Manager {
         }
         
         if let accountNotifications {
-            notificationsTask = Task.detached { @MainActor [weak self] in
+            notificationsTask = Task.detached { [weak self] in
                 for await event in accountNotifications.events {
                     guard let self else {
                         return
                     }
                     
-                    if let details = event.newEnrolledAccountDetails {
-                        updateSnapshotListener(for: details)
+                    if let details = await event.newEnrolledAccountDetails {
+                        await updateSnapshotListener(for: details)
                         
                         /// If testing, add mock measurements to the user's heart rate, blood pressure, weight, and symptoms histories
                         /// Called each time a new user signs in
@@ -81,11 +80,11 @@ final class VitalsManager: Manager {
                             do {
                                 try await self.setupHeartHealthTesting(for: details)
                             } catch {
-                                logger.error("Failed to setup Heart Health testing: \(error)")
+                                await logger.error("Failed to setup Heart Health testing: \(error)")
                             }
                         }
-                    } else if event.accountDetails == nil {
-                        updateSnapshotListener(for: nil)
+                    } else if await event.accountDetails == nil {
+                        await updateSnapshotListener(for: nil)
                     }
                 }
             }
@@ -184,7 +183,7 @@ final class VitalsManager: Manager {
         collectionReference: CollectionReference,
         storage: ReferenceWritableKeyPath<VitalsManager, [T]>,
         mapObservation: @escaping (V) throws -> T
-    ) -> ListenerRegistration {
+    ) -> any ListenerRegistration {
         // Return a listener for the given collection
         collectionReference
             .addSnapshotListener { querySnapshot, error in
@@ -211,7 +210,7 @@ final class VitalsManager: Manager {
         collectionReference: CollectionReference,
         storage: ReferenceWritableKeyPath<VitalsManager, T?>,
         mapObservation: @escaping (V) throws -> T
-    ) -> ListenerRegistration {
+    ) -> any ListenerRegistration {
         // Return a listener for the given collection
         collectionReference
             .order(by: "effectiveDateTime")

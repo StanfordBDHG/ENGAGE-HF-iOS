@@ -6,6 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
+import AccessorySetupKit
 import FirebaseFirestore
 import PhoneNumberKit
 import Spezi
@@ -123,7 +124,7 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
         }
     }
     
-    private var customDecoder: FirebaseFirestore.Firestore.Decoder {
+    nonisolated private var customDecoder: FirebaseFirestore.Firestore.Decoder {
         let decoder = FirebaseFirestore.Firestore.Decoder()
         decoder.userInfo[.phoneNumberDecodingStrategy] = PhoneNumberDecodingStrategy.e164
         return decoder
