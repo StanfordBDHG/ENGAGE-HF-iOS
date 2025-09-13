@@ -23,6 +23,10 @@ final class NotificationSettingsUITests: XCTestCase {
             "--useFirebaseEmulator"
         ]
         app.launch()
+        
+        addNotificatinosUIInterruptionMonitor()
+        
+        try await Task.sleep(for: .seconds(2))
     }
 
     func testNotificationSettings() throws {

@@ -19,6 +19,10 @@ final class MedicationsUITests: XCTestCase {
         let app = XCUIApplication()
         app.launchArguments = ["--skipOnboarding", "--setupTestEnvironment", "--useFirebaseEmulator", "--setupTestMedications"]
         app.launch()
+        
+        addNotificatinosUIInterruptionMonitor()
+        
+        try await Task.sleep(for: .seconds(2))
     }
     
     

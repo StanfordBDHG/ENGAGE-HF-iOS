@@ -18,6 +18,10 @@ final class EducationViewUITests: XCTestCase {
         let app = XCUIApplication()
         app.launchArguments = ["--assumeOnboardingComplete", "--setupTestEnvironment", "--useFirebaseEmulator", "--setupTestVideos"]
         app.launch()
+        
+        addNotificatinosUIInterruptionMonitor()
+        
+        try await Task.sleep(for: .seconds(2))
     }
     
     

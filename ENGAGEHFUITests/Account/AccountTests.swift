@@ -20,6 +20,10 @@ final class AccountTests: XCTestCase {
         let app = XCUIApplication()
         app.launchArguments = ["--assumeOnboardingComplete", "--setupTestEnvironment", "--useFirebaseEmulator"]
         app.launch()
+        
+        addNotificatinosUIInterruptionMonitor()
+        
+        try await Task.sleep(for: .seconds(2))
     }
 
     func testInAppLogon() throws {
