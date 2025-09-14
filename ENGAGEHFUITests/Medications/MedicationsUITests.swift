@@ -26,7 +26,7 @@ final class MedicationsUITests: XCTestCase {
     }
     
     
-    func testMoreInformationButton() throws {
+    func testMoreInformationButton() async throws {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
@@ -44,7 +44,7 @@ final class MedicationsUITests: XCTestCase {
         XCTAssert(app.images["Sacubitril-Valsartan More Information"].waitForExistence(timeout: 0.5))
         app.images["Sacubitril-Valsartan More Information"].tap()
         
-        sleep(1)
+        try? await Task.sleep(for: .seconds(1))
         
         XCTAssert(app.buttons["Education"].exists)
     }

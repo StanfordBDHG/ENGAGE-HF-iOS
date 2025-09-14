@@ -35,7 +35,7 @@ final class RecentVitalsUITests: XCTestCase {
         try await Task.sleep(for: .seconds(0.5))
     }
 
-    func testWeight() throws {
+    func testWeight() async throws {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
@@ -65,7 +65,7 @@ final class RecentVitalsUITests: XCTestCase {
         XCTAssert(app.buttons["Save"].exists)
 
         app.buttons["Save"].tap()
-        sleep(1)
+        try? await Task.sleep(for: .seconds(1))
 
         XCTAssertFalse(app.alerts.element.exists)
         
@@ -79,7 +79,7 @@ final class RecentVitalsUITests: XCTestCase {
         XCTAssert(app.staticTexts["Body Weight"].waitForExistence(timeout: 2.0))
     }
     
-    func testHeartRateAndBloodPressure() throws {
+    func testHeartRateAndBloodPressure() async throws {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
@@ -107,7 +107,7 @@ final class RecentVitalsUITests: XCTestCase {
         XCTAssert(app.buttons["Save"].exists)
 
         app.buttons["Save"].tap()
-        sleep(1)
+        try? await Task.sleep(for: .seconds(1))
 
         XCTAssertFalse(app.alerts.element.exists)
         

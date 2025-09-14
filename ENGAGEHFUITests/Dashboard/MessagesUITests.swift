@@ -32,7 +32,7 @@ final class MessagesUITests: XCTestCase {
         try await Task.sleep(for: .seconds(0.5))
     }
     
-    func testProcessingState() throws {
+    func testProcessingState() async throws {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
@@ -50,12 +50,12 @@ final class MessagesUITests: XCTestCase {
         XCTAssert(app.staticTexts["62 BPM"].exists)
         
         app.buttons["Save"].tap()
-        sleep(1)
+        try? await Task.sleep(for: .seconds(1))
         
         // Verify processing state appears on related message
         let vitalsMessage = app.otherElements["Message Card - Vitals"]
-        XCTAssert(vitalsMessage.exists)
-        XCTAssert(vitalsMessage.staticTexts["Processing 2 measurements..."].exists)
+        XCTAssert(vitalsMessage.waitForExistence(timeout: 1))
+        XCTAssert(vitalsMessage.staticTexts["Processing 2 measurements..."].waitForExistence(timeout: 1))
         
         // Start questionnaire
         let questionnaireMessage = app.otherElements["Message Card - Symptom Questionnaire"]
@@ -63,7 +63,7 @@ final class MessagesUITests: XCTestCase {
         XCTAssert(questionnaireMessage.isHittable)
         
         questionnaireMessage.tap()
-        sleep(1)
+        try? await Task.sleep(for: .seconds(1))
         
         // First submit to get to the form
         let submitButton = app.buttons["ORKContinueButton.Next"]
@@ -79,14 +79,14 @@ final class MessagesUITests: XCTestCase {
         let finalSubmitButton = app.buttons["ORKContinueButton.Next"]
         XCTAssert(finalSubmitButton.waitForExistence(timeout: 0.5), "Final submit button not found")
         finalSubmitButton.tap()
-        sleep(1)
+        try? await Task.sleep(for: .seconds(1))
 
         // Verify processing states are cleared
-        XCTAssert(vitalsMessage.staticTexts["Processing 2 measurements..."].exists)
-        XCTAssert(questionnaireMessage.staticTexts["Processing questionnaire..."].exists)
+        XCTAssert(vitalsMessage.staticTexts["Processing 2 measurements..."].waitForExistence(timeout: 1))
+        XCTAssert(questionnaireMessage.staticTexts["Processing questionnaire..."].waitForExistence(timeout: 1))
     }
     
-    func testDismissMessages() throws {
+    func testDismissMessages() async throws {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
@@ -97,7 +97,7 @@ final class MessagesUITests: XCTestCase {
         XCTAssert(medicationChangeMessage.exists)
         
         medicationChangeMessage.buttons["Dismiss Button"].tap()
-        sleep(1)
+        try? await Task.sleep(for: .seconds(1))
         XCTAssertFalse(app.otherElements["Message Card - Medication Change"].exists, "Tapped dismiss but message is still present.")
         
         
@@ -107,7 +107,7 @@ final class MessagesUITests: XCTestCase {
         XCTAssert(uptitrationMessage.isHittable)
         
         uptitrationMessage.tap()
-        sleep(1)
+        try? await Task.sleep(for: .seconds(1))
         app.goTo(tab: "Home")
         XCTAssertFalse(app.otherElements["Message Card - Medication Uptitration"].exists)
         
@@ -118,12 +118,12 @@ final class MessagesUITests: XCTestCase {
         XCTAssert(vitalsMessage.isHittable)
         
         vitalsMessage.tap()
-        sleep(1)
+        try? await Task.sleep(for: .seconds(1))
         app.goTo(tab: "Home")
-        XCTAssert(app.otherElements["Message Card - Vitals"].exists)
+        XCTAssert(app.otherElements["Message Card - Vitals"].waitForExistence(timeout: 1))
     }
     
-    func testPlayVideoAction() throws {
+    func testPlayVideoAction() async throws {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
@@ -134,7 +134,7 @@ final class MessagesUITests: XCTestCase {
         XCTAssert(medicationChangeMessage.isHittable)
         
         medicationChangeMessage.tap()
-        sleep(1)
+        try? await Task.sleep(for: .seconds(1))
         
         // Make sure we arrive at the video player view
         XCTAssert(app.staticTexts["No Description"].exists)
@@ -145,7 +145,7 @@ final class MessagesUITests: XCTestCase {
         XCTAssert(app.staticTexts["Education"].waitForExistence(timeout: 1))
     }
     
-    func testCompleteQuestionnaireAction() throws {
+    func testCompleteQuestionnaireAction() async throws {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
@@ -156,13 +156,13 @@ final class MessagesUITests: XCTestCase {
         XCTAssert(questionnaireMessage.isHittable)
         
         questionnaireMessage.tap()
-        sleep(1)
+        try? await Task.sleep(for: .seconds(1))
         
-        XCTAssert(app.buttons["Cancel"].exists)
-        XCTAssert(app.staticTexts["Form Example"].exists)
+        XCTAssert(app.buttons["Cancel"].waitForExistence(timeout: 1))
+        XCTAssert(app.staticTexts["Form Example"].waitForExistence(timeout: 1))
     }
     
-    func testSeeMedicationsAction() throws {
+    func testSeeMedicationsAction() async throws {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
@@ -173,12 +173,12 @@ final class MessagesUITests: XCTestCase {
         XCTAssert(medicationUptitrationMessage.isHittable)
         
         medicationUptitrationMessage.tap()
-        sleep(1)
+        try? await Task.sleep(for: .seconds(1))
         
-        XCTAssert(app.staticTexts["Medications"].exists)
+        XCTAssert(app.staticTexts["Medications"].waitForExistence(timeout: 1))
     }
     
-    func testSeeHeartHealthAction() throws {
+    func testSeeHeartHealthAction() async throws {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
@@ -189,12 +189,12 @@ final class MessagesUITests: XCTestCase {
         XCTAssert(vitalsMessage.isHittable)
         
         vitalsMessage.tap()
-        sleep(1)
+        try? await Task.sleep(for: .seconds(1))
         
-        XCTAssert(app.staticTexts["Heart Health"].exists)
+        XCTAssert(app.staticTexts["Heart Health"].waitForExistence(timeout: 1))
     }
     
-    func testUnsupportedAction() throws {
+    func testUnsupportedAction() async throws {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
@@ -204,9 +204,9 @@ final class MessagesUITests: XCTestCase {
         XCTAssert(unknownActionMessage.exists)
         
         unknownActionMessage.tap()
-        sleep(1)
+        try? await Task.sleep(for: .seconds(1))
         
-        XCTAssert(app.otherElements["Message Card - Unknown"].exists)
+        XCTAssert(app.otherElements["Message Card - Unknown"].waitForExistence(timeout: 1))
     }
     
     func testMessagesAppear() throws {

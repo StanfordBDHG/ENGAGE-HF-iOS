@@ -51,10 +51,10 @@ final class AccountTests: XCTestCase {
         app.alerts[alert].buttons["Logout"].tap()
 
         XCTAssert(app.textFields["E-Mail Address"].waitForExistence(timeout: 10))
-        app.textFields["E-Mail Address"].typeText("test@engage.stanford.edu")
+        try app.textFields["E-Mail Address"].enter(value: "test@engage.stanford.edu")
 
         XCTAssert(app.secureTextFields["Password"].waitForExistence(timeout: 2))
-        app.secureTextFields["Password"].typeText("123456789")
+        try app.secureTextFields["Password"].enter(value: "123456789")
 
         XCTAssertTrue(app.buttons["Login"].waitForExistence(timeout: 0.5))
         app.buttons["Login"].tap()
