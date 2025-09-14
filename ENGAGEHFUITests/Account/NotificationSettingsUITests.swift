@@ -24,9 +24,9 @@ final class NotificationSettingsUITests: XCTestCase {
         ]
         app.launch()
         
-                try await Task.sleep(for: .seconds(2))
-        
+        try await Task.sleep(for: .seconds(2))
         addNotificatinosUIInterruptionMonitor()
+        try await Task.sleep(for: .seconds(0.5))
     }
 
     func testNotificationSettings() throws {
