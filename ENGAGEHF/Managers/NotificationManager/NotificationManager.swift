@@ -33,7 +33,7 @@ final class NotificationManager: Manager, NotificationHandler, NotificationToken
     @ObservationIgnored @Dependency(NavigationManager.self) private var navigationManager
     @ObservationIgnored @Dependency(Account.self) private var account: Account?
     
-    // periphery:ignore - Properly used then the TEST flag is not set.
+    // periphery:ignore - Properly used then the test flags is not set.
     @ObservationIgnored @Application(\.registerRemoteNotifications) private var registerRemoteNotifications
     @ObservationIgnored @Application(\.logger) private var logger
     
@@ -239,11 +239,12 @@ final class NotificationManager: Manager, NotificationHandler, NotificationToken
             return nil
         }
         
-#if TEST
-        return nil
-#else
-        return FeatureFlags.skipRemoteNotificationRegistration ? nil : try await registerRemoteNotifications()
+#if DEBUG
+        if FeatureFlags.skipRemoteNotificationRegistration {
+            return nil
+        }
 #endif
+        return try await registerRemoteNotifications()
     }
 
     private func convertTokenToFCM(apns apnsToken: Data) async throws -> String {

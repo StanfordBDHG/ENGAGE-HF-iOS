@@ -15,7 +15,7 @@ import SwiftUI
 struct Dashboard: View {
     @Binding var presentingAccount: Bool
     
-#if DEBUG || TEST
+#if DEBUG
     @Environment(HealthMeasurements.self) private var measurements
 #endif
 
@@ -39,7 +39,7 @@ struct Dashboard: View {
                         AccountButton(isPresented: $presentingAccount)
                     }
                 }
-#if DEBUG || TEST
+#if DEBUG
                 .toolbar {
                     if FeatureFlags.testMockDevices {
                         ToolbarItemGroup(placement: .secondaryAction) {

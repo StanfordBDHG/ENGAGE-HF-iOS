@@ -71,7 +71,7 @@ final class UserMetaDataManager: Manager, Sendable {
         let organizationDocRef = Firestore.organizationCollectionReference.document(organizationId)
         Task {
             do {
-#if TEST
+#if DEBUG
                 if FeatureFlags.setupTestUserMetaData {
                     self.organization = .test
                     self.logger.debug("Injected test organization.")

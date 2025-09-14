@@ -70,7 +70,7 @@ struct QuestionnaireSheetView: View {
         }
             .task {
                 do {
-#if DEBUG || TEST
+#if DEBUG
                     if ProcessInfo.processInfo.isPreviewSimulator || FeatureFlags.setupTestMessages {
                         questionnaire = .formExample
                         return

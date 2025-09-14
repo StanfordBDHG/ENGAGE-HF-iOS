@@ -38,7 +38,7 @@ final class MessageManager: Manager, Sendable {
 
     
     func configure() {
-#if DEBUG || TEST
+#if DEBUG
         if ProcessInfo.processInfo.isPreviewSimulator || FeatureFlags.setupTestMessages {
             self.injectTestMessages()
             return
@@ -86,7 +86,7 @@ final class MessageManager: Manager, Sendable {
                 return true
             case let (.completeQuestionnaire(questionnaireId), .questionnaire(id)):
 
-#if DEBUG || TEST
+#if DEBUG
                 if ProcessInfo.processInfo.isPreviewSimulator || FeatureFlags.setupTestMessages {
                     if questionnaireId == "0" {
                         return true
@@ -167,7 +167,7 @@ final class MessageManager: Manager, Sendable {
             return
         }
         
-#if DEBUG || TEST
+#if DEBUG
         if ProcessInfo.processInfo.isPreviewSimulator || FeatureFlags.setupTestMessages {
             messages.removeAll { $0.id == messageId }
             return
@@ -203,7 +203,7 @@ final class MessageManager: Manager, Sendable {
 }
 
 
-#if DEBUG || TEST
+#if DEBUG
 extension MessageManager {
     // periphery:ignore - Used in Previews across the application.
     /// Adds a mock message to self.messages

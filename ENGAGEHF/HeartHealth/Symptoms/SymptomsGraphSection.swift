@@ -73,8 +73,8 @@ struct SymptomsGraphSection: View {
             content: {
                 VitalsGraph(data: graphData, options: options)
                     .environment(\.customChartYAxis, symptomsType == .dizziness ? .dizzinessYAxisModifier : .percentageYAxisModifier )
-#if TEST
-                    .disabled(true)
+#if DEBUG
+                    .disabled(FeatureFlags.setupTestEnvironment)
 #else
                     .disabled(vitalsManager.symptomHistory.isEmpty)
 #endif

@@ -28,7 +28,7 @@ final class VideoManager: Manager, Sendable {
 
     
     func configure() {
-#if DEBUG || TEST
+#if DEBUG
         if ProcessInfo.processInfo.isPreviewSimulator || FeatureFlags.setupTestVideos {
             self.injectMockVideoCollection()
             return
@@ -116,7 +116,7 @@ final class VideoManager: Manager, Sendable {
 }
 
 
-#if DEBUG || TEST
+#if DEBUG
 extension VideoManager {
     private func injectMockVideoCollection() {
         self.videoCollections = [

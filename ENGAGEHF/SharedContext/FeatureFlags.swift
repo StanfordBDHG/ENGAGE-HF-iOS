@@ -25,6 +25,8 @@ enum FeatureFlags {
     nonisolated static let setupTestMedications = CommandLine.arguments.contains("--setupTestMedications")
     /// Fills the `VideoManager` with a test VideoCollection, skipping on-sign-in configuration. Used for UI Testing and preview simulators.
     nonisolated static let setupTestVideos = CommandLine.arguments.contains("--setupTestVideos")
+    /// Skips phone number verificatin using cloud functions.
+    nonisolated static let setupTestPhoneNumberVerificationBehavior = CommandLine.arguments.contains("--setupTestPhoneNumberVerificationBehavior")
     /// Configures Firestore with settings that use a custom host
     nonisolated static let useCustomFirestoreHost = CommandLine.arguments.contains("--useCustomFirestoreHost")
     /// In the `UserMetaDataManager`, skips fetching user organization information and instead injects a test instance.

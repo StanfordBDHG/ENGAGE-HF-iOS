@@ -44,8 +44,8 @@ struct VitalsGraphSection: View {
                     dateResolution: granularity.defaultDateUnit,
                     targetValue: vitalsType == .weight ? vitalsManager.latestDryWeight : nil
                 )
-#if TEST
-                    .disabled(true)
+#if DEBUG
+                    .disabled(FeatureFlags.setupTestEnvironment)
 #else
                     .disabled(data.isEmpty)
 #endif

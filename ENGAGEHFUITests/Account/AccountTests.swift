@@ -28,13 +28,28 @@ final class AccountTests: XCTestCase {
     
     func testAddPhoneNumber() async throws {
         let app = XCUIApplication()
+        let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
+        addNotificatinosUIInterruptionMonitor()
         
+        // As this is the first UI testing running:
         // The initialization of all Firebase elements takes a long time; therefore, we wait a bit longer here, especially on a CI setup.
-        try await Task.sleep(for: .seconds(5))
-
-        _ = app.staticTexts["Home"].waitForExistence(timeout: 10)
-
-        XCTAssert(app.navigationBars.buttons["Your Account"].waitForExistence(timeout: 2))
+        var timeout: TimeInterval = 15
+        while timeout > 0 {
+            let yourAccountButton = app.navigationBars.buttons["Your Account"]
+            guard !yourAccountButton.exists && !yourAccountButton.isHittable else {
+                try await Task.sleep(for: .seconds(1))
+                break
+            }
+            
+            let allowButton = springboard.buttons["Allow"].firstMatch
+            if allowButton.exists {
+                allowButton.tap()
+            }
+            
+            try await Task.sleep(for: .seconds(0.5))
+            timeout -= 0.5
+        }
+        
         app.navigationBars.buttons["Your Account"].tap()
 
         XCTAssertTrue(app.buttons["Phone Numbers"].exists)

@@ -157,7 +157,7 @@ extension MedicationsManager {
     }
 }
 
-#if DEBUG || TEST
+#if DEBUG
 extension MedicationsManager {
     func injectTestMedications() { // swiftlint:disable:this function_body_length
         self.medications = [
