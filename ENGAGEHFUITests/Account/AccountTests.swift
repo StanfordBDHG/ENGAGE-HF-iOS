@@ -23,7 +23,7 @@ final class AccountTests: XCTestCase {
         
         try await Task.sleep(for: .seconds(2))
         addNotificatinosUIInterruptionMonitor()
-        try await Task.sleep(for: .seconds(0.5))
+        try await Task.sleep(for: .seconds(2))
     }
     
     func testAddPhoneNumber() async throws {
@@ -37,8 +37,13 @@ final class AccountTests: XCTestCase {
         while timeout > 0 {
             let yourAccountButton = app.navigationBars.buttons["Your Account"]
             guard !yourAccountButton.exists && !yourAccountButton.isHittable else {
-                try await Task.sleep(for: .seconds(1))
-                break
+                try await Task.sleep(for: .seconds(2))
+                
+                if yourAccountButton.isHittable {
+                    break
+                } else {
+                    continue
+                }
             }
             
             let allowButton = springboard.buttons["Allow"].firstMatch
