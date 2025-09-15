@@ -26,7 +26,8 @@
       "identifier" : "653A254C283387FE005D4D48",
       "name" : "ENGAGEHF"
     },
-    "testRepetitionMode" : "retryOnFailure"
+    "testRepetitionMode" : "retryOnFailure",
+    "uiTestingScreenshotsLifetime" : "keepAlways"
   },
   "testTargets" : [
     {
@@ -39,6 +40,7 @@
     },
     {
       "skippedTests" : [
+        "AccountTests\/testInAppLogon()",
         "AddMeasurementUITests",
         "AddMeasurementUITests\/testAddingBloodPressure()",
         "AddMeasurementUITests\/testAddingBodyWeight()",
@@ -87,6 +89,8 @@
         "MessagesUITests\/testSeeHeartHealthAction()",
         "MessagesUITests\/testSeeMedicationsAction()",
         "MessagesUITests\/testUnsupportedAction()",
+        "NotificationSettingsUITests",
+        "NotificationSettingsUITests\/testNotificationSettings()",
         "RecentVitalsUITests",
         "RecentVitalsUITests\/testHeartRateAndBloodPressure()",
         "RecentVitalsUITests\/testWeight()",

@@ -73,6 +73,8 @@ final class AccountTests: XCTestCase {
     func testAddPhoneNumber() async throws {
         let app = XCUIApplication()
         
+        try await Task.sleep(for: .seconds(10))
+        
         XCTAssertTrue(app.navigationBars.buttons["Your Account"].waitForExistence(timeout: 2))
         app.navigationBars.buttons["Your Account"].tap()
 
