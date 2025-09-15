@@ -23,7 +23,8 @@ final class MessagesUITests: XCTestCase {
             "--setupTestEnvironment",
             "--setupTestMessages",
             "--setupTestVideos",
-            "--testMockDevices"
+            "--testMockDevices",
+            "--skipRemoteNotificationRegistration"
         ]
         app.launch()
         

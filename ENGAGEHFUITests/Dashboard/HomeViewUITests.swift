@@ -16,7 +16,11 @@ final class HomeViewUITests: XCTestCase {
         continueAfterFailure = false
         
         let app = XCUIApplication()
-        app.launchArguments = ["--skipOnboarding", "--setupTestEnvironment"]
+        app.launchArguments = [
+            "--skipOnboarding",
+            "--setupTestEnvironment",
+            "--skipRemoteNotificationRegistration"
+        ]
         app.launch()
         
         try await Task.sleep(for: .seconds(2))

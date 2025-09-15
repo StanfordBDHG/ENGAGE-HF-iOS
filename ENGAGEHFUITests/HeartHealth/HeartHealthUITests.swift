@@ -20,7 +20,8 @@ final class HeartHealthUITests: XCTestCase {
             "--skipOnboarding",
             "--setupTestEnvironment",
             "--testMockDevices",
-            "--useFirebaseEmulator"
+            "--useFirebaseEmulator",
+            "--skipRemoteNotificationRegistration"
         ]
         app.launch()
         

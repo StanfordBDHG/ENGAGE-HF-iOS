@@ -20,7 +20,8 @@ final class NotificationSettingsUITests: XCTestCase {
             "--assumeOnboardingComplete",
             "--setupTestEnvironment",
             "--setupTestUserMetaData",
-            "--useFirebaseEmulator"
+            "--useFirebaseEmulator",
+            "--skipRemoteNotificationRegistration"
         ]
         app.launch()
         

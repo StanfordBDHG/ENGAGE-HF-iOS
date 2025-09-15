@@ -16,7 +16,13 @@ final class EducationViewUITests: XCTestCase {
         continueAfterFailure = false
         
         let app = XCUIApplication()
-        app.launchArguments = ["--assumeOnboardingComplete", "--setupTestEnvironment", "--useFirebaseEmulator", "--setupTestVideos"]
+        app.launchArguments = [
+            "--assumeOnboardingComplete",
+            "--setupTestEnvironment",
+            "--useFirebaseEmulator",
+            "--setupTestVideos",
+            "--skipRemoteNotificationRegistration"
+        ]
         app.launch()
         
         try await Task.sleep(for: .seconds(2))

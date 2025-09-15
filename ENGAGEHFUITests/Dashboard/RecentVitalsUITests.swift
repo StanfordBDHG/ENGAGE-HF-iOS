@@ -27,7 +27,13 @@ final class RecentVitalsUITests: XCTestCase {
         continueAfterFailure = false
 
         let app = XCUIApplication()
-        app.launchArguments = ["--skipOnboarding", "--testMockDevices", "--setupTestEnvironment", "--useFirebaseEmulator"]
+        app.launchArguments = [
+            "--skipOnboarding",
+            "--testMockDevices",
+            "--setupTestEnvironment",
+            "--useFirebaseEmulator",
+            "--skipRemoteNotificationRegistration"
+        ]
         app.launch()
         
         try await Task.sleep(for: .seconds(2))

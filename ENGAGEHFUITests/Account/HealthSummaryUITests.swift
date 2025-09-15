@@ -20,7 +20,8 @@ final class HealthSummaryUITests: XCTestCase {
             "--assumeOnboardingComplete",
             "--setupTestEnvironment",
             "--setupTestUserMetaData",
-            "--useFirebaseEmulator"
+            "--useFirebaseEmulator",
+            "--skipRemoteNotificationRegistration"
         ]
         app.launch()
         

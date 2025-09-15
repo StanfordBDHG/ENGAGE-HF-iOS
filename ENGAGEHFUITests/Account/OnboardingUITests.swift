@@ -28,7 +28,10 @@ final class OnboardingUITests: XCTestCase {
         }
         
         let app = XCUIApplication()
-        app.launchArguments = ["--showOnboarding", "--useFirebaseEmulator"]
+        app.launchArguments = [
+            "--showOnboarding",
+            "--useFirebaseEmulator"
+        ]
         app.launch()
         
         try await Task.sleep(for: .seconds(2))

@@ -17,7 +17,13 @@ final class MedicationsUITests: XCTestCase {
         continueAfterFailure = false
 
         let app = XCUIApplication()
-        app.launchArguments = ["--skipOnboarding", "--setupTestEnvironment", "--useFirebaseEmulator", "--setupTestMedications"]
+        app.launchArguments = [
+            "--skipOnboarding",
+            "--setupTestEnvironment",
+            "--useFirebaseEmulator",
+            "--setupTestMedications",
+            "--skipRemoteNotificationRegistration"
+        ]
         app.launch()
         
         try await Task.sleep(for: .seconds(2))

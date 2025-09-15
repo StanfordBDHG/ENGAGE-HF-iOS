@@ -17,7 +17,12 @@ final class AddMeasurementUITests: XCTestCase {
         continueAfterFailure = false
 
         let app = XCUIApplication()
-        app.launchArguments = ["--assumeOnboardingComplete", "--setupTestEnvironment", "--useFirebaseEmulator"]
+        app.launchArguments = [
+            "--assumeOnboardingComplete",
+            "--setupTestEnvironment",
+            "--useFirebaseEmulator",
+            "--skipRemoteNotificationRegistration"
+        ]
         app.launch()
         
         try await Task.sleep(for: .seconds(2))

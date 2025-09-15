@@ -22,7 +22,8 @@ final class AccountTests: XCTestCase {
             "--assumeOnboardingComplete",
             "--setupTestEnvironment",
             "--useFirebaseEmulator",
-            "--setupTestPhoneNumberVerificationBehavior"
+            "--setupTestPhoneNumberVerificationBehavior",
+            "--skipRemoteNotificationRegistration"
         ]
         app.launch()
         

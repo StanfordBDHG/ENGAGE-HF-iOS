@@ -9,7 +9,6 @@
 import XCTest
 
 
-// Based off of https://github.com/CS342/2024-Intake/blob/main/IntakeUITests/LaunchTests.swift
 @MainActor
 final class LaunchTests: XCTestCase {
     override func setUp() async throws {
