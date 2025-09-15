@@ -6,11 +6,12 @@
 // SPDX-License-Identifier: MIT
 //
 
+import Spezi
 import SpeziAccount
 import SpeziViews
 import SwiftUI
 
-@MainActor
+
 struct NotificationSettingsView: View {
     @Environment(Account.self) private var account
     @Environment(NotificationManager.self) private var notificationManager

@@ -7,6 +7,7 @@
 //
 
 import HealthKit
+import Spezi
 import SpeziViews
 import SwiftUI
 

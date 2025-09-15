@@ -6,6 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
+import Spezi
 import SpeziViews
 import SwiftUI
 
@@ -64,7 +65,6 @@ struct MeasurementListSection: View {
     }
 
 
-    @MainActor
     private func deleteIndices(indexSet: IndexSet) throws {
         guard !ProcessInfo.processInfo.isPreviewSimulator && !FeatureFlags.disableFirebase else {
             for idx in indexSet {
@@ -94,10 +94,10 @@ struct MeasurementListSection: View {
 #Preview {
     MeasurementListSection(
         data: [
-            VitalListMeasurement(id: "TEST1", value: "60", date: .now),
-            VitalListMeasurement(id: "TEST2", value: "54", date: .now),
-            VitalListMeasurement(id: "TEST3", value: "25.0", date: .now),
-            VitalListMeasurement(id: "TEST4", value: "120.4", date: .now)
+            VitalListMeasurement(id: "test1", value: "60", date: .now),
+            VitalListMeasurement(id: "test2", value: "54", date: .now),
+            VitalListMeasurement(id: "test3", value: "25.0", date: .now),
+            VitalListMeasurement(id: "test4", value: "120.4", date: .now)
         ],
         units: "lbs",
         type: .weight

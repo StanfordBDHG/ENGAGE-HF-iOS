@@ -6,6 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
+import Spezi
 import SwiftUI
 
 
@@ -24,7 +25,7 @@ struct Medications: View {
                         AccountButton(isPresented: $presentingAccount)
                     }
                 }
-#if DEBUG || TEST
+#if DEBUG
                 .toolbar {
                     if FeatureFlags.setupTestMedications {
                         ToolbarItem(placement: .secondaryAction) {

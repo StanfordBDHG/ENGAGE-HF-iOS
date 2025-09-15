@@ -6,13 +6,14 @@
 // SPDX-License-Identifier: MIT
 //
 
+import Spezi
 import SpeziAccount
 import SpeziOnboarding
 import SpeziValidation
 import SpeziViews
 import SwiftUI
 
-@MainActor
+
 struct InvitationCodeView: View {
     @Environment(ManagedNavigationStack.Path.self) private var managedNavigationStackPath
     @Environment(InvitationCodeModule.self) private var invitationCodeModule

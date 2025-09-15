@@ -10,9 +10,10 @@
 import XCTest
 
 
+@MainActor
 final class OnboardingUITests: XCTestCase {
-    override func setUpWithError() throws {
-        try super.setUpWithError()
+    override func setUp() async throws {
+        try await super.setUp()
         
         continueAfterFailure = false
         
@@ -27,8 +28,16 @@ final class OnboardingUITests: XCTestCase {
         }
         
         let app = XCUIApplication()
-        app.launchArguments = ["--showOnboarding", "--useFirebaseEmulator"]
+        app.launchArguments = [
+            "--showOnboarding",
+            "--useFirebaseEmulator",
+            "--skipRemoteNotificationRegistration"
+        ]
         app.launch()
+        
+        try await Task.sleep(for: .seconds(2))
+        addNotificatinosUIInterruptionMonitor()
+        try await Task.sleep(for: .seconds(0.5))
     }
     
     func testOnboardingFlow() throws {

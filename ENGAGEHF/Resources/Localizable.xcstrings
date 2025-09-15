@@ -214,6 +214,9 @@
     "Education Video Inspect Button" : {
       "comment" : "Accessability label for the inspect button on the EducationalVideoCard."
     },
+    "Empty %@ List" : {
+
+    },
     "Enable Notifications in Settings" : {
       "comment" : "The text displayed on the button that is shown in the NotificationSettingsView if notifications are not authorized."
     },

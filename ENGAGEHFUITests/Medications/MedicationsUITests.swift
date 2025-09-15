@@ -9,20 +9,30 @@
 import XCTest
 
 
+@MainActor
 final class MedicationsUITests: XCTestCase {
-    @MainActor
     override func setUp() async throws {
-        try super.setUpWithError()
+        try await super.setUp()
 
         continueAfterFailure = false
 
         let app = XCUIApplication()
-        app.launchArguments = ["--skipOnboarding", "--setupTestEnvironment", "--useFirebaseEmulator", "--setupTestMedications"]
+        app.launchArguments = [
+            "--skipOnboarding",
+            "--setupTestEnvironment",
+            "--useFirebaseEmulator",
+            "--setupTestMedications",
+            "--skipRemoteNotificationRegistration"
+        ]
         app.launch()
+        
+        try await Task.sleep(for: .seconds(2))
+        addNotificatinosUIInterruptionMonitor()
+        try await Task.sleep(for: .seconds(0.5))
     }
     
     
-    func testMoreInformationButton() throws {
+    func testMoreInformationButton() async throws {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
@@ -40,7 +50,7 @@ final class MedicationsUITests: XCTestCase {
         XCTAssert(app.images["Sacubitril-Valsartan More Information"].waitForExistence(timeout: 0.5))
         app.images["Sacubitril-Valsartan More Information"].tap()
         
-        sleep(1)
+        try? await Task.sleep(for: .seconds(1))
         
         XCTAssert(app.buttons["Education"].exists)
     }
@@ -176,8 +186,8 @@ final class MedicationsUITests: XCTestCase {
         XCTAssert(app.staticTexts["twice daily"].firstMatch.waitForExistence(timeout: 0.5), "No \"twice daily\" quantifier found.")
         
         // Non-integer frequency
-        XCTAssert(app.images["Medication Label: morePatientObservationsRequired"].waitForExistence(timeout: 0.5))
-        app.images["Medication Label: morePatientObservationsRequired"].tap()
+        XCTAssert(app.images["Medication Label: moreLabObservationsRequired"].waitForExistence(timeout: 0.5))
+        app.images["Medication Label: moreLabObservationsRequired"].tap()
         
         XCTAssert(app.staticTexts["1.5x daily"].firstMatch.waitForExistence(timeout: 0.5), "No \"1.5x daily\" quantifier found.")
     }

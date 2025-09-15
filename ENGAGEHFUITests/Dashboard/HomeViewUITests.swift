@@ -8,15 +8,24 @@
 import XCTest
 
 
+@MainActor
 final class HomeViewUITests: XCTestCase {
-    override func setUpWithError() throws {
-        try super.setUpWithError()
+    override func setUp() async throws {
+        try await super.setUp()
         
         continueAfterFailure = false
         
         let app = XCUIApplication()
-        app.launchArguments = ["--skipOnboarding", "--setupTestEnvironment"]
+        app.launchArguments = [
+            "--skipOnboarding",
+            "--setupTestEnvironment",
+            "--skipRemoteNotificationRegistration"
+        ]
         app.launch()
+        
+        try await Task.sleep(for: .seconds(2))
+        addNotificatinosUIInterruptionMonitor()
+        try await Task.sleep(for: .seconds(0.5))
     }
     
     // Make sure the Dashboard view UI functions correctly

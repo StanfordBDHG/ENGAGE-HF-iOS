@@ -34,6 +34,7 @@ struct NotificationRegistrationSchema: Codable {
     }
     
     
+    @MainActor
     init(_ notificationToken: String, locale: Locale = Locale.current, timeZone: TimeZone = .current) {
         self.notificationToken = notificationToken
         self.platform = MobilePlatform.iOS.rawValue

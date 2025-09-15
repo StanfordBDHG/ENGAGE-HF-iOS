@@ -8,9 +8,11 @@
 
 import XCTest
 
+
+@MainActor
 final class HealthSummaryUITests: XCTestCase {
-    override func setUpWithError() throws {
-        try super.setUpWithError()
+    override func setUp() async throws {
+        try await super.setUp()
         continueAfterFailure = false
 
         let app = XCUIApplication()
@@ -18,9 +20,14 @@ final class HealthSummaryUITests: XCTestCase {
             "--assumeOnboardingComplete",
             "--setupTestEnvironment",
             "--setupTestUserMetaData",
-            "--useFirebaseEmulator"
+            "--useFirebaseEmulator",
+            "--skipRemoteNotificationRegistration"
         ]
         app.launch()
+        
+        try await Task.sleep(for: .seconds(2))
+        addNotificatinosUIInterruptionMonitor()
+        try await Task.sleep(for: .seconds(0.5))
     }
 
     

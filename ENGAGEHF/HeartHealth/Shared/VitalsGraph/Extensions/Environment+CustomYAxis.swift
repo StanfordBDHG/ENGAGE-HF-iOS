@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
-import Charts
+@preconcurrency import Charts
 import Foundation
 import SwiftUI
 

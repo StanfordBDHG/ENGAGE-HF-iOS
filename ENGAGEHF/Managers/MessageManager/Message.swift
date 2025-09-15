@@ -6,13 +6,13 @@
 // SPDX-License-Identifier: MIT
 //
 
-import FirebaseFirestore
+@preconcurrency import FirebaseFirestore
 import Foundation
 
 
 /// A message describing recent changes to the user's data or calls-to-action for the patient to complete
 /// Data structure as defined in: https://github.com/StanfordBDHG/ENGAGE-HF-Firebase
-struct Message: Identifiable, Equatable {
+struct Message: Identifiable, Equatable, Sendable {
     @DocumentID var id: String?
     
     let title: String

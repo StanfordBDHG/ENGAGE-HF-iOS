@@ -22,8 +22,7 @@ import SpeziFirestore
 /// - Maintain local, up-to-date arrays of the patients health data via Firestore SnapshotListeners
 /// - Convert FHIR observations to HKQuantitySamples and HKCorrelations
 @Observable
-@MainActor
-final class VitalsManager: Manager {
+final class VitalsManager: Manager, Sendable {
     @ObservationIgnored @StandardActor private var standard: ENGAGEHFStandard
     
     @ObservationIgnored @Dependency(Account.self) private var account: Account?
@@ -31,7 +30,7 @@ final class VitalsManager: Manager {
 
     @Application(\.logger) @ObservationIgnored private var logger
     
-    private var snapshotListeners: [ListenerRegistration] = []
+    private var snapshotListeners: [any ListenerRegistration] = []
     private var notificationsTask: Task<Void, Never>?
     
     var heartRateHistory: [HKQuantitySample] = []
@@ -66,7 +65,7 @@ final class VitalsManager: Manager {
         }
         
         if let accountNotifications {
-            notificationsTask = Task.detached { @MainActor [weak self] in
+            notificationsTask = Task.detached { [weak self] in
                 for await event in accountNotifications.events {
                     guard let self else {
                         return
@@ -93,6 +92,7 @@ final class VitalsManager: Manager {
     }
     
     
+    @MainActor
     func refreshContent() {
         updateSnapshotListener(for: account?.details)
     }
@@ -184,7 +184,7 @@ final class VitalsManager: Manager {
         collectionReference: CollectionReference,
         storage: ReferenceWritableKeyPath<VitalsManager, [T]>,
         mapObservation: @escaping (V) throws -> T
-    ) -> ListenerRegistration {
+    ) -> any ListenerRegistration {
         // Return a listener for the given collection
         collectionReference
             .addSnapshotListener { querySnapshot, error in
@@ -211,7 +211,7 @@ final class VitalsManager: Manager {
         collectionReference: CollectionReference,
         storage: ReferenceWritableKeyPath<VitalsManager, T?>,
         mapObservation: @escaping (V) throws -> T
-    ) -> ListenerRegistration {
+    ) -> any ListenerRegistration {
         // Return a listener for the given collection
         collectionReference
             .order(by: "effectiveDateTime")
@@ -365,7 +365,7 @@ extension VitalsManager {
 extension VitalsManager {
     /// Call on deletion of a measurement -- removes the measurement with the given document id from the user's collection 
     func deleteMeasurement(id: String?, graphSelection: GraphSelection) async throws {
-        guard let id, let account, let details = account.details,
+        guard let id, let account, let details = await account.details,
               let collectionReference = graphSelection.collectionReference(for: details.accountId) else {
             self.logger.warning("Attempting to delete \(graphSelection) measurement. Failed!")
             return

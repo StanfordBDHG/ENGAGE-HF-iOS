@@ -14,8 +14,7 @@ import SpeziAccount
 
 
 @Observable
-@MainActor
-final class VideoManager: Manager {
+final class VideoManager: Manager, Sendable {
     @ObservationIgnored @Dependency(Account.self) private var account: Account?
     @ObservationIgnored @Dependency(AccountNotifications.self) private var accountNotifications: AccountNotifications?
     @Application(\.logger) @ObservationIgnored private var logger
@@ -29,7 +28,7 @@ final class VideoManager: Manager {
 
     
     func configure() {
-#if DEBUG || TEST
+#if DEBUG
         if ProcessInfo.processInfo.isPreviewSimulator || FeatureFlags.setupTestVideos {
             self.injectMockVideoCollection()
             return
@@ -37,7 +36,7 @@ final class VideoManager: Manager {
 #endif
 
         if let accountNotifications {
-            notificationTask = Task.detached { @MainActor [weak self] in
+            notificationTask = Task.detached { [weak self] in
                 for await event in accountNotifications.events {
                     guard let self else {
                         return
@@ -59,7 +58,7 @@ final class VideoManager: Manager {
     
     
     func refreshContent() {
-        Task { @MainActor in
+        Task {
             videoCollections = await getVideoSections()
         }
     }
@@ -117,7 +116,7 @@ final class VideoManager: Manager {
 }
 
 
-#if DEBUG || TEST
+#if DEBUG
 extension VideoManager {
     private func injectMockVideoCollection() {
         self.videoCollections = [

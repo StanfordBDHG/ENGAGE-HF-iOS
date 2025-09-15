@@ -11,19 +11,19 @@ import ModelsR4
 
 
 protocol ObservationValueProtocol {
-    var observationValue: ValueXProtocol? { get }
+    var observationValue: (any ValueXProtocol)? { get }
 }
 
 
 extension Observation: ObservationValueProtocol {
-    var observationValue: ValueXProtocol? {
+    var observationValue: (any ValueXProtocol)? {
         self.value
     }
 }
 
 
 extension ObservationComponent: ObservationValueProtocol {
-    var observationValue: ValueXProtocol? {
+    var observationValue: (any ValueXProtocol)? {
         self.value
     }
 }

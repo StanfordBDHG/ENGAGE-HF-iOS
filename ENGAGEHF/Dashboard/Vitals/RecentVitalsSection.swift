@@ -7,6 +7,7 @@
 //
 
 import HealthKit
+import Spezi
 @_spi(TestingSupport) import SpeziDevices
 import SwiftUI
 
@@ -26,7 +27,7 @@ struct RecentVitalsSection: View {
         }
     }
     
-    @MainActor private var weightMeasurement: (value: String, date: String)? {
+    private var weightMeasurement: (value: String, date: String)? {
         guard let measurement = vitalsManager.latestWeight else {
             return nil
         }
@@ -37,7 +38,7 @@ struct RecentVitalsSection: View {
         )
     }
     
-    @MainActor private var heartRateMeasurement: (value: String, date: String)? {
+    private var heartRateMeasurement: (value: String, date: String)? {
         guard let measurement = vitalsManager.latestHeartRate else {
             return nil
         }
@@ -48,7 +49,7 @@ struct RecentVitalsSection: View {
         )
     }
     
-    @MainActor private var bloodPressureMeasurement: (value: String, date: String)? {
+    private var bloodPressureMeasurement: (value: String, date: String)? {
         guard let measurement = vitalsManager.latestBloodPressure else {
             return nil
         }

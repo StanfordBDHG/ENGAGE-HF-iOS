@@ -24,9 +24,9 @@ import SpeziQuestionnaire
 import SwiftUI
 
 
-actor ENGAGEHFStandard: Standard, EnvironmentAccessible, PhoneVerificationConstraint {
+actor ENGAGEHFStandard: Standard, EnvironmentAccessible, PhoneVerificationConstraint, Sendable {
     @Dependency(Account.self) private var account: Account?
-    @Dependency(MessageManager.self) private var messageManager: MessageManager?
+    @Dependency(MessageManager.self) private var messageManager: MessageManager
     
     @Application(\.logger) private var logger
     
@@ -46,7 +46,7 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, PhoneVerificationConstr
             return
         }
         
-        await messageManager?.markAsProcessing(
+        messageManager.markAsProcessing(
             type: .healthMeasurement(samples: samples.count)
         )
 
@@ -90,17 +90,17 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, PhoneVerificationConstr
         var questionnaireId = response.identifier?.value?.value?.string ?? UUID().uuidString
 
         // Use ID "0" in test mode to match test message
-#if DEBUG || TEST
+#if DEBUG
         if ProcessInfo.processInfo.isPreviewSimulator || FeatureFlags.setupTestMessages {
             questionnaireId = "0"
         }
 #endif
         
-        await messageManager?.markAsProcessing(
+        messageManager.markAsProcessing(
             type: .questionnaire(id: questionnaireId)
         )
         
-#if DEBUG || TEST
+#if DEBUG
         if ProcessInfo.processInfo.isPreviewSimulator || FeatureFlags.setupTestMessages {
             try? await Task.sleep(for: .seconds(2)) // Simulate delay
             return
@@ -121,8 +121,10 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, PhoneVerificationConstr
         let function = Functions.functions().httpsCallable("startPhoneNumberVerification")
         let e164FormattedNumber = PhoneNumberUtility().format(number, toType: .e164)
         do {
-#if TEST
-            return
+#if DEBUG
+            if FeatureFlags.setupTestPhoneNumberVerificationBehavior {
+                return
+            }
 #endif
             _ = try await function.call(["phoneNumber": e164FormattedNumber])
         } catch {
@@ -135,8 +137,10 @@ actor ENGAGEHFStandard: Standard, EnvironmentAccessible, PhoneVerificationConstr
         let function = Functions.functions().httpsCallable("checkPhoneNumberVerification")
         let e164FormattedNumber = PhoneNumberUtility().format(number, toType: .e164)
         do {
-#if TEST
-            return
+#if DEBUG
+            if FeatureFlags.setupTestPhoneNumberVerificationBehavior {
+                return
+            }
 #endif
             _ = try await function.call(["phoneNumber": e164FormattedNumber, "code": code])
         } catch {
