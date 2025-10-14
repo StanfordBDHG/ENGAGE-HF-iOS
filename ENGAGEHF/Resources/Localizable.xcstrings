@@ -1572,7 +1572,14 @@
       }
     },
     "Self-Managed" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Autogestionado"
+          }
+        }
+      }
     },
     "Series" : {
       "localizations" : {
@@ -1701,7 +1708,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Esta puntuación muestra cómo le afecta la insuficiencia cardíaca en general. Puede obtener una puntuación de 0 a 100. Una puntuación más alta significa que está mejor. Más de 80 a menudo se considera que está bien."
+            "value" : "Esta puntuación muestra cómo le afecta la insuficiencia cardíaca en general. Puede obtener una puntuación de 0 a 100. Una puntuación más alta significa que está mejor. Más de 80 a menudo se considera que está bien.\r\n\r\nUn objetivo de los medicamentos para el corazón es mejorar esta puntuación con el tiempo o evitar que disminuya. "
           }
         }
       }
@@ -1990,7 +1997,14 @@
       }
     },
     "Update data" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Actualización de datos"
+          }
+        }
+      }
     },
     "Updates" : {
       "comment" : "The header text for the updatesSection in the NotificationSettingsView.",
@@ -2065,7 +2079,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La presión arterial mide la fuerza en los vasos sanguíneos mientras el corazón bombea sangre en el cuerpo. Controle su presión arterial diariamente para supervisar su corazón y cómo responde a sus medicamentos."
+            "value" : "La presión arterial mide la fuerza en los vasos sanguíneos mientras el corazón bombea sangre en el cuerpo. Revise su presión arterial diariamente para supervisar su corazón y cómo responde a sus medicamentos.\n\nLa cifra más alta de la presión arterial (llamada sistólica) debe ser inferior a 130 mmHg. La presión arterial demasiado baja varía según la persona y debe consultarse con el equipo médico. Si la presión arterial es demasiado baja, puede sentirse mareado.\nNo haga ejercicio durante los 30 minutos previos a la toma de la presión arterial. Asegúrese de que el brazalete se ajuste bien al brazo y mantenga las piernas sin cruzar. Para más información, vea el video sobre la presión arterial."
           }
         }
       }
@@ -2082,7 +2096,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La frecuencia cardíaca es el número de veces que su corazón late por minuto. Controlar su frecuencia cardíaca ayuda a su equipo médico a ver cómo está respondiendo a sus medicamentos y si es necesario cambiar alguno."
+            "value" : "La frecuencia cardíaca es el número de veces que su corazón late por minuto. Revisar su frecuencia cardíaca ayuda a su equipo médico a ver cómo está respondiendo a sus medicamentos y si es necesario cambiar alguno.\n\nLa frecuencia cardíaca normal de cada persona es diferente. Una frecuencia cardíaca inferior a 50 puede causar mareos. Si su frecuencia cardíaca aumenta repentinamente y se mantiene alta, debe informarlo a su equipo médico. \nSe le hará seguimiento a la frecuencia cardíaca al tomarse la presión arterial. Para obtener más información, vea el video sobre la frecuencia cardíaca."
           }
         }
       }
@@ -2099,7 +2113,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cuando el corazón está débil, su cuerpo puede retener más sal y agua, y su peso puede aumentar rápidamente. Esto puede causar dificultad para respirar, hinchazón de piernas y distensión abdominal."
+            "value" : "Cuando el corazón está débil, su cuerpo puede retener más sal y agua, y su peso puede aumentar rápidamente. Esto puede causar dificultad para respirar, hinchazón de piernas y distensión abdominal.\n\nEs normal que haya pequeños cambios de peso. Sin embargo, si aumenta más de 3 libras en un día o más de 5 libras en una semana, consulte con su equipo médico. \nPésese todos los días a la misma hora para ver si hay acumulación de líquido. Para obtener más información, vea el video sobre el peso."
           }
         }
       }
