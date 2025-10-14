@@ -6,10 +6,12 @@
 // SPDX-License-Identifier: MIT
 //
 
+import Spezi
 @_spi(TestingSupport) import SpeziAccount
 import SpeziBluetooth
 import SpeziDevicesUI
 import SpeziLicense
+import SpeziViews
 import SwiftUI
 
 
@@ -47,12 +49,10 @@ struct AdditionalAccountSections: View {
                 }
             }
             NavigationLink {
-                NavigationStack {
-                    DevicesView(appName: ENGAGEHF.appName ?? "ENGAGE") {
-                        Text("Hold down the Bluetooth button for 3 seconds to put the device into pairing mode.")
-                    }
-                    .bluetoothScanningOptions(advertisementStaleInterval: 15)
+                DevicesView(appName: ENGAGEHF.appName ?? "ENGAGE") {
+                    Text("Hold down the Bluetooth button for 3 seconds to put the device into pairing mode.")
                 }
+                    .bluetoothScanningOptions(advertisementStaleInterval: 15)
             } label: {
                 Text("Bluetooth Devices")
             }

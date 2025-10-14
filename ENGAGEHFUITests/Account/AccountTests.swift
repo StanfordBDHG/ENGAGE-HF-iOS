@@ -10,29 +10,110 @@ import XCTest
 import XCTestExtensions
 
 
+@MainActor
 final class AccountTests: XCTestCase {
-    override func setUpWithError() throws {
-        try super.setUpWithError()
+    override func setUp() async throws {
+        try await super.setUp()
 
         continueAfterFailure = false
 
         let app = XCUIApplication()
-        app.launchArguments = ["--assumeOnboardingComplete", "--setupTestEnvironment", "--useFirebaseEmulator"]
+        app.launchArguments = [
+            "--assumeOnboardingComplete",
+            "--setupTestEnvironment",
+            "--useFirebaseEmulator",
+            "--setupTestPhoneNumberVerificationBehavior",
+            "--skipRemoteNotificationRegistration"
+        ]
         app.launch()
+        
+        try await Task.sleep(for: .seconds(2))
+        addNotificatinosUIInterruptionMonitor()
+        try await Task.sleep(for: .seconds(2))
+        
+        let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
+        // As these are the first UI tests running:
+        // The initialization of all Firebase elements takes a long time; therefore, we wait a bit longer here, especially on a CI setup.
+        var timeout: TimeInterval = 10
+        while timeout > 0 {
+            func checkAlerts() {
+                let allowButton = springboard.buttons["Allow"].firstMatch
+                if allowButton.waitForExistence(timeout: 0.5) {
+                    allowButton.tap()
+                }
+                
+                let okButton = app.buttons["OK"].firstMatch
+                if okButton.waitForExistence(timeout: 0.5) {
+                    okButton.tap()
+                }
+            }
+            
+            checkAlerts()
+            
+            let yourAccountButton = app.navigationBars.buttons["Your Account"]
+            guard !yourAccountButton.exists && !yourAccountButton.isHittable else {
+                checkAlerts()
+                try await Task.sleep(for: .seconds(1))
+                
+                if yourAccountButton.isHittable {
+                    try await Task.sleep(for: .seconds(1))
+                    checkAlerts()
+                    break
+                } else {
+                    timeout -= 2.0
+                    continue
+                }
+            }
+            
+            try await Task.sleep(for: .seconds(0.5))
+            timeout -= 1
+        }
     }
-
-    func testInAppLogon() throws {
+    
+    func testAddPhoneNumber() async throws {
         let app = XCUIApplication()
-
-        _ = app.staticTexts["Home"].waitForExistence(timeout: 10)
-
-        XCTAssert(app.buttons["Home"].waitForExistence(timeout: 2.0))
-        app.buttons["Home"].tap()
-
-
+        
+        try await Task.sleep(for: .seconds(10))
+        
         XCTAssertTrue(app.navigationBars.buttons["Your Account"].waitForExistence(timeout: 2))
         app.navigationBars.buttons["Your Account"].tap()
 
+        XCTAssertTrue(app.buttons["Phone Numbers"].waitForExistence(timeout: 2))
+        app.buttons["Phone Numbers"].tap()
+        
+        XCTAssertTrue(app.navigationBars.buttons["Add Phone Number"].waitForExistence(timeout: 2))
+        app.navigationBars.buttons["Add Phone Number"].tap()
+        
+        let phoneNumber = "6502345678"
+        let phoneField = app.textFields["Phone Number"]
+        XCTAssertTrue(phoneField.waitForExistence(timeout: 2))
+        phoneField.tap()
+        phoneField.typeText(phoneNumber)
+
+        XCTAssert(app.buttons["Send Verification Message"].waitForExistence(timeout: 2))
+        app.buttons["Send Verification Message"].tap()
+        
+        let otc = "012345"
+        let codeField = app.textFields["Verification code entry"]
+        XCTAssertTrue(codeField.waitForExistence(timeout: 2.0))
+        
+        for key in otc.enumerated() {
+            app.keys["\(key.element)"].tap()
+        }
+
+        XCTAssertTrue(app.buttons["Verify Phone Number"].waitForExistence(timeout: 2))
+        app.buttons["Verify Phone Number"].tap()
+    }
+
+    func testInAppLogon() async throws {
+        let app = XCUIApplication()
+        
+        XCTAssertTrue(app.navigationBars.buttons["Your Account"].waitForExistence(timeout: 2))
+        app.navigationBars.buttons["Your Account"].tap()
+
+        XCTAssertTrue(app.navigationBars.staticTexts["Account Overview"].waitForExistence(timeout: 2))
+        app.swipeUp()
+        
         XCTAssert(app.buttons["Logout"].waitForExistence(timeout: 2))
         app.buttons["Logout"].tap()
 

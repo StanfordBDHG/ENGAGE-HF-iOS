@@ -7,11 +7,12 @@
 //
 
 import SpeziOnboarding
+import SpeziViews
 import SwiftUI
 
 
 struct Welcome: View {
-    @Environment(OnboardingNavigationPath.self) private var onboardingNavigationPath
+    @Environment(ManagedNavigationStack.Path.self) private var managedNavigationStackPath
     
     
     var body: some View {
@@ -19,7 +20,7 @@ struct Welcome: View {
             title: "WELCOME_TITLE",
             subtitle: "WELCOME_SUBTITLE",
             areas: [
-                OnboardingInformationView.Content(
+                OnboardingInformationView.Area(
                     icon: {
                         Image(systemName: "person.3.fill")
                             .accessibilityHidden(true)
@@ -27,7 +28,7 @@ struct Welcome: View {
                     title: "WELCOME_AREA1_TITLE",
                     description: "WELCOME_AREA1_DESCRIPTION"
                 ),
-                OnboardingInformationView.Content(
+                OnboardingInformationView.Area(
                     icon: {
                         Image(systemName: "list.bullet.clipboard.fill")
                             .accessibilityHidden(true)
@@ -35,7 +36,7 @@ struct Welcome: View {
                     title: "WELCOME_AREA2_TITLE",
                     description: "WELCOME_AREA2_DESCRIPTION"
                 ),
-                OnboardingInformationView.Content(
+                OnboardingInformationView.Area(
                     icon: {
                         Image(systemName: "waveform.path.ecg")
                             .accessibilityHidden(true)
@@ -46,7 +47,7 @@ struct Welcome: View {
             ],
             actionText: "WELCOME_BUTTON",
             action: {
-                onboardingNavigationPath.nextStep()
+                managedNavigationStackPath.nextStep()
             }
         )
             .padding(.top, 24)
@@ -56,7 +57,7 @@ struct Welcome: View {
 
 #if DEBUG
 #Preview {
-    OnboardingStack {
+    ManagedNavigationStack {
         Welcome()
     }
 }

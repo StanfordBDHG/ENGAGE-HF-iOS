@@ -9,19 +9,33 @@
 import XCTest
 
 
+@MainActor
 final class EducationViewUITests: XCTestCase {
-    @MainActor
+    private static let skipVideoTestsOnCI = true
+    
     override func setUp() async throws {
-        try super.setUpWithError()
+        try await super.setUp()
         continueAfterFailure = false
         
         let app = XCUIApplication()
-        app.launchArguments = ["--assumeOnboardingComplete", "--setupTestEnvironment", "--useFirebaseEmulator", "--setupTestVideos"]
+        app.launchArguments = [
+            "--assumeOnboardingComplete",
+            "--setupTestEnvironment",
+            "--useFirebaseEmulator",
+            "--setupTestVideos",
+            "--skipRemoteNotificationRegistration"
+        ]
         app.launch()
+        
+        try await Task.sleep(for: .seconds(2))
+        addNotificatinosUIInterruptionMonitor()
+        try await Task.sleep(for: .seconds(0.5))
     }
     
-    @MainActor
+    
     func testLongDescriptionVideoView() async throws {
+        try XCTSkipIf(Self.skipVideoTestsOnCI, "Skipping test due to an issue loading videos from the CI system; should be run locally.")
+        
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
@@ -29,7 +43,7 @@ final class EducationViewUITests: XCTestCase {
         app.goTo(tab: "Education")
         
         let thumbnailOverlay = app.staticTexts["Thumbnail Overlay Title: Long Description"]
-        XCTAssert(thumbnailOverlay.waitForExistence(timeout: 0.5))
+        XCTAssert(thumbnailOverlay.waitForExistence(timeout: 2))
         
         thumbnailOverlay.tap()
         
@@ -69,9 +83,8 @@ final class EducationViewUITests: XCTestCase {
     }
     
     
-    @MainActor
     func testShortDescrtiptionVideoView() async throws {
-        try XCTSkipIf(true, "Skipping test due to network issues on runner") // remove once the runner network issue is resolved
+        try XCTSkipIf(Self.skipVideoTestsOnCI, "Skipping test due to an issue loading videos from the CI system; should be run locally.")
         
         let app = XCUIApplication()
         
@@ -115,9 +128,8 @@ final class EducationViewUITests: XCTestCase {
     }
     
     
-    @MainActor
     func testNoDescriptionVideoView() async throws {
-        try XCTSkipIf(true, "Skipping test due to network issues on runner") // remove once the runner network issue is resolved
+        try XCTSkipIf(Self.skipVideoTestsOnCI, "Skipping test due to an issue loading videos from the CI system; should be run locally.")
         
         let app = XCUIApplication()
         
@@ -146,10 +158,8 @@ final class EducationViewUITests: XCTestCase {
         XCTAssertFalse(app.scrollViews["Video Description: No Description"].exists)
     }
     
-    
-    @MainActor
     func testSectionExtension() async throws {
-        try XCTSkipIf(true, "Skipping test due to network issues on runner") // remove once the runner network issue is resolved
+        try XCTSkipIf(Self.skipVideoTestsOnCI, "Skipping test due to an issue loading videos from the CI system; should be run locally.")
         
         let app = XCUIApplication()
         
@@ -173,10 +183,8 @@ final class EducationViewUITests: XCTestCase {
         XCTAssert(app.images["Thumbnail Image: y2ziZVWossE"].waitForExistence(timeout: 0.5))
     }
     
-    
-    @MainActor
     func testThumbnailsAppear() async throws {
-        try XCTSkipIf(true, "Skipping test due to network issues on runner") // remove once the runner network issue is resolved
+        try XCTSkipIf(Self.skipVideoTestsOnCI, "Skipping test due to an issue loading videos from the CI system; should be run locally.")
         
         let app = XCUIApplication()
         

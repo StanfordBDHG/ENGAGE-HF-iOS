@@ -37,7 +37,7 @@ struct Organization: Decodable {
 }
 
 
-#if TEST || DEBUG
+#if DEBUG
 extension Organization {
     static let test = Organization(
         name: "Stanford University",

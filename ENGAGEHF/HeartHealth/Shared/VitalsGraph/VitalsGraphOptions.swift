@@ -9,8 +9,8 @@
 import Foundation
 
 
-struct VitalsGraphOptions: Identifiable, Equatable {
-    static let defaultOptions = VitalsGraphOptions()
+struct VitalsGraphOptions: Identifiable, Equatable, Sendable {
+    nonisolated static let defaultOptions = VitalsGraphOptions()
     
     
     let id = UUID()
@@ -20,7 +20,7 @@ struct VitalsGraphOptions: Identifiable, Equatable {
     let targetValue: SeriesTarget?
     let granularity: Calendar.Component
     let localizedUnitString: String?
-    let selectionFormatter: ([(String, Double)]) -> String
+    let selectionFormatter: @Sendable ([(String, Double)]) -> String
     
     
     init(
@@ -29,7 +29,7 @@ struct VitalsGraphOptions: Identifiable, Equatable {
         targetValue: SeriesTarget? = nil,
         granularity: Calendar.Component? = nil,
         localizedUnitString: String? = nil,
-        selectionFormatter: (([(String, Double)]) -> String)? = nil
+        selectionFormatter: (@Sendable ([(String, Double)]) -> String)? = nil
     ) {
         self.dateRange = dateRange
         self.valueRange = valueRange

@@ -9,15 +9,25 @@
 import XCTest
 
 
+@MainActor
 final class AddMeasurementUITests: XCTestCase {
-    override func setUpWithError() throws {
-        try super.setUpWithError()
+    override func setUp() async throws {
+        try await super.setUp()
 
         continueAfterFailure = false
 
         let app = XCUIApplication()
-        app.launchArguments = ["--assumeOnboardingComplete", "--setupTestEnvironment", "--useFirebaseEmulator"]
+        app.launchArguments = [
+            "--assumeOnboardingComplete",
+            "--setupTestEnvironment",
+            "--useFirebaseEmulator",
+            "--skipRemoteNotificationRegistration"
+        ]
         app.launch()
+        
+        try await Task.sleep(for: .seconds(2))
+        addNotificatinosUIInterruptionMonitor()
+        try await Task.sleep(for: .seconds(0.5))
     }
 
     func testAddingBodyWeight() throws {

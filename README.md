@@ -38,12 +38,47 @@ The Symptom Survey demonstrates how we can collect survery results from the user
 ENGAGE-HF includes sophisticated bluetooth connectivity. Once paired, the app passively collects measurements from BLE peripherals. This is handled via [SpeziBluetooth](https://github.com/StanfordSpezi/SpeziBluetooth), a powerful library that builds on top of [Core Bluetooth](https://developer.apple.com/documentation/corebluetooth).
 
 
+## Build and Run the Application
+
+The ENGAGE-HF app uses a Google Firebase-based backend.
+You will need to clone this repo with submodules enabled to automatically clone the relevant Firebase setup in the *ENGAGE-HF-Firebase* folder, e.g.,:
+```bash
+git clone --recurse-submodules git@github.com:StanfordBDHG/ENGAGE-HF-iOS.git
+```
+
+To boot up the Firebase backend, you can either install the Firebase emulator or use a docker-based setup. You can learn how to [install the Firebase Local Emulator Suite to run a version of the service infrastructure locally on the firebase support page](https://firebase.google.com/docs/emulator-suite/install_and_configure). After this, you can run the following command to start the Firebase emulator, including a seeded version of the infrastructure.
+This is also required before running the automated user interface (UI) testing suite.
+
+```bash
+cd ENGAGE-HF-Firebase && npm run prepare && npm run serve:seeded
+```
+or 
+```bash
+cd ENGAGE-HF-Firebase && docker-compose up
+```
+
+Please refer to the [ENGAGE-HF-Firebase](https://github.com/StanfordBDHG/ENGAGE-HF-Firebase) repository for more details about the Firebase setup.
+
+You can then visit http://127.0.0.1:4000/firestore/ to see all the seeded data that can be used in the application. The ENGAGE-HF app automatically connects to the local emulator when running in the iOS simulator using Xcode.
+
+You can build and run the application using [Xcode](https://developer.apple.com/xcode/) by opening up the **ENGAGE-HF.xcodeproj**.
+
+
+
 ## Contributing
 
-Contributions to this project are welcome. Please make sure to read the [contribution guidelines](https://github.com/StanfordSpezi/.github/blob/main/CONTRIBUTING.md) and the [contributor covenant code of conduct](https://github.com/StanfordSpezi/.github/blob/main/CODE_OF_CONDUCT.md) first.
+Contributions to this project are welcome. Please make sure to read the [contribution guidelines](https://github.com/StanfordBDHG/.github/blob/main/CONTRIBUTING.md) and the [contributor covenant code of conduct](https://github.com/StanfordBDHG/.github/blob/main/CODE_OF_CONDUCT.md) first.
 
 You can find a list of contributors in the [Contributors](https://github.com/StanfordBDHG/ENGAGE-HF-iOS/blob/main/CONTRIBUTORS.md) file.
 
 ## License
 
-This project is licensed under the MIT License. See [Licenses](LICENSES) for more information.
+This project is licensed under the MIT License. See [Licenses](https://github.com/StanfordBDHG/PediatricAppleWatchStudy/tree/main/LICENSES) for more information.
+
+
+## Our Research
+
+For more information, check out our website at [biodesigndigitalhealth.stanford.edu](https://biodesigndigitalhealth.stanford.edu).
+
+![Stanford Byers Center for Biodesign Logo](https://raw.githubusercontent.com/StanfordBDHG/.github/main/assets/biodesign-footer-light.png#gh-light-mode-only)
+![Stanford Byers Center for Biodesign Logo](https://raw.githubusercontent.com/StanfordBDHG/.github/main/assets/biodesign-footer-dark.png#gh-dark-mode-only)

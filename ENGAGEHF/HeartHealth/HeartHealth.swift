@@ -6,12 +6,12 @@
 // SPDX-License-Identifier: MIT
 //
 
+import Spezi
 @_spi(TestingSupport) import SpeziAccount
 import SpeziViews
 import SwiftUI
 
 
-@MainActor
 struct HeartHealth: View {
     @Binding var presentingAccount: Bool
     

@@ -7,6 +7,7 @@
 //
 
 import FirebaseFunctions
+import Spezi
 @_spi(TestingSupport) import SpeziAccount
 import SpeziOnboarding
 import SpeziViews
@@ -15,14 +16,14 @@ import SwiftUI
 
 struct AccountOnboarding: View {
     @Environment(Account.self) private var account
-    @Environment(OnboardingNavigationPath.self) private var onboardingNavigationPath
+    @Environment(ManagedNavigationStack.Path.self) private var managedNavigationStackPath
     
     var body: some View {
         AccountSetup { details in
             if details.invitationCode != nil {
-                onboardingNavigationPath.nextStep()
+                managedNavigationStackPath.nextStep()
             } else {
-                onboardingNavigationPath.append(customView: InvitationCodeView())
+                managedNavigationStackPath.append(customView: InvitationCodeView())
             }
         } header: {
             AccountSetupHeader()
@@ -31,9 +32,9 @@ struct AccountOnboarding: View {
                 "ACCOUNT_NEXT",
                 action: {
                     if account.details?.invitationCode != nil {
-                        onboardingNavigationPath.nextStep()
+                        managedNavigationStackPath.nextStep()
                     } else {
-                        onboardingNavigationPath.append(customView: InvitationCodeView())
+                        managedNavigationStackPath.append(customView: InvitationCodeView())
                     }
                 }
             )
@@ -45,7 +46,7 @@ struct AccountOnboarding: View {
 
 #if DEBUG
 #Preview("Account Onboarding SignIn") {
-    OnboardingStack {
+    ManagedNavigationStack {
         AccountOnboarding()
     }
         .previewWith {
@@ -58,7 +59,7 @@ struct AccountOnboarding: View {
     details.userId = "lelandstanford@stanford.edu"
     details.name = PersonNameComponents(givenName: "Leland", familyName: "Stanford")
 
-    return OnboardingStack {
+    return ManagedNavigationStack {
         AccountOnboarding()
     }
         .previewWith {

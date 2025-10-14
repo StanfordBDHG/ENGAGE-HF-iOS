@@ -31,7 +31,6 @@
 		2FE5DC3A29EDD7CA004B9AB4 /* Welcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE5DC3429EDD7CA004B9AB4 /* Welcome.swift */; };
 		2FE5DC4029EDD7EE004B9AB4 /* FeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE5DC3E29EDD7ED004B9AB4 /* FeatureFlags.swift */; };
 		2FE5DC4129EDD7EE004B9AB4 /* StorageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE5DC3F29EDD7EE004B9AB4 /* StorageKeys.swift */; };
-		2FE5DC6429EDD883004B9AB4 /* SpeziAccount in Frameworks */ = {isa = PBXBuildFile; productRef = 2FE5DC6329EDD883004B9AB4 /* SpeziAccount */; };
 		2FE5DC6729EDD894004B9AB4 /* SpeziContact in Frameworks */ = {isa = PBXBuildFile; productRef = 2FE5DC6629EDD894004B9AB4 /* SpeziContact */; };
 		2FE5DC7529EDD8E6004B9AB4 /* SpeziFirebaseAccount in Frameworks */ = {isa = PBXBuildFile; productRef = 2FE5DC7429EDD8E6004B9AB4 /* SpeziFirebaseAccount */; };
 		2FE5DC7729EDD8E6004B9AB4 /* SpeziFirebaseConfiguration in Frameworks */ = {isa = PBXBuildFile; productRef = 2FE5DC7629EDD8E6004B9AB4 /* SpeziFirebaseConfiguration */; };
@@ -82,7 +81,6 @@
 		4D4670C42C792429004DEAC4 /* FHIRObservationToHKSampleConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4670C32C792429004DEAC4 /* FHIRObservationToHKSampleConverter.swift */; };
 		4D4670C72C793327004DEAC4 /* SeriesTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4670C62C793327004DEAC4 /* SeriesTarget.swift */; };
 		4D4670CC2C79408C004DEAC4 /* VitalsGraph+GraphHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4670CB2C79408C004DEAC4 /* VitalsGraph+GraphHeader.swift */; };
-		4D49AB022BC9D50400C77310 /* SpeziBluetooth in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49AB012BC9D50400C77310 /* SpeziBluetooth */; };
 		4D4AA0A52BC5E43E00676489 /* OnboardingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4AA0A42BC5E43E00676489 /* OnboardingUITests.swift */; };
 		4D4E09262C77AC5E0038F892 /* DecodeISO8601DateUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4E09252C77AC5E0038F892 /* DecodeISO8601DateUnitTests.swift */; };
 		4D62BF2A2C6A71500088C414 /* FirestoreSettings+EmulatorWithHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D62BF292C6A71500088C414 /* FirestoreSettings+EmulatorWithHost.swift */; };
@@ -197,6 +195,9 @@
 		4DF5063A2C2F5104003E7EFB /* DisplayMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF506392C2F5104003E7EFB /* DisplayMeasurement.swift */; };
 		562E7C222D8039630088D8DF /* QRCodeShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562E7C212D8039630088D8DF /* QRCodeShareView.swift */; };
 		5681F6C62D9292F90071EA5D /* HealthSummaryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5681F6C52D9292ED0071EA5D /* HealthSummaryUITests.swift */; };
+		56A0372B2E0AACD9001E2A00 /* SpeziAccount in Frameworks */ = {isa = PBXBuildFile; productRef = 56A0372A2E0AACD9001E2A00 /* SpeziAccount */; };
+		56A0372D2E0AACD9001E2A00 /* SpeziAccountPhoneNumbers in Frameworks */ = {isa = PBXBuildFile; productRef = 56A0372C2E0AACD9001E2A00 /* SpeziAccountPhoneNumbers */; };
+		56A037302E0AB395001E2A00 /* PhoneNumberKit in Frameworks */ = {isa = PBXBuildFile; productRef = 56A0372F2E0AB395001E2A00 /* PhoneNumberKit */; };
 		56E708352BB06B7100B08F0A /* SpeziLicense in Frameworks */ = {isa = PBXBuildFile; productRef = 56E708342BB06B7100B08F0A /* SpeziLicense */; };
 		56E7083B2BB06F6F00B08F0A /* SwiftPackageList in Frameworks */ = {isa = PBXBuildFile; productRef = 56E7083A2BB06F6F00B08F0A /* SwiftPackageList */; };
 		6504AFF62D40383F001F4A03 /* StudyConcluded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6504AFF52D40382F001F4A03 /* StudyConcluded.swift */; };
@@ -205,6 +206,7 @@
 		653A2551283387FE005D4D48 /* ENGAGEHF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653A2550283387FE005D4D48 /* ENGAGEHF.swift */; };
 		653A255528338800005D4D48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 653A255428338800005D4D48 /* Assets.xcassets */; };
 		653A256228338800005D4D48 /* VitalsGraphAggregationUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653A256128338800005D4D48 /* VitalsGraphAggregationUnitTests.swift */; };
+		65559DF32E75F154002F7248 /* XCUIApplication+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65559DF22E75F154002F7248 /* XCUIApplication+Notifications.swift */; };
 		65D39ABD2CE497630040BF71 /* SpeziNotifications in Frameworks */ = {isa = PBXBuildFile; productRef = 65D39ABC2CE497630040BF71 /* SpeziNotifications */; };
 		76D18D1F2D2B2C8A00053BE1 /* ProcessingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D18D1E2D2B2C8600053BE1 /* ProcessingState.swift */; };
 		9733CFC62A8066DE001B7ABC /* SpeziOnboarding in Frameworks */ = {isa = PBXBuildFile; productRef = 2FE5DC8029EDD91D004B9AB4 /* SpeziOnboarding */; };
@@ -217,12 +219,14 @@
 		9B1864982C9350D30042AC81 /* Account+Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1864972C9350D30042AC81 /* Account+Binding.swift */; };
 		9B9C21E02C89389900FE1430 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C21DF2C89389900FE1430 /* ContentView.swift */; };
 		9BB86B312DF02C300043B09A /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 9BB86B302DF02C300043B09A /* InfoPlist.xcstrings */; };
-		A9623C042C17A3F500189BA1 /* SpeziOmron in Frameworks */ = {isa = PBXBuildFile; productRef = A9623C032C17A3F500189BA1 /* SpeziOmron */; };
+		A91D1F852DE1E72F0082407B /* SpeziBluetooth in Frameworks */ = {isa = PBXBuildFile; productRef = A91D1F842DE1E72F0082407B /* SpeziBluetooth */; };
+		A91D1F872DE1E72F0082407B /* SpeziBluetoothServices in Frameworks */ = {isa = PBXBuildFile; productRef = A91D1F862DE1E72F0082407B /* SpeziBluetoothServices */; };
+		A92F50642E63A2CB0051C0FD /* SpeziDevices in Frameworks */ = {isa = PBXBuildFile; productRef = A92F50632E63A2CB0051C0FD /* SpeziDevices */; };
+		A92F50662E63A2CB0051C0FD /* SpeziDevicesUI in Frameworks */ = {isa = PBXBuildFile; productRef = A92F50652E63A2CB0051C0FD /* SpeziDevicesUI */; };
+		A92F50682E63A2CB0051C0FD /* SpeziOmron in Frameworks */ = {isa = PBXBuildFile; productRef = A92F50672E63A2CB0051C0FD /* SpeziOmron */; };
+		A960D6A02E63978F004C6FED /* SpeziBluetooth in Frameworks */ = {isa = PBXBuildFile; productRef = A960D69F2E63978F004C6FED /* SpeziBluetooth */; };
 		A96C56BB2C0DFFCE00D6A50B /* InvitationCodeModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96C56BA2C0DFFCE00D6A50B /* InvitationCodeModule.swift */; };
 		A9720E432ABB68CC00872D23 /* AccountSetupHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9720E422ABB68CC00872D23 /* AccountSetupHeader.swift */; };
-		A977DD542C25E2DA00A2A8E5 /* SpeziDevices in Frameworks */ = {isa = PBXBuildFile; productRef = A977DD532C25E2DA00A2A8E5 /* SpeziDevices */; };
-		A977DD562C25E2DA00A2A8E5 /* SpeziDevicesUI in Frameworks */ = {isa = PBXBuildFile; productRef = A977DD552C25E2DA00A2A8E5 /* SpeziDevicesUI */; };
-		A977DD5D2C26279E00A2A8E5 /* SpeziBluetoothServices in Frameworks */ = {isa = PBXBuildFile; productRef = A977DD5C2C26279E00A2A8E5 /* SpeziBluetoothServices */; };
 		A9A0BF032C13121D00B8F3F3 /* SpeziNumerics in Frameworks */ = {isa = PBXBuildFile; productRef = A9A0BF022C13121D00B8F3F3 /* SpeziNumerics */; };
 		A9D83F962B083794000D0C78 /* SpeziFirebaseAccountStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A9D83F952B083794000D0C78 /* SpeziFirebaseAccountStorage */; };
 		A9DFE8A92ABE551400428242 /* AccountButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DFE8A82ABE551400428242 /* AccountButton.swift */; };
@@ -432,6 +436,7 @@
 		653A256128338800005D4D48 /* VitalsGraphAggregationUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalsGraphAggregationUnitTests.swift; sourceTree = "<group>"; };
 		653A256728338800005D4D48 /* ENGAGEHFUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ENGAGEHFUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		653A258928339462005D4D48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		65559DF22E75F154002F7248 /* XCUIApplication+Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCUIApplication+Notifications.swift"; sourceTree = "<group>"; };
 		76D18D1E2D2B2C8600053BE1 /* ProcessingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingState.swift; sourceTree = "<group>"; };
 		9B1864872C9226E90042AC81 /* AccountDetails+Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccountDetails+Key.swift"; sourceTree = "<group>"; };
 		9B18648A2C9227040042AC81 /* AccountNotifications+Extras.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccountNotifications+Extras.swift"; sourceTree = "<group>"; };
@@ -451,28 +456,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A977DD562C25E2DA00A2A8E5 /* SpeziDevicesUI in Frameworks */,
 				9733CFC62A8066DE001B7ABC /* SpeziOnboarding in Frameworks */,
-				2FE5DC6429EDD883004B9AB4 /* SpeziAccount in Frameworks */,
 				A9A0BF032C13121D00B8F3F3 /* SpeziNumerics in Frameworks */,
+				A92F50662E63A2CB0051C0FD /* SpeziDevicesUI in Frameworks */,
 				2FB099AF2A875DF100B20952 /* FirebaseAuth in Frameworks */,
 				97D73D6A2AD860AD00B47FA0 /* SpeziFirebaseStorage in Frameworks */,
+				56A0372D2E0AACD9001E2A00 /* SpeziAccountPhoneNumbers in Frameworks */,
+				A91D1F852DE1E72F0082407B /* SpeziBluetooth in Frameworks */,
 				2FE5DC6729EDD894004B9AB4 /* SpeziContact in Frameworks */,
 				2FE5DC8429EDD934004B9AB4 /* SpeziQuestionnaire in Frameworks */,
 				2FB099B12A875DF100B20952 /* FirebaseFirestore in Frameworks */,
+				A960D6A02E63978F004C6FED /* SpeziBluetooth in Frameworks */,
 				A9D83F962B083794000D0C78 /* SpeziFirebaseAccountStorage in Frameworks */,
 				2FB099B62A875E2B00B20952 /* HealthKitOnFHIR in Frameworks */,
 				56E7083B2BB06F6F00B08F0A /* SwiftPackageList in Frameworks */,
-				A977DD5D2C26279E00A2A8E5 /* SpeziBluetoothServices in Frameworks */,
 				65D39ABD2CE497630040BF71 /* SpeziNotifications in Frameworks */,
-				4D49AB022BC9D50400C77310 /* SpeziBluetooth in Frameworks */,
+				56A0372B2E0AACD9001E2A00 /* SpeziAccount in Frameworks */,
 				56E708352BB06B7100B08F0A /* SpeziLicense in Frameworks */,
+				A91D1F872DE1E72F0082407B /* SpeziBluetoothServices in Frameworks */,
+				A92F50682E63A2CB0051C0FD /* SpeziOmron in Frameworks */,
 				9B0723AB2C8F6AE700D901E5 /* FirebaseMessaging in Frameworks */,
-				A9623C042C17A3F500189BA1 /* SpeziOmron in Frameworks */,
 				2FE5DC7529EDD8E6004B9AB4 /* SpeziFirebaseAccount in Frameworks */,
 				9739A0C62AD7B5730084BEA5 /* FirebaseStorage in Frameworks */,
+				56A037302E0AB395001E2A00 /* PhoneNumberKit in Frameworks */,
+				A92F50642E63A2CB0051C0FD /* SpeziDevices in Frameworks */,
 				4DBDD3482BC073EF001FB0CA /* FirebaseFunctions in Frameworks */,
-				A977DD542C25E2DA00A2A8E5 /* SpeziDevices in Frameworks */,
 				2F49B7762980407C00BCB272 /* Spezi in Frameworks */,
 				2FE5DC8F29EDD980004B9AB4 /* SpeziViews in Frameworks */,
 				2FE5DC7929EDD8E6004B9AB4 /* SpeziFirestore in Frameworks */,
@@ -777,6 +785,7 @@
 			children = (
 				2FF8F0512CC69015002C757A /* SnapshotHelper.swift */,
 				4D8402792C4EE56000817495 /* XCUIApplication+GoTo.swift */,
+				65559DF22E75F154002F7248 /* XCUIApplication+Notifications.swift */,
 				4D8402832C4F11CB00817495 /* XCUIApplication+DeleteMeasurements.swift */,
 			);
 			path = HelperFunctions;
@@ -1195,13 +1204,12 @@
 			buildRules = (
 			);
 			dependencies = (
-				A996F4512C111017002328C5 /* PBXTargetDependency */,
+				651E81E72E754B43007A27E5 /* PBXTargetDependency */,
 				56E7083D2BB06FCA00B08F0A /* PBXTargetDependency */,
 			);
 			name = ENGAGEHF;
 			packageProductDependencies = (
 				2F49B7752980407B00BCB272 /* Spezi */,
-				2FE5DC6329EDD883004B9AB4 /* SpeziAccount */,
 				2FE5DC6629EDD894004B9AB4 /* SpeziContact */,
 				2FE5DC7429EDD8E6004B9AB4 /* SpeziFirebaseAccount */,
 				2FE5DC7629EDD8E6004B9AB4 /* SpeziFirebaseConfiguration */,
@@ -1218,14 +1226,17 @@
 				56E708342BB06B7100B08F0A /* SpeziLicense */,
 				56E7083A2BB06F6F00B08F0A /* SwiftPackageList */,
 				4DBDD3472BC073EF001FB0CA /* FirebaseFunctions */,
-				4D49AB012BC9D50400C77310 /* SpeziBluetooth */,
 				A9A0BF022C13121D00B8F3F3 /* SpeziNumerics */,
-				A9623C032C17A3F500189BA1 /* SpeziOmron */,
-				A977DD532C25E2DA00A2A8E5 /* SpeziDevices */,
-				A977DD552C25E2DA00A2A8E5 /* SpeziDevicesUI */,
-				A977DD5C2C26279E00A2A8E5 /* SpeziBluetoothServices */,
 				9B0723AA2C8F6AE700D901E5 /* FirebaseMessaging */,
 				65D39ABC2CE497630040BF71 /* SpeziNotifications */,
+				56A0372A2E0AACD9001E2A00 /* SpeziAccount */,
+				56A0372C2E0AACD9001E2A00 /* SpeziAccountPhoneNumbers */,
+				56A0372F2E0AB395001E2A00 /* PhoneNumberKit */,
+				A91D1F842DE1E72F0082407B /* SpeziBluetooth */,
+				A91D1F862DE1E72F0082407B /* SpeziBluetoothServices */,
+				A92F50632E63A2CB0051C0FD /* SpeziDevices */,
+				A92F50652E63A2CB0051C0FD /* SpeziDevicesUI */,
+				A92F50672E63A2CB0051C0FD /* SpeziOmron */,
 			);
 			productName = ENGAGEHF;
 			productReference = 653A254D283387FE005D4D48 /* ENGAGEHF.app */;
@@ -1242,7 +1253,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				4D8AD2D82C4B451400CB4F3E /* PBXTargetDependency */,
 				653A255F28338800005D4D48 /* PBXTargetDependency */,
 			);
 			name = ENGAGEHFTests;
@@ -1261,7 +1271,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				4D8AD2DA2C4B451900CB4F3E /* PBXTargetDependency */,
 				653A256928338800005D4D48 /* PBXTargetDependency */,
 			);
 			name = ENGAGEHFUITests;
@@ -1281,7 +1290,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1340;
-				LastUpgradeCheck = 1600;
+				LastUpgradeCheck = 2600;
 				TargetAttributes = {
 					653A254C283387FE005D4D48 = {
 						CreatedOnToolsVersion = 13.4;
@@ -1308,7 +1317,6 @@
 			mainGroup = 653A2544283387FE005D4D48;
 			packageReferences = (
 				2F49B7742980407B00BCB272 /* XCRemoteSwiftPackageReference "Spezi" */,
-				2FE5DC6229EDD883004B9AB4 /* XCRemoteSwiftPackageReference "SpeziAccount" */,
 				2FE5DC6529EDD894004B9AB4 /* XCRemoteSwiftPackageReference "SpeziContact" */,
 				2FE5DC7329EDD8E6004B9AB4 /* XCRemoteSwiftPackageReference "SpeziFirebase" */,
 				2FE5DC8229EDD934004B9AB4 /* XCRemoteSwiftPackageReference "SpeziQuestionnaire" */,
@@ -1320,11 +1328,13 @@
 				2FB099B42A875E2B00B20952 /* XCRemoteSwiftPackageReference "HealthKitOnFHIR" */,
 				5661551B2AB8384200209B80 /* XCRemoteSwiftPackageReference "swift-package-list" */,
 				56E708332BB06B7100B08F0A /* XCRemoteSwiftPackageReference "SpeziLicense" */,
-				2F66D20D2BB723180010D555 /* XCRemoteSwiftPackageReference "SwiftLint" */,
-				4D49AAFC2BC9D50400C77310 /* XCRemoteSwiftPackageReference "SpeziBluetooth" */,
 				A9A0BF012C13121D00B8F3F3 /* XCRemoteSwiftPackageReference "SpeziNetworking" */,
-				A9623C022C17A3F500189BA1 /* XCRemoteSwiftPackageReference "SpeziDevices" */,
 				65D39ABB2CE497630040BF71 /* XCRemoteSwiftPackageReference "SpeziNotifications" */,
+				56A037292E0AACD8001E2A00 /* XCRemoteSwiftPackageReference "SpeziAccount" */,
+				56A0372E2E0AB395001E2A00 /* XCRemoteSwiftPackageReference "PhoneNumberKit" */,
+				A960D69E2E63978F004C6FED /* XCRemoteSwiftPackageReference "SpeziBluetooth" */,
+				A92F50622E63A2CB0051C0FD /* XCRemoteSwiftPackageReference "SpeziDevices" */,
+				651E81E52E754B3A007A27E5 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
 			);
 			productRefGroup = 653A254E283387FE005D4D48 /* Products */;
 			projectDirPath = "";
@@ -1557,6 +1567,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65559DF32E75F154002F7248 /* XCUIApplication+Notifications.swift in Sources */,
 				4DA20B692C2B299700715AA2 /* RecentVitalsUITests.swift in Sources */,
 				A9F2138E2C18EBAB00A7578F /* AccountTests.swift in Sources */,
 				4D73A5242C58505100CCEC46 /* MedicationsUITests.swift in Sources */,
@@ -1579,17 +1590,13 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		4D8AD2D82C4B451400CB4F3E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = 4D8AD2D72C4B451400CB4F3E /* SwiftLintBuildToolPlugin */;
-		};
-		4D8AD2DA2C4B451900CB4F3E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = 4D8AD2D92C4B451900CB4F3E /* SwiftLintBuildToolPlugin */;
-		};
 		56E7083D2BB06FCA00B08F0A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			productRef = 56E7083C2BB06FCA00B08F0A /* SwiftPackageListPlugin */;
+		};
+		651E81E72E754B43007A27E5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 651E81E62E754B43007A27E5 /* SwiftLintBuildToolPlugin */;
 		};
 		653A255F28338800005D4D48 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1600,10 +1607,6 @@
 			isa = PBXTargetDependency;
 			target = 653A254C283387FE005D4D48 /* ENGAGEHF */;
 			targetProxy = 653A256828338800005D4D48 /* PBXContainerItemProxy */;
-		};
-		A996F4512C111017002328C5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = A996F4502C111017002328C5 /* SwiftLintBuildToolPlugin */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1791,10 +1794,17 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = NO;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_UPCOMING_FEATURE_EXISTENTIAL_ANY = YES;
+				SWIFT_UPCOMING_FEATURE_INTERNAL_IMPORTS_BY_DEFAULT = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 6.0;
 			};
 			name = Debug;
 		};
@@ -1849,10 +1859,17 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = NO;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 5.0;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_UPCOMING_FEATURE_EXISTENTIAL_ANY = YES;
+				SWIFT_UPCOMING_FEATURE_INTERNAL_IMPORTS_BY_DEFAULT = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 6.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1866,9 +1883,23 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "ENGAGEHF/Supporting Files/Info.plist";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Application must access bluetooth to connect to data collecting devices and retrieve data from weight scale and blood pressure cuff.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "This message should never appear. Please adjust this when you start using camera information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "The ENGAGE-HF app uses the step count to demonstrate Spezi's integration with HealthKit.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "The ENGAGE-HF app uses the step count to demonstrate Spezi's integration with HealthKit.";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This message should never appear. Please adjust this when you start using location information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This message should never appear. Please adjust this when you start using location information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "This message should never appear. Please adjust this when you start using microphone information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
+				INFOPLIST_KEY_NSMotionUsageDescription = "This message should never appear. Please adjust this when you start using motion information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "This message should never appear. Please adjust this when you start using speecg information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1881,6 +1912,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1899,6 +1931,19 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = CQRZ4E7K9U;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "ENGAGEHF/Supporting Files/Info.plist";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Application must access bluetooth to connect to data collecting devices and retrieve data from weight scale and blood pressure cuff.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "This message should never appear. Please adjust this when you start using camera information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "The ENGAGE-HF app uses the step count to demonstrate Spezi's integration with HealthKit.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "The ENGAGE-HF app uses the step count to demonstrate Spezi's integration with HealthKit.";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This message should never appear. Please adjust this when you start using location information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This message should never appear. Please adjust this when you start using location information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "This message should never appear. Please adjust this when you start using microphone information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
+				INFOPLIST_KEY_NSMotionUsageDescription = "This message should never appear. Please adjust this when you start using motion information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "This message should never appear. Please adjust this when you start using speecg information. We have to put this in here as ResearchKit has the possibility to use it and not putting it here returns an error on AppStore Connect.";
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1912,6 +1957,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1987,7 +2033,6 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				653A256F28338800005D4D48 /* Debug */,
-				2FEE10302998C89C000822E1 /* Test */,
 				653A257028338800005D4D48 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1997,7 +2042,6 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				653A257228338800005D4D48 /* Debug */,
-				2FEE10312998C89C000822E1 /* Test */,
 				653A257328338800005D4D48 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -2007,7 +2051,6 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				653A257528338800005D4D48 /* Debug */,
-				2FEE10322998C89C000822E1 /* Test */,
 				653A257628338800005D4D48 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -2017,7 +2060,6 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				653A257828338800005D4D48 /* Debug */,
-				2FEE10332998C89C000822E1 /* Test */,
 				653A257928338800005D4D48 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -2031,31 +2073,15 @@
 			repositoryURL = "https://github.com/StanfordSpezi/Spezi.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.8.0;
-			};
-		};
-		2F66D20D2BB723180010D555 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/SwiftLint.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.57.0;
+				minimumVersion = 1.9.2;
 			};
 		};
 		2FB099B42A875E2B00B20952 /* XCRemoteSwiftPackageReference "HealthKitOnFHIR" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/StanfordBDHG/HealthKitOnFHIR.git";
 			requirement = {
-				kind = upToNextMinorVersion;
-				minimumVersion = 0.2.4;
-			};
-		};
-		2FE5DC6229EDD883004B9AB4 /* XCRemoteSwiftPackageReference "SpeziAccount" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/StanfordSpezi/SpeziAccount.git";
-			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.1.2;
+				minimumVersion = 1.1.2;
 			};
 		};
 		2FE5DC6529EDD894004B9AB4 /* XCRemoteSwiftPackageReference "SpeziContact" */ = {
@@ -2071,7 +2097,7 @@
 			repositoryURL = "https://github.com/StanfordSpezi/SpeziFirebase.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.1;
+				minimumVersion = 2.0.7;
 			};
 		};
 		2FE5DC8229EDD934004B9AB4 /* XCRemoteSwiftPackageReference "SpeziQuestionnaire" */ = {
@@ -2079,7 +2105,7 @@
 			repositoryURL = "https://github.com/StanfordSpezi/SpeziQuestionnaire.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.2.3;
+				minimumVersion = 1.2.4;
 			};
 		};
 		2FE5DC8D29EDD980004B9AB4 /* XCRemoteSwiftPackageReference "SpeziViews" */ = {
@@ -2087,7 +2113,7 @@
 			repositoryURL = "https://github.com/StanfordSpezi/SpeziViews.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.8.0;
+				minimumVersion = 1.12.1;
 			};
 		};
 		2FE5DC9029EDD9C3004B9AB4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
@@ -2095,7 +2121,7 @@
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 11.5.0;
+				minimumVersion = 12.2.0;
 			};
 		};
 		2FE5DC9729EDD9D9004B9AB4 /* XCRemoteSwiftPackageReference "XCTestExtensions" */ = {
@@ -2103,7 +2129,7 @@
 			repositoryURL = "https://github.com/StanfordBDHG/XCTestExtensions.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.1.0;
+				minimumVersion = 1.2.2;
 			};
 		};
 		2FE5DC9A29EDD9EF004B9AB4 /* XCRemoteSwiftPackageReference "XCTHealthKit" */ = {
@@ -2111,15 +2137,7 @@
 			repositoryURL = "https://github.com/StanfordBDHG/XCTHealthKit.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.1.1;
-			};
-		};
-		4D49AAFC2BC9D50400C77310 /* XCRemoteSwiftPackageReference "SpeziBluetooth" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/StanfordSpezi/SpeziBluetooth.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.1.0;
+				minimumVersion = 1.1.4;
 			};
 		};
 		5661551B2AB8384200209B80 /* XCRemoteSwiftPackageReference "swift-package-list" */ = {
@@ -2130,12 +2148,36 @@
 				minimumVersion = 4.8.0;
 			};
 		};
+		56A037292E0AACD8001E2A00 /* XCRemoteSwiftPackageReference "SpeziAccount" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/StanfordSpezi/SpeziAccount.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.3.2;
+			};
+		};
+		56A0372E2E0AB395001E2A00 /* XCRemoteSwiftPackageReference "PhoneNumberKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/marmelroy/PhoneNumberKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.1.4;
+			};
+		};
 		56E708332BB06B7100B08F0A /* XCRemoteSwiftPackageReference "SpeziLicense" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/StanfordSpezi/SpeziLicense.git";
 			requirement = {
 				kind = upToNextMinorVersion;
-				minimumVersion = 0.1.1;
+				minimumVersion = 1.0.0;
+			};
+		};
+		651E81E52E754B3A007A27E5 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SimplyDanny/SwiftLintPlugins";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.61.0;
 			};
 		};
 		65D39ABB2CE497630040BF71 /* XCRemoteSwiftPackageReference "SpeziNotifications" */ = {
@@ -2143,7 +2185,7 @@
 			repositoryURL = "https://github.com/StanfordSpezi/SpeziNotifications.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.2;
+				minimumVersion = 1.0.7;
 			};
 		};
 		97F466E62A76BBEE005DC9B4 /* XCRemoteSwiftPackageReference "SpeziOnboarding" */ = {
@@ -2151,15 +2193,23 @@
 			repositoryURL = "https://github.com/StanfordSpezi/SpeziOnboarding.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.2.2;
+				minimumVersion = 2.0.2;
 			};
 		};
-		A9623C022C17A3F500189BA1 /* XCRemoteSwiftPackageReference "SpeziDevices" */ = {
+		A92F50622E63A2CB0051C0FD /* XCRemoteSwiftPackageReference "SpeziDevices" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/StanfordSpezi/SpeziDevices.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.4.1;
+				minimumVersion = 1.6.0;
+			};
+		};
+		A960D69E2E63978F004C6FED /* XCRemoteSwiftPackageReference "SpeziBluetooth" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/StanfordSpezi/SpeziBluetooth.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.3.1;
 			};
 		};
 		A9A0BF012C13121D00B8F3F3 /* XCRemoteSwiftPackageReference "SpeziNetworking" */ = {
@@ -2167,7 +2217,7 @@
 			repositoryURL = "https://github.com/StanfordSpezi/SpeziNetworking.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.2.0;
+				minimumVersion = 2.3.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -2192,11 +2242,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2FB099B42A875E2B00B20952 /* XCRemoteSwiftPackageReference "HealthKitOnFHIR" */;
 			productName = HealthKitOnFHIR;
-		};
-		2FE5DC6329EDD883004B9AB4 /* SpeziAccount */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2FE5DC6229EDD883004B9AB4 /* XCRemoteSwiftPackageReference "SpeziAccount" */;
-			productName = SpeziAccount;
 		};
 		2FE5DC6629EDD894004B9AB4 /* SpeziContact */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -2243,25 +2288,25 @@
 			package = 2FE5DC9A29EDD9EF004B9AB4 /* XCRemoteSwiftPackageReference "XCTHealthKit" */;
 			productName = XCTHealthKit;
 		};
-		4D49AB012BC9D50400C77310 /* SpeziBluetooth */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4D49AAFC2BC9D50400C77310 /* XCRemoteSwiftPackageReference "SpeziBluetooth" */;
-			productName = SpeziBluetooth;
-		};
-		4D8AD2D72C4B451400CB4F3E /* SwiftLintBuildToolPlugin */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2F66D20D2BB723180010D555 /* XCRemoteSwiftPackageReference "SwiftLint" */;
-			productName = "plugin:SwiftLintBuildToolPlugin";
-		};
-		4D8AD2D92C4B451900CB4F3E /* SwiftLintBuildToolPlugin */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2F66D20D2BB723180010D555 /* XCRemoteSwiftPackageReference "SwiftLint" */;
-			productName = "plugin:SwiftLintBuildToolPlugin";
-		};
 		4DBDD3472BC073EF001FB0CA /* FirebaseFunctions */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2FE5DC9029EDD9C3004B9AB4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFunctions;
+		};
+		56A0372A2E0AACD9001E2A00 /* SpeziAccount */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 56A037292E0AACD8001E2A00 /* XCRemoteSwiftPackageReference "SpeziAccount" */;
+			productName = SpeziAccount;
+		};
+		56A0372C2E0AACD9001E2A00 /* SpeziAccountPhoneNumbers */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 56A037292E0AACD8001E2A00 /* XCRemoteSwiftPackageReference "SpeziAccount" */;
+			productName = SpeziAccountPhoneNumbers;
+		};
+		56A0372F2E0AB395001E2A00 /* PhoneNumberKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 56A0372E2E0AB395001E2A00 /* XCRemoteSwiftPackageReference "PhoneNumberKit" */;
+			productName = PhoneNumberKit;
 		};
 		56E708342BB06B7100B08F0A /* SpeziLicense */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -2277,6 +2322,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5661551B2AB8384200209B80 /* XCRemoteSwiftPackageReference "swift-package-list" */;
 			productName = "plugin:SwiftPackageListPlugin";
+		};
+		651E81E62E754B43007A27E5 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 651E81E52E754B3A007A27E5 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
 		};
 		65D39ABC2CE497630040BF71 /* SpeziNotifications */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -2298,30 +2348,33 @@
 			package = 2FE5DC9029EDD9C3004B9AB4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseMessaging;
 		};
-		A9623C032C17A3F500189BA1 /* SpeziOmron */ = {
+		A91D1F842DE1E72F0082407B /* SpeziBluetooth */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A9623C022C17A3F500189BA1 /* XCRemoteSwiftPackageReference "SpeziDevices" */;
-			productName = SpeziOmron;
+			productName = SpeziBluetooth;
 		};
-		A977DD532C25E2DA00A2A8E5 /* SpeziDevices */ = {
+		A91D1F862DE1E72F0082407B /* SpeziBluetoothServices */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A9623C022C17A3F500189BA1 /* XCRemoteSwiftPackageReference "SpeziDevices" */;
-			productName = SpeziDevices;
-		};
-		A977DD552C25E2DA00A2A8E5 /* SpeziDevicesUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A9623C022C17A3F500189BA1 /* XCRemoteSwiftPackageReference "SpeziDevices" */;
-			productName = SpeziDevicesUI;
-		};
-		A977DD5C2C26279E00A2A8E5 /* SpeziBluetoothServices */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4D49AAFC2BC9D50400C77310 /* XCRemoteSwiftPackageReference "SpeziBluetooth" */;
 			productName = SpeziBluetoothServices;
 		};
-		A996F4502C111017002328C5 /* SwiftLintBuildToolPlugin */ = {
+		A92F50632E63A2CB0051C0FD /* SpeziDevices */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2F66D20D2BB723180010D555 /* XCRemoteSwiftPackageReference "SwiftLint" */;
-			productName = "plugin:SwiftLintBuildToolPlugin";
+			package = A92F50622E63A2CB0051C0FD /* XCRemoteSwiftPackageReference "SpeziDevices" */;
+			productName = SpeziDevices;
+		};
+		A92F50652E63A2CB0051C0FD /* SpeziDevicesUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A92F50622E63A2CB0051C0FD /* XCRemoteSwiftPackageReference "SpeziDevices" */;
+			productName = SpeziDevicesUI;
+		};
+		A92F50672E63A2CB0051C0FD /* SpeziOmron */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A92F50622E63A2CB0051C0FD /* XCRemoteSwiftPackageReference "SpeziDevices" */;
+			productName = SpeziOmron;
+		};
+		A960D69F2E63978F004C6FED /* SpeziBluetooth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A960D69E2E63978F004C6FED /* XCRemoteSwiftPackageReference "SpeziBluetooth" */;
+			productName = SpeziBluetooth;
 		};
 		A9A0BF022C13121D00B8F3F3 /* SpeziNumerics */ = {
 			isa = XCSwiftPackageProductDependency;

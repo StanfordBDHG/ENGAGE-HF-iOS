@@ -8,9 +8,11 @@
 // Based on: https://forums.developer.apple.com/forums/thread/708538
 //
 
+public import CoreTransferable
 import Foundation
-import PDFKit
+public import PDFKit
 import SwiftUI
+import UniformTypeIdentifiers
 
 #if compiler(>=6)
 extension PDFDocument: @retroactive Transferable {}

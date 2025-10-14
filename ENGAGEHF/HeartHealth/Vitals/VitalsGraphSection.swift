@@ -7,6 +7,7 @@
 //
 
 import HealthKit
+import Spezi
 import SpeziViews
 import SwiftUI
 
@@ -22,7 +23,7 @@ struct VitalsGraphSection: View {
         granularity.getDateRange(endDate: .now)
     }
     
-    @MainActor private var graphData: [HKSample] {
+    private var graphData: [HKSample] {
         let unfilteredData: [HKSample] = switch vitalsType {
         case .weight: vitalsManager.weightHistory
         case .heartRate: vitalsManager.heartRateHistory
@@ -43,8 +44,8 @@ struct VitalsGraphSection: View {
                     dateResolution: granularity.defaultDateUnit,
                     targetValue: vitalsType == .weight ? vitalsManager.latestDryWeight : nil
                 )
-#if TEST
-                    .disabled(true)
+#if DEBUG
+                    .disabled(FeatureFlags.setupTestEnvironment)
 #else
                     .disabled(data.isEmpty)
 #endif

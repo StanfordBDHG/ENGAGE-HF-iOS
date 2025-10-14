@@ -18,7 +18,7 @@ extension HKSampleGraph {
         
         private(set) var seriesData: SeriesDictionary = [:]
         private(set) var displayUnit: String?
-        private(set) var formatter: ([(String, Double)]) -> String = { _ in "No Data" }
+        private(set) var formatter: @Sendable ([(String, Double)]) -> String = { _ in "No Data" }
         private(set) var targetValue: SeriesTarget?
         
         

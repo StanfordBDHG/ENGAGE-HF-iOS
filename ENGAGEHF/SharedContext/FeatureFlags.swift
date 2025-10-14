@@ -6,42 +6,44 @@
 // SPDX-License-Identifier: MIT
 //
 
-/// A collection of feature flags for the ENGAGEHF.
+/// A collection of feature flags for ENGAGE-HF.
 enum FeatureFlags {
-    /// Skips the onboarding flow to enable easier development of features in the application and to allow UI tests to skip the onboarding flow.
-    static let skipOnboarding = CommandLine.arguments.contains("--skipOnboarding")
-    /// Always show the onboarding when the application is launched. Makes it easy to modify and test the onboarding flow without the need to manually remove the application or reset the simulator.
-    static let showOnboarding = CommandLine.arguments.contains("--showOnboarding")
-    /// Set the onboarding completed flag to true. Doesn't disable account related functionality.
-    static let assumeOnboardingComplete = CommandLine.arguments.contains("--assumeOnboardingComplete") || skipOnboarding
-    /// Disables the Firebase interactions, including the login/sign-up step and the Firebase Firestore upload.
-    static let disableFirebase = CommandLine.arguments.contains("--disableFirebase")
-    /// On sign in, fills the user's vitals observation collections (body weight, blood pressure, heart rate, and symptom scores) with random data if none already present.
-    static let setupMockVitals = CommandLine.arguments.contains("--setupMockVitals")
-    /// Fills the `MessageManager`'s message array with mock messages, skipping on-sign-in configuration such as snapshot listeners. Used for UI Testing.
-    /// Also causes `QuestionnaireSheetView` to skip Firestore query and use a default questionnaire as a test example.
-    static let setupTestMessages = CommandLine.arguments.contains("--setupTestMessages")
-    /// In the `MedicationsManager`, instead of initializing a snapshot listener for the medication recommendations collection, include a button to directly fill the medications array with mock medications.
-    static let setupTestMedications = CommandLine.arguments.contains("--setupTestMedications")
-    /// Fills the `VideoManager` with a test VideoCollection, skipping on-sign-in configuration. Used for UI Testing and preview simulators.
-    static let setupTestVideos = CommandLine.arguments.contains("--setupTestVideos")
-    /// Configures Firestore with settings that use a custom host
-    static let useCustomFirestoreHost = CommandLine.arguments.contains("--useCustomFirestoreHost")
-    /// In the `UserMetaDataManager`, skips fetching user organization information and instead injects a test instance.
-    /// No changes are made to the way notification settings are handled.
-    static let setupTestUserMetaData = CommandLine.arguments.contains("--setupTestUserMetaData")
+    /// Skips the onboarding flow to simplify feature development and allow UI tests to bypass onboarding.
+    nonisolated static let skipOnboarding = CommandLine.arguments.contains("--skipOnboarding")
+    /// Always shows onboarding on app launch. Useful for modifying and testing the flow without reinstalling the app or resetting the simulator.
+    nonisolated static let showOnboarding = CommandLine.arguments.contains("--showOnboarding")
+    /// Sets the onboarding-completed flag to true. Does not disable account-related functionality.
+    nonisolated static let assumeOnboardingComplete = CommandLine.arguments.contains("--assumeOnboardingComplete") || skipOnboarding
+    /// Disables Firebase interactions, including the login/sign-up step and Firestore uploads.
+    nonisolated static let disableFirebase = CommandLine.arguments.contains("--disableFirebase")
+    /// On sign-in, populates the user's vitals collections (body weight, blood pressure, heart rate, and symptom scores) with random data if none are present.
+    nonisolated static let setupMockVitals = CommandLine.arguments.contains("--setupMockVitals")
+    /// Populates the ``MessageManager``'s messages with mock data and skips on-sign-in setup (e.g., snapshot listeners). Used for UI testing.
+    /// Also causes ``QuestionnaireSheetView`` to skip the Firestore query and use a default questionnaire for testing.
+    nonisolated static let setupTestMessages = CommandLine.arguments.contains("--setupTestMessages")
+    /// In ``MedicationsManager``, replaces the snapshot listener for medication recommendations with a button that fills the medications array with mock data.
+    nonisolated static let setupTestMedications = CommandLine.arguments.contains("--setupTestMedications")
+    /// Populates ``VideoManager`` with a test ``VideoCollection``, skipping on-sign-in setup. Used for UI testing and previews.
+    nonisolated static let setupTestVideos = CommandLine.arguments.contains("--setupTestVideos")
+    /// Skips phone-number verification performed via Cloud Functions.
+    nonisolated static let setupTestPhoneNumberVerificationBehavior = CommandLine.arguments.contains("--setupTestPhoneNumberVerificationBehavior")
+    /// Configures Firestore to use a custom host.
+    nonisolated static let useCustomFirestoreHost = CommandLine.arguments.contains("--useCustomFirestoreHost")
+    /// In ``UserMetaDataManager``, skips fetching user-organization information and injects a test instance instead.
+    /// Notification settings behavior is unchanged.
+    nonisolated static let setupTestUserMetaData = CommandLine.arguments.contains("--setupTestUserMetaData")
     // periphery:ignore - Actually used in the Notification Manager
-    /// Skips the call to `registerRemoteNotifications` in the `NotificationManager`, and uses an empty token instead.
-    static let skipRemoteNotificationRegistration = CommandLine.arguments.contains("--skipRemoteNotificationRegistration")
+    /// Skips calling  ``NotificationManager/registerRemoteNotifications`` and uses an empty token instead.
+    nonisolated static let skipRemoteNotificationRegistration = CommandLine.arguments.contains("--skipRemoteNotificationRegistration")
     #if targetEnvironment(simulator)
-    /// Defines if the application should connect to the local firebase emulator. Always set to true when using the iOS simulator. disableFirebase still has priority over useFirebaseEmulator.
-    static let useFirebaseEmulator = true
+    /// Controls whether the app connects to the local Firebase emulator. Always true on the iOS simulator. `disableFirebase` takes priority over `useFirebaseEmulator`.
+    nonisolated static let useFirebaseEmulator = true
     #else
-    /// Defines if the application should connect to the local firebase emulator. Always set to true when using the iOS simulator.
-    static let useFirebaseEmulator = CommandLine.arguments.contains("--useFirebaseEmulator")
+    /// Controls whether the app connects to the local Firebase emulator.
+    nonisolated static let useFirebaseEmulator = CommandLine.arguments.contains("--useFirebaseEmulator")
     #endif
-    /// Test mock Bluetooth devices and show extended controls to manage testing procedures.
-    static let testMockDevices = CommandLine.arguments.contains("--testMockDevices")
-    /// Set up test environment (User account with valid invitation code).
-    static let setupTestEnvironment = CommandLine.arguments.contains("--setupTestEnvironment")
+    /// Tests mock Bluetooth devices and shows extended controls for managing test procedures.
+    nonisolated static let testMockDevices = CommandLine.arguments.contains("--testMockDevices")
+    /// Sets up a test environment (user account with a valid invitation code).
+    nonisolated static let setupTestEnvironment = CommandLine.arguments.contains("--setupTestEnvironment")
 }

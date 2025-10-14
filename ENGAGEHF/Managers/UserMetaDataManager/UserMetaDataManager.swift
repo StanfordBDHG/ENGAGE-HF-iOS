@@ -8,19 +8,19 @@
 
 import FirebaseFirestore
 import Foundation
+import os
 import Spezi
 import SpeziAccount
 import SpeziFirebaseAccount
 
 
 @Observable
-@MainActor
-final class UserMetaDataManager: Manager {
+final class UserMetaDataManager: Manager, Sendable {
     @ObservationIgnored @Dependency(Account.self) private var account: Account?
     @ObservationIgnored @Dependency(AccountNotifications.self) private var accountNotifications: AccountNotifications?
     @ObservationIgnored @Application(\.logger) private var logger
     
-    private var snapshotListener: ListenerRegistration?
+    private var snapshotListener: (any ListenerRegistration)?
     private var notificationsTask: Task<Void, Never>?
     private var previousOrganizationId: String?
     
@@ -36,7 +36,7 @@ final class UserMetaDataManager: Manager {
         }
         
         if let accountNotifications {
-            notificationsTask = Task.detached { @MainActor [weak self] in
+            notificationsTask = Task.detached { [weak self] in
                 for await event in accountNotifications.events {
                     guard let self else {
                         return
@@ -53,6 +53,7 @@ final class UserMetaDataManager: Manager {
     }
     
     
+    @MainActor
     func refreshContent() {
         updateOrganizationIfNeeded(id: account?.details?.organization)
     }
@@ -68,9 +69,9 @@ final class UserMetaDataManager: Manager {
             return
         }
         let organizationDocRef = Firestore.organizationCollectionReference.document(organizationId)
-        Task { @MainActor in
+        Task {
             do {
-#if TEST
+#if DEBUG
                 if FeatureFlags.setupTestUserMetaData {
                     self.organization = .test
                     self.logger.debug("Injected test organization.")

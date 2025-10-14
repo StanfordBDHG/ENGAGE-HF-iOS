@@ -6,9 +6,12 @@
 // SPDX-License-Identifier: MIT
 //
 
+import AccessorySetupKit
 import FirebaseFirestore
+import PhoneNumberKit
 import Spezi
 import SpeziAccount
+import SpeziAccountPhoneNumbers
 import SpeziBluetooth
 import SpeziBluetoothServices
 import SpeziDevices
@@ -17,7 +20,6 @@ import SpeziFirebaseAccountStorage
 import SpeziFirebaseStorage
 import SpeziFirestore
 import SpeziOmron
-import SpeziOnboarding
 import SpeziViews
 import SwiftUI
 
@@ -34,7 +36,10 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
                         ],
                         emulatorSettings: accountEmulator
                     ),
-                    storageProvider: FirestoreAccountStorage(storeIn: Firestore.userCollection, mapping: [
+                    storageProvider: FirestoreAccountStorage(
+                        storeIn: Firestore.userCollection,
+                        mapping: [
+                        "phoneNumbers": AccountKeys.phoneNumbers,
                         "dateOfBirth": AccountKeys.dateOfBirth,
                         "invitationCode": AccountKeys.invitationCode,
                         "organization": AccountKeys.organization,
@@ -45,10 +50,13 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
                         "receivesRecommendationUpdates": AccountKeys.receivesRecommendationUpdates,
                         "receivesVitalsReminders": AccountKeys.receivesVitalsReminders,
                         "receivesWeightAlerts": AccountKeys.receivesWeightAlerts
-                    ]),
+                        ],
+                        decoder: customDecoder
+                    ),
                     configuration: [
                         .requires(\.userId),
                         .supports(\.name),
+                        .supports(\.phoneNumbers),
                         .manual(\.invitationCode),
                         .manual(\.organization),
                         .manual(\.receivesAppointmentReminders),
@@ -70,11 +78,21 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
                 } else {
                     FirebaseStorageConfiguration()
                 }
+                PhoneVerificationProvider()
             }
 
             Bluetooth {
-                Discover(OmronWeightScale.self, by: .advertisedService(WeightScaleService.self))
-                Discover(OmronBloodPressureCuff.self, by: .advertisedService(BloodPressureService.self))
+                if #available(iOS 18, *) {
+                    // Normally, we would supply the `supportOptions: .bluetoothPairingLE` argument to automatically handle the "Pair" alert.
+                    // However, some build of iOS broke this, and if you do this with a factory reset device, results in the following error:
+                    // Code=14, Description=Peer removed pairing information and the device will never connect or pair.
+                    // This seems to not be a problem with the SC-150 scale.
+                    Discover(OmronBloodPressureCuff.self, by: .accessory(advertising: BloodPressureService.self))
+                    Discover(OmronWeightScale.self, by: .accessory(advertising: WeightScaleService.self, supportOptions: .bluetoothPairingLE))
+                } else {
+                    Discover(OmronBloodPressureCuff.self, by: .advertisedService(BloodPressureService.self))
+                    Discover(OmronWeightScale.self, by: .advertisedService(WeightScaleService.self))
+                }
             }
             
             PairedDevices()
@@ -104,5 +122,11 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
         } else {
             nil
         }
+    }
+    
+    nonisolated private var customDecoder: FirebaseFirestore.Firestore.Decoder {
+        let decoder = FirebaseFirestore.Firestore.Decoder()
+        decoder.userInfo[.phoneNumberDecodingStrategy] = PhoneNumberDecodingStrategy.e164
+        return decoder
     }
 }
