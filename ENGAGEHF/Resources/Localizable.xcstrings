@@ -379,6 +379,12 @@
             "state" : "translated",
             "value" : "Contacts"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contactos"
+          }
         }
       }
     },
