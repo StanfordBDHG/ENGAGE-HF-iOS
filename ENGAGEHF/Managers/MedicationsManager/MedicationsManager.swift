@@ -18,7 +18,7 @@ import SpeziFirebaseAccount
 ///
 /// Decodes the current user's medication recommendations from Firestore to an easily displayed internal representation
 @Observable
-final class MedicationsManager: Manager, Sendable {
+final class MedicationsManager: Manager, @unchecked Sendable {
     @ObservationIgnored @Dependency(Account.self) private var account: Account?
     @ObservationIgnored @Dependency(AccountNotifications.self) private var accountNotifications: AccountNotifications?
     

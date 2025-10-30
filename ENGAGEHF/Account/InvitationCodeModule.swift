@@ -16,7 +16,7 @@ import SpeziFirebaseAccount
 import SpeziFirestore
 
 
-final class InvitationCodeModule: Module, EnvironmentAccessible, Sendable {
+final class InvitationCodeModule: Module, EnvironmentAccessible, @unchecked Sendable {
     @Application(\.logger) private var logger
 
     @Dependency(Account.self) private var account: Account?
