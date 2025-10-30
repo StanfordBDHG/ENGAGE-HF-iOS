@@ -21,7 +21,7 @@ import UserNotifications
 
 
 @Observable
-final class NotificationManager: Manager, NotificationHandler, NotificationTokenHandler, Sendable {
+final class NotificationManager: Manager, NotificationHandler, NotificationTokenHandler, @unchecked Sendable {
     private struct NotificationTokenTimeoutError: LocalizedError {
         var errorDescription: String? {
             "Remote notification registration timed out."
