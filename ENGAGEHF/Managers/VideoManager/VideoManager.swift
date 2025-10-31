@@ -14,7 +14,7 @@ import SpeziAccount
 
 
 @Observable
-final class VideoManager: Manager, Sendable {
+final class VideoManager: Manager, @unchecked Sendable {
     @ObservationIgnored @Dependency(Account.self) private var account: Account?
     @ObservationIgnored @Dependency(AccountNotifications.self) private var accountNotifications: AccountNotifications?
     @Application(\.logger) @ObservationIgnored private var logger

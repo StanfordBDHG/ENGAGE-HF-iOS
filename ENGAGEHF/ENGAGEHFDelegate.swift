@@ -7,7 +7,7 @@
 //
 
 import AccessorySetupKit
-import FirebaseFirestore
+@preconcurrency import FirebaseFirestore
 import PhoneNumberKit
 import Spezi
 import SpeziAccount

@@ -15,7 +15,7 @@ import SpeziFirebaseAccount
 
 
 @Observable
-final class UserMetaDataManager: Manager, Sendable {
+final class UserMetaDataManager: Manager, @unchecked Sendable {
     @ObservationIgnored @Dependency(Account.self) private var account: Account?
     @ObservationIgnored @Dependency(AccountNotifications.self) private var accountNotifications: AccountNotifications?
     @ObservationIgnored @Application(\.logger) private var logger
