@@ -21,8 +21,7 @@ struct VideoPlayer: View {
     private var request: URLRequest {
         let url = VideoPlayer.youtubeEmbedUrl.appending(component: youtubeId)
         var request = URLRequest(url: url)
-        let referer = Bundle.main.bundleIdentifier.map { "https://\($0)" } ?? "https://localhost"
-        request.setValue(referer, forHTTPHeaderField: "Referer")
+        request.setValue("http://localhost", forHTTPHeaderField: "Referer")
         return request
     }
     
