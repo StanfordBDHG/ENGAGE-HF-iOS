@@ -42,7 +42,7 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
                         "phoneNumbers": AccountKeys.phoneNumbers,
                         "dateOfBirth": AccountKeys.dateOfBirth,
                         "invitationCode": AccountKeys.invitationCode,
-                        "organization": AccountKeys.organization, // TODO: these are all not necessary!
+                        "organization": AccountKeys.organization,
                         "receivesAppointmentReminders": AccountKeys.receivesAppointmentReminders,
                         "receivesInactivityReminders": AccountKeys.receivesInactivityReminders,
                         "receivesMedicationUpdates": AccountKeys.receivesMedicationUpdates,
