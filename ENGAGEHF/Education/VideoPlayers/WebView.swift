@@ -21,7 +21,7 @@ import WebKit
 // https://stackoverflow.com/questions/78395514/failed-to-request-allowed-query-parameters-from-webprivacy
 //
 struct WebView: UIViewRepresentable {
-    let urlString: String
+    let request: URLRequest
     @Binding var viewState: ViewState
     @State private var retryCount = 0
     private let maxRetries = 3
@@ -36,18 +36,11 @@ struct WebView: UIViewRepresentable {
         webView.allowsLinkPreview = true
         webView.navigationDelegate = context.coordinator
         
-        loadURL(in: webView)
+        webView.load(request)
         return webView
     }
     
     func updateUIView(_ uiView: WKWebView, context: Context) {}
-    
-    private func loadURL(in webView: WKWebView) {
-        if let url = URL(string: urlString) {
-            let request = URLRequest(url: url)
-            webView.load(request)
-        }
-    }
 }
 
 
@@ -86,7 +79,7 @@ extension WebView {
                 parent.retryCount += 1
                 parent.viewState = .processing
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    self.parent.loadURL(in: webView)
+                    webView.load(self.parent.request)
                 }
             } else {
                 parent.viewState = .error(AnyLocalizedError(error: error, defaultErrorDescription: String(localized: "defaultLoadingError")))
