@@ -207,6 +207,7 @@
 		653A255528338800005D4D48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 653A255428338800005D4D48 /* Assets.xcassets */; };
 		653A256228338800005D4D48 /* VitalsGraphAggregationUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653A256128338800005D4D48 /* VitalsGraphAggregationUnitTests.swift */; };
 		65559DF32E75F154002F7248 /* XCUIApplication+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65559DF22E75F154002F7248 /* XCUIApplication+Notifications.swift */; };
+		6581C5142EE2661C00A9CAAF /* ENGAGEHF Icon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 6581C5132EE2661C00A9CAAF /* ENGAGEHF Icon.icon */; };
 		65D39ABD2CE497630040BF71 /* SpeziNotifications in Frameworks */ = {isa = PBXBuildFile; productRef = 65D39ABC2CE497630040BF71 /* SpeziNotifications */; };
 		76D18D1F2D2B2C8A00053BE1 /* ProcessingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D18D1E2D2B2C8600053BE1 /* ProcessingState.swift */; };
 		9733CFC62A8066DE001B7ABC /* SpeziOnboarding in Frameworks */ = {isa = PBXBuildFile; productRef = 2FE5DC8029EDD91D004B9AB4 /* SpeziOnboarding */; };
@@ -436,6 +437,7 @@
 		653A256728338800005D4D48 /* ENGAGEHFUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ENGAGEHFUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		653A258928339462005D4D48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		65559DF22E75F154002F7248 /* XCUIApplication+Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCUIApplication+Notifications.swift"; sourceTree = "<group>"; };
+		6581C5132EE2661C00A9CAAF /* ENGAGEHF Icon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = "ENGAGEHF Icon.icon"; sourceTree = "<group>"; };
 		76D18D1E2D2B2C8600053BE1 /* ProcessingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingState.swift; sourceTree = "<group>"; };
 		9B1864872C9226E90042AC81 /* AccountDetails+Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccountDetails+Key.swift"; sourceTree = "<group>"; };
 		9B18648A2C9227040042AC81 /* AccountNotifications+Extras.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccountNotifications+Extras.swift"; sourceTree = "<group>"; };
@@ -553,6 +555,7 @@
 				653A255428338800005D4D48 /* Assets.xcassets */,
 				2FA0BFEC2ACC977500E0EF83 /* Localizable.xcstrings */,
 				2FE5DC5529EDD811004B9AB4 /* SocialSupportQuestionnaire.json */,
+				6581C5132EE2661C00A9CAAF /* ENGAGEHF Icon.icon */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1352,6 +1355,7 @@
 				2FC3439029EE6346002D773C /* SocialSupportQuestionnaire.json in Resources */,
 				2FA0BFED2ACC977500E0EF83 /* Localizable.xcstrings in Resources */,
 				2F6025CB29BBE70F0045459E /* GoogleService-Info.plist in Resources */,
+				6581C5142EE2661C00A9CAAF /* ENGAGEHF Icon.icon in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1745,7 +1749,7 @@
 		653A257228338800005D4D48 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "ENGAGEHF Icon";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "ENGAGEHF/Supporting Files/ENGAGEHF.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -1788,7 +1792,7 @@
 		653A257328338800005D4D48 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "ENGAGEHF Icon";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "ENGAGEHF/Supporting Files/ENGAGEHF.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
