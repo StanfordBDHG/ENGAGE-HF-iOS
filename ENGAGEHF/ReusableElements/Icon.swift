@@ -15,7 +15,6 @@ struct Icon: View {
             .resizable()
             .scaledToFit()
             .frame(width: 128, height: 128)
-            .clipShape(RoundedRectangle(cornerRadius: 32))
             .accessibilityLabel("ENGAGE-HF Icon")
     }
 }
