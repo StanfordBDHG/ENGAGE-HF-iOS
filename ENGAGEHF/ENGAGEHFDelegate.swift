@@ -79,15 +79,29 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
                     FirebaseStorageConfiguration()
                 }
                 PhoneVerificationProvider()
+            } else {
+                AccountConfiguration(
+                    service: InMemoryAccountService(),
+                    storageProvider: InMemoryAccountStorageProvider(),
+                    configuration: [
+                        .requires(\.userId),
+                        .supports(\.name),
+                        .manual(\.invitationCode),
+                        .manual(\.organization),
+                        .manual(\.receivesAppointmentReminders),
+                        .manual(\.receivesInactivityReminders),
+                        .manual(\.receivesMedicationUpdates),
+                        .manual(\.receivesQuestionnaireReminders),
+                        .manual(\.receivesRecommendationUpdates),
+                        .manual(\.receivesVitalsReminders),
+                        .manual(\.receivesWeightAlerts)
+                    ]
+                )
             }
 
             Bluetooth {
                 if #available(iOS 18, *) {
-                    // Normally, we would supply the `supportOptions: .bluetoothPairingLE` argument to automatically handle the "Pair" alert.
-                    // However, some build of iOS broke this, and if you do this with a factory reset device, results in the following error:
-                    // Code=14, Description=Peer removed pairing information and the device will never connect or pair.
-                    // This seems to not be a problem with the SC-150 scale.
-                    Discover(OmronBloodPressureCuff.self, by: .accessory(advertising: BloodPressureService.self))
+                    Discover(OmronBloodPressureCuff.self, by: .accessory(advertising: BloodPressureService.self, supportOptions: .bluetoothPairingLE))
                     Discover(OmronWeightScale.self, by: .accessory(advertising: WeightScaleService.self, supportOptions: .bluetoothPairingLE))
                 } else {
                     Discover(OmronBloodPressureCuff.self, by: .advertisedService(BloodPressureService.self))

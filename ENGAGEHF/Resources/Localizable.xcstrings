@@ -205,6 +205,9 @@
     "Diastolic" : {
       "comment" : "The lower number in a blood pressure reading"
     },
+    "Devices" : {
+
+    },
     "Dismiss Button" : {
       "comment" : "Accessability label for the XButton view of the MessageRow view."
     },
