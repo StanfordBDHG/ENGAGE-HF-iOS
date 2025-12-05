@@ -7,6 +7,7 @@
 //
 
 import Charts
+import SpeziViews
 import SwiftUI
 
 

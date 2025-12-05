@@ -7,6 +7,8 @@
 //
 
 import Charts
+import Spezi
+import SpeziViews
 import SwiftUI
 
 
@@ -21,7 +23,7 @@ struct SymptomsGraphSection: View {
         resolution.getDateRange(endDate: .now)
     }
     
-    @MainActor private var graphData: [String: [VitalMeasurement]] {
+    private var graphData: [String: [VitalMeasurement]] {
         let ungroupedData = vitalsManager.symptomHistory
             .compactMap { score -> VitalMeasurement? in
                 guard let value = score[keyPath: symptomsType.symptomScoreKeyMap] else {
@@ -51,14 +53,15 @@ struct SymptomsGraphSection: View {
                     let matchingSeriesValue = selected.first(where: {
                         $0.0 == KnownVitalsSeries.symptomScore.rawValue
                     })?.1
-                    return matchingSeriesValue?.asString(minimumFractionDigits: 0, maximumFractionDigits: 1) ?? "No Data"
+                    return matchingSeriesValue?.asString(minimumFractionDigits: 0, maximumFractionDigits: 1) ??
+                    String(localized: "No Data", comment: "No data available")
                 case .dizziness:
                     let matchingSeriesValue = selected.first(where: {
                         $0.0 == KnownVitalsSeries.symptomScore.rawValue
                     })?.1
                     return matchingSeriesValue.flatMap {
                         SymptomScore.mapLocalizedDizzinessScore($0)?.localizedString()
-                    } ?? "No Data"
+                    } ?? String(localized: "No Data", comment: "No data available")
                 }
             }
         )
@@ -70,8 +73,8 @@ struct SymptomsGraphSection: View {
             content: {
                 VitalsGraph(data: graphData, options: options)
                     .environment(\.customChartYAxis, symptomsType == .dizziness ? .dizzinessYAxisModifier : .percentageYAxisModifier )
-#if TEST
-                    .disabled(true)
+#if DEBUG
+                    .disabled(FeatureFlags.setupTestEnvironment)
 #else
                     .disabled(vitalsManager.symptomHistory.isEmpty)
 #endif

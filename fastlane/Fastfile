@@ -20,8 +20,8 @@ APP_CONFIG = {
 
 platform :ios do
   before_all do
-    ENV["FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT"] = "5"
-    ENV["FASTLANE_XCODEBUILD_SETTINGS_RETRIES"] = "6"
+    ENV["FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT"] = "120"
+    ENV["FASTLANE_XCODEBUILD_SETTINGS_RETRIES"] = "4"
   end
 
   desc "Build and test"
@@ -30,7 +30,7 @@ platform :ios do
       skip_build: true,
       derived_data_path: ".derivedData",
       code_coverage: true,
-      devices: ["iPhone 16 Plus"],
+      devices: ["iPhone 17"],
       disable_slide_to_type: false,
       concurrent_workers: 1,
       max_concurrent_simulators: 1,
@@ -55,12 +55,12 @@ platform :ios do
       ],
       build_for_testing: true
     )
-
+    
     snapshot(
       test_without_building: true,
       derived_data_path: ".derivedData",
       devices: [
-        "iPhone 16 Plus",
+        "iPhone 17 Pro Max",
         "iPad Pro 13-inch (M4)"
       ],
       languages: [
@@ -75,7 +75,7 @@ platform :ios do
     )
     
     # Workaround for https://github.com/fastlane/fastlane/issues/21759 and 
-    Dir.glob("./screenshots/**/iPhone 16 Plus-*.png").each do |file|
+    Dir.glob("./screenshots/**/iPhone 17 Pro Max-*.png").each do |file|
       sh("sips --resampleHeightWidth 2796 1290 '#{file}'")
     end
   end
@@ -160,25 +160,40 @@ platform :ios do
 
     releasenotes = releasenotes.gsub('\u2019', "'")
 
-    if environment == "production"
+    currentversion = get_version_number()
+    UI.message("Current version: #{currentversion}")
+
+    if Gem::Version.new(versionname) > Gem::Version.new(currentversion)
       increment_version_number(
         version_number: versionname
       )
+      UI.message("Version bumped to #{versionname}")
+    else
+      UI.message("No version bump needed. Current version (#{currentversion}) is greater than or equal to desired version (#{versionname}).")
     end
-    
+
     signin
-    latest_build_number = latest_testflight_build_number(
-      app_identifier: appidentifier
-    )
+    
+    buildnumber = options[:buildnumber].to_s.strip
+    if buildnumber.empty?
+      latest_build_number = latest_testflight_build_number(
+        app_identifier: appidentifier
+      )
+      buildnumber = latest_build_number + 1
+      UI.message("No build number provided. Incrementing to #{buildnumber}.")
+    else
+      UI.message("Using provided build number: #{buildnumber}.")
+    end
     increment_build_number(
-      build_number: latest_build_number + 1
+      build_number: buildnumber
     )
+    
     archive(
       appidentifier: appidentifier,
       provisioningProfile: provisioningProfile,
     )
     commit = last_git_commit
-    
+
     if environment == "production"
       deliver(
         app_identifier: appidentifier,

@@ -8,6 +8,7 @@
 
 import FirebaseFirestore
 import Foundation
+import os
 import Spezi
 import SpeziAccount
 import SpeziFirebaseAccount
@@ -17,14 +18,13 @@ import SpeziFirebaseAccount
 ///
 /// Decodes the current user's medication recommendations from Firestore to an easily displayed internal representation
 @Observable
-@MainActor
-final class MedicationsManager: Manager {
+final class MedicationsManager: Manager, @unchecked Sendable {
     @ObservationIgnored @Dependency(Account.self) private var account: Account?
     @ObservationIgnored @Dependency(AccountNotifications.self) private var accountNotifications: AccountNotifications?
     
     @Application(\.logger) @ObservationIgnored private var logger
     
-    private var snapshotListener: ListenerRegistration?
+    private var snapshotListener: (any ListenerRegistration)?
     private var notificationsTask: Task<Void, Never>?
 
     var medications: [MedicationDetails] = []
@@ -44,7 +44,7 @@ final class MedicationsManager: Manager {
         }
 
         if let accountNotifications {
-            notificationsTask = Task.detached { @MainActor [weak self] in
+            notificationsTask = Task.detached { [weak self] in
                 for await event in accountNotifications.events {
                     guard let self else {
                         return
@@ -65,6 +65,7 @@ final class MedicationsManager: Manager {
     }
     
     
+    @MainActor
     func refreshContent() {
         updateSnapshotListener(for: account?.details)
     }
@@ -156,7 +157,7 @@ extension MedicationsManager {
     }
 }
 
-#if DEBUG || TEST
+#if DEBUG
 extension MedicationsManager {
     func injectTestMedications() { // swiftlint:disable:this function_body_length
         self.medications = [

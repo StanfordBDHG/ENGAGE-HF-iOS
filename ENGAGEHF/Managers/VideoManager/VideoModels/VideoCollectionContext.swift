@@ -38,7 +38,7 @@ struct VideoCollectionContext: Decodable {
 }
 
 
-#if DEBUG || TEST
+#if DEBUG
 extension VideoCollectionContext {
     init(title: String, description: String, orderIndex: Int, id: String? = UUID().uuidString) {
         self.id = id

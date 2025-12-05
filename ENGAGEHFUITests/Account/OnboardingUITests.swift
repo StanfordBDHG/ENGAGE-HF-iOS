@@ -10,9 +10,10 @@
 import XCTest
 
 
+@MainActor
 final class OnboardingUITests: XCTestCase {
-    override func setUpWithError() throws {
-        try super.setUpWithError()
+    override func setUp() async throws {
+        try await super.setUp()
         
         continueAfterFailure = false
         
@@ -27,8 +28,16 @@ final class OnboardingUITests: XCTestCase {
         }
         
         let app = XCUIApplication()
-        app.launchArguments = ["--showOnboarding", "--useFirebaseEmulator"]
+        app.launchArguments = [
+            "--showOnboarding",
+            "--useFirebaseEmulator",
+            "--skipRemoteNotificationRegistration"
+        ]
         app.launch()
+        
+        try await Task.sleep(for: .seconds(2))
+        addNotificatinosUIInterruptionMonitor()
+        try await Task.sleep(for: .seconds(0.5))
     }
     
     func testOnboardingFlow() throws {
@@ -176,8 +185,7 @@ extension XCUIApplication {
         XCTAssertTrue(navigationBars.buttons["Edit"].waitForExistence(timeout: 2))
         navigationBars.buttons["Edit"].tap()
 
-        XCTAssertTrue(navigationBars.buttons["Cancel"].waitForExistence(timeout: 2.0))
-        XCTAssertFalse(navigationBars.buttons["Close"].exists)
+        XCTAssertTrue(navigationBars.buttons["Close"].waitForExistence(timeout: 2.0))
 
         XCTAssertFalse(buttons["Delete Account"].exists)
         XCTAssertTrue(buttons["Logout"].exists)

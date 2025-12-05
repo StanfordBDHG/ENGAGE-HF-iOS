@@ -6,6 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
+import Spezi
 import SpeziViews
 import SwiftUI
 import WebKit
@@ -20,9 +21,10 @@ import WebKit
 // https://stackoverflow.com/questions/78395514/failed-to-request-allowed-query-parameters-from-webprivacy
 //
 struct WebView: UIViewRepresentable {
-    let urlString: String
+    let request: URLRequest
     @Binding var viewState: ViewState
-    
+    @State private var retryCount = 0
+    private let maxRetries = 3
     
     func makeCoordinator() -> ProgressCoordinator {
         ProgressCoordinator(self)
@@ -34,10 +36,7 @@ struct WebView: UIViewRepresentable {
         webView.allowsLinkPreview = true
         webView.navigationDelegate = context.coordinator
         
-        if let url = URL(string: urlString) {
-            let request = URLRequest(url: url)
-            webView.load(request)
-        }
+        webView.load(request)
         return webView
     }
     
@@ -48,11 +47,11 @@ struct WebView: UIViewRepresentable {
 extension WebView {
     class ProgressCoordinator: NSObject, WKNavigationDelegate {
         let parent: WebView
-
+        
         init(_ parent: WebView) {
             self.parent = parent
         }
-
+        
         func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation) {
             parent.viewState = .processing
 #if DEBUG
@@ -64,14 +63,27 @@ extension WebView {
         
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation) {
             parent.viewState = .idle
+            parent.retryCount = 0
         }
         
         func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation, withError error: any Error) {
-            parent.viewState = .error(AnyLocalizedError(error: error, defaultErrorDescription: String(localized: "defaultLoadingError")))
+            handleError(error, webView: webView)
         }
         
         func webView(_ webView: WKWebView, didFail navigation: WKNavigation, withError error: any Error) {
-            parent.viewState = .error(AnyLocalizedError(error: error, defaultErrorDescription: String(localized: "defaultLoadingError")))
+            handleError(error, webView: webView)
+        }
+        
+        private func handleError(_ error: any Error, webView: WKWebView) {
+            if parent.retryCount < parent.maxRetries {
+                parent.retryCount += 1
+                parent.viewState = .processing
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    webView.load(self.parent.request)
+                }
+            } else {
+                parent.viewState = .error(AnyLocalizedError(error: error, defaultErrorDescription: String(localized: "defaultLoadingError")))
+            }
         }
     }
 }

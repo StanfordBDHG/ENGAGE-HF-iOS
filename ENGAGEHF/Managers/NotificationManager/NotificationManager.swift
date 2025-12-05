@@ -21,8 +21,7 @@ import UserNotifications
 
 
 @Observable
-@MainActor
-final class NotificationManager: Manager, NotificationHandler, NotificationTokenHandler {
+final class NotificationManager: Manager, NotificationHandler, NotificationTokenHandler, @unchecked Sendable {
     private struct NotificationTokenTimeoutError: LocalizedError {
         var errorDescription: String? {
             "Remote notification registration timed out."
@@ -34,7 +33,7 @@ final class NotificationManager: Manager, NotificationHandler, NotificationToken
     @ObservationIgnored @Dependency(NavigationManager.self) private var navigationManager
     @ObservationIgnored @Dependency(Account.self) private var account: Account?
     
-    // periphery:ignore - Properly used then the TEST flag is not set.
+    // periphery:ignore - Properly used then the test flags is not set.
     @ObservationIgnored @Application(\.registerRemoteNotifications) private var registerRemoteNotifications
     @ObservationIgnored @Application(\.logger) private var logger
     
@@ -48,12 +47,12 @@ final class NotificationManager: Manager, NotificationHandler, NotificationToken
     var state: ViewState = .idle
     
     
-    nonisolated init() {}
+    init() {}
     
     
     func configure() {
         self.cancellable = NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification).sink { _ in
-            Task { @MainActor in
+            Task {
                 if self.completedOnboardingFlow, self.account != nil {
                     await self.checkNotificationsAuthorized()
                 }
@@ -65,7 +64,7 @@ final class NotificationManager: Manager, NotificationHandler, NotificationToken
         }
         
         if let accountNotifications {
-            notificationsTask = Task.detached { @MainActor [weak self] in
+            notificationsTask = Task.detached { [weak self] in
                 for await event in accountNotifications.events {
                     guard let self else {
                         return
@@ -89,7 +88,7 @@ final class NotificationManager: Manager, NotificationHandler, NotificationToken
             }
         }
         
-        Task { @MainActor in
+        Task {
             if self.account != nil {
                 await self.checkNotificationsAuthorized()
             }
@@ -100,7 +99,7 @@ final class NotificationManager: Manager, NotificationHandler, NotificationToken
     func refreshContent() {
         Task {
             do {
-                if account?.details != nil {
+                if await account?.details != nil {
                     _ = try await self.requestNotificationPermissions()
                 } else {
                     _ = try await self.unregisterDeviceToken()
@@ -240,11 +239,12 @@ final class NotificationManager: Manager, NotificationHandler, NotificationToken
             return nil
         }
         
-#if TEST
-        return nil
-#else
-        return FeatureFlags.skipRemoteNotificationRegistration ? nil : try await registerRemoteNotifications()
+#if DEBUG
+        if FeatureFlags.skipRemoteNotificationRegistration {
+            return nil
+        }
 #endif
+        return try await registerRemoteNotifications()
     }
 
     private func convertTokenToFCM(apns apnsToken: Data) async throws -> String {

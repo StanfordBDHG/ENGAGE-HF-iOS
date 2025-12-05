@@ -6,15 +6,16 @@
 // SPDX-License-Identifier: MIT
 //
 
+import Spezi
 import SpeziAccount
 import SpeziOnboarding
 import SpeziValidation
 import SpeziViews
 import SwiftUI
 
-@MainActor
+
 struct InvitationCodeView: View {
-    @Environment(OnboardingNavigationPath.self) private var onboardingNavigationPath
+    @Environment(ManagedNavigationStack.Path.self) private var managedNavigationStackPath
     @Environment(InvitationCodeModule.self) private var invitationCodeModule
     @Environment(Account.self) private var account
 
@@ -57,23 +58,23 @@ struct InvitationCodeView: View {
     
     @ViewBuilder private var actionsView: some View {
         OnboardingActionsView(
-            primaryText: "Redeem Invitation Code",
+            primaryTitle: "Redeem Invitation Code",
             primaryAction: {
                 guard validation.validateSubviews() else {
                     return
                 }
                 do {
                     try await invitationCodeModule.verifyOnboardingCode(invitationCode)
-                    onboardingNavigationPath.nextStep()
+                    managedNavigationStackPath.nextStep()
                 } catch {
                     viewState = .error(AnyLocalizedError(error: error))
                 }
             },
-            secondaryText: "Logout",
+            secondaryTitle: "Logout",
             secondaryAction: {
                 do {
                     try await account.accountService.logout()
-                    onboardingNavigationPath.removeLast()
+                    managedNavigationStackPath.removeLast()
                 } catch {
                     viewState = .error(AnyLocalizedError(error: error))
                 }
@@ -112,7 +113,7 @@ struct InvitationCodeView: View {
 
 
 #Preview {
-    OnboardingStack {
+    ManagedNavigationStack {
         InvitationCodeView()
     }
         .previewWith(standard: ENGAGEHFStandard()) {

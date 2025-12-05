@@ -6,9 +6,12 @@
 // SPDX-License-Identifier: MIT
 //
 
-import FirebaseFirestore
+import AccessorySetupKit
+@preconcurrency import FirebaseFirestore
+import PhoneNumberKit
 import Spezi
 import SpeziAccount
+import SpeziAccountPhoneNumbers
 import SpeziBluetooth
 import SpeziBluetoothServices
 import SpeziDevices
@@ -17,7 +20,6 @@ import SpeziFirebaseAccountStorage
 import SpeziFirebaseStorage
 import SpeziFirestore
 import SpeziOmron
-import SpeziOnboarding
 import SpeziViews
 import SwiftUI
 
@@ -34,7 +36,10 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
                         ],
                         emulatorSettings: accountEmulator
                     ),
-                    storageProvider: FirestoreAccountStorage(storeIn: Firestore.userCollection, mapping: [
+                    storageProvider: FirestoreAccountStorage(
+                        storeIn: Firestore.userCollection,
+                        mapping: [
+                        "phoneNumbers": AccountKeys.phoneNumbers,
                         "dateOfBirth": AccountKeys.dateOfBirth,
                         "invitationCode": AccountKeys.invitationCode,
                         "organization": AccountKeys.organization, // TODO: these are all not necessary!
@@ -45,10 +50,13 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
                         "receivesRecommendationUpdates": AccountKeys.receivesRecommendationUpdates,
                         "receivesVitalsReminders": AccountKeys.receivesVitalsReminders,
                         "receivesWeightAlerts": AccountKeys.receivesWeightAlerts
-                    ]),
+                        ],
+                        decoder: customDecoder
+                    ),
                     configuration: [
                         .requires(\.userId),
                         .supports(\.name),
+                        .supports(\.phoneNumbers),
                         .manual(\.invitationCode),
                         .manual(\.organization),
                         .manual(\.receivesAppointmentReminders),
@@ -58,6 +66,7 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
                         .manual(\.receivesRecommendationUpdates),
                         .manual(\.receivesVitalsReminders),
                         .manual(\.receivesWeightAlerts),
+                        .manual(\.selfManaged),
                         .manual(\.disabled)
                     ]
                 )
@@ -69,6 +78,7 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
                 } else {
                     FirebaseStorageConfiguration()
                 }
+                PhoneVerificationProvider()
             } else {
                 AccountConfiguration(
                     service: InMemoryAccountService(),
@@ -126,5 +136,11 @@ class ENGAGEHFDelegate: SpeziAppDelegate {
         } else {
             nil
         }
+    }
+    
+    nonisolated private var customDecoder: FirebaseFirestore.Firestore.Decoder {
+        let decoder = FirebaseFirestore.Firestore.Decoder()
+        decoder.userInfo[.phoneNumberDecodingStrategy] = PhoneNumberDecodingStrategy.e164
+        return decoder
     }
 }

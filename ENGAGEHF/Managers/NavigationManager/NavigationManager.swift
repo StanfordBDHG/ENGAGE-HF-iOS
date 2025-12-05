@@ -16,9 +16,8 @@ import SwiftUI
 /// Navigation Manager
 ///
 /// Wraps an environment accessible and observable stack for use in navigating between views
-@MainActor
 @Observable
-final class NavigationManager: Manager {
+final class NavigationManager: Manager, @unchecked Sendable {
     @ObservationIgnored @Dependency(AccountNotifications.self) private var accountNotifications: AccountNotifications?
     @ObservationIgnored @Dependency(VideoManager.self) private var videoManager: VideoManager?
 
@@ -37,7 +36,7 @@ final class NavigationManager: Manager {
     private var notificationTask: Task<Void, Never>?
     
     
-    nonisolated init() {}
+    init() {}
     
     
     // On sign in, reinitialize to an empty navigation path
@@ -48,7 +47,7 @@ final class NavigationManager: Manager {
             }
             return
         }
-        notificationTask = Task.detached { @MainActor [weak self] in
+        notificationTask = Task.detached { [weak self] in
             for await event in accountNotifications.events {
                 guard let self else {
                     return
@@ -125,6 +124,6 @@ final class NavigationManager: Manager {
     }
 
     deinit {
-        _notificationTask?.cancel()
+        notificationTask?.cancel()
     }
 }

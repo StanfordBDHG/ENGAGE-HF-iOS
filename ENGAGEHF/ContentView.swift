@@ -7,12 +7,10 @@
 //
 
 @_spi(TestingSupport) import SpeziAccount
-import SpeziOnboarding
 import SpeziViews
 import SwiftUI
 
 
-@MainActor
 struct ContentView: View {
     private enum SheetContent: String, Identifiable {
         case onboarding

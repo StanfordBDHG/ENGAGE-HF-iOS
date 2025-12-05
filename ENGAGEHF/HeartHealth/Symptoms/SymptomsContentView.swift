@@ -6,6 +6,8 @@
 // SPDX-License-Identifier: MIT
 //
 
+import Spezi
+import SpeziViews
 import SwiftUI
 
 
@@ -14,14 +16,15 @@ struct SymptomsContentView: View {
     @State private var symptomsType: SymptomsType = .overall
     
     
-    @MainActor private var listDisplayData: [VitalListMeasurement] {
+    private var listDisplayData: [VitalListMeasurement] {
         vitalsManager.symptomHistory
             .map { score in
                 VitalListMeasurement(
                     id: score.id,
                     value: score[keyPath: symptomsType.symptomScoreKeyMap].map {
                         if symptomsType == .dizziness {
-                            SymptomScore.mapLocalizedDizzinessScore($0)?.localizedString() ?? "No Data"
+                            SymptomScore.mapLocalizedDizzinessScore($0)?.localizedString() ??
+                            String(localized: "No Data", comment: "No data available")
                         } else {
                             $0.asString(minimumFractionDigits: 0, maximumFractionDigits: 1)
                         }

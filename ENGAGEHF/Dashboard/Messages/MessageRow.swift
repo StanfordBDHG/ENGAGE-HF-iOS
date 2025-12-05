@@ -6,6 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
+import Spezi
 @_spi(TestingSupport) import SpeziAccount
 import SpeziViews
 import SwiftUI
@@ -187,7 +188,7 @@ struct MessageRow: View {
                             Text("Add Mock")
                         }
                     )
-                    Button(
+                    AsyncButton(
                         action: {
                             messageManager.makeMockMessagesProcessing()
                         },

@@ -10,6 +10,7 @@ import Foundation
 import XCTest
 
 
+@MainActor
 final class RecentVitalsUITests: XCTestCase {
     private var expectedFormattedMeasurementDate: String {
         let expectedDateComponents = DateComponents(year: 2024, month: 6, day: 5, hour: 12, minute: 33, second: 11)
@@ -20,17 +21,27 @@ final class RecentVitalsUITests: XCTestCase {
     }
     
     
-    override func setUpWithError() throws {
-        try super.setUpWithError()
+    override func setUp() async throws {
+        try await super.setUp()
 
         continueAfterFailure = false
 
         let app = XCUIApplication()
-        app.launchArguments = ["--skipOnboarding", "--testMockDevices", "--setupTestEnvironment", "--useFirebaseEmulator"]
+        app.launchArguments = [
+            "--skipOnboarding",
+            "--testMockDevices",
+            "--setupTestEnvironment",
+            "--useFirebaseEmulator",
+            "--skipRemoteNotificationRegistration"
+        ]
         app.launch()
+        
+        try await Task.sleep(for: .seconds(2))
+        addNotificatinosUIInterruptionMonitor()
+        try await Task.sleep(for: .seconds(0.5))
     }
 
-    func testWeight() throws {
+    func testWeight() async throws {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
@@ -60,7 +71,7 @@ final class RecentVitalsUITests: XCTestCase {
         XCTAssert(app.buttons["Save"].exists)
 
         app.buttons["Save"].tap()
-        sleep(1)
+        try? await Task.sleep(for: .seconds(1))
 
         XCTAssertFalse(app.alerts.element.exists)
         
@@ -74,7 +85,7 @@ final class RecentVitalsUITests: XCTestCase {
         XCTAssert(app.staticTexts["Body Weight"].waitForExistence(timeout: 2.0))
     }
     
-    func testHeartRateAndBloodPressure() throws {
+    func testHeartRateAndBloodPressure() async throws {
         let app = XCUIApplication()
         
         _ = app.staticTexts["Home"].waitForExistence(timeout: 5)
@@ -102,7 +113,7 @@ final class RecentVitalsUITests: XCTestCase {
         XCTAssert(app.buttons["Save"].exists)
 
         app.buttons["Save"].tap()
-        sleep(1)
+        try? await Task.sleep(for: .seconds(1))
 
         XCTAssertFalse(app.alerts.element.exists)
         

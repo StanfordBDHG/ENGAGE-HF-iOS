@@ -7,16 +7,22 @@
 //
 
 import FirebaseFunctions
+import Spezi
 @_spi(TestingSupport) import SpeziAccount
 import SpeziLicense
 import SwiftUI
 
 
 struct AccountSheet: View {
+    @State private var questionnaireId: String?
+    
     var body: some View {
         NavigationStack {
             AccountOverview(close: .showCloseButton, deletion: .disabled) {
-                AdditionalAccountSections()
+                AdditionalAccountSections(questionnaireId: $questionnaireId)
+            }
+            .sheet(item: $questionnaireId) { questionnaireId in
+                QuestionnaireSheetView(questionnaireId: questionnaireId)
             }
         }
     }

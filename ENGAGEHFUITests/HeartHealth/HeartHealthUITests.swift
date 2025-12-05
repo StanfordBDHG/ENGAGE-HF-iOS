@@ -9,10 +9,10 @@
 import XCTest
 
 
+@MainActor
 final class HeartHealthUITests: XCTestCase {
-    @MainActor
     override func setUp() async throws {
-        try super.setUpWithError()
+        try await super.setUp()
         continueAfterFailure = false
         
         let app = XCUIApplication()
@@ -20,9 +20,14 @@ final class HeartHealthUITests: XCTestCase {
             "--skipOnboarding",
             "--setupTestEnvironment",
             "--testMockDevices",
-            "--useFirebaseEmulator"
+            "--useFirebaseEmulator",
+            "--skipRemoteNotificationRegistration"
         ]
         app.launch()
+        
+        try await Task.sleep(for: .seconds(2))
+        addNotificatinosUIInterruptionMonitor()
+        try await Task.sleep(for: .seconds(0.5))
     }
     
     func testSymptomScores() throws {
@@ -55,7 +60,7 @@ final class HeartHealthUITests: XCTestCase {
         app.testEmptyVitals(for: "Blood Pressure", pickerLabel: "BP")
     }
     
-    func testWithWeightSample() throws {
+    func testWithWeightSample() async throws {
         let app = XCUIApplication()
         
         let expectedWeight = Locale.current.measurementSystem == .us ? "92.6" : "42.0"
@@ -66,11 +71,11 @@ final class HeartHealthUITests: XCTestCase {
         
         // Trigger a measurement
         app.goTo(tab: "Home")
-        app.triggerMockMeasurement("Weight", expect: ["42 kg"])
+        await app.triggerMockMeasurement("Weight", expect: ["42 kg"])
         app.goTo(tab: "Heart Health")
         
         // Test to make sure the graph appears
-        try app.testGraphWithSamples(
+        try await app.testGraphWithSamples(
             id: ("Weight", "Body Weight"),
             expectedQuantity: (expectedWeight, expectedUnit)
         )
@@ -87,7 +92,7 @@ final class HeartHealthUITests: XCTestCase {
         app.testEmptyVitals(for: "Body Weight", pickerLabel: "Weight")
     }
     
-    func testWithHeartRateSample() throws {
+    func testWithHeartRateSample() async throws {
         let app = XCUIApplication()
 
         // Start fresh
@@ -95,11 +100,11 @@ final class HeartHealthUITests: XCTestCase {
         
         // Trigger a measurement
         app.goTo(tab: "Home")
-        app.triggerMockMeasurement("Blood Pressure", expect: ["103/64 mmHg", "62 BPM"])
+        await app.triggerMockMeasurement("Blood Pressure", expect: ["103/64 mmHg", "62 BPM"])
         app.goTo(tab: "Heart Health")
         
         // Test to make sure the graph appears
-        try app.testGraphWithSamples(
+        try await app.testGraphWithSamples(
             id: ("HR", "Heart Rate"),
             expectedQuantity: ("62", "BPM")
         )
@@ -116,7 +121,7 @@ final class HeartHealthUITests: XCTestCase {
         app.testEmptyVitals(for: "Heart Rate", pickerLabel: "HR")
     }
     
-    func testWithBloodPressureSample() throws {
+    func testWithBloodPressureSample() async throws {
         let app = XCUIApplication()
         
         // Start fresh
@@ -124,11 +129,11 @@ final class HeartHealthUITests: XCTestCase {
         
         // Trigger a measurement
         app.goTo(tab: "Home")
-        app.triggerMockMeasurement("Blood Pressure", expect: ["103/64 mmHg", "62 BPM"])
+        await app.triggerMockMeasurement("Blood Pressure", expect: ["103/64 mmHg", "62 BPM"])
         app.goTo(tab: "Heart Health")
         
         // Test to make sure the graph appears
-        try app.testGraphWithSamples(
+        try await app.testGraphWithSamples(
             id: ("BP", "Blood Pressure"),
             expectedQuantity: ("103/64", "mmHg")
         )
@@ -181,14 +186,14 @@ extension XCUIApplication {
     fileprivate func testGraphWithSamples(
         id: (short: String, full: String),
         expectedQuantity: (value: String, unit: String)
-    ) throws {
+    ) async throws {
         let expectedRanges = try getExpectedDateRanges()
         
         // Verify that each graph appears correctly
         for (resolution, expectedRange) in zip(["Weekly", "Monthly"], expectedRanges) {
             let pickerID = resolution == "Weekly" ? "Daily" : "Weekly"
             
-            testGraph(
+            await testGraph(
                 id: id,
                 expectedQuantity: expectedQuantity,
                 dateInfo: (resolution, expectedRange),
@@ -203,7 +208,7 @@ extension XCUIApplication {
         expectedQuantity: (value: String, unit: String),
         dateInfo: (granularity: String, range: String),
         pickerID: String
-    ) {
+    ) async {
         // Make sure the vitals are correctly displayed
         goToHeartHealth(segment: id.short, header: id.full)
         
@@ -223,7 +228,7 @@ extension XCUIApplication {
         buttons["Resolution Picker, \(pickerID)"].tap()
         XCTAssert(buttons[dateInfo.granularity].waitForExistence(timeout: 0.5))
         buttons[dateInfo.granularity].tap()
-        sleep(1)
+        try? await Task.sleep(for: .seconds(1))
         
         // Make sure the vitals graph is present
         XCTAssert(otherElements["Vitals Graph"].waitForExistence(timeout: 2.0))
@@ -241,7 +246,7 @@ extension XCUIApplication {
     }
     
     
-    func triggerMockMeasurement(_ displayName: String, expect measurements: [String]) {
+    func triggerMockMeasurement(_ displayName: String, expect measurements: [String]) async {
         XCTAssert(navigationBars.buttons["More"].exists)
         navigationBars.buttons["More"].tap()
         
@@ -257,7 +262,7 @@ extension XCUIApplication {
         XCTAssert(buttons["Save"].exists)
 
         buttons["Save"].tap()
-        sleep(1)
+        try? await Task.sleep(for: .seconds(1))
 
         XCTAssertFalse(alerts.element.exists)
     }
@@ -269,7 +274,7 @@ extension XCUIApplication {
         XCTAssert(buttons[pickerLabel].waitForExistence(timeout: 0.5))
         buttons[pickerLabel].tap()
                 
-        XCTAssert(staticTexts["Overall Summary Quantity: No Data"].waitForExistence(timeout: 0.5))
+        XCTAssert(staticTexts["Overall Summary Quantity: No Data"].waitForExistence(timeout: 2))
         XCTAssert(staticTexts["About \(vitalType)"].waitForExistence(timeout: 0.5))
         staticTexts["About \(vitalType)"].swipeUp()
         XCTAssert(staticTexts["\(vitalType) Description"].waitForExistence(timeout: 0.5))
@@ -305,7 +310,7 @@ extension XCUIApplication {
             let nextIdx = (idx + 1) % numTypes
             
             XCTAssert(buttons["\(symptomTypes[idx]) Score, Symptoms Picker Chevron"].waitForExistence(timeout: 0.5))
-            images["Symptoms Picker Chevron"].tap()
+            buttons["\(symptomTypes[idx]) Score, Symptoms Picker Chevron"].tap()
             
             XCTAssert(buttons["\(symptomLabels[nextIdx])"].firstMatch.waitForExistence(timeout: 0.5))
             buttons["\(symptomLabels[nextIdx])"].firstMatch.tap()

@@ -20,13 +20,12 @@ import SpeziFirebaseAccount
 /// Maintains a list of Messages assigned to the current user in firebase
 /// On sign-in, adds a snapshot listener to the user's messages collection
 @Observable
-@MainActor
-final class MessageManager: Manager {
+final class MessageManager: Manager, @unchecked Sendable {
     @ObservationIgnored @Dependency(Account.self) private var account: Account?
     @ObservationIgnored @Dependency(AccountNotifications.self) private var accountNotifications: AccountNotifications?
     
     @ObservationIgnored private var notificationTask: Task<Void, Never>?
-    @ObservationIgnored private var snapshotListener: ListenerRegistration?
+    @ObservationIgnored private var snapshotListener: (any ListenerRegistration)?
     
     @Application(\.logger) @ObservationIgnored private var logger
 
@@ -39,7 +38,7 @@ final class MessageManager: Manager {
 
     
     func configure() {
-#if DEBUG || TEST
+#if DEBUG
         if ProcessInfo.processInfo.isPreviewSimulator || FeatureFlags.setupTestMessages {
             self.injectTestMessages()
             return
@@ -47,7 +46,7 @@ final class MessageManager: Manager {
 #endif
 
         if let accountNotifications {
-            notificationTask = Task.detached { @MainActor [weak self] in
+            notificationTask = Task.detached { [weak self] in
                 for await event in accountNotifications.events {
                     guard let self else {
                         return
@@ -67,7 +66,6 @@ final class MessageManager: Manager {
         }
     }
     
-    @MainActor
     func markAsProcessing(type: ProcessingState.ProcessingType) {
         let correlationId = UUID().uuidString
         let state = ProcessingState(startTime: Date(), type: type)
@@ -81,7 +79,6 @@ final class MessageManager: Manager {
         }
     }
     
-    @MainActor
     func processingState(for message: Message) -> ProcessingState? {
         processingStates.values.first { state in
             switch (message.action, state.type) {
@@ -89,7 +86,7 @@ final class MessageManager: Manager {
                 return true
             case let (.completeQuestionnaire(questionnaireId), .questionnaire(id)):
 
-#if DEBUG || TEST
+#if DEBUG
                 if ProcessInfo.processInfo.isPreviewSimulator || FeatureFlags.setupTestMessages {
                     if questionnaireId == "0" {
                         return true
@@ -111,7 +108,6 @@ final class MessageManager: Manager {
         updateSnapshotListener(for: account?.details)
     }
     
-    @MainActor
     private func cleanupProcessingState(correlationId: String) {
         guard processingStates[correlationId] != nil else {
             return
@@ -120,7 +116,6 @@ final class MessageManager: Manager {
         processingStates.removeValue(forKey: correlationId)
     }
     
-    @MainActor
     private func updateSnapshotListener(for details: AccountDetails?) {
         logger.info("Initializing message snapshot listener...")
 
@@ -159,7 +154,6 @@ final class MessageManager: Manager {
             }
     }
 
-    @MainActor
     func dismiss(_ message: Message, didPerformAction: Bool) async {
         logger.debug("Dismissing message with id: \(message.id ?? "nil")")
         
@@ -173,14 +167,14 @@ final class MessageManager: Manager {
             return
         }
         
-#if DEBUG || TEST
+#if DEBUG
         if ProcessInfo.processInfo.isPreviewSimulator || FeatureFlags.setupTestMessages {
             messages.removeAll { $0.id == messageId }
             return
         }
 #endif
 
-        guard let account, account.signedIn else {
+        guard let account, await account.signedIn else {
             logger.error("Unable to dismiss message: No user signed in.")
             return
         }
@@ -209,12 +203,11 @@ final class MessageManager: Manager {
 }
 
 
-#if DEBUG || TEST
+#if DEBUG
 extension MessageManager {
     // periphery:ignore - Used in Previews across the application.
     /// Adds a mock message to self.messages
     /// Used for testing in previews
-    @MainActor
     func addMockMessage(dismissible: Bool = true, action: MessageAction = .showHealthSummary) {
         let mockMessage = Message(
             title: "Medication Change",
@@ -236,7 +229,6 @@ extension MessageManager {
         markAsProcessing(type: .questionnaire(id: "0"))
     }
     
-    @MainActor
     private func injectTestMessages() {
         self.messages = [
             // With play video action, with description, is dismissible

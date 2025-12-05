@@ -119,7 +119,7 @@ enum FHIRObservationToHKSampleConverter {
     }
     
     
-    private static func getQuantity(observation: ObservationValueProtocol) throws -> HKQuantity {
+    private static func getQuantity(observation: any ObservationValueProtocol) throws -> HKQuantity {
         guard case let .quantity(fhirQuantity) = observation.observationValue?.type else {
             throw HKConversionError.invalidConversion
         }

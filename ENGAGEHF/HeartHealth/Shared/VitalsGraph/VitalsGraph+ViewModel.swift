@@ -21,7 +21,7 @@ extension VitalsGraph {
         
         private(set) var aggregatedData: [MeasurementSeries] = []
         private(set) var selection: SelectedInterval?
-        private(set) var selectionFormatter: ([(String, Double)]) -> String = { _ in "No Data" }
+        private(set) var selectionFormatter: ([(String, Double)]) -> String = { _ in String(localized: "No Data", comment: "No data available") }
         private(set) var localizedUnitString: String?
         private(set) var dateRange: ClosedRange<Date> = Date().addingTimeInterval(-60 * 60 * 24 * 30)...Date()
         private(set) var dateUnit: Calendar.Component = .day
@@ -64,7 +64,7 @@ extension VitalsGraph {
             self.saveProcessingResults(seriesData: seriesData, options: options)
         }
         
-        func selectPoint(value: GestureValue, proxy: ChartProxy, geometry: GeometryProxy, clearOnGap: Bool) {
+        func selectPoint(value: any GestureValue, proxy: ChartProxy, geometry: GeometryProxy, clearOnGap: Bool) {
             // Convert the tap location to the coordinate space of the plot area
             guard let anchor: Anchor<CGRect> = proxy.plotFrame else {
                 return
@@ -132,7 +132,11 @@ extension VitalsGraph {
                 }
             }
             self.dateUnit = options.granularity
-            self.selectionFormatter = seriesData.isEmpty ? { _ in "No Data" } : options.selectionFormatter
+            self.selectionFormatter = if seriesData.isEmpty {
+                { _ in String(localized: "No Data", comment: "No data available") }
+            } else {
+                options.selectionFormatter
+            }
             self.localizedUnitString = seriesData.isEmpty ? nil : options.localizedUnitString
             self.selection = nil
             
