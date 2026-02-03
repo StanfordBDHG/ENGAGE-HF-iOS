@@ -128,6 +128,12 @@ extension XCUIApplication {
         collectionViews.buttons["Signup"].tap()
         
         sleep(3)
+        
+        let passwordSaveNotNowButton =
+            scrollViews.otherElements.buttons["Not Now"]
+        if passwordSaveNotNowButton.waitForExistence(timeout: 2) {
+            passwordSaveNotNowButton.tap()
+        }
     }
     
     private func navigateInvitationCode(code: String) throws {
