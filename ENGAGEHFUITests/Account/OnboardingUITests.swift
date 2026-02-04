@@ -191,7 +191,7 @@ extension XCUIApplication {
         XCTAssertTrue(navigationBars.buttons["Edit"].waitForExistence(timeout: 2))
         navigationBars.buttons["Edit"].tap()
 
-        XCTAssertTrue(navigationBars.buttons["Close"].waitForExistence(timeout: 2.0))
+        XCTAssertTrue(navigationBars.buttons["Cancel"].waitForExistence(timeout: 2.0))
 
         XCTAssertFalse(buttons["Delete Account"].exists)
         XCTAssertTrue(buttons["Logout"].exists)
