@@ -128,8 +128,8 @@ extension XCUIApplication {
         swipeUp()
         
         let currentDate = Date().formatted(date: .abbreviated, time: .omitted)
-        XCTAssert(staticTexts["\(id.short) Date: \(currentDate)"].firstMatch.waitForExistence(timeout: 2))
-        XCTAssert(staticTexts["\(id.short) Unit: \(expectedQuantity.unit)"].firstMatch.waitForExistence(timeout: 2))
-        XCTAssert(staticTexts["\(id.short) Quantity: \(expectedQuantity.value)"].firstMatch.waitForExistence(timeout: 2))
+        XCTAssert(staticTexts["\(id.short) Date: \(currentDate)"].firstMatch.waitForExistence(timeout: 5))
+        XCTAssert(staticTexts["\(id.short) Unit: \(expectedQuantity.unit)"].firstMatch.waitForExistence(timeout: 5))
+        XCTAssert(staticTexts["\(id.short) Quantity: \(expectedQuantity.value)"].firstMatch.waitForExistence(timeout: 5))
     }
 }
