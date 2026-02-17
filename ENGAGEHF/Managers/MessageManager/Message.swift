@@ -65,4 +65,13 @@ extension Message: Decodable {
         self.dueDate = try container.decodeISO8601DateIfPresent(forKey: .dueDate)
         self.completionDate = try container.decodeISO8601DateIfPresent(forKey: .completionDate)
     }
+    
+    // This is a weird workaround for a weird issue of periphery:
+    // see: https://github.com/peripheryapp/periphery/issues/1078
+    //
+    // periphery:ignore
+    private func useUnusedProperties() {
+        _ = self.dueDate
+        _ = self.completionDate
+    }
 }
