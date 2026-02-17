@@ -14,7 +14,6 @@ import Foundation
 /// Data structure as defined in: https://github.com/StanfordBDHG/ENGAGE-HF-Firebase
 struct Message: Identifiable, Equatable, Sendable {
     @DocumentID var id: String?
-    
     let title: String
     let description: String?
     let action: MessageAction
