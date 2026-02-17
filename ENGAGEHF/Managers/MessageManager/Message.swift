@@ -19,9 +19,7 @@ struct Message: Identifiable, Equatable, Sendable {
     let description: String?
     let action: MessageAction
     let isDismissible: Bool
-    // periphery:ignore - Currently not used in the app but a complete representation of the model.
     let dueDate: Date?
-    // periphery:ignore - Currently not used in the app but a complete representation of the model.
     let completionDate: Date?
     
     

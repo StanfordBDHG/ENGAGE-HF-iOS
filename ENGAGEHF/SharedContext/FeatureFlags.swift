@@ -32,7 +32,6 @@ enum FeatureFlags {
     /// In ``UserMetaDataManager``, skips fetching user-organization information and injects a test instance instead.
     /// Notification settings behavior is unchanged.
     nonisolated static let setupTestUserMetaData = CommandLine.arguments.contains("--setupTestUserMetaData")
-    // periphery:ignore - Actually used in the Notification Manager
     /// Skips calling  ``NotificationManager/registerRemoteNotifications`` and uses an empty token instead.
     nonisolated static let skipRemoteNotificationRegistration = CommandLine.arguments.contains("--skipRemoteNotificationRegistration")
     #if targetEnvironment(simulator)
