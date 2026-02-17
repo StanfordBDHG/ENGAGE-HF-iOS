@@ -19,9 +19,7 @@ struct Message: Identifiable, Equatable, Sendable {
     let description: String?
     let action: MessageAction
     let isDismissible: Bool
-    // periphery:ignore - only set, not read
     let dueDate: Date?
-    // periphery:ignore - only set, not read
     let completionDate: Date?
     
     
