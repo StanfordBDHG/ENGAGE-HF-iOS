@@ -19,9 +19,6 @@
 		2FE5DC8F29EDD980004B9AB4 /* SpeziViews in Frameworks */ = {isa = PBXBuildFile; productRef = 2FE5DC8E29EDD980004B9AB4 /* SpeziViews */; };
 		2FE5DC9929EDD9D9004B9AB4 /* XCTestExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 2FE5DC9829EDD9D9004B9AB4 /* XCTestExtensions */; };
 		2FE5DC9C29EDD9EF004B9AB4 /* XCTHealthKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2FE5DC9B29EDD9EF004B9AB4 /* XCTHealthKit */; };
-		4D62BF392C6A978C0088C414 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		4D62BF3B2C6A9F330088C414 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		4D9D43742C59BDB2000062D3 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		4DBDD3482BC073EF001FB0CA /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 4DBDD3472BC073EF001FB0CA /* FirebaseFunctions */; };
 		56A0372B2E0AACD9001E2A00 /* SpeziAccount in Frameworks */ = {isa = PBXBuildFile; productRef = 56A0372A2E0AACD9001E2A00 /* SpeziAccount */; };
 		56A0372D2E0AACD9001E2A00 /* SpeziAccountPhoneNumbers in Frameworks */ = {isa = PBXBuildFile; productRef = 56A0372C2E0AACD9001E2A00 /* SpeziAccountPhoneNumbers */; };
@@ -299,6 +296,7 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
 			);
 			mainGroup = 653A2544283387FE005D4D48;
 			packageReferences = (
@@ -362,9 +360,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4D62BF392C6A978C0088C414 /* (null) in Sources */,
-				4D62BF3B2C6A9F330088C414 /* (null) in Sources */,
-				4D9D43742C59BDB2000062D3 /* (null) in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,6 +463,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_APPROACHABLE_CONCURRENCY = NO;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_UPCOMING_FEATURE_EXISTENTIAL_ANY = YES;
@@ -532,6 +528,7 @@
 				SWIFT_APPROACHABLE_CONCURRENCY = NO;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_UPCOMING_FEATURE_EXISTENTIAL_ANY = YES;

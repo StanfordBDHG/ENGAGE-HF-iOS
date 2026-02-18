@@ -46,6 +46,7 @@ extension Text {
 
 #if DEBUG
 extension List {
+    // periphery:ignore - Used in previews
     func studyApplicationList() -> some View {
         self
             .listRowSpacing(-8)

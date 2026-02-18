@@ -11,7 +11,7 @@ import Spezi
 import SpeziViews
 import SwiftUI
 
-
+// periphery:ignore - only used in previews
 private struct AddMeasurementViewPreviewWrapper: View {
     @State var measurement: GraphSelection?
     let targetMeasurement: GraphSelection

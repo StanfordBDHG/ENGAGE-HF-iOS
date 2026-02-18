@@ -57,6 +57,7 @@ struct ExpandableSection<Parent: View, Content: View>: View {
 
 
 extension ExpandableSection where Parent == Text {
+    // periphery:ignore - kept for potentially being useful in the future
     init(
         _ header: String,
         @ViewBuilder content: @escaping () -> Content,
