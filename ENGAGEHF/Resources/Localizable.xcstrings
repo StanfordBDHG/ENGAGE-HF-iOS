@@ -2,7 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "" : {
-
+      "shouldTranslate" : false
     },
     "%@ Date: %@" : {
       "comment" : "Accessability label used in VitalsCard and MeasurementListRow.",
@@ -234,15 +234,7 @@
       }
     },
     "Add Medications" : {
-      "comment" : "The text displayed on the button to add medications within the Medications view.",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Añadir medicamentos"
-          }
-        }
-      }
+
     },
     "All Data" : {
       "comment" : "The text displayed in the MeasurementListHeader view.",
@@ -494,7 +486,15 @@
       }
     },
     "Empty %@ List" : {
-
+      "comment" : "An accessibility label for the empty list view.",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lista %@ vacía"
+          }
+        }
+      }
     },
     "Enable Notifications in Settings" : {
       "comment" : "The text displayed on the button that is shown in the NotificationSettingsView if notifications are not authorized.",
@@ -1631,15 +1631,7 @@
       }
     },
     "Show Measurements" : {
-      "comment" : "The text displayed on one of the toolbar buttons for debug and test environments in the Dashboard view.",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mostrar mediciones"
-          }
-        }
-      }
+
     },
     "Show more" : {
       "comment" : "The text displayed on the ShowMoreButton if content is collapsed.",
@@ -1915,15 +1907,7 @@
       }
     },
     "Trigger Blood Pressure Measurement" : {
-      "comment" : "The text displayed on one of the toolbar buttons for debug and test environments in the Dashboard view.",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Activar medición de presión arterial"
-          }
-        }
-      }
+
     },
     "Trigger Sheet" : {
       "comment" : "The text displayed on the button to open the AddMeasurementView.",
@@ -1937,15 +1921,7 @@
       }
     },
     "Trigger Weight Measurement" : {
-      "comment" : "The text displayed on one of the toolbar buttons for debug and test environments in the Dashboard view.",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Activación de medición de peso"
-          }
-        }
-      }
+
     },
     "twice daily" : {
       "comment" : "Schedule frequency",
