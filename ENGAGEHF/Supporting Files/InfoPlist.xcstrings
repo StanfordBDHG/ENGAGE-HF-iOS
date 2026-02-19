@@ -2,7 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "CFBundleName" : {
-      "extractionState" : "manual",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -19,7 +19,7 @@
       }
     },
     "NSBluetoothAlwaysUsageDescription" : {
-      "extractionState" : "manual",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -36,7 +36,7 @@
       }
     },
     "NSCameraUsageDescription" : {
-      "extractionState" : "manual",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -53,7 +53,7 @@
       }
     },
     "NSHealthShareUsageDescription" : {
-      "extractionState" : "manual",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -70,7 +70,7 @@
       }
     },
     "NSHealthUpdateUsageDescription" : {
-      "extractionState" : "manual",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -87,7 +87,7 @@
       }
     },
     "NSLocationAlwaysAndWhenInUseUsageDescription" : {
-      "extractionState" : "manual",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -104,7 +104,7 @@
       }
     },
     "NSLocationWhenInUseUsageDescription" : {
-      "extractionState" : "manual",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -121,7 +121,7 @@
       }
     },
     "NSMicrophoneUsageDescription" : {
-      "extractionState" : "manual",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -138,7 +138,7 @@
       }
     },
     "NSMotionUsageDescription" : {
-      "extractionState" : "manual",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -155,7 +155,7 @@
       }
     },
     "NSSpeechRecognitionUsageDescription" : {
-      "extractionState" : "manual",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {

@@ -42,8 +42,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/firebase-ios-sdk.git",
       "state" : {
-        "revision" : "674d9a7ee9858207181a3dd0b42c77298c6fb71b",
-        "version" : "12.8.0"
+        "revision" : "9b3aed4fa6226125305b82d4d86c715bef250785",
+        "version" : "12.9.0"
       }
     },
     {
@@ -96,8 +96,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/gtm-session-fetcher.git",
       "state" : {
-        "revision" : "fb7f2740b1570d2f7599c6bb9531bf4fad6974b7",
-        "version" : "5.0.0"
+        "revision" : "a883ddb9fd464216133a5ab441f1ae8995978573",
+        "version" : "5.1.0"
       }
     },
     {
@@ -150,8 +150,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/marmelroy/PhoneNumberKit.git",
       "state" : {
-        "revision" : "8c369005948985d1c6fb396716a3f883d30639ab",
-        "version" : "4.2.3"
+        "revision" : "e0f91a22bbc96a67430e1cff502f943a67a97ed3",
+        "version" : "4.2.5"
       }
     },
     {
@@ -168,8 +168,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordBDHG/ResearchKit.git",
       "state" : {
-        "revision" : "8029e36bfa88b7995d8c997f4c7f52ef9e6679ea",
-        "version" : "3.1.2"
+        "revision" : "d1d523e9e738b7ad9c97ca6101aada1c041ea9da",
+        "version" : "3.1.4"
       }
     },
     {
@@ -177,8 +177,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordBDHG/ResearchKitOnFHIR.git",
       "state" : {
-        "revision" : "dc3e35d55e5c0acc0059c5f939535de230fdbd99",
-        "version" : "2.0.7"
+        "revision" : "67cca59fb511f5322b61e9617457d4a7a4bbf4eb",
+        "version" : "2.0.8"
       }
     },
     {
@@ -195,8 +195,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziAccount.git",
       "state" : {
-        "revision" : "e6da5e4ebf9ec2f36cb6e4f04da0853632e752c3",
-        "version" : "2.3.6"
+        "revision" : "35c6e6fd04dbc0f91577398d2299be127e10f84b",
+        "version" : "2.3.7"
       }
     },
     {
@@ -240,14 +240,14 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziFoundation.git",
       "state" : {
-        "revision" : "923effb63115b35dff52eb478ac5c761df7e892a",
-        "version" : "2.7.2"
+        "revision" : "75ed7728ad7fef759527af80cc7f4b3ab8cc892d",
+        "version" : "2.7.3"
       }
     },
     {
       "identity" : "spezilicense",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/StanfordSpezi/SpeziLicense",
+      "location" : "https://github.com/StanfordSpezi/SpeziLicense.git",
       "state" : {
         "revision" : "42bd5113d12f6c6b9dff9fe0123afcf2d2154f15",
         "version" : "1.0.0"
@@ -285,8 +285,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziQuestionnaire.git",
       "state" : {
-        "revision" : "6110a9ec1be8fc35caf9b7aa20b7cf570e1a8ffb",
-        "version" : "1.2.4"
+        "revision" : "5b0c768b20969b670127104930995db8325b52dc",
+        "version" : "1.3.0"
       }
     },
     {
@@ -303,8 +303,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziViews.git",
       "state" : {
-        "revision" : "bf7cc7830a4b81bed381fba7f5d96c5d2050fb09",
-        "version" : "1.12.9"
+        "revision" : "ddf43847a434b122fd97582b5182bb88f858c01b",
+        "version" : "1.12.11"
       }
     },
     {
@@ -357,8 +357,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-log",
       "state" : {
-        "revision" : "2778fd4e5a12a8aaa30a3ee8285f4ce54c5f3181",
-        "version" : "1.9.1"
+        "revision" : "bbd81b6725ae874c69e9b8c8804d462356b55523",
+        "version" : "1.10.1"
       }
     },
     {
@@ -375,8 +375,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-nio.git",
       "state" : {
-        "revision" : "233f61bc2cfbb22d0edeb2594da27a20d2ce514e",
-        "version" : "2.93.0"
+        "revision" : "e932d3c4d8f77433c8f7093b5ebcbf91463948a0",
+        "version" : "2.95.0"
       }
     },
     {
@@ -420,8 +420,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SimplyDanny/SwiftLintPlugins",
       "state" : {
-        "revision" : "c099f18417c53548134830b11669b96ed9801971",
-        "version" : "0.63.1"
+        "revision" : "8a4640d14777685ba8f14e832373160498fbab92",
+        "version" : "0.63.2"
       }
     },
     {
@@ -429,8 +429,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordBDHG/ThreadLocal.git",
       "state" : {
-        "revision" : "2600d766183e7223f1e951b0ab03bf98738e1ccc",
-        "version" : "0.1.1"
+        "revision" : "16704d12f51abdd44c1f3c09bf28e619e4d789b2",
+        "version" : "0.1.2"
       }
     },
     {
@@ -447,8 +447,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordBDHG/XCTHealthKit.git",
       "state" : {
-        "revision" : "026d5c6f02cdafa31924548d1ee6ce2fdf182137",
-        "version" : "1.2.4"
+        "revision" : "f2e956b4d5e09a6b396c8f5bb38aaba05eaa35a1",
+        "version" : "1.2.6"
       }
     },
     {
